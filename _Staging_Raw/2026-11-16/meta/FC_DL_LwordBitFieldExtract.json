@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LwordBitFieldExtract",
+  "category": "DL_MathData",
+  "instruction": "LWORD 单字位段读：LGF 位操作族覆盖 BYTE/WORD/DWORD 唯独 LWORD 空位（库内 BitCount 实测入参 DWORD），64 位帧解析（电表/长报文）需要单字位段读取原子。",
+  "architecture_thought": "无状态纯函数：先算有效宽 nEffWidth=MIN(nWidth,64-nStartBit) 再移位；宽 64 直接取常量全 1 掩码（规避 SHL(1,64) 未定义行为），否则 SHL(LWORD#1,nEffWidth)-1 保证移位量<64；取段前先 AND 掩码防高位污染；起始位/宽非法判故障 037B/037C；越界按可用位截断 bTruncated=TRUE + 信息级 043E（读可截断可观测）。"
+}

@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #10：按 ROUND_PLAN_R7 §2.8 编码 FB_DL_PulseFlowMeter（实现 I_DL_FlowMeter），落盘 C:\\Library\\DL_Device\\FB_DL_PulseFlowMeter.st。R_TRIG 脉冲沿计数 → 自重触发 TON 采样窗（IN:=NOT Q）→ 窗沿双缓冲整窗交换（读侧无撕裂）→ K 系数换算 [L/min]；总量脉冲计数法 fTotal += 窗脉冲/K；除零防御三处（K 非法故障锁存 02B0、窗秒数钳位域恒非零+显式 ABS 分支）；低流量截止（输出置零 + eLowCutoff + 信息级 0113）；脉冲丢失超时（流量置零 + 0114）；窗内超 DL_PULSE_WIN_MAX 置信息级 0115（提示 HSC）；fTotal > 9.0E15 预警 bTotalNearLimit；滑动窗计数 Device 层内联（不引 DL_MathData，依赖方向合规）。码位顺延留档（0107~0109 已占）。",
+  "architecture_thought": "统一窗法（放弃周期法）是跨平台简化决策：单窗脉冲数/窗秒/K 的三段除法每段都带显式 ABS 防零分支，比周期法（依赖相邻沿间隔）对抖动鲁棒且无需捕获高频沿间隔。双缓冲的理由：读侧（HMI/批控）可能在任意拍读 nPulseCount，若直接读计数缓冲会在窗中段读到半程值——窗沿整窗交换让读侧永远看到完整窗。增量累计只在窗沿发生一次，fTotal 的写频率与窗频同阶，避免每拍浮点累加误差。"
+}

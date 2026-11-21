@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_TodDiffWrap",
+  "category": "DL_MathData",
+  "instruction": "计算两个 TOD 时刻间跨度（如班次时长、跨零点工作区间），需正确处理 end < start 的跨零点情形。",
+  "architecture_thought": "跨零点单次折算（end<start 时加一天再相减），不做循环取模；结果如实输出。信息级 16#0001_0422，故障三槽预留。"
+}

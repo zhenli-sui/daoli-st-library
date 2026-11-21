@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #12：按 ROUND_PLAN_R7 §2.10 编码 FB_DL_LevelSwitchVib（实现 I_DL_LevelSwitch），落盘 C:\\Library\\DL_Device\\FB_DL_LevelSwitchVib.st。防抖 TON×2 → 覆盖/裸露双延迟确认 TON×2（全部 R7 前置无条件刷新）；失效安全归一核心：bRawSwitch XOR (eFailSafeMode=eLow) 语义等价式用 IF 显式写（禁 XOR 裸用，极性约定注释写明防接反）；bEnable=FALSE 或故障时输出强制归一到安全侧（eHigh→有料/eLow→无料，出口断言式）；模式枚举越界故障锁存 02C0；传感器失效检测预留（0116 信息级 + eSensorLoss 态已登记，算法后续轮次落地，R11 留档）。码位顺延归一留档（0290 已被本轮 GuardLockDoor 顺延占用、010a 编号惯例不一致）。",
+  "architecture_thought": "双级时间滤波（防抖→确认延迟）对应两种物理噪声：防抖吃触点抖动（毫秒级），确认延迟吃液面波动（秒级），合并成单 TON 会把两种整定耦合在一个引脚上。归一式用 IF 显式展开而不是 XOR 运算符：极性约定（eLow 组态 raw TRUE=无料）是现场接线契约，显式分支让接线工程师能直接对照注释核查，位运算技巧会把契约藏进表达式。失效检测本轮只留码位与状态占位——诚实声明能力边界比塞入半成品诊断算法更符合『宁减不凑』。"
+}

@@ -1,0 +1,16 @@
+{
+ "name": "FC_DL_CamTableInterp",
+ "category": "DL_Motion",
+ "type": "FC",
+ "function_tags": [
+  "凸轮表",
+  "线性插值",
+  "周期取模",
+  "t1-6-plcopen"
+ ],
+ "complexity": 4,
+ "instruction": "凸轮电子齿轮应用中主轴位置可能超出表界（非周期）或跨周期回绕（周期模式）；插值需在界内线性、界外钳端点、周期模式先取模。边界条件：表点数不足 2 或未升序判表非法；主轴位置 NaN 拦截；周期非正视同表非法；纯函数所有输出全路径赋值。",
+ "architecture_thought": "段定位 WHILE 搜索加段宽判零；周期取模用 TRUNC 整除回绕、负余数钳回正域；界外钳端点并置界外标志与恰在端点区分；表非法与位置非法提前返回前输出全赋值；零段宽防御取左点；凸轮点结构体随宿主发布全库唯一定义；纯 IEC 零依赖可移植。",
+ "version": "1.0.0",
+ "source": "t1-6-plcopen 深化（与 Validate 与 PhaseTrim 正交）"
+}

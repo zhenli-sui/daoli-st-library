@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DateToIsoString",
+  "category": "DL_MathData",
+  "instruction": "DATE 转 YYYY-MM-DD ISO 文本：MES 台账/文件名标准形态；DATE_TO_DINT 纪元口径属平台内建链假设，必须挂编译验证债并做回代自校验。",
+  "architecture_thought": "无状态纯函数：DATE_TO_DINT 天序号 + Howard Hinnant 公开 civil_from_days 整数算法反算 y/m/d（纯整数无查表无浮点无循环）；早于纪元或年越 1970~9999 判故障 0396；回代 days_from_civil(y,m,d)<>nDays 判故障 0397 不允许输出未复验日期（口径错不静默差一天）；补零走商<10 分支。"
+}

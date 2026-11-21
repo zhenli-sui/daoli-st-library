@@ -1,0 +1,193 @@
+FB_DL_TabWeldingMonitor :: 极耳焊接过程监控（能量/位移/压力包络窗口判定）
+FB_DL_ElectrolyteFillCtrl :: 注液量闭环（称重罐减量法 + 静置浸润计时）→ `DL_Process`
+FB_DL_StakingPressCtrl :: 预压/全压两段压芯控制（压力-位移包络窗口判定）→ `DL_Process`
+FB_DL_LaserWeldPowerSeq :: 激光焊接功率斜坡序列（预焊-满焊-收弧三段配方）→ `DL_Process`
+FB_DL_OcvGradingBin :: OCV 分档机（电压/内阻双判据落料调度）→ `DL_Process`
+FB_DL_PouchVacuumSeal :: 软包封装真空袋封口顺控（真空度-温度-压力联锁）→ `DL_Process`
+FB_DL_CalenderRollPress :: 辊压压力-位移包络窗口（伺服压辊两段压装，复用 `FB_DL_StepSequencer`）→ `DL_Process`
+FB_DL_CellFeederVacuum :: 电芯真空吸盘上料工站模板（注入 `I_DL_VacuumGenerator` 与 `I_DL_Cylinder`）→ `DL_Process`
+FB_DL_ElTestStation :: EL 检测工站（相机触发、缺陷坐标映射、OK/NG 归档）
+FB_DL_LaminatorTempProfile :: 层压机温区曲线跟随（多段升温/保温/降温配方）
+FB_DL_CellSortingBin :: 电池片分选落料（效率/色差分档 + 料仓满溢调度）
+FB_DL_TrackerSolarAngle :: 跟踪支架太阳角计算（时角/赤纬，含逆跟踪防阴影）
+FB_DL_HjtPvdSeq :: PVD 镀膜腔体顺控（本底真空-基片预热-工艺-取片联锁）→ `DL_Process`
+FB_DL_FiringFurnaceZone :: 烧结炉多温区峰值温度跟随（与链速联动）→ `DL_Process`
+FB_DL_PlatingCurrentCtrl :: 电镀槽位电流密度闭环与液位联锁（镀铜设备）→ `DL_Process`
+FB_DL_ModuleLamVacuumSeq :: 组件层压真空顺控（抽气-加热-加压-放气四段曲线）→ `DL_Process`
+FB_DL_StringSolderQuality :: 串焊焊接质量在线判据（红外温度曲线 + 拉力抽检窗口）→ `DL_Process`
+FB_DL_LaminatorPressCtrl :: 层压机压力-时间闭环（真空段/加压段分离，复用 `FB_DL_CascadePid`）→ `DL_Process`
+FB_DL_TrackerWindStow :: 跟踪支架大风保护收拢（风速阈值 → 安全角度，含风速趋势判据）→ `DL_Process`
+FB_DL_PottingDispenseCtrl :: 接线盒灌胶定量（称重减量法 + 双组份混合比闭环）→ `DL_Process`
+FB_DL_EfEmoInterlock :: EFEM 机械手互锁矩阵（门/阀/真空/位置四类条件）
+FB_DL_RfReflectedMonitor :: 射频电源功率/反射比监视与匹配器联动告警（仅监视）→ `DL_Process`
+FB_DL_CvdTempRamp :: CVD/扩散炉多段升温曲线跟随（Ramp/Soak 曲线 + 均匀性判据，复用 `FB_DL_RampSoakProfile`）→ `DL_Process`
+FB_DL_ChamberPurgeDry :: 腔体干燥吹扫顺控（露点判据收敛，复用 `FC_DL_DewPointCalc`）→ `DL_Process`
+FB_DL_HeatSealProfile :: 热封温度-压力-时间三参数曲线管理（配方化）
+FB_DL_ShrinkTunnelCtrl :: 热收缩炉温区与网速联动（收缩膜工艺窗口）→ `DL_Process`
+FB_DL_RollChangeoverSeq :: 换卷换规格一键切换顺控（张力回零 + 参数配方合法性校验，复用 `FB_DL_RecipeManager`）→ `DL_Process`
+FB_DL_AhuEconomizer :: 空调箱新风经济器（焓值比较 + 混风阀联动）
+FB_DL_CoolingTowerOpt :: 冷却塔群控与逼近度优化（湿球逼近度优先）
+FB_DL_FanPressureTrim :: 风机变频静压微调（最不利末端阀位比例积分修正）→ `DL_Process`
+FB_DL_TerminalReheatSeq :: 末端再热联锁（最小风量 + 再热极限级联）→ `DL_Process`
+FB_DL_ChillerApproachTrend :: 冷机逼近度趋势诊断（复用 `FB_DL_SignalStatistics`，性能衰减预警）→ `DL_Process`
+FB_DL_VavDischargeAirReset :: 送风温度重置（末端阀位加权平均 → 送风设定值）→ `DL_Process`
+FB_DL_HydronicDeltaTGuard :: 水系统大/小温差失衡诊断（复用 `FB_DL_Differentiator`，旁通与失衡判据）→ `DL_Process`
+FB_DL_AnalyzerSampleSeq :: 在线分析仪取样顺控（取样-吹扫-标定三态轮换）→ `DL_Process`
+FB_DL_SteamHeaderSplit :: 蒸汽母管多支路分程分配（复用 `FB_DL_SplitRangeControl`，按支路优先级映射）→ `DL_Process`
+FB_DL_TrayerNestingCtrl :: 电芯托盘堆叠嵌套调度（层数/列数/NG 通道避让，复用 `FB_DL_LifoStack`）→ **DL_Process** ｜ **P2**
+FB_DL_CoinCellAssembler :: 扣电组装工位模板（叠片-压紧-封口，注入 `I_DL_Cylinder` + `I_DL_TemperatureZone`）→ **DL_Process** ｜ **P2**
+FB_DL_StringerTrend :: 串焊机焊接温度曲线在线监视（多通道趋势 + 峰值窗口，复用 `FB_DL_SignalStatistics` + `FB_DL_AlarmManager`）→ **DL_Process** ｜ **P1**
+FB_DL_QuarterCellCutSeq :: 半片/叠瓦裁切顺控（激光-吸附-裁切时序，复用 `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P2**
+FB_DL_RfMatcherTune :: 射频匹配器自动调谐顺控（反射比最小化步进搜索，复用 `FB_DL_Differentiator`）→ **DL_Process** ｜ **P1**
+FB_DL_VentPurgeDuty :: 尾气处理单元轮值切换（双塔吸附切换 + 穿透预警，复用 `FB_DL_DutyStandbyRotation`）→ **DL_Device** ｜ **P2**
+FB_DL_AmcMonitorStat :: 气态分子污染物（AMC）在线统计分级（复用 `FB_DL_SignalStatistics` + `FB_DL_AlarmManager`）→ **DL_Process** ｜ **P2**
+FB_DL_TrapSealTrend :: 枕式包装机封口温度随线速重置（线速前馈 + PID 重置，复用 `FB_DL_PidController`）→ **DL_Process** ｜ **P1**
+FB_DL_CartonDenestPush :: 纸箱分离-推箱顺控（料仓分离 + 推杆节拍，复用 `I_DL_Cylinder` + `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P2**
+FB_DL_BypassValveTrim :: 旁通阀压差微调（供回水压差 PI，复用 `FB_DL_PidController`）→ **DL_Device** ｜ **P2**
+FB_DL_PileClampCtrl :: 堆叠压紧板压力-位移两段控制（预压/全压，复用 `FB_DL_StepSequencer` + `I_DL_Cylinder`）→ **DL_Process** ｜ **P1**
+FB_DL_OcvProbeDock :: OCV 探针台对接下压与接触校验（压力窗 + 接触电阻判据，复用 `I_DL_Cylinder`）→ **DL_Process** ｜ **P1**
+FB_DL_GloveBoxAtmoCtrl :: 手套箱气氛联锁（水氧含量越限禁开门，复用 `FB_DL_InterlockMatrix`）→ **DL_Device** ｜ **P2**
+FB_DL_ModulePottingVac :: 模组灌胶真空脱泡顺控（抽真空-灌注-保压-释放，复用 `I_DL_VacuumGenerator`）→ **DL_Process** ｜ **P2**
+FB_DL_PackHousingTighten :: Pack 箱体螺栓拧紧轴序管理（对角顺序 + 扭矩窗口，复用 `FB_DL_StepSequencer` + `I_DL_MotionAxis`）→ **DL_Process** ｜ **P2**
+FB_DL_FramingPressSeq :: 装框机压装顺控（涂胶-组框-压合节拍，复用 `FB_DL_StepSequencer` + `I_DL_Cylinder`）→ **DL_Process** ｜ **P1**
+FB_DL_TrayLoadVacuum :: 电池片花篮真空取放（破真空吹气定宽脉冲，复用 `I_DL_VacuumGenerator`）→ **DL_Process** ｜ **P2**
+FB_DL_InvInsulTestSeq :: 逆变器绝缘测试顺控（加压-保持-泄放联锁，复用 `FB_DL_InterlockMatrix`）→ **DL_Process** ｜ **P2**
+FB_DL_ForelinePressureCtrl :: 前级管路压力稳定（调节阀位 PI，复用 `FB_DL_PidController` + `FB_DL_AnalogValve`）→ **DL_Process** ｜ **P1**
+FB_DL_WaferCoolChuck :: 静电卡盘吸附-温控联锁（吸附确认后允许温控投运，复用 `I_DL_VacuumGenerator` + `I_DL_TemperatureZone`）→ **DL_Device** ｜ **P2**
+FB_DL_ProcessKitTimer :: 腔体部件保养计时器（累计工艺拍数/时长双口径，复用 `FB_DL_RuntimeMeter`）→ **DL_Device** ｜ **P2**
+FB_DL_CassetteMapVerify :: 花篮片位映射比对校验（Mapping 序列解析 + 错片定位，复用 `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P2**
+FB_DL_ExhaustDpTrend :: 尾气管路压差趋势监视（堵塞预警，复用 `FB_DL_SignalStatistics`）→ **DL_Device** ｜ **P2**
+FB_DL_CupFillDenest :: 杯装灌装机取杯-灌装-封口节拍链（复用 `FB_DL_StepSequencer` + `I_DL_Cylinder`）→ **DL_Process** ｜ **P2**
+FB_DL_CaseSealTapeMonitor :: 封箱胶带缺料/断带监视（张力 + 光电双判据，复用 `FB_DL_SignalDebounce`）→ **DL_Device** ｜ **P2**
+FB_DL_PalletGripperSafe :: 码垛夹手区域安全互锁（夹爪压力 + 区域扫描双条件，复用 `FB_DL_InterlockMatrix`）→ **DL_Process** ｜ **P2**
+FB_DL_RadiatorZoneValve :: 散热器末端温控阀脉冲控制（三点浮点阀典型消费场景，复用 `FB_DL_ThreePointValve`）→ **DL_Process** ｜ **P1**
+FB_DL_HumidifierAdiabat :: 绝热加湿器补水顺控（水位双限 + 排水周期，复用 `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P2**
+FB_DL_ChillerCondReset :: 冷机冷凝温度重置（冷却塔出水温度跟随，复用 `FC_DL_MultiPointLinear`）→ **DL_Process** ｜ **P2**
+FB_DL_DoorInterlockHvac :: 机房门禁-风机联锁（开门降频/停机恢复策略，复用 `FB_DL_Hysteresis`）→ **DL_Device** ｜ **P2**
+FB_DL_PigLauncherSeq :: 清管器收发球筒顺控（发球-跟踪-接收联锁，复用 `FB_DL_StepSequencer` + `FB_DL_InterlockMatrix`）→ **DL_Process** ｜ **P2**
+FB_DL_SampleLoopPurge :: 分析取样环快速回路吹扫（切换阀序列 + 吹扫计时，复用 `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P2**
+FB_DL_TankBlanketPrCtrl :: 储罐氮封压差监测联动（复用 `FB_DL_RedundantSwitch` 双表冗余判据）→ **DL_Device** ｜ **P2**
+FB_DL_BinderFeederSeq :: Binders/绝缘件振动盘供料顺控（满料/缺料双光电 + 卡料窗，复用 `FB_DL_StepSequencer` + `FB_DL_LevelSwitchVib`）→ **DL_Process** ｜ **P1**
+FB_DL_ElectrolyteDosingTrend :: 注液量趋势 SPG 判据（多批次重量差统计，复用 `FB_DL_SignalStatistics` + `FB_DL_BatchDosingControl` 结算值）→ **DL_Process** ｜ **P2**
+FB_DL_SafetyDoorAuditBank :: 化成柜多安全门审计汇总（开门次数/批次锁定，复用 `FB_DL_GuardLockDoor` 的 `uOpenCount`）→ **DL_Process** ｜ **P1**
+FB_DL_CellVolumeCheck :: 电芯厚度/体积激光测距校验（超差分档，复用 `I_DL_AnalogSensor` NE43 诊断）→ **DL_Device** ｜ **P2**
+FB_DL_NgBinDosing :: NG 料返投称重定量（复用 `FB_DL_BatchDosingControl` 单料相 + 学习禁用组态）→ **DL_Process** ｜ **P2**
+FB_DL_GlassFeederAccum :: 玻璃上料输送积放（复用 `FB_DL_ConveyorZone` 多区级联）→ **DL_Process** ｜ **P1**
+FB_DL_ElMutingGantry :: EL 检测龙门进出屏蔽（复用 `FB_DL_SafetyLightCurtain` 4 传感器序列）→ **DL_Device** ｜ **P2**
+FB_DL_EvaDosingTare :: EVA 膜裁剪称重定量（复用 `FB_DL_BatchDosingControl` + 皮重自动 tare 策略）→ **DL_Process** ｜ **P2**
+FB_DL_CurtainEFEMZone :: EFEM 机械手作业区光幕分区屏蔽（复用 `FB_DL_SafetyLightCurtain` 序列判向）→ **DL_Device** ｜ **P1**
+FB_DL_ChemDosingGrav :: 化学液定量补给称重（复用 `FB_DL_BatchDosingControl`，密度温度补偿外置）→ **DL_Process** ｜ **P2**
+FB_DL_SlurryLevelBank :: 浆料罐点式料位巡检组（复用 `FB_DL_LevelSwitchVib` 多实例 + fail-safe 组态审查）→ **DL_Device** ｜ **P2**
+FB_DL_CartonScannerSort :: 纸箱扫码分道（复用 `I_DL_BarcodeScanner` + `FB_DL_ConveyorZone` 分道放行）→ **DL_Process** ｜ **P0**
+FB_DL_FilmSpliceCurtain :: 接膜工位光幕屏蔽序列（复用 `FB_DL_SafetyLightCurtain` 2 传感器模式）→ **DL_Device** ｜ **P2**
+FB_DL_FilterSwitchLevel :: 过滤器液位/料位联锁（再生系统盐罐，复用 `FB_DL_LevelSwitchVib` fail-safe LOW）→ **DL_Device** ｜ **P2**
+FB_DL_MakeupWaterDosing :: 补水定量加药（复用 `FB_DL_BatchDosingControl` + `FB_DL_Integrator` 流量累计）→ **DL_Process** ｜ **P2**
+FB_DL_BeltHeatRecovery :: 转轮热回收输送联锁（复用 `FB_DL_ConveyorZone` + 温差判据外置）→ **DL_Process** ｜ **P2**
+FB_DL_RoofUnitDoorSw :: 屋顶机检修门-风机联锁（复用 `FB_DL_GuardLockDoor` 重启抑制语义轻量组态）→ **DL_Device** ｜ **P2**
+FB_DL_HydronicMeterAudit :: 冷冻水/冷却水能量审计（复用 `FB_DL_PulseFlowMeter` + `FC_DL_HumidAirEnthalpy` 侧焓差）→ **DL_Process** ｜ **P1**
+FB_DL_UnlockHoldTimeout :: 安全门 eUnlocked 保持超时监视（解锁输出有效但门未开超 `tUnlockHold` → 提示电磁铁/机械卡滞；终审对 `FB_DL_GuardLockDoor` 的立项增强，复用其解锁时序）→ **DL_Device** ｜ **P2**（终审立项）
+FB_DL_ConveyorDirMismatch :: 输送线停机方向失配独立窗（停机后出口光电变化但方向与运行方向不符 → 反窜/倒滑独立诊断窗；终审对 `FB_DL_ConveyorZone` 的立项增强，复用其光电与 run-on 语义）→ **DL_Process** ｜ **P2**（终审立项）
+FB_DL_PipeScannerRoute :: 管输批次的扫码分输（复用 `I_DL_BarcodeScanner` + `FB_DL_StepSequencer` 阀序）→ **DL_Process** ｜ **P1**
+FB_DL_OcvTempNormalize :: OCV 测试温度归一判据（复用 `FC_DL_TempUnitConvert` + `FB_DL_ToleranceWindow` 判合格带）→ **DL_Process** ｜ **P1**
+FB_DL_RollPressBitWord :: 辊压压力报警字位段打包（复用 `FC_DL_WordBitPack` + `FB_DL_AlarmManager` 通道映射）→ **DL_Process** ｜ **P2**
+FB_DL_FormatMonthAudit :: 化成/分容月度窗排产审计（复用 `FB_DL_MonthWindowCheck` + `FB_DL_OeeCalculator` 班次根因）→ **DL_Process** ｜ **P2**
+FB_DL_ElectrolyteFifoTrace :: 注液批次 FIFO 追溯队列（复用 `FB_DL_FifoBuffer` 批次结构体队列 + 条码绑定）→ **DL_Process** ｜ **P1**
+FB_DL_PilePressLimitClass :: 堆叠压力四档分级与 NG 分道（复用 `FC_DL_LimitClassify` + `FB_DL_ConveyorZone` 分道放行）→ **DL_Process** ｜ **P1**
+FB_DL_IvBcdExport :: IV 测试仪 BCD 拨码设定导出（复用 `FC_DL_WordToBcd` / `FC_DL_BcdToWord` 面板互转）→ **DL_Device** ｜ **P2**
+FB_DL_StringFifoRetry :: 电池串缓存队列重试出站（复用 `FB_DL_FifoBuffer` 丢新策略 + `FB_DL_StepSequencer`）→ **DL_Process** ｜ **P1**
+FB_DL_TempCompClassify :: 组件功率温度补偿分档（复用 `FC_DL_TempUnitConvert` + `FC_DL_LimitClassify` 四档）→ **DL_Process** ｜ **P1**
+FB_DL_TrayMonthRotate :: 托盘月度轮换保养排程（复用 `FB_DL_MonthWindowCheck` + `FB_DL_DutyStandbyRotation` 轮值）→ **DL_Process** ｜ **P2**
+FB_DL_ChamberTempUnitBank :: 多腔室温标统一换算行（复用 `FC_DL_TempUnitConvert` 多实例 + `FB_DL_HeatCoolZone`）→ **DL_Process** ｜ **P2**
+FB_DL_WaferCountPreset :: 晶圆计数预置饱和（复用 `FB_DL_PresetCounterSat` + `FB_DL_ModuloCounter` 花篮位）→ **DL_Process** ｜ **P1**
+FB_DL_CassetteBcdLabel :: 花篮 BCD 拨码标签机联动（复用 `FC_DL_WordToBcd` + `I_DL_BarcodeScanner`）→ **DL_Device** ｜ **P2**
+FB_DL_ShiftMonthReport :: 班次/月度窗口产量报表闸（复用 `FB_DL_MonthWindowCheck` + `FB_DL_OeeCalculator`）→ **DL_Process** ｜ **P2**
+FB_DL_FilmTensionStepper :: 收卷步进张力微调（复用 `FB_DL_SuperimposedMove` 叠加微调 + `FB_DL_ToleranceWindow` 张力带）→ **DL_Motion** ｜ **P2**
+FB_DL_AndonLinePack :: 包装线安灯分级呼叫与响应报表（复用 `FB_DL_AndonCallSystem` + `FB_DL_RuntimeMeter`）→ **DL_Process** ｜ **P1**
+FB_DL_RoomTempClassify :: 房间温度舒适带分级（复用 `FC_DL_TempUnitConvert` + `FC_DL_LimitClassify` 舒适四档）→ **DL_Process** ｜ **P1**
+FB_DL_SeasonMonthSched :: 供暖/制冷季月度切换窗（复用 `FB_DL_MonthWindowCheck` + `FB_DL_OccScheduleWindow`）→ **DL_Process** ｜ **P1**
+FB_DL_BacdHvacPoll :: BA 顺控 BACnet/Modbus 轮询行（复用 `FB_DL_ModbusPollMaster` 派生 TCP 传输块）→ **DL_Process** ｜ **P2**
+FB_DL_FreshAirStepperDamper :: 新风阀步进执行器开环驱动（复用 `I_DL_StepperOpenLoop` + `FB_DL_ToleranceWindow` 开度带）→ **DL_Device** ｜ **P2**
+FB_DL_EnergyMonthPreset :: 月度能耗预算预置计数（复用 `FB_DL_PresetCounterSat` + `FB_DL_Integrator` 累计）→ **DL_Process** ｜ **P2**
+FB_DL_AndonRespTimeReport :: 安灯响应时长分档统计报表（呼叫→应答→解除分段计时 + 四级分档；终审对 `FB_DL_AndonCallSystem` 的立项增强，复用其仲裁锁存）→ **DL_Process** ｜ **P2**（终审立项）
+FB_DL_BcdFieldPanelIO :: 面板 BCD 拨码阵列采集（复用 `FC_DL_BcdToWord` 多路 + `FB_DL_SignalDebounce`）→ **DL_Device** ｜ **P2**
+FB_DL_PollAuditBank :: 多链路轮询异常台账汇总（复用 `FB_DL_ModbusPollMaster` 多实例 + `FB_DL_AlarmManager` 首出）→ **DL_Process** ｜ **P1**
+FB_DL_RecipeSearchFifo :: 配方请求 FIFO 排队（复用 `FB_DL_FifoBuffer` + `FB_DL_RecipeManager` 校验链）→ **DL_Process** ｜ **P1**
+FB_DL_ElectrodeGapMark :: 极片留白区（Gap）位置标记与对齐判定（复用 `FC_DL_BitFieldExtract` 取视觉标志位 + `FB_DL_ToleranceWindow` 留白带）→ **DL_Process** ｜ **P1**
+FB_DL_SlurryViscosityComp :: 浆料粘度温补换算（复用 `FC_DL_TempUnitConvert` + `FC_DL_LinearScale` 温-粘曲线）→ **DL_Process** ｜ **P2**
+FB_DL_RfidTrayRoute :: 载具 RFID 身份驱动的路径路由（复用 `FB_DL_RfidTagHandler` 读码 + `FB_DL_ConveyorLineLink` 段间握手）→ **DL_Process** ｜ **P1**
+FB_DL_FormationWeekPlan :: 化成/分容周计划窗（复用 `FC_DL_WeekOfYearCalc` 周序号 + `FB_DL_MonthWindowCheck` 月窗双闸）→ **DL_Process** ｜ **P2**
+FB_DL_StringIrrNormalize :: 组串电流辐照归一化（复用 `FC_DL_LinearScale` 辐照标定 + `FB_DL_SignalStatistics` 窗口统计）→ **DL_Process** ｜ **P2**
+FB_DL_InverterPdiPoll :: 逆变器 PDI 参数周期读取（复用 `FB_DL_PdiReadScheduler` 单拍单发 + `FB_DL_ModbusPollMaster` 站表台账）→ **DL_Device** ｜ **P2**
+FB_DL_LaminatorZoneSync :: 层压机多温区联动升温（复用 `FB_DL_StepController` 分级 + `FB_DL_CascadePid` 串级）→ **DL_Process** ｜ **P1**
+FB_DL_FoupRfidCheck :: 晶圆盒（FOUP）RFID 身份校验与配方放行（复用 `FB_DL_RfidTagHandler` + `FB_DL_RecipeManager` 校验链）→ **DL_Process** ｜ **P1**
+FB_DL_ChuckVacuumSeq :: 卡盘真空吸附/释放序（复用 `FB_DL_PickAndPlaceStation` 步骤骨架 + `I_DL_VacuumGenerator` 到位判据）→ **DL_Process** ｜ **P1**
+FB_DL_DieBinCounter :: 晶粒分箱计数与满箱切换（复用 `FB_DL_BidirectionalCounter` + `FC_DL_LimitClassify` 分档）→ **DL_Process** ｜ **P2**
+FB_DL_CleanRoomRhTrim :: 洁净室相对湿度微调（复用 `FC_DL_DewPointCalc` + `FB_DL_HumidityOverride` 优先级）→ **DL_Process** ｜ **P2**
+FB_DL_LabelWeekCode :: 标签周码/批码打印窗（复用 `FC_DL_WeekOfYearCalc` + `FB_DL_DateCoderSync` 打印同步）→ **DL_Process** ｜ **P2**
+FB_DL_FilmTaperTension :: 薄膜锥度张力给定曲线（复用 `FC_DL_CoilDiameterCalc` 卷径 + `FB_DL_WindingTensionCtrl` 闭环）→ **DL_Motion** ｜ **P2**
+FB_DL_CaseShiftTally :: 班次箱数台账与差异告警（复用 `FB_DL_BidirectionalCounter` + `FB_DL_OeeCalculator` 班次报表）→ **DL_Process** ｜ **P2**
+FB_DL_FilterWeekWindow :: 过滤器周维护窗与压差累计（复用 `FC_DL_WeekOfYearCalc` + `FB_DL_RuntimeMeter` 累计）→ **DL_Process** ｜ **P2**
+FB_DL_BmsPdiGateway :: 楼宇侧 PDI 对象网关轮询（复用 `FB_DL_PdiReadScheduler` 调度 + `FB_DL_AlarmManager` 异常上报）→ **DL_Device** ｜ **P2**
+FB_DL_DamperBitDiag :: 风阀执行器位诊断打包/解包（复用 `FC_DL_BitFieldExtract` + `FB_DL_UnpackWordToBits`）→ **DL_Device** ｜ **P2**
+FB_DL_BatchWeekReport :: 批次周报闸与周批号生成（复用 `FC_DL_WeekOfYearCalc` + `FB_DL_OeeCalculator`）→ **DL_Process** ｜ **P2**
+FB_DL_PressFitCurveArchive :: 压装曲线特征点归档与批次追溯（复用 `FB_DL_PressFitStation` 的 `stResult` 四特征点 + `FB_DL_RingBufferLReal` 曲线缓存，按批次号索引）→ **DL_Process** ｜ **P1** `[R11 新增]`
+FB_DL_ElectrodeTabBendCtrl :: 极耳折弯角度与回弹补偿（复用 `FB_DL_RollerGapAdjust` 的单向逼近骨架 + `FC_DL_CalcDistance3D` 视觉测距，回弹量按批次学习）→ **DL_Device** ｜ **P2** `[R11 新增]`
+FB_DL_FormationChannelQueue :: 化成柜通道排队与优先级抢占（复用 `FB_DL_LifoStack` 优先栈 + `FB_DL_RecipeManager` 工步校验，通道故障自动摘除）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_SlurryDensityTrim :: 浆料面密度与密度交叉校核（复用 `FC_DL_LinearScale` 标定 + `FB_DL_ToleranceWindow` 公差带，双源偏差分档告警）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_StringElImageMap :: EL 图像缺陷坐标归档与批次比对（复用 `FB_DL_BufferMagazine` 槽位台账 + `FB_DL_RingBufferLReal` 图像索引缓存）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_WaferBreakDetect :: 电池片隐裂/碎片在线判据（复用 `FC_DL_BitFieldExtract` 取视觉结果位 + `FB_DL_PeakDetector` 突发峰值捕获）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_TrackerAngleYearWin :: 跟踪支架年度角度表切换（复用 `FB_DL_YearWindowCheck` 年窗 + `FB_DL_MonthWindowCheck` 月窗双闸，按季节切换角度表）→ **DL_Motion** ｜ **P2** `[R11 新增]`
+FB_DL_R2rRunLogAudit :: R2R 调参与批次审计算账（复用 `FB_DL_R2rEwmaTuner` 的 `uLotCount`/`fEwmaDev` + `FB_DL_RecipeManager` 变更留痕，形成可追溯调参台账）→ **DL_Process** ｜ **P1** `[R11 新增]`
+FB_DL_CartonErectVacMonitor :: 开箱吸盘真空建立趋势诊断（复用 `I_DL_VacuumGenerator` 契约语义 + `FB_DL_SignalStatistics` 建立时长统计，吸盘老化预警）→ **DL_Device** ｜ **P2** `[R11 新增]`
+FB_DL_FilmSpliceWeekPlan :: 接膜保养周窗与耗材台账（复用 `FC_DL_WeekOfYearCalc` 周序号 + `FB_DL_RuntimeMeter` 膜长累计，到周窗提醒接膜）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_CasePackerPatternVerify :: 装箱排列模式校验与防错（复用 `FC_DL_RangeOverlapCheck` 判断相邻箱位重叠 + `FB_DL_RecipeManager` 模式放行，重叠即拒启）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_AhuFanArrayTrim :: 空调箱风机阵列静压微调（复用 `FB_DL_FanArrayStageCtrl` 分级投切〔前置待办件〕 + `FB_DL_PidController` 静压闭环）→ **DL_Process** ｜ **P1** `[R11 新增]`
+FB_DL_ChillerYearWinStart :: 冷机年度启停窗与保养互锁（复用 `FB_DL_YearWindowCheck` 年窗 + `FB_DL_DutyStandbyRotation` 轮值，非窗期禁启）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_DuctLeakRateEst :: 风管泄漏率估算与能耗分摊（复用 `FC_DL_AirDensity` 空气密度修正 + `FB_DL_Integrator` 风量积分，泄漏率按区段分摊）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_VavBoxZeroCal :: 变风量末端风量零点标定（复用 `FC_DL_LinearScale` 零点标定 + `FB_DL_SignalDebounce` 稳定判据，标定期间冻结调节）→ **DL_Device** ｜ **P2** `[R11 新增]`
+FB_DL_ReactorYearWinClean :: 反应釜年度清洗窗与批次闸门（复用 `FB_DL_YearWindowCheck` 年窗 + `FB_DL_CipCleaningSeq` 清洗顺控，过窗未洗禁投料）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_OrificeDpZeroTrim :: 孔板差压零点漂移补偿（复用 `FC_DL_Deadband` 零点死区 + `FB_DL_MedianFilter` 静流时段取样，长期零点跟踪）→ **DL_Device** ｜ **P2** `[R11 新增]`
+FB_DL_LoopAuditTrailWindow :: 回路整定审计时间窗与变更留痕（复用 `FB_DL_TimeWindowCheck` 维护窗 + `FB_DL_RecipeManager` 参数集快照，窗内变更需双人确认位）→ **DL_Process** ｜ **P2** `[R11 新增]`
+FB_DL_FormationTempRiseRate :: 化成温升速率监视与异常电芯截断（复用 `FB_DL_Differentiator` 温升速率 + `FB_DL_IntervalMembership` 工艺窗口 + `FB_DL_AlarmManager` 分级报警）→ **DL_Process** ｜ **P1** `[R12 新增]`
+FB_DL_SelfDischargeScreen :: 电芯自放电（OCV 压降）分选判据（复用 `FC_DL_LinearScale` 压降归一 + `FC_DL_PercentileLReal` 批次分位基线 + `FB_DL_ToleranceWindow` 分档判定）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_StringCurrentMismatch :: 组串电流失配诊断与遮挡定位（复用 `FB_DL_SignalStatistics` 组串电流分布 + `FC_DL_PercentileLReal` 中位基线 + `FC_DL_LimitClassify` 失配分级）→ **DL_Process** ｜ **P1** `[R12 新增]`
+FB_DL_LamEvaGelContent :: 层压 EVA 交联度（凝胶含量）估算（复用 `FB_DL_Integrator` 温度-时间积分 + `FC_DL_MultiPointLinear` 交联度标定曲线 + `FB_DL_ToleranceWindow` 合格窗）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_InverterDeratingCtrl :: 逆变器温度/电压分段降额与功率限值（复用 `FB_DL_StepController` 分级降额 + `FB_DL_RateLimiter` 功率爬坡限速 + `FB_DL_AlarmManager` 降额原因上报）→ **DL_Device** ｜ **P1** `[R12 新增]`
+FB_DL_JunctionBoxPottingCheck :: 接线盒灌胶量与固化判定（复用 `FB_DL_DeviceParamVerify` 工艺参数回读比对 + `FB_DL_Integrator` 灌胶流量积分 + `FC_DL_IntervalMembership` 胶量窗）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_PrecursorCanisterWeight :: 前驱体源瓶称重与余量预测（复用 `FB_DL_MedianFilter` 称重去毛刺 + `FB_DL_Integrator` 消耗速率积分 + `FB_DL_DeviceParamVerify` 换瓶参数核对）→ **DL_Device** ｜ **P1** `[R12 新增]`
+FB_DL_FoupPurgeN2Flow :: FOUP 氮气吹扫流量与湿度监视（复用 `FB_DL_PulseFlowMeter` 流量计量 + `FC_DL_DewPointCalc` 露点判据 + `FB_DL_ToleranceWindow` 吹扫合格窗）→ **DL_Device** ｜ **P2** `[R12 新增]`
+FB_DL_CoderRibbonLife :: 打码色带寿命与浓度衰减监视（复用 `FB_DL_RuntimeMeter` 打印次数累计 + `FB_DL_SignalStatistics` 浓度趋势 + `FB_DL_DeviceParamVerify` 打码参数核对）→ **DL_Device** ｜ **P2** `[R12 新增]`
+FB_DL_ShrinkFilmUsageCalc :: 收缩膜单包耗量与成本核算（复用 `FC_DL_LinearScale` 膜长→重量换算 + `FB_DL_Integrator` 膜长积分 + `FB_DL_OeeCalculator` 产量口径对齐）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_PalletLabelVerify :: 托盘标签/EAN 校验与错标拦截（复用 `FC_DL_StringTrim` 与 `FC_DL_StringSplit` 条码分段 + `FC_DL_Crc16Modbus` 校验位复算 + `FB_DL_InterlockMatrix` 错标拦截）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_StratificationGuard :: 水箱/风管温度分层监视与混温抑制（复用 `FB_DL_SignalStatistics` 上下点温差 + `FB_DL_ToleranceWindow` 分层门限 + `FB_DL_PidController` 混水泵调节）→ **DL_Process** ｜ **P1** `[R12 新增]`
+FB_DL_ChwDifferentialPressureReset :: 冷冻水最不利环路压差重置（复用 `FB_DL_MovingAverage` 压差平滑 + `FB_DL_PidController` 压差闭环 + `FB_DL_RateLimiter` 设定值重置限速）→ **DL_Process** ｜ **P1** `[R12 新增]`〔注：已由 R30 序 18 `FB_DL_ChwDifferentialPressure` 并案（设定值重置限速引脚已纳入），不另立——R30 收口注记〕
+FB_DL_BoilerFlueCondenseGuard :: 冷凝锅炉烟气冷凝与回水温度保护（复用 `FC_DL_DewPointCalc` 露点判据 + `FB_DL_Hysteresis` 回水温度迟滞 + `FB_DL_ThreePointValve` 混水阀调节）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_RoomCo2DemandVent :: CO₂ 需量通风与新风阀联动（复用 `FC_DL_LinearScale` 浓度标定 + `FB_DL_PidController` 需量闭环 + `FB_DL_TimeWindowCheck` 非工作时段下限）→ **DL_Process** ｜ **P2** `[R12 新增]`
+FB_DL_HeatExchangerFoulingTrend :: 换热器结垢趋势（传热系数衰减）诊断（复用 `FB_DL_SignalStatistics` 传热系数窗口基线 + `FB_DL_Differentiator` 衰减速率 + `FB_DL_AlarmManager` 清洗提醒）→ **DL_Process** ｜ **P1** `[R12 新增]`
+FB_DL_ElectrolyteFillVacuum :: 注液真空度与静置计时台账（复用 `FB_DL_TimeWindowCheck` 静置窗 + `FB_DL_ToleranceWindow` 真空度门限 + `FB_DL_EventCounter` 批次计数）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_StackPressureProfile :: 叠片压力曲线与保压判定（复用 `FB_DL_RampSoakProfile` 压力段轮廓 + `FB_DL_ToleranceWindow` 保压窗 + `FB_DL_AlarmManager` 越窗分级）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_CellOcvBinSort :: 电芯 OCV 压差分档与落料位决策（复用 `FB_DL_ToleranceWindow` 档位带 + `FC_DL_LimitClassify` 档位归类 + `FB_DL_EventCounter` 档位计数）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_PouchSwellingGauge :: 软包电芯鼓胀厚度巡检与分级（复用 `FC_DL_LinearScale` 厚度标定 + `FC_DL_LimitClassify` 鼓胀分级 + `FB_DL_ToleranceWindow` 批次一致性）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_LamTempUniformity :: 层压板面温度均匀性诊断（复用 `FB_DL_SignalStatistics` 多点温度分布 + `FB_DL_ToleranceWindow` 均匀性窗 + `FB_DL_AlarmManager` 分区告警）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_PvSoilingLossRate :: 组件积灰（Soiling）损失率估算与清洗提醒（复用 `FB_DL_SignalStatistics` 组串功率基线 + `FB_DL_Differentiator` 衰减速率 + `FB_DL_ToleranceWindow` 清洗阈值）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_CombinerArcDetect :: 汇流箱直流拉弧特征判据（复用 `FB_DL_HighPassFilter` 高频分量提取 + `FB_DL_SignalStatistics` 波动窗 + `FB_DL_AlarmManager` 拉弧分级）→ **DL_Device** ｜ **P1** `[R13 新增]`
+FB_DL_CleaningBrushWear :: 清扫机器人刷辊磨损与换刷里程（复用 `FB_DL_EventCounter` 行程累计 + `FB_DL_SignalStatistics` 电流趋势 + `FB_DL_DeviceParamVerify` 换刷参数核对）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_IvCurveScan :: IV 曲线扫描步进与异常拐点定位（复用 `FB_DL_RampGenerator` 电压步进 + `FB_DL_SignalStatistics` 电流采样一致性 + `FC_DL_LimitClassify` 拐点分级）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_VacuumPumpBasePress :: 真空泵本底压强与恢复时间台账（复用 `FB_DL_MovingAverage` 压强平滑 + `FB_DL_ToleranceWindow` 本底门限 + `FB_DL_EventCounter` 恢复超时计数）→ **DL_Device** ｜ **P1** `[R13 新增]`
+FB_DL_MfcRatioCheck :: MFC 流量配比偏差核对（复用 `FC_DL_LinearScale` 流量标定 + `FB_DL_ToleranceWindow` 配比窗 + `FB_DL_DeviceParamVerify` 配方参数回读）→ **DL_Device** ｜ **P1** `[R13 新增]`
+FB_DL_ChamberPumpDownSeq :: 腔体抽真空顺控与漏率复测（复用 `FB_DL_TimeWindowCheck` 段时序 + `FB_DL_ToleranceWindow` 压降判据 + `FB_DL_RateLimiter` 放气限速）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_RobotArmVibrationWatch :: 晶圆传送机械手振动特征监视（复用 `FB_DL_HighPassFilter` 振动分量 + `FB_DL_SignalStatistics` 特征窗 + `FB_DL_AlarmManager` 预警分级）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_LoadlockPressureCross :: Loadlock 压力交叉校验与误开拦截（复用 `FB_DL_ToleranceWindow` 双表偏差窗 + `FB_DL_InterlockMatrix` 误开联锁 + `FB_DL_AlarmManager` 首出定位）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_BundleShrinkTemp :: 热收缩炉温区曲线与停留时间窗（复用 `FB_DL_RampSoakProfile` 温区轮廓 + `FB_DL_TimeWindowCheck` 停留窗 + `FB_DL_ToleranceWindow` 温差门限）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_CaseErectFaultSeq :: 开箱成型失败重试与吸盘堵塞诊断（复用 `FB_DL_VacuumEjector` 真空判据 + `FB_DL_EventCounter` 重试计数 + `FB_DL_AlarmManager` 堵塞告警）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_DateCoderPosition :: 喷码日期位置偏移与缺失检测（复用 `FB_DL_MarkPositionLatch` 喷印位锁存 + `FC_DL_StringFixedField` 字段定宽解析 + `FB_DL_ToleranceWindow` 位置容差）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_ChillerLiftOptimize :: 冷机 Lift（冷凝-蒸发温差）优化限值（复用 `FB_DL_SignalStatistics` 温差窗口基线 + `FB_DL_RateLimiter` 设定值限速 + `FB_DL_ToleranceWindow` 优化带）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_VavPressureReset :: VAV 变风量系统静压重置（复用 `FB_DL_MovingAverage` 静压平滑 + `FB_DL_PidController` 静压闭环 + `FB_DL_RateLimiter` 重置限速）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_HumidifierWaterQual :: 加湿器水质电导率监视与排水联锁（复用 `FC_DL_LinearScale` 电导标定 + `FB_DL_TimeWindowCheck` 排水窗 + `FB_DL_ToleranceWindow` 水质门限）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_FanBeltSlipDetect :: 风机皮带打滑判据（转速-频率偏差）（复用 `FB_DL_Differentiator` 偏差速率 + `FB_DL_ToleranceWindow` 打滑窗 + `FB_DL_AlarmManager` 维护提醒）→ **DL_Device** ｜ **P1** `[R13 新增]`
+FB_DL_FreezeStatGuard :: 表冷器防冻保护与低温联锁（复用 `FB_DL_ToleranceWindow` 低温门限 + `FB_DL_ThreePointValve` 预热阀调节 + `FB_DL_AlarmManager` 冻结告警）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_SteamTrapSurvey :: 疏水阀温度周期特征普查（复用 `FB_DL_SignalStatistics` 温度周期基线 + `FB_DL_TimeWindowCheck` 周期窗 + `FC_DL_LimitClassify` 失效分级）→ **DL_Device** ｜ **P2** `[R13 新增]`
+FB_DL_PhaseNeutralImbalance :: 三相不平衡度与中性线电流判据（复用 `FB_DL_SignalStatistics` 三相分布 + `FC_DL_LimitClassify` 不平衡分级 + `FB_DL_AlarmManager` 告警）→ **DL_Device** ｜ **P1** `[R13 新增]`
+FB_DL_TankLevelStrapping :: 储罐液位-容积分层标定与体积折算（复用 `FC_DL_LinearScale` 液位标定 + `FB_DL_ToleranceWindow` 标定核对 + `FB_DL_EventCounter` 收发油计数）→ **DL_Process** ｜ **P2** `[R13 新增]`
+FB_DL_BatchEndPointTrend :: 批次反应终点趋势判据（复用 `FB_DL_Differentiator` 终点趋势 + `FB_DL_ToleranceWindow` 终点窗 + `FB_DL_AlarmManager` 终点超时）→ **DL_Process** ｜ **P1** `[R13 新增]`
+FB_DL_DryerExhaustHumidityCtl :: 干燥排湿热回收风门（排湿焓值判据 + 回风混风域闸）→ `DL_Process`

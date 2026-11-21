@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LwordBitCount",
+  "category": "DL_MathData",
+  "instruction": "LWORD 汉明重 0~64：存量 FC_DL_BitCount 入参实测只覆盖 DWORD，64 位位域诊断（哪几位被置位）缺统计原子。",
+  "architecture_thought": "无状态纯函数：Brian Kernighan 法 uTemp AND (uTemp-1)，迭代次数=置位数；WHILE 必须带 nGuard 计数器超 64 跳出置故障 0381（理论不可达纯防御）；全零输入是合法工况置信息级 0442 非故障；不改写为 FOR 固定 64 次以与存量 BitCount 算法同源。"
+}

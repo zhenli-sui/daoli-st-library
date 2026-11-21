@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LwordBitFieldInsert",
+  "category": "DL_MathData",
+  "instruction": "LWORD 单字位段读改写：与 Extract 构成读/写对偶；写操作有不可逆副作用，越界必须拒写返回原值（宁可一字不写），纪律同 R13 BitArrayInsert。",
+  "architecture_thought": "无状态纯函数：四步固定序（算掩码-清位-取值-合成）顺序不可交换；起始位越界/宽非法/跨 64 位边界分别判故障 037E/037F/0380 且返回原值 bValid=FALSE；uField 超宽高位丢弃置信息级 0440；bChanged 仅在值真变时 TRUE 供上层写回节流。"
+}

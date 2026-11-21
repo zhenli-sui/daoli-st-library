@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_Crc16Generic",
+  "category": "DL_MathData",
+  "instruction": "参数化 CRC-16：固定参数件（Crc16Modbus/Crc16Ccitt）接不了非标从站（自定义 poly/反射），现场只能手改源码；LGF CalcCRC16Advanced 的参数域（init/finalXor/双向反射）证明这是行业通行解法。",
+  "architecture_thought": "无状态纯函数：逐位算法零查表零内存（可移植优先）；每字节按 bReflectIn 反射 8 次位循环、主体 8 次 SHL 判最高位条件异或 poly、终值按 bReflectOut 反射再 XOR uXorOut；头注释强制列 3 组公开校验向量（IBM=BB3D/CCITT-FALSE=29B1/XMODEM=31C3）；poly=0 判故障 0384、帧长超 255 判故障 0385 不静默钳位（截断数据的 CRC 看似合法必然校验失败）、空帧置信息级 0445 返回初值异或。"
+}

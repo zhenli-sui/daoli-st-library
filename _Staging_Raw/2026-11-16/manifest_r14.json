@@ -1,0 +1,45 @@
+{
+  "reg_version": "2.3.0",
+  "items": [
+    {
+      "name": "FC_DL_SqrtEx", "category": "DL_MathData", "type": "FC",
+      "file_path": "C:\\Library\\DL_MathData\\FC_DL_SqrtEx.st",
+      "function_tags": ["iec-std-wrapper", "t0-math", "sqrt", "domain-guard"],
+      "complexity": 3, "code_segment": "16#0001_0227(故障级：负数域外) / 16#0001_015A(信息级：非有限拦截)",
+      "instruction": "流量开方、 RMS 计算前置、几何距离类场景的平方根计算：fX 输入 LREAL。防御要求：负数开方不得让 NaN 进入下游联锁链——负值返回 0 并置故障级 0001_0227；输入 NaN/INF 非有限复检置信息级 0001_015A 并返回 0；正常域委托内建 SQRT。浮点比较全部走容差/类别判断，禁等号直比。",
+      "architecture_thought": "标准 SQRT 语义的防御性包装纯函数，立『域闸门前置 + 委托内建 + 非有限复检』纯函数模板（本批三件数学函数共用骨架）：判据次序写死为非有限→定义域→委托内核，NaN 大小比较的平台歧义在注释中封死（x<>x 判 NaN）；零重实现数学内核；输出 fY + eErr 双出口，错误码分层（故障级=语义域外、信息级=非有限拦截）。"
+    },
+    {
+      "name": "FC_DL_LnEx", "category": "DL_MathData", "type": "FC",
+      "file_path": "C:\\Library\\DL_MathData\\FC_DL_LnEx.st",
+      "function_tags": ["iec-std-wrapper", "t0-math", "ln", "domain-guard"],
+      "complexity": 3, "code_segment": "16#0001_0228(故障级：fX≤0 域外) / 16#0001_0229(故障级：非有限输入/输出)",
+      "instruction": "对数标定、pH 换算、分贝计算、衰减模型类场景的自然对数：fX<=0 时域闸门前置返回安全值 0 并置故障级 0001_0228（x=0 的负无穷与负数 NaN 均不得穿透）；非有限输入/输出复检置 0001_0229；正常域委托内建 LN 内核。",
+      "architecture_thought": "标准 LN 语义的防御性包装纯函数，与 SqrtEx 共用『域闸门前置+委托内核+非有限复检』模板：x<=0 一刀切拦入故障级（0 与负数分况共用一码以收敛码位），内建结果非有限时兜底复检防平台下溢差异；模板复用使边际成本最低，为 R15 数学余 8 件铺模板。"
+    },
+    {
+      "name": "FC_DL_TanEx", "category": "DL_MathData", "type": "FC",
+      "file_path": "C:\\Library\\DL_MathData\\FC_DL_TanEx.st",
+      "function_tags": ["iec-std-wrapper", "t0-math", "tan", "singularity-guard"],
+      "complexity": 4, "code_segment": "16#0001_022A(故障级：极点邻域/非有限/幅值爆炸三况同码)",
+      "instruction": "角度换算、斜坡几何、扫描振镜类场景的正切计算：弧度制输入；π/2+kπ 奇点邻域防护——用 cos 的容差判据（|cos|<1E-12）识别极点域，配合 |tan|>1E6 幅值闸双保险，命中即返回安全值 0 并置故障级 0001_022A，杜绝天文数字穿入下游缩放链；非有限复检同码；正常域委托内建 TAN。",
+      "architecture_thought": "标准 TAN 语义的防御性包装纯函数，模板第三件：奇点防护用『cos 容差判据 + 幅值闸』双保险而非直接比较角度与 π/2（浮点等值判定不可靠的规范落地）；三况共用一故障码收敛码位占用；幅值阈值 1E6、容差 1E-12 提为 VAR CONSTANT 禁魔法数。"
+    },
+    {
+      "name": "FC_DL_RoundSat", "category": "DL_MathData", "type": "FC",
+      "file_path": "C:\\Library\\DL_MathData\\FC_DL_RoundSat.st",
+      "function_tags": ["iec-std-wrapper", "t0-math", "round", "saturation", "finite-check"],
+      "complexity": 3, "code_segment": "16#0001_022B(故障级：非有限输入) / 16#0001_015B(信息级：越界钳 DINT 端点)",
+      "instruction": "工程量整定、显示取整、报文整数字段生成类场景的四舍五入取整：输入 LREAL 输出 DINT。防御要求：NaN/INF 非有限复检置故障级 0001_022B 并返回 0；内建 ROUND 后结果超 DINT 域时饱和钳到 ±2147483647 端点并置信息级 0001_015B，绝不回绕；阈值 ±2147483647.5/±2147483648.5 提为常量。",
+      "architecture_thought": "标准 ROUND 语义的防御性包装纯函数：『非有限复检→委托内建 ROUND→域饱和钳位』三段流水；饱和判据与封顶端点同向（R35 范式落地）防回绕穿透；DINT 端点与浮点阈值全部常量化；与 TRUNC/FLOOR/CEIL 族在 MANUAL 层互相引用形成取整族。"
+    },
+    {
+      "name": "FC_DL_StringMidEx", "category": "DL_MathData", "type": "FC",
+      "file_path": "C:\\Library\\DL_MathData\\FC_DL_StringMidEx.st",
+      "function_tags": ["iec-std-wrapper", "t0-string", "mid", "truncate-flag"],
+      "complexity": 4, "code_segment": "16#0001_015C(信息级：参数钳位/起点越界) / 16#0001_015D(信息级：超 255 显式截断)",
+      "instruction": "报文字段提取、配方名截取、报警文本摘录类场景的字符串中段提取：iPos 起始位（1 起）、iLen 长度。防御要求：iLen<0 钳 0、iPos<1 钳 1 域闸门并置 0001_015C；iPos 超出串长返回空串并置 015C；结果将超 255 字符时先置显式截断标志（0001_015D）再钳 255，严禁静默回夹（R37 教训）；委托标准 MID 内核。",
+      "architecture_thought": "标准 MID 语义的防御性包装纯函数，字符串族 T0 首件：执行次序写死为『LEN 一次锁存→钳位→起点越界闸→先置截断标志再钳 255→委托 MID』，把 R37 定长串静默回夹范式规则化；LEN 锁存一次防多次调用间串内容变化导致的镜像双源漂移（R38 范式）；输出 sOut + eErr + xTruncated 三出口供调用方显式感知截断。"
+    }
+  ]
+}

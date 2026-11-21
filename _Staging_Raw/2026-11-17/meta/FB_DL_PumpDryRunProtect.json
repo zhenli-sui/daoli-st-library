@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_PumpDryRunProtect",
+ "category": "DL_Device",
+ "type": "FB",
+ "function_tags": [
+  "泵保护",
+  "干转",
+  "重启闭锁",
+  "t1-2-oscat-building"
+ ],
+ "complexity": 4,
+ "instruction": "离心泵干转数秒即烧机械密封：运行反馈存在但功率低于空载特征或流量近零即干转前兆。边界条件：仅运行态判定（未运行不判防误报）；流量引脚负值约定为未接（可选量）；空载阈值非正判参数非法；跳闸后重启闭锁直至复位。",
+ "architecture_thought": "功率与流量双判据并联计时，TON 无条件周期刷新；跳闸锁存与重启闭锁两级输出分层（确认拍报干转码、闭锁持续报闭锁码）；复位仅清锁存与闭锁，同拍清码；NaN 功率走参数非法域；计时中特征与确认结论分离，供调用方分级响应；纯标准库 TON 跨平台可编译。",
+ "version": "1.0.0",
+ "source": "t1-2-oscat-building 深化（泵风机族）"
+}

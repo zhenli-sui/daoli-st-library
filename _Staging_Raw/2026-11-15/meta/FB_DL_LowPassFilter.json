@@ -1,0 +1,16 @@
+{
+  "name": "FB_DL_LowPassFilter",
+  "category": "DL_Algo",
+  "type": "FB",
+  "complexity": 3,
+  "function_tags": [
+    "low-pass-filter",
+    "pt1",
+    "lgf-measurement",
+    "signal-conditioning",
+    "bumpless-transfer"
+  ],
+  "instruction": "现场模拟量最头疼泵启停时压力抖动和热电偶毛刺，直接进 PID 会致调节阀抽动。此一阶低通块输入滤波前工程量 REAL，tSampleTime 按实际采样给，tTimeConst 现场按 0.5 到 2 秒起调，平滑不够加大但注意滞后。输出 fOut 进显示与调节回路。边界：时间常数非法钳位置码，非有限值输入拒绝更新保持上拍，投切用 bTrack 加 fTrackValue 无扰跟踪防执行器冲击。",
+  "architecture_thought": "架构采用状态派生式滤波器惯例：不引入额外模式引脚，状态由 bTrack、首扫标志和使能信号派生为 eInit、eRun、eTrack 三态加 eFault 兜底，CASE 覆盖全部枚举值并用 ELSE 拦截非法状态置 16#0002_0005。核心递推 fOut 加上 fIn 与 fOut 差值的 fAlpha 份额，fAlpha 在每拍开头由 tSampleTime 与 tTimeConst 实时重算，时间常数运行中可调且变更当拍生效，不锁存旧参数。状态跃迁三条线：首扫态直接采样输入并置 bValid=FALSE 消除上电爬升瞬态；跟踪态输出立即跟随 fTrackValue 且无历史残留，回运行态无跳变；使能跌落时直通原始输入并同步基线。边界防错四层：采样周期小于 10ms 钳位防除零；时间常数双侧钳位到零到 3600 秒域；非有限值输入用自反比较加幅值上限双检拒绝；浮点全程容差比较不判等。解耦方面零全局引用、零硬件地址，参数全部走引脚注入，多实例并行互不干扰。",
+  "version": "1.0.0"
+}

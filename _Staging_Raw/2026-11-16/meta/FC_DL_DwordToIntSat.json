@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DwordToIntSat",
+  "category": "DL_MathData",
+  "instruction": "32 位 DWORD 原始量收窄为 INT 时极易高位截断，需饱和 + 无损复核。",
+  "architecture_thought": "饱和收窄 + 收窄后回读比对（无损复核），不一致置信息级码提示调用方值域损失；码 16#0001_0418，故障级 0342 预留。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_TodAddWrap",
+  "category": "DL_MathData",
+  "instruction": "班次时刻表把 TOD 时刻加偏移（如 23:30 加 90 分钟）必须正确跨零点回绕；MOD 取模在边界会引入错误（R11 纪律），超一日偏移属配置错误需报出。",
+  "architecture_thought": "回绕禁 MOD：减法预判 + 条件加 1440 分钟实现跨零点；偏移 > 一日判故障级 034E/034F 拒绝；信息级 16#0001_0420。纯函数。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DintEpochToDt",
+  "category": "DL_MathData",
+  "instruction": "MES 下发的纪元秒需还原为 DT 时间戳用于本地显示与归档；需防负纪元与越界还原出错误日期。",
+  "architecture_thought": "与 DtToDintEpoch 构成纪元对：入口年代域闸拒绝非法区间（故障级 0333），非饱和还原、越界不静默钳位改报错，输出 DT 供调用方安全使用。码 16#0001_040E。"
+}

@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #4：按 ROUND_PLAN_R7 §2.2 编码 FB_DL_SerialScanner（实现 I_DL_BarcodeScanner），落盘 C:\\Library\\DL_Device\\FB_DL_SerialScanner.st。接口属性同名成员按 R22 以只读 PROPERTY GET 承载，bTriggerOut/bDataAck 保留 VAR_OUTPUT；状态机 E_DL_ScannerState + CASE + ELSE 兜底；R24 范式：_bTriggerReq 于状态机置位、段 1 TP 实例调用之后立即自清（自清在实例调用之后，验收向量 V6 三段逐拍推演）；结果窗 TON 无条件刷新；一次 NoRead 自动重试（nRetryMax 钳 0~5）、连续 3 次升级故障 0003_0280；CR/LF 剥离 FOR 循环以 LEN 为界；超长 LEFT 截断置信级 0119；就绪门控恒 FALSE 跳过（一次性信息级 0120）。码位经 DL_Device VERSION.md 核对顺延（规格建议 0250/0251/0252 已被 VfdGeneric 占用）。",
+  "architecture_thought": "握手块刻意只编排握手、不碰数据本体：sRawData 经 IN_OUT 注入、bDataNew/bDataAck 组成最小握手机，串口/总线差异全部留在接收层——本块换平台零改动。R24 缺陷（R6 两处致命根因）在结构上根治：触发脉冲请求只有一个写入者（状态机）和一个自清点（TP 实例调用之后一行），时序上不可能出现『同拍置位又自清导致 TP 恒采不到 TRUE』。NoRead 升级链做成计数器而非独立状态：单次 NoRead 是正常业务结果（信息级），连续 3 次才是设备级异常（故障级），阈值常量化并注释标定依据。"
+}

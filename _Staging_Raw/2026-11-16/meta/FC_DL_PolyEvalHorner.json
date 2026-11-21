@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_PolyEvalHorner",
+  "category": "DL_MathData",
+  "instruction": "Horner 多项式求值：PT100 Callendar-Van Dusen、热电偶 NIST 多项式、传感器多点拟合的通用内核，插值族只有分段线性（MultiPointLinear/InterpolateTable2D）缺单一多项式轴。",
+  "architecture_thought": "无状态纯函数：Horner 递推 FOR 定长（阶数<=8，DL_POLY_MAX_ORDER 常量），系数 VAR_IN_OUT 免拷贝；前导零系数自动降阶（nEffOrder 出实际阶数）避免无意义乘法放大误差，降阶置信息级 043A；阶数越界判故障 0375、输入/系数非有限判 0376、结果溢出判 0377。"
+}

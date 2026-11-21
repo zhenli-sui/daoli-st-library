@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_LineChangeoverChecklist",
+ "category": "DL_Process",
+ "type": "FB",
+ "function_tags": [
+  "换型清单",
+  "顺控",
+  "跳步",
+  "t2-7-packml"
+ ],
+ "complexity": 5,
+ "instruction": "产线换型必须逐项确认（模具到位、参数下发、首件检验等），维护场景允许跳步但仅限前向且不可跳最后一项；未全部完成（含跳步）时禁止启动。边界条件：回退与末项跳步申请拒绝并置码；跳步登记可复位；数组下标全程钳位。",
+ "architecture_thought": "完成位经 VAR_IN_OUT 注入（调用方持态），本件只做顺控与仲裁；三态机（空闲、检查中、全完成）CASE 全覆盖加 ELSE 兜底，带拍进入、本拍行为、转出三段注释；完成标志与状态单口径同步；启动确认仲裁在完成态之外一律拒绝并置码；跳步沿检测哨兵时钟法单实例单调用。",
+ "version": "1.0.0",
+ "source": "t2-7-packml 深化"
+}

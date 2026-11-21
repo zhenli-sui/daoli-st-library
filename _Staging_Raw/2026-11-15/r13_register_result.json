@@ -1,0 +1,394 @@
+{
+  "before_total": 186,
+  "before_counts": {
+    "DL_Base": 38,
+    "DL_MathData": 38,
+    "DL_Algo": 27,
+    "DL_Device": 44,
+    "DL_Motion": 17,
+    "DL_Process": 22
+  },
+  "after_total": 204,
+  "version": "2.2.0",
+  "last_updated": "2026-11-16T00:34:03+08:00",
+  "counts": {
+    "DL_Base": 40,
+    "DL_MathData": 42,
+    "DL_Algo": 28,
+    "DL_Device": 50,
+    "DL_Motion": 18,
+    "DL_Process": 26
+  },
+  "added": [
+    {
+      "name": "I_DL_DeviceHealth",
+      "category": "DL_Device",
+      "type": "IF",
+      "version": "1.0.0",
+      "line_count": 146,
+      "code_segment": "无（接口契约不发布故障码，码位由实现块承担）",
+      "source": "namur-ne107",
+      "complexity": 4,
+      "tags": [
+        "namur-ne107",
+        "device-abstraction",
+        "interface-contract",
+        "health-status",
+        "diagnostic-code"
+      ],
+      "registered_at": "2026-11-16T00:34:03+08:00"
+    },
+    {
+      "name": "I_DL_PowerMeter",
+      "category": "DL_Device",
+      "type": "IF",
+      "version": "1.0.0",
+      "line_count": 142,
+      "code_segment": "无（接口契约不发布故障码，码位由实现块承担）",
+      "source": "namur-ne107",
+      "complexity": 4,
+      "tags": [
+        "namur-ne107",
+        "forge-devicereader",
+        "meter-contract",
+        "power-meter",
+        "three-phase",
+        "energy-metering",
+        "device-abstraction"
+      ],
+      "registered_at": "2026-11-16T00:34:06+08:00"
+    },
+    {
+      "name": "FB_DL_ModbusPowerMeter",
+      "category": "DL_Device",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 998,
+      "code_segment": "16#0003_0156~015B(信息级) / 16#0003_0316~031B(故障级)",
+      "source": "namur-ne107",
+      "complexity": 9,
+      "tags": [
+        "namur-ne107",
+        "modbus-meter",
+        "power-meter",
+        "power-quality",
+        "demand-window",
+        "energy-metering",
+        "phase-loss"
+      ],
+      "registered_at": "2026-11-16T00:34:09+08:00"
+    },
+    {
+      "name": "FB_DL_ValveStictionDetect",
+      "category": "DL_Device",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 735,
+      "code_segment": "16#0003_015C~015E(信息级) / 16#0003_031D~031F(故障级)",
+      "source": "namur-ne107",
+      "complexity": 9,
+      "tags": [
+        "namur-ne107",
+        "stiction-diag",
+        "asset-health",
+        "valve-diagnostic",
+        "hysteresis",
+        "maintenance-planning"
+      ],
+      "registered_at": "2026-11-16T00:34:12+08:00"
+    },
+    {
+      "name": "FB_DL_AhuDamperStuckDiag",
+      "category": "DL_Device",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 615,
+      "code_segment": "16#0003_0160~0161(信息级) / 16#0003_0321~0325(故障级)",
+      "source": "rockwell-aoi",
+      "complexity": 8,
+      "tags": [
+        "rockwell-aoi",
+        "namur-ne107",
+        "damper-diag",
+        "hvac",
+        "actuator-diagnostic",
+        "three-class-fault"
+      ],
+      "registered_at": "2026-11-16T00:34:15+08:00"
+    },
+    {
+      "name": "FB_DL_PumpCavitationGuard",
+      "category": "DL_Device",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 559,
+      "code_segment": "16#0003_0164~0165(信息级) / 16#0003_0326~0329(故障级)",
+      "source": "namur-ne107",
+      "complexity": 8,
+      "tags": [
+        "namur-ne107",
+        "lbp-basic-process",
+        "pump-diag",
+        "cavitation",
+        "derate-request",
+        "iso-10816"
+      ],
+      "registered_at": "2026-11-16T00:34:18+08:00"
+    },
+    {
+      "name": "FC_DL_BitArrayRotate",
+      "category": "DL_Base",
+      "type": "FC",
+      "version": "1.0.0",
+      "line_count": 252,
+      "code_segment": "16#0001_013D~013E(信息级) / 16#0001_021F(故障级)",
+      "source": "lgf-bitlogic",
+      "complexity": 5,
+      "tags": [
+        "lgf-bitlogic",
+        "bit-rotate",
+        "cross-word",
+        "bitmap-shift",
+        "bit-manipulation"
+      ],
+      "registered_at": "2026-11-16T00:34:21+08:00"
+    },
+    {
+      "name": "FC_DL_MaskCompare",
+      "category": "DL_Base",
+      "type": "FC",
+      "version": "1.0.0",
+      "line_count": 191,
+      "code_segment": "16#0001_013F~0140(信息级) / 16#0001_0220(故障级)",
+      "source": "lgf-bitlogic",
+      "complexity": 4,
+      "tags": [
+        "lgf-bitlogic",
+        "lgf-comparator",
+        "mask-compare",
+        "status-word",
+        "difference-locate",
+        "don-t-care-bits"
+      ],
+      "registered_at": "2026-11-16T00:34:24+08:00"
+    },
+    {
+      "name": "FC_DL_Crc8",
+      "category": "DL_MathData",
+      "type": "FC",
+      "version": "1.0.0",
+      "line_count": 233,
+      "code_segment": "16#0001_0141~0142(信息级) / 16#0001_0221(故障级)",
+      "source": "lgf-datahandling",
+      "complexity": 5,
+      "tags": [
+        "lgf-datahandling",
+        "oscat-network",
+        "crc8",
+        "checksum",
+        "smbus",
+        "sae-j1850"
+      ],
+      "registered_at": "2026-11-16T00:34:27+08:00"
+    },
+    {
+      "name": "FC_DL_StringToLReal",
+      "category": "DL_MathData",
+      "type": "FC",
+      "version": "1.0.0",
+      "line_count": 417,
+      "code_segment": "16#0001_0143~0146(信息级) / 16#0001_0222~0223(故障级)",
+      "source": "lgf-datahandling",
+      "complexity": 8,
+      "tags": [
+        "lgf-datahandling",
+        "string-parse",
+        "validated-conversion",
+        "ascii-to-real",
+        "diagnostic-position"
+      ],
+      "registered_at": "2026-11-16T00:34:30+08:00"
+    },
+    {
+      "name": "FC_DL_StringFixedField",
+      "category": "DL_MathData",
+      "type": "FC",
+      "version": "1.0.0",
+      "line_count": 245,
+      "code_segment": "16#0001_0147~0149(信息级) / 16#0001_0224(故障级)",
+      "source": "lgf-datahandling",
+      "complexity": 5,
+      "tags": [
+        "lgf-datahandling",
+        "fixed-field",
+        "padding",
+        "alignment",
+        "truncation-explicit"
+      ],
+      "registered_at": "2026-11-16T00:34:33+08:00"
+    },
+    {
+      "name": "FC_DL_Matrix3Inverse",
+      "category": "DL_MathData",
+      "type": "FC",
+      "version": "1.0.1",
+      "line_count": 291,
+      "code_segment": "16#0001_014A~014C(信息级) / 16#0001_0225(故障级)",
+      "source": "lgf-math",
+      "complexity": 7,
+      "tags": [
+        "lgf-math",
+        "matrix-inverse",
+        "affine-transform",
+        "relative-singularity",
+        "hand-eye-calibration"
+      ],
+      "registered_at": "2026-11-16T00:34:36+08:00"
+    },
+    {
+      "name": "FB_DL_FoulingResistanceEstimator",
+      "category": "DL_Algo",
+      "type": "FB",
+      "version": "1.0.0",
+      "line_count": 558,
+      "code_segment": "16#0002_2201~2204(信息级) / 16#0002_2210~2212(故障级)",
+      "source": "oscat-building",
+      "complexity": 7,
+      "tags": [
+        "oscat-building",
+        "heat-transfer",
+        "fouling",
+        "exchanger-degradation",
+        "trend-slope",
+        "ne107-health"
+      ],
+      "registered_at": "2026-11-16T00:34:39+08:00"
+    },
+    {
+      "name": "FB_DL_PassiveHomingMonitor",
+      "category": "DL_Motion",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 464,
+      "code_segment": "16#0004_01C3~01C6(信息级) / 16#0004_02D2~02D4(故障级)",
+      "source": "plcopen-motion",
+      "complexity": 7,
+      "tags": [
+        "plcopen-motion",
+        "passive-homing",
+        "reference-event",
+        "position-offset",
+        "direction-consistency"
+      ],
+      "registered_at": "2026-11-16T00:34:42+08:00"
+    },
+    {
+      "name": "FB_DL_CapperTorqueTrend",
+      "category": "DL_Process",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 617,
+      "code_segment": "16#0005_01C5~01C7(信息级) / 16#0005_02F3~02F5(故障级)",
+      "source": "rockwell-aoi",
+      "complexity": 8,
+      "tags": [
+        "rockwell-aoi",
+        "lbp-process",
+        "capper-torque",
+        "curve-feature",
+        "ng-classification",
+        "batch-baseline"
+      ],
+      "registered_at": "2026-11-16T00:34:45+08:00"
+    },
+    {
+      "name": "FB_DL_EscHeLeakCheck",
+      "category": "DL_Process",
+      "type": "FB",
+      "version": "1.0.1",
+      "line_count": 564,
+      "code_segment": "16#0005_01C8~01CA(信息级) / 16#0005_02F6~02F8(故障级)",
+      "source": "semiconductor-esc",
+      "complexity": 8,
+      "tags": [
+        "semiconductor-esc",
+        "leak-rate",
+        "he-backside",
+        "three-segment-timer",
+        "temperature-drift-correction"
+      ],
+      "registered_at": "2026-11-16T00:34:48+08:00"
+    },
+    {
+      "name": "FB_DL_ChamberSeasoningTrack",
+      "category": "DL_Process",
+      "type": "FB",
+      "version": "1.0.0",
+      "line_count": 435,
+      "code_segment": "16#0005_01CB~01CE(信息级) / 16#0005_02F9~02FB(故障级)",
+      "source": "semiconductor-esc",
+      "complexity": 7,
+      "tags": [
+        "semiconductor-esc",
+        "isa-88",
+        "seasoning",
+        "ledger",
+        "release-gate",
+        "dual-criteria"
+      ],
+      "registered_at": "2026-11-16T00:34:51+08:00"
+    },
+    {
+      "name": "FB_DL_ReactorJacketDeltaT",
+      "category": "DL_Process",
+      "type": "FB",
+      "version": "1.0.0",
+      "line_count": 487,
+      "code_segment": "16#0005_01CF~01D1(信息级) / 16#0005_02FC~02FE(故障级)",
+      "source": "lbp-process",
+      "complexity": 8,
+      "tags": [
+        "lbp-process",
+        "isa-88",
+        "jacket-dt",
+        "split-range",
+        "constraint-layer",
+        "rate-limiter-composition"
+      ],
+      "registered_at": "2026-11-16T00:34:54+08:00"
+    }
+  ],
+  "resync_fixed": [
+    "FB_DL_AgvDockingHandshake",
+    "FB_DL_AnalogValve",
+    "FB_DL_AxisHomingSeq",
+    "FB_DL_BatchDosingControl",
+    "FB_DL_GuardLockDoor",
+    "FB_DL_InterlockMatrix",
+    "FB_DL_LifoStack",
+    "FB_DL_MedianFilter",
+    "FB_DL_MovingAverage",
+    "FB_DL_OccScheduleWindow",
+    "FB_DL_RampSoakProfile",
+    "FB_DL_SerialScanner",
+    "FB_DL_SignalStatistics",
+    "FB_DL_SoftLimitGuard",
+    "FB_DL_SplitRangeControl",
+    "FB_DL_StarDeltaMotor",
+    "FB_DL_ThreePointValve",
+    "FB_DL_VacuumEjector",
+    "FB_DL_VfdGeneric",
+    "FC_DL_GrayToBinary"
+  ],
+  "jsonl_rows": 204,
+  "sha_ok": 204,
+  "sha_bad": [],
+  "disk_counts": {
+    "DL_Base": 40,
+    "DL_MathData": 42,
+    "DL_Algo": 28,
+    "DL_Device": 50,
+    "DL_Motion": 18,
+    "DL_Process": 26
+  }
+}

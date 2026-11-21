@@ -1,0 +1,36 @@
+{
+ "added": [
+  "FC_DL_ReverseBitsLword",
+  "FC_DL_BitScanLword",
+  "FC_DL_Hypot3D",
+  "FC_DL_TrapezoidArea",
+  "FC_DL_SortIndexLReal",
+  "FC_DL_WeightedPercentile",
+  "FC_DL_MeanAbsDevCalc",
+  "FB_DL_LongPressButton",
+  "FB_DL_RailPowerSequence",
+  "FB_DL_AxisLimitSwitchBank",
+  "FB_DL_PidParamGuard",
+  "FB_DL_PhaseLossGuard",
+  "FB_DL_SensorPairPlausibility",
+  "FB_DL_AirDryerDiag",
+  "FB_DL_TurretToolSelect",
+  "FB_DL_LineClearanceVerify"
+ ],
+ "bumped": [
+  "FB_DL_TwoStepConfirm",
+  "FC_DL_Affine2DChain",
+  "FC_DL_InterpolateTable3D",
+  "FB_DL_AxisCmdArbiter",
+  "FB_DL_ShiftHandoverCheck"
+ ],
+ "counts": {
+  "DL_Base": 130,
+  "DL_MathData": 253,
+  "DL_Algo": 128,
+  "DL_Device": 197,
+  "DL_Motion": 120,
+  "DL_Process": 273
+ },
+ "total": 1101
+}

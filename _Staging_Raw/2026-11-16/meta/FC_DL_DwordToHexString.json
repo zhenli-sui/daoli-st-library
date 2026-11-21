@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DwordToHexString",
+  "category": "DL_MathData",
+  "instruction": "DWORD 转 8 位定宽十六进制文本：HexStringToBytes（R9）的逆向对偶，LOG 时间戳对齐与报文回放依赖定宽前导零；平台 DWORD_TO_STRING 格式参数三平台行为不一致禁用。",
+  "architecture_thought": "无状态纯函数：半字节表自建 FOR 7..0 逐 4 位 SHR+AND 16#F 查表 CONCAT，bUpperCase/bPrefix 可选；强制保留前导零 8 位定宽；目标串长不足判故障 038D 返回全零串 bValid=FALSE；预留槽偏多属纯格式化函数故障域天然窄（头注释声明为 bPadZero=FALSE 变体保留）。"
+}

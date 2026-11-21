@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_ByteToBcd",
+  "category": "DL_MathData",
+  "instruction": "向 BCD 拨码/显示仪表下发单字节设定值，>99 的十进制无法用两半字节表达，必须满量程兜底。",
+  "architecture_thought": "入口 >99 满量程兜底置信息级码（041E）并输出 0x99 上限码；正常值标准语义换算。故障级 034B 预留。纯函数。"
+}

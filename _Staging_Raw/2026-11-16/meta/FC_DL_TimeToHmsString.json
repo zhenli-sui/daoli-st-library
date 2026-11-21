@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_TimeToHmsString",
+  "category": "DL_MathData",
+  "instruction": "TIME 转 HH:MM:SS.mmm 定宽文本：数值能转文本而时间不能是半截子现状（LGF 有 IntToString/TimeToString/DTLtoString 三件本库一件没有）；HMI 显示与报表需要统一负值口径。",
+  "architecture_thought": "无状态纯函数：TIME_TO_DINT 毫秒口径（头注释挂编译验证债：32 位毫秒未实测）；负值先绝对值再分解输出前置负号+信息级 044E（统一口径不静默）；时/分/秒/毫秒分解全为非负操作数 MOD 安全；补零走商<10 分支拼接（不依赖 DINT_TO_STRING 前导空格行为，R79 家族）；小时>99 置信息级 044F 字段宽度提示。"
+}

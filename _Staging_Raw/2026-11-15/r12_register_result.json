@@ -1,0 +1,322 @@
+{
+  "before_total": 168,
+  "before_counts": {
+    "DL_Base": 34,
+    "DL_MathData": 33,
+    "DL_Algo": 25,
+    "DL_Device": 40,
+    "DL_Motion": 16,
+    "DL_Process": 20
+  },
+  "after_total": 186,
+  "version": "2.1.0",
+  "last_updated": "2026-11-15T20:30:46+08:00",
+  "counts": {
+    "DL_Base": 38,
+    "DL_MathData": 38,
+    "DL_Algo": 27,
+    "DL_Device": 44,
+    "DL_Motion": 17,
+    "DL_Process": 22
+  },
+  "added": [
+    {
+      "name": "FC_DL_BitArrayExtract",
+      "category": "DL_Base",
+      "type": "FC",
+      "code_segment": "16#0001_0125~0127(信息级)",
+      "source": "lgf-bitlogic",
+      "complexity": 5,
+      "tags": [
+        "lgf-bitlogic",
+        "bit-extraction",
+        "bit-array",
+        "bounds-check",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:30:46+08:00"
+    },
+    {
+      "name": "FC_DL_BitArrayInsert",
+      "category": "DL_Base",
+      "type": "FC",
+      "code_segment": "16#0001_0128~012A(信息级)",
+      "source": "lgf-bitlogic",
+      "complexity": 6,
+      "tags": [
+        "lgf-bitlogic",
+        "bit-insertion",
+        "bit-array",
+        "mask-merge",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:30:49+08:00"
+    },
+    {
+      "name": "FC_DL_IntervalMembership",
+      "category": "DL_Base",
+      "type": "FC",
+      "code_segment": "16#0001_012B~012C(信息级)",
+      "source": "lgf-comparator",
+      "complexity": 3,
+      "tags": [
+        "lgf-comparator",
+        "interval",
+        "comparison",
+        "boundary-inclusive",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:30:52+08:00"
+    },
+    {
+      "name": "FB_DL_BitArrayChangeWatch",
+      "category": "DL_Base",
+      "type": "FB",
+      "code_segment": "16#0001_012D~012F(信息级) / `16#0001_021A~021B`(故障级)",
+      "source": "lgf-bitlogic",
+      "complexity": 5,
+      "tags": [
+        "lgf-bitlogic",
+        "change-detection",
+        "bit-array",
+        "edge-detection",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:30:55+08:00"
+    },
+    {
+      "name": "FC_DL_ArrayDiffSummary",
+      "category": "DL_MathData",
+      "type": "FC",
+      "code_segment": "16#0001_0134~0135(信息级)",
+      "source": "lgf-comparator",
+      "complexity": 4,
+      "tags": [
+        "lgf-comparator",
+        "array-compare",
+        "diff-summary",
+        "statistics",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:30:58+08:00"
+    },
+    {
+      "name": "FC_DL_StringReplaceAll",
+      "category": "DL_MathData",
+      "type": "FC",
+      "code_segment": "16#0001_0130~0133(信息级)",
+      "source": "lgf-datahandling",
+      "complexity": 5,
+      "tags": [
+        "lgf-datahandling",
+        "string",
+        "replace-all",
+        "text-processing",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:31:01+08:00"
+    },
+    {
+      "name": "FB_DL_StringTokenStream",
+      "category": "DL_MathData",
+      "type": "FB",
+      "code_segment": "16#0001_013A~013C(信息级) / `16#0001_021C~021E`(故障级)",
+      "source": "lgf-datahandling",
+      "complexity": 6,
+      "tags": [
+        "lgf-datahandling",
+        "string",
+        "tokenizer",
+        "stream",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:04+08:00"
+    },
+    {
+      "name": "FC_DL_SolarPositionCalc",
+      "category": "DL_MathData",
+      "type": "FC",
+      "code_segment": "16#0001_0136~0137(信息级)",
+      "source": "lgf-datetimer",
+      "complexity": 7,
+      "tags": [
+        "lgf-datetimer",
+        "solar-geometry",
+        "astronomy",
+        "time-of-day",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:31:07+08:00"
+    },
+    {
+      "name": "FC_DL_ModbusExceptionParse",
+      "category": "DL_MathData",
+      "type": "FC",
+      "code_segment": "16#0001_0138~0139(信息级)",
+      "source": "oscat-network",
+      "complexity": 3,
+      "tags": [
+        "oscat-network",
+        "modbus",
+        "exception-code",
+        "protocol",
+        "decoder"
+      ],
+      "registered_at": "2026-11-15T20:31:10+08:00"
+    },
+    {
+      "name": "FC_DL_WaterEnthalpy",
+      "category": "DL_Algo",
+      "type": "FC",
+      "code_segment": "16#0002_2101~2102(信息级)",
+      "source": "oscat-building",
+      "complexity": 3,
+      "tags": [
+        "oscat-building",
+        "hvac",
+        "enthalpy",
+        "thermodynamics",
+        "pure-function"
+      ],
+      "registered_at": "2026-11-15T20:31:13+08:00"
+    },
+    {
+      "name": "FB_DL_ValveCharacteristic",
+      "category": "DL_Algo",
+      "type": "FB",
+      "code_segment": "16#0002_2001~2003(信息级) / `16#0002_2010~2012`(故障级)",
+      "source": "isa88-process",
+      "complexity": 5,
+      "tags": [
+        "isa88-process",
+        "valve",
+        "characteristic-curve",
+        "process-control",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:16+08:00"
+    },
+    {
+      "name": "FB_DL_DeviceParamVerify",
+      "category": "DL_Device",
+      "type": "FB",
+      "code_segment": "16#0003_014D~014F(信息级) / `16#0003_030D~030F`(故障级)",
+      "source": "codesys-forge-devicereader",
+      "complexity": 6,
+      "tags": [
+        "codesys-forge-devicereader",
+        "device-parameter",
+        "verification",
+        "range-check",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:19+08:00"
+    },
+    {
+      "name": "FB_DL_PortDiagBoard",
+      "category": "DL_Device",
+      "type": "FB",
+      "code_segment": "16#0003_0149~014C(信息级) / `16#0003_0309~030C`(故障级)",
+      "source": "plcnext-diag",
+      "complexity": 6,
+      "tags": [
+        "plcnext-diag",
+        "roadmap-p0",
+        "port-diagnostics",
+        "profinet",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:22+08:00"
+    },
+    {
+      "name": "FB_DL_EnergyMeterAccum",
+      "category": "DL_Device",
+      "type": "FB",
+      "code_segment": "16#0003_0150~0152(信息级) / `16#0003_0310~0312`(故障级)",
+      "source": "namur-ne43",
+      "complexity": 6,
+      "tags": [
+        "namur-ne43",
+        "energy-meter",
+        "accumulation",
+        "signal-quality",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:25+08:00"
+    },
+    {
+      "name": "FB_DL_VacuumGaugeMux",
+      "category": "DL_Device",
+      "type": "FB",
+      "code_segment": "16#0003_0153~0155(信息级) / `16#0003_0313~0315`(故障级)",
+      "source": "namur-ne43",
+      "complexity": 6,
+      "tags": [
+        "namur-ne43",
+        "oscat-building",
+        "vacuum-gauge",
+        "multiplexer",
+        "signal-quality"
+      ],
+      "registered_at": "2026-11-15T20:31:28+08:00"
+    },
+    {
+      "name": "FB_DL_LineInterp2Axis",
+      "category": "DL_Motion",
+      "type": "FB",
+      "code_segment": "16#0004_0109~010C(信息级) / `16#0004_0204~0207`(故障级)",
+      "source": "github-topics-motion",
+      "complexity": 8,
+      "tags": [
+        "github-topics-motion",
+        "motion-control",
+        "interpolation",
+        "2-axis",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:31+08:00"
+    },
+    {
+      "name": "FB_DL_BatchPhaseBase",
+      "category": "DL_Process",
+      "type": "FB",
+      "code_segment": "16#0005_0104~0107(信息级) / `16#0005_0203~0206`(故障级)",
+      "source": "isa88-batch",
+      "complexity": 8,
+      "tags": [
+        "isa88-batch",
+        "phase-state-machine",
+        "batch-control",
+        "isa88",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:34+08:00"
+    },
+    {
+      "name": "FB_DL_PollTempBank",
+      "category": "DL_Process",
+      "type": "FB",
+      "code_segment": "16#0005_0108~010A(信息级) / `16#0005_0207~0209`(故障级)",
+      "source": "roadmap-p0",
+      "complexity": 7,
+      "tags": [
+        "roadmap-p0",
+        "polling-scheduler",
+        "temperature-bank",
+        "multi-channel",
+        "state-machine"
+      ],
+      "registered_at": "2026-11-15T20:31:37+08:00"
+    }
+  ],
+  "drift_fixed": [
+    "FB_DL_SCurveGenerator",
+    "FB_DL_PulseDirStepper"
+  ],
+  "codes_spec": 85,
+  "codes_reg": 85,
+  "collision": [],
+  "jsonl_rows": 186,
+  "sha_ok": 186,
+  "sha_bad": []
+}

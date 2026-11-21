@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_QuantizeStep",
+  "category": "DL_MathData",
+  "instruction": "按步距量化：编码器分辨率（0.01mm/0.1°）与给定值对齐 n×step，现有取整族（RoundSat/TruncEx/FloorEx/CeilEx）只到整数步距，非整数步距轴缺位；平台 ROUND 银行家舍入三平台不一致禁用。",
+  "architecture_thought": "无状态纯函数：TRUNC+自补 0.5 实现四舍五入（bRoundHalfUp 可选向零截断）；步距<=EPS 判故障 0372 且输入直通（不静默置 0）；商超 1E15 判信息级 0438 直通（LREAL 尾数已无小数精度）；残差越半步置信息级 0439 提示浮点误差；溢出判故障 0374 饱和。输出 fResidual 带符号残差。"
+}

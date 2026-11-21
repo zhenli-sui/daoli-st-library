@@ -1,0 +1,1 @@
+R29 隔离原因：FB_DL_AhuFilterDpBank 违反红线 7 —— tonDeb 单实例被 4 个温区共享，且仅当 eTarget<>aeStage 时才刷新（无变化扫描周期 ET 冻结、跨区互相复位），属 R40/R7 复合缺陷。需改为 ARRAY[1..4] OF TON 或每区独立实例后重新入审。本件未注册、未入语料。

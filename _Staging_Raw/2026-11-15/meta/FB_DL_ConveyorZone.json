@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 B #14：按 ROUND_PLAN_R7 §3.2 编码 FB_DL_ConveyorZone（ZPA 积放单区），落盘 C:\\Library\\DL_Process\\FB_DL_ConveyorZone.st。消费既有接口 I_DL_VfdDrive（R6 契约件，仅引用零修改）：iDrive.CmdRun(bFwd)/CmdStop() 每拍至多一次方法调用（0.13），反馈读 iDrive.bRunning/bFault；积放单句规则 RunReq=使能 AND 无卡料 AND 无故障 AND（有料 OR 上区补跑）AND（下游允许 OR 出口空），末区语义由接线承担不内判；卡料窗（RunReq+出口遮挡超 tJamWindow）锁存仅 bReset 清，计时中信息级预警 0113；指令-反馈失配超 tStartDelay 故障 0212；iDrive.bFault 透传 0213；使能沿浪涌延迟 tStartDelay 再发令（间隔释放由多区 bZoneReady 级联天然承载）；手动放行沿短时绕过下游条件；CASE+ELSE 兜底 0214。码位顺延留档（0210/0211/0103 已占）。",
+  "architecture_thought": "本块是『接口消费范式』的示范件：对 I_DL_VfdDrive 只调方法/读属性、零内部状态假设，指令-反馈失配检测（XOR 条件 + TON）完全建立在接口既有属性上——换任何 I_DL_VfdDrive 实现块本区零改动。积放规则刻意写成一行布尔式并在注释逐项标注：ZPA 的全部价值就在这一句的可读性，拆散进状态机分支反而难审。手动放行绕过下游条件但绕不过卡料/故障锁存——调试便利不得越过安全锁存。"
+}

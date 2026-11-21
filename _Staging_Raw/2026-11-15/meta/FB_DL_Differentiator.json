@@ -1,0 +1,10 @@
+{
+  "name": "FB_DL_Differentiator",
+  "category": "DL_Algo",
+  "type": "FB",
+  "complexity": 5,
+  "function_tags": ["differentiator", "rate-of-change", "oscat-basic", "lgf-measurement", "noise-suppression"],
+  "instruction": "烘箱温度趋势报警要用升温速率做前级判据（每分钟升温超 8 度预警），直接对温度采样做差分时，热电偶毛刺会让速率瞬间飙到几千度每秒，报警天天误动作。需要一个实用微分块：差分商算变化率，后接一阶低通压噪声，滤波时间常数可组态（温度趋势建议 500ms 起步），输出变化率还要有限幅（防坏值造成假尖峰触发联锁）。首扫和信号断线恢复时不能输出上电尖峰，输入 NaN 要拒绝并清历史，速率输出同时给原始值做诊断对照。",
+  "architecture_thought": "微分是噪声放大器：纯差分 (fIn−fInPrev)/fDt 对采样噪声的增益是 1/fDt，100ms 采样下 0.5 度的毛刺就变成 5 度每秒的假速率，所以结构定为'差分商 + 一阶低通 + 限幅'三级串联。低通用 fAlpha = fDt/(fTfEff + fDt) 的离散 PT1 递推，fTfEff=0 时系数取 1 退化为原始差分直通（合法组态，不置故障）；系数显式 MIN/MAX 钳位 0..1，分母 fTfEff + fDt 因公共周期钳位恒大于零，无除零路径。状态机四态 eInit/eRun/eTrack/eFault，最要紧的设计是把'端点历史有效性'做成显式状态量 bHistValid：首扫、信号恢复、跟踪释放这三个时机的共同风险是 fInPrev 还是陈旧值，差分一拍就炸出假尖峰——统一走 eInit 分支或历史重建逻辑，先同步 fInPrev := fIn、输出归零，下一拍才有真实差分；输入 NaN 时拒绝本拍、清历史、输出置 0 且 bValid=FALSE，绝不拿坏值造速率。速率输出经 rRateMin/rRateMax LIMIT 限幅（上下限反序自动对调置 0002_0001），fRawRate 原始值单独输出供诊断对照滤波效果。周期 <10ms 走公共钳位（0002_0002），滤波常数超 60s 钳位并置 0002_1401，头注释给出选型建议 tFiltTime ≥ 5× 采样周期。",
+  "version": "1.0.0"
+}

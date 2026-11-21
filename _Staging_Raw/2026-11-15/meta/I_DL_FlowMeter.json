@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #9：按 ROUND_PLAN_R7 §2.7 编码 I_DL_FlowMeter（流量计抽象接口，脉冲/模拟型均可适配），落盘 C:\\Library\\DL_Device\\I_DL_FlowMeter.st。同文件发布 E_DL_FlowMeterState（eIdle=0/eMeasuring=10/eFlowOk=20/eLowCutoff=30/eFault=99，eLowCutoff=低流量截止态）；属性 6 个 GET（fFlowRate REAL [L/min] / fTotal LREAL [L] 防累计精度丢失 / nPulseCount）；方法 3 个（CmdTotalReset/CmdTotalPreset(fPreset)/CmdReset，预置非有限值/负值拒绝）。溯源 tcopen-component/flow-totalizer，clean-room。",
+  "architecture_thought": "fTotal 用 LREAL 是本接口最重要的类型决策：UDINT 脉冲计数累计到 LREAL 体积，REAL 在 1E7 L 量级已丢脉冲精度，LREAL 把精度边界推到 9.0E15 并把预警职责（bTotalNearLimit 留给实现块）写进契约注释。eLowCutoff 作为独立态而非 bFlowOk 的反面：低流量截止是『有效但被截零』的计量语义（信息级），与 eFlowOk/eIdle 的状态机语义不同，HMI 需要区分『没流量』与『有流量但被截止』。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_SwapBytes64",
+  "category": "DL_MathData",
+  "instruction": "64 位浮点/长整数与异构系统（大端）交互需字节序翻转；复用库内 32 位翻转为 eDcba 组合，避免重实现。",
+  "architecture_thought": "组合复用件：两次 32 位翻转 + 字组交换拼装 64 位结果；纯位运算零分支，五槽全预留（信息级 16#0001_0424 占位登记）。"
+}

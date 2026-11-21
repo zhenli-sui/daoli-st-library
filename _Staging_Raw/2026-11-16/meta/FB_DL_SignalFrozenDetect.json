@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_SignalFrozenDetect",
+  "category": "DL_Base",
+  "instruction": "信号冻结检测：窗内极差<死区即判传感器卡死，是 NE107 eCheckFunction 检查功能的判据原子件；卡死信号在联锁里比断线更危险（数值好看但失效）。",
+  "architecture_thought": "滑动窗极差监测 FB：R_TRIG 实例主体最前部无条件刷新；窗内 fMax/fMin 极值基准在采样与复位时取当前值重建；极差<死区持续超窗判卡死 bFrozen+故障码；死区非法钳绝对值继续；输入非有限直接判故障（非有限本身即传感器失效）；基准重建不留旧值防跨窗污染。"
+}

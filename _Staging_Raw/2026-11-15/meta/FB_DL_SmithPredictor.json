@@ -1,0 +1,10 @@
+{
+  "name": "FB_DL_SmithPredictor",
+  "category": "DL_Algo",
+  "type": "FB",
+  "complexity": 9,
+  "function_tags": ["smith-predictor", "dead-time-compensation", "lgf-technology", "mod-pid-control", "pid"],
+  "instruction": "长管道蒸汽加热段，阀门动作到出口温度变化要将近 4 秒纯滞后，普通 PID 要么增益调小响应慢半天、要么调大一点点就等幅振荡，操作工完全没法投自动。要求做一个史密斯预估器：内部按一阶惯性加纯滞后对象模型（增益、惯性时间、纯滞后时间三个模型参数可配）实时仿真『如果过程没有滞后现在应该是什么温度』，用实际过程值减去模型滞后输出来重构无滞后偏差，再拿这个补偿后偏差驱动内嵌 PID 闭环；模型总会有偏差，运行中温度对不上时模型要能自己缓慢修正静态偏差，不能越修越偏；上电或复位后模型的滞后队列需要若干拍才能填满，填充期不能瞎补偿也不能停止控制，要自动退化为普通 PID 用原始误差闭环；手动模式输出手动值时模型还得继续仿真，切回自动不跳变；模型增益配成 0 这种错误要能兜住，控制不能中断；模型纯滞后写超队列容量要截断并报码。",
+  "architecture_thought": "架构核心是『模型仿真与控制律解耦』：内嵌 fbPid 实例承接全部 PID 律（本块零自写 PID），本块只负责三件事——对象模型仿真、误差重构、状态调度。五态机 eIdle/eLearning/eCompensating/eManual/eFault。其一，模型链：一阶惯性递推 fModelState += (fCtrlOut-fModelState)*fDt/max(tModelT,fDt)，分母取 max 同时实现 tModelT 小于一拍时的一拍直通与防除零；乘 fModelK 折算增益后入 20 槽环形滞后队列，读指针按深度取模回读得 fModelDelayed，索引双重钳位防越界。其二，误差重构与自适应：fErrComp := fPv - (fModelDelayed + fModelBias)，偏差校正项按小增益 DL_SMITH_KB=0.02/s 缓慢收敛，修正速率被采样周期显式约束，不会一拍跳飞；fModelK=0 时模型输出恒 0，补偿退化为带自适应偏置的普通闭环，报 0002_0501 但控制不中断——这是大滞后回路最不能接受的中断场景。其三，学习态设计：nFillCnt 饱和计数判定队列是否填满，未满时 fErrComp 直接取原始偏差（普通 PID 语义），填满后切换补偿式；学习与补偿之间双向平滑，手动态模型与队列持续仿真，保证回自动连续。内嵌 PID 的设定引脚在补偿误差计算后即时注入，避免用上一拍旧值。R_TRIG 复位沿主体最前部无条件刷新，复位时模型状态对齐当前过程值、队列全槽预填，杜绝上电冲击。",
+  "version": "1.0.0"
+}

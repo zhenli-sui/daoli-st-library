@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 D #2：按 ROUND_PLAN_R7 §1.2 编码 FB_DL_ModuloCounter（循环计数器/转盘工位索引），落盘 C:\\Library\\DL_Base\\FB_DL_ModuloCounter.st。R7/0.5 四 R_TRIG 前置无条件刷新；事件型免首扫（R23）；取模回绕禁用取余运算符负数平台差异——条件加减法在 DINT 域运算后显式 DINT_TO_UINT 回写（CODESYS/TwinCAT/汇川三平台一致，注释留档）；nMod<2 故障锁存 0001_0211（除零与退化防御）；nJumpTo 越界拒绝置信息级 0001_0103；双向同拍抵消 0001_0104；bWrapped 跨零点一拍。码位经 DL_Base VERSION.md 核对。",
+  "architecture_thought": "与 FB_DL_EventCounter 职责正交（通用事件计数 vs 取模索引）而非参数化复用：取模块的域不变量（uIndex 0..nMod-1）是强契约，值得用独立块承载并在每个出口做显式转换与回绕。回绕实现刻意避开取余运算符——UINT 负数取余在三目标平台行为不一，条件加减法（减 nMod/加 nMod）+ DINT 中间域 + 显式转换是可逐平台复核的写法，跨平台意图写入注释。跳步校验在沿路径拒绝而非钳位：越界跳步是操作错误，静默钳位会把操作错误变成静默错位，拒绝+信息级才能被 HMI 捕获。"
+}

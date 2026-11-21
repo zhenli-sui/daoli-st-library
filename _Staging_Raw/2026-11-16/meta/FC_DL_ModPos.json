@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_ModPos",
+  "category": "DL_MathData",
+  "instruction": "恒正取模原子：负数取余在三平台（CODESYS/TwinCAT/InoProShop）符号行为不一致，库内 R48/R11/R19 三处各自手写归一逻辑，需要唯一出口原子件收敛口径。",
+  "architecture_thought": "无状态纯函数：全文只允许一次 MOD，余数为负时条件加 |m| 归一（禁二次取模、禁 ABS 后再 MOD 双路径）；模数为零判故障 036C、模数为 DINT 下界判故障 036D（绝对值不可表）、负模数取绝对值照算并置信息级 0434。无 CASE 状态机（R6 N/A）。"
+}

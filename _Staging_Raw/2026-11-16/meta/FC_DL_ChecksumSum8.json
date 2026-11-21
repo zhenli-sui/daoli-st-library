@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_ChecksumSum8",
+  "category": "DL_MathData",
+  "instruction": "8 位累加和校验：DL/T 645、水表/电表自定义帧仍用累加和，CRC8/16/32+LRC 已有而累加和缺位，属协议兼容性缺口。",
+  "architecture_thought": "无状态纯函数：DINT 累加防 255×256 在 BYTE 域回绕，末了 MOD 256；bTwosComplement 可选输出二进制补码（DL/T 645 口径，结果为 0 特例显式判置信息级 0446）；帧长超上限判故障 0387 拒算；空帧置信息级 0447。"
+}

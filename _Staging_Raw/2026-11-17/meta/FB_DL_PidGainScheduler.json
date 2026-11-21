@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_PidGainScheduler",
+ "category": "DL_Algo",
+ "type": "FB",
+ "function_tags": [
+  "增益调度",
+  "查表插值",
+  "参数自整定",
+  "t2-1-lgf-technology"
+ ],
+ "complexity": 5,
+ "instruction": "风机泵类工况随负载大幅变化的场合，固定 PID 增益在小工况震荡、大工况迟钝；本件按调度变量（流量、温度等工况量）查增益表线性插值输出 Kp/Ti/Td，仅产出参数不内嵌控制回路。边界条件：调度变量低于首点或高于末点端点钳位并置码；表未严格升序或点数不足则按 bHoldLast 保持上次输出；调度变量 NaN 强制保持。",
+ "architecture_thought": "查表定位用 WHILE 段搜索，段宽除法前判零；表非法为持续态码级，保持语义显式化（输出与内部共用同一锁存变量，无双口径）；本件与 PID 回路件正交解耦，仅经 VAR_IN_OUT 注入增益表、经引脚注入调度变量；CASE 防御、纯 IEC 类型，跨平台可移植。",
+ "version": "1.0.0",
+ "source": "t2-1-lgf-technology 深化 + 规划新增线"
+}

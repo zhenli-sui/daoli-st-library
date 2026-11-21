@@ -1,0 +1,10 @@
+{
+  "name": "FB_DL_SCurveGenerator",
+  "category": "DL_Algo",
+  "type": "FB",
+  "complexity": 9,
+  "function_tags": ["s-curve", "trajectory-planning", "jerk-limited", "lgf-signalgen", "lgf-technology"],
+  "instruction": "注液泵升降机构用线性斜坡给定伺服时，启停瞬间机械冲击大，试剂瓶偶尔被晃出气泡，定位精度也受振动影响。需要一个限制加加速度 Jerk 的 S 型轨迹块：最大速度、加速度、Jerk 三级独立限幅，jerk 到加速度到速度到位移四级积分链真实推进，输出位置、速度、加速度给上位诊断。短行程不要求跑满最大速度（提前进减速段），运行中允许改目标，急停一到必须按最大减速立即停车。到位判定要带容差并强制速度加速度清零。周期默认 10ms，动态参数填错要钳位报警而不是失控。",
+  "architecture_thought": "核心是十态相变状态机：eAccJerkUp→eAccConst→eAccJerkDown→eCruise→eDecJerkUp→eDecConst→eDecJerkDown→eDone，外加 eIdle 与 eFault，每态只干一件事——设置本拍 jerk 的方向与幅值。推进链严格按 jerk→加速度→速度→位移四级积分：fAcc += fJerk·fDt 后限幅 ±fMaxAcc，fVel += fAcc·fDt 后限幅 ±fMaxVel，fOut += fVel·fDt，绝不用时间比例插值冒充 S 曲线。工程上最难的不是七段对称闭式解而是'剩余距离不够跑完整减速段'，所以采用自适应截断法：每拍算减速行程 fBrkDist = fVel²/(2fMaxAcc) + fVel·fDt 再乘 1.05 裕量，剩余距离小于它就立即转入减速段，匀加速段还叠加减加速回落行程的估算提前收加速度，头注释明确披露这一近似。防错五处：动态参数按速度→加速度→jerk 顺序逐级依赖钳位（jerk 缺省取 fMaxAcc/fDt）；减速段速度过零立即强制 fVel=fAcc=0 防反向滑行，停稳没到目标就回 eIdle 重新加速，天然收敛；到位容差 1.0E-4 吸附目标并清运动量；运行中目标反向时立即切减速段；瞬态相位卡死超 1E4 拍强制进 eFault（匀速段是合法长段，不参与计数）。bAbort 从任意运行态一拍切入最大减速，安全优先。全程无定时器实例，无除零路径（分母均经参数钳位保证为正）。",
+  "version": "1.0.0"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DintToStringTrim",
+  "category": "DL_MathData",
+  "instruction": "HMI 报文拼装把 DINT 转字符串时，目标缓冲区不足会被平台静默截断甚至回夹（R37 教训），需四步显式截断。",
+  "architecture_thought": "R37 四步截断范式：先算长度→判截断→置截断标志→写目标；缓冲不足置信息级 16#0001_0426/0427 并显式置标志，绝不回夹。纯函数。"
+}

@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_FanBeltSlipDiag",
+ "category": "DL_Device",
+ "type": "FB",
+ "function_tags": [
+  "皮带打滑",
+  "转速比",
+  "叶轮停转",
+  "t1-2-oscat-building"
+ ],
+ "complexity": 4,
+ "instruction": "皮带打滑初期叶轮转速滞后电机转速，比偏差扩大到超差即打滑；完全断裂则叶轮停转而电机照转。边界条件：电机转速小于 1 rpm 不判定（防除零，规格口径）；负转速或非有限输入判非法；停机清确认。",
+ "architecture_thought": "转速比为电机除以叶轮（分母前判零），偏离百分比超容差进打滑域经 TON 确认（无条件刷新）；叶轮近零单独判停转码（优先于比值判据）；计时中特征与确认结论两级输出；停机路径不置码防误报；纯标准类型与 TON 跨平台可移植。",
+ "version": "1.0.0",
+ "source": "t1-2-oscat-building 深化（泵风机族）"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DivLrealSafe",
+  "category": "DL_MathData",
+  "instruction": "浮点防御除法原子：红线第六节点名『除法前置防零』但全库 344 件无除法原子，每处调用各自手写判据口径漂移；分母微量（|d|<eps）与溢出商需显式报错而非输出伪值。",
+  "architecture_thought": "无状态纯函数：分子分母先行有限性闸（NaN 用 x<>x 自比较、Inf 用 MAX_FINITE 比较）；|fDen|<fDenEps 判故障 036F 且 bValid=FALSE 强制调用方分支（不返回 0 冒充有效）；溢出判据用等价变形 |分子|>|分母|×MAX 判（比较本身不溢出）；fDenEps<=0 判故障 0370。商超有限域饱和并置信息级 0436。"
+}

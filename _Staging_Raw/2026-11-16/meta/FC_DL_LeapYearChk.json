@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LeapYearChk",
+  "category": "DL_Base",
+  "instruction": "日历族共用闰年判定原子件，与 R11 年窗件判律一致；供 SemaMutex 外的日历组件复用，避免各件重复实现口径漂移。",
+  "architecture_thought": "库内复用原子化：4/100 判律与 DL_Base 存量 YearWindowCheck 一致；窗口外年份判信息级 16#0001_0430 而非静默拒绝；故障级 0366 窗口闸预留。"
+}

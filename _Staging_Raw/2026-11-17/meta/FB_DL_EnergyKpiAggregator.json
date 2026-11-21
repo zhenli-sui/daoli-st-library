@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_EnergyKpiAggregator",
+ "category": "DL_Process",
+ "type": "FB",
+ "function_tags": [
+  "能耗KPI",
+  "单位产量",
+  "零产量掩码",
+  "t2-7-packml"
+ ],
+ "complexity": 5,
+ "instruction": "单位产量能耗（kWh 每千件）是产线能效核心 KPI：窗口内电能累计除以产量计数。边界条件：能量增量负值视为电表翻转拒收；NaN 拒收；窗口产量为 0 时保持上次 KPI 并置零产量掩码（不做除零）；窗到时才结算。",
+ "architecture_thought": "KPI 窗 TON 无条件周期刷新；增量防御先行（非法增量不入窗）；结算除法分母前判零；零产量掩码为持续态且 KPI 锁存不清（账面连续）；复位清窗累计与有效标志；与电量计量件（消费侧）经引脚解耦注入增量；纯 IEC 类型（ULINT 产量）跨平台可编译。",
+ "version": "1.0.0",
+ "source": "t2-7-packml 深化（消费功率计量语义）"
+}

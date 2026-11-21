@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #5：按 ROUND_PLAN_R7 §2.3 编码 I_DL_SafetyDoor（电磁锁扣门联锁抽象接口），落盘 C:\\Library\\DL_Device\\I_DL_SafetyDoor.st。同文件发布 E_DL_SafetyDoorState（eIdle=0/eLocked=10/eStopRequested=20/eStandstillConfirmed=30/eUnlocked=40/eOpened=50/eFault=99）；属性 7 个 GET；方法 4 个（CmdRequestUnlock/CmdRelock/CmdReset/CmdAuditClear）；门开态拒绝 CmdRelock 之外全部动作；头部与注释显式声明公约 0.13「非认证安全功能」定位。溯源 tcopen-component/safety-interlock（ISO 14119 公开语义），clean-room。",
+  "architecture_thought": "解锁时序的六个态全部进接口枚举而非隐藏在实现内部：上层工站与 HMI 需要按『停机请求已发/静止已确认/已解锁/门已开』分态联锁与显示，时序可见性就是契约的一部分。CmdAuditClear 独立于 CmdReset：开门审计计数是批次质量数据（收尾清零），故障复位是安全操作（只在故障态受理），两者生命周期不同必须拆分方法。定位声明写入文件头：本库安全件一律是『逻辑编排与诊断镜像层』，认证安全回路边界显式留档，防止下游误用为安全功能。"
+}

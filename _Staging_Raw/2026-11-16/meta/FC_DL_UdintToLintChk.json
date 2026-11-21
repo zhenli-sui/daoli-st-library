@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_UdintToLintChk",
+  "category": "DL_MathData",
+  "instruction": "平台侧 UDINT 计数值需进 LINT 域参与 64 位运算，某些平台 32 位中间量会发生错误符号扩展；round-trip 验真是唯一可信防线。",
+  "architecture_thought": "升位验真件：转换后立即反向转换比对（round-trip），不一致判故障级 033C（拦平台方言缺陷），一致才放行；信息级 16#0001_0414 记录验真通过。纯函数无状态。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DateDiffDays",
+  "category": "DL_MathData",
+  "instruction": "批次老化/账期计算求两 DATE 天差，负值（倒序日期）属业务异常需如实输出而非静默取绝对值。",
+  "architecture_thought": "纯差值输出（负值如实），不做隐藏归一；由调用方决定业务处置。信息级 16#0001_042C，故障三槽预留。"
+}

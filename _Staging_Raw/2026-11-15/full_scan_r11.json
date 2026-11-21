@@ -1,0 +1,1131 @@
+[
+  {
+    "file": "FB_DL_AlarmManager.st",
+    "lines": 256,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_BidirectionalCounter.st",
+    "lines": 387,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_CycleTimeMeasure.st",
+    "lines": 146,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_DualEdgeTrig.st",
+    "lines": 149,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_DutyStandbyRotation.st",
+    "lines": 659,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_EventCounter.st",
+    "lines": 208,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ExtendedTimer.st",
+    "lines": 411,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_InterlockMatrix.st",
+    "lines": 324,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ModuloCounter.st",
+    "lines": 162,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_MonthWindowCheck.st",
+    "lines": 370,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PresetCounterSat.st",
+    "lines": 358,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PulseGenerator.st",
+    "lines": 279,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RedundantSwitch.st",
+    "lines": 563,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RolloverCounter.st",
+    "lines": 383,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RuntimeMeter.st",
+    "lines": 189,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SignalDebounce.st",
+    "lines": 227,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_StepSequencer.st",
+    "lines": 314,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_TimeWindowCheck.st",
+    "lines": 185,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ToleranceWindow.st",
+    "lines": 358,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_TwoHandSafety.st",
+    "lines": 375,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_UnpackWordToBits.st",
+    "lines": 116,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_WatchdogMonitor.st",
+    "lines": 282,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_YearWindowCheck.st",
+    "lines": 494,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BinaryToGray.st",
+    "lines": 90,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BitCount.st",
+    "lines": 82,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BitFieldExtract.st",
+    "lines": 216,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BitGet.st",
+    "lines": 75,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BitSet.st",
+    "lines": 90,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_DayOfWeekCalc.st",
+    "lines": 167,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_GrayToBinary.st",
+    "lines": 104,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_LimitClassify.st",
+    "lines": 210,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_PackBitsToWord.st",
+    "lines": 89,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_WeekOfYearCalc.st",
+    "lines": 316,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_WordBitPack.st",
+    "lines": 231,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ArraySearchFirst.st",
+    "lines": 357,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_FifoBuffer.st",
+    "lines": 363,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_LifoStack.st",
+    "lines": 226,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_MedianFilter.st",
+    "lines": 278,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_MovingAverage.st",
+    "lines": 289,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RingBufferLReal.st",
+    "lines": 160,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SignalStatistics.st",
+    "lines": 314,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BcdToWord.st",
+    "lines": 205,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_BinarySearchLReal.st",
+    "lines": 211,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_CalcDistance3D.st",
+    "lines": 227,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_Crc16Modbus.st",
+    "lines": 145,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_Crc32Ethernet.st",
+    "lines": 184,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_Deadband.st",
+    "lines": 133,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_FactorialSat.st",
+    "lines": 211,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_HexStringToBytes.st",
+    "lines": 229,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_Hysteresis.st",
+    "lines": 136,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_LineIntersection.st",
+    "lines": 183,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_LinearScale.st",
+    "lines": 121,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_LrcChecksum.st",
+    "lines": 185,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_MultiPointLinear.st",
+    "lines": 184,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_NthRoot.st",
+    "lines": 211,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_PercentileLReal.st",
+    "lines": 303,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_PolygonArea.st",
+    "lines": 187,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_QuickSortLReal.st",
+    "lines": 386,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_RandomNext.st",
+    "lines": 210,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_RangeOverlapCheck.st",
+    "lines": 254,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_SearchMinMax.st",
+    "lines": 202,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_StringSplit.st",
+    "lines": 214,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_StringTrim.st",
+    "lines": 185,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_SwapBytes16.st",
+    "lines": 70,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_SwapBytes32.st",
+    "lines": 138,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_TempUnitConvert.st",
+    "lines": 210,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_WordToBcd.st",
+    "lines": 202,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_CascadePid.st",
+    "lines": 267,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_Differentiator.st",
+    "lines": 236,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_FeedforwardComp.st",
+    "lines": 245,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_HighPassFilter.st",
+    "lines": 233,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_Integrator.st",
+    "lines": 229,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_LowPassFilter.st",
+    "lines": 206,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PeakDetector.st",
+    "lines": 277,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PidController.st",
+    "lines": 349,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PwmDutyController.st",
+    "lines": 236,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_R2rEwmaTuner.st",
+    "lines": 389,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RampGenerator.st",
+    "lines": 262,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RampSoakProfile.st",
+    "lines": 293,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RateLimiter.st",
+    "lines": 232,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SCurveGenerator.st",
+    "lines": 334,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SawtoothGenerator.st",
+    "lines": 404,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SecondOrderFilter.st",
+    "lines": 278,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SineGenerator.st",
+    "lines": 401,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SmithPredictor.st",
+    "lines": 316,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SplitRangeControl.st",
+    "lines": 237,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_StepController.st",
+    "lines": 369,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_AirDensity.st",
+    "lines": 219,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_CoilDiameterCalc.st",
+    "lines": 298,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_DewPointCalc.st",
+    "lines": 180,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_FlowCompensate.st",
+    "lines": 195,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_HumidAirEnthalpy.st",
+    "lines": 202,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AnalogTransmitter.st",
+    "lines": 393,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AnalogValve.st",
+    "lines": 354,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AxiolineDiagLatch.st",
+    "lines": 398,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_DolMotor.st",
+    "lines": 310,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_GuardLockDoor.st",
+    "lines": 381,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_HeatCoolZone.st",
+    "lines": 516,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_LevelSwitchVib.st",
+    "lines": 272,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 60,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_NtcTempScan.st",
+    "lines": 469,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PdiReadScheduler.st",
+    "lines": 411,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PneumaticCylinder.st",
+    "lines": 332,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PortDiagAggregator.st",
+    "lines": 414,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PulseDirStepper.st",
+    "lines": 564,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PulseFlowMeter.st",
+    "lines": 331,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 53,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RfidTagHandler.st",
+    "lines": 582,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 35,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RollerGapAdjust.st",
+    "lines": 410,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SafetyLightCurtain.st",
+    "lines": 488,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SerialScanner.st",
+    "lines": 400,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 55,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SignalTower.st",
+    "lines": 565,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 31,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      },
+      {
+        "rule": "R1-INFO",
+        "line": 37,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SingleSolenoidCyl.st",
+    "lines": 324,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_StarDeltaMotor.st",
+    "lines": 282,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_StatusWordSegDecoder.st",
+    "lines": 383,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ThreePointValve.st",
+    "lines": 448,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_VacuumEjector.st",
+    "lines": 346,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_VfdGeneric.st",
+    "lines": 452,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_AnalogSensor.st",
+    "lines": 67,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_BarcodeScanner.st",
+    "lines": 84,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 19,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_Cylinder.st",
+    "lines": 81,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_FlowMeter.st",
+    "lines": 82,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 17,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_LevelSwitch.st",
+    "lines": 85,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 16,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_LightCurtain.st",
+    "lines": 87,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 24,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_MotorDriver.st",
+    "lines": 77,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_MotorizedValve.st",
+    "lines": 86,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_ProportionalValve.st",
+    "lines": 77,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_RfidReader.st",
+    "lines": 164,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 39,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_SafetyDoor.st",
+    "lines": 90,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 21,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_StepperOpenLoop.st",
+    "lines": 130,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 22,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      },
+      {
+        "rule": "R1-INFO",
+        "line": 26,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_TemperatureZone.st",
+    "lines": 80,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_TowerLight.st",
+    "lines": 149,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 25,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      },
+      {
+        "rule": "R1-INFO",
+        "line": 27,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      },
+      {
+        "rule": "R1-INFO",
+        "line": 31,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "I_DL_VacuumGenerator.st",
+    "lines": 81,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_VfdDrive.st",
+    "lines": 97,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AxisHomingSeq.st",
+    "lines": 457,
+    "defects": [
+      {
+        "rule": "R8-INFO",
+        "line": 340,
+        "msg": "CASE 未覆盖枚举 E_DL_HomingMode 的成员：eZeroPulse、eTorqueBlock（提示级）"
+      },
+      {
+        "rule": "R8-INFO",
+        "line": 390,
+        "msg": "CASE 未覆盖枚举 E_DL_HomingMode 的成员：eZeroPulse、eTorqueBlock（提示级）"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AxisJogController.st",
+    "lines": 229,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AxisRelativeMove.st",
+    "lines": 220,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AxisVelocityMove.st",
+    "lines": 243,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ElectronicCam.st",
+    "lines": 572,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ElectronicGear.st",
+    "lines": 516,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_GantrySyncAxis.st",
+    "lines": 491,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_MarkPositionLatch.st",
+    "lines": 356,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SingleAxis.st",
+    "lines": 340,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SoftLimitGuard.st",
+    "lines": 243,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_SuperimposedMove.st",
+    "lines": 358,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_TorqueLimitControl.st",
+    "lines": 543,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_WindingTensionCtrl.st",
+    "lines": 576,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_WindingTraverse.st",
+    "lines": 479,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FC_DL_CalcMoveTime.st",
+    "lines": 319,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "I_DL_MotionAxis.st",
+    "lines": 201,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AgvDockingHandshake.st",
+    "lines": 385,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_AndonCallSystem.st",
+    "lines": 394,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_BatchDosingControl.st",
+    "lines": 440,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_BufferMagazine.st",
+    "lines": 450,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_CipCleaningSeq.st",
+    "lines": 526,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ConveyorLineLink.st",
+    "lines": 378,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ConveyorZone.st",
+    "lines": 317,
+    "defects": [
+      {
+        "rule": "R8-INFO",
+        "line": 232,
+        "msg": "CASE 未覆盖枚举 E_DL_ZoneState 的成员：eStopped、eRunning、eAccumulating（提示级）"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_EnergySavingMode.st",
+    "lines": 400,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_EnthalpyCompareCtrl.st",
+    "lines": 356,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_LeakTestStation.st",
+    "lines": 484,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_MixRecipeControl.st",
+    "lines": 545,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_ModbusPollMaster.st",
+    "lines": 530,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_OccScheduleWindow.st",
+    "lines": 352,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_OeeCalculator.st",
+    "lines": 292,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PackMlCmdDecoder.st",
+    "lines": 201,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PackMlStateMachine.st",
+    "lines": 330,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PickAndPlaceStation.st",
+    "lines": 629,
+    "defects": [
+      {
+        "rule": "R1-INFO",
+        "line": 42,
+        "msg": "注释区提及禁记号（仅提示）：命中厂商专有对象"
+      }
+    ],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_PressFitStation.st",
+    "lines": 580,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RecipeManager.st",
+    "lines": 455,
+    "defects": [],
+    "pass": true
+  },
+  {
+    "file": "FB_DL_RotaryIndexTable.st",
+    "lines": 404,
+    "defects": [],
+    "pass": true
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 B #15：按 ROUND_PLAN_R7 §3.3 编码 FB_DL_BatchDosingControl（单料批次相配料称重控制），落盘 C:\\Library\\DL_Process\\FB_DL_BatchDosingControl.st。E_DL_DosingPhase 随本块发布（eIdle/eCoarse/eFine/eSettling/eDone/eNg/eAbort/eFault=99）；三段顺控：快加至 fSwitchCoarse（0=默认 85% 设定值）切慢加，慢加关断重量 = fSetpoint − fInflightComp（截断点公式）；落定稳窗判稳（重量变化 < fFlowDeadband），超窗重试 3 次按当前值结算+信息级 0114；结算一次性执行（判稳拍）：锁存 fFinalWeight、公差判定 bBatchOk、学习 fInflightComp += Error/2（半误差防振荡，钳位 ±fCompLimit 触限信息级 0115）；断流监视窗（给料相重量零进给超 tFlowWatch）故障锁存 0220；fWeight 非数批次中止 0221 全断；Abort 电平 CASE 首分支最高优先全断；配方参数非法 0223；CASE+ELSE 兜底 0222。R7 五实例前置无条件刷新。码位经 DL_Process VERSION.md 核对。",
+  "architecture_thought": "结算与学习收敛到『判稳拍一次性执行』是本块最重要的时序决策：若放在 eDone 态每拍执行，学习值会按扫描频率重复累加、fFinalWeight 随秤漂移——半误差学习链（V2 向量 5 批收敛）只在单拍结算下成立。断流判据用『窗沿零进给 + 基准前移』而非瞬时变化率：慢加速率本就低于单扫描死区，瞬时判据会误报；窗沿比较让死区语义与整定窗解耦。Abort 做成 CASE 首分支的电平优先而非异常处理：中止是操作员意志，任何相态立即服从，恢复走显式回空闲路径。"
+}

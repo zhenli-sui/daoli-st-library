@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #6：按 ROUND_PLAN_R7 §2.4 编码 FB_DL_GuardLockDoor（实现 I_DL_SafetyDoor），落盘 C:\\Library\\DL_Device\\FB_DL_GuardLockDoor.st。解锁链硬约束出口断言式：bUnlockCoil 置位前提 =（bStandstill 或 tRunDown 计满）AND bDoorClosed AND bLockEngaged；防篡改冲突（门开+锁闭反馈同真）全局监视锁存 0291；静止确认超时 0290（TON 常量窗）；关门再锁定确认窗（常量 T#2S）超窗 0292；重启抑制：开门事件后必须 bReset 且门锁全确认才回 eIdle，无自动重启路径；run-down 模式信息级 0121；R7 五实例前置无条件刷新；CASE+ELSE 兜底 0293。码位顺延留档（0260/0261/0262 已被 AnalogValve 占用）。",
+  "architecture_thought": "安全时序块的关键是把『硬约束』从时序状态机里剥离成出口断言：bUnlockCoil 不由状态机直接置位，而是每拍按三条件重算——即使状态机被非法态兜底打断，电磁铁输出仍由断言兜底，这是诊断镜像层能给出的最强保证。静止确认双模式（零速反馈/run-down 计时）做成引脚二选一而非两个状态机：run-down 计时器 IN 条件在段 1 无条件推导，模式切换只是换判据源。审计计数与重启抑制分离：uOpenCount 是质量数据，_bRestartInhibit 是安全语义，复位路径分别处理（复位沿清抑制，审计仅 CmdAuditClear 清）。"
+}

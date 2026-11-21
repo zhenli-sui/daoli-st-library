@@ -1,0 +1,854 @@
+{
+ "DL_Base": [
+  {
+   "name": "FB_DL_SignalDebounce",
+   "segment": "无（仅用公共码）",
+   "tags": "debounce, signal-conditioning, state-machine, edge-detection, industrial-io"
+  },
+  {
+   "name": "FB_DL_DualEdgeTrig",
+   "segment": "无（仅用公共码）",
+   "tags": "edge-detection, r_trig, pulse, counter, signal-conditioning"
+  },
+  {
+   "name": "FC_DL_BitGet",
+   "segment": "无（仅用公共码）",
+   "tags": "bit-manipulation, bounds-check, status-word, portability"
+  },
+  {
+   "name": "FC_DL_BitSet",
+   "segment": "无（仅用公共码）",
+   "tags": "bit-manipulation, pure-function, status-word, mask"
+  },
+  {
+   "name": "FC_DL_BitCount",
+   "segment": "无（仅用公共码）",
+   "tags": "population-count, brian-kernighan, voting, loop-guard"
+  },
+  {
+   "name": "FC_DL_PackBitsToWord",
+   "segment": "无（仅用公共码）",
+   "tags": "bit-packing, status-word, modbus, pure-function"
+  },
+  {
+   "name": "FB_DL_UnpackWordToBits",
+   "segment": "无（仅用公共码）",
+   "tags": "bit-unpacking, status-word, modbus, change-detection, invert-mask"
+  },
+  {
+   "name": "FC_DL_GrayToBinary",
+   "segment": "无（仅用公共码）",
+   "tags": "gray-code, encoder, bit-manipulation, width-clamp"
+  },
+  {
+   "name": "FC_DL_BinaryToGray",
+   "segment": "无（仅用公共码）",
+   "tags": "gray-code, encoder, bit-manipulation, inverse-function"
+  },
+  {
+   "name": "FB_DL_CycleTimeMeasure",
+   "segment": "无（仅用公共码）",
+   "tags": "cycle-time, performance-monitoring, statistics, delta-injection, diagnostics"
+  },
+  {
+   "name": "FB_DL_RuntimeMeter",
+   "segment": "无（仅用公共码）",
+   "tags": "runtime-meter, maintenance, predictive-maintenance, counter, delta-injection"
+  },
+  {
+   "name": "FB_DL_WatchdogMonitor",
+   "segment": "无按件码位（低带实测 16#0001_000C）",
+   "tags": "watchdog, heartbeat, toggle-interval, fault-latch, comm-diagnostics"
+  },
+  {
+   "name": "FB_DL_PulseGenerator",
+   "segment": "无（仅用公共码）",
+   "tags": "pulse-generator, pwm, duty-cycle, phase-state-machine, timer"
+  },
+  {
+   "name": "FB_DL_ExtendedTimer",
+   "segment": "无按件码位（低带实测 16#0001_000E）",
+   "tags": "on-delay, off-delay, retentive-timer, pulse, state-machine"
+  },
+  {
+   "name": "FB_DL_AlarmManager",
+   "segment": "无（仅用公共码）",
+   "tags": "alarm-management, priority-arbitration, first-out, isa-18.2, interlock"
+  },
+  {
+   "name": "FB_DL_StepSequencer",
+   "segment": "无按件码位（低带实测 16#0001_000B）",
+   "tags": "step-sequencer, sfc, grafcet, step-timeout, single-step"
+  },
+  {
+   "name": "FB_DL_DutyStandbyRotation",
+   "segment": "无按件码位（低带实测 16#0002_0007~0008）",
+   "tags": "lead-lag, runtime-balancing, duty-cycle, pump-scheduling, wear-leveling, lbp-basic-process, lead-lag"
+  },
+  {
+   "name": "FB_DL_InterlockMatrix",
+   "segment": "无（仅用公共码）",
+   "tags": "interlock, first-out-tracking, safety-trip, bit-matrix, latched-fault, isa18-2, lgf-bitlogic"
+  },
+  {
+   "name": "FB_DL_RedundantSwitch",
+   "segment": "无按件码位（低带实测 16#0002_0006）",
+   "tags": "redundancy, failover, bumpless-transfer, deviation-monitor, arbitration, lgf-comparator, redundancy"
+  },
+  {
+   "name": "FB_DL_TwoHandSafety",
+   "segment": "无（仅用公共码）",
+   "tags": "two-hand-control, safety-interlock, simultaneity-window, hold-to-run, fail-safe, iec60204, iso13851"
+  },
+  {
+   "name": "FC_DL_DayOfWeekCalc",
+   "segment": "实测 16#0001_0201（注册表未登记）",
+   "tags": "day-of-week, iso-8601, leap-year, pure-function, lgf-datetime"
+  },
+  {
+   "name": "FB_DL_TimeWindowCheck",
+   "segment": "实测 16#0001_0202（注册表未登记）",
+   "tags": "time-window, cross-midnight, weekday-enable, edge-pulse, lgf-datetime"
+  },
+  {
+   "name": "FB_DL_EventCounter",
+   "segment": "实测 16#0001_0101~0102 / 16#0001_0210（注册表未登记）",
+   "tags": "event-counter, bidirectional-count, preset-load, wrap-around, compare-output, lgf-counter"
+  },
+  {
+   "name": "FB_DL_ModuloCounter",
+   "segment": "实测 16#0001_0103~0104 / 16#0001_0211（注册表未登记）",
+   "tags": "modulo-counter, station-index, conditional-wrap, jump-validate, lgf-counter"
+  },
+  {
+   "name": "FB_DL_ToleranceWindow",
+   "segment": "16#0001_0112(信息级) / 16#0001_0213(故障级)",
+   "tags": "lgf-comparator, tolerance-band, hysteresis, three-state-verdict, window-monitor"
+  },
+  {
+   "name": "FC_DL_LimitClassify",
+   "segment": "16#0001_0214(故障级)",
+   "tags": "lgf-comparator, limit-classification, four-threshold, pure-function, severity-grading"
+  },
+  {
+   "name": "FC_DL_WordBitPack",
+   "segment": "16#0001_0108(故障级)",
+   "tags": "lgf-bitlogic, bit-field-pack, mask-operations, pure-function, status-word"
+  },
+  {
+   "name": "FB_DL_MonthWindowCheck",
+   "segment": "16#0001_0109(信息级) / 16#0001_0203(信息级)",
+   "tags": "lgf-datetime, month-window, annual-window, countdown-day, maintenance-schedule"
+  },
+  {
+   "name": "FB_DL_PresetCounterSat",
+   "segment": "16#0001_0212(故障级)",
+   "tags": "lgf-counter, preset-counter, saturation, threshold-event, batch-full"
+  },
+  {
+   "name": "FC_DL_BitFieldExtract",
+   "segment": "16#0001_0113~0115(信息级)",
+   "tags": "lgf-bitlogic, bit-field-extract, offset-width, right-align, mask-construction"
+  },
+  {
+   "name": "FC_DL_WeekOfYearCalc",
+   "segment": "16#0001_0116~0117(信息级)",
+   "tags": "lgf-datetime, iso-8601, week-number, thursday-attribution, zeller-congruence"
+  },
+  {
+   "name": "FB_DL_BidirectionalCounter",
+   "segment": "16#0001_0118(信息级) / 16#0001_0215、0216(故障级)",
+   "tags": "lgf-counter, ctud-superset, dual-preset, saturation, up-priority-arbitration"
+  },
+  {
+   "name": "FB_DL_YearWindowCheck",
+   "segment": "16#0001_011E~011F(信息级)",
+   "tags": "lgf-datetime, calendar, year-window, state-machine"
+  },
+  {
+   "name": "FB_DL_RolloverCounter",
+   "segment": "16#0001_0120(信息级) / 16#0001_0218(故障级)",
+   "tags": "lgf-counter, wrap-around, counting, state-machine"
+  }
+ ],
+ "DL_MathData": [
+  {
+   "name": "FC_DL_LinearScale",
+   "segment": "无（仅用公共码）",
+   "tags": "analog-scaling, linear-interpolation, clamping, divide-by-zero-guard"
+  },
+  {
+   "name": "FC_DL_Deadband",
+   "segment": "无（仅用公共码）",
+   "tags": "deadband, signal-filtering, pid, actuator-wear"
+  },
+  {
+   "name": "FC_DL_Hysteresis",
+   "segment": "无（仅用公共码）",
+   "tags": "hysteresis, schmitt-trigger, stateful-function, pump-control"
+  },
+  {
+   "name": "FB_DL_MovingAverage",
+   "segment": "无（仅用公共码）",
+   "tags": "moving-average, o1-recursion, ring-buffer, startup-ramp, drift-correction"
+  },
+  {
+   "name": "FC_DL_Crc16Modbus",
+   "segment": "无（仅用公共码）",
+   "tags": "crc16, modbus-rtu, checksum, bit-manipulation, protocol"
+  },
+  {
+   "name": "FC_DL_SwapBytes16",
+   "segment": "无（仅用公共码）",
+   "tags": "byte-order, swap-bytes, bit-manipulation, pure-function, modbus"
+  },
+  {
+   "name": "FC_DL_SwapBytes32",
+   "segment": "无按件码位（低带实测 16#0001_000E）",
+   "tags": "byte-order, modbus, float-decoding, byte-swap, pure-function"
+  },
+  {
+   "name": "FB_DL_RingBufferLReal",
+   "segment": "无按件码位（低带实测 16#0001_000A）",
+   "tags": "ring-buffer, fifo, o1-operation, history-cache, fault-trace"
+  },
+  {
+   "name": "FC_DL_StringTrim",
+   "segment": "无（仅用公共码）",
+   "tags": "string-trim, whitespace, barcode, csv-parsing, pure-function"
+  },
+  {
+   "name": "FC_DL_StringSplit",
+   "segment": "无按件码位（低带实测 16#0001_000D）",
+   "tags": "string-split, csv-parsing, tokenizer, barcode, var-in-out"
+  },
+  {
+   "name": "FB_DL_LifoStack",
+   "segment": "无按件码位（低带实测 16#0001_000A）",
+   "tags": "lifo, stack, push-pop, buffer, path-backtracking, lgf-datahandling"
+  },
+  {
+   "name": "FB_DL_MedianFilter",
+   "segment": "无（仅用公共码）",
+   "tags": "median-filter, spike-removal, window-sort, analog-conditioning, noise, lgf-measurement, oscat-basic"
+  },
+  {
+   "name": "FB_DL_SignalStatistics",
+   "segment": "无按件码位（低带实测 16#0002_0009）",
+   "tags": "statistics, variance, stddev, min-max, welford, lgf-math, oscat-basic"
+  },
+  {
+   "name": "FC_DL_Crc32Ethernet",
+   "segment": "无（仅用公共码）",
+   "tags": "crc32, ieee8023, checksum, ethernet, reflected-polynomial, oscat-network, crc32-iso-hdlc"
+  },
+  {
+   "name": "FC_DL_HexStringToBytes",
+   "segment": "无按件码位（低带实测 16#0002_000A）",
+   "tags": "hex-parse, ascii-to-bytes, protocol-decode, validation, modbus-ascii, lgf-converter, modbus-ascii"
+  },
+  {
+   "name": "FC_DL_LineIntersection",
+   "segment": "无按件码位（低带实测 16#0002_000D）",
+   "tags": "line-intersection, geometry, parallel-detection, divide-guard, vision-alignment, lgf-math"
+  },
+  {
+   "name": "FC_DL_LrcChecksum",
+   "segment": "无（仅用公共码）",
+   "tags": "lrc, modbus-ascii, checksum, frame-validation, two-complement, oscat-network, modbus-ascii"
+  },
+  {
+   "name": "FC_DL_MultiPointLinear",
+   "segment": "无按件码位（低带实测 16#0002_000B）",
+   "tags": "piecewise-linear, interpolation, table-lookup, binary-search, sensor-calibration, lgf-math, lbp-basic-process"
+  },
+  {
+   "name": "FC_DL_PolygonArea",
+   "segment": "无按件码位（低带实测 16#0002_000C）",
+   "tags": "polygon-area, shoelace, centroid, vision-metrology, geometry, lgf-math"
+  },
+  {
+   "name": "FC_DL_QuickSortLReal",
+   "segment": "无（仅用公共码）",
+   "tags": "quicksort, iterative, explicit-stack, sorting, worst-case-guard, lgf-datahandling, oscat-basic"
+  },
+  {
+   "name": "FB_DL_FifoBuffer",
+   "segment": "16#0001_010A~010D(信息级) / 16#0001_0204(故障级)",
+   "tags": "lgf-datahandling, fifo-queue, fixed-slot-buffer, overflow-underflow, pointer-consistency"
+  },
+  {
+   "name": "FB_DL_ArraySearchFirst",
+   "segment": "16#0001_010E(信息级) / 16#0001_0205(故障级)",
+   "tags": "lgf-datahandling, linear-search, array-scan, multi-hit-count, index-report"
+  },
+  {
+   "name": "FC_DL_BinarySearchLReal",
+   "segment": "16#0001_010F(信息级) / 16#0001_0206(故障级)",
+   "tags": "lgf-datahandling, binary-search, sorted-array, pure-function, tolerance-compare"
+  },
+  {
+   "name": "FC_DL_TempUnitConvert",
+   "segment": "16#0001_0110(信息级) / 16#0001_0207~0208(故障级)",
+   "tags": "lgf-converter, temperature-unit, celsius-fahrenheit-kelvin, pure-function, absolute-zero-guard"
+  },
+  {
+   "name": "FC_DL_BcdToWord",
+   "segment": "16#0001_0105(故障级)",
+   "tags": "lgf-converter, bcd-decode, nibble-validation, pure-function, dip-switch"
+  },
+  {
+   "name": "FC_DL_WordToBcd",
+   "segment": "16#0001_0106~0107(故障级)",
+   "tags": "lgf-converter, bcd-encode, overflow-saturation, pure-function, seven-segment"
+  },
+  {
+   "name": "FC_DL_SearchMinMax",
+   "segment": "16#0001_0119、011A(信息级) / 16#0001_0217(故障级)",
+   "tags": "lgf-math, extremum-scan, index-report, nan-guard, single-pass"
+  },
+  {
+   "name": "FC_DL_NthRoot",
+   "segment": "16#0001_011B、011C(信息级)",
+   "tags": "lgf-math, nth-root, odd-even-branch, negative-domain-guard, pure-function"
+  },
+  {
+   "name": "FC_DL_FactorialSat",
+   "segment": "16#0001_011D(信息级)",
+   "tags": "lgf-math, factorial, saturation, domain-0-12, pure-function"
+  },
+  {
+   "name": "FC_DL_RangeOverlapCheck",
+   "segment": "16#0001_0121(信息级)",
+   "tags": "lgf-comparator, interval, geometry, pure-function"
+  },
+  {
+   "name": "FC_DL_CalcDistance3D",
+   "segment": "16#0001_0122(信息级) / 16#0001_0219(故障级)",
+   "tags": "lgf-math, geometry, distance, pure-function"
+  },
+  {
+   "name": "FC_DL_RandomNext",
+   "segment": "16#0001_0123(信息级)",
+   "tags": "lgf-math, prng, deterministic, pure-function"
+  },
+  {
+   "name": "FC_DL_PercentileLReal",
+   "segment": "16#0001_0124 / 16#0002_000E(信息级)",
+   "tags": "lgf-math, statistics, percentile, pure-function"
+  }
+ ],
+ "DL_Algo": [
+  {
+   "name": "FB_DL_PidController",
+   "segment": "实测 16#0002_0101~0102（注册表未登记）",
+   "tags": "pid, mod-pid-control, oscat-basic, lgf-technology, anti-windup, bumpless-transfer"
+  },
+  {
+   "name": "FB_DL_CascadePid",
+   "segment": "实测 16#0002_0201（注册表未登记）",
+   "tags": "pid, cascade-control, mod-pid-control, lgf-technology, bumpless-transfer"
+  },
+  {
+   "name": "FB_DL_SplitRangeControl",
+   "segment": "实测 16#0002_0301（注册表未登记）",
+   "tags": "split-range, mod-pid-control, output-allocation, lgf-technology"
+  },
+  {
+   "name": "FB_DL_FeedforwardComp",
+   "segment": "实测 16#0002_0401~0402（注册表未登记）",
+   "tags": "feedforward, lgf-technology, disturbance-compensation, dead-time"
+  },
+  {
+   "name": "FB_DL_SmithPredictor",
+   "segment": "实测 16#0002_0501~0502（注册表未登记）",
+   "tags": "smith-predictor, dead-time-compensation, lgf-technology, mod-pid-control, pid"
+  },
+  {
+   "name": "FB_DL_RateLimiter",
+   "segment": "无（仅用公共码）",
+   "tags": "rate-limiter, slew-rate, lgf-technology, lgf-signalgen"
+  },
+  {
+   "name": "FB_DL_RampGenerator",
+   "segment": "实测 16#0002_0601（注册表未登记）",
+   "tags": "ramp, setpoint-profiling, lgf-signalgen, lgf-technology, rate-limit"
+  },
+  {
+   "name": "FB_DL_SCurveGenerator",
+   "segment": "实测 16#0002_0701~0702（注册表未登记）",
+   "tags": "s-curve, trajectory-planning, jerk-limited, lgf-signalgen, lgf-technology"
+  },
+  {
+   "name": "FB_DL_PwmDutyController",
+   "segment": "实测 16#0002_0801（注册表未登记）",
+   "tags": "pwm, time-proportional, ssr-drive, lgf-signalgen, mod-pid-control"
+  },
+  {
+   "name": "FB_DL_Integrator",
+   "segment": "无（仅用公共码）",
+   "tags": "integrator, trapezoidal, totalizer, oscat-basic, lgf-math"
+  },
+  {
+   "name": "FB_DL_Differentiator",
+   "segment": "实测 16#0002_1401（注册表未登记）",
+   "tags": "differentiator, rate-of-change, oscat-basic, lgf-measurement, noise-suppression"
+  },
+  {
+   "name": "FB_DL_LowPassFilter",
+   "segment": "实测 16#0002_1001（注册表未登记）",
+   "tags": "low-pass-filter, pt1, lgf-measurement, signal-conditioning, bumpless-transfer"
+  },
+  {
+   "name": "FB_DL_SecondOrderFilter",
+   "segment": "实测 16#0002_1101（注册表未登记）",
+   "tags": "butterworth, second-order-filter, biquad, lgf-measurement, signal-conditioning"
+  },
+  {
+   "name": "FB_DL_HighPassFilter",
+   "segment": "实测 16#0002_1201（注册表未登记）",
+   "tags": "high-pass-filter, hp1, lgf-measurement, vibration-monitoring, signal-conditioning"
+  },
+  {
+   "name": "FC_DL_DewPointCalc",
+   "segment": "实测 16#0002_1501~1502（注册表未登记）",
+   "tags": "dew-point, magnus-tetens, hvac, oscat-basic, psychrometrics"
+  },
+  {
+   "name": "FC_DL_FlowCompensate",
+   "segment": "实测 16#0002_1601~1602（注册表未登记）",
+   "tags": "flow-compensation, standard-volume, oscat-basic, gas-metering, ideal-gas"
+  },
+  {
+   "name": "FC_DL_HumidAirEnthalpy",
+   "segment": "实测 16#0002_1701~1703（注册表未登记）",
+   "tags": "enthalpy, psychrometrics, magnus-tetens, hvac, oscat-building"
+  },
+  {
+   "name": "FB_DL_RampSoakProfile",
+   "segment": "实测 16#0002_1801~1804 / 16#0002_1810（注册表未登记）",
+   "tags": "ramp-soak-profile, multi-segment, hold-freeze, skip-segment, track-resync, loop-profile, lgf-technology"
+  },
+  {
+   "name": "FB_DL_PeakDetector",
+   "segment": "16#0002_1901~1904(信息级 / 入参降级)",
+   "tags": "lgf-math, peak-hold, extremum-tracking, signal-conditioning, envelope-detection"
+  },
+  {
+   "name": "FB_DL_StepController",
+   "segment": "16#0002_1A01~1A06(信息级 / 参数钳位)",
+   "tags": "lbp-step-controller, lgf-technology, stage-control, hysteresis, load-rotation"
+  },
+  {
+   "name": "FB_DL_SineGenerator",
+   "segment": "16#0002_1B01~1B04(信息级) / 16#0002_1B10、1B11(故障级)",
+   "tags": "lgf-signalgen, sine-wave, phase-accumulation, amplitude-offset, clamp-output"
+  },
+  {
+   "name": "FB_DL_SawtoothGenerator",
+   "segment": "16#0002_1C01~1C03(信息级) / 16#0002_1C10(故障级)",
+   "tags": "lgf-signalgen, sawtooth-triangle, symmetry-ratio, phase-normalised, clamp-output"
+  },
+  {
+   "name": "FC_DL_CoilDiameterCalc",
+   "segment": "16#0002_1D01~1D04(信息级) / 16#0002_1D10(故障级)",
+   "tags": "lgf-technology, coil-diameter, line-speed-ratio, low-speed-hold, layer-count"
+  },
+  {
+   "name": "FC_DL_AirDensity",
+   "segment": "16#0002_1E01~1E04(信息级) / 16#0002_1E10(故障级)",
+   "tags": "oscat-building, moist-air-density, magnus-tetens, partial-pressure, domain-clamp"
+  },
+  {
+   "name": "FB_DL_R2rEwmaTuner",
+   "segment": "16#0002_1F01~1F03(信息级) / 16#0002_1F10(故障级)",
+   "tags": "semiconductor-apc, lgf-math, ewma, run-to-run, state-machine"
+  }
+ ],
+ "DL_Device": [
+  {
+   "name": "I_DL_Cylinder",
+   "segment": "无（仅用公共码）",
+   "tags": "cylinder-interface, state-machine, dependency-injection, device-abstraction, lbp-device"
+  },
+  {
+   "name": "FB_DL_PneumaticCylinder",
+   "segment": "实测 16#0003_0201~0204（注册表未登记）",
+   "tags": "pneumatic-cylinder, reed-debounce, double-solenoid, fault-latch, timeout-protection, lbp-device"
+  },
+  {
+   "name": "I_DL_MotorDriver",
+   "segment": "无（仅用公共码）",
+   "tags": "motor-interface, dol-motor, dependency-injection, device-abstraction, lbp-device"
+  },
+  {
+   "name": "FB_DL_DolMotor",
+   "segment": "实测 16#0003_0201 / 16#0003_0205~020A（注册表未登记）",
+   "tags": "dol-motor, contactor-feedback, thermal-overload, restart-inhibit, starts-per-hour, lbp-device"
+  },
+  {
+   "name": "I_DL_AnalogSensor",
+   "segment": "无（仅用公共码）",
+   "tags": "analog-sensor-interface, signal-quality, alarm-limits, device-abstraction, namur-ne43"
+  },
+  {
+   "name": "FB_DL_AnalogTransmitter",
+   "segment": "实测 16#0003_0102~0104 / 16#0003_0210（注册表未登记）",
+   "tags": "analog-transmitter, span-scaling, moving-average, wire-break, alarm-limits, hold-last-good, namur-ne43"
+  },
+  {
+   "name": "I_DL_TemperatureZone",
+   "segment": "无（仅用公共码）",
+   "tags": "temperature-zone-interface, pid, dependency-injection, device-abstraction, lbp-device"
+  },
+  {
+   "name": "FB_DL_HeatCoolZone",
+   "segment": "实测 16#0003_0101 / 16#0003_0211~0213（注册表未登记）",
+   "tags": "heat-cool-zone, split-range, pid-consumer, pwm-ssr, sensor-break, lbp-device, namur-ne43"
+  },
+  {
+   "name": "FB_DL_SingleSolenoidCyl",
+   "segment": "实测 16#0003_0220~0222（注册表未登记）",
+   "tags": "single-solenoid-cylinder, spring-return, time-mode, reed-check, stroke-count, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "I_DL_VacuumGenerator",
+   "segment": "无（仅用公共码）",
+   "tags": "vacuum-generator-interface, dependency-injection, device-abstraction, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "FB_DL_VacuumEjector",
+   "segment": "实测 16#0003_0230~0232（注册表未登记）",
+   "tags": "vacuum-ejector, hysteresis, blow-off-pulse, dual-confirm, hold-last-good, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "FB_DL_StarDeltaMotor",
+   "segment": "实测 16#0003_0201 / 16#0003_0208 / 16#0003_0240~0246（注册表未登记）",
+   "tags": "star-delta-motor, contactor-sequence, dead-time-interlock, mutual-exclusion-assert, restart-inhibit, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "I_DL_VfdDrive",
+   "segment": "无（仅用公共码）",
+   "tags": "vfd-interface, preset-speed, dependency-injection, device-abstraction, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "FB_DL_VfdGeneric",
+   "segment": "实测 16#0003_0106~0107 / 16#0003_0250~0252（注册表未登记）",
+   "tags": "vfd-generic, terminal-control, jog-priority, preset-speed-table, analog-frequency-mapping, fault-reset-pulse, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "I_DL_ProportionalValve",
+   "segment": "无（仅用公共码）",
+   "tags": "proportional-valve-interface, dependency-injection, device-abstraction, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "FB_DL_AnalogValve",
+   "segment": "实测 16#0003_0108~0109 / 16#0003_0112 / 16#0003_0260~0261（注册表未登记）",
+   "tags": "analog-valve, deadband-compensation, deviation-alarm, span-mapping, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "I_DL_MotorizedValve",
+   "segment": "无（仅用公共码）",
+   "tags": "motorized-valve-interface, pulse-drive, dependency-injection, device-abstraction, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "FB_DL_ThreePointValve",
+   "segment": "实测 16#0003_0110~0111 / 16#0003_0270~0272（注册表未登记）",
+   "tags": "three-point-valve, position-integration, limit-anchoring, endpoint-guard, travel-count, lbp-basic-process, lbp-device"
+  },
+  {
+   "name": "I_DL_BarcodeScanner",
+   "segment": "无（仅用公共码）",
+   "tags": "barcode-scanner-interface, trigger-handshake, dependency-injection, device-abstraction, tcopen-component, scanner-handshake"
+  },
+  {
+   "name": "FB_DL_SerialScanner",
+   "segment": "实测 16#0003_0117 / 16#0003_0119 / 16#0003_0120 / 16#0003_0280 / 16#0003_0282（注册表未登记）",
+   "tags": "serial-scanner, trigger-ack-handshake, noread-retry, escalation-fault, trailing-crlf-strip, tcopen-component, scanner-handshake"
+  },
+  {
+   "name": "I_DL_SafetyDoor",
+   "segment": "无（仅用公共码）",
+   "tags": "safety-door-interface, interlock-sequence, dependency-injection, tcopen-component, safety-interlock"
+  },
+  {
+   "name": "FB_DL_GuardLockDoor",
+   "segment": "实测 16#0003_0121 / 16#0003_0290~0293（注册表未登记）",
+   "tags": "guard-lock-door, unlock-sequence, standstill-confirm, run-down-timer, tamper-conflict, restart-inhibit, open-audit, tcopen-component, safety-interlock"
+  },
+  {
+   "name": "I_DL_LightCurtain",
+   "segment": "无（仅用公共码）",
+   "tags": "light-curtain-interface, muting-abstraction, safestop-mirror, tcopen-component, light-curtain-muting"
+  },
+  {
+   "name": "FB_DL_SafetyLightCurtain",
+   "segment": "实测 16#0003_0118 / 16#0003_0122 / 16#0003_02A0~02A2（注册表未登记）",
+   "tags": "safety-light-curtain, ossd-discrepancy, sequential-muting, four-sensor, muting-timeout, override-lamp-blink, restart-interlock, tcopen-component, light-curtain-muting"
+  },
+  {
+   "name": "I_DL_FlowMeter",
+   "segment": "无（仅用公共码）",
+   "tags": "flow-meter-interface, totalizer, dependency-injection, tcopen-component, flow-totalizer"
+  },
+  {
+   "name": "FB_DL_PulseFlowMeter",
+   "segment": "实测 16#0003_0113~0115 / 16#0003_02B0（注册表未登记）",
+   "tags": "pulse-flow-meter, k-factor, sample-window, double-buffer, low-flow-cutoff, totalizer, tcopen-component, flow-totalizer"
+  },
+  {
+   "name": "I_DL_LevelSwitch",
+   "segment": "无（仅用公共码）",
+   "tags": "level-switch-interface, failsafe-normalize, tcopen-component, level-switch-failsafe"
+  },
+  {
+   "name": "FB_DL_LevelSwitchVib",
+   "segment": "实测 16#0003_02C0（注册表未登记）",
+   "tags": "vibrating-level-switch, debounce, cover-bare-delay, failsafe-high-low, interlock-mirror, tcopen-component, level-switch-failsafe"
+  },
+  {
+   "name": "I_DL_TowerLight",
+   "segment": "无（接口契约不发布故障码，码位由实现块承担）",
+   "tags": "tcopen-component, stack-light, andon, tower-light, interface-contract"
+  },
+  {
+   "name": "FB_DL_SignalTower",
+   "segment": "16#0003_0123~0126(信息级) / 16#0003_02D0~02D1(故障级)",
+   "tags": "tcopen-component, stack-light, andon, priority-arbitration, buzzer-silence"
+  },
+  {
+   "name": "I_DL_StepperOpenLoop",
+   "segment": "无（接口契约不发布故障码，码位由实现块承担）",
+   "tags": "stepper, tcopen, open-loop-contract, pulse-direction, interface-contract"
+  },
+  {
+   "name": "FB_DL_PulseDirStepper",
+   "segment": "16#0003_0130~0137(信息级) / 16#0003_02E0~02E4(故障级)",
+   "tags": "stepper, plcopen-motion, pulse-direction, trapezoidal-ramp, stall-timeout"
+  },
+  {
+   "name": "I_DL_RfidReader",
+   "segment": "无（接口契约不发布故障码，码位由实现块承担）",
+   "tags": "tcopen-component, rockwell-aoi, interface-contract, rfid-reader, tag-snapshot"
+  },
+  {
+   "name": "FB_DL_RfidTagHandler",
+   "segment": "16#0003_0138~013A(信息级) / 16#0003_02F0~02F3(故障级)",
+   "tags": "tcopen-component, rockwell-aoi, rfid-fsm, duplicate-suppression, retry-chain"
+  },
+  {
+   "name": "FB_DL_AxiolineDiagLatch",
+   "segment": "16#0003_013B、013C(信息级) / 16#0003_02F4~02F6(故障级)",
+   "tags": "plcnext-community, axioline-diagnosis, bit-field-parse, first-out-latch, slot-locating"
+  },
+  {
+   "name": "FB_DL_PdiReadScheduler",
+   "segment": "16#0003_013D~013F(信息级) / 16#0003_02F7~02F9(故障级)",
+   "tags": "plcnext-community, pdi-read, async-scheduler, dual-code-packing, length-verify"
+  },
+  {
+   "name": "FB_DL_PortDiagAggregator",
+   "segment": "16#0003_0140~0141(信息级) / 16#0003_0300~0301,0307(故障级)",
+   "tags": "plcnext-community, profinet-diag, port-diagnostics, first-out, state-machine"
+  },
+  {
+   "name": "FB_DL_StatusWordSegDecoder",
+   "segment": "16#0003_0142~0144(信息级) / 16#0003_0302(故障级)",
+   "tags": "lgf-bitlogic, rockwell-aoi, bit-segment, status-word, table-driven"
+  },
+  {
+   "name": "FB_DL_NtcTempScan",
+   "segment": "16#0003_0145~0146(信息级) / 16#0003_0303~0304(故障级)",
+   "tags": "rockwell-aoi, oscat-building, temperature, multi-channel, device-level"
+  },
+  {
+   "name": "FB_DL_RollerGapAdjust",
+   "segment": "16#0003_0147~0148(信息级) / 16#0003_0305~0306,0308(故障级)",
+   "tags": "rockwell-aoi, lbp-process, servo-adjust, backlash, state-machine"
+  }
+ ],
+ "DL_Motion": [
+  {
+   "name": "I_DL_MotionAxis",
+   "segment": "无（仅用公共码）",
+   "tags": "motion-axis-interface, plcopen-states, dependency-injection, s7-motion, plcopen"
+  },
+  {
+   "name": "FB_DL_SingleAxis",
+   "segment": "实测 16#0004_0101 / 16#0004_0103~0105 / 16#0004_0201~0203（注册表未登记）",
+   "tags": "single-axis, virtual-kinematics, soft-limit, command-arbitration, fault-latch, s7-motion, plcopen"
+  },
+  {
+   "name": "FB_DL_AxisJogController",
+   "segment": "实测 16#0004_0102~0103 / 16#0004_0105（注册表未登记）",
+   "tags": "jog-controller, two-speed, braking-distance, soft-limit, s7-motion"
+  },
+  {
+   "name": "FB_DL_AxisHomingSeq",
+   "segment": "实测 16#0004_0106 / 16#0004_0210~0213（注册表未登记）",
+   "tags": "axis-homing, homing-sequence, limit-switch-homing, zero-pulse-homing, torque-block-homing, travel-guard, plcopen-motion, s7-motion"
+  },
+  {
+   "name": "FB_DL_AxisRelativeMove",
+   "segment": "实测 16#0004_0106 / 16#0004_0201 / 16#0004_0220~0221（注册表未登记）",
+   "tags": "axis-relative-move, chain-stepping, polling-state, command-arbitration, plcopen-motion, s7-motion"
+  },
+  {
+   "name": "FB_DL_AxisVelocityMove",
+   "segment": "实测 16#0004_0106~0107 / 16#0004_0201 / 16#0004_0230（注册表未登记）",
+   "tags": "axis-velocity-move, dynamic-retarget, velocity-clamp, polling-state, plcopen-motion, s7-motion"
+  },
+  {
+   "name": "FB_DL_SoftLimitGuard",
+   "segment": "实测 16#0004_0108 / 16#0004_0240~0241（注册表未登记）",
+   "tags": "soft-limit-guard, braking-distance, latency-compensation, directional-intercept, plcopen-motion"
+  },
+  {
+   "name": "FB_DL_ElectronicGear",
+   "segment": "16#0004_0130~0132(信息级) / 16#0004_0250~0252(故障级) / 16#0004_0299(兜底)",
+   "tags": "electronic-gear, gear-ratio-coupling, plcopen-motion, phase-compensation, speed-synchronization"
+  },
+  {
+   "name": "FB_DL_ElectronicCam",
+   "segment": "16#0004_0140~0142(信息级) / 16#0004_0260~0265(故障级) / 16#0004_0298(兜底)",
+   "tags": "electronic-cam, cam-profile, plcopen-motion, flying-shear, phase-correction"
+  },
+  {
+   "name": "FB_DL_GantrySyncAxis",
+   "segment": "16#0004_0150~0152(信息级) / 16#0004_0270~0274(故障级) / 16#0004_0297(兜底)",
+   "tags": "gantry-sync, dual-drive, skew-protection, plcopen-motion, following-error"
+  },
+  {
+   "name": "FB_DL_TorqueLimitControl",
+   "segment": "16#0004_0160~0164(信息级) / 16#0004_0280~0284(故障级) / 16#0004_0296(兜底)",
+   "tags": "torque-limit, press-fit, plcopen-motion, stop-point-detection, in-position-window"
+  },
+  {
+   "name": "FB_DL_MarkPositionLatch",
+   "segment": "16#0004_0170~0171(信息级) / 16#0004_0290(故障级) / 16#0004_0295(兜底)",
+   "tags": "mark-latch, registration-mark, plcopen-motion, position-capture, pitch-measurement"
+  },
+  {
+   "name": "FC_DL_CalcMoveTime",
+   "segment": "16#0004_0180~0184(入参非法 / 不可达，无故障锁存)",
+   "tags": "cycle-time-estimation, trapezoidal-profile, plcopen-motion, motion-planning, pure-function"
+  },
+  {
+   "name": "FB_DL_SuperimposedMove",
+   "segment": "16#0004_01A0~01A3(信息级) / 16#0004_02B0~02B2(故障级)",
+   "tags": "plcopen-motion, s7-motion, superimposed-move, offset-compensation, vision-correction"
+  },
+  {
+   "name": "FB_DL_WindingTraverse",
+   "segment": "16#0004_01B0~01B3(信息级) / 16#0004_02C0~02C3(故障级)",
+   "tags": "lgf-technology, s7-motion, diameter-recursion, traverse-winding, endpoint-dwell"
+  },
+  {
+   "name": "FB_DL_WindingTensionCtrl",
+   "segment": "16#0004_01C0~01C2(信息级) / 16#0004_02D0~02D1(故障级)",
+   "tags": "lgf-technology, s7-motion, tension-control, taper, state-machine"
+  }
+ ],
+ "DL_Process": [
+  {
+   "name": "FB_DL_PackMlStateMachine",
+   "segment": "实测 16#0005_0101 / 16#0005_0201（注册表未登记）",
+   "tags": "packml, state-machine, isa-tr88, unit-mode, abort-recovery, packml-omac"
+  },
+  {
+   "name": "FB_DL_PackMlCmdDecoder",
+   "segment": "实测 16#0005_0102（注册表未登记）",
+   "tags": "packml, command-decoder, one-shot, conflict-detection, packml-omac"
+  },
+  {
+   "name": "FB_DL_EnthalpyCompareCtrl",
+   "segment": "实测 16#0005_0103 / 16#0005_0201~0202（注册表未登记）",
+   "tags": "enthalpy-compare, economizer, schmitt-hysteresis, high-limit-trip, minimum-oa-position, oscat-building, lgf-datetime, hvac"
+  },
+  {
+   "name": "FB_DL_OccScheduleWindow",
+   "segment": "实测 16#0005_0210~0211（注册表未登记）",
+   "tags": "occupancy-schedule, multi-window, holiday-override, pre-start-lead, weekday-matrix, oscat-building, lgf-datetime, hvac"
+  },
+  {
+   "name": "FB_DL_OeeCalculator",
+   "segment": "实测 16#0005_0110~0112 / 16#0005_0200（注册表未登记）",
+   "tags": "oee-calculator, availability, performance, quality, packml-root-cause, shift-statistics, packml-oee"
+  },
+  {
+   "name": "FB_DL_ConveyorZone",
+   "segment": "实测 16#0005_0113 / 16#0005_0212~0214（注册表未登记）",
+   "tags": "conveyor-zone, zero-pressure-accumulation, run-on, jam-detection, vfd-interface-consumer, surge-stagger, conveyor-accumulation"
+  },
+  {
+   "name": "FB_DL_BatchDosingControl",
+   "segment": "实测 16#0005_0114~0115 / 16#0005_0220~0223（注册表未登记）",
+   "tags": "batch-dosing, coarse-fine, inflight-learning, settle-window, no-flow-watchdog, isa-88, lbp-batch-dosing"
+  },
+  {
+   "name": "FB_DL_ConveyorLineLink",
+   "segment": "16#0005_0130~0133(信息级) / 16#0005_0230~0231(故障级)",
+   "tags": "smema, handshake, conveyor-cascade, line-link, watchdog"
+  },
+  {
+   "name": "FB_DL_RecipeManager",
+   "segment": "16#0005_0140~0143(信息级) / 16#0005_0240~0246(故障级)",
+   "tags": "recipe-management, codesys-forge, parameter-validation, recipe-switch, checksum"
+  },
+  {
+   "name": "FB_DL_LeakTestStation",
+   "segment": "16#0005_0150~0153(信息级) / 16#0005_0250~0257(故障级)",
+   "tags": "leak-test, pressure-decay, leak-rate, test-station, ok-ng-verdict"
+  },
+  {
+   "name": "FB_DL_MixRecipeControl",
+   "segment": "16#0005_0160~0164(信息级) / 16#0005_0260~0265(故障级)",
+   "tags": "mixing, isa-88-phase, agitation, torque-limit, recipe-control"
+  },
+  {
+   "name": "FB_DL_CipCleaningSeq",
+   "segment": "16#0005_0170~0173(信息级) / 16#0005_0270~0274(故障级)",
+   "tags": "cip-cleaning, isa-88-phase, phase-sequencing, conductivity-endpoint, tact-interlock"
+  },
+  {
+   "name": "FB_DL_BufferMagazine",
+   "segment": "16#0005_0180~0186(信息级) / 16#0005_0280~0283(故障级)",
+   "tags": "buffer-magazine, slot-management, storage-scheduling, lift-control, material-handling"
+  },
+  {
+   "name": "FB_DL_ModbusPollMaster",
+   "segment": "16#0005_0190~0193(信息级) / 16#0005_0290~0292(故障级)",
+   "tags": "codesys-forge-modbus, modbus-rtu, poll-scheduler, retry-timeout, transport-abstraction"
+  },
+  {
+   "name": "FB_DL_AndonCallSystem",
+   "segment": "16#0005_01A0~01A1(信息级) / 16#0005_02A0~02A1(故障级)",
+   "tags": "andon, omac, call-escalation, response-time-stat, shift-reset"
+  },
+  {
+   "name": "FB_DL_PickAndPlaceStation",
+   "segment": "16#0005_01B0~01B4(信息级) / 16#0005_02B0~02B7(故障级)",
+   "tags": "packml-omac, tcopen-component, pick-and-place, state-machine, dependency-injection"
+  },
+  {
+   "name": "FB_DL_PressFitStation",
+   "segment": "16#0005_01C0~01C1(信息级) / 16#0005_02C0~02C3(故障级)",
+   "tags": "lbp-process, plcopen-motion, isa-88, press-fit, state-machine"
+  },
+  {
+   "name": "FB_DL_RotaryIndexTable",
+   "segment": "16#0005_01C2(信息级) / 16#0005_02D0~02D3(故障级)",
+   "tags": "packml-omac, lgf-bitlogic, indexing-table, station-scheduling, state-machine"
+  },
+  {
+   "name": "FB_DL_AgvDockingHandshake",
+   "segment": "16#0005_01C3(信息级) / 16#0005_02E0~02E4(故障级)",
+   "tags": "packml-omac, isa-88, lbp-process, agv-handshake, state-machine"
+  },
+  {
+   "name": "FB_DL_EnergySavingMode",
+   "segment": "16#0005_01C4(信息级) / 16#0005_02F0~02F2(故障级)",
+   "tags": "isa-88, lbp-process, namur-ne43, energy-saving, state-machine"
+  }
+ ]
+}

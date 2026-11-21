@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #7：按 ROUND_PLAN_R7 §2.5 编码 I_DL_LightCurtain（安全光幕监控与屏蔽抽象接口），落盘 C:\\Library\\DL_Device\\I_DL_LightCurtain.st。同文件发布 E_DL_CurtainState（eClear=0/eBlocked=10/eMuting=20/eOverride=30/eFault=99）；属性 7 个 GET（含核心安全镜像位 bSafeStop）；方法 3 个（CmdOverride/CmdAck/CmdReset）；边界防错：bSafeStop 永不因屏蔽/override 置假（屏蔽态断言恒 FALSE）；公约 0.13 定位声明。溯源 tcopen-component/light-curtain-muting，clean-room。",
+  "architecture_thought": "bSafeStop 在接口注释里被定义为『核心安全镜像位』并配硬边界防错条款——屏蔽/override 的全部编排价值都建立在『不削弱停机镜像』之上，这条防错写进接口而非只写在实现块，让任何实现者在落地前就面对约束。CmdAck 与 CmdReset 分工：屏蔽序列中止是工艺操作（回评估态），故障复位是安全联锁（仅故障态），合并会诱导『用复位键跳过屏蔽中止』的误操作。"
+}

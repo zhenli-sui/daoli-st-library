@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_MinOnOffGuard",
+  "category": "DL_Base",
+  "instruction": "最短运行/最短停止双守卫：压缩机/泵频繁启停是 ROADMAP 至少 4 条待办（冷水机组群控/热泵除霜/泵轮值）的公共原子需求，全库无此原子件。",
+  "architecture_thought": "六态状态机（eIdle/eStarting/eRunning/eHolding/eCooldown/eFault）ENUM+CASE+ELSE 兜底：双 TON 实例在主体最前部无条件刷新；状态转移只用定时器完成位+请求电平组合（ET 仅用于 tRemaining 输出）；eRunning 纳入最短运行计时防运行时长翻倍；eIdle 只看 bReq（样板死锁形态修正：fbMinOff 在 eCooldown 才通电 Q 恒 FALSE）；参数负值判故障 0399 钳 0 继续（守卫参数错不停产线）、超 24h 钳上限信息级 0452；停机请求被推迟信息级 0453；非法状态 ELSE 落 eFault 039A；bEnable=FALSE 立即安全侧。"
+}

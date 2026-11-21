@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_WordToIntSat",
+  "category": "DL_MathData",
+  "instruction": "Modbus 寄存器原始字需按有符号 INT 解释，>32767 的值直接赋值在部分平台回绕为负；饱和语义需可选。",
+  "architecture_thought": "双语义防御包装：提供饱和与回绕两种解释路径，饱和上限/下限各置独立信息级码（0416/0417），故障三槽预留；纯函数，防隐式截断。"
+}

@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #11：按 ROUND_PLAN_R7 §2.9 编码 I_DL_LevelSwitch（点式料位开关抽象接口，振动叉/阻旋/电容通用），落盘 C:\\Library\\DL_Device\\I_DL_LevelSwitch.st。同文件发布 E_DL_LevelState（eNoMaterial=0/eMaterial=10/eSensorLoss=20/eFault=99）与 E_DL_FailSafeMode（eHigh=0 失效报有料防溢流 / eLow=1 失效报无料防干转）；属性 6 个 GET（bMaterial 已归一、bHighAlarm/bLowAlarm 双联锁方向语义写死注释）；方法 2 个（CmdReset/CmdTest）。溯源 tcopen-component/level-switch-failsafe，clean-room。",
+  "architecture_thought": "E_DL_FailSafeMode 与 E_DL_LevelState 同文件发布是刻意安排：失效方向是本接口契约的语义核心（决定失效时报警走向高点还是低点），与状态枚举同权重。bHighAlarm/bLowAlarm 双输出而非单 bAlarm+方向引脚：两个报警进不同的联锁链（高点停进料、低点停出料），调用方接线时方向语义已写死在注释，防现场反接。"
+}

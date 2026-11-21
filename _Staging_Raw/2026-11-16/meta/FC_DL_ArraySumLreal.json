@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_ArraySumLreal",
+  "category": "DL_MathData",
+  "instruction": "静态数组求和/均值：配方系数、标定表、成本权重等静态表一次性求值；FB_DL_SignalStatistics 是流式窗口 FB，静态表轴缺位；NaN 必须剔除不污染和且有效计数可见。",
+  "architecture_thought": "无状态纯函数：单遍 FOR 累加，非有限样本（x<>x 或超 MAX_FINITE）剔除并计数不污染和；fMean 仅在 nValidCount>0 时计算（除零前置）；nCount<0 判故障 0390、超上限信息级 044D 按上限钳位（配置问题能算多少算多少）、全无效判故障 0391、部分剔除信息级 044C、累加溢出判故障 0392。"
+}

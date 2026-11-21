@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_StringToDint",
+  "category": "DL_MathData",
+  "instruction": "整数字符串严格解析：配方号/站号/批次号解析缺整数族（StringToLReal 已有），平台隐式转换无越界保护且不报非法字符位置。",
+  "architecture_thought": "四态状态机（eLeadSpace/eSign/eDigits/eDone）ENUM+CASE+ELSE 兜底：逐字符 MID 推进（LEN 先锁存一次禁循环内重复）；LINT 升位累加每步先判界再落账（DINT 域 214748364×10+9 已越界必回绕）；负域上界 2147483648 与正域 2147483647 双侧分开（DINT_MIN 绝对值大 1，禁单侧 ABS 判据）；溢出返回夹域值+故障 038B+bValid=FALSE；非法字符定位 nErrPos+故障 038C（CASE ELSE 复用同码不新占）；空串/仅符号判故障 038A。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_SemaMutex",
+  "category": "DL_Base",
+  "instruction": "多任务/多调用方争用一台设备（如同一串口、同一送枪机构）时需要互斥；IEC 标准 SEMA 不带超时，持锁方卡死会永久死锁产线。",
+  "architecture_thought": "标准 SEMA 防御性包装：三态状态机（空闲/持有/超时强制归还）ENUM+CASE 含 ELSE 兜底；TON 实例无条件周期刷新；申请沿 R_TRIG 首部刷新；持有超时强制归还判故障级 036A（死锁拦截≠正常防御）；信息级 16#0001_0432，故障级 0369/036B 预留。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_TimeAbsSat",
+  "category": "DL_MathData",
+  "instruction": "求 TIME 差值绝对值时 −MAX 取反在 32 位域回绕为负（R55：极值禁 ABS），需先判后算。",
+  "architecture_thought": "严格小于 −2147483647 才判不可表置故障级 0363（−2147483647 取反可表属正常路径）；其余标准绝对值。信息级 16#0001_042E。"
+}

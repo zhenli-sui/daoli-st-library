@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 B #13：按 ROUND_PLAN_R7 §3.1 编码 FB_DL_OeeCalculator（OEE 班次统计引擎），落盘 C:\\Library\\DL_Process\\FB_DL_OeeCalculator.st。时间累计扫描周期累加式，周期基准经新增引脚 tCycleTime 注入（默认 T#10MS，非数/非正回落常量，禁读 CPU 钟）；根因位引脚注入不引组件实例；时间分账优先级计划外>计划>运行，双停机同真信息级 0110 分账入计划外；三因子除零防御（PlannedTime=0→全因子 0+信息级 0112；RunTime=0→A/P=0、Q=100；TotalCount=0→Q=100）；Performance=(节拍×总数)/运行秒×100 超 100 封顶+信息级 0111；bShiftStart 沿清零启动、bShiftEnd 沿冻结三因子；fIdealCycleTime 非数/非正故障锁存 0200。R7 七 R_TRIG 前置无条件刷新。码位经 DL_Process VERSION.md 核对顺延（0100~0102 已占）。",
+  "architecture_thought": "OEE 块的架构难点是时间语义而非公式：PlannedTime 刻意定义为『不含计划停机的计划生产时间』（ISO 22400 口径），Availability 分母因此排除换型/休息——这一口径注释写死，防止现场按 oee.com 简化口径（含计划停机）误读。性能封顶是数据质量哨兵：Performance>100 数学上不可能，出现即节拍偏短或计数异常，封顶+信息级让异常可见而不污染报表。班次启停显式化（沿驱动清零/冻结）而非自动按钟：班次边界是管理语义，块内不自作主张。"
+}

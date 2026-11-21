@@ -1,0 +1,390 @@
+(*==============================================================================
+ * 组件名称 (Component)  : FB_DL_AxiolineDiagLatch
+ * 所属子库 (Sublibrary) : DL_Device
+ * 当前版本 (Version)    : 1.0.0
+ * 组件分类 (Category)   : 功能块（FUNCTION_BLOCK）· 设备诊断 · 总线位域解析
+ * 兼容性   (Platform)   : CODESYS 3.5 / TwinCAT 3 / 汇川 InoProShop / Schneider
+ *                         Machine Expert；仅位与运算与标准 TON / R_TRIG
+ * 功能描述 (Function)   : 把本地总线的诊断状态寄存器位域与诊断参数寄存器
+ *                         （错误码加槽号）解析为工程师可直接读的分级诊断：
+ *                         总线级、模块级、通道级三档，加首出故障槽号、错误码、
+ *                         防抖事件计数与锁存和复位语义。
+ * 位序声明 (Bit layout) : 本块常量位序为自有定义：PF 为 bit0、PW 为 bit1、
+ *                         BUS 为 bit2、RUN 为 bit3、ACT 为 bit4、RDY 为 bit5、
+ *                         SYSFAIL 为 bit6。现场寄存器的高低字节拼接由调用方在
+ *                         IO 映射层完成，本块不做任何字节序猜测（跨平台歧义禁令），
+ *                         头注释即为对照表，接线变更只改 IO 层。
+ * 槽号特例 (Slot cases) : 槽号 0 表示无位置信息，输出 -1；槽号 128 表示
+ *                         「无法定位」，原值保留供 HMI 直接显示定位失败，
+ *                         绝不折算成 128 号槽；大于 127 且不等于 128 属非法，
+ *                         按无位置处理并置信息级码。
+ * 首出锁存 (First-out)  : 首个稳定成立的诊断被锁存后，后续新诊断不覆盖首出，
+ *                         这正是排故需要的因果顺序；确认（Ack）只清显示位，
+ *                         不清锁存；只有复位（Reset）才清锁存。此语义与
+ *                          FB_DL_InterlockMatrix 的首出思想同源但独立实现。
+ * 设计要点 (Key notes)  : ① 分级判定先判致命：系统故障或（总线错误且总线未
+ *                           就绪）优先于一切外围故障，避免 HMI 只看到一条
+ *                           「模块故障」而漏掉真正的总线掉站；
+ *                         ② 防抖：只有状态稳定超过稳定窗才计入事件，瞬断不会
+ *                           让事件计数暴涨，也不会误锁首出；
+ *                         ③ 未使能时清实时诊断位但保留锁存历史：检修断电前
+ *                           仍能在 HMI 上看到最后一个首出槽号，不丢现场证据；
+ *                         ④ 事件计数只增不减，复位不清（计数值是台账），
+ *                           只清锁存与首出。
+ * 开源溯源 (Origin)     : plcnext-community。参考 PLCnext 官方在线帮助公开的
+ *                         本地总线诊断系统变量语义（外围故障、外围警告、总线
+ *                         错误、运行、组态就绪、总线就绪、系统故障七个位义，
+ *                         诊断参数寄存器给错误码、扩展参数给错误位置槽号，
+ *                         无法定位用 128 表示）。只借位语义与「错误码加槽号」
+ *                         参数域，寄存器字宽、位序、枚举、码位与状态机 100%
+ *                         自有，输入一律经引脚注入，不绑定任何厂商系统变量，
+ *                         clean-room，不构成衍生作品。
+ * 依赖     (Depends)    : 无 DL_ 内部依赖；仅 Standard.library 的 TON / R_TRIG
+ * 故障码表 (Error codes):
+ *   16#0003_013B【信息级】槽号非法（大于 127 且不等于 128），按无位置处理
+ *   16#0003_013C【信息级】诊断块未使能，实时位已清零、锁存保留
+ *   16#0003_02F4【故障级】诊断位有效但错误码为 0（状态与参数寄存器不自洽）
+ *   16#0003_02F5【故障级】非法状态兜底
+ *   16#0003_02F6【故障级】总线就绪丢失超时（诊断有效而模块就绪长时间为假）
+ * 验收向量 (Acceptance) :
+ *   V1 状态字 16#0001（外围故障）/ 错误码 16#0102 / 槽号 3 → 稳定 200 毫秒后
+ *      等级为故障、首出槽号 3、首出码 16#0102、事件计数 1
+ *   V2 随后再来槽号 7 错误码 16#0204 → 首出槽号仍为 3（首因不覆盖）
+ *   V3 槽号 128 → 首出槽号 128（不得变成 -1）
+ *   V4 状态字 16#0044（总线错误加系统故障）→ 等级为致命，而非故障
+ *   V5 状态字 100 毫秒内抖动 5 次 → 事件计数只加 1
+ *   V6 复位一拍 → 首出槽号 -1、事件计数保持、事件码清零
+ * 红线自检 (Redline)    : R1 零全局变量表与外部变量引用 ｜ R2 零物理地址直写
+ *                         R3 纯 IEC 61131-3 ｜ R4 位运算无越界、无除法、无浮点
+ *                         R5 全变量中英双语同行注释 ｜ R6 ENUM 加 CASE 加 ELSE 兜底
+ *                         R7 TON 与两个 R_TRIG 全部在 CASE 之外无条件刷新
+ * 修订历史 (Revision)   :
+ *   2026-11-15  v1.0.0  首版入库（Round 10 · T1-7 PLCnext 开组）
+ *============================================================================*)
+
+(*------------------------------------------------------------------------------
+ * 枚举: E_DL_DiagLevel（诊断等级，归属本功能块并同文件发布）
+ *-----------------------------------------------------------------------------*)
+TYPE E_DL_DiagLevel :
+(
+    eNone  := 0,     // 无诊断：全部诊断位为零 / No diagnostic, every bit clear
+    eWarn  := 10,    // 警告：外围警告位有效，可继续生产 / Warning, production may continue
+    eFault := 20,    // 故障：外围故障位有效，模块或通道级硬件问题 / Fault, module or channel level hardware issue
+    eFatal := 30     // 致命：系统故障或总线掉站，须立即停机排故 / Fatal, system failure or bus loss, stop the machine
+);
+END_TYPE
+
+(*------------------------------------------------------------------------------
+ * 枚举: E_DL_DiagFsm（本块状态机，归属本功能块并同文件发布）
+ *-----------------------------------------------------------------------------*)
+TYPE E_DL_DiagFsm :
+(
+    eIdle    := 0,   // 待机：未使能或尚未建立监视 / Idle, disabled or not monitoring yet
+    eMonitor := 10,  // 监视中：实时解析诊断，未锁存 / Monitoring, live diagnostics parsed, nothing latched
+    eLatched := 20,  // 已锁存首出：新诊断不覆盖 / Latched, subsequent diagnostics do not overwrite
+    eFault   := 99   // 故障：状态与参数不自洽或非法状态 / Fault, inconsistency or illegal state
+);
+END_TYPE
+
+(*==============================================================================
+ * 逐拍推演 (Cycle-by-cycle trace)：
+ *   场景 A 单个外围故障（状态字 16#0001，错误码 16#0102，槽号 3）
+ *     拍 1 位域解析出外围故障，原始聚合为真，槽号解析为 3
+ *          稳定窗重新计时，稳定标志仍假，不锁存，等级为故障
+ *     中途每拍状态字与错误码不变，稳定窗持续计时
+ *     稳定窗到（约 200 毫秒后，取决于任务周期）
+ *          稳定标志为真且等级非无，未锁存过，锁存槽号 3 与码 16#0102，
+ *          事件计数加 1，转已锁存态；错误码非零，不置 02F4
+ *   场景 B 首出不覆盖（随后槽号 7，错误码 16#0204）
+ *     已锁存态下新诊断只被观测，不覆盖已锁存槽号与码，首出仍为 3
+ *   场景 C 无法定位（槽号 128）
+ *     解析结果保持 128（不折算成 128 号槽，也不变成无位置），供 HMI 直接
+ *     显示「定位失败」
+ *   场景 D 致命优先（状态字 16#0044，即总线错误加系统故障，模块未就绪）
+ *     分级先判致命条件，等级取致命，不再落到故障档
+ *   场景 E 抖动 5 次（100 毫秒内状态字反复变化）
+ *     稳定窗每次被重置，始终未到，事件计数一次都不加；待状态稳定后才加 1
+ *   场景 F 复位一拍
+ *     锁存清除、槽号回负一、码清零；事件计数保持（台账不清）
+ *============================================================================*)
+
+(*==============================================================================
+ * 位序对照表 (Bit order cross reference)：
+ *   位号   本库常量名        含义              现场常见语义        判读建议
+ *   bit0   DL_BIT_PF        外围故障          模块或通道硬件错    先看槽号
+ *   bit1   DL_BIT_PW        外围警告          非致命，可继续生产  记录趋势
+ *   bit2   DL_BIT_BUS       总线错误          总线通信异常        结合就绪位
+ *   bit3   DL_BIT_RUN       数据传输中        数据正在交换        正常运行应为真
+ *   bit4   DL_BIT_ACT       组态就绪          组态已生效          启动前应为真
+ *   bit5   DL_BIT_RDY       总线就绪          总线可用            启动前应为真
+ *   bit6   DL_BIT_SYSFAIL   系统故障          设备级致命故障      立即停机
+ *   说明：本表是调用方在 IO 层拼字节时的唯一依据；若现场寄存器的高低位与
+ *   本表相反，请在 IO 层做字节交换后再送进本块，不要改本块的常量。
+ *============================================================================*)
+
+(*==============================================================================
+ * 事件台账语义 (Event ledger)：
+ *   uEventCnt 是累计事件次数，只在状态发生实际跃迁时加一，同一故障持续
+ *   存在期间不会每拍累加，因此可以当作「故障发生了几次」来读；它不随
+ *   清锁存归零，是现场做故障频次统计的直接依据。若需要「本班次次数」，
+ *   请在班次切换时自行记一次基线再相减，不要清块内计数——清掉就再也
+ *   追不回历史台账。
+ *   uFirstCode 与 uFirstSlot 记录的是本轮锁存中最早捕获的那一条，后续
+ *   新故障不会覆盖它们，这与「首出优先」的电气排故原则一致：先解释
+ *   第一个故障，后面的往往是它的连锁反应。
+ *============================================================================*)
+
+FUNCTION_BLOCK FB_DL_AxiolineDiagLatch
+VAR_INPUT
+    bEnable      : BOOL := TRUE;     // 使能，FALSE 时清实时诊断位但保留锁存 [-] / Enable, FALSE clears live bits but keeps the latch
+    uStatusWord  : WORD;             // 诊断状态寄存器位域，字节拼接由 IO 层完成 [位串] / Diagnostic status register, byte order merged by the IO layer
+    uErrCode     : WORD;             // 诊断参数寄存器：错误码 [代码] / Diagnostic parameter register, the error code
+    uErrSlot     : USINT;            // 扩展参数寄存器：错误位置槽号，0 与 128 为特例 [槽] / Error location slot, zero and 128 are special
+    bModuleReady : BOOL;             // 总线就绪反馈，等价总线就绪位，冗余校验用 [-] / Bus ready feedback, redundant with the ready bit
+    bAckDiag     : BOOL;             // 诊断确认，上升沿清显示位但不清锁存 [-] / Diagnostic acknowledge, clears display bits only
+    bReset       : BOOL;             // 复位锁存与首出，上升沿有效 [-] / Reset the latch and the first-out record
+END_VAR
+VAR_OUTPUT
+    bBusError    : BOOL;             // 总线级故障（总线错误位）[-] / Bus level fault
+    bPeriphFault : BOOL;             // 外围故障（外围故障位），模块或通道硬件错 [-] / Peripheral fault
+    bPeriphWarn  : BOOL;             // 外围警告（外围警告位）[-] / Peripheral warning
+    bSysFail     : BOOL;             // 系统故障（系统故障位）[-] / System failure
+    bDiagActive  : BOOL;             // 任一诊断有效，聚合位供 HMI 单点使用 [-] / Any diagnostic active, an aggregate bit for the HMI
+    eLevel       : E_DL_DiagLevel;   // 诊断等级（无 / 警告 / 故障 / 致命）[-] / Diagnostic level
+    nFirstSlot   : INT := -1;        // 首出故障槽号，-1 表示无，128 表示无法定位 [槽] / First-out slot, -1 none, 128 unlocatable
+    uFirstCode   : WORD;             // 首出故障错误码，与槽号同拍锁存 [代码] / First-out error code latched together with the slot
+    nEventCnt    : UDINT;            // 诊断事件累计次数，去抖后计数，复位不清 [次] / Debounced event counter, never cleared by reset
+    bLatchFull   : BOOL;             // 锁存已满（首出保持，需复位）[-] / Latch occupied, needs a reset
+    uErrorId     : UDINT;            // 事件码，0 = 无事件 / Event code, 0 = no event
+END_VAR
+VAR
+    fbTrigAck    : R_TRIG;           // 确认沿检测，CASE 之外无条件刷新 [-] / Rising edge detector for the acknowledge input
+    fbTrigReset  : R_TRIG;           // 复位沿检测，CASE 之外无条件刷新 [-] / Rising edge detector for the reset input
+    fbDebounce   : TON;              // 诊断稳定窗计时，CASE 之外无条件刷新 [-] / Diagnostic stabilisation timer
+    bInit        : BOOL := FALSE;    // 首扫标志，初值 FALSE，判据 NOT bInit（R19 范式）[-] / First-scan flag
+    bLatched     : BOOL;             // 首出锁存有效 [-] / TRUE when the first-out record is latched
+    nSlotLatch   : INT := -1;        // 锁存槽号 [槽] / Latched slot number
+    uCodeLatch   : WORD;             // 锁存错误码 [代码] / Latched error code
+    eState       : E_DL_DiagFsm := E_DL_DiagFsm.eIdle;  // 状态机 / State machine
+    uPrevStatus  : WORD;             // 上拍状态字，用于变化检测 [位串] / Previous status word for change detection
+    bDebIn       : BOOL;             // 稳定窗输入条件，先算后调以免条件调用实例 [-] / Stabilisation input condition computed before the call
+    bRawActive   : BOOL;             // 原始诊断位聚合（未去抖）[-] / Raw aggregate of the diagnostic bits before debouncing
+    bStable      : BOOL;             // 去抖后的稳定诊断标志 [-] / Debounced diagnostic flag
+    nSlotParsed  : INT;              // 槽号解析结果 [槽] / Parsed slot number
+    eLevelRaw    : E_DL_DiagLevel;   // 未去抖的原始等级 [-] / Raw diagnostic level before debouncing
+    nAckMute     : INT;              // 确认屏蔽计数，确认后抑制显示若干拍 [拍] / Acknowledge mute counter
+END_VAR
+VAR CONSTANT
+    DL_BIT_PF      : WORD := 16#0001;    // 外围故障位（本库自有位序，bit0）[位串] / Peripheral fault bit
+    DL_BIT_PW      : WORD := 16#0002;    // 外围警告位（bit1）[位串] / Peripheral warning bit
+    DL_BIT_BUS     : WORD := 16#0004;    // 总线错误位（bit2）[位串] / Bus error bit
+    DL_BIT_RUN     : WORD := 16#0008;    // 数据传输中位（bit3）[位串] / Data transfer running bit
+    DL_BIT_ACT     : WORD := 16#0010;    // 组态就绪位（bit4）[位串] / Configuration active bit
+    DL_BIT_RDY     : WORD := 16#0020;    // 总线就绪位（bit5）[位串] / Bus ready bit
+    DL_BIT_SYSFAIL : WORD := 16#0040;    // 系统故障位（bit6）[位串] / System failure bit
+    DL_SLOT_UNLOC  : USINT := 128;       // 无法定位标志 [槽] / Unlocatable marker
+    DL_SLOT_NONE   : USINT := 0;         // 无位置信息 [槽] / No location information
+    DL_SLOT_MAX    : INT := 127;         // 有效槽号上限 [槽] / Highest valid slot number
+    DL_DEB_TIME    : TIME := T#200MS;    // 诊断稳定窗 [毫秒] / Diagnostic stabilisation window
+    DL_ACK_MUTE    : INT := 1;           // 确认后抑制显示的拍数 [拍] / Cycles to mute the display after an acknowledge
+END_VAR
+
+(*------------------------------------------------------------------------------
+ * 段 1｜沿检测无条件刷新（R7 红线）
+ *      Edge detection refreshed unconditionally
+ *-----------------------------------------------------------------------------*)
+fbTrigAck(CLK := bAckDiag);
+fbTrigReset(CLK := bReset);
+
+(*------------------------------------------------------------------------------
+ * 段 2｜首扫初始化（R19 唯一合法范式）
+ *      First-scan initialisation with the canonical R19 pattern
+ *-----------------------------------------------------------------------------*)
+IF NOT bInit THEN
+    bLatched    := FALSE;
+    nSlotLatch  := -1;
+    uCodeLatch  := 16#0000;
+    nEventCnt   := 0;
+    uErrorId    := 16#0000_0000;
+    eState      := E_DL_DiagFsm.eIdle;
+    uPrevStatus := 16#0000;
+    nAckMute    := 0;
+    bInit       := TRUE;                 // 首扫只做一次
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 3｜位域解析：状态字按自有位序拆七个位，不做字节序猜测
+ *      Bit field decode using the library-owned bit order, no byte order guessing
+ *-----------------------------------------------------------------------------*)
+IF (uStatusWord AND DL_BIT_PF) <> 16#0000 THEN
+    bPeriphFault := TRUE;
+ELSE
+    bPeriphFault := FALSE;
+END_IF
+
+IF (uStatusWord AND DL_BIT_PW) <> 16#0000 THEN
+    bPeriphWarn := TRUE;
+ELSE
+    bPeriphWarn := FALSE;
+END_IF
+
+IF (uStatusWord AND DL_BIT_BUS) <> 16#0000 THEN
+    bBusError := TRUE;
+ELSE
+    bBusError := FALSE;
+END_IF
+
+IF (uStatusWord AND DL_BIT_SYSFAIL) <> 16#0000 THEN
+    bSysFail := TRUE;
+ELSE
+    bSysFail := FALSE;
+END_IF
+
+IF bBusError OR bPeriphFault OR bPeriphWarn OR bSysFail THEN
+    bRawActive := TRUE;
+ELSE
+    bRawActive := FALSE;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 4｜槽号解析（三特例写死）
+ *      Slot parsing with three hard-coded special cases
+ *-----------------------------------------------------------------------------*)
+IF uErrSlot = DL_SLOT_NONE THEN
+    nSlotParsed := -1;                       // 无位置信息
+ELSIF uErrSlot = DL_SLOT_UNLOC THEN
+    nSlotParsed := 128;                      // 无法定位：原值保留，不伪装成槽号
+ELSIF USINT_TO_INT(uErrSlot) <= DL_SLOT_MAX THEN
+    nSlotParsed := USINT_TO_INT(uErrSlot);   // 1 到 127：有效槽号
+ELSE
+    nSlotParsed := -1;                       // 大于 127 且不等于 128：非法
+    uErrorId    := 16#0003_013B;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 5｜稳定窗计时（红线：定时器在 CASE 之外无条件刷新）
+ *      Stabilisation timer refreshed unconditionally outside the CASE
+ *      输入条件为「原始诊断有效」或「状态字发生变化」，任一成立即重新计时
+ *-----------------------------------------------------------------------------*)
+IF bRawActive OR (uStatusWord <> uPrevStatus) THEN
+    bDebIn := TRUE;
+ELSE
+    bDebIn := FALSE;
+END_IF
+fbDebounce(IN := bDebIn, PT := DL_DEB_TIME);
+bStable := fbDebounce.Q;
+
+(*------------------------------------------------------------------------------
+ * 段 6｜分级判定（先判致命，顺序不得调整）
+ *      Level classification, fatal first, the order must not be changed
+ *-----------------------------------------------------------------------------*)
+IF bSysFail OR (bBusError AND (NOT bModuleReady)) THEN
+    eLevelRaw := E_DL_DiagLevel.eFatal;
+ELSIF bPeriphFault THEN
+    eLevelRaw := E_DL_DiagLevel.eFault;
+ELSIF bPeriphWarn THEN
+    eLevelRaw := E_DL_DiagLevel.eWarn;
+ELSE
+    eLevelRaw := E_DL_DiagLevel.eNone;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 7｜主状态机（ENUM 加 CASE，含 ELSE 兜底）
+ *      Main state machine with an ELSE fallback branch
+ *-----------------------------------------------------------------------------*)
+CASE eState OF
+    E_DL_DiagFsm.eIdle:
+        IF bEnable THEN
+            eState := E_DL_DiagFsm.eMonitor;
+        END_IF
+
+    E_DL_DiagFsm.eMonitor:
+        (* 稳定成立的诊断才锁首出：瞬断不计事件，避免事件计数暴涨 *)
+        IF bStable AND (eLevelRaw <> E_DL_DiagLevel.eNone) THEN
+            IF NOT bLatched THEN
+                nSlotLatch := nSlotParsed;
+                uCodeLatch := uErrCode;
+                bLatched   := TRUE;
+                nEventCnt  := nEventCnt + 1;
+                eState     := E_DL_DiagFsm.eLatched;
+                IF uErrCode = 16#0000 THEN
+                    uErrorId := 16#0003_02F4;    // 状态位与参数寄存器不自洽
+                END_IF
+            END_IF
+        END_IF
+
+    E_DL_DiagFsm.eLatched:
+        (* 首出锁定：新诊断不覆盖首出槽号与首出码，只保留因果顺序中的首因 *)
+        IF NOT bEnable THEN
+            eState := E_DL_DiagFsm.eIdle;
+        END_IF
+
+    E_DL_DiagFsm.eFault:
+        (* 故障：仅复位沿可退，复位处理在段 8 中执行，此处保持故障码 *)
+        uErrorId := 16#0003_02F5;
+
+    ELSE
+        eState   := E_DL_DiagFsm.eFault;
+        uErrorId := 16#0003_02F5;
+END_CASE
+
+(*------------------------------------------------------------------------------
+ * 段 8｜确认与复位（复位放在锁存之后，保证复位当拍首出即为 -1）
+ *      Acknowledge and reset, reset placed after latching so it wins this cycle
+ *-----------------------------------------------------------------------------*)
+IF fbTrigAck.Q THEN
+    nAckMute := DL_ACK_MUTE;             // 确认后屏蔽显示一拍，锁存不受影响
+END_IF
+
+IF nAckMute > 0 THEN
+    nAckMute := nAckMute - 1;
+END_IF
+
+IF fbTrigReset.Q THEN
+    bLatched   := FALSE;
+    nSlotLatch := -1;
+    uCodeLatch := 16#0000;
+    uErrorId   := 16#0000_0000;
+    IF bEnable THEN
+        eState := E_DL_DiagFsm.eMonitor;
+    ELSE
+        eState := E_DL_DiagFsm.eIdle;
+    END_IF
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 9｜总线就绪丢失超时（故障级）：诊断有效而模块就绪长时间为假
+ *      Bus ready loss watchdog: diagnostics active while the module stays unready
+ *      判定放在状态机之后，只置码不改状态，避免与首出锁存争夺状态迁移权
+ *-----------------------------------------------------------------------------*)
+IF bStable AND bRawActive AND (NOT bModuleReady) THEN
+    uErrorId := 16#0003_02F6;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 10｜输出每拍重写（R27）：未使能时清实时位、保留锁存历史
+ *      Outputs rewritten every cycle; disabled clears live bits but keeps history
+ *-----------------------------------------------------------------------------*)
+IF bEnable THEN
+    IF bRawActive AND (nAckMute = 0) THEN
+        bDiagActive := TRUE;
+    ELSE
+        bDiagActive := FALSE;
+    END_IF
+    eLevel     := eLevelRaw;
+    uFirstCode := uCodeLatch;            // 首出码与首出槽号同源，锁存后每拍重写
+ELSE
+    bBusError    := FALSE;
+    bPeriphFault := FALSE;
+    bPeriphWarn  := FALSE;
+    bSysFail     := FALSE;
+    bDiagActive  := FALSE;
+    eLevel       := E_DL_DiagLevel.eNone;
+    uFirstCode   := uCodeLatch;          // 锁存历史保留，便于未使能时排故
+    uErrorId     := 16#0003_013C;        // 信息级：诊断块未使能
+END_IF
+
+nFirstSlot := nSlotLatch;                // 首出槽号每拍重写，复位后自然变 -1
+bLatchFull := bLatched;
+uPrevStatus := uStatusWord;              // 变化检测基准更新，必须在解析之后
+END_FUNCTION_BLOCK

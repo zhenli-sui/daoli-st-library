@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_SignalChangeCounter",
+  "category": "DL_Base",
+  "instruction": "带死区与最小间隔的模拟量变化次数统计：阀动作次数/寿命台账是 OEM 刚需，CtuEx 只能数 BOOL 沿；LGF CountBooleanEdges 只有 BOOL 口径，模拟量+死区+抖动分流为自有扩展。",
+  "architecture_thought": "无状态累加器 FB：判据 ABS(fValue-fLastAccepted)>fDeadband（浮点判等带死区禁=）；满足最小间隔计 uCount+1，不满足计 uChatterCount+1 但同样刷新 fLastAccepted（核心设计点：同一段连续爬升不拆成 N 次抖动）；TON 实例主体最前部无条件刷新；fValue 非有限保持基准不变不把 NaN 写进基准+信息级 0454；计数饱和 bSaturated+信息级 0455；bReset 清计数不清 fLastAccepted（清基准产生虚假变化）；死区非法判故障 039C 钳绝对值继续。"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_BcdToByte",
+  "category": "DL_MathData",
+  "instruction": "仪表/拨码开关以 BCD 码上传单字节读数，非法半字节（>9）直接换算会得荒谬值，必须先判后算。",
+  "architecture_thought": "半字节先判后算：高低半字节各自域闸，非法 BCD 判故障级 0348 并拒绝输出；合法才换算。信息级 16#0001_041C。纯函数。"
+}

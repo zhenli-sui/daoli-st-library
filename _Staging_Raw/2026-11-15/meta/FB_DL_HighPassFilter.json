@@ -1,0 +1,16 @@
+{
+  "name": "FB_DL_HighPassFilter",
+  "category": "DL_Algo",
+  "type": "FB",
+  "complexity": 4,
+  "function_tags": [
+    "high-pass-filter",
+    "hp1",
+    "lgf-measurement",
+    "vibration-monitoring",
+    "signal-conditioning"
+  ],
+  "instruction": "皮带秤皮重零漂把动态分量埋掉、振动位移温漂叠在真实振动上，趋势报警全失真，此一阶高通块专干剥离静态偏置。输入原始工程量 REAL，tTimeConst 给 1 到 5 秒截止频率低保留低频动态。输出 fOut 是双极性动态分量，rOutMin 与 rOutMax 按下游量程设防尖峰打穿后级。边界：时间常数非法自动钳位并置码，限幅传反自动对调，首扫清零同步历史防上电脉冲，非有限值拒绝并复位历史。",
+  "architecture_thought": "架构采用与低通块对称的状态派生滤波器惯例：eInit、eRun、eTrack 加 eFault 四态，CASE 全覆盖加 ELSE 拦截，故障态经使能跌落回 eInit 重建基线提供恢复路径。核心递推 fOut 等于 fAlpha 乘以上拍输出加本拍与上拍输入之差，fAlpha 等于时间常数比时间常数加采样周期，每拍实时重算支持运行中调整。tTimeConst 为零时特殊派生为全通差分语义，输出即相邻两拍之差，避免零系数递推退化为积分器的隐患。状态跃迁细节：eInit 与 eTrack 都做输出清零加输入历史同步，差分基差为零保证投切和上电都不产生假脉冲，这是高通块最容易被忽视的失效点。边界防错五层：周期下限钳位、时间常数域钳位、限幅对调防御、输出双侧 LIMIT 钳位防尖峰打穿下游、非有限值拒绝并复位历史。解耦上零全局零硬件，限幅是工程防护引脚而非滤波语义，头部明示避免误用，多实例并行可移植。",
+  "version": "1.0.0"
+}

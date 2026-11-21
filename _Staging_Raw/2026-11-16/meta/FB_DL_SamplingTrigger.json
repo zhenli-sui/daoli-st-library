@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_SamplingTrigger",
+  "category": "DL_Base",
+  "instruction": "均匀采样节拍：趋势记录缺无漂移节拍源（PulseGenerator 是占空比方波不带真实时基与序号）；零平台时刻函数纪律，扫描周期增量由调用方注入（与 CycleTimeMeasure 同纪律）。",
+  "architecture_thought": "TON 命中沿出单拍 bSample；tTheoretical=序号×周期重算（不每拍累加周期，无漂移来源）；tActual 由注入增量累计；漂移>200MS 置信息级 0456 只提示不重置（重置掩盖真实时基丢失）；tInterval<=0 判故障 039F 钳 1MS 继续、tDelta<=0 判故障 03A0 本拍不累加不产生样本（防首扫伪造节拍）、序号回绕信息级 0457；bEnable=FALSE 时 TON 仍无条件刷新保证重新使能不产生假沿。"
+}

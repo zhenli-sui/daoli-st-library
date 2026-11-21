@@ -1,0 +1,16 @@
+{
+ "name": "FB_DL_WeightedMovingAvg",
+ "category": "DL_MathData",
+ "type": "FB",
+ "function_tags": [
+  "滑动平均",
+  "权重窗",
+  "滤波",
+  "t2-1-lgf-measurement"
+ ],
+ "complexity": 4,
+ "instruction": "传感器融合与设定值平滑需要显式可配权重的滑动平均（如近重远轻的指数等效窗），与既有IIR滤波族正交：窗口权重由调用方整表注入。边界条件：权重和非正拒新样本保持旧窗并置码；NaN样本跳过不滚动；窗口未满不出值bValid=FALSE；零权样本剔除后有效权重和防除零。",
+ "architecture_thought": "规格5.5预授权FC静态语义降级为FB实现：64阶环形样本缓冲跨拍保持，写头回绕取模；权重和防御在入窗前拦截，计算期再剔除零权并复核有效和判零；窗口计数封顶防回绕溢出；复位清全部状态；负下标钳回正域；纯标准数组与类型，跨平台编译交集内可移植。",
+ "version": "1.0.0",
+ "source": "t2-1-lgf-measurement（统计族待挖）"
+}

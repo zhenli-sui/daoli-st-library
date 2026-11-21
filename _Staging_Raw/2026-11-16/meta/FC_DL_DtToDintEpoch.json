@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DtToDintEpoch",
+  "category": "DL_MathData",
+  "instruction": "产线 MES 对账需要把 DATE_AND_TIME 时间戳转为 Unix 纪元秒（DINT）入库比对；输入为合法 DT 且需防 1970-01-01 之前的负值与 2038 溢出。",
+  "architecture_thought": "纯函数防御性包装：内部按 IEC 标准 DT 语义委托平台转换，外围先做年代域闸（<1970 或 >2038 上限即置信息级码并钳位），输出码 16#0001_040C，故障级 0330/0331/0332 预留。无状态、无 CASE 分支，双语注释同行。"
+}

@@ -1,0 +1,416 @@
+# 道莅代码库 · 开源资产狩猎源矩阵（SOURCE HUNTING MATRIX）
+
+> **用途**：本文件是本库「全网狩猎」的唯一权威源清单与扩产作战地图。每轮批处理必须先读本文件，按「待挖掘队列」取源，收尾时必须回写挖掘状态。
+> **维护人**：工控代码库产品总监（Daoli Library Director）
+> **当前版本**：v1.0 ｜ 建立日期：2026-11-14 ｜ 由创始人指定新增（西门子标准程序借鉴线）｜ 最后回写：2026-11-17（R25，第 4 节追加 R25 实测行：T1-2 ROOM_CONTROL 子族开族 2 件 + T2-1 LGF Math 仿射族逆映射补口 1 件（三元闭环齐备），零检索轮）
+
+---
+
+## 0 三条铁律（合规优先，不可违反）
+
+1. **只借骨，不抄肉**：所有非开源（免费但闭源）资产（西门子 LGF / LBP / Rockwell AOI 等）**只允许借鉴功能分类体系、接口参数域定义、命名组织方式**，**严禁复制其代码、DB 结构、注释原文**。实现必须 clean-room 独立编写。
+2. **许可证隔离**：GPL / AGPL 源（OpenPLC、Beremiz、MatIEC 等）**只读算法思想，禁止复制任何代码行**，避免许可证传染至本库（本库按 MIT/Apache-2.0 开源发布）。EPL / Apache / MIT 源可借鉴结构并在文件头致谢。
+3. **来源留痕**：每个组件的原始参考必须记录到 `_Staging_Raw\<日期>\RAW_NOTES_R<n>.md`，含 `来源名称 / URL / 许可证 / 提取点`，并在 `.st` 文件头 `开源溯源 (Origin)` 字段如实标注「原创实现（参考 XXX 分类与参数域）」或「改写自 XXX（许可证）」。
+
+---
+
+## 1 源分三级
+
+### T0｜IEC 61131-3 标准函数/功能块防御性移植（500 冲刺快车道，2026-11-16 创始人指定）
+
+> **定位**：SR、RS、TON、TOF、TP、CTU、CTD、CTUD、R_TRIG、F_TRIG、ABS、SIN、COS 等所有 PLC IDE 内建的标准函数——**接口语义由 IEC 61131-3 标准定义，不构成版权文本**；各开源实现（MIT/Apache）可参考后 clean-room 重写。**禁止**照抄西门子/罗克韦尔等闭源实现。
+> **价值定位（重要）**：不是重复造轮子——这些块各平台内建都有，但**边界行为各平台不一致**（移位超宽、字符串 255 上限、浮点 NaN/Inf、定时器跨段、BCD 越界）。DL 包装层的价值 = **统一防御行为 + 统一错误码 + 双语文档 + 跨平台钳位**：内部委托平台内建函数，外围加防御守卫，**禁止重新实现数学内核**（如 SIN 直接调系统 SIN 再加输入域检查）。
+
+| 组 | 标准函数/功能块 | 道莅目录 | 防御增强点 | 预估数 |
+|---|---|---|---|---|
+| T0-1 双稳态/边沿 | SR, RS, R_TRIG, F_TRIG（+主从沿/分频变体） | DL_Base | 双输入同时置位仲裁明确化、边沿单周期保证 | 10–14 |
+| T0-2 定时器 | TON, TOF, TP（+可重触发/保持型 RTO/看门狗变体） | DL_Base | 跨段输入断开语义、PT 钳位、首扫零假触发 | 10–14 |
+| T0-3 计数器 | CTU, CTD, CTUD（+预置/方向/饱和变体） | DL_Base | 溢出饱和不回绕、复位优先级 | 8–12 |
+| T0-4 数学函数 | ABS, SQRT, LN, LOG, EXP, SIN, COS, TAN, ASIN, ACOS, ATAN, EXPT | DL_MathData | 定义域检查（负数开方/对数、三角函数输入域）、NaN/Inf 拦截 | 12–14 |
+| T0-5 类型转换 | TRUNC, ROUND, FLOOR, CEIL, BCD↔INT, 防御型 *_TO_* 家族 | DL_MathData | 溢出钳位+置错误码、NaN 处理、BCD 越界 | 12–16 |
+| T0-6 字符串 | LEN, LEFT, RIGHT, MID, CONCAT, INSERT, DELETE, REPLACE, FIND | DL_MathData | 255 上限显式截断标志、空串/越界防御 | 9–11 |
+| T0-7 位串操作 | SHL, SHR, ROL, ROR | DL_Base | 移位量钳位、跨字支持 | 4–6 |
+| **合计** | | | | **65–87** |
+
+### T1｜ST 原生开源源（可直接对照接口与算法）
+
+| # | 源 | 覆盖内容 | 许可证 | 可提取点 |
+|---|---|---|---|---|
+| T1-1 | **OSCAT Basic 3.3x** | 数学、位操作、字符串、信号处理、控制器、时间日期 | OSCAT 许可（免费，需致谢） | 函数清单与参数域、边界处理惯例 |
+| T1-2 | **OSCAT Building** | 暖通、房间控制、日照/焓值、泵风机 | 同上 | DL_Process 工艺组件骨架 |
+| T1-3 | **OSCAT Network** | Modbus / 协议解析、网络诊断 | 同上 | 诊断帧解析、CRC 家族 |
+| T1-4 | **CODESYS Forge / Store 免费库** | DeviceReader、ModbusFB、SysFile、字符串工具 | 各异（逐个确认） | 设备抽象接口设计 |
+| T1-5 | **TcOpen（Beckhoff）** | OOP 风格组件、轴对象/全局状态抽象、组件树 | MIT/Apache（确认版次） | 接口分层、组合优先范式 |
+| T1-6 | **PLCopen TC2/TC3/TC4/TC6 + Motion** | MC_Power/MC_MoveAbsolute 等状态机、XML 交换格式 | PLCopen 规范（免费） | 运动控制状态机跃迁、接口契约 |
+| T1-7 | **PLCnext Community（Phoenix Contact）** | 开源 ST/C++ 组件、数据类型库 | 各异 | 组件分层与 AR 命名 |
+| T1-8 | **GitHub topics**：`iec-61131-3` / `structured-text` / `codesys` / `twincat` / `plc-library` | 零散高质量组件 | 逐个确认 | 具体算法实现与新思路 |
+| T1-9 | **汇川 InoProShop / 信捷 / 台达 官方 FB 手册** | 国产平台功能块清单 | 文档版权 | 国产现场高频需求清单 |
+
+### T2｜非 ST 但分类与功能高度可借鉴（本轮新增核心线）
+
+| # | 源 | 覆盖内容 | 许可证 | 可提取点 | 映射子库 |
+|---|---|---|---|---|---|
+| T2-1 | **Siemens LGF（Library of General Functions）V5.3.0**（文档 ID 109479728） | **11 个功能组、140+ 个 FC/FB** | 免费使用但**闭源版权** | **功能分类骨架、接口参数域、组内组件粒度** ← 最高价值 | 六库全覆盖 |
+| T2-2 | **Siemens LBP V2.7（Library of Basic Processes）** | 电机控制、阀门控制、定量、混合、驱动参数化 | 同上（闭源） | 工艺组件分层与工艺接口设计 | DL_Process / DL_Device |
+| T2-3 | **Siemens 编程指南与风格指南（Pub ID 80810216）** | 命名规范、多实例复用、内存优化、错误处理 | 文档版权 | 命名体系、诊断结构 | 全局规范 |
+| T2-4 | **Siemens S7-1500 Motion Control 示例** | TO_PositioningAxis / TO_SpeedAxis / CAM | 文档版权 | 运动控制对象模型与状态机 | DL_Motion |
+| T2-5 | **Siemens Mod_PID_Control 手册** | PID、死区、抗饱和、手自动切换 | 文档版权 | 参数域约束（已用于 FC_DL_Deadband） | DL_Algo |
+| T2-6 | **Rockwell AOI 库 / 应用示例** | 设备级 AOI 封装范式 | 文档版权 | 设备抽象接口粒度 | DL_Device |
+| T2-7 | **PackML / OMAC 状态机** | 包装行业 17 态标准状态机 | 公开规范 | 工艺状态机标准骨架 | DL_Process |
+| T2-8 | **ISA-88 批次控制 / ISA-18.2 报警管理 / NAMUR NE107 诊断** | 批次模型、报警生命周期、设备诊断分级 | 公开规范 | 报警管理块、诊断分级块 | DL_Process / DL_Device |
+| T2-9 | **三菱 / 欧姆龙 / FateK FB 库手册** | 日系平台功能块清单 | 文档版权 | 功能覆盖面查漏 | 六库查漏 |
+
+### T3｜标准与协议骨架（用于查漏，不作主体）
+
+- **IEC 61131-3 标准函数表**：类型转换、字符串（LEN/LEFT/RIGHT/MID/CONCAT/INSERT/DELETE/REPLACE/FIND）、数学（ABS/SQRT/LN/LOG/EXP/SIN/COS/TAN/ASIN/ACOS/ATAN）、位串（SHL/SHR/ROL/ROR）→ 逐项对照本库缺口。
+- **协议**：Modbus 应用协议规范、CANopen CiA 301/402、EtherCAT ETG.1000、OPC UA 信息模型 → 诊断帧解析与设备状态映射。
+- **功能安全**：ISO 13849 / IEC 62061 → 仅参考联锁与安全拦截的逻辑结构（不实现安全认证功能）。
+
+---
+
+## 2 西门子 LGF 11 组 → 道莅六大目录映射（扩产主战场）
+
+> LGF 的价值不在代码，而在**它把工业库切成了 11 个语义清晰的组**。我们按组平移为「原子函数族」，每组横向做数据类型重载后，一个组就能产出 10~30 个独立组件。
+
+| LGF 功能组 | 代表功能 | 道莅目录 | 横向展开策略 | 预估组件数 |
+|---|---|---|---|---|
+| Bit Logic Operations | 位测试/置位/复位/翻转 | **DL_Base** | × DWORD / LWORD / UDINT 数组；× 单点 / 位串批量 | 18–24 |
+| Date and Timer Operations | 日历天数周数、天文钟、多段定时、脉冲 | **DL_Base** | × TON/TOF/TP/RTO 组合、× 日/周/月/年周期 | 15–20 |
+| Counter Operations | 事件计数、循环计数、预设计数 | **DL_Base** | × 上/下/双向、× 带饱和/带回绕 | 8–10 |
+| Comparator Operations | 区间判断、公差窗口、限值 | **DL_Base** | × REAL/LREAL/INT/DINT、× 开闭区间 | 8–10 |
+| Math Operations | 线性标度、N 次根、阶乘、2D/3D 距离、均值标准差、min/max+索引、随机数 | **DL_MathData** | × REAL/LREAL 双版本、× 数组/单值 | 25–30 |
+| Data Handling | FIFO/LIFO、数组搜索、排序、环形缓冲 | **DL_MathData** | × 各数据类型、× 定长/变长 | 20–25 |
+| Converter Operations | DTL↔String、温度单位、格雷码、BCD、字节序 | **DL_MathData** | × 各源/目标类型组合 | 15–20 |
+| Signal Generators | 正弦/锯齿/脉冲/频率发生、PWM | **DL_Algo** | × 连续/离散、× 相位复位 | 10–12 |
+| Technology Operations | 变化率限制、斜坡函数、卷径、张力 | **DL_Algo** | × 一阶/二阶、× 带前馈 | 12–15 |
+| Measurement Operations | 测量评估、统计、峰值检测 | **DL_MathData / DL_Algo** | × 滤波阶数、× 窗口长度 | 12–15 |
+| Legacy Functions | 旧版兼容块 | — | **不实现**（无长期价值） | 0 |
+| **合计（仅 LGF 一线）** | | | | **约 145–180** |
+
+**叠加 T2-2 LBP**（电机启停、阀门、定量、混合、驱动参数化 ≈ 40–60）+ **T2-7/8 PackML/ISA-88/NE107**（≈ 20–30），仅这两条西门子线即可支撑 **200–270 个组件**，足以覆盖 Phase 1 全部 100 项并直接推进 Phase 2。
+
+---
+
+## 3 扩产规则（矩阵化，冲击万级的核心工法）
+
+1. **数据类型重载**：同一算法 × REAL / LREAL；× INT / DINT / UDINT / LINT；× WORD / DWORD / LWORD。→ 单算法变 2~4 个组件。
+2. **阶数/阶次变体**：一阶/二阶/三阶滤波；2/3/5/10 点滑动窗口；不同截止频率族。
+3. **协议方言变体**：Modbus RTU / TCP；CANopen PDO/SDO；EtherCAT 诊断帧；字节序 ABCD/CDAB/BADC/DCBA。
+4. **行业工况变体**：同一工艺块 × 锂电 / 光伏 / 半导体 / 包装 / 暖通 / 过程控制（参数集差异，非逻辑复制）。
+5. **精度/性能变体**：整数定点版 vs 浮点版（低算力 CPU 场景）。
+
+> 原则：**先原子化再矩阵化**。严禁把 5 个变体塞进一个带 `MODE` 参数的巨无霸块——那是 OSCAT 时代的老毛病，也是本库要超越它的地方。
+
+---
+
+## 4 每轮执行配额（写入 automation 指令，硬性要求）
+
+- 每轮 10~15 个组件中，**至少 1 个组件族来自 T2 非 ST 借鉴源**（首选西门子 LGF 尚未挖掘的组），**至少 1 个来自 T1 ST 原生源**。
+- 每轮必须回写本文件的「挖掘状态」列（见第 5 节），**禁止重复挖掘同一组**。
+- 每轮战报须列明：本轮用了哪些源、借鉴了什么、对应哪些组件。
+- R3 实测：T2 六组 + T1 两组，满足配额。
+- R4 实测：T2 三组（LGF Signal Generators / Technology / Measurement）+ T2-5 Mod_PID_Control + T1 一组（OSCAT Basic），满足配额。
+- R5 实测：T2 三组（LGF Date and Timer / T2-4 Motion Control / T2-7 PackML）+ T2-2 LBP 深化 + NAMUR NE43 + T1 一组（OSCAT Building），满足配额且全部为开组/深化，未触碰任何已收口组。
+- R6 实测：T2 两组深化（T2-2 LBP 阀门/变频/星三角 10 件；T2-1 LGF Technology 组 RampSoak + Date and Timer 组 OccScheduleWindow）+ T1 两组（**T1-6 PLCopen Motion 首次开组**，回零四模式 + 相对/速度定位 3 件；T1-2 OSCAT Building 深化焓差经济器，ASHRAE 90.1 公开判据）+ S-4 变频端子信号集/S-5 星三角·三点阀补采，满足配额且全部为开组/深化，未触碰任何已收口组。
+- R7 实测：T2 两组（**T2-1 LGF Counter 组 ☐→◐ 开组**：EventCounter/ModuloCounter 2 件；T2-7 PackML 深化 OeeCalculator，oee.com/ISO 22400-2 公开口径）+ T2-2 LBP / T2-8 ISA-88 深化（BatchDosingControl 批次相语义）+ T1 两组（**T1-5 TcOpen 组件范式 ☐→◐ 开组**：扫码枪/安全门/光幕/流量计/料位开关十件套；T1-6 PLCopen 深化 SoftLimitGuard 制动距离预判）+ S-9 ZPA 输送线工程惯例，满足配额且全部为开组/深化，未触碰任何已收口组。
+- R8 实测：T1 三组（**T1-6 PLCopen 开族 6 件**：电子齿轮/凸轮/龙门/转矩限幅/标记锁存/耗时估算；T1-5 TcOpen 补记塔灯 2 件；**T1-4 CODESYS Forge ☐→◐ 开组** RecipeManager）+ T2 三组（T2-1 LGF Math/Tech 深化 PeakDetector + 语义借用；T2-2 LBP `CtrlStp` → StepController；T2-8 ISA-88 深化 MixRecipeControl + CipCleaningSeq），满足配额。
+- R9 实测：T2 四组（T2-1 LGF 六组横向回补 11 件；T2-4 S7 Motion 叠加语义；T2-7/8 OMAC 安灯族；T1-4 CODESYS Forge 深化 ModbusPollMaster）+ **T1-8 GitHub topics ☐→◐ 开组**（stepper 线 2 件），满足配额且全部为开组/深化。
+- R10 实测：T2 两组 + T1 两组**同时跨源**——T2-1 LGF 六组深化 10 件（Bit Logic / Date and Timer / Counter / Math×3 / Signal Generators×2 / Technology）｜**T2-6 Rockwell AOI ☐→◐ 开组**（RFID 契约族 2 件）｜**T1-7 PLCnext ☐→◐ 开组**（总线诊断 2 件，含 Q5 语义证伪后立项方向改写）｜T1-2 OSCAT Building 深化（AirDensity）｜T2-4 次源 + T1-5 范式复用（WindingTraverse / RFID 族，均不重复记账）；另 T2-7 PackML 深化 1 件、S-4 卷绕公开工程资料 1 件。**配额结论：本轮同时满足「≥1 个 T2 非 ST 源」与「≥1 个 T1 ST 原生源」，且为首个「一轮内两个 ☐ 源同时开组」的轮次。**
+- R11 实测：**T2 四源 + T1 四源，全部为扩族/深化，零重复开挖**——T2-1 LGF **五组横向扩族 7 件**（Bit Logic：StatusWordSegDecoder；Math：CalcDistance3D / RandomNext / PercentileLReal；Counter：RolloverCounter；Comparator：RangeOverlapCheck；Date and Timer：YearWindowCheck）｜T2-2 LBP 深化 3 件（PressFitStation / EnergySavingMode / RollerGapAdjust 的「命令-监视-判定」三段分层）｜T2-6 Rockwell AOI 深化 3 件（NtcTempScan 多通道粗粒度 / RollerGapAdjust 双故障分类 / StatusWordSegDecoder 段表承载状态字）｜T2-4 S7-1500 Motion 限定值分层（WindingTensionCtrl 次源）｜T2-7/T2-8 PackML + ISA-88 只借态命名与相语义（RotaryIndexTable / AgvDockingHandshake，不作主源）；T1-7 PLCnext 深化 1 件（PortDiagAggregator port-based 四元组）｜T1-6 PLCopen 纪律借用（WindingTensionCtrl 不自造轴状态）｜T1-2 OSCAT Building 次源 1 件（NtcTempScan 域外行为显式化）｜T1-8 GitHub topics 1 件（RandomNext 无状态纯函数 PRNG 形态）。**配额结论：满足「≥1 个 T2 非 ST 源」与「≥1 个 T1 ST 原生源」，且五个 LGF 组均为横向扩族并逐件写明与既有件的职责边界，未触碰任何已收口组的存量语义。**
+- **R12 实测**：**T2 五源 + T1 五源，全部为「待挖子族收口」或开组，零重复开挖**——T2-1 LGF **四个待挖子族一次收口 7 件**（Bit Logic 数组批量位段 3 件 / Data Handling 字符串 2 件 / Comparator 数组批量比较 1 件 / Date and Timer 天文钟 1 件）｜T2-2 LBP 阀特性「设备工艺参数」组织方式（`ValveCharacteristic`）｜T2-8 ISA-88 相状态模型（`BatchPhaseBase`，只借公开条款）；T1-3 **OSCAT Network ☐→◐ 开组**（`ModbusExceptionParse` 诊断帧解析族）｜T1-2 OSCAT Building `WATER_ENTHALPY` 行为定义（`WaterEnthalpy`）｜T1-4 CODESYS Forge `DeviceReader` 三段流程（`DeviceParamVerify`，许可不明按最严口径）｜T1-8 GitHub topics **motion 线开组**（`LineInterp2Axis`）｜T1-7 PLCnext 端口四元组库内复用（`PortDiagBoard`，不重复记账）；另 NAMUR NE43 信号质量契约落地 2 件（`EnergyMeterAccum` / `VacuumGaugeMux`）。**配额结论：满足「≥1 个 T2 非 ST 源」与「≥1 个 T1 ST 原生源」，且本轮四条 LGF 子族全部从「待挖」转为「收口」，无任何已收口组被重复挖掘。**
+- **R16 实测（T0 变体线）**：本轮 20 件全部为 T0 变体线零检索件（R14 三判据准入：逐引脚对应标准语义 + 委托内建/标准语义 + clean-room 溯源），回写三行——T0-2 行 TIME 算术变体 4 件 ｜ T0-4 行泛型选择变体 6 件 ｜ T0-5 行饱和转换/整数校验/BCD 变体 10 件（兑现 R15「BCD↔INT 越界族与防御型 `*_TO_*` 族移交 T0 变体线 R16 开线」的承诺）。**配额结论：R16 按「T0 变体线轮」执行，无 T2/T1 检索配额义务（与 R14 同为快车道轮次）；三行均 ✔ 收口后扩族，未触碰任何已收口组的存量语义。**
+- **R17 实测（T0 纯函数第 4 轮）**：本轮 20 件全部为 T0 纯函数零检索件（R14 三判据准入），回写三行——T0-4 行对数/dB 变体 5 件（LOG/换底/幅值型 dB 双向/功率型 dB）｜ T0-5 行 TIME/TOD + 精度/饱和变体 11 件（TIME↔DINT ms/↔LREAL s/TOD、2^24 与 2^53 精度告警、LINT↔DINT/LINT 饱和）｜ T0-7 行 LWORD 64 位域变体 4 件（SHL/SHR/ROL/ROR 的 LWORD 口径）。**配额结论：R17 按「T0 纯函数线轮」执行，无 T2/T1 检索配额义务；三行均 ✔ 收口后扩族，未触碰任何已收口组的存量语义。**
+- **R19 实测**：本轮 20 件跨 **T2 一源深化 + T1 四源深化 + T0 三行补位 + 自研线**——T0-5 行补位 3 件（DintMsToTod / TimeRatioCalc / LintToUdintSat，TOD 反向对与交叉域饱和收口）｜ T0-4 行补位 1 件（RatioToPwrDb，功率 dB 双向对收口）｜ T0-7 纪律复用（BitShiftRegister 移位闸门 R48）｜ T1-3 OSCAT Network 深化 1 件（ModbusRtuFrameCheck 帧校验）｜ T1-4 CODESYS Forge 深化 1 件（DeviceParamWrite 写回半段，许可不明按最严口径零代码行）｜ T1-6 PLCopen 深化 1 件（CamPhaseTrim）｜ T1-7 PLCnext 深化 1 件（ProfinetAlarmDiag，公开 ChannelErrorType 解码表经 WebSearch 核对）｜ T2-1 LGF Bit Logic 深化 1 件（BitShiftRegister 时序层）｜ T2-4 S7 Motion 深化 1 件（ExternalEncoderScaler）｜ T2-5 Mod_PID_Control 纪律次源 1 件（RatioController 参数域，零代码行）｜ T2-8 NE107/ISA 深化 1 件（DeviceHealthArbiter 六态仲裁）｜ ESC 半导体自研线 1 件（EscChuckCurrentMonitor）。**状态列结论：本轮十行均为 ◐ 深化（T2-1 Bit Logic、T2-4 状态列已标注 R19），无 ☐→◐ 开组、无 ◐→✔ 收口。**
+- **R23 实测**：本轮 20 件跨 **T1 一族开族收口 + T2 一组落地 + ROADMAP P1 ×12 勾销 + 自研线**——T1-2 OSCAT Building **焓湿图原子族 ✔ 开族收口 5 件**（VaporPressureSat 饱和压族属主 / HumidityRatioCalc / WetBulbTempCalc / RhFromDewPoint / MixAirStateCalc，Magnus-Tetens 常数属主裁定并回写 DewPointCalc·HumidAirEnthalpy 属主转移声明）｜T2-8 NAMUR NE107 **多源健康聚合落地 2 件**（HealthAggregator 最差者胜仲裁 + FilterDpMonitor NE107 出口）｜ROADMAP P1 待办 12 条勾销（OvenDoorInterlock / ChamberGateValve / RobotGripVerify / ElectrolyteDosingSeq / LamHeaterZoneSync / SteamCondensatePot / AirCompDutyN2 / TankN2BlanketCtrl / WaferCountAxis / BagFeedDancerSync / BoilerThreeElement / HumidityOverride，另自研线 NailMachineSeq）｜**检索预算用 1/3**（Stull 2011 湿度计方程原文核对）｜**状态列结论：T1-2 行备注「焓湿图子族 ✔（子族收口，非整组挖尽）」；T2-8 行备注「NE107 多源聚合已落地」；无 ☐→◐ 开组、无整组 ◐→✔ 收口，未触碰任何已收口组。**
+- **R24 实测**：**零检索轮（0/3）**——20 件全部来自 ROADMAP §7 行业池未勾选条目（P0 ×3 / P1 ×13 / P2 ×2 + 终审立项 §588）+ T2-1 LGF Math 仿射变换组合族 **开族 2 件**（Affine2DCompose / Affine2DApply，clean-room 只借分类事实/参数域/行为定义，矩阵台账 R13 备注即留痕故免检）；2 个 P0 修复件（WetBulb v1.1.0 二分法重写 / TankN2 v1.0.1 迟滞回差）为 R23 挂账承接。**状态列结论：T2-1 Math 行保持 ◐（仿射族开族非挖尽，三角/极分解方向仍待挖）；ROADMAP 行业池勾销 16 项；未触碰任何已收口组。**
+
+- **R25 实测**：**零检索轮（0/3）**——20 件全部来自 ROADMAP §7 行业池未勾选条目（18 项勾销）+ 源矩阵两处补口（**T1-2 OSCAT Building `ROOM_CONTROL` 子族开族 2 件**：DewpointReset / RoomClimateCtrl；**T2-1 LGF Math 仿射族逆映射补口 1 件**：Affine2DInvert，与 R24 的 Compose/Apply 构成三元闭环）+ 6 件终审修复件为同轮承接。**状态列结论：T2-1 Math 行保持 ◐（仿射子族齐备，三角/极分解仍待挖）；T1-2 行备注「ROOM_CONTROL 开族未挖尽」；无 ☐→◐ 开组、无整组 ◐→✔ 收口，未触碰任何已收口组。**另本轮终审暴露派单质量两处硬伤（§4.16 容量算术错 6→9、§4.20 绝缘公式方向倒置），按 R122/R123 回写勘误并固化新规则。
+- **R26 实测**：**零检索轮（0/3）**——20 件来自 ROADMAP §7 行业池认领项（3 项勾销：ChillerTempStab / ElectrolyteTankLevel / DustFreehoodPress）+ 规划新增线；源矩阵触及 **6 行，全部 ◐ 深化，不新开 ☐ 组**：**T2-1 LGF Measurement**（WeightedMovingAvg 加权滑动均值借统计语义）、**T2-2 LBP**（ControlValveDiag 阀诊断 / PumpDryRunProtect 泵干转 / FanBeltSlipDiag 皮带打滑，「命令-监视-判定」三段分层复用）、**T2-7 PackML**（LineChangeoverChecklist 换型清单顺控，借 17 态模型的状态聚合语义）、**T2-8 ISA-18.2**（AlarmShelving 搁置态生命周期，搁置/超时强制恢复条款）、**T1-2 OSCAT Building**（ChillerTempStab 冷机稳定性 / VfdThermalDerate 变频热降容借形）、**T1-6 PLCopen**（FC_DL_CamTableInterp 凸轮表插值，CamProfile 族深化）。**状态列结论：六行均保持 ◐，无 ☐→◐ 开组、无整组 ◐→✔ 收口，未触碰任何已收口组。**
+- **R29 实测**：**零检索轮（0/3）**——19 入册 + 1 隔离。来源全部为 ROADMAP §7 行业池未勾选项（10 项已勾销）+ 源矩阵既有 ◐ 深化：**T1-1 OSCAT Basic**（DpFlowSqrtCalc 差压开方口径 / PipeFrictionLoss 沿程阻力）、**T1-2 OSCAT Building**（CoilFreezeStat 盘管防冻 / AhuFilterDpBank 压差分级〔隔离〕）、**T1-4 CODESYS Forge**（HeatExchangerCtrl 分程 / StringBarcodeTrace 追溯）、**T1-6 PLCopen**（ScreenPrintAlign 对位 / FilmSpliceTensionHold 张力保持）、**T2-1 LGF**（CoolantLoopBal 平衡 / PowderDosingLoss 损耗）、**T2-2 LBP**（CoatingThicknessCtrl 涂布模头）、**T2-4 S7 Motion**（FurnaceBeltTension / TrackerMotDiag）、**T2-7 PackML**（PalletizerStation / RotaryIndexModulo / SocketPressTrend 相语义）、**T2-8 ISA/NE107**（LamDoorInterlock 联锁 / ConveyorMetalDetect 诊断 / CpkCalc 统计判级）。**状态列结论：全部 ◐ 深化，无 ☐→◐ 开组、无整组 ◐→✔ 收口；未触碰已收口组。**
+
+---
+
+- **R43 实测**：**零检索轮（0/3）**——20 件全部来自 ROADMAP 真缺口（9 件：StakingPressCtrl / PouchVacuumSeal / CalenderRollPress / QuarterCellCutSeq / CellOcvBinSort / IvCurveScan / BundleShrinkTemp / SelfDischargeScreen / CellFeederVacuum）+ 源矩阵既有组深化（T1-2 OSCAT Building 7 件：ChillerCondReset / SampleLoopPurge / DuctLeakRateEst / VavPressureReset / ChwDifferentialPressureReset / CleanRoomRhTrim / BoilerFlueCondenseGuard；T2-7 PackML 1 件：FanPressureTrim；T1-5 TcOpen 1 件：CellFeederVacuum；T1-6 PLCopen 2 件：AxisBrakeDistPredict / GearInPhaseAlign；T0 防御包装 1 件：TimeToCycleCeil）。**状态列结论：全部 ◐ 深化，无 ☐→◐ 开组、无整组 ◐→✔ 收口，未触碰任何已收口组。**另本轮完成全库码位冲突普查（765 件、149 码位、冲突 0），P1 连挂 4 轮清偿。
+
+## 5 挖掘状态台账（每轮更新，✔=已挖掘 / ◐=部分 / ☐=待挖掘）
+
+> **R13 一行**：本轮 18 件产出跨 **4 个 T2 源 + 2 个 T1 源 + 2 条规范/自研线**，配额由「T2-1 LGF **三组横向扩族 6 件**（Bit Logic 位旋转+掩码比较 / Data Handling CRC-8+数值解析+定宽字段 / Math Matrix 子族开族）」+「T2-8 NAMUR NE107 健康语言六件落地（DeviceHealth / PowerMeter / ModbusPowerMeter / ValveStiction / AhuDamper / PumpCavitation）」+「T2-6 Rockwell AOI 三分类诊断借用 2 件」+「T2-2 LBP 三段分层骨架 2 件」与「**T1-2 OSCAT Building 换热健康 1 件** + **T1-6 PLCopen 被动回零收口 1 件**」+「半导体 ESC 自研线开线 2 件」共同满足；未重复挖掘任何已收口组的存量语义（逐行回写见下表）。
+> **R12 一行**：本轮 18 件产出跨 **5 个 T2 源 + 5 个 T1 源**，配额由「T2-1 LGF **四个待挖子族一次收口 7 件**（Bit Logic 数组批量位段 / Data Handling 字符串 / Comparator 数组批量比较 / Date and Timer 天文钟）」+「T2-2 阀特性组织方式 + T2-8 ISA-88 公开相模型」与「**T1-3 OSCAT Network 开组** + T1-8 motion 线开组 + T1-2 / T1-4 各 1 件 + T1-7 库内复用」双侧共同满足，另 NAMUR NE43 信号质量契约落地 2 件。**新开 1 组**（T1-3 诊断帧解析）、**深化 9 行**、**四条 LGF 子族由「待挖」转「收口」**；未重复挖掘任何已收口组的存量语义（逐行回写见下表）。
+> **R11 一行**：本轮 16 件产出跨 **4 个 T2 源 + 4 个 T1 源**，配额由「T2-1 LGF 五组横向扩族 7 件」+「T2-2 / T2-6 深化 6 件」与「T1-7 深化 1 件 + T1-2 / T1-8 次源 2 件 + T1-6 纪律借用 1 件」双侧共同满足，未新开任何 ☐ 源，也未重复挖掘任何已收口组（逐行回写见下表）。
+
+| 源 | 状态 | 已产出组件 | 备注 |
+|---|---|---|---|
+| **T0-1 双稳态/边沿（500 快车道）** | ✔ | R14 | **已收口**：SR/RS/R_TRIG/F_TRIG 防御性包装 4 件（`FB_DL_SRBistable`/`RSBistable`/`RTrigEx`/`FTrigEx`） |
+| **T0-2 定时器（500 快车道）** | ✔ | R14 | **已收口**：TON/TOF/TP/RTO 包装 4 件；RTO 为通用语义 clean-room（末拍快照冻结范式 R46）；**R16 变体扩族 4 件**：TIME 算术族 TimeAddSat/TimeSubSat/TimeScaleSat/TimeDivChk（减法/除法比较溢出预判 R54、负差钳零、负除子 DINT 升位取模长 R55），零检索变体线准入（R14 三判据）；**R20 日历/时间算术族 9 件（T0 快车道零检索，DL_MathData +1 / DL_Base +1 跨库协作）**：日历/纪元族 4（DtToDintEpoch / DintEpochToDt / DateToDintDays / DintDaysToDate，秒域与天数域双向、Y2038 两方向策略分立——正向饱和、反解不饱和）+ 时间算术 3（TodAddWrap / TodDiffWrap / TimeAbsSat，**回绕归一禁 MOD 走条件加减**、`−MAX−1` 单值闸）+ 日期算术 2（DateAddDays / DateDiffDays，溢出用**减法预判**双向判据）+ 闰年原子 1（LeapYearChk，`bFullRule` 显式选两律/三律）。**收口警示**：本行日历内建链（`DT_TO_DINT` / `DINT_TO_DT` / `DATE_TO_DINT`）的平台口径差异仍未实测，编译门槛段已逐件声明 |
+| **T0-3 计数器（500 快车道）** | ✔ | R14 | **已收口**：CTU/CTD/CTUD 包装 3 件；CTUD 净额抵消法（R47），与 BidirectionalCounter 划界互引 |
+| **T0-4 数学函数（500 快车道）** | ✔ | R15 收口 | R14 收 SQRT/LN/TAN + R15 收 ABS/SIN/COS/ASIN/ACOS/ATAN/ATAN2/EXP/EXPT 共 12 件（R15 9 件）；域闸门四段式样板 R45；**R16 变体扩族 6 件**：泛型选择族 SelEx/Mux2Ex/Mux4Ex/MinEx/MaxEx/LimitEx（未选中通道异常不影响本拍、选择子越界钳位、倒置自动交换），零检索变体线准入；**R17 变体扩族 5 件**：对数/dB 族 LogEx/LogBaseEx/AmpDbToRatio/RatioToAmpDb/PwrDbToRatio（底数退化闸 + 除子复判双保险、20/10 因子分型、功率型硬限 380 dB 按 REAL 域可表性反算） |
+| **T0-5 类型转换（500 快车道）** | ✔ | R15 收口 | R14 收 ROUND（`FC_DL_RoundSat`）+ R15 收 TRUNC/FLOOR/CEIL 共 4 件；防御型 `*_TO_*` 族与 BCD↔INT 越界族移交 T0 变体线（R16 开线）；**R16 变体扩族 10 件（本行变体线承诺兑现）**：饱和转换族 LrealToRealSat/LrealToDintSat/RealToUdintSat/RealToUintSat/RealToByteSat + 整数校验族 DintToUintSat/UdintToDintChk/LintToLrealChk + BCD 族 BcdToUdint/UdintToBcd（无符号双分支钳位 R56、BCD 校验域容器位宽收敛 R57）；**R17 变体扩族 11 件**：TIME/TOD 族 TimeToDintMs/DintMsToTime/TimeToLrealSec/LrealSecToTime/TodToDintMs（先判后算、无上域闸论证留档）+ 精度/饱和族 DintToRealChk/UdintToRealChk/LintToDintSat/RealToLintSat/LrealToLintSat/LwordToLrealChk（2^24 与 2^53 精度告警、升位比较、TRUNC 向零、−MAX−1 计算式）；**R20 域转换补充 7 件（零检索变体线）**：无符号位串→有符号域 3（WordToIntSat 补码/饱和双出口、DwordToIntSat、LwordToLintSat，后两件接 `bRequireLossless` 无损违约反升故障级）+ UDINT→LINT 升位 **round-trip 验真** 1（UdintToLintChk）+ BCD↔BYTE 位宽补口 2（BcdToByte / ByteToBcd，补齐 R16 只做 WORD/UDINT 的缺口）+ **字节序 1**（SwapBytes64，拆半区复用 SwapBytes32 后交叉合成，字节序族至此 16/32/64 位齐备） |
+| **T0-6 字符串（500 快车道）** | ✔ | R15 收口 | R14 收 MID + R15 收 LEN/LEFT/RIGHT/CONCAT/INSERT/DELETE/FIND/REPLACE-AT 共 9 件（R15 8 件）；255 截断先置标志 R49；**R20 字符串化 2 件**：DintToStringTrim / LrealToStringTrim（前导空格修剪 + R37 四步截断样板；浮点件把 NaN/±Inf 映射成统一文本 `NaN` / `Inf+` / `Inf-`，信息级不置故障）。**终审修正**：无穷判据由近似阈值 1.79E308 改为 `(x−x)<>(x−x)` 精确判据 + LREAL 最大值兜底（R79） |
+| **T0-7 位串操作（500 快车道）** | ✔ | R14 | **已收口**：SHL/SHR/ROL/ROR 包装 4 件；移位量 MOD 归一 + 超宽常量置 0（R48/R10）；**R17 变体扩族 4 件**：LWORD 64 位域族 ShlLwordEx/ShrLwordEx（nN ≥ 64 置零）/RolLwordEx/RorLwordEx（MOD 64 归一 + 零移位直通），64 位口径与 R14 32 位口径同源；**收口警示：0208/021D/021E 与存量件撞车，R18 改判专项待执行（R61 教训）** |
+| **T0-8 同步/互斥（500 快车道）** | ✔ | R20 开组并收口 | **R20 新开行**：IEC 标准 `SEMA` 的防御性包装 `FB_DL_SemaMutex`——标准 SEMA 无超时，持锁方卡死即永久死锁产线，故本行价值在「不静默持锁」：三态机（`eFree`/`eHeld`/`eTimedOutRelease`）+ ELSE 兜底、超时**强制归还**并升故障级 0369、释放沿优先于申请沿；`TON` / 两只 `R_TRIG` 本体首部无条件周期刷新；计数饱和 036B、非法状态 036A。**本行只做互斥本体，不做任务同步（事件/信号量计数）、不做跨任务通信**——那些需 OS 级原语，违反零厂商依赖红线。后续可挖：多实例优先级继承、超时归还后的所有权审计（均需先给可独立验收粒度） |
+| T2-1 LGF · Bit Logic | ◐ R19 深化 | FB_DL_InterlockMatrix、FC_DL_WordBitPack（R9）、FC_DL_BitFieldExtract（R10）、FB_DL_StatusWordSegDecoder（R11）、FC_DL_BitArrayExtract（R12）、FC_DL_BitArrayInsert（R12）、FB_DL_BitArrayChangeWatch（R12）、FC_DL_BitArrayRotate（R13）、FC_DL_MaskCompare（R13） | 组已开但仍未挖尽（预估 18+，已出 4 项）；**R9**：+WordBitPack（多位段打包进 WORD，域校验 + 守护计数 + 序比较双闸，v1.0.1 修复 USINT 回绕绕过判界 D-09）；**R10**：+BitFieldExtract（位段提取：域校验 + `nWidth=32` 走常量掩码规避 `SHL(x,32)` 未定义行为，与 WordBitPack 构成打包-提取逆运算对）；**R11**：+StatusWordSegDecoder（**段表驱动 = 批量粒度独立层级**，非单段函数的循环调用；宽 64 段取 `DL_MASK64_ALL` 常量掩码、全程无 64 位移位；先拒后移 + 重叠段用占位掩码；组内三层「单点 / 单段 / 批量段」至此齐备）；DWORD/LWORD 数组批量位段族仍待挖；**R12 批量层收口**：三件一次补齐「读 / 写 / 监视」——Extract（跨字窗口读：起位 0~127、宽 1~64、移位量一律 `MOD 32`、宽 64 走常量掩码全程无 64 位移位、有效宽度按 `64 − 偏移 mod 32` 截断置 0127）、Insert（跨字读改写：先算掩码再读旧值、改动计数只在值真变时递增、「宁可一字不写不写半个字」）、ChangeWatch（异或 + 汉明重 + 首变位定位 `(字−1)×32+位`）；**规格勘误 E-1 实录：64 位中间量物理上只能覆盖两字，规格承诺「宽 64 跨两字」在非 32 对齐偏移下不可能实现，本库主动收窄并写进偏离段**；组内三层（单点/单段/批量段）至此齐备，LWORD 单字版与多段一次搬仍待挖；**R13 批量层扩族 2 件**：+BitArrayRotate（跨字数组循环旋转：「整字偏移 k + 字内偏移 r」双移位合成路径，方向归一负值恒右移，`SHL/SHR` 移位量结构性限制 1~31 全程无 64 位移位；总监独立验算 3000 组位守恒与参考实现逐组对拍）、+MaskCompare（带掩码比较与首差定位：判据 `(uValue XOR uExpect) AND uMaskEff` 与「掩码域相等」数学等价，位宽 32 走常量掩码分支）；位旋转与掩码比较两子族本轮收口 |
+| T2-1 LGF · Date and Timer | ◐ | FC_DL_DayOfWeekCalc、FB_DL_TimeWindowCheck、FB_DL_OccScheduleWindow、FB_DL_MonthWindowCheck（R9）、FC_DL_WeekOfYearCalc（R10）、FB_DL_YearWindowCheck（R11）、FC_DL_SolarPositionCalc（R12） | **R5 开组 / R6 深化 / R9 深化 / R10 深化 / R11 年粒度收口**：星期计算拆为独立原子 FC（ISO-8601 周一=1，与 LGF 周日=1 惯例差异已在规格声明）；每日窗判定时间由引脚注入（LGF 读 CPU 钟的反例修正）；R6 多窗排程件组合复用 4 窗实例 + 星期 FC；**R9**：+MonthWindowCheck（月度生效窗：日窗 + 月窗双闸、参数钳位照算，TimeWindowCheck 的月粒度上位件）；**R10**：+WeekOfYearCalc（ISO-8601 **周四归属法 + Zeller 同余**，无查表无浮点；跨年归属为独立语义，不与 DayOfWeekCalc 合并；算法整体替换的规格偏离已获总监采纳，O-5 要求修订规格模板）；**R11**：+YearWindowCheck（**年窗**：年内序数法 + LINT 中间量防 INT 溢出 + 闰年 4/100/400 三级判定 + 两条 WHILE 折叠带 `DL_GUARD_MAX` 守卫；跨度整周期钳位；日/周/月/年**四粒度过期已全部收口**）；天文钟族待挖；**R12 天文钟族收口**：+SolarPositionCalc（**只借参数域「本地时 + 经纬度」，公式全取 NOAA 公开傅里叶级数**（赤纬 7 项 / 均时差 5 项，公共领域）；方位角正北 0 顺时针、天顶不可辨统一置正南 180、`bSunUp` 只表几何高度角为正不做大气折射；`ASIN` 入参先 `LIMIT`、时角与方位角归一用条件加减不用 MOD）；月相与日出日落时刻表**不单独立项**（可由本件二分求解，写进 MANUAL 示例）；日/周/月/年/天文钟**五粒度全部收口**  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T2-1 LGF · Counter | ◐ | FB_DL_EventCounter、FB_DL_ModuloCounter、FB_DL_PresetCounterSat（R9）、FB_DL_BidirectionalCounter（R10）、FB_DL_RolloverCounter（R11） | **R7 开组 / R9 深化 / R10 深化 / R11 回绕族收口**：CTUD 语义域拆「通用事件计数 / 取模工位索引」两块（职责分离注释写死）；预置装载 bLoad 优先级最高 + 阈值比较每拍重算；取模回绕用条件加减法（跨平台歧义禁令留档）；**R9**：+PresetCounterSat（上/下限双预设饱和计数器，倒置冻结锁存，复位前置条件文档化——D-12 文档语义勘误留痕）；**R10**：+BidirectionalCounter（CTUD 全语义：CU/CD 双沿 + 双预设 + `bAtMax` 三律；与 PresetCounterSat「倒置冻结 vs 锁故障」策略差异已文档化）；**R11**：+RolloverCounter（**回绕型**：回绕用「比较 + 赋值」**禁用 MOD**（负数取余三平台不一致），圈数饱和 ±`DL_TURNS_MAX`，上限非法退化冻结 + 0218，0120 为信息级不置 `bError`）；INT/UDINT 变体仍待挖  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T2-1 LGF · Comparator | ◐ | FB_DL_RedundantSwitch、FB_DL_ToleranceWindow（R9）、FC_DL_LimitClassify（R9）、FC_DL_RangeOverlapCheck（R11）、FC_DL_IntervalMembership（R12）、FC_DL_ArrayDiffSummary（R12） | 组已开但远未挖尽（预估 8~10，已出 4 项）；**R9**：+ToleranceWindow（公差窗判定：目标带迟滞 + 中带豁免 + 判定方向四态）+ LimitClassify（四阈值分级器 LL/L/H/HH，纯函数判据表驱动；D-11 闭区间归属文档勘误留痕）——测量判合格与分级报警共用骨架；**R11**：+RangeOverlapCheck（**区间关系**而非单点判限：相等 → 相离 → 相接 → 包含 → 部分 五分支有序 + 兜底，重叠长度前置非负保护，无除法无循环；终审 E-01 由规格原记 DL_Base 改判 **DL_MathData**，与依赖矩阵一致）；开闭区间组合与数组批量比较族待挖；**R12 子族收口**：+IntervalMembership（开闭区间四组合做成 `E_DL_IntervalKind` 枚举成员而非布尔参数——**参数属性 → 枚举是升级**；另加 LGF 没有的 `fEps` 容差，否则浮点误差会让 `[60,80)` 在 `60.000000001` 上判出不在区间）、+ArrayDiffSummary（逐项偏差 + 首差下标 + 最大偏差及其下标；**非有限输入与非有限中间量双判据**——有限减有限仍可能溢出为无穷）；开闭区间与数组批量比较子族收口，四阈值分级之外的「区间关系」已由 R11 `RangeOverlapCheck` 覆盖  ｜**R28 回写：本轮触及（件已入库，子族未满）**| **R64 深化 +2 件**：`FC_DL_TriStateCompare`（三态比较 + `fEps` 容差 + NaN 前置闸）、`FC_DL_IntervalGapCalc`（区间间隙量），本行 ◐→◐ 深化｜**R64 回写：本轮触及（件已入库，子族未满）**|
+| T2-1 LGF · Math | ◐ R18 深化 | FC_DL_MultiPointLinear、FC_DL_PolygonArea、FC_DL_LineIntersection、FB_DL_SignalStatistics、FB_DL_PeakDetector（R8）、FB_DL_ArraySearchFirst（R9）、FC_DL_SearchMinMax（R10）、FC_DL_NthRoot（R10）、FC_DL_FactorialSat（R10）、FC_DL_CalcDistance3D（R11）、FC_DL_RandomNext（R11）、FC_DL_PercentileLReal（R11）、FC_DL_Matrix3Inverse（R13，勘误 M-E4 开族） | **R8 深化**：+PeakDetector；**R9 深化**：+ArraySearchFirst（线性首搜：返回首个命中下标 + nCount 钳位）；预估 25+ 已出 9。**R8 实测修正**：LGF 公开手册中统计/极值函数实际归在 Math 组内，并无独立的 Measurement 功能组（第 2 节按 11 组平移时把它单列的假设予以更正）；后续统计-峰值族一律在本行记账，第 2 节 Measurement 行的组件不重复登记；**R10**：+SearchMinMax（值 + 双索引同出，NaN 用 `x <> x` 判定、全量非有限不返回 0 号位）/ NthRoot（奇偶次分治 + Newton 后有限性复检、n 域 0~12）/ FactorialSat（12!/13! 饱和位——饱和与故障两种业务语义，库不替调用方选）；**R11**：+CalcDistance3D（只做 3D，**2D 判为 `fZ1 = fZ2` 退化、拒绝拆变体**；六输入有限性闸门 + 按最大分量归一化防平方溢出）/ RandomNext（种子进种子出、LCG 公开参数、零种子照常递推 + `bZeroSeed`）/ PercentileLReal（R-7 排序 + 插值口径、拷贝排序不改调用方数组、非有限样本前置剔除、末位不外插）；LGF 官方 4 个 SearchMinMax 重载中 LREAL 主线落地，DInt/UDInt 重载仍待挖；`CalcDistance_2D` 与 `Random_*` 家族本轮收口；**R13 Matrix 子族开族（勘误 M-E4）**：+Matrix3Inverse（三阶伴随矩阵解析逆 + **相对奇异判据** `|det| ≤ fDetEps×maxAbs³`——绝对判据在元素量级 ~1E-6 的微米级标定矩阵下会失守，相对判据实算确认正确拦截；总监独立验算 500 组随机 A×A⁻¹≈I 逐组对拍；v1.0.1 修头注释 V7 条件数数值勘误 B6-D1）；矩阵乘法/特征值方向不立（PLC 侧无用例，写进偏离段），仿射变换组合族待挖；**R24 仿射组合族开族 2 件**（FC_DL_Affine2DCompose / FC_DL_Affine2Apply，列向量约定 p'=M×p、MOut=M2×M1 次序为本库自有规格，clean-room 零代码行复制；仿射族仍 ◐ 非挖尽，齐次除法投影/多级链合成仍待挖） **R25 仿射族补口**：+`FC_DL_Affine2DInvert`（逆映射：2×2 伴随 + 平移列反算、奇异出全零阵不泄半逆、非有限与结果溢出双闸；第三行原样回填不参与求逆），与 R24 的 `FC_DL_Affine2DCompose` / `FC_DL_Affine2Apply` 构成**定义-应用-逆三元闭环**，仿射子族至此齐备；Math 组仍保持 ◐（**R64 订正**：极分解方向**实测已有属主**——`FC_DL_Matrix3Inverse` 解析逆 + 仿射三件闭环已覆盖该用例，不再作为待挖方向；三角方向仍待挖）|
+| T2-1 LGF · Data Handling | ◐ R18 深化 | FB_DL_LifoStack、FC_DL_QuickSortLReal、FB_DL_FifoBuffer（R9）、FC_DL_BinarySearchLReal（R9）、FC_DL_StringReplaceAll（R12）、FB_DL_StringTokenStream（R12）、FC_DL_Crc8（R13）、FC_DL_StringToLReal（R13）、FC_DL_StringFixedField（R13） | **R9 深化（累计 4 项）**：+FifoBuffer（定长 FIFO：**先弹后压**时序 + 满队丢新 + 指针一致性自愈，与 RingBufferLReal/LifoStack 数据结构三件套收口）+ BinarySearchLReal（有序数组二分：纯函数 + 守护兜底强制未命中；v1.0.1 补 uErrorId 声明——D-01 致命修复，机检「未声明标识符」拦截实证）；字符串族仍待挖；**R12 字符串族开族（2 件）**：+StringReplaceAll（全替换：模式串空硬闸先于任何 `FIND`、游标严格前进防「替换串含模式串」死循环、双闸退出＝用户次数 0131 / 串型上限 0132；**v1.0.1 修 A-D01 致命——`LEFT` 隐性回夹使截断标志恒假，本范式 R37**）、+StringTokenStream（流式分词四态：连续分隔符产空段且空段占序号、`nMaxTokens` 锁 021D、取段一律以锁存副本长度为准；**v1.0.1 修 A-D02——实时帧长与锁存副本混用切出空段，本范式 R38**）；**分类学结论：LGF 把字符串归 Data Handling（定长缓冲、无动态内存的搬运）而不归 Converter，本库沿用**；字符串转数值（带校验）与定长字段填充/对齐仍待挖；**R13 两子族收口 + 校验族 1 件**：+Crc8（CRC-8 三变体 ATM/J1850/HITAG，`"123456789"` 校验值 F4/4B/B4 与公开 CRC 目录三方一致，**无 R1 式规格向量错误**；反射型 MAXIM-DOW 不并入本枚举——反射是另一套位序算法族，留独立件；次源 T1-3 OSCAT Network 校验族，不重复记账）、+StringToLReal（逐字符状态机容错解析：符号/整数/小数/指数四段 + 终态校验拦半截输入；指数域 ±38 保护、超界夹 fMax 不出 Inf；错误位置精确到字符）、+StringFixedField（**R37 四步样板件**：LEN 一次锁存 → 宽度比较 → `bTruncated` 先于任何写入 → 按 `bAllowTrunc` 分路；裁剪段逐字符 CONCAT 路径唯一）；数值解析与定宽字段两子族本轮收口，**R64 订正（备注列，原句陈旧）**：CRC-16 反射已由 R21 `FC_DL_Crc16Generic` 收口、LWORD 累加和已由 R30 `FC_DL_ChecksumSum64` 收口，**实测 R64 已有属主**，不再列为待挖；**R64 深化 +2 件**：`FC_DL_ArrayFindValue`（首匹配 + 非有限剔除）、`FC_DL_ArraySliceCopy`（切片拷贝 + 边界钳制），本行 ◐→◐ 深化（字符串编辑距离方向待挖，R65 立项 `FC_DL_StringEditDistance`） |
+| T2-1 LGF · Converter | ◐（R22 子族级收口：数值→定宽字段） | FC_DL_HexStringToBytes、FC_DL_TempUnitConvert（R9）、FC_DL_BcdToWord（R9）、FC_DL_WordToBcd（R9）、FC_DL_IntToFixedField / FC_DL_FixedFieldToInt / FC_DL_LrealToFixedField（R22） | **R9 深化（累计 4 项）**：+TempUnitConvert（四温标互转 C/F/K/R，双向枚举 + 绝对零度守卫）+ BcdToWord/WordToBcd（BCD 双向：半字节校验 / 除基守卫 + 9999 溢出饱和；v1.0.1 改显式标准转换 USINT_TO_UINT——D-13 类型转换异构整改）；码位改判教训：两件原拟 0004 段越段撞 DL_Motion 运动轴族，终审改归 0001 段（R30 素材）；**R22 定宽数值字段编解码族 3 件**：+IntToFixedField / +FixedFieldToInt（逆运算对，round-trip 验收）/ +LrealToFixedField（固定小数位定点文本，禁 `LREAL_TO_STRING`，NaN/Inf 用 R79 精确判据拦截）；**子族级裁定：「数值→定宽字段对齐」由 R21 的「仍待挖」转 ✔ 收口**（R22 三件闭环）；`StringToDTL` 仍待挖（挂 DTL 编译债） |
+| T2-1 LGF · Signal Generators | ◐ | FB_DL_RampGenerator、FB_DL_SCurveGenerator、FB_DL_PwmDutyController、FB_DL_SineGenerator（R10）、FB_DL_SawtoothGenerator（R10） | **R4 开组**：组内粒度校准了「信号形状」切分依据（发生器归本组、限幅归 Technology）；预估 10~12 已出 3，正弦/锯齿已收口；**R10**：+Sine/Sawtooth（按「波形形状」切块并**明文禁用 `eWaveform` 枚举合并**——合并会把三套相位/占空比语义塞进一个状态机，验收向量无法独立复算；Sine 三态 + CASE 兜底、失能与频率 0 均冻结相位不归零、一拍固有延迟写入采样约定段）；频率发生族待挖（需评估与 `FB_DL_PulseGenerator` 职责）  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T2-1 LGF · Technology | ◐ | FB_DL_RateLimiter、FB_DL_FeedforwardComp、FB_DL_SmithPredictor、FB_DL_RampSoakProfile、FC_DL_CoilDiameterCalc（R10）、FB_DL_WindingTensionCtrl（R11） | **R4 开组 / R6 深化 / R8 语义借用**：LimRateOfChange 语义催生矩阵扩产补充项 RateLimiter；前馈/纯滞后补偿语义落到 FeedforwardComp 与 SmithPredictor；R6 曲线族落地 RampSoakProfile（多段程序曲线，故障码经终审裁定归独立 18xx 族段）；**R8**：`FB_DL_ElectronicGear`（传动比锁定 + 相位补偿的比例律与斜坡限斜率）与 `FB_DL_StepController`（偏差分级 + 级间迟滞 + 分级带宽切分）借本组「变化率限制 / 斜坡 / 分级」的组内切分语义，两件按主源分别记在 T1-6 与 T2-2 行，本行不重复记账；预估 12~15 已出 4，卷径已收口；**R10**：+CoilDiameterCalc（速度比法 `D = v·i/(π·n)` + `fPrevDia` 注入上次值 + 低速保护/一阶低通纪律；**层厚递推与排线执行归 `FB_DL_WindingTraverse`**，职责按「算一个值 / 做一件事」切开）；**R11**：+WindingTensionCtrl（**锥度张力族主源**：锥度乘子 → 摆辊修正 → 输出限幅三层给定链与 LGF 组内「分层给定」同构；不新增轴状态枚举，工艺态只用 `bInControl`，轴状态归运动层接口；v1.0.1 修复 2 致命 + 1 严重，见 R34/R35/R36 三范式）；锥度张力族本轮收口  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T2-1 LGF · Measurement | ◐ R18 深化 | FB_DL_MedianFilter、FB_DL_LowPassFilter、FB_DL_SecondOrderFilter、FB_DL_HighPassFilter | **R4 深化**：+LowPass/SecondOrder/HighPass 三件（累计 4 项，预估 12~15）；「滤波归测量」的组边界被本库继承；统计与峰值检测族待挖 |
+| T2-2 LBP 基础工艺 | ◐ | FB_DL_DutyStandbyRotation、I_DL_Cylinder、FB_DL_PneumaticCylinder、I_DL_MotorDriver、FB_DL_DolMotor、I_DL_TemperatureZone、FB_DL_HeatCoolZone、FB_DL_SingleSolenoidCyl、I_DL_VacuumGenerator、FB_DL_VacuumEjector、FB_DL_StarDeltaMotor、I_DL_VfdDrive、FB_DL_VfdGeneric、I_DL_ProportionalValve、FB_DL_AnalogValve、I_DL_MotorizedValve、FB_DL_ThreePointValve、FB_DL_BatchDosingControl、FB_DL_StepController（R8）、FB_DL_PressFitStation（R11）、FB_DL_EnergySavingMode（R11）、FB_DL_RollerGapAdjust（R11）、FB_DL_ValveCharacteristic（R12）、FB_DL_ReactorJacketDeltaT（R13）、FB_DL_PumpCavitationGuard（R13） | **R5 深化 / R6 阀门/驱动族 / R7 定量族深化 / R8 分级族（累计 19 项）**：R5 +Device 六件套；R6 阀门三分法 + 变频器族 + 星三角（cmd/ind 命令-反馈分离范式贯穿全族）；R7 定量（LBP_Dosing）族语义落地 BatchDosingControl——三段给料顺控 + 空中落差自学习（误差/2 防振荡）经 ISA-88 批次相语义 clean-room（双源 T2-2 + T2-8）；**R8**：CtrlStp 语义落地 StepController（偏差分级 + 双向迟滞 + 最小驻留 + 均衡轮换，累积型/单级型双拓扑）。**R8 实测修正**：LBP V2.8 实测 23 块清单中并无独立的「混合 / 定量」功能组——混合工艺改由 ISA-88 相语义承载（MixRecipeControl，见 T2-8 行），本行不再按「混合族待挖」立项；**R11 深化**：+PressFitStation（压装八态只管推进，包络与特征点判定集中在判定态一次出结论——判定段与执行段**不共享状态机**）、+EnergySavingMode（模式切换与放行门控分离）、+RollerGapAdjust（三段式工艺推进 + 背隙两阶段逼近）；三件均只借「命令 → 监视 → 判定」分层骨架与参数域，算法 / 状态机 / 码位 100% 自有；**R12 深化**：+ValveCharacteristic（**只借「阀特性属设备工艺参数而非算法分支」的组织方式**；三特性反解（线性 / 等百分比 / 快开）公式、可调比与死区钳位、三态状态机、全部码位 100% 自有；v1.0.1 修 B-D05——`eIdle` 用 `fLast := fLoTravel` 做初始化致复位当拍阀位直跳行程下限（水锤），改「保持上次阀位并夹进有效行程」，**本范式 R43**）；**R13 深化 2 件（三段分层骨架借用）**：+ReactorJacketDeltaT（**只借「命令 → 监视 → 判定」三段分层骨架**：约束层（温差触限带 0.5 K 回差锁存、冻结升温侧经限速器斜坡回 0）+ 分程层（冷热互斥出口）与控制层（串级 PID）严格分离，PID 输出引脚注入**不内联**，限速能力组合调用库内 `FB_DL_RateLimiter`——「可依赖低层，但不复制低层」；isa-88 语义次源记 T2-8 行不重复记账）、+PumpCavitationGuard（三判据同拍持续确认 + 降速相/抑制窗/监视三段状态骨架；NE107 健康语言主源记 T2-8 行，本行只记三段分层骨架借用）；两件状态机 / 码位 / 判据 100% 自有  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T2-4 Motion Control 示例 | ◐ R19 深化 | I_DL_MotionAxis、FB_DL_SingleAxis、FB_DL_AxisJogController、FB_DL_SuperimposedMove（R9）、FB_DL_WindingTensionCtrl（R11，次源） | **R5 开组**（双源 T2-4 s7-motion + T1-6 PLCopen）：PLCopen 六态状态机 clean-room 实装 + 虚拟运动学仿真/真实驱动双模；**R9 深化**：+SuperimposedMove（叠加运动语义——偏移指令经限速斜坡削顶平移后叠加在基础轴位置上，基础轴定位/点动不受影响，「叠加 vs 改目标」语义区分 + 非有限值指令拒绝保持末次有效）；工艺对象分型（Speed/Positioning/Synchronous Axis）中 ；**R10 次源**：`FB_DL_WindingTraverse` 的排线轴往复 + 端点 dwell 语义参考本行 positioning 行为，主源记 T2-1 Technology 行，本行不重复记账；SynchronousAxis 深层语义与外部编码器族待挖；**R11 次源**：`FB_DL_WindingTensionCtrl` 的「给定 → 斜坡限幅 → 闭环 → 执行机构限幅」层级与本行设定值分层同构（张力给定 = 锥度乘子 → 摆辊修正 → 输出限幅三层），主源记 T2-1 Technology 行，本行不重复记账 |
+| T2-5 Mod_PID_Control | ◐ R18 深化 | FC_DL_Deadband、FC_DL_Hysteresis、FB_DL_PidController、FB_DL_SplitRangeControl | **R4 深化**：+PidController（参数域语义：Ti/Td=0 为关闭而非非法）+SplitRangeControl；抗饱和「限幅反算」思想经 clean-room 重写落地。**参数域已取尽**，后续仅剩手自动切换手册细节，降级为低优先 |
+| T2-6 Rockwell AOI | ◐ R18 深化 | I_DL_RfidReader、FB_DL_RfidTagHandler（R10）、FB_DL_NtcTempScan（R11）、FB_DL_RollerGapAdjust（R11）、FB_DL_StatusWordSegDecoder（R11，次源）、FB_DL_AhuDamperStuckDiag（R13）、FB_DL_CapperTorqueTrend（R13） | **R10 开组**：1756-PM010 参数四分段（In/Out/InOut/Local）+ External Access 等级表 → 本库「方法 = In 段 / 只读 PROPERTY = Out 段 / 诊断结构回读 = InOut 段等价物 / 内部量 = Local 段」；ProgFault/OperFault 双类分离 → `02F0~02F1` 组态类 vs `02F2~02F3` 工艺类双码段；设计规划问题清单直接充当接口检查表；UDT 布局/命名/内部逻辑零接触（文档版权，clean-room）；设备级 AOI 粒度族（阀/电机/夹爪）待挖；**R11 深化**：+NtcTempScan（**设备级粗粒度**：1~16 路 NTC 用一块覆盖，阻值数组进 / 温度数组出 / 通道故障掩码为只读诊断出口，拒绝「每通道一实例」的碎片化）、+RollerGapAdjust（组态类码 014x 与工艺类码 030x **分段**，HMI 按类分组）、+StatusWordSegDecoder（段表结构承载设备状态字多字段）；「方法 = In 段 / 只读属性 = Out 段 / 诊断结构 = InOut 段 / 内部量 = Local」映射沿用，**未新增任何来自该源的命名**；**R13 深化 2 件（三分类诊断语义借用）**：+AhuDamperStuckDiag（借 AOI 应用示例「**每告警带确认延时**」的三分类诊断结构——全卡滞 / 过渡卡滞 / I-O 失效三类判据各带独立确认窗（`tStallTime` / 行程倍率 + 宽限 / `tIoFaultTime`），修复 A5-D1「判定拍反馈恰好无效即判 I-O 失效」绕过确认窗缺陷；NE107 健康语言主源记 T2-8 行，本行只记三分类诊断结构借用）、+CapperTorqueTrend（借「五类 NG 判据 + 主判定优先级」的设备级 AOI 判定组织方式——滑牙 > 歪盖 > 低扭 > 高扭 > 曲线异常有序主判；修复 D-C3-1 评估中故障不转故障态）；两件状态机 / 码位 / 阈值 100% 自有 |
+| T2-7 PackML / OMAC | ◐ R18 深化 | FB_DL_PackMlStateMachine、FB_DL_PackMlCmdDecoder、FB_DL_OeeCalculator、FB_DL_AndonCallSystem（R9）、FB_DL_PickAndPlaceStation（R10） | **R5 开组 / R7 深化 / R9 安灯族落地**：17 态 + 11 命令 + acting/wait 分类 + Held/Suspended OEE 根因语义逐项落地（ISA-TR88.00.02 公开规范，clean-room）；R7 OEE 统计引擎落地（oee.com / ISO 22400-2 三因子口径）；**R9**：+AndonCallSystem（OMAC 安灯语义：四级优先仲裁可抢占重锁 + 同拍多源高者胜 + 未应答解除不计入应答统计，人因链路「呼叫-应答-升级」状态机建模，与 R8 塔灯构成「人因链路安全侧豁免」家族）；；**R10**：+PickAndPlaceStation（工站级 7 态最小子集 + 执行态内九步序；**刻意不做 17 态全集**——全集已由 `FB_DL_PackMlStateMachine` 承担，避免两套全状态机冲突；v1.0.1 修复 D-01 致命：CASE 漏 `eExecute` 标签被 ELSE 兜底锁故障、工站当拍自杀）；配方切换/批次编排（ISA-88 衔接）待挖；**R11 只借态命名语义（不作主源）**：`FB_DL_RotaryIndexTable` 五态（Idle/Dwell/Indexing/Settling/Fault）与 `FB_DL_AgvDockingHandshake` 七态均取「最小子集 + 明确终止态」，**刻意不做 17 态全集**（全集职责由 `FB_DL_PackMlStateMachine` 独占，两套全状态机并存必然打架）；态编号沿用本库间隔编号惯例，与该规范官方编号无关 |
+| T2-8 ISA-88 / ISA-18.2 / NE107 | ◐ R18 深化 | FB_DL_InterlockMatrix、FB_DL_BatchDosingControl、FB_DL_MixRecipeControl（R8）、FB_DL_CipCleaningSeq（R8）、FB_DL_BatchPhaseBase（R12）、I_DL_DeviceHealth（R13）、I_DL_PowerMeter（R13）、FB_DL_ModbusPowerMeter（R13）、FB_DL_ValveStictionDetect（R13）、FB_DL_AhuDamperStuckDiag（R13）、FB_DL_PumpCavitationGuard（R13） | InterlockMatrix 采用 ISA-18.2 报警分级与确认语义；**R7 深化**：ISA-88 批次相（Phase）语义经 BatchDosingControl 落地（单料批次相状态机，相/步骤抽象的最小实证件）；**R8 深化**：+MixRecipeControl（相结构 = 前置确认→执行→终点判据→完成，交替换向三步序、扭矩终点、批次数据不进控制逻辑的分层）与 CipCleaningSeq（六相序 + TACT 联锁暂停不计时 + 回液电导率终点 + 清洁许可放行生产），相语义从「单料投加」扩展到「搅拌」与「清洗」两类工艺；完整批次模型（Procedure/Unit/Recipe）与报警管理族本体待挖；**R12 相层底座落地**：+BatchPhaseBase（**只借公开标准条款**：11 态相状态集合 + 「暂停在步骤边界生效」「恢复不重头」两条语义；五级命令优先且**低优先直接丢弃不排队**——排队会让操作员的「停止」在几拍后突然生效；相净运行时间只在执行相累加；v1.0.1 修 B-D01 致命——单步超时被实现成相内累计，**本范式 R40**；不声明「符合 ISA-88 认证」，只写「采用公开相状态模型」）；Procedure/Unit/Recipe 三层编排**明确不立**（须先给与既有 `RecipeManager` / `BatchPhaseBase` 的职责边界表，见 RAW_NOTES_R12 §4 Q5）；**R13 NE107 健康语言落地 6 件（本行最大单轮扩族）**：+I_DL_DeviceHealth（NE107 六态 `eFailure/eCheckFunction/eMaintenanceReq/eOutOfSpec/eOk/eUnknown` 做成同文件枚举契约，**编号即仲裁优先级**且与图标序刻意不同——全库唯一属主，10 属性 + 2 方法三段式）、+I_DL_PowerMeter（12 属性 + 3 方法电表契约，健康出口只引用 A1 类型不重复声明；forge-devicereader 标签表「读-比-判」语义复用，不另记账）、+FB_DL_ModbusPowerMeter（NE107 状态机承载电表：5 态含 `eDegraded` 往返可达，`E_DL_PowerMeterState` 复用不重造；modbus-meter 标签表寄存器拼装语义复用，不另记账）、+FB_DL_ValveStictionDetect（**黏滞是退化不是失效**——`eSlight/eModerate → eMaintenanceReq`、`eSevere → eOutOfSpec`，故障仅来自参数非法，等级→健康映射写死头注释）、+FB_DL_AhuDamperStuckDiag（0323「故障带码不置 bError」裁定留痕：仍能调节 ≠ 不可继续运行；三分类诊断结构次源记 T2-6 行）、+FB_DL_PumpCavitationGuard（汽蚀确认 = 健康仲裁的 eFailure 侧，`bError` 置位源必须能在 `uErrorId` 找到对应码〔新规则候选 R45〕；三段分层骨架次源记 T2-2 行）；六件共用 `E_DL_Ne107Status` 唯一属主，实现块只引用不重复声明；NE107 实现块仲裁件（多源健康聚合）待挖 |
+| NAMUR NE43 模拟量故障电平 | ◐ | I_DL_AnalogSensor、FB_DL_AnalogTransmitter、FB_DL_EnergyMeterAccum（R12）、FB_DL_VacuumGaugeMux（R12） | **R5 开组**：四段电平域（断线/欠量程/有效/超量程）+ 0 mA 开路 + 断线方向可配置 + 原始域诊断不重标定，全部落地为 Device 信号质量契约；热电偶断偶安全方向经 FB_DL_HeatCoolZone eBreakAction 消费；**R12 扩族 2 件**：+EnergyMeterAccum（「原始值域诊断与工程量分离」原则落地为「32 位拼装 + 单调性判据 + 换表识别＝累计值回退即重载基准（**按累计值比例而非满量程比例**，规格 E-05 原式差两个数量级）+ 窗口需量」；v1.0.1 修 B-D03 暂停恢复后剩余窗基准错位）、+VacuumGaugeMux（NE43 多段有效域契约 + OSCAT 域外行为显式化写法：双表十倍程交叉校验、迟滞切换、融合发布前**本拍复验取值表可用性**；v1.0.1 修 B-D02 致命——跨相失效把 0 Pa 写进联锁，**本范式 R42**） |
+| T1-1 OSCAT Basic | ◐ | 定时/信号发生/位操作若干、FC_DL_QuickSortLReal、FB_DL_Integrator、FB_DL_Differentiator、FC_DL_DewPointCalc、FC_DL_FlowCompensate | **R4 深化**：+Integrator（FT_INT2 双精度累加思想）/Differentiator/DewPointCalc（Magnus-Tetens 行为定义）/FlowCompensate（理想气体换算惯例）；反作用增益惯例与「MODE 巨无霸块反面教材」继续作为对照系  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T1-2 OSCAT Building | ◐ | FC_DL_HumidAirEnthalpy、FB_DL_EnthalpyCompareCtrl、FC_DL_AirDensity（R10）、FB_DL_NtcTempScan（R11，次源）、FC_DL_WaterEnthalpy（R12）、FB_DL_FoulingResistanceEstimator（R13） | **R5 开组 / R6 深化**：仅取 AIR_ENTHALPY 行为定义与 PsychroLib 公开物理公式链（Magnus-Tetens，与 FC_DL_DewPointCalc 常量口径复用），EPL-2.0 合规；R6 焓差经济器执行块落地（ASHRAE 90.1 差分焓值判据 + 最小新风位硬下限 + 高限停机，公开语义 clean-room）；**R10**：+AirDensity（AIR_DENSITY 行为定义落地：T[°C]/P[Pa]/RH[%] → kg/m³，Magnus-Tetens + 分压叠加公开公式，引脚名自有；精度承诺主动收窄至 -10~50 °C，域外标趋势参考）；DEW_TEMP 需先评估与 `FC_DL_DewPointCalc` 职责重叠，WATER_ENTHALPY 族待挖；**R11 次源（行为定义写法）**：`FB_DL_NtcTempScan` 借 OSCAT 式「域外行为显式化」——断线 / 短路通道**保持上次温度**并在通道掩码里标出（0 ℃ 在锂电烘箱是合法工况值，用伪值填充会掩盖故障），参数非法回退默认并置 0304；**未复制任何函数体、函数名与常量名**，B 值方程（`1/T = 1/T0 + ln(R/R0)/B`）为公开物理公式、实现与常量自有；**R12 收口**：+WaterEnthalpy（**只取 `WATER_ENTHALPY` 的行为定义**：输入温度 / 输出比焓 / 0 °C 基准；三点比热拟合多项式、精度承诺、零度点除法保护区码 2102 全部自有；**同一份行为定义生出完全不同的实现，让「借鉴」与「复制」在证据上可区分**）；`DEW_TEMP` 已由 `FC_DL_DewPointCalc` 覆盖不另立；WATER_ENTHALPY 族收口；**R13 深化 1 件（换热健康线）**：+FoulingResistanceEstimator（**只取「按行为定义逐件落地、公式全部取公开物理/工程手册」的组纪律**：污垢热阻 Rf = 1/K − 1/K₀ 经 Q = ṁ·c·ΔT 量纲链复核对齐 kW；LMTD 等端差退化算术平均、温度交叉置 0；heat-transfer 双源标注〔工程传热手册 K = 1/(1/h₁ + Rf + 1/h₂) 公开骨架 clean-room〕；自学习参考流量为本库自有偏离，已留档采纳）；ROOM_CONTROL / 焓湿图全参族待挖（须先拆到可独立验收粒度） **R25 ROOM_CONTROL 子族开族 2 件**：`FB_DL_DewpointReset`（露点重置冷冻水供水设定：只取 ROOM_CONTROL 的「露点 + 余量 → 供水设定」行为定义，Magnus-Tetens 常数仍唯一属主 `FC_DL_VaporPressureSat`，本件只调用不复制）+ `FB_DL_RoomClimateCtrl`（温湿双回路分程 + 防结露联锁 + 冷侧优先互斥仲裁：借行为定义/参数域，零代码行与符号名复制）；子族状态 ◐（`ROOM_CONTROL` 已开族未挖尽：变风量耦合前馈、夜间吹扫、焓值优先切换仍待挖）；焓湿图全参族仍待挖  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+| T1-3 OSCAT Network | ◐→**✔ R22 收口（总监签字）** | FC_DL_Crc16Modbus、FC_DL_Crc32Ethernet、FC_DL_LrcChecksum、FC_DL_ModbusExceptionParse（R12）、FC_DL_ModbusRtuFrameCheck（R19） | R3 追加 Crc32/Lrc；诊断帧解析族待挖；**R12 开组（诊断帧解析族）**：+ModbusExceptionParse（**只借「协议帧解析 / CRC / 诊断在库里独立成族」的分类事实**；功能码 bit7 判异常帧 → 取低 7 位原功能码 → 查 01/02/03/04/05/06/08/0A/0B 语义（**公开规范条款**）→ 中文名 + 严重度 + 可重试性三出口，**分级判据本库自有**（01/02/03 与 0B 归 eFault，其余 eWarn 可重试）——规范只给「码的含义」，不给「该怎么办」）；「RTU 帧长度/字节数一致性校验」「ASCII 帧 LRC 定位」仍待挖，状态维持 ◐；**R22 收口裁定（总监签字，M-E5 口径：整组挖尽 + 不再挖理由段）**：①「RTU 帧长/字节数一致性」已由 R19 `FC_DL_ModbusRtuFrameCheck` 收口（头注释四路互校实测）；②「ASCII 帧 LRC 定位」经 R22 判定为**薄件不立**（定界符 + 十六进制字符域两行判据，`LRC` 已由 `FC_DL_LrcChecksum` 占位，独立成件属框架解析薄件，理由见 `RAW_NOTES_R22.md` §3.2）；两条待挖项均已闭环，本行 **◐→✔** |
+| T1-6 PLCopen Motion | ◐ R18 深化 | FB_DL_AxisHomingSeq、FB_DL_AxisRelativeMove、FB_DL_AxisVelocityMove、FB_DL_SoftLimitGuard、FB_DL_ElectronicGear（R8）、FB_DL_ElectronicCam（R8）、FB_DL_GantrySyncAxis（R8）、FB_DL_TorqueLimitControl（R8）、FB_DL_MarkPositionLatch（R8）、FC_DL_CalcMoveTime（R8）、FB_DL_WindingTensionCtrl（R11 次源）、FB_DL_PassiveHomingMonitor（R13） | **R6 开组 / R7 深化 / R8 深化 (+6 件，累计 10 项)**（双源 T1-6 PLCopen + T2-4 s7-motion）：回零模式取「方向 × 信号源 × 终点」组合矩阵中的四种高频模式（限位开关/原点开关/Z 相/扭矩堵转，模式编号不用厂商数值），逼近-回退-再逼近-标定公开时序 clean-room；相对定位/速度模式封装 MoveRelative/MoveVelocity 语义；R7 软限位/Safety-limited 公开语义落地 SoftLimitGuard——制动距离预判含时延项 + 方向性恢复豁免（提取点①②）；**R8 开族**：MC_GearIn/MC_GearInPos 语义→ElectronicGear（整数传动比对 + 相位比例补偿 + 指令重发去抖）、CamIn/CamTableSelect 语义→ElectronicCam（表单调性校验在耦合沿一次完成 + 相位归一化用条件加减避负数取模）、双驱偏差两级监视→GantrySyncAxis、转矩限幅/固定停止点→TorqueLimitControl（达限三源或归并 + 达限瞬间位置锁存）、注册标记/探针锁存→MarkPositionLatch（同拍单次读写 + 定长历史前移）、梯形/三角曲线耗时估算→CalcMoveTime（纯函数，临界距离三角退化显式判）；被动回零（外力移动轴监听参考事件）留扩产，电子齿轮/凸轮/多轴同步族已于 R8 清零；**R11 次源（纪律借用，不重复记账）**：`FB_DL_WindingTensionCtrl` 只借「轴状态只由运动层拥有」一条纪律——工艺态只用 `bInControl` 表达，**不新增任何轴状态枚举**、不消费轴状态，避免两套状态机并存（R31 家族高危区）；锥度张力件主源记 T2-1 Technology 行；**R13 被动回零收口（R8 留扩产项落地）**：+PassiveHomingMonitor（**不自造轴状态、不定义轴状态枚举、不发运动指令**——只消费实时位置/速度快照与上层参考事件，方向反转 + 位置超容差双判据一致性计数；事件受理串 `bEnable AND NOT _bFaultCond` 防脏值直达 `bReferenced` 保持位；v1.0.1 修复 D-C2-1 故障拍零化快照仍被采信）；主动回零四模式 / 电子齿轮 / 凸轮 / 多轴同步族已清口，被动回零至此收口，外部编码器/凸轮动态修调待挖 |
+| 半导体 ESC 自研（工艺专家 clean-room） | ◐ | FB_DL_EscHeLeakCheck（R13）、FB_DL_ChamberSeasoningTrack（R13） | **R13 开线（2 件）**：本行无外部开源源可挖，全部来自半导体设备工艺专家口述需求 clean-room 自研，只借公开规范条款——+EscHeLeakCheck（ESC 氦背冷泄漏率三段判据：升压/稳压/测量各一 TON 实例逐段断输入〔R40 家族最高密度核对件〕；稳压延长窗独立裁决修复 D-C4-1 中高缺陷；温漂修正带温差门限与系数钳位）、+ChamberSeasoningTrack（腔体 seasoning 片数 ∧ 时长双判据放行 + 累计制工艺时长台账 + 连续越窗降级；isa-88 配方键与放行语义只借公开条款记 T2-8 行）；ESC 静电吸附电流监视 / 腔体颗粒计数族待挖（同口径自研，须先拆可验收粒度） |
+| T1-5 TcOpen（Beckhoff） | ◐ | I_DL_BarcodeScanner、FB_DL_SerialScanner、I_DL_SafetyDoor、FB_DL_GuardLockDoor、I_DL_LightCurtain、FB_DL_SafetyLightCurtain、I_DL_FlowMeter、FB_DL_PulseFlowMeter、I_DL_LevelSwitch、FB_DL_LevelSwitchVib、I_DL_TowerLight（R8）、FB_DL_SignalTower（R8） | **R7 开组 / R8 深化（累计 12 项）**：TcOpen 组件接口分层思想（契约/实现分离 + PROPERTY/METHOD 三段式）与命令-应答握手范式 × 五类设备 = 十件套（Apache-2.0 公开资料，仅借鉴分层思想与握手语义域，枚举编号/方法签名/状态机 100% 本库自有 clean-room）；**R8 补记**：`I_DL_TowerLight` / `FB_DL_SignalTower`（stack-light 分层惯例，安全事件不受消音约束为自有加严）——R7 收口线漏记，总监授权于 R8 补记本行；；**R10 范式复用**：`I_DL_RfidReader` / `FB_DL_RfidTagHandler` 沿本行契约-实现四件套（接口/实现分离 + 只读属性 + 单发方法 + 命令-应答握手）组织，主源记 T2-6 行，本行**不重复记账**；轴对象/组件树组织待挖 |
+| T1-4 CODESYS Forge | ◐ | FB_DL_RecipeManager（R8）、FB_DL_ModbusPollMaster（R9）、FB_DL_DeviceParamVerify（R12） | **R8 开组 / R9 深化（累计 2 项）**：CODESYS Forge / Store 公开免费示例——配方管理件借鉴「配方名 / 启用位 / 参数值集 / 校验和」组织分类与「校验→应用→复核」相语义；**R9**：ModbusFB 族调度语义落地 FB_DL_ModbusPollMaster（调度与传输分层：DoTransaction/SendFrame/RecvFrame 三抽象桩派生覆盖，换 RTU/TCP 调度层零改动；重试耗尽记账不停摆；响应超时须大于最慢从站等现场纪律随头注释发布）；**许可说明：所据示例页面未显式声明许可条款，按最严口径处置——只借结构与参数域，零代码行复制**，结构体字段、状态机、码位（16#0005_01xx / 02xx）、引脚契约 100% 本库独立设计；DeviceReader / SysFile 族待挖；**R12 深化**：+DeviceParamVerify（**示例页面未声明许可 → 按最严口径只借「设备参数读出 → 与工程组态比对 → 差异报告」三段流程骨架与参数域，零代码行、零注释引用**；六态状态机、逐项容差、结论锁存、超时全部自有；v1.0.1 修 B-D06——信息码只在复位沿清除致 014E 永久驻留压住 014D/014F，**本范式 R44**）；`SysFile` 族**不立**（需文件系统访问，违反零厂商依赖红线） |
+| T1-7 PLCnext Community | ◐ | FB_DL_AxiolineDiagLatch、FB_DL_PdiReadScheduler（R10）、FB_DL_PortDiagAggregator（R11）、FB_DL_PortDiagBoard（R12，库内复用不重复记账） | **R10 开组（一次实测降级 + 一次语义证伪）**：Q2 确认 PLCnext GitHub 以 C++/C# 示例为主、ST 原生库稀少 → 提取点由「抄 ST 组件」降级为「借官方公开的诊断寄存器位语义 + PDI 参数域 + RSC 无环通信纪律」；**Q5 证伪**：PDI = Parameters / Diagnostics / Information，**并非 OPC UA 式质量码**，原「质量码聚合器」立项当场撤销（RAW_NOTES_R10 Q5，须防下轮重复立项）；位序用自有 `DL_BIT_*` 常量 + IO 映射表落地、不绑定厂商系统变量名（引脚注入 `uStatusWord/uErrCode/uErrSlot`）；位语义 PF/PW/BUS/RUN/ACT/RDY/SYSFAIL、错误槽号从 1 起、**128 特例不得伪装成 128 号槽**；PROFINET 诊断（PN_ALARM_DIAG 语义）族待挖；**R11 深化**：+PortDiagAggregator（**port-based 诊断族落地**：端口号 / 链路状态 / 端口诊断码 / 错误计数四元组 → 故障掩码 + 首出端口 + 首出码 + 窗口差分错误风暴；首出三律（仅未锁存时仲裁 / 同拍取端口号最小 / 复位在仲裁之后故复位当拍首出即空）；回绕差分按归零处理；风暴单拍不进 `bError`；端口数超上限钳 8 只出信息级 0140；端口状态一律引脚注入、零厂商系统变量名）；模块级 / 端口级 / 参数对象读取**三层数据源分账完毕**；**R12 复用**：`FB_DL_PortDiagBoard` 只做「多实例分组 + Top3 稳定排序 + 越界端口逐位清零」，端口四元组语义完全复用库内 `FB_DL_PortDiagAggregator`（同库资产复用即合规），本源不重复记账；PROFINET 诊断（PN_ALARM_DIAG 语义）族仍待挖 |
+| T1-8 GitHub topics | ◐ | I_DL_StepperOpenLoop（R9）、FB_DL_PulseDirStepper（R9）、FC_DL_RandomNext（R11）、FB_DL_LineInterp2Axis（R12） | **R9 开组（stepper 线）**：GitHub `iec-61131-3` / `structured-text` / `stepper` topics 开源库横向调研——开环步进「契约-实现对」双件落地（`I_DL_StepperOpenLoop` 七态接口 + `FB_DL_PulseDirStepper` 梯形加减速短行程退化三角型 + 堵转理论耗时 × 1.5 判据）；差异化价值：主流开源 stepper 库普遍缺失「减速残差第二出口」，本库 v1.0.1 补「频率归零即收尾」（D-02 致命修复）；许可逐仓核验（MIT/Apache-2.0 优先），仅借语义域，实现 100% clean-room；**R11**：+RandomNext（借社区 PRNG 的**两种形态之辨**——带内部状态的 FB 形态 vs **无状态纯函数**「种子进 / 新种子出」，本库取后者：无实例内存才能做到同种子同序列的确定性回放，FB 形态在多处调用时状态会串；乘子 / 增量取 Numerical Recipes 公开经典参数，零种子保护与半开区间后置守卫为本库自有加严）；其余 topics（motion、packml、modbus）逐线开组待挖；**R12 motion 线开组**：+LineInterp2Axis（多份开源两轴插补实现交叉印证出同一形态——单位向量分解 → 合成速度按单轴上限折算 → 梯形/三角自适应，**判为「社区共识写法」而非某一家独有**，可安全借结构；速度剖面、临界判据（两侧加速距离和**恰等于**路径长时判梯形）、暂停策略、8 态枚举与全部码位自有；v1.0.1 修 B-D04 恢复首拍速度阶跃，**本范式 R41**）；**packml 线（已有 17 态全集件）与 modbus 线（已有 `ModbusPollMaster`）判定为已覆盖，不再开组**；各仓许可未逐条复核，按最严口径只借结构  ｜**R28 回写：本轮触及（件已入库，子族未满）**|
+
+### 5.1 R12 实测勘误（矩阵自身记录的三处错漏，本轮就地更正）
+
+| 编号 | 位置 | 原文 | 实测问题 | 更正 |
+|---|---|---|---|---|
+| M-E1 | 第 1 节 T2-2 行 vs 第 5 节 R8 备注 | T2-2 记 **LBP V2.7**，R8 备注记 **LBP V2.8**（「实测 23 块清单」） | 同一源两处版次口径不一致；本轮离线未能复核版次锚点 | 统一表述为「**以最新实测版次为准（R8 实测为 V2.8，V2.7 为早期记载）**」；后续引用只写「LBP 基础工艺库」并注明「版次以实测为准」，**不再以版次号作为分类结论的依据**（分类与分层多年稳定，与版次无关） |
+| M-E2 | 第 5 节 T1-8 行末 | 「其余 topics（motion、packml、modbus）逐线开组待挖」 | **packml 线**已由 `FB_DL_PackMlStateMachine`（17 态全集）+ 五件工站最小子集覆盖；**modbus 线**已由 `FB_DL_ModbusPollMaster` + R12 `ModbusExceptionParse` 覆盖 | 改为「motion 线已开组（R12）；packml / modbus 两线**判定为已覆盖，不再开组**」，避免下轮为「逐线开组」而造重复件 |
+| M-E3 | 第 5 节 T1-4 行末 | 「DeviceReader / SysFile 族待挖」 | `SysFile` 需文件系统访问，与「零厂商专有库、仅 Standard.library」红线直接冲突 | 改为「`SysFile` 族**不立**（违反零厂商依赖红线）；DeviceReader 族已由 `DeviceParamVerify` 落地上半段（读-比-判），下半段（参数写回）需判「写回属设备层还是工艺层」后再议」 |
+| M-E4 | 第 5 节 T2-1 LGF · Math 行 | 历次备注从未登记矩阵（Matrix）方向，产出清单亦无矩阵件，易被误读为「本组不含矩阵族」 | R13 以 `FC_DL_Matrix3Inverse` 开出 **Matrix 子族**（伴随解析逆 + 相对奇异判据，总监独立验算 500 组 A×A⁻¹≈I 对拍），实勘确认 LGF 分类体系中矩阵运算归 Math 组 | 本行产出清单补记 `FC_DL_Matrix3Inverse（R13，勘误 M-E4 开族）`；矩阵乘法 / 特征值方向**明确不立**（PLC 侧无用例），仿射变换组合族待挖；后续矩阵族组件一律在本行记账 |
+| M-E5 | 第 5 节台账 T0 行与 T2-1 / T1-x 行 | R20 派单要求「T0 对应台账行 ◐→✔ 回写（日历/时间族、BCD 补充、字节序、SEMA/同步族）」 | 实测：R20 二十件全为 **T0 快车道零检索件**（IEC 标准语义 clean-room 包装），零 LGF / OSCAT / TcOpen 源输入；且台账中原本**不存在 SEMA/同步行**，日历/时间族的 ◐ 行属于 T2-1 LGF（该组仍有在挖项） | **裁定**：① T2-1 / T1-x 各行状态列**一律不动**（零检索轮改 ✔ 即虚账，R85）；② R20 登记改为回写 T0-2 / T0-5 / T0-6 三行备注 + **新增 T0-8 同步/互斥行**（R20 开组并收口）；③ 后续凡「派单指定回写行」与实际源不符，一律按本裁定处理并在本表留痕 |
+
+> 另记一条**方法论勘误**（不属矩阵文字错，属使用口径）：本轮 T1-3 的「诊断帧解析族待挖」是一个**过粗的待挖描述**——它把「异常帧语义解析」（本轮可落地）与「帧长度/字节数一致性校验、ASCII 帧 LRC 定位」（需帧边界状态机）混在一个格里，导致立项时无法判断「挖到什么程度算收口」。**自 R13 起，第 5 节的「待挖」描述必须拆到可独立验收的粒度**，否则该行不予立项。
+
+---
+
+> **R21 一行**：本轮 20 件跨 **T0 变体线（自研线）+ T2-1 LGF 三个子族 + NE107 语义次源**——T0 变体线 5（数学安全原子：ModPos / DivLrealSafe / QuantizeStep / PolyEvalHorner / WrapAngleDeg）｜**T2-1 LGF Bit Logic 深化 3 件**（LWORD 64 位域 Extract/Insert/BitCount，补齐 R12 批量位段的「单字 64 位」缺口）｜**T2-1 LGF Data Handling 深化 3 件**（Crc16Generic 参数化 CRC-16 / ChecksumSum8 / ArraySumLreal）｜**T2-1 LGF Converter 深化 2 件**（DwordToHexString / DateToIsoString，后者只借「日期→定宽文本」行为定义，算法取 Hinnant 公有领域）｜T0-6 字符串变体 2 件（StringToDint 整数族缺口 / TimeToHmsString）｜T2-8 NE107 语义次源 0 件（本轮无设备健康件，如实记 0，不虚账——R85）｜守卫 FB 族 5 件按自研线（原始语义来自 GB/T 与工程惯例，非某具体源）记账。**状态列结论**：T2-1 Bit Logic / Data Handling / Converter 三行均标 **◐ 深化**，无 ☐→◐ 开组、无整行 ◐→✔ 收口；**子族级**判定：「CRC-16 反射」与「LWORD 累加和」两个子族由「尚余待挖」转 **✔ 收口**（本轮 Crc16Generic 覆盖反射型、ChecksumSum8 覆盖 LWORD 累加和），其余子族（LWORD 多段一次搬、数值→定宽字段对齐）仍为 ◐。
+
+> **R22 一行**：本轮 20 件跨 **T2-1 LGF 子族 3 + T0 变体线 2 + T2 次源 8 + T1 次源 6 + 自研主源 1**（逐件账目见 `ROUND_PLAN_R22.md` §1.2），2 次检索（PLCopen BUFFERMODE 全集核对 + 疏水阀温差判据区间核对），**零代码行入库**。按 `RAW_NOTES_R22.md` §4 的 15 条回写建议执行（M-E5：T0 行与 T2/T1 行状态列不动，只回写备注；仅 T1-3 与 T2-1 Converter 两个「可判定收口」项经总监签字改状态列）：
+
+| 矩阵行 | R22 回写动作 | 备注（追加，不改既有文字） |
+|---|---|---|
+| T0-2 定时器 | 备注追加（状态列不动） | R22 变体线扩族 1 件：`FB_DL_FrequencyMeasure`（门时计数测频：TON 门 + R_TRIG 计数，低频死区与 ±1/tGateTime 不确定度显式声明）；**测 ≠ 生**——R21 判「LGF Frequency 发生器不立」不覆盖测量侧 |
+| T0-7 位串操作 | 备注追加（状态列不动） | R22 变体线扩族 1 件：`FC_DL_FirstSetBit`（位串族第四轴「搜索」：低位/高位优先 + 8/16/32/64 有效位宽 + 常量掩码避 `SHL(x,64)`）；族内轴线现为 读/写/统计/提取/批量/旋转/掩码比较/**搜索** 八条 |
+| T2-1 LGF · Converter | 备注追加；子族级由「待挖」转 **✔ 收口**（已签字，见上方台账行） | R22 定宽数值字段编解码族 3 件（IntToFixedField / FixedFieldToInt / LrealToFixedField）；「数值→定宽字段对齐」子族 ✔ 收口；`StringToDTL` 仍待挖（挂编译债） |
+| T2-1 LGF · Data Handling | 备注追加（**不重复记账**） | R22 定宽字段族主源记 Converter 行，本行不重复记账（同 LGF 组内交叉语义只记一次，R12 先例） |
+| T2-1 LGF · Technology | 备注追加（次源） | R22 次源 1 件：`CompressorSurgeGuard` 借「变化率限幅」语义（快开慢关非对称斜率），组合调用 `FB_DL_RateLimiter`；主源记自研线，本行不重复记账 |
+| T1-6 PLCopen Motion | 备注追加（◐ 深化，次源 4 件） | R22 轴侧安全层开层 4 件：`AxisBrakeSeq`（MC_Power 使能时序纪律）/ `MotionCmdQueue`（MC_BUFFERMODE 的 Buffered 语义，Blending 系列明确不立）/ `CamTableValidate`（CamTableSelect 前置校验事实）/ `AxisInPosMonitor`（InPosition/Standstill 输出语义）；四件均为次源（借语义不借实现），主源分别记 T2-4 / 自研 |
+| T2-4 S7 Motion | 备注追加（次源 2 件） | R22 次源 2 件：`AxisBrakeSeq`（工艺对象使能/禁用外部接口组织）、`VirtualMasterAxis`（SynchronousAxis 主值源分型）；主源不重复记账 |
+| T2-5 Mod_PID_Control | 备注追加（次源 3 件） | R22 次源 3 件（CrossLimitSelect / ExcessAirTrim / ColumnDpCtrl）只借「死区 + 抗饱和 + 双侧钳位」参数域组织；**参数域已被取尽**的结论不变，本轮无新参数面引入 |
+| T2-7 PackML / OMAC | 备注追加（次源 1 件） | R22 次源 1 件：`InertPurgeSeq` 只借「最小子集 + 明确终止态」命名组织，不作主源；17 态全集属主仍为 `FB_DL_PackMlStateMachine` |
+| T2-8 ISA-88 / ISA-18.2 / NE107 | 备注追加（次源 3 件） | R22 次源 3 件：`SlitValveInterlock`（互锁语义组织）、`PressureReliefMonitor`（NE107 判据原子，引用唯一属主 `E_DL_Ne107Status`）、`BatchTransferSeq`（公开相/步骤语义）；三件状态机/码位/判据 100 % 自有 |
+| T1-1 OSCAT Basic | 备注追加（次源 1 件） | R22 次源 1 件：`SteamTrapMonitor` 借「域外行为显式化」写法纪律（冷态冻结判定而非塞伪值），未复制任何函数体/函数名/常量名 |
+| T1-2 OSCAT Building | 备注追加（次源 1 件） | R22 次源 1 件：`LevelRadarValidate` 借同一纪律（域外保持上次有效值 + 掩码标出）；与 R11 `NtcTempScan` 同口径 **R25 ROOM_CONTROL 子族开族 2 件**：`FB_DL_DewpointReset`（露点重置冷冻水供水设定：只取 ROOM_CONTROL 的「露点 + 余量 → 供水设定」行为定义，Magnus-Tetens 常数仍唯一属主 `FC_DL_VaporPressureSat`，本件只调用不复制）+ `FB_DL_RoomClimateCtrl`（温湿双回路分程 + 防结露联锁 + 冷侧优先互斥仲裁：借行为定义/参数域，零代码行与符号名复制）；子族状态 ◐（`ROOM_CONTROL` 已开族未挖尽：变风量耦合前馈、夜间吹扫、焓值优先切换仍待挖）；焓湿图全参族仍待挖 |
+| 半导体 ESC 自研线 | 备注追加（深化 1 件） | R22 深化 1 件：`SlitValveInterlock`（真空侧多门互斥 + 机械臂在位联锁，保守侧默认：反馈矛盾按门未关、真空非法按不足）；ESC 电流/颗粒族仍待挖 |
+| T1-3 OSCAT Network | **◐→✔ 收口（总监签字）** | 已在上方台账行落地——RTU 帧校验由 R19 收口、ASCII 帧 LRC 判薄件不立，两条待挖项均闭环 |
+| T2-1 LGF · Bit Logic | **不动** | R22 的 `FirstSetBit` 属 T0 零检索变体线，按 M-E5 不得记入 LGF 行（否则虚账）；「LWORD 多段一次搬」已由 R18 `FC_DL_BitSegmentBlockMove` 覆盖，R22 不重复立项 |
+
+> **R22 码位游标勘误**：四段交接值同向「+1」偏差（0001 信息 045A→实测 045B、0003 信息 0170→0171、0004 信息 01D3→01D4、0005 信息 01D8→01D9），成因推断为「交接值取自上轮规划游标而非收口后实测游标」。处置：**轮次交接一律给「收口后实测游标」并标注实测脚本**，派单前仍须当场复测（R61 铁律延续）。R22 收口后游标：0001 信息 `0466` / 故障 `03B7`；0002 下一 CC `2D`；0003 信息 `017A` / 故障 `0348`；0004 信息 `01DF` / 故障 `02F9`；0005 信息 `01E2` / 故障 `0317`。
+
+> **R27 一行**：本轮 20 件全部取自 ROADMAP 未勾条目与 §24.1 欠账，**WebSearch 0 次**（复用矩阵既有条目 + 公开标准语义，逐件账目见 `RAW_NOTES_R27.md`），零外部仓库抓取、零代码行复制。T2/T1 状态列均不动（全部为既有 ◐ 组深化，无 ☐→◐ 开组）：T2-7 PackML 深化 2 件（VffsBagLength / MachineGuardAudit，clean-room Holding/Held 语义）；T2-8 ISA-88/SEMI 深化 2 件（SealIntegrityMonitor / LoadPortSeq）；T1-2 OSCAT Building 深化 2 件（FrostProtectFreeze / PumpChangeoverSeq）；T1-5 TcOpen 深化 2 件（FanArrayStageCtrl / DateCoderSync）；T1-6 PLCopen 深化 1 件（StringCutAlign）；T1-8 GitHub topics 深化 1 件（StepperZLiftMicron）；T0/自研线 10 件（OrificeFlowCalc / WaferCountYield / GasFlowSqrt / AirDensityFanPower / LoopWaveInject / MfcFlowCtrl / UnwinderDiameterCalc / FillWeightCtrl / CartonErectSeq / SplicerAutoJoint §24.1 收口）。
+
+> **R30 一行**：本轮 20 件全部取自 ROADMAP 行业池空位（半导体阀岛/包装称重/光伏锂电/暖通水系统）+ 源矩阵既有 ◐ 行「待挖」子项 2 件（`FC_DL_ChecksumSum64` 收口「校验族 LWORD 累加和」、`FC_DL_BitArraySegCopy` 收口「DWORD/LWORD 多段一次搬」）+ R29 返修件 1 件（`FB_DL_AhuFilterDpBank`），**WebSearch 0 次**（零检索轮，逐件账目见 `RAW_NOTES_R30.md`）；零外部仓库抓取、零代码行复制；T1/T2 状态列均不动（全部为既有 ◐ 组深化，无 ☐→◐ 开组）。
+
+> **R31 一行**：本轮 19 件——T1-6 外部编码器族开族 2 件（`I_DL_ExternalEncoder` / `FB_DL_ExternalEncoderLatch`，Motion）；T2-8 NE107 深化（PnAlarmDiagParse 等诊断族）；LGF Math 借鉴 1 件（`FC_DL_PolarTransform2D`，clean-room）；其余 15 件自研线（行业池空位 + §24 欠账），**WebSearch 0 次**，零外部仓库抓取、零代码行复制；T1/T2 状态列均不动。
+
+## 6 与现有体系的接口
+
+- **ROADMAP.md**：本文件第 2 节的组别展开结果，直接作为 ROADMAP 补充条目的来源（每轮至少补 30 条，优先从"待挖掘"组展开）。
+- **INDEX_REGISTRY.json**：入库组件的 `function_tags` 中必须包含其来源组标签（如 `lgf-bitlogic`、`lbp-basic-process`），便于后续按源统计覆盖率。
+- **AGENT_EVOLUTION_LOG.md**：每轮记录本轮借鉴心得（例如「西门子把 XX 拆成 A/B 两个块而 OSCAT 合成一个，前者更适合现场调试」）。
+
+---
+
+> **R32 一行**：本轮 20 件分布 = DL_MathData 9（T0 纯函数快车道：字符串/十六进制/位串/日历/安全算术）+ DL_Process 11（行业池：暖通公用 6 / 半导体 1 / 锂电 2 / 包装 1 / 热处理 1）。
+> **WebSearch 0/3（零检索轮）**：全部由 T0 规范语义与既有行业池知识产出，源矩阵各行的「状态」列本轮**不动**。
+> T0 / 行业池配比 = **9 : 11**；召唤模式原生召唤（daoli-library-director ×2 + plc-programming-expert ×1，连续第 18 轮）。
+> 合规结论：T0 件声明「IEC 61131-3 标准语义的道莅防御性实现」，行业池件声明「道莅自研 clean-room」，均零代码行复制、可商用。
+
+### R33 台账（2026-11-18）
+
+| 项 | 内容 |
+|---|---|
+| 检索次数 | WebSearch **0/3**（零检索轮） |
+| T0 | 0 件（本轮无纯函数件，FC=0，按「宁少勿滥」不硬凑） |
+| T1 | 0 件（无新开源源引入） |
+| T2 | **4 件**：`FB_DL_InverterDeratingCtrl`（t2-ne107 状态族）、`FB_DL_PigLauncherSeq`（t2-lgf 顺控）、`FB_DL_RollChangeoverSeq`（t2-isa88 配方切换）、`FB_DL_AndonLinePack`（t2-isa182 安灯分级） |
+| clean-room | 4 件 T2 均只借分类/参数域/命名组织，代码自研；RAW_NOTES_R33 已记来源族与提取点 |
+| 状态列 | 本轮不动（无新源收口），LGF-11 组映射维持既有 ✔ |
+
+### R34 台账回写（2026-11-18，零检索轮 WebSearch 0/3）
+
+| 组 / 源 | 本轮取用 | 状态变化 |
+|---|---|---|
+| t2-1 LGF SignalGenerators / Technology / Comparator / Measurement / DateAndTimer | 8 件（LaserWeldPowerSeq/TrapSealTrend/OcvGradingBin/StringCurrentMismatch/PvSoilingLossRate/LamTempUniformity/FilmTensionStepper/TrackerAngleYearWin） | ◐ 深化（Technology 子族本轮到「叠加微调 + 线速前馈」层） |
+| t2-2 LBP（Library Base Pattern） | 2 件（LaserWeldPowerSeq 配方段 / MfcRatioCheck 配比窗） | ◐ 深化 |
+| t2-5 ModPID（模式化 PID 前馈/重置） | 2 件（TrapSealTrend / StratificationGuard） | ◐ 深化 |
+| t2-7 OMAC PackML | 1 件（AndonRespTimeReport 响应分档） | ◐ 保持 |
+| t2-8 ISA-18.2 / ISA-88 / NE107 | 4 件（LoadlockPressureCross / BatchEndPointTrend / CombinerArcDetect / PhaseNeutralImbalance） | ◐ 深化（NE107 六态映射第二次入册） |
+| t1-2 OSCAT building（HVAC 语义借鉴） | 2 件（ChamberPurgeDry / DryerExhaustHumidityCtl） | ◐ 深化 |
+| T0 七组 | **0 件**（候选池仅余 `ShlDwordEx/ShrDwordEx`，与存量 `ShlEx/ShrEx` 同义，按 R61 拒立项） | 保持 7/7 ✔ |
+
+> 合规：全部 T2/T1 件仅借「分类 / 参数域 / 命名组织」，代码 clean-room；闭源源（西门子 LGF / 罗克韦尔）零源码引用。本轮回写 7 行台账，无新增外部源。
+
+### R35 台账回写（2026-11-18，零检索轮 WebSearch 0/0）
+
+| 组 / 源 | 本轮取用 | 状态变化 |
+|---|---|---|
+| t2-1 LGF Technology / Measurement | 6 件（TrackerWindStow / LaminatorTempProfile / CvdTempRamp / FiringFurnaceZone ＋ StringerTrend / ExhaustDpTrend） | ◐ 深化（Technology 到「大风收拢 / 多温区跟随」层；Measurement 到「多通道趋势监视」层） |
+| t2-2 LBP | 4 件（PottingDispenseCtrl / PileClampCtrl / PlatingCurrentCtrl ＋ ChamberGateValve〔撞名跳件未落盘〕） | ◐ 深化（定量/压装/电镀三域落地；闸阀件 11-17 已由 roadmap-p1 泳道注册） |
+| t2-5 ModPID | 3 件（SteamHeaderSplit / BypassValveTrim / ForelinePressureCtrl） | ◐ 深化（分程/微调/前馈叠加三范式） |
+| t2-8 ISA-88 / ISA-18.2 / NE107 | 5 件（AnalyzerSampleSeq / InvInsulTestSeq / ProcessKitTimer / GloveBoxAtmoCtrl / CaseSealTapeMonitor） | ◐ 深化（NE107 出口第二次入册后持续扩族） |
+| t1-2 OSCAT Building（暖通语义） | 2 件（HydronicDeltaTGuard / ChillerApproachTrend） | **T1 2 件收口标 ✔（子族级：温差失衡诊断 + 逼近度趋势两语义均落地，非整组挖尽）** |
+| T0 七组 | **0 件**（真池无 DL_Base/DL_MathData 条目，沿用 R34 同义弃判） | 保持 7/7 ✔ |
+
+> 合规：零检索轮，全部来源标签回指既有 ◐ 行，代码 clean-room；分布 14+5 属真池现状（Process 120 / Device 33 独大），不跨池凑数。
+
+| R36 | 零检索轮（编码超时 3/20） | t1-x 样条/谱分析语义（05_0 段首开）+ t2-x 扰动观测语义（02_3_81） | 3 件（HarmonicSpectrumBin / CubicSplineInterp / DisturbanceObserver）◐ 深化；W6/W5 窗口缺陷转码位治理 |
+| R37 | 零检索轮（R36-RESUME 续作，10 件/轮） | t1-6 PLCopen 运动语义（line shaft 离合 / 飞剪同步）+ t1-5 TcOpen 安全光幕分区屏蔽 + t2-2 LBP 静电卡盘 + t2-8 ISA-88 双塔轮值 / ISA-18.2 fail-safe 方向 + t2-1 LGF 流量-露点 / 真空建立趋势 / 色带寿命 | 10 件（ResonanceTrackNotch / LineShaftClutch / FlyingCutSync / WaferCoolChuck / CurtainEFEMZone / VentPurgeDuty / SlurryLevelBank / FoupPurgeN2Flow / CartonErectVacMonitor / CoderRibbonLife）◐ 深化；Device 单轮 +7 为历史单库单轮最高 |
+| R38 | 零检索轮（7 续作 + 13 新，20 件） | t1-2 OSCAT 暖通语义（VAV 标定 / 经济器 / 再热级联 / 步进风阀）+ t1-5 TcOpen 按钮组 + t1-6 PLCopen 定向停止 / CamSwitch + t2-1 LGF 数学-工艺-测量三子组（整定/换热/反射比/鼓胀）+ t2-2 LBP 回弹学习 + t2-4 S7 Motion 时延/振荡 + t2-7 PackML 状态模型 | 20 件（SaturateAdd / ToggleButtonBank / LinearRegression2Var / OscillationIndex / PidLambdaTune / HeatExchangerLmtd / CrossCorrelationDelay / SpindleOrientationStop / ElectronicCamSwitchBank / VavBoxZeroCal / ElectrodeTabBendCtrl / JunctionBoxPottingCheck / PouchSwellingGauge / FreshAirStepperDamper / HeatSealProfile / AhuEconomizer / TerminalReheatSeq / RfReflectedMonitor / StringSolderQuality / ModuleLamVacuumSeq）◐ 深化；**DL_Base 码位体系首开（01_0_00 起）**、06_0 段进 B 带、03_2 进位 12 段；T0 真池新探 2 件（Saturate/Toggle 词干零命中） |
+| R39 | 零检索轮（20 新 + 3 返修） | t0-8 Sema 待挖②（所有权审计）+ t1-2 OSCAT 暖通（CO₂ 需量）+ t1-5 TcOpen（光幕屏蔽）+ t1-6 PLCopen（凸轮修调/限位恢复）+ t2-1 LGF 数学-信号-转换-测量四子组 + t2-2 LBP（层压压力/注液/散热阀/门禁联锁）+ t2-6 AOI 诊断语义 + t2-7 PackML（分离供箱）+ t2-8 NE43（零点漂移）+ 自研线 2（PVD/标定） | 20 件（MutexOwnerAudit / TrendSlopeCalc / SphericalDistance / FrequencyGenerator / TriangleGenerator / LaminatorPressCtrl / CamOverrideTrim / AxisLimitRecovery / BcdFieldPanelIO / DoorInterlockHvac / ElMutingGantry / CleaningBrushWear / OrificeDpZeroTrim / HjtPvdSeq / ElectrolyteFillCtrl / CartonDenestPush / RadiatorZoneValve / TankLevelStrapping / WaferBreakDetect / RoomCo2DemandVent）◐ 深化；码位口径升级「头部∪全文」（漏报 11 码位实证）；R228 机检双规则上线回归 |
+| R40 | T0 零检索轮（15 新 + 5 重复剔除） | 消耗 T0 iec-std-wrapper 余量 15 件（零 WebSearch/零仓库抓取）；剔除 5 目标：FC_DL_LimitEx / FC_DL_TimeAddSat / FC_DL_TimeScaleSat / FB_DL_EdgeDivider / FB_DL_TpEx 与在册件同名 | 15 件（MaxNanEx / MinNanEx / RealEqTolEx / RangeCheckEx / RealToDintSat / RealToRealSat / RoundBankEx / DegToRadEx / RadToDegEx / MuxIntEx / StringToLowerEx / StringToUdintEx / SrEx / RsEx / IndexClampEx）——T0 组 ☐→✔ 推进，T0 余量清账；机检 15/15 PASS |
+| R41 | 零检索轮（20 新 + 3 返修，WebSearch 0/3） | 既有 ◐ 组深化：t2-5-modpid + t2-1-lgf + t1-6-plcopen + t1-2-oscat + t2-2-lbp + t2-7-packml + t1-5-tcopen + t1-7-plcnext | 20 件（SignalQualify / MultiClickDetect / AngleDiffWrap / WeightedMeanCalc / QuantileCalc / ValueHoldMonitor / WindowExtremaStat / OverrideSelector / AxisFollowErrGuard / AxisOverspeedGuard / AxisInposGuard / AxisAbortSafeSeq / StepResponseIdent / RatioStationCalc / CascadeWindupLink / InverterPdiPoll / FilterSwitchLevel / ShrinkTunnelCtrl / VavDischargeAirReset / ConveyorDirMismatch）◐ 深化；反证句机制首轮生效（28 候选拒 8），零撞名零拒单 |
+| R42 | 零检索轮（Process 15 : Device 5 偏科轮，不跨池凑数） | 池深化：roadmap-pv-p2（EL 检测）+ roadmap-semi-p2（花篮 Mapping）+ roadmap-li-p1（OCV 探针台）+ t2-2-lbp（装框/供料/积放/分输）+ t2-8-isa182（安全门/光幕屏蔽）+ t1-2-oscat-building（季切换/水系审计/结垢/RTU 门联锁）+ t1-3-oscat-network（轮询台账）+ t1-4-codesys-forge（配方 FIFO/BMS PDI）+ t2-7-packml（码垛夹手安全）+ t2-6-rockwell-aoi（机械手振动）+ t2-1-lgf（计数预置/风阀位诊断） | 20 件（OcvProbeDock / FramingPressSeq / BinderFeederSeq / SafetyDoorAuditBank / GlassFeederAccum / WaferCountPreset / SeasonMonthSched / HydronicMeterAudit / PipeScannerRoute / RecipeSearchFifo / PollAuditBank / CassetteMapVerify / PalletGripperSafe / ElTestStation / HeatExchangerFoulingTrend / RobotArmVibrationWatch / RoofUnitDoorSw / FilmSpliceCurtain / DamperBitDiag / BmsPdiGateway）◐ 深化；触及源组 ☐→◐；Device 05xx 副带首开；终审 3 抽 2 当场修 v1.0.1 |
+| R44 | 零检索轮（WebSearch 0/3，20 新 + 1 返修） | 全部复用既有 ◐ 行：t2-1-lgf-converter + t2-5-modpid + t1-6-plcopen + t2-4-s7-motion + t2-6-rockwell-aoi + t2-8-ne107/isa88 + t2-2-lbp + t2-7-packml + t1-2-oscat-building + 自研行业池（锂电/半导体）；无 ☐→◐ 开组、无 ◐→✔ 收口 | 20 件（DewPointToPpmV / GainSchedPid / RelayAutoTune / BumplessHandAuto / AxisBacklashComp / AxisTorqueWatch / AxisBrakeTest / AxisFrictionFf / CircInterp2Axis / LoadcellTareCtrl / ValvePartialStrokeTest / RotaryUnionWatch / HeaterSsrBank / ChillerStagingSeq / DesiccantRegenSeq / VacuumBakeOutSeq / CellAgingRestSeq / LaserDescumStep / AirLeakDecayTest / CoolingTowerReset）◐ 深化；28 候选拒 2（NotchFilter 同名 / LeadLagComp 同义），品类纠偏 R270 二次生效（MathData 仅 1 件，Algo/Motion 8 件） |
+| R45 | 零检索轮（WebSearch 0/3，20 新 + 2 返修） | 全部复用既有 ◐ 行：t2-8-isa182（报警抑制 / 安全回路一致性）+ t2-1-lgf-math/technology + t2-5-modpid + t1-6-plcopen + t2-4-s7-motion + t2-6-rockwell-aoi + t2-2-lbp + t1-2-oscat-building + 自研线/自研行业池（锂电前段·光伏组件）；无 ☐→◐ 开组、无 ◐→✔ 收口 | 20 件（Vote2oo3 / EdgeOrderCheck / AlarmFloodLimiter / CubicBezierEval / KalmanFilter1D / TensionObserver / StictionCompensator / LoopPerfIndex / ThermalRampPredict / AxisDualFeedbackGuard / AxisSs1StopSeq / AxisTeachOffset / AxisInertiaIdent / AxisRotaryShortPath / SafetyRelayFeedback / ContactorWeldDetect / FlowSwitchResponseCheck / SlurryMixingSeq / FrameSealDispenseSeq / BoilerBlowdownSeq）+ 2 返修（CalenderRollPress / IvCurveScan v1.0.1）◐ 深化；零 T0 件，Device 故障级新开 07xx 子带 |
+
+| R46 | 零检索轮（召唤模式=原生，WebSearch 0/3，20 新，无返修） | T0=0；既有 ◐ 深化 17 件：t1-6-plcopen（脉冲丢失评分/龙门偏斜/凸轮跟随滞后）+ t1-7-plcnext（看门狗脉冲）+ t2-1-lgf-measurement/technology（Welford / MAD / Stribeck / 自适应超前滞后）+ t2-2-lbp（去皮漂移）+ t2-4-s7-motion（负载侧断线监控）+ t2-6-rockwell-aoi（热电偶扫描 / 夹持力校验）+ t2-8 相语义（灌胶真空）；ROADMAP B 类 4 件（TabWeldingMonitor / CellSortingBin / ModulePottingVac / PackHousingTighten，自研 clean-room）；T0 防御包装 1 件（IntCeilDiv，iec-std-wrapper 口径） | 20 件（AxisLoadEncoderLossMonitor / AxisEncoderPulseLostScore / IntCeilDiv / WatchdogPulseMon / StdDevOnline / AxisFeedbackFailoverSeq / GantrySkewMonitor / StribeckFrictionComp / LoadCellTareDrift / TabWeldingMonitor / CamFollowerLagMonitor / LuenbergerObserver / TcChannelScanDiag / CellSortingBin / MedianAbsDev / RlsEstimator / AdaptiveLeadLag / GripperForceVerify / ModulePottingVac / PackHousingTighten）◐ 深化；无 ☐→◐ 开组、无 ◐→✔ 收口；全部零码位硬编码（BOOL+ENUM 出口，码位待派号） |
+
+| R47 | 零检索轮（召唤模式=原生连续第 33 轮，WebSearch 0/3，20 新 + 4 返修） | T0=0（余量 0）；选题走 ROADMAP 真缺口 + 源矩阵复用行：ROADMAP B 类 15 件（嵌套调度/OCV 温度归一/电芯 FIFO/串 FIFO 重试/温补分类/储罐氮封/IV-BCD 导出/RFID 路由/FOUP 校验/真空吸台/腔体抽真空/EFEM 联锁/层压区同步/R2R 审计/卡匣条码）+ 自研线 5 件（IntFloorDiv〔T0 防御包装〕/ ByteArrayXor〔T0〕/ CovarOnline / AxisBacklashIdent / AxisCoggingFf）；无 ☐→◐ 开组、无 ◐→✔ 收口 | 20 件（IntFloorDiv / ByteArrayXor / CovarOnline / TrayerNestingCtrl / OcvTempNormalize / ElectrolyteFifoTrace / StringFifoRetry / TempCompClassify / TankBlanketPrCtrl / IvBcdExport / RfidTrayRoute / FoupRfidCheck / ChuckVacuumSeq / ChamberPumpDownSeq / EfEmoInterlock / LaminatorZoneSync / R2rRunLogAudit / CassetteBcdLabel / AxisBacklashIdent / AxisCoggingFf）+ 4 返修（RlsEstimator / LuenbergerObserver / TabWeldingMonitor / AxisFeedbackFailoverSeq v1.0.1）◐ 深化；全部零码位硬编码（BOOL+ENUM 出口，码位待派号） |
+
+### R48 台账回写（2026-11-20，零检索轮 WebSearch 0/3）
+
+| 源行 | 本轮件 | 状态变化 | 说明 |
+|---|---|---|---|
+| T2-1 LGF · Math | FC_DL_SimpsonQuad、FC_DL_LagrangeInterp | ◐ 深化 | 数值积分与插值两子族开组：辛普森 1/3 与拉格朗日等距插值，只借「数学函数独立成组」的分类事实，算法与公式取公开数值分析教材 clean-room |
+| T2-1 LGF · Technology | FB_DL_GapForceSwitchover、FB_DL_BiasAdaptiveTrim | ◐ 深化 | 借「工艺量切换带与偏置自整定」的参数域组织，状态机与判据本库自有 |
+| T2-2 LBP 基础工艺 | FB_DL_AutoclaveSterilSeq、FB_DL_TunnelPasteurizerSeq、FB_DL_PumpPrimingSeq | ◐ 深化 | 只借「命令→监视→判定」三段分层骨架与参数域；灭菌/巴氏/引水三序状态机 100% 自有 |
+| T1-6 PLCopen Motion | FB_DL_LoadShareDroop、FB_DL_ZoneSpeedTrim、FB_DL_ContourCrossCouple、FB_DL_LookaheadVelPlanner | ◐ 深化 | 借 PLCopen 多轴协同的公开语义域（负荷分配/区段速度修正/轮廓耦合/前瞻规划），不复制任何功能块接口签名 |
+| T2-6 Rockwell AOI | FB_DL_SolenoidCoilHealth、FB_DL_HeaterBreakDetect、FB_DL_VibZoneClassify | ◐ 深化 | 借「设备级粗粒度 + 每诊断带独立确认窗」的组织方式；判据阈值取公开标准（ISO 10816-3 振动分区），实现自有 |
+| 自研线 | FC_DL_SaturateSub、FB_DL_ModeArbiter、FB_DL_HoldRepeatButton、FB_DL_SensorFusion2、FB_DL_FuzzyTrim2In、FB_DL_Decouple2x2 | 新开/深化 | 无外部源，工艺专家口述需求 clean-room；T0 余量 0 不硬凑，本轮 T0 = 0 件 |
+
+> 合规：本轮零 WebSearch，全部复用既有 RAW_NOTES（R39~R47）与矩阵源行；闭源源只借分类/参数域/命名组织，零代码行复制。
+
+### R49 台账（2026-11-20，零检索轮）
+
+| 源行 | 本轮件 | 状态变化 | 说明 |
+|---|---|---|---|
+| T2-1 LGF · Math | FC_DL_QuatRotateVec、FC_DL_GeoMeanCalc | ◐ 深化 | 借「数学函数独立成组 + 定义域先判」的组织方式；四元数旋转与对数域几何均值算法取公开数学定义 clean-room |
+| T1-6 PLCopen Motion | FB_DL_VelFfGainIdent、FB_DL_MoveResumeSeg | ◐ 深化 | 借 PLCopen 前馈增益与中断续段运行的公开语义域；最小二乘拟合与快照/恢复双口 100% 自有 |
+| T2-6 Rockwell AOI | FB_DL_ValveSeatLeakWatch、FB_DL_CylStrokeTimeBank | ◐ 深化 | 借「设备级建档 + 劣化比四档」组织方式；N 点 LS 斜率与均值双判据实现自有 |
+| T2-2 LBP 基础工艺 | FB_DL_CaseErectFaultSeq | ◐ 深化 | 只借「命令→监视→判定」三段骨架与重试参数域；三成因独立分码诊断自有 |
+| 自研线 | FB_DL_HeartbeatGen、FB_DL_PulseSeqVerify、FB_DL_StepTimeRecorder、FB_DL_CycleBarrierGate、FB_DL_SignalReconstruct、FB_DL_LoopSignGuard、FB_DL_ExtremumSeekCtrl、FB_DL_LoopCoupleDetect、FB_DL_RulEstimator、FB_DL_SoftLimitCfgAudit、FB_DL_AxisLubeDistTrig、FB_DL_BrakeWearAccum、FB_DL_RoomTempClassify | 新开/深化 | 无外部源，工艺口述需求 clean-room；T0 八组余量 0，本轮 T0 = 0 件不硬凑 |
+
+> 合规：本轮零 WebSearch（0/3），复用 R39~R48 既有 RAW_NOTES 与矩阵源行；闭源源只借分类/参数域/命名组织，零代码行复制；RAW_NOTES_R49 已落 `_Staging_Raw/2026-11-20/`。
+
+## R50 台账行（2026-11-20 · 收尾轮）
+
+| 来源组 | 本轮触及 | 状态 | 备注 |
+|---|---|---|---|
+| T1-6 凸轮动态修调族 | 两子族收口之一 | ◐ 收口 | 复用既有台账行与 T0 已收口结论，零新开组 |
+| T2-1 LGF 频率发生族 | 两子族收口之二 | ◐ 收口 | 同上，零新开组 |
+
+> 合规：本轮零 WebSearch（0/3），复用既有 RAW_NOTES 与矩阵源行（详见 `RAW_NOTES_R50.md`）；零代码行复制。
+
+### R51 台账（2026-11-20）
+- 零新增检索轮：18 件取自 ROADMAP R11~R13 池（§9/§13/§16/§19/§21），2 件取自 T2-1 ◐ 待挖子项（FC_DL_PolarDecomp2D=Math 族、FC_DL_MadZScore=Measurement 统计族 → ✔ 收口）。
+- 池件状态：ROUND_PLAN_R51 所列 18 条池引用行由 ☐/◐ → ✔（详见 _Staging_Raw/2026-11-20/ROUND_PLAN_R51.md）。
+
+### R52 台账（2026-11-20）
+- 零新增检索轮（WebSearch 0/3）：20 件全部复用既有 ◐ 深化行与 ROADMAP 未勾真缺口，无 ☐→◐ 开组。
+- T0 八组维持 7/7 ✔（余量 0，本轮 T0 = 0，按「禁硬凑」不立项）。
+- 子族推进：t2-1-lgf 位逻辑（BitCountOnes / PriorityEncodeWord）+ 比较器（SchmittTriggerGap）+ DateAndTimer（EdgeIntervalMeter）**三子族首开**；t2-5-modpid 死区/微分/整定三范式（AdaptiveDeadbandZone / DerivativeNoiseWeight / ZnTune）；t2-1-lgf Measurement 输出速率（ControlOutputSlewWatch）；t2-3 风格指南审计（PidParamDriftAudit）；t2-6-rockwell-aoi 热模型（BrakeResistorThermal）；t2-8-ne107（PressureSwitchChatter）；t1-3-oscat-network 计量（MeterPulseLossDetect）；t2-8-isa182 回路一致性（HeatTraceCircuitMon）；t1-6-plcopen limits/homing（AxisJerkLimitCheck / AxisHomeRepeatVerify）；t2-4-s7-motion（AxisSoftLimitPredict）；ROADMAP L501/L647 池认领 2 件。
+- 环窗+回归族治理收官：ValveSeatLeakWatch v1.0.1（时间序环回，R194 第三例），TrendSlopeCalc×RingBuffer 核查判「无需修」，该族三件全部结论闭合。
+- 合规：零代码行复制；闭源源（LGF/AOI/NE107）只借分类组织与参数域，实现 clean-room；详见 `RAW_NOTES_R52.md`。
+
+### R53 台账（2026-11-20）
+- 零新增检索轮（WebSearch 0/3）：16 件全部复用既有 ◐ 行与 ROADMAP 未勾真缺口，无 ☐→◐ 开组。
+- T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0，按「禁硬凑」不立项）。
+- 子族推进：t2-8-isa182（ValveCycleLifeCounter 阀门寿命 / GreaseLubeTimer 加脂双触发）；t2-1-lgf Measurement（BearingVibTrend ISO 10816 三档 / SignalStuckWatch 卡死双判据 / SensorDriftBaseline 长时基线）；t1-2-oscat-building（WetBulbCalc 焓湿迭代）；t2-2-lbp（ConveyorSlipWatch 速差打滑）；t1-1-oscat-basic（PumpSurgeGuard 喘振裕度）；t1-6-plcopen-motion（AxisBacklashStepComp 换向首段补偿）；t2-1-lgf BitLogic（PulseTrainDecoder 宽窄解码）；t2-1-lgf Math（Haversine / PeriodJitter）；ROADMAP 池认领 4 件（CaseShiftTally / FilterWeekWindow / LabelWeekCode / BathTempHoldCtrl）。
+- R193 四族扩面结论：族① 需修 1（ControlOutputSlewWatch，挂 R54 首位）+ 疑似 4；族② 需修 0（本轮已收 AxisHomeRepeatVerify）+ 疑似 3；族③ 需修 0 + 疑似 2 + 无需修 1；族④ 需修 0 + 疑似 1 + 无需修 2。
+- 合规：零代码行复制；闭源源（LGF/OSCAT/LBP/ISA-18.2）只借分类组织与参数域，实现 clean-room；详见 `RAW_NOTES_R53.md`。
+
+
+### R54 台账（2026-11-20）
+- 源使用：零新建源组、零 WebSearch（0/3）；全部复用矩阵既有 ◐ 行 + ROADMAP 池。
+- T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0，按「禁硬凑」不立项）。
+- 子族推进：t2-1-lgf BitLogic（BitArrayMultiSegMove 掩码桥接 / SweepFreqGen 相位连续扫频）；t2-1-lgf DataHandling（ChecksumLwordSum 32 位回绕累加）；t2-1-lgf Measurement（HistogramBinTally 分箱自洽）；t2-8 NE107（HealthStatusArbiter 优先级仲裁）；t1-2-oscat-basic（PrbsSignal 可复现序列）；t1-2-oscat-building（NightFlushPurge 夜窗焓差 / EnthalpyPrioritySwitch 经济器）；t1-6-plcopen-motion（CamTableLiveTrim 相位闸微调 / AxisTorqueRippleWatch 滑窗比）；t2-2-lbp（AirCompressorLoadUnload 加卸载迟滞）；t1-7-plcnext（PnDiagAlarmDecode 诊断位域）；ISA-88/PackML（RecipeSwitchHandover 断点握手 / TankAgitationSeq 相序）；自研公开方法（PidRelayAutoTune 继电器反馈 / FirstOrderIdent 阶跃辨识）。
+- 合规：零代码行复制；闭源源（LGF/OSCAT/LBP/NE107/PN 诊断）只借分类组织与参数域，实现 clean-room；详见 `RAW_NOTES_R54.md`。
+
+### R55 台账（2026-11-20 · 五抽终审收尾轮）
+- 本轮零检索（WebSearch 0/3）：20 件来源 = roadmap-p2 真缺口池认领 17 / t2-lgf-math 1 / t2-5-modpid 1 / t2-7-packml 1；无 ☐→◐ 新开组，矩阵 ☐ 组维持 0。
+- 本轮真实收口组标记（☐/◐ → ✔）：
+  - t2-1-lgf Math 子族（Haversine/PeriodJitter 后续收口件）：◐ → ✔
+  - t2-5-modpid（FopdtStepIdent 阶跃辨识范式收口）：◐ → ✔
+  - t2-7-packml（PackMlUnitMode 模式闸收口）：◐ → ✔
+  - roadmap-p2 池 17 条认领行（CoinCellAssembler / StringElImageMap / BacdHvacPoll 等）由 ROADMAP 池行勾选承载，矩阵不开新组。
+- 合规：零代码行复制；闭源源（LGF/ModPID/PackML）只借分类组织与参数域，实现 clean-room；五抽语义终审报告见 `_Staging_Raw/2026-11-20/REVIEW_R55.md`。
+
+### R56 台账（2026-11-20/21 · 突破千件轮）
+- 零新增检索（WebSearch 0/3）：20 件全部复用矩阵既有 ◐ 行与 ROADMAP 池，无 ☐→◐ 开组；T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0，按禁硬凑不立项）。
+- 子族推进：t2-1-lgf-math（Hermite 插值 / 四元数 Slerp / 有效数字取整 三件，插值·姿态·舍入三线并行）｜t2-1-lgf-converter（EStopDualChannel 双通道一致性 / SignalSeqGuard 时序守卫）｜t2-5-modpid（TwoDofPid 设定值加权，与单自由度件分工写死）｜t1-6-plcopen（AccelFeedforward 前馈 / CantileverComp 重力补偿 / ProbeMeasCycle 测量循环）｜t2-2-lbp（AccumPreChg / IonizerBalance / FanVfdBypassSwap / HotRunnerZoneBalance / SlurrySieveClogWatch / LossInWeightFeeder / UvDoseCtrl / UltrasonicWeldCtrl / AirShowerInterlockSeq 九件，设备级监视与顺控为主）｜roadmap-r56 自研（RTD CVD 反解 / Kalman 2D 常速）。
+- 拒单留痕：候选 26 项拒 6（Manhattan/Chebyshev 距离度量与既有度量族同义、EwmaCalc 与滑动均值族重叠、AxisSs2StopSeq/AxisBacklashDirBias 与 R44 存量近邻、FailsafeGate 收敛并入 EStopDualChannel），拒单率 23%，未达 R228 枯竭阈值（2:1）。
+- 合规：零代码行复制；闭源源（LGF/ModPID/PLCopen/LBP）只借分类组织与参数域，实现 100% clean-room；详见 `RAW_NOTES_R56.md`。
+
+### R57 台账（2026-11-21）
+- 源使用：iec-std-wrapper ×15（T0 防御性包装主体：Base 5 件中 TpRetrigger/EdgeMasterSlaveSync/EncoderQuadCount/SignalStagnationWatch/SensorDropoutHold + MathData 10 件 Safe/统计族全部）｜t1-oscat ×1（NightPurgeSeq 借 OSCAT Basic 夜间通风域语义旁证）｜t1-oscat-building ×1（NightPurgeSeq 借 ROOM_CONTROL 夜间经济器子项域语义，clean-room）｜t2-lbp ×1（PassboxInterlockSeq 借 LBP「命令-监视-判定」三段分层）｜t2-isa-ne107 ×1（ProofTestSeq 借 NE107 试验分级语义）｜self-esc ×2（EsdGroundMonitor / IonizerAirflowInterlock，含 NE107 次源静电接地分级映射）。
+- 本轮无组收口，均为子项级推进（T0 八组维持 8/8 ✔，余量 0；t1/t2 各组 ☐/◐ 状态不变，仅组内子项计数推进，矩阵不开新组、不翻组状态）。
+- T0 覆盖度说明：本轮 iec-std-wrapper 防御性包装 15 件已覆盖 ASIN / ACOS / LN(LogSafe) / EXP(ExpSat) / 整数幂(PowIntSat) / 符号(SignumCalc) / RMS(RmsCalc) / 奇偶(ParityCalc) / 峰峰(PeakToPeakCalc) / 最近邻插值(InterpStepNearest) 等标准语义面，三角反函数·指数·幂·统计·插值五条 Safe 族线就此闭环，T0 数学包装缺口池清空。
+- 合规：零代码行复制；闭源源（OSCAT/OSCAT-Building/LBP/NE107）只借分类组织、域语义与参数配比，实现 100% clean-room；五抽终审报告见 `_Staging_Raw/2026-11-21/REVIEW_R57.md`（严重 0 / 中 4 / 轻 2 / PASS 1）。
+
+### R58 台账（2026-11-21）
+- 本轮零检索（WebSearch 0/3）：16 新件来源标签分布 = self / self-std ×5 ｜ t2-2-lbp ×3 ｜ t1-oscat-building ×2 ｜ t2-1-lgf-math ×2 ｜ t1-6-plcopen ×2 ｜ roadmap-p1/p2 池认领 ×2；全部复用既有 ◐ 行与 ROADMAP 池，无 ☐→◐ 新开组，**无组新收口（◐ 维持 24）**。
+- T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0，按禁硬凑不立项）。
+- 挖掘台账：撞名三查拒 5 件（ShlEx 同义邻件 ×2、矩阵族 R13 禁令复发 ×1、校验族挖潜低 ×2），按 R267 记枯竭前兆台账——ShlEx 族与校验族连续低产，下轮选题主动避让；拒单率未达 R228 枯竭阈值（候选富余 >2:1）。
+- 合规：零代码行复制；闭源源（OSCAT-Building/LGF-Math/PLCopen/LBP）只借分类组织与参数域，实现 100% clean-room；五抽终审报告见 `_Staging_Raw/2026-11-21/REVIEW_R58.md`（严重 0 / 中 1 / 轻 4 / PASS 2，无编译阻断级缺陷）。
+
+### R59 台账（2026-11-21 · 无人值守终审轮）
+- 本轮零检索（WebSearch 0/3），零新件入库；五抽终审 5 件所用源标签分布 = self / self-std ×2（TwoStepConfirm / LotoSequence）｜ self（公开控制理论）×1（MracAdaptiveCtrl）｜ T1-1-oscat-basic ×1（FftRadix2）｜ T1-2-oscat-building ×1（ConductivityTempComp）。T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0）。
+- 拒单台账：本轮撞名三查拒单 9/29 ≈ 31%（R276 分散型上行，未破 R228 阈值；按 R276 记按族分布，下轮台账起单列一行）。待挖掘队列 ☐ 计数：矩阵 ☐ 组维持 11（本轮零新开组、零 ☐→◐ 迁移，◐ 维持 24）。
+- R277/R278 转向标注：库达 1073 后概念饱和，选题转族内深化；T0 线转入回归维护模式。
+- 终审：报告见 `_Staging_Raw/2026-11-21/REVIEW_R59.md`（严重 0 / 中 2 / 轻 1 / PASS 2，无编译阻断级缺陷，按 R333 全部挂账 R60）。
+
+### R60 台账（2026-11-21 · 固化批次轮）
+- 零检索（WebSearch 0/3）；12 件来源标签分布 = t2-1-lgf-math ×4（SearchMinMaxDint / SearchMinMaxUdint / Affine2DChain / InterpolateTable3D）｜ t2-1-lgf-counter ×1（RolloverCounterUdint）｜ t2-1-lgf-bitlogic ×1（BitFieldExtractLword）｜ self-std ×4（ReqAckHandshake、ThdCalc、InputShaperZv、ShiftHandoverCheck）｜ t2-6-rockwell-aoi + t2-2-lbp ×1（ValveTerminalDiag）｜ t1-6-plcopen ×1（AxisCmdArbiter）→ 合计 12 ✔。
+- 路径订正（R290）：`FB_DL_TwoStepConfirm` 实测属 **DL_Base**（R59 memory 记 DL_Process 有误），R275 v1.0.1 返修件归 DL_Base 计入 Base 存量，不回写 registry 归属。
+- T0 八组维持 8/8 ✔（余量 0，本轮 T0 = 0，R278 转维护模式）。
+- 无组新收口（◐ 维持），☐ 组维持 11；撞名三查拒单 **12/24 = 50%**（候选富余度恰 2:1，R228 阈值触线未破），按族分布：Algo 解耦/滤波/PID 3 ｜ Motion 热补偿/倍率 2 ｜ Process 灭菌/统计 2 ｜ 转换/校验避让 2 ｜ Base 脉冲族 1 ｜ 位串 1 ｜ 池脏项 1（§1083 热电偶件，§1087 更衣序列同批在册未勾）→ Algo 与 Process 为拒单重灾区，触发 R267 族避让，下轮选题避开该两族。
+- 合规：零代码行复制；闭源源（LGF / Rockwell AOI / LBP / PLCopen）只借分类组织与参数域，实现 100% clean-room；详见 `RAW_NOTES_R60.md`。
+
+### R61 台账（2026-11-21）
+- 零检索（WebSearch 0/3）；16 件来源标签分布 = Base 4 / MathData 5 / Algo 1 / Device 3 / Motion 2 / Process 1 → 合计 16 ✔。
+- R267 双族避让执行到位：Algo 与 Process 各仅 1 件（R60 拒单重灾族已让位），Device/Motion 补位正常。
+- 撞名三查拒单 24/40 = 60%（R228 阈值触线未破，候选富余度维持）。
+- T0 八组维持 8/8 ✔（本轮 T0 = 0，R278 维护模式延续）。
+
+### R62 台账（2026-11-21 · T0 族内深化轮）
+- 零检索（WebSearch 0/3）；11 件来源标签分布 = `iec-std-wrapper`（T0 族内深化）×8 ｜ `dsp-public-cookbook`（T1-8） ×1（`FB_DL_BiquadFilter`）｜ `lgf-measurement`（T2-1） ×1（`FB_DL_VfdDcBusRipple`）｜ `isa-ne107`（T2-8） ×1（`FB_DL_IonFanInterlock`）→ 合计 11 ✔。
+- **组级状态列（仅改动相关行，不重排全文）**：
+  - **T1-8 GitHub topics（dsp-public-cookbook）｜ ◐ 深化**：R62 +`FB_DL_BiquadFilter`（通用二阶节；仅借公开二阶节设计公式的**结构**，实现 / 闸门 / 码位 100% 自有；clean-room 零代码行）→ 该组由「零散 DSP 形态借鉴」推进为「通用滤波结构件落地」，二阶节方向**已出首件未挖尽**（自适应 / 格型 / 多节级联仍待挖）。
+  - **T2-1 LGF · Measurement ｜ ◐ 深化（推进）**：R62 +`FB_DL_VfdDcBusRipple`（母线电气健康监视；F 组「Measurement」分类骨架借鉴：均值 / 峰峰两级统计 + 双限值判据的组织方式，零代码行）→ Measurement 组内「电量 / 母线」子族出首件，与既有 `VfdThermalDerate`（降额）、`BrakeResistorThermal`（热模型）构成变频健康三面。
+  - **T2-8 ISA-88 / ISA-18.2 / NE107 ｜ ◐ 深化（推进）**：R62 +`FB_DL_IonFanInterlock`（NE107 诊断分级为公开标准语义借鉴：Failure 级 = 风机反馈丧失 / OutOfSpec 级 = 风速与平衡超限；分级与码位自有）→ NE107 线由「健康聚合 / 仲裁」扩到「效能联锁许可位」，半导体 ESD 族三面（平衡测量 / 接地连续 / 风机效能）齐备。
+  - **T0 族内深化登记（R62，行级）**：T0-4 算术族 +2（`SaturateMul` / `SaturateDiv`，与既有一族 `SaturateAdd` / `SaturateSub` 合为饱和四则）｜ T0-7 位串族 +2（`ShiftArithEx` 补算术语义 / `SignExtendEx` 补窄位宽符号扩展；族内「移位 / 旋转 / 字段 / 扩展」四类齐备）｜ T0-5 转换族 +2（`RealToIntSat` 补 INT 位宽 / `SignedToUdintSat` 补方向）｜ T0-5 时间域 +1（`DtToTodWrap`）｜ T0 统计族 +1（`PercentileRank`，分位族逆运算对闭环）。**T0 八组维持 8/8 ✔，本轮 T0 = 8（R278 维护模式临时转出，属族内补口非新开组）。**
+- 撞名三查拒单 **7 条**（留存 `ROUND_PLAN_R62.md §2.3`）：`ShlDwordEx`/`ShrDwordEx`（语义差未实测，转 R63 P0 实测定夺）｜`FC_DL_StringToDintChk`、`FB_DL_ToolLifeCounter`、`FC_DL_MuxEx`（同义邻件已存）｜`FB_DL_PassboxInterlockSeq`、`FB_DL_GowningRoomSeq`（均已入库，本轮复核为「重复提案」并回写 ROADMAP 勾销）｜同一 `RealToIntSat` 的 LREAL 姊妹件（拆件即凑数）。
+- 合规：零代码行复制；T2 闭源源（LGF Measurement）只借分类组织与判据层次；NE107 只借分级语义；二阶节只借公式结构。逐条见 `RAW_NOTES_R62.md`。
+- 终审：`REVIEW_R62.md`（严重 2 / 中 2 / 轻 3，挂账 7 处 × 4 件；R333 零改码；触发 R193 扩面，R63 配额 16→13）。
+
+### R63 台账（2026-11-21 · 族①② 扩面深化轮）
+- 零检索（WebSearch 0/3）；13 件来源标签分布 = `t2-1-lgf-measurement`（T2-1 ◐ 深化）×4（`AdcNoiseFloorWatch` / `VfdOutputImbalance` / `VfdCapAgingEst` / `VfdPrechargeSeq`）｜ `dsp-public-cookbook`（T1-8 ◐ 深化）×3（`BiquadCoeff` / `BiquadCascade` / `AdaptiveLmsFilter`）｜ `iec-std-wrapper`（T0-5 BCD 位宽补口）×2（`BcdToDint` / `DintToBcd`）｜ `iec-std-wrapper`（T0 统计族补口）×2（`TrimmedMeanCalc` / `PearsonCorrCalc`）｜ `self`（公开公式 clean-room）×2（`EwmaFilter` / `OutlierFilter`）→ 合计 13 ✔。
+- **组级状态列（仅改动相关行，不重排全文）**：
+  - **T1-8 dsp-public-cookbook ｜ ◐ 深化（推进）**：R63 +3（系数生成 / 多节级联 / 自适应 LMS）→ 与 R62 `BiquadFilter` 合成「设计→下发→单节→级联→自适应」五件闭环，二阶节方向**五件齐后转饱和观察**（R277 口径：格型/多变体留 ROADMAP 待办不硬凑）。
+  - **T2-1 lgf-measurement ｜ ◐ 深化（推进）**：R63 +4（ADC 底噪 / 输出不平衡 / 电容老化 / 预充时序）→ 与 R62 `VfdDcBusRipple` 构成变频电气健康四面（运行期纹波 / 输出侧 / 器件老化 / 启动期时序），Measurement「电量/母线」子族**四面齐**。
+  - **T0-5 BCD 族位宽补口（行级）**：+2（`BcdToDint` / `DintToBcd`，与既有 Byte/Word/Udint 四件合成双向 × 四位宽八件全谱）。**T0 八组维持 8/8 ✔，本轮 T0 = 4（R278 维护模式族内补口）。**
+- **R62 转办定案注记**：`FC_DL_ShlDwordEx` / `FC_DL_ShrDwordEx` 实测**同义，拒立项**（`ShlEx`/`ShrEx` 头注释明示 DWORD 主类型实现，BYTE/WORD 显式转换后调用，显式命名对属凑数变体）→ ROADMAP L948 已勾销（R63 收口）。
+- 撞名三查拒单 **12 条**（留痕 `ROUND_PLAN_R63.md §2.3`）：`ExpSat`/`LogSafe` 重复提案 ×2、同义邻件 ×9（PowSafe/Atan2Safe/HypotSafe/HysteresisSwitch/RtoKeeper/RtoTimer/FreqDivide/LinRegSlope/MasterSlaveEdge 等）、拆件即凑数 ×1（`AllpassFilter`）。
+- 合规：零代码行复制；T1-8 只借公开二阶节/LMS 公式结构，T2-1 只借分类组织与判据层次，全部 clean-room 零代码行；逐条见 `RAW_NOTES_R63.md`。
+- 终审：`REVIEW_R63.md`（严重 0 / 中 1 / 轻 3，挂账 4 处 × 2 件；R333 零改码；分散型按 R309 点修，R64 配额 13→10）。
+
+---
+
+> **R64 一行（2026-11-21，零检索轮）**：WebSearch **0 次**，取材三线——①T0 内部族深化 3 件（数论 `GcdUdintCalc` / 统计 `RunningSumCalc` / 单位换算 `FlowUnitConvert`）②T2-1 LGF 两组 ◐ 深化 4 件（Comparator：`TriStateCompare` + `IntervalGapCalc`；Data Handling：`ArrayFindValue` + `ArraySliceCopy`）③T2-2 LBP 阀组三段分层 clean-room 1 件（`DualValveBlockSet`）+ T2-7 PackML / T2-8 ISA-88 相语义次源 2 件（`UnscramblerSeq` / `ReworkLotGate`）。**状态列结论**：Comparator ◐→◐ 深化 +2、Data Handling ◐→◐ 深化 +2，无 ☐→◐ 开组、无整组 ◐→✔ 收口。**备注订正三处**（仅改备注列，表格结构未动）：Data Handling 行「CRC-16 反射 / LWORD 累加和待挖」→ 已有属主；Math 行「极分解待挖」→ 已有属主；Comparator 行补 R64 两件。撞名拒 6 条 + 配额顺延 1（留痕 `ROUND_PLAN_R64.md` §2.3）。

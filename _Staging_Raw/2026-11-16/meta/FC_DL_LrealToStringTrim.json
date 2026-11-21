@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LrealToStringTrim",
+  "category": "DL_MathData",
+  "instruction": "LREAL 转字符串需统一 NaN/Inf 的文本表示并防缓冲截断，否则 HMI 出现平台相关乱码。",
+  "architecture_thought": "NaN/±Inf 统一文本映射 + R37 截断范式；信息级 16#0001_0428/0429，故障级 035A 预留。纯函数无状态。"
+}

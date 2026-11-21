@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DateAddDays",
+  "category": "DL_MathData",
+  "instruction": "保养计划按「到期日 + 周期天数」推算下次保养日，DINT 天数过大时加法会溢出，需减法预判。",
+  "architecture_thought": "减法预判溢出范式（R54 变体）：先以减法探测可表性，不可表置信息级 16#0001_042A/042E 域内钳位；可表才加。故障级 035D/035E 预留。"
+}

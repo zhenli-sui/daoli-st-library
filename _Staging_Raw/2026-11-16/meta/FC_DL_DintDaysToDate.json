@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_DintDaysToDate",
+  "category": "DL_MathData",
+  "instruction": "把天序号（如保养到期日）还原为 DATE 用于工单展示；需拒绝负天序号与超界还原。",
+  "architecture_thought": "DateToDintDays 的逆件：入口域闸 + 标准语义还原，非法区间报故障级 0339 而非静默钳位。码 16#0001_0412。"
+}

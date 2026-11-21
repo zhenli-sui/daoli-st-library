@@ -1,0 +1,6 @@
+{
+  "name": "FC_DL_LwordToLintSat",
+  "category": "DL_MathData",
+  "instruction": "64 位 LWORD 位域原始量转 LINT，需防 64 位平台差异与最高位符号位误读。",
+  "architecture_thought": "LWORD 域内先做无符号比较（不借有符号中间量），超界饱和并置信息级 16#0001_041A；故障级 0345 预留。纯函数。"
+}

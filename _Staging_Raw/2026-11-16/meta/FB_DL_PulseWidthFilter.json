@@ -1,0 +1,6 @@
+{
+  "name": "FB_DL_PulseWidthFilter",
+  "category": "DL_Base",
+  "instruction": "窄脉冲抑制：SignalDebounce 只延迟跳变，宽 1 拍的毛刺经过去抖照样进逻辑；流量计/接近开关干扰脉冲需要整段吞掉且正常脉宽不失真。",
+  "architecture_thought": "双侧确认窗 FB：R_TRIG/F_TRIG/TON 实例全部主体最前部无条件刷新；上升沿后按脉宽< tMinWidth（代理阈值 T#2MS=1ms 任务极限窗，头注释声明不覆盖更慢任务未实测）判窄脉冲整段吞掉 bRejected 单拍（先销后置）；正常脉冲经确认窗后保持宽度输出（宽度守恒：等待确认期间输出延迟但下降沿对齐实际宽度）；单拍标志一律先销后置（R25 生命周期律）。"
+}

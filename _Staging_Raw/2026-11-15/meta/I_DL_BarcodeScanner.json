@@ -1,0 +1,4 @@
+{
+  "instruction": "R7 泳道 A #3：按 ROUND_PLAN_R7 §2.1 编码 I_DL_BarcodeScanner（固定式扫码枪抽象接口，公约 0.11 三段式），落盘 C:\\Library\\DL_Device\\I_DL_BarcodeScanner.st。同文件发布 E_DL_ScannerState（eIdle=0/eTriggered=10/eReading=20/eOk=30/eNoRead=40/eFault=99，步长 10、eFault 末位、双语注释）；属性 8 个全 PROPERTY GET；方法 3 个（CmdTrigger/CmdAck/CmdReset，≤6 红线）；故障态一律拒绝方法返回 FALSE；接口层不做串口/总线收发（数据经实现块 IN_OUT 注入）。溯源标注 tcopen-component/scanner-handshake，clean-room。",
+  "architecture_thought": "接口按『读侧属性 + 写侧方法最小集』切分：8 个 GET 覆盖状态/结果/诊断三维（eState 供时序联锁、bReadOk+sBarcode 供结果消费、bFault+uErrorId 供报警分组），3 个方法恰为握手闭环的最小动作集（触发/应答/复位）——NoRead 不设专门方法，因为 NoRead 是结果态而非指令，消费链与 eOk 同用 CmdAck，接口面因此最小。nReadCount 刻意声明为『复位不清零』：批次追溯口径下累计产线计数是资产数据，复位只能清握手态不能清统计。"
+}
