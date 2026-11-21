@@ -1,0 +1,149 @@
+[
+ {
+  "name": "FB_DL_VoteKooN",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 116
+ },
+ {
+  "name": "FB_DL_SimInputBank",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 83
+ },
+ {
+  "name": "FC_DL_ThermocoupleLinearization",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 222
+ },
+ {
+  "name": "FB_DL_SkewKurtosisCalc",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 136
+ },
+ {
+  "name": "FC_DL_SolveLinear3",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 143
+ },
+ {
+  "name": "FC_DL_PmvComfortIndex",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 205
+ },
+ {
+  "name": "FB_DL_SoftStarterDrive",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 308
+ },
+ {
+  "name": "FB_DL_ElectricLinearActuator",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 228
+ },
+ {
+  "name": "FB_DL_OptimalStartStop",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 164
+ },
+ {
+  "name": "FB_DL_PeriodicDisturbComp",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 129
+ },
+ {
+  "name": "FB_DL_CondensateDrainSeq",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 181
+ },
+ {
+  "name": "FC_DL_CamTableGenSeg",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 150
+ },
+ {
+  "name": "FB_DL_AxisSafetyStateMon",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 137
+ },
+ {
+  "name": "FB_DL_GowningRoomSeq",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 180
+ },
+ {
+  "name": "FB_DL_MaterialHoldTimeEnforce",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 139
+ },
+ {
+  "name": "FB_DL_FirstArticleLock",
+  "kind": "new",
+  "pass": true,
+  "issues": [],
+  "lines": 115
+ },
+ {
+  "name": "FB_DL_EncoderQuadCount",
+  "kind": "repair",
+  "pass": true,
+  "issues": [],
+  "lines": 175
+ },
+ {
+  "name": "FC_DL_RmsCalc",
+  "kind": "repair",
+  "pass": true,
+  "issues": [],
+  "lines": 106
+ },
+ {
+  "name": "FB_DL_PassboxInterlockSeq",
+  "kind": "repair",
+  "pass": true,
+  "issues": [],
+  "lines": 228
+ },
+ {
+  "name": "FB_DL_NightPurgeSeq",
+  "kind": "repair",
+  "pass": true,
+  "issues": [],
+  "lines": 199
+ },
+ {
+  "name": "FC_DL_PowIntSat",
+  "kind": "repair",
+  "pass": true,
+  "issues": [],
+  "lines": 122
+ }
+]

@@ -79,6 +79,7 @@ VAR
     _fOutLast : LREAL := 0.0;    // 最近一次有效输出（冻结与递推基线）[工程单位] / the last valid output used as the freeze and the recursion base
     _bFinIn   : BOOL := FALSE;   // 输入有限闸结果（逐拍重算）/ the input finiteness gate result
     _bFinAlp  : BOOL := FALSE;   // 平滑系数有限闸结果（逐拍重算）/ the alpha finiteness gate result
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_EWM_ZERO : LREAL := 0.0; // 实数零常量 [工程单位] / the real zero constant
     DL_EWM_ONE  : LREAL := 1.0; // 实数一常量（α 上界）[-] / the real unit constant, the alpha ceiling

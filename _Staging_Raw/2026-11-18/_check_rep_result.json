@@ -1,0 +1,156 @@
+[
+ {
+  "no": 1,
+  "name": "FC_DL_SaturateAdd",
+  "cat": "DL_Base",
+  "code": "16#01_0_00",
+  "errors": []
+ },
+ {
+  "no": 2,
+  "name": "FB_DL_ToggleButtonBank",
+  "cat": "DL_Base",
+  "code": "16#01_0_01",
+  "errors": []
+ },
+ {
+  "no": 3,
+  "name": "FC_DL_LinearRegression2Var",
+  "cat": "DL_MathData",
+  "code": "16#05_0_02",
+  "errors": []
+ },
+ {
+  "no": 4,
+  "name": "FC_DL_OscillationIndex",
+  "cat": "DL_MathData",
+  "code": "16#05_0_03",
+  "errors": []
+ },
+ {
+  "no": 5,
+  "name": "FC_DL_PidLambdaTune",
+  "cat": "DL_Algo",
+  "code": "16#02_3_83",
+  "errors": []
+ },
+ {
+  "no": 6,
+  "name": "FC_DL_HeatExchangerLmtd",
+  "cat": "DL_Algo",
+  "code": "16#02_3_84",
+  "errors": []
+ },
+ {
+  "no": 7,
+  "name": "FB_DL_CrossCorrelationDelay",
+  "cat": "DL_Algo",
+  "code": "16#02_3_85",
+  "errors": []
+ },
+ {
+  "no": 8,
+  "name": "FB_DL_SpindleOrientationStop",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A4",
+  "errors": []
+ },
+ {
+  "no": 9,
+  "name": "FB_DL_ElectronicCamSwitchBank",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A5",
+  "errors": []
+ },
+ {
+  "no": 10,
+  "name": "FB_DL_VavBoxZeroCal",
+  "cat": "DL_Device",
+  "code": "16#03_2_12",
+  "errors": []
+ },
+ {
+  "no": 11,
+  "name": "FB_DL_ElectrodeTabBendCtrl",
+  "cat": "DL_Device",
+  "code": "16#03_2_13",
+  "errors": []
+ },
+ {
+  "no": 12,
+  "name": "FB_DL_JunctionBoxPottingCheck",
+  "cat": "DL_Device",
+  "code": "16#03_2_14",
+  "errors": []
+ },
+ {
+  "no": 13,
+  "name": "FB_DL_PouchSwellingGauge",
+  "cat": "DL_Device",
+  "code": "16#03_2_15",
+  "errors": []
+ },
+ {
+  "no": 14,
+  "name": "FB_DL_FreshAirStepperDamper",
+  "cat": "DL_Device",
+  "code": "16#03_2_16",
+  "errors": []
+ },
+ {
+  "no": 15,
+  "name": "FB_DL_HeatSealProfile",
+  "cat": "DL_Process",
+  "code": "16#06_0_B0",
+  "errors": []
+ },
+ {
+  "no": 16,
+  "name": "FB_DL_AhuEconomizer",
+  "cat": "DL_Process",
+  "code": "16#06_0_B1",
+  "errors": []
+ },
+ {
+  "no": 17,
+  "name": "FB_DL_TerminalReheatSeq",
+  "cat": "DL_Process",
+  "code": "16#06_0_B2",
+  "errors": []
+ },
+ {
+  "no": 18,
+  "name": "FB_DL_RfReflectedMonitor",
+  "cat": "DL_Process",
+  "code": "16#06_0_B3",
+  "errors": []
+ },
+ {
+  "no": 19,
+  "name": "FB_DL_StringSolderQuality",
+  "cat": "DL_Process",
+  "code": "16#06_0_B4",
+  "errors": []
+ },
+ {
+  "no": 20,
+  "name": "FB_DL_ModuleLamVacuumSeq",
+  "cat": "DL_Process",
+  "code": "16#06_0_B5",
+  "errors": []
+ },
+ {
+  "no": "R1",
+  "name": "FB_DL_LineShaftClutch",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A2",
+  "errors": []
+ },
+ {
+  "no": "R2",
+  "name": "FB_DL_CurtainEFEMZone",
+  "cat": "DL_Device",
+  "code": "16#03_2_0C",
+  "errors": []
+ }
+]

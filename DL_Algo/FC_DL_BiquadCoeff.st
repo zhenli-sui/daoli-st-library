@@ -100,6 +100,7 @@ VAR
     fA1Raw  : LREAL := 0.0; // 未归一化 a1 暂存 [−] / the raw a1 in staging
     fA2Raw  : LREAL := 0.0; // 未归一化 a2 暂存 [−] / the raw a2 in staging
     fNyq    : LREAL := 0.0; // 奈奎斯特闸限 0.45×fFs [赫兹] / the Nyquist guard value
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_BQC_2PI   : LREAL := 6.283185307179586; // 2π 常量（LREAL 精度字面量，R55）/ the two pi constant at LREAL precision
     DL_BQC_NYQ   : LREAL := 0.45;   // 奈奎斯特闸系数 [−]（0.45×fFs）/ the Nyquist guard fraction

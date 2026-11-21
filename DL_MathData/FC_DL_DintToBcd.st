@@ -65,6 +65,7 @@ VAR
     nShift  : DINT := 0;  // 移位量 [位]，4·k ≤ 28 结构性安全 / the shift amount of four times the position, proven below the word width
     nWork   : DINT := 0;  // 逐位提取工作副本 [个] / the working copy of the digit extraction
     uDig    : USINT := 0; // 当前位码元 [位] / the current digit extracted
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_BCD_MAX   : DINT := 99999999;   // 8 位 BCD 可表上界 [个] / the representable ceiling of the eight digit BCD
     DL_BCD_N     : DINT := 8;          // 码元总数 [个] / the digit count of eight

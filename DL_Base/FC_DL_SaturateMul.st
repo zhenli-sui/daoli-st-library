@@ -69,6 +69,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     liProd : LINT := 0; // 域内乘积中间量 [−] / the in-domain product intermediate
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_SMUL_MAX : LINT := 9223372036854775807;      // LINT 可表达上界 [−]，即 2^63−1 / the expressible LINT ceiling, two to the sixty third minus one
     DL_SMUL_MIN : LINT := -9223372036854775807 - 1; // LINT 可表达下界 [−]，以上界相反数减一表达，防字面量解析溢出 / the expressible LINT floor, written as the negated ceiling minus one to avoid a literal parse overflow

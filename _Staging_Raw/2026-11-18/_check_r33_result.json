@@ -1,0 +1,185 @@
+{
+ "FB_DL_SlurryViscosityComp": {
+  "cat": "DL_MathData",
+  "lines": 129,
+  "code": "16#02_3_5C",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_ShrinkFilmUsageCalc": {
+  "cat": "DL_MathData",
+  "lines": 97,
+  "code": "16#02_3_5D",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_TrackerSolarAngle": {
+  "cat": "DL_Algo",
+  "lines": 102,
+  "code": "16#02_3_5E",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_FanBeltSlipDetect": {
+  "cat": "DL_Device",
+  "lines": 110,
+  "code": "16#03_1_01",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_UnlockHoldTimeout": {
+  "cat": "DL_Device",
+  "lines": 76,
+  "code": "16#03_1_02",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_VacuumPumpBasePress": {
+  "cat": "DL_Device",
+  "lines": 113,
+  "code": "16#03_1_03",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_InverterDeratingCtrl": {
+  "cat": "DL_Device",
+  "lines": 142,
+  "code": "16#03_1_04",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_PrecursorCanisterWeight": {
+  "cat": "DL_Device",
+  "lines": 107,
+  "code": "16#03_1_05",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_ChillerLiftOptimize": {
+  "cat": "DL_Process",
+  "lines": 101,
+  "code": "16#06_0_37",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_CoolingTowerOpt": {
+  "cat": "DL_Algo",
+  "lines": 151,
+  "code": "16#02_3_5F",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_FreezeStatGuard": {
+  "cat": "DL_Process",
+  "lines": 116,
+  "code": "16#06_0_38",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_StackPressureProfile": {
+  "cat": "DL_Process",
+  "lines": 119,
+  "code": "16#06_0_39",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_PilePressLimitClass": {
+  "cat": "DL_Process",
+  "lines": 112,
+  "code": "16#06_0_3A",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_PressFitCurveArchive": {
+  "cat": "DL_Process",
+  "lines": 126,
+  "code": "16#06_0_3B",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_FilmTaperTension": {
+  "cat": "DL_Motion",
+  "lines": 98,
+  "code": "16#04_0_6C",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_CartonScannerSort": {
+  "cat": "DL_Process",
+  "lines": 111,
+  "code": "16#06_0_3C",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_PigLauncherSeq": {
+  "cat": "DL_Process",
+  "lines": 125,
+  "code": "16#06_0_3D",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_FormationTempRiseRate": {
+  "cat": "DL_Process",
+  "lines": 120,
+  "code": "16#06_0_3E",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_RollChangeoverSeq": {
+  "cat": "DL_Process",
+  "lines": 118,
+  "code": "16#06_0_3F",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_AndonLinePack": {
+  "cat": "DL_Process",
+  "lines": 160,
+  "code": "16#06_0_40",
+  "fails": [],
+  "patched": false
+ },
+ "FB_DL_BlindPositionCtrl": {
+  "cat": "DL_Process",
+  "lines": 209,
+  "code": "16#06_0_0F",
+  "fails": [
+   "bilingual too few: 8",
+   "L105 CASE assigns output enum eState",
+   "L107 CASE assigns output enum eState",
+   "L109 CASE assigns output enum eState",
+   "L116 CASE assigns output enum eState",
+   "L126 CASE assigns output enum eState",
+   "L129 CASE assigns output enum eState",
+   "L136 CASE assigns output enum eState",
+   "L146 CASE assigns output enum eState",
+   "L149 CASE assigns output enum eState",
+   "L159 CASE assigns output enum eState",
+   "L161 CASE assigns output enum eState",
+   "L176 CASE assigns output enum eState",
+   "L182 CASE assigns output enum eState",
+   "no fault code slot"
+  ],
+  "patched": true
+ },
+ "FB_DL_CompressorFleetStaging": {
+  "cat": "DL_Process",
+  "lines": 196,
+  "code": "16#06_0_14",
+  "fails": [
+   "bilingual too few: 6",
+   "no fault code slot"
+  ],
+  "patched": true
+ },
+ "FB_DL_WaferThermalBudgetAccum": {
+  "cat": "DL_Process",
+  "lines": 165,
+  "code": "16#06_0_23",
+  "fails": [
+   "bilingual too few: 6",
+   "no fault code slot"
+  ],
+  "patched": true
+ }
+}

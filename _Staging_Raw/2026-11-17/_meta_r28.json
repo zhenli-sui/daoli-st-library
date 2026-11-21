@@ -1,0 +1,121 @@
+{
+  "FC_DL_FanLawRootCalc": {
+    "instruction": "风机改造后需按相似定律把参考工况三量换算到新转速：1450 rpm/10000 m³h/800 Pa/15 kW 换算到 1200 rpm，得 8276 m³h、547.7 Pa、8.50 kW。边界条件是参考转速或任一参考量给 0（上位未标定时常见），此时必须拒绝计算并保持上次有效输出，不得输出 0——0 会被上位当成真实工况参与联锁。指数项允许组态（切割叶轮后指数会偏离 1/2/3），但出域需显式报组态错。",
+    "architecture_thought": "纯函数无状态，三个换算量共用一条比值链：先算 n/n0，再对每量取幂，指数分别校验后再钳制超速区。防错三条：参考量判零防除零、比值超 RatioMax 只钳制并给信息级码（不用故障级阻断换算）、输出非有限与 1e12 溢出双判。保持上次有效值靠 VAR_IN_OUT 之外的输出锁存实现，避免异常时输出 0 被误读。",
+    "function_tags": ["fan-law", "affinity-law", "root-calc", "scaling", "pure-function", "roadmap-L661", "r28-roadmap"],
+    "complexity": 3,
+    "source": "r28-roadmap"
+  },
+  "FB_DL_StepperXyzGantry": {
+    "instruction": "三轴步进开环龙门做点胶/贴片点位运动：X/Y 各 100 mm、Z 20 mm、50 mm/s，落点公差 0.01 mm，逐轴推进并给单拍完成脉冲。现场边界：目标超软限位（如 Z 给 2500 mm）必须一轴都不动而是启动沿前拒绝——半途发现超限会留下半程位移，破坏已在制件。单轴不返回就绪则后续轴一律不再派单。",
+    "architecture_thought": "五相状态机 Idle/Jogging/Settling/Done/Fault，逐轴串行而非并行派发，保证任一轴异常可整链停。防错要点：①参数域闸 + 软限位预检 + 契约引用判空三重前置，全部前移到启动沿之前；②零位移轴跳过不派单（零位移指令在部分平台挂死）；③派单当拍不判到位，防同拍假到位；④换轴前必清上一轴派单标志（R27 跨轴标志教训）；⑤超时即受控停车且不再发新指令。",
+    "function_tags": ["stepper", "xyz-gantry", "point-to-point", "state-machine", "timeout", "soft-limit", "roadmap-L546", "r28-t1-8"],
+    "complexity": 5,
+    "source": "r28-t1-8"
+  },
+  "FB_DL_StepperFeederBelt": {
+    "instruction": "步进供料带间歇送料：标称间距 100 mm，色标偏差 +2 mm（正=超前）时按 0.5 增益补偿，本次步距应为 101 mm。连续偏差同向会把累计补偿推大，累计超 20 mm 必须停止送料而不是继续累加——继续累加等于用一次大跳步追回全部误差，会扯断料带。运行中重复请求一律丢弃不排队。",
+    "architecture_thought": "单体单相 + 请求沿受理：bBusy 期请求直接丢弃（排队会让多次点动在几拍后突然连发）。补偿链为「偏差×增益→累计→本次步距」，步距在 0.5×Pitch~1.5×Pitch 之间钳制并给信息级码（防倒料），累计超上限才升故障并停送。停稳确认 tSettle 用 TON 无条件刷新，避免分支内调用导致计时冻结。",
+    "function_tags": ["stepper", "feeder", "indexing", "mark-registration", "compensation", "roadmap-L572", "r28-t1-8"],
+    "complexity": 3,
+    "source": "r28-t1-8"
+  },
+  "FB_DL_CheckweighZeroTrack": {
+    "instruction": "动态称重皮带秤在冷库环境跑零点跟踪：空载 200.0 g 稳定 1 s、温升 20→30 ℃、温漂系数 0.02 g/K 时补偿 +0.2 g，净重归零。边界条件：皮带上有 500 g 砝码（非空载）绝不许改零点；传感器温度给 NaN 时必须保持上次补偿值而非按 0 处理——0 ℃ 在冷库是合法温度，按 0 会把真实温漂抹平并掩盖断线。",
+    "architecture_thought": "零点 = 快照零点 + 温漂补偿，两者分离存放以便反算累计漂移。三道闸决定「能不能改零点」：空载判据、冲击抑制窗、静载稳定窗，任一不满足即冻结。温漂补偿对温度做非有限前置，失败保上次值；累计漂移超限升故障——继续跟踪会把真实偏差吃掉，现场就再也看不出秤漂了。滤波内核委托库内中值滤波件，不内联重实现（R140）。",
+    "function_tags": ["checkweigh", "zero-tracking", "temperature-drift", "filter", "roadmap-L719", "r28-t1-1"],
+    "complexity": 3,
+    "source": "r28-t1-1"
+  },
+  "FB_DL_EfEmDoorInterlockPlus": {
+    "instruction": "EFEM 门/阀/真空三域互斥：门关、阀开、真空 0.1 kPa 未达 5 kPa 门限时禁行并首因报「真空不足」（3）；抽到 0.05 kPa 才放行、首因清零。现场边界：阀双反馈同时 TRUE 或同为 FALSE 是位置反馈矛盾，必须先于互斥判定报出，否则首因会指到真空域而掩盖阀本身故障。使能丢失时必须立即失效为禁行。",
+    "architecture_thought": "三域各自出阻断位，再由掩码仲裁出唯一首因（同拍取编号最小，沿用 R11 首出三律），放行是唯一出口引脚，避免各域各自放行。首因只在未锁存时仲裁，锁存后冻结以便追溯。阀位矛盾前置成独立分支；真空非有限按「真空不足」保守侧处理，因为不可读不等于安全。",
+    "function_tags": ["efem", "interlock", "door-valve-vacuum", "first-cause", "mask-arbitration", "roadmap-L709", "r28-t2-8"],
+    "complexity": 4,
+    "source": "r28-t2-8"
+  },
+  "FB_DL_LaserTabWeldTrack": {
+    "instruction": "极耳激光焊单焊点监视：指令 0→50 mm，实际滞后 0.3 mm 超上限 0.2 mm 持续 30 ms 判跟超（bit0）；功率 2000→1500 W（跌 25% 超 10%）持续 30 ms 判功率跌落（bit1）。边界：位置读数给 NaN 时只跳过本拍，已累计峰值与掩码绝不清零；窗口拖满 tWindowMax 仍无结论必须强制判决并置 bit3，不许无限期停在出光态。",
+    "architecture_thought": "六相 Waiting/Welding/Judging/Pass/Reject/Fault，三类缺陷各由独立 TON 确认（禁用单拍判据），窗口 TON 与三个确认 TON 同段无条件刷新。防错：①位置非有限只跳过本拍不清累计量；②停滞判据用「确认时长×速度」换算距离门限，时间转换链需三平台编译验证；③判决相才锁存焊点位置，且加位置有限前置防 NaN 入出口；④组态域闸含停滞速度（负值/NaN 会让门限失效而静默关闭 bit2）。",
+    "function_tags": ["laser-weld", "tab-welding", "following-error", "defect-mask", "window-timeout", "roadmap-L882", "r28-t2-6"],
+    "complexity": 4,
+    "source": "r28-t2-6"
+  },
+  "FB_DL_NotchAlignSeq": {
+    "instruction": "晶圆缺口对位：θ 10°、目标 95°、公差 0.2°、30 °/s，先搜索缺口再微调 +85°，复核 0.05° 后完成。现场边界：缺口信号恒不来时必须单相超时转故障，不许空转搜索；角度跨越 0/360 必须用条件加减归一（各平台负数取余行为不一致）。重试次数用尽后锁存故障，不静默续相。",
+    "architecture_thought": "六相 Idle/Searching/Latched/Trimming/Verifying/Done/Fault，一相一相位一超时，超时即故障而不自动续相（自动续相会让缺口漏检走完整圈）。角度归一走条件加减禁 MOD（R11）；公差与速度判零前置防除零；Done 需新启动沿重触发，防完成后自循环再搜。",
+    "function_tags": ["notch-align", "wafer", "sequence", "retry", "angle-wrap", "roadmap-L823", "r28-t1-6"],
+    "complexity": 4,
+    "source": "r28-t1-6"
+  },
+  "FB_DL_EdgeTrimTraverse": {
+    "instruction": "修边刀架横动往复：行程 0~300 mm、100 mm/s、端点重叠 5 mm、驻留 200 ms，单程 3 s、计数 +1。边界：行程改成 0~3 mm 时必须报组态错——行程过窄使往复退化成抖动，刀架会在同一点反复蹭料；bStop 只在段终点生效，半途硬切会在料边留刀痕。",
+    "architecture_thought": "六相 Idle/RunMin/RunMax/Dwell/Stopped/Fault，端点重叠量在目标值上做加减而不是靠机械限位。防错：行程宽度设下限闸、重叠量出域钳制、驻留 TON 无条件刷新、停止请求延迟到段终点执行。目标下发前做软限位预检（本件按契约不匹配改为内联预检，见战报偏离裁定）。",
+    "function_tags": ["traverse", "edge-trim", "reciprocating", "dwell", "soft-limit", "roadmap-L638", "r28-t2-4"],
+    "complexity": 3,
+    "source": "r28-t2-4"
+  },
+  "FB_DL_NtcChannelHealth": {
+    "instruction": "NTC 通道健康度评分：无故障、漂移 0.2/2.0 ℃、噪声 0.01/0.5 ℃、权重 40/40/20 时给 100 分 Good；断线位置位且漂移 5 ℃ 时降到 60 分以下并给更换建议。边界：三个权重之和不为 100 时必须回退默认权重并报错（不停摆但要显式告警），温度非有限时本周期不计分而不是记 0 分——记 0 会把健康通道直接判死。",
+    "architecture_thought": "加权评分 + 四档等级（Good/Watch/Warn/Bad，整数分档禁浮点等判）。三因子各归一化到 0~1 后加权求和，权重和校验失败走默认权重兜底。更换建议由「Bad 等级」或「断线累计 3 次」两条正交路径产生。评分周期用 TON 自复位节拍，避免每拍重算浪费扫描时间。",
+    "function_tags": ["ntc", "channel-health", "scoring", "weighted", "predictive-maintenance", "roadmap-L691", "r28-t1-2"],
+    "complexity": 3,
+    "source": "r28-t1-2"
+  },
+  "FB_DL_WaferCassetteSlot": {
+    "instruction": "花篮 25 槽占用双向计数：进满 25 片给满篮判据与位图 16#01FFFFFF，再出 1 片回 24 且满篮判据撤销。边界：空篮出片属计数矛盾，必须锁存并保持占用 0，绝不借位到 25——借位会把满篮误判成空篮，安全侧正好相反。同拍进出双沿物理不可能，双丢弃并报错。",
+    "architecture_thought": "位图 + 计数双表示：位图供槽位查询，计数供满空判据，两者同源更新以防漂移。防错：同拍双沿先判矛盾；下溢不借位而锁存 bCounterMismatch；写位图前判槽号 ≤ uSlotCount；槽数超 25 钳制并给信息级码；清空须在失能态执行，防运行中清零。",
+    "function_tags": ["cassette", "wafer", "bidirectional-counter", "slot-bitmap", "underflow-guard", "roadmap-L636", "r28-t2-1"],
+    "complexity": 2,
+    "source": "r28-t2-1"
+  },
+  "FB_DL_LamCtrlDualZone": {
+    "instruction": "层压机上下腔真空协调：目标 0.5 kPa、差压上限 3 kPa，上腔 5/下腔 12 时差压 7 越限，只降抽得快的一侧（上泵），双侧都到 0.5 kPa 才给达标。边界：目标真空高于当地大气压（如 105 kPa）属组态错须拒绝；段超时保持当前抽速而不归零——归零等于放弃已建立的真空度。",
+    "architecture_thought": "四段顺控（粗抽/平衡/精抽/保压）+ 双侧抽速指令输出。差压保护只调单侧是本件的核心语义：双侧同降会让时长翻倍且不解决差压。单侧读数非有限按 0 处理并报码，双侧都坏才停车；段超时只保持不撤速。真空达标判据要求双侧同时满足，禁用「任一达标」。",
+    "function_tags": ["laminator", "dual-chamber", "vacuum", "differential-pressure", "sequence", "roadmap-L361", "r28-t2-2"],
+    "complexity": 4,
+    "source": "r28-t2-2"
+  },
+  "FB_DL_LaminatorVacLeakTrend": {
+    "instruction": "层压机保压段真空泄漏率诊断：1.0→1.05 kPa/60 s 得 0.05 kPa/min，上限 0.1 时不报；1.0→1.5 得 0.5 则报警；基线 0.02、当前 0.06（3 倍）给预警。边界：只在保压段计速率（其他段压降是工艺造成）；基线样本不足时绝不报警——未标定的报警等于噪声。",
+    "architecture_thought": "速率 = 压差/时长（时间转换链），基线 = 满窗均值，两级判据：越基线倍数给预警、越绝对上限给报警。防错：真空上升（负泄漏，属放气）不刷新基线，否则放气抬高基线后真泄漏永不报警；样本数下限 3；速率非有限跳过本拍；分母判零前置。",
+    "function_tags": ["laminator", "vacuum-leak", "trend", "baseline", "rate-diagnosis", "roadmap-L700", "r28-t2-1"],
+    "complexity": 3,
+    "source": "r28-t2-1"
+  },
+  "FB_DL_PumpDownEnvelopeMonitor": {
+    "instruction": "腔体抽气三段包络监视：101→10 kPa/30 s（3.03 kPa/s）+ 10→1 kPa/45 s（0.2 kPa/s）、最小抽速 0.1 时全程合格；某段拖到 200 s（0.045）只给早停建议不切泵。边界：段界反置会让段永远进不去，必须报组态错；压强非有限立即停段（不可读状态不许推进段）。",
+    "architecture_thought": "段号由段界压强判定、斜率由采样节拍算（TON 自复位产节拍，R_TRIG 取沿）。本件明确只「建议」不动执行器：段超时与斜率不达标都只置建议位，切泵是上层职责。防错：压强可读性闸前置、采样周期与最小抽速判零防除零、故障码由锁存码回放（旧写法会把组态故障错报成压强故障）。与已注册 FB_DL_ChamberPumpDownProfile 的包络上界口径不兼容，故另立名。",
+    "function_tags": ["pump-down", "vacuum", "envelope", "slope", "early-stop-advice", "roadmap-L708", "r28-t2-1"],
+    "complexity": 3,
+    "source": "r28-t2-1"
+  },
+  "FB_DL_SealJawDwellTrim": {
+    "instruction": "热封刀驻留随线速自整定：标称 300 ms、线速 0→60 m/min、质量 0.85 目标 0.9 时微调 +10 ms 得 310 ms，变化率不超 50 ms/s。边界：上下限反置（Min 400 > Max 300）报组态错；质量读数非有限时冻结微调并保持上次给定，绝不许把 NaN 积分进给定。",
+    "architecture_thought": "质量误差经增益产生微调分量，叠加标称得给定。防错关键在次序：先限速后钳制（反序会让限速把值带出钳制区间）；停机期不计微调次数也不积分（停机没有封口样本）；质量非有限走冻结分支而不是走 0 误差分支；上下限与目标域前置校验。",
+    "function_tags": ["seal-jaw", "dwell-time", "auto-trim", "line-speed", "rate-limit", "roadmap-L716", "r28-t2-7"],
+    "complexity": 4,
+    "source": "r28-t2-7"
+  },
+  "FB_DL_BatchDeviationTierAlarm": {
+    "instruction": "批次偏差四档分级与首出归因：目标 100、L/H=2、LL/HH=5，实测 106 给 HH 档并升 P1；确认只清已确认不清活跃，回 100 时两标志同拍清零。边界：带序反置（LL≤L 或 HH≤H）会让四档永远同档，必须报组态错；目标值非有限时 eLevel 回 Ok 但 bActive 保持上一拍——不因目标丢值撤销活跃报警。",
+    "architecture_thought": "四档由双侧带宽比较产生（非求差取绝对值，避免不对称公差错档），首出来源只在未锁存时记录（同拍取编号最小）。bActive 与 bAcked 设计成正交：可同时为 TRUE，回 Ok 才同拍清零，防 HMI 留幽灵报警。升 P1 由档位越限触发而不是由确认状态触发。",
+    "function_tags": ["batch-deviation", "tiered-alarm", "first-out", "escalation", "orthogonal-flags", "roadmap-L734", "r28-t2-8"],
+    "complexity": 3,
+    "source": "r28-t2-8"
+  },
+  "FB_DL_InlineCheckweighGauge": {
+    "instruction": "在线称重动态窗判据：目标 500、公差 ±5，10 件 500±1 得均值 500、σ≈0.7 不报警；一件 508 立即判超重且计入剔除；σ 升到 6 超控制限 2 时给 SPC 报警。边界：逐件判定不许平滑——平滑会漏掉单件超重；σ 只在窗满后判，样本非有限须丢弃并计数。",
+    "architecture_thought": "两套并行判据：逐件公差判据（即时，不平顺）+ 窗口 σ 控制图（满窗后判）。统计量用 n−1 分母且前置保证 n≥5 防除零。冲击剔除按 ±3σ 门限可选开关，剔除数与 SPC 次数分别计数供追溯。窗实现用环形缓冲，避免移位拷贝。",
+    "function_tags": ["checkweigh", "inline-gauge", "spc", "sigma-control", "outlier-reject", "roadmap-L379", "r28-t2-1"],
+    "complexity": 3,
+    "source": "r28-t2-1"
+  },
+  "FB_DL_ChillerStagingCurve": {
+    "instruction": "冷机加减机效率曲线选点：负荷 55%、3 台在线、COP 峰值在 80% 时单机负荷仅 18.3% 过轻，给减机请求、建议 2 台。边界：曲线非单调或含非有限值一律不给建议（错曲线的建议比不给更危险）；在线台数 0 防除零直接报故障；加减机须持续确认时长满足才发单拍脉冲，死区防抖。",
+    "architecture_thought": "五相 Idle/Eval/Confirm/Pulse/Fault，请求按「建议台数 vs 在线台数 + 死区」双判据产生，确认 TON 满沿才发单拍脉冲。防错：①曲线单调性与全点有限双检，任一不过即锁存并不给建议；②需求台数向上取整按余量判进位（旧写法对正好整除会多算一台）；③负荷率与死区补域钳制（超界负荷经实数转整数溢出会翻转加减机方向）；④故障解除只在失能时成立，锁存码回放。",
+    "function_tags": ["chiller", "staging", "cop-curve", "energy-efficiency", "deadband", "roadmap-L385", "r28-t1-2"],
+    "complexity": 4,
+    "source": "r28-t1-2"
+  }
+}

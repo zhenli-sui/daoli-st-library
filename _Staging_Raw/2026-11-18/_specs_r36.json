@@ -1,0 +1,82 @@
+{
+ "1": [
+  "FC_DL_HarmonicSpectrumBin",
+  "| 1 | **`FC_DL_HarmonicSpectrumBin`**（DL_MathData/FC，纯函数）：输入 `afSampleBuffer`（采样窗，`ARRAY[0..N-1] OF LREAL`，N 由 `nWindowSize` 给出）、`fSampleRateHz`、`fTargetFreqHz`、`eWindowType`（矩形/Hann，枚举 `E_DL_SpectrumWindow`）；输出 `fMagnitude`（物理量单位随输入，峰值幅值）、`fPhaseDeg`（°）、`bValid`、`nErrId`。算法：Goertzel 单频点 DFT + 窗函数幅值修正（Hann 相干增益 0.5）+ 相位解卷。边界：`nWindowSize` 越界（<8 或 >数组上界）判无效置码；`fSampleRateHz <= 0` 防除零；`fTargetFreqHz` ≥ 奈奎斯特频率判无效（不混叠出假值）；窗内样本非有限（NaN/Inf）整窗无效；幅值 < `fMagFloor` 输出 0 并置「低于分辨力」信息码。 |"
+ ],
+ "2": [
+  "FC_DL_CubicSplineInterp",
+  "| 2 | **`FC_DL_CubicSplineInterp`**（DL_MathData/FC，纯函数）：输入 `afX`/`afY`（节点表）、`nPointCount`、`fQueryX`；输出 `fOutY`、`fOutSlope`、`bInRange`、`nErrId`。算法：自然三次样条（二阶导三对角求解，Thomas 追赶法，`WHILE` 带死锁计数器上限 = 节点数 + 1）。边界：`nPointCount < 2` 判无效；节点 X 非严格递增（含相等）拒绝求值并置码（不做静默排序）；`fQueryX` 越界 → 钳到端点、`bInRange := FALSE` 并**不外推**；三对角主元近零（`ABS(主元) < 1E-12`）判节点病态置码；节点数超 `nMaxNode` 组态上限拒绝（防静态数组越界）。 |"
+ ],
+ "3": [
+  "FB_DL_DisturbanceObserver",
+  "| 3 | **`FB_DL_DisturbanceObserver`**（DL_Algo/FB）：输入 `fCmdOut`（控制器输出，%）、`fMeasSpeed`（实测速度，rpm）、`fInertia`（kg·m²）、`fTorqueConst`（N·m/A）、`fQFilterTau`（s）；输出 `fDistTorqueEst`（N·m）、`fCompOut`（补偿量，%）、`bSaturated`、`bValid`、`eState`（`E_DL_ObserverState`：Idle/Run/Hold/Fault）。算法：标称模型逆（`J·dω/dt ÷ Kt`）与实测之差经一阶 Q 滤波得扰动估计，补偿量按 `fCompGain` 加权后限幅。边界：`fInertia`/`fTorqueConst`/`fQFilterTau` 任一 ≤ 0 判组态错置码且不投运（防除零）；速度信号为 0 且持续超 `tZeroSpeedHold`（本件声明常量 200 ms）时冻结估计器（静止段无可观测加速度，防止噪声灌入积分）；`bEnable` 下降沿清估计值与内部微分状态（R28-1 锁存/复位可达自检：解除式 = `bEnable` 上升沿 + `bReset`，两者均在引脚可满足）；输出限幅到 `fCompLimit`（%，默认 `VAR_INPUT` 而非硬编码）。 |"
+ ],
+ "4": [
+  "FB_DL_ResonanceTrackNotch",
+  "| 4 | **`FB_DL_ResonanceTrackNotch`**（DL_Algo/FB）：输入 `fSignal`（振动或电流反馈）、`fSampleDt`（s）、`fFreqMinHz`/`fFreqMaxHz`（搜索窗）、`nSettleCycles`；输出 `fResonanceHz`、`fTrackConfidence`（0~1）、`bLocked`、`nErrId`、`eState`。算法：二阶带通相位过零测周期 → 频率估计经滑动中值去野值 → 钳制到 `[fFreqMinHz, fFreqMaxHz]`；连续 `nSettleCycles` 次估计落在 ±`fLockBandHz` 内才 `bLocked`；锁定后失锁须连续 `nLostCycles` 次越带才降级（迟滞，防抖）。边界：`fSampleDt <= 0` 判组态错；`fFreqMinHz >= fFreqMaxHz` 判组态错置码不运行；搜索窗越奈奎斯特判无效；信号幅值 < `fAmpFloor` 不出频率结论（`bLocked := FALSE`，估计值保持但 `fTrackConfidence` 衰减）；频率跳变超 `fMaxSlewHzPerSec` 判野值丢弃并计数（计数超限置「跟踪发散」故障码）。 |"
+ ],
+ "5": [
+  "FB_DL_LineShaftClutch",
+  "| 5 | **`FB_DL_LineShaftClutch`**（DL_Motion/FB）：注入 `iMasterAxis`/`iSlaveAxis`（`I_DL_MotionAxis`）；输入 `bEngageCmd`、`bDisengageCmd`、`fPhaseOffsetDeg`（°）、`fEngageRampTime`（s）、`fSlipLimitDeg`；输出 `bEngaged`、`fPhaseErrorDeg`（°）、`bSlipFault`、`eState`（`E_DL_ClutchState`：Idle/Aligning/Ramping/Engaged/Disengaging/Fault）。算法：对齐段把从轴相位拉至主轴的 `fPhaseOffsetDeg` 偏移，相位误差进入 `fAlignTolDeg`（本件声明常量 0.5°）后进咬合斜坡，斜坡完成置 `bEngaged`；咬合期相位误差超 `fSlipLimitDeg` 持续 `tSlipDebounce` → `bSlipFault` 且强制脱开。边界：两轴任何一方 `bError`/未使能则拒绝咬合置码；主从同轴（同一实例传引用）判组态错；`fEngageRampTime <= 0` 判组态错；脱开命令与咬合命令同拍 → 以脱开为安全优先并置码；解除路径自证：`bSlipFault` 解除式 = `bReset AND iMasterAxis.bStandstill AND iSlaveAxis.bStandstill`（三条件均可满足，R28-1 通过）。 |"
+ ],
+ "6": [
+  "FB_DL_FlyingCutSync",
+  "| 6 | **`FB_DL_FlyingCutSync`**（DL_Motion/FB）：注入 `iMasterAxis`（料带线轴）/`iCutAxis`（刀轴）；输入 `fCutLengthMm`、`fSyncWindowStartMm`/`fSyncWindowEndMm`（切窗区间）、`fCutOverlapRatio`、`tCutDwell`（ms）；输出 `bCutCmd`（单拍脉冲，注释标注「脉冲语义：置位 1 个 PLC 周期」）、`bInSyncWindow`、`fSyncErrorMm`、`nCutCount`（UDINT）、`eState`。算法：MASTER 位置取模 `fCutLengthMm` 得相位，进入窗口后刀轴按电子齿轮追赶，同步误差进 `fSyncTolMm` 才允许下刀；切完回程重装。边界：`fCutLengthMm <= 0` 防除零判组态错；窗口起止倒置或窗口宽 ≤ 0 判组态错不运行；未同步时**禁止** `bCutCmd`（互锁在内部，不外抛）；`nCutCount` 到 `uCountPreset` 后 `bPresetReached` 置位（UDINT 上限前饱和，**不给 TRUNC(x)+1 型写法**）；切窗内主轴反转立即判废并置码。 |"
+ ],
+ "7": [
+  "FB_DL_WaferCoolChuck",
+  "| 7 | **`FB_DL_WaferCoolChuck`**（DL_Device/FB）：注入 `iVac`（`I_DL_VacuumGenerator`）/`iTempZone`（`I_DL_TemperatureZone`）；输入 `bClampCmd`、`bReleaseCmd`、`fTempAttachMaxC`（脱附允许上限，°C）、`tAttachConfirm`（ms）；输出 `bClamped`、`bTempEnable`、`bInterlockBlocked`、`nErrId`、`eState`（`E_DL_ChuckState`）。算法：吸附确认（真空度达 `fVacConfirmKpa` 且持续 `tAttachConfirm`）才允许 `bTempEnable`；释放须温度 ≤ `fTempAttachMaxC`（迟滞 2 °C）且真空已破；吸附失败重试 `nRetryMax` 次后锁存。边界：`fTempAttachMaxC` 与环境上限倒置判组态错；**区分「吸附中温度越上限」与「未吸附」两路故障码**（不得共用一号）；解除式自证：温度回落 + `bReset`；释放期真空未破不推进状态（带 `tReleaseTimeout` 超时升级）。 |"
+ ],
+ "8": [
+  "FB_DL_CurtainEFEMZone",
+  "| 8 | **`FB_DL_CurtainEFEMZone`**（DL_Device/FB）：注入 4 路 `I_DL_LightCurtain`（进入侧 A/B、区内 C、出口侧 D）；输入 `bMutingEnable`、`fZoneSpeedLimit`（mm/s）、`tMutingMax`（屏蔽最长时限，ms）、`tSequenceGap`（判向相邻间隔上限，ms）；输出 `bZoneSafe`、`bMutingActive`、`bSequenceFault`、`bMutingTimeout`、`nErrId`、`eState`（`E_DL_MutingState`）。算法：A→B→C→D 顺序遮光判「正向通过」，D→C→B→A 判「反向」；顺序成立才进屏蔽窗；屏蔽窗内若出现非顺序遮光（如 C 在 A 前）→ `bSequenceFault` 锁存并禁屏蔽。边界：**任一传感器自检失败（信号质量坏）立即退出屏蔽并置码**（不得静默屏蔽）；`tMutingMax` 到点强制解屏蔽；屏蔽期 `fZoneSpeedLimit` 仍受控（屏蔽 ≠ 无限速）；解除式自证：`bSequenceFault` 解除 = `bReset AND NOT bMutingEnable`（组态退出屏蔽路径可满足）；判向超 `tSequenceGap` 判顺序失败而非「无事件」。 |"
+ ],
+ "9": [
+  "FB_DL_VentPurgeDuty",
+  "| 9 | **`FB_DL_VentPurgeDuty`**（DL_Device/FB）：输入双塔状态（`bTowerAAvail`/`bTowerBAvail`、`fTowerADpKpa`/`fTowerBDpKpa`）、`fBreakthroughKpa`（穿透门限）、`tSwitchInterval`（h 口径→内部换 ms）；输出 `bTowerAOnline`、`bSwitchCmd`、`bBreakthroughWarn`、`bBothFault`、`nErrId`。算法：轮值到点切换，但**吸附塔压差已越穿透门限则提前切换**；单塔不可用则禁切（保持运行塔）并告警；两塔均不可用 → `bBothFault` 锁存。边界：穿透门限 ≤ 0 或 `tSwitchInterval` ≤ 0 判组态错；切换中（`tSwitchOverlap` 开）两塔同时在线按允许处理，但**双塔同时离线判严重故障**；解除式自证：`bBothFault` 解除 = `bReset AND (bTowerAAvail OR bTowerBAvail)`；计数器到 UINT 上限前饱和（禁回绕）。 |"
+ ],
+ "10": [
+  "FB_DL_SlurryLevelBank",
+  "| 10 | **`FB_DL_SlurryLevelBank`**（DL_Device/FB）：输入 `abLevelHigh`/`abLevelLow`（多罐点式开关数组）、`anSensorQuality`（0~3 质量字）与 `aeFailSafeDir`（`E_DL_FailSafeDir`：LOW/HIGH，每罐组态）；输出 `abLevelAlarm`、`abSensorFault`、`nFaultCount`、`bBankAlarm`、`nErrId`。算法：按 fail-safe 方向解释「液位 vs 断线」——LOW 型开关在断线时表现为「高位」，反之亦然；质量字非 OK 判 `abSensorFault`，并以「安全侧」值参与联锁（保守取值）。边界：数组长度越界/两数组长度不等直接判码返回（不进入循环）；`uBankSize` = 0 判组态错；**同一罐高低位同时为真**判「开关相反」故障（R28-2 整数/逻辑进位点向量：3 罐 × 2 型共 6 组向量须逐条推演）；输出必须区分「越限」与「传感器故障」两类码。 |"
+ ],
+ "11": [
+  "FB_DL_FoupPurgeN2Flow",
+  "| 11 | **`FB_DL_FoupPurgeN2Flow`**（DL_Device/FB）：注入 `iFlowMeter`（`FB_DL_PulseFlowMeter` 实例或接口）；输入 `fFlowSetLpm`、`fFlowTolPct`（%）、`fDewPointMaxC`、`tPurgeEstablish`（ms）；输出 `bPurgeOk`、`bEstablishTimeout`、`bDewPointAlarm`、`fFlowDeviationPct`、`nErrId`。算法：吹扫起始后须在 `tPurgeEstablish` 内流量进入 ±`fFlowTolPct` 带，否则 `bEstablishTimeout`；露点超 `fDewPointMaxC` 分级告警（越限 / 严重越限两级）。边界：`fFlowSetLpm <= 0` 防除零判组态错；脉冲流量计 K 系数未组态（=0）判组态错不投运；露点信号缺失（质量坏）时**不当作合格**，置「信号无效」码且 `bPurgeOk := FALSE`；偏差百分比计算分母钳位（`fFlowSetLpm` 已 >0，仍对 `ABS` 结果限幅防溢出）。 |"
+ ],
+ "12": [
+  "FB_DL_CartonErectVacMonitor",
+  "| 12 | **`FB_DL_CartonErectVacMonitor`**（DL_Device/FB）：注入 `iVac`（`I_DL_VacuumGenerator`）；输入 `fVacTargetKpa`、`tBuildMax`（ms）、`nBaselineSamples`；输出 `fBuildTimeMs`、`fBaselineMs`、`fDriftPct`、`bAgingWarn`、`bBuildTimeout`、`nErrId`。算法：每次取料记录真空建立时长，滑动基线取中值（抗野值），当前时长相对基线漂移超 `fDriftWarnPct` 连续 `nWarnCycles` 次 → `bAgingWarn`（吸盘老化）。边界：`nBaselineSamples` > 数组上限钳制并置信息码；样本数不足不出漂移结论（`bAgingWarn := FALSE`）；`fVacTargetKpa <= 0` 判组态错；建立时长为 0（同拍达成）走下限保护避免除零（基线未建立时 `fDriftPct := 0`）。 |"
+ ],
+ "13": [
+  "FB_DL_CoderRibbonLife",
+  "| 13 | **`FB_DL_CoderRibbonLife`**（DL_Device/FB）：输入 `bPrintPulse`（打印触发）、`nRibbonRatingPrints`（额定打印次数）、`fDensityCmdPct`（浓度设定 %）、`fDensityMinPct`；输出 `nPrintedCount`（UDINT）、`fRemainPct`、`bReplaceWarn`、`bDensityCompSaturated`、`nErrId`。算法：双口径——次数口径（已打/额定）与浓度口径（为达清晰度被迫提升浓度超过 `fDensityRiseMaxPct` 则说明色带衰减）取劣者预警；`nPrintedCount` 饱和到额定值（不回绕）。边界：`nRibbonRatingPrints = 0` 防除零判组态错；`fDensityCmdPct` 越 0~100 钳制并置组态告警；换带复位须 `bRibbonReplaced` 上升沿 + `bReset`（解除式自证）；`bPrintPulse` 用 `R_TRIG`，**每主周期无条件刷新**。 |"
+ ],
+ "14": [
+  "FB_DL_VavBoxZeroCal",
+  "| 14 | **`FB_DL_VavBoxZeroCal`**（DL_Device/FB）：输入 `fAirflowRaw`（原始风量信号）、`bDamperClosed`/`bDamperOpen`（两点位置反馈）、`tStableTime`（ms）、`fStableBandPa`；输出 `fZeroOffset`、`fSpanGain`、`bCalValid`、`bCalInProgress`、`bRegulateFrozen`、`nErrId`、`eState`（`E_DL_CalState`）。算法：阀门关位且信号在 `fStableBandPa` 内稳定 `tStableTime` 采零点；开位同理采满量程点算 span；两点标定完成才 `bCalValid`；标定全程 `bRegulateFrozen := TRUE`（冻结调节，防标定期误调）。边界：两点顺序反了（先开位后关位）判顺序错置码；零点与满量程差不满足最小分辨率判标定失败（不透传负 span）；标定超 `tCalTimeout` 退出并保持旧参数；解除式自证：`bCalValid` 置位路径 = 零点/满量程两次采样均成功。 |"
+ ],
+ "15": [
+  "FB_DL_HeatSealProfile",
+  "| 15 | **`FB_DL_HeatSealProfile`**（DL_Process/FB）：输入 `bStart`、`bAbort`、配方表（温度/压力/时间三段 `ARRAY[0..2]`）、`fTempTolC`/`fPressTolBar`、`tSealMax`（ms）；输出 `bSealing`、`bProfileOk`、`bReject`、`nSegment`、`fElapsedMs`、`nErrId`、`eState`（`E_DL_SealPhase`：Idle/Heat/Press/Cool/Done/Reject/Fault）。算法：升温→加压→冷却三段按配方时长推进，各段温度/压力必须落在容差带内（越带记段不合格，末段汇总 `bProfileOk`）；单段超 `tSealMax` 升级为 `Fault`。边界：配方时长为 0 的段跳过但记信息码；配方三段全为 0 判组态错不启动；`bAbort` 在任意段立即进 `Fault` 并置 `bReject`；`CASE ... ELSE` 必须有兜底分支（未知状态回 Idle 并置码）；解除式自证：`bReject` 解除 = `bStart` 上升沿且 `bReset`。 |"
+ ],
+ "16": [
+  "FB_DL_AhuEconomizer",
+  "| 16 | **`FB_DL_AhuEconomizer`**（DL_Process/FB）：输入 `fOutdoorTempC`/`fReturnTempC`、`fOutdoorRhPct`/`fReturnRhPct`、`bFreezeStat`、`fMinFreshPct`；输出 `fDamperCmdPct`、`bFreeCooling`、`bFreezeLockout`、`bEnthalpyModeActive`、`nErrId`、`eState`。算法：焓值（`FC_DL_HumidAirEnthalpy`）比较为主判据、干球差为后备判据（`eCompareMode` 组态），新风开度在 `[fMinFreshPct, 100]` 区间随需求线性映射；`bFreezeStat` 触发 `bFreezeLockout` 关至最小位并锁存，须温度回升 + `bReset` 解除。边界：两个 RH 信号任一质量坏 → **退到干球判据**（不得用缺省 RH 冒充），并置信息码；`fMinFreshPct` 越 0~100 钳制；焓值差在 `±fDeadbandKjKg` 内保持当前模式（迟滞，防抖）；`bFreezeLockout` 解除式自证：`fOutdoorTempC > fFreezeReleaseC` 且 `bReset`。 |"
+ ],
+ "17": [
+  "FB_DL_TerminalReheatSeq",
+  "| 17 | **`FB_DL_TerminalReheatSeq`**（DL_Process/FB）：输入 `fZoneTempC`/`fZoneSetC`、`fAirflowPct`、`fMinAirflowPct`、`fReheatMaxPct`、`fReheatStageStepPct`；输出 `fReheatCmdPct`、`bMinAirflowLimit`、`bReheatInhibit`、`nActiveStage`、`nErrId`。算法：风量低于 `fMinAirflowPct` 时再热**按级降档**（级间延时 `tStageDelay`），并置 `bMinAirflowLimit`；`bReheatInhibit`（如制冷季互锁输入）时再热全关。边界：`fMinAirflowPct` ≥ 100 判组态错（将使再热永久抑制）；级数计算 `nStage = (INT)(fReheatCmdPct / fReheatStageStepPct)` 后**按级数上限钳制**，`fReheatStageStepPct <= 0` 防除零判组态错（R28-2：整除点与上限+1 两点各推向量）；温度/风量信号质量坏 → 保持当前级并置码（不跳变）。 |"
+ ],
+ "18": [
+  "FB_DL_RfReflectedMonitor",
+  "| 18 | **`FB_DL_RfReflectedMonitor`**（DL_Process/FB）：输入 `fPowerFwdW`、`fPowerReflW`、`fReflRatioWarnPct`/`fReflRatioFaultPct`（%）、`tRatioDebounce`（ms）；输出 `fReflRatioPct`、`bReflWarn`、`bReflFault`、`bMatcherRequest`（请求调谐，仅请求不闭环）、`nErrId`。算法：反射比 = 反射/正向 ×100，两级阈值带迟滞 + 去抖；`bMatcherRequest` 在越 `fReflRatioWarnPct` 时置位持续 `tMatcherReqHold`。边界：`fPowerFwdW <= 0` 时比值不计算（防除零），输出 0 并置「无正向功率」信息码；反射功率 > 正向功率（比值 > 100%）属异常物理值，钳到 100 并置码；「仅监视」语义写进头注释（不得暗示闭环调谐）；解除式自证：`bReflFault` 解除 = 比值回落到 `fReflRatioWarnPct` 以下且 `bReset`。 |"
+ ],
+ "19": [
+  "FB_DL_StringSolderQuality",
+  "| 19 | **`FB_DL_StringSolderQuality`**（DL_Process/FB）：输入多通道焊接温度曲线采样（`ARRAY OF` 峰值/升温斜率/保温时长）、`fPeakMinC`/`fPeakMaxC`、`fSlopeMinCs`/`fSlopeMaxCs`、`fPullMinN`（拉力抽检下限）；输出逐通道 `abChannelOk`、`abPeakViolate`/`abSlopeViolate`、`nNgChannelMask`（DWORD）、`bLotReject`、`nErrId`。算法：逐通道三判据（峰值窗、升温斜率窗、保温时长窗）→ 通道 NG 聚合到位掩码；拉力抽检仅对「抽中通道」生效（`abPullSampled`），抽检不合格则整批 `bLotReject`。边界：通道数 `nChannelCount = 0` 或超数组上限判码返回；位掩码只在 `nChannelCount <= 32` 时生成（超 32 判组态错，禁止静默截断）；`fSlopeMaxCs <= fSlopeMinCs` 判组态错；抽检通道与 NG 通道不一致时按「双判据独立记账」，不互相掩盖；**整数位段赋值用 `SHL` 显式位号，禁魔法掩码**。 |"
+ ],
+ "20": [
+  "FB_DL_ModuleLamVacuumSeq",
+  "| 20 | **`FB_DL_ModuleLamVacuumSeq`**（DL_Process/FB）：注入 `iVac`（`I_DL_VacuumGenerator`）、`iTempZone`（`I_DL_TemperatureZone`）、`iPressCyl`（`I_DL_Cylinder`）；输入 `fVacTargetKpa`、`fPressTargetBar`、配方四段时长（抽气/加热/加压/放气，ms）、`tSegmentTimeout`；输出 `bCycleDone`、`bSegmentTimeoutFault`、`nSegment`、`fVacKpa`、`nErrId`、`eState`（`E_DL_LamPhase`：Idle/Evac/Heat/Press/Vent/Done/Fault）。算法：四段顺控，每段带 `tSegmentTimeout` 超时升级；加压段须真空度与温度**双到位**才允许升压（联锁内置）；放气段结束真空度须回到常压确认。边界：任一注入接口引用为 0（未装配）判组态错不启动；`fPressTargetBar` 超组态上限钳制并置码；配方时长全 0 判组态错；`CASE` 全态覆盖 + `ELSE` 兜底置 Fault；解除式自证：`bSegmentTimeoutFault` 解除 = `bReset AND eState = Idle`，且 Idle 可达路径（每段正常推进 + 超时回 Idle）逐条给出。 |"
+ ]
+}

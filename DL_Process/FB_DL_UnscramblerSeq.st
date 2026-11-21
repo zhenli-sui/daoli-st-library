@@ -113,6 +113,7 @@ VAR
     rtReset     : R_TRIG;         // 复位沿实例，段 0 无条件刷新（R7）/ the reset edge instance refreshed unconditionally
     tonJam      : TON;            // 卡瓶监视窗定时器，段 0 无条件刷新 / the jam window timer refreshed unconditionally
     tonPhase    : TON;            // 相最短驻留定时器（最短驻留门槛口径，边界七）/ the phase dwell floor timer
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_UNP_TIME0 : TIME := T#0S;          // 时间零常量 [毫秒] / the time zero constant
     DL_UNP_ZEROU : UDINT := 16#0000_0000; // 码零常量 / the code zero constant

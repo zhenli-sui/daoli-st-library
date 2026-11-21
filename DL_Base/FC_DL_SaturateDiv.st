@@ -69,6 +69,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     liQuot : LINT := 0; // 域内商中间量 [−] / the in-domain quotient intermediate
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_SDIV_MAX : LINT := 9223372036854775807;      // LINT 可表达上界 [−]，独立命名不与乘法件冲突 / the expressible LINT ceiling under its own name
     DL_SDIV_MIN : LINT := -9223372036854775807 - 1; // LINT 可表达下界 [−]，以上界相反数减一表达 / the expressible LINT floor written as the negated ceiling minus one

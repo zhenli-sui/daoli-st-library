@@ -1,0 +1,82 @@
+{
+"FB_DL_AhuFilterDpBank": {
+"instruction": "空调箱 4 段过滤器压差四级分档监视：每段压差 0~2000 Pa，含初堵/更换两阈值数组、迟滞 0~100 Pa 防抖动分档、T#100MS~T#120S 去抖、低风量冻结与传感器故障档。边界条件：恰好等于阈值与上阈+1 Pa 两向量归属；去抖期间任一区间切换不得拖慢其他区间；量程外判传感器故障。",
+"architecture_thought": "返修件（R29 隔离件复合缺陷修复）：架构上先做分段独立化——aTonDeb:ARRAY[1..4] OF TON 每温区独立实例，杜绝共享单实例被 4 区复用导致的 ET 冻结与跨区互相复位；状态机按 eClean→eEarly→eMid→eChange 五档推进，去抖 TON 在每个扫描周期 FOR 循环体内无条件刷新（候选作废分支显式 IN:=FALSE 复位而非跳过调用），保证 ET 不冻结；防错上迟滞带先于阈值比较（升档用上阈+迟滞、降档用下阈-迟滞），非有限压差与量程越域单列 eSensorFault 档；OOP 解耦上分档律、去抖律、冻结律三层分离，对外契约（引脚/码位/低风量冻结语义）不变，供上层消费仅经 VAR_OUTPUT。"
+},
+"FB_DL_FoupDoorSeq": {
+"instruction": "FOUP 开合门与载具联锁顺控：门磁双反馈（closed/open）、解锁-开门-载具在位-再锁定确认窗六态。边界：解锁输出有效但门未开超时落故障（电磁铁卡滞）；再锁定确认窗内门磁必须回到 closed 否则落 eFault；真空条件丢失中止解锁；安全侧=输出全 0；bReset 沿+门磁 closed 可达解除。",
+"architecture_thought": "架构用单层状态机 eIdle/eUnlocking/eDoorOpen/eTransfer/eRelocking/eFault，同文件定义枚举属主；CASE 每态列退出条件，ELSE 兜底落 eFault 并置码；防错上双门磁互斥校验（closed 与 open 同真判组态故障）、解锁/再锁两路 TON 每拍无条件刷新、故障锁存仅 bReset 上升沿且门磁 closed 才解除（锁存解除式可达自证）；OOP 解耦上电磁铁与门磁物理层经引脚注入，顺控层不直接操作 I/O 映像，输出 bUnlockOut/bLockOut 与 bTransferPermit 全部走 VAR_OUTPUT 供传输机器人联锁消费。"
+},
+"FB_DL_CoolantFlowAudit": {
+"instruction": "机台冷却水 8 支路流量审计：afFlow_Lpm 0~500 L/min、欠流阈值数组、确认窗 tConfirm 与迟滞 fHyst_Lpm。边界：非有限/负流量判传感器故障独立于欠流；欠流确认窗内瞬时抖动不误报；阈值倒置置组态故障码；首出三律——未锁存才仲裁、同拍取最小支路号、复位在仲裁后。",
+"architecture_thought": "架构按『采集→滤波→判欠→仲裁→首出』五层：每支路独立去抖确认（FOR 循环逐路），欠流位掩码 uwUnderMask 按位汇总；防错上非有限值分支与欠流判据分离（传感器故障不进欠流仲裁），迟滞带防临界振荡，组态校验先于运行判据；首出仲裁用最小支路号扫描 + 锁存位、解除式可达（复位沿）；OOP 解耦上告警分级交由 AlarmManager 消费方承接，本件只输出掩码与首出，不直接驱动声光；全数组循环带边界钳位与守卫计数。"
+},
+"FB_DL_ValvePdiSched": {
+"instruction": "阀岛 PDI 批量读取调度：4 并行槽分槽轮询、槽使能表 abSlotEn、轮询周期 tPollCycle。边界：单拍单发（每槽一拍至多一次读）；槽号越界钳位；异常计数照记账不停摆；调度与传输分层——本件只做多实例分槽编排，不重复实现 PDI 传输。",
+"architecture_thought": "架构为编排层：内部持有 4 个 PdiReadScheduler 语义槽位实例引用，按轮询周期分槽触发，uActiveSlot 暴露当前槽；防错上槽号 1~4 之外钳位并置码，abSlotEn=FALSE 槽跳过但不破坏轮询节拍，各槽异常码 auErrSlot 独立记账、累计异常不停摆调度；状态机按『空闲→分槽轮询→汇总』推进，ELSE 兜底冻结；OOP 解耦上调度与传输严格分层（高层→低层单向依赖），传输能力经实例注入消费，本件零厂商系统变量。"
+},
+"FB_DL_RackDiagSummary": {
+"instruction": "机架 Axioline 诊断汇总与首出定位：8 板卡诊断字 auBoardStat 引脚注入（零厂商系统变量）、bReset 解除。边界：首出三律（未锁存才仲裁、同拍取最小板号、复位在仲裁后）；回绕差分按归零处理；诊断风暴单拍不进 bError。与单件 AxiolineDiagLatch 契约字段一一对应，同名位语义不复定义。",
+"architecture_thought": "架构做聚合层：8 路诊断位独立锁存（DiagLatch 范式）→ uwFaultMask 位或汇总 → 首出定位取最小板号 uFirstBoard 与 uFirstCode；防错上回绕差分归零处理避免虚假风暴计数，风暴判定与错误锁存分离（风暴只置 bStorm 不进 bError），首出锁存仅 bReset 上升沿解除（可达自证）；状态机按『监视→聚合→首出锁存→解除』推进，ELSE 兜底复位仲裁态；OOP 解耦上诊断位语义沿用单件契约不复定义，本件只做聚合与定位，报警呈现交上层。"
+},
+"FB_DL_WaferScanRouter": {
+"instruction": "晶圆盒扫码路由：扫码触发后按花篮位 1~25 取模索引分道，分道允许表 abRouteEn 路由。边界：扫码超时未读走拒收路径并置故障码；uStationMod=0 判组态非法；条码空串与读码失败语义分离输出；uSlotIdx 条件加减不用 MOD（跨平台负数歧义禁令）；R_TRIG 无条件刷新。",
+"architecture_thought": "架构『触发→读取→校验→取模→路由』五段流水：R_TRIG 每拍无条件刷新捕获扫描沿，超时 TON 监视读取窗口；防错上空串（读码器在线但无内容）与 bReadOk=FALSE（读码失败）分列两个错误码，uStationMod=0 组态闸先行；取模索引用条件减法实现（uSlotIdx 减 25 直至小于 25，不用 MOD 规避负数歧义），越界/不允许分道输出 uRouteSel=0 拒收；状态机 CASE 推进带 ELSE 兜底；OOP 解耦上扫码器契约引脚注入，路由表数据与路由逻辑分离，便于分道扩展。"
+},
+"FB_DL_SiloLevelInterlock": {
+"instruction": "料仓高低料位-输送联锁：双料位开关（FALSE=正常为失电安全侧需声明）、输送运行反馈、卡料窗 tJamWin。边界：双信号同时有效判组态矛盾故障码；高料位停进料联锁但不停输送完成当前批次；低料位停输送防空跑；bConvPermit 安全侧 FALSE；解除式可达（料位恢复+bReset 沿）；联锁动作与告警码分离。",
+"architecture_thought": "架构双联锁矩阵：高料位→进料允许拉低（联锁）+溢仓告警锁存；低料位→输送允许拉低+空跑告警；卡料窗 TON 监视输送运行反馈，超窗置 bJamDet；防错上双信号同真先判组态矛盾并冻结联锁输出至安全侧，告警锁存与联锁即时动作分离（告警可解除、联锁跟信号走），安全侧断言 bConvPermit 缺省 FALSE；状态机按『正常→溢仓联锁→空跑联锁→卡料→解除』推进带 ELSE 兜底；OOP 解耦上料位开关与输送反馈均引脚注入，联锁矩阵逻辑独立于执行器驱动。"
+},
+"FB_DL_PalletZoneMerge": {
+"instruction": "码垛前 4 区合流积放：区光电占用 abZiOcc、合流请求 bMergeReq、最小区间隙 tZiGapMin、模式 uMergeMode（1=顺序 2=先到先走）。边界：非法模式 ELSE 兜底冻结+故障码；释放互斥同拍至多一区；同拍多区请求取最小区号；光电闪断去抖不丢件；上区补跑语义沿用 ConveyorZone。",
+"architecture_thought": "架构『占用检测→去抖→模式仲裁→互斥释放』四层：每区光电独立去抖（闪断不产生虚假释放），仲裁层按 uMergeMode 分派——顺序模式轮转指针推进、先到先走模式按请求时间戳最早优先，两模式都保证同拍至多释放一区（互斥闸）；防错上非法模式进 ELSE 冻结全部释放并置码，最小间隙窗 TON 防背靠背顶死，上区补跑沿用 ConveyorZone 语义不重造；状态机 CASE 带 ELSE 兜底；OOP 解耦上区状态经引脚注入、释放输出 abZiRelease 交输送层执行，仲裁律集中单点可替换。"
+},
+"FB_DL_WeightClassifySort": {
+"instruction": "重量四档分级剔除：称重 0~5000 g、四阈值 LL/L/H/HH、剔除口布防 bRejectArm。边界：非有限重量 NG 侧安全分流并判传感器故障（与超重 NG 区分）；阈值单调性组态闸（LL<L<H<HH）；闭/开区间归属与 FC_DL_LimitClassify 勘误口径一致；复用 LimitClassify 判档不重写分级律。",
+"architecture_thought": "架构为『判档→映射→剔除口→计数』编排层：判档律全部消费 FC_DL_LimitClassify（LREAL 化阈值注入），本件只把判档结果 E_DL_LimitBand 映射到 E_DL_WeightClass 四档（同文件定义枚举属主）并驱动剔除口；防错上阈值单调性校验先于判档（倒置冻结剔除口置组态码），非有限重量直接 NG 安全分流+独立传感器故障码，档位计数 uOkCount/uNgCount 只在布防时递增；CASE 映射带 ELSE 兜底落 NG 侧；OOP 解耦上分级律、剔除执行、计数三层分离，剔除脉冲交执行层，便于不同秤体复用。"
+},
+"FB_DL_EmoAndonFab": {
+"instruction": "洁净室 EMO-安灯联动：6 路 EMO 急停按钮、安全门状态注入、应答/复位 bAck/bReset。边界：EMO 优先级高于安灯普通呼叫（同拍取高者）；未应答解除不计入应答统计（沿用 AndonCallSystem 语义）；EMO 触发不唯一属主、首出定位到按钮号；四级仲裁律全部消费 FB_DL_AndonCallSystem 不重写。",
+"architecture_thought": "架构为联动编排层：仲裁律消费库内 AndonCallSystem 实例（注入呼叫表与 EMOMask），本件只做 EMO 首出定位（最小按钮号扫描+锁存）与门审计联动（开门状态下 EMO 解除仍保持红灯直到门复位）；防错上 EMO 触发沿 R_TRIG 无条件刷新捕获、首出锁存解除式可达（按钮恢复+复位沿）、未应答剔除应答统计防虚假闭环；状态机按『监视→呼叫仲裁→EMO 优先→应答→解除』推进带 ELSE 兜底安全侧；OOP 解耦上仲裁与呈现分离——灯/蜂鸣输出经 VAR_OUTPUT 交现场层，按钮/门状态引脚注入零系统变量。"
+},
+"FB_DL_FillWeightCheckweigher": {
+"instruction": "称重剔除秤：动态称重稳定窗（tStableWin 内波动<门槛才判）、标称重量 fNominal_g 与容差 fTolPct 欠/超重两向四档。边界：fTolPct=0 退化为判等（浮点禁=，用 ±1E-6 g 容差声明）；去皮错误 fWeight<0 独立故障码；剔除脉冲宽度可配置；E_DL_WeightClass 属主=序 9 文件引用不重声明。",
+"architecture_thought": "架构『有效性闸→稳定窗→判档→剔除→批统计』五段：bWeightValid 与稳定窗 AND 后才进入判档，稳定窗用滑动极差监视；判档复用 E_DL_WeightClass 消费（不重声明属主），欠/超两向容差带换算后判档；防错上 fTolPct=0 判等走 ABS 差<1E-6 g 显式容差分支，负重量单列去皮错误码不混入 NG 统计，剔除脉冲宽度 TIME 参数化、最短宽度保底防执行器不动作；CASE 带 ELSE 兜底 NG 侧；OOP 解耦上称重信号引脚注入、剔除口与批统计（uRejectCount）分层，剔除律集中可替换。"
+},
+"FB_DL_FilmSpliceDetect": {
+"instruction": "薄膜接膜位检测与降速段放行：接口位置锁存（消费 FB_DL_MarkPositionLatch）、输送速度 fConvSpeed_mmin、降速窗 tSlowWin。边界：停机后位置锁存不触发放行（run-on 语义沿用 ConveyorZone）；两膜间距<最小膜长判组态故障；接膜计数只在降速窗完成放行时递增；速度非有限/负值闸。",
+"architecture_thought": "架构『锁存→接近判定→降速放行→计数』四层：接膜位置从 MarkPositionLatch 注入锁存，按当前位置与锁存差值推导接近窗口；防错上 bConvRun=FALSE 期间冻结放行判定（run-on 语义防停机误放行），速度非有限/负值单拍闸不更新推导基准，间距组态校验先于运行（<最小膜长冻结置码），计数与放行完成沿绑定防重复计数；状态机按『运行→接近→降速窗→放行完成→计数』推进带 ELSE 兜底恢复全速；OOP 解耦上位置锁存与速度反馈引脚注入，放行输出交输送层，接料计数独立可审计。"
+},
+"FB_DL_CoatingGapMeasure": {
+"instruction": "涂布留白（Gap）宽度与边缘对齐判定：双边缘像素坐标、标定 fPixToMm mm/px（>0）、留白带 afGapLo/afGapHi_mm、窗口一致性 uWinSize。边界：fPixToMm<=0 组态闸；边缘顺序颠倒（edge2<=edge1）判负 Gap→传感器故障码；带判定消费 FC_DL_IntervalMembership；向量含恰好落在带端点两点（闭/开区间归属声明）；窗口一致性消费 FB_DL_SignalStatistics 不重写统计。",
+"architecture_thought": "架构『标定→求 Gap→带判定→窗口一致』四层消费编排：像素差经 fPixToMm 标定为毫米 Gap，带判定全部消费 IntervalMembership（闭/开区间口径与该件勘误一致，本件不重写归属律），窗口一致性消费 SignalStatistics 的均值/极差出口；防错上标定系数组态闸先行，边缘顺序颠倒单列传感器故障码（负 Gap 不混入带判定），窗口滑动缓冲带容量守卫；CASE 带 ELSE 兜底 bGapOk=FALSE 安全侧；OOP 解耦上视觉边缘坐标引脚注入、标定与判定分层，换相机只改标定系数不动判定律。"
+},
+"FB_DL_TrackerBacktrackCalc": {
+"instruction": "光伏跟踪支架逆跟踪角度修正：太阳高度/方位角（FC_DL_SolarPositionCalc 引脚注入）、排间距 0.5~20 m、集电宽度、最大角 ±60°。边界：太阳高度角<0 归位停跟踪（安全侧 0°）；fRowPitch_m<=0 组态闸；输出限幅 ±fMaxAngle 且限幅置信息码；非有限太阳角输入保持上次有效角并置码；每拍全量重算。",
+"architecture_thought": "架构纯几何推导层：逐排互遮挡角用 arctan 归一化（分子分母同量纲、分母防除零），逆跟踪角=阴影几何角与跟踪角的包络取优，输出限幅钳位并区分『物理限幅』与『阴影限幅』两个信息码；防错上非有限太阳角与负高度角先闸（保持上次有效角/归位 0°，不更新输出基准），组态域校验（排间距/宽度正值）先于几何计算，每拍全量重算无跨拍累积误差；CASE 带 ELSE 兜底归位；OOP 解耦上太阳位置消费 SolarPositionCalc 注入不内联天文计算，几何律独立可单元测试。"
+},
+"FB_DL_LamStepperFeed": {
+"instruction": "层压机铺膜步进送料：开环步进契约 I_DL_StepperOpenLoop 注入、单卷膜长 fFilmLen_m、累计送料反馈 fFedLen_m、保养窗 iMonthWin 注入、送料超时 tFeedTimeout。边界：保养窗激活冻结送料（bMaintHold=TRUE 安全侧不启动）；膜长耗尽预警（<换膜余量）信息码；堵转理论耗时×1.5 判据沿用库内 stepper 范式；开环运动语义全消费接口不自造轴状态枚举。",
+"architecture_thought": "架构组合编排件：送料状态机『待机→请求→送料中→完成→换膜预警』消费 I_DL_StepperOpenLoop 接口（引脚注入），膜长余量=单卷膜长-累计送料逐拍递推；防错上保养窗激活优先级最高（冻结 bFeedCmd 置 bMaintHold），堵转监视用理论耗时×1.5 阈值（沿用库内范式不复造），送料超时锁存解除式可达（复位沿+接口就绪）；CASE 带 ELSE 兜底停发安全侧；OOP 解耦上轴能力全经接口注入（依赖倒置，换步进/伺服不动编排），余量预测与保养冻结独立成层，换膜预警只置信息码不中断批次。"
+},
+"FB_DL_ElectrodeRollDiameter": {
+"instruction": "极卷直径跟踪与换卷预警：线速 fLineSpd_mmin 与转速 fRollRpm 递推 D=v·i/(π·n)、上次卷径注入、芯径、层厚校核 fThick_um、预警径 fWarnDia_mm。边界：低速保护（线速或转速低于门限冻结递推）；fDia 单调递减（放卷）违反→保持+信息码；卷径下限钳芯径；恰好等于预警径与预警径−0.01 mm 两向量；与 FC_DL_CoilDiameterCalc 口径一致（本件加跟踪/预警层）。",
+"architecture_thought": "架构跟踪层：换算律消费 FC_DL_CoilDiameterCalc 口径（公式一致不重写），本件加递推跟踪与预警——低速双门限（线速/转速任一低于门限）冻结递推保持上值；防错上分母防除零（转速绝对值<门限即冻结），单调性校验违反只保持+信息码不硬钳（区分真实换卷与测量毛刺），下限钳芯径防负径，层厚校核超差置码提示测量链路漂移；CASE 带 ELSE 兜底保持；预警比较含等值边界向量（=预警径即预警）；OOP 解耦上速度/转速引脚注入，跟踪、校核、预警三层分离供换卷逻辑消费 bChangeWarn。"
+},
+"FB_DL_FanArraySeq": {
+"instruction": "风机阵列轮值与变频/工频混拖调度：需求台数 uReqStages 0~N、可用表 abFanAvail、变频位 abVfdEn、防振颤最短运行 tMinRun、轮值请求 bRotateReq。边界：需求台数>可用台数只投可用数+信息码；变频台优先投切、工频台补位（一台同拍至多一种模式）；台数 0 全停（安全侧）；uReqStages 越界钳位+码；最短运行时间内不轮值。",
+"architecture_thought": "架构『可用筛选→轮值均衡→分级投切→模式指派』四层：轮值消费 FB_DL_DutyStandbyRotation 范式（运行小时均衡选台），分级投切消费 FB_DL_FanArrayStageCtrl 范式；防错上需求/可用差额信息码区分组态与降级，tMinRun 窗内冻结轮值请求（防振颤），单台模式互斥闸（VfdEn 位裁决变频/工频，同拍至多一种），台数 0 与越界走安全侧全停+钳位码；CASE 带 ELSE 兜底全停；OOP 解耦上轮值律与投切律分层注入可替换，abFanRun/abFanVfdMode 输出交电气层，均衡统计独立记账。"
+},
+"FB_DL_ChwDifferentialPressure": {
+"instruction": "冷冻水差压旁通控制：供回水压差 0~400 kPa、设定值 fDpSet_kPa、PID 输出引脚注入、阀位限幅 fValveMin/fValveMax_Pct、设定值重置限速 fResetRate_kPa_s。边界：非有限压差→阀位保持+故障码（安全侧不新增动作）；压差平滑消费 FB_DL_MovingAverage；设定值重置限速消费 FB_DL_RateLimiter（斜坡防水锤）；阀位限幅+限幅饱和信息码；PID 输出引脚注入不内联（可依赖低层不复制低层）。",
+"architecture_thought": "架构『平滑→限速设定→比较→PID 消费→限幅』串联消费编排：压差平滑消费 MovingAverage 实例（bSample 形参闸非有限拍），设定值重置限速消费 RateLimiter（斜坡防水锤），PID 输出经引脚注入不内联复制低层；防错上组态闸三连（阀限幅域/倒置/重置速率域）先于运行，非有限压差冻结阀位保持并置码（安全侧不新增动作），限幅饱和单列信息码供诊断；CASE 带 ELSE 兜底阀位回下限关旁通；OOP 解耦上平滑、限速、PID 三个低层件均为实例消费（高层→低层单向依赖），本件只做旁通编排，阀执行器经 VAR_OUTPUT 解耦。"
+},
+"FC_DL_ChecksumSum64": {
+"instruction": "LWORD 数组 64 位累加和校验纯函数：模 2^64 求和（LWORD 自然回绕实现，禁用 MOD）、参与元素个数 uCount 1~255。边界：uCount=0 返回 0+信息码；计数大于数组实测容量强制退出返回哨兵零值+故障码；回绕发生置旁证信息码；空数组、单元素、回绕触发（0xFFFF..F+0x1）三点向量覆盖；全整型域无浮点非有限问题；错误出口与 FC_DL_ChecksumSum8 现行 uErrorId 约定一致。",
+"architecture_thought": "架构纯函数分型（FC 4 槽）：开数组 ARRAY[*] OF LWORD 经实测上下界取容量，求和循环带钳位与边界守护计数强制退出；模 2^64 由 LWORD 无符号加法自然回绕实现（显式禁 MOD，回绕用前值比较旁证 xWrap 供数据链路诊断）；防错上三段闸——计数为零信息码、计数越界故障码、回绕信息码，异常路径统一返回哨兵零值不抛半程结果；无内部状态无锁存面（码为返回拍瞬时值）；与 FC_DL_ChecksumSum8 构成 8/64 位宽两件并声明位宽变体不再扩充（防变体）；OOP 解耦上零依赖零系统变量，可被任意数据链路层组合。"
+},
+"FC_DL_BitArraySegCopy": {
+"instruction": "位段数组多段一次搬：源/目标 DWORD 数组 IN_OUT、段表 aSrcBit/aDstBit/nLen ×N 段、段数 uSegCount。边界：逐段域校验（起位+长度≤数组位容量）先整体校验后统一搬移（整段原子性：任一段非法则零段搬移+段号报错）；跨字窗口读改写沿用 R12 Extract/Insert 范式（移位量 MOD 32、宽 64 走常量掩码、全程无 64 位移位）；uSegCount=0 信息码返回；重叠段不做去重、显式声明后段覆盖前段行为；与 FC_DL_BitArrayExtract/Insert 逐段对拍位守恒。",
+"architecture_thought": "架构两段式：先全段静态校验（逐段起位/长度/目标域越界扫描，任一非法即零段搬移并以段号报错——整段原子性），后统一搬移循环逐段走跨字窗口读改写；跨字实现沿用 R12 范式：以 DWORD 为操作粒度，移位量 MOD 32 拆低/高字窗，64 位拼接走常量掩码组合（全程无 64 位移位指令，规避目标平台歧义）；防错上段数为零信息码早退、源内重叠段声明后段覆盖（不静默去重）、校验与搬移分离保证原子回滚语义；纯函数无锁存面；OOP 解耦上与 Extract/Insert 共用位窗算术口径，可被 LGF 位逻辑层任意组合。"
+}
+}

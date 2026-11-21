@@ -1,0 +1,72 @@
+[
+ {
+  "no": 4,
+  "name": "FB_DL_ResonanceTrackNotch",
+  "cat": "DL_Algo",
+  "code": "16#02_3_82",
+  "errors": []
+ },
+ {
+  "no": 5,
+  "name": "FB_DL_LineShaftClutch",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A2",
+  "errors": []
+ },
+ {
+  "no": 6,
+  "name": "FB_DL_FlyingCutSync",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A3",
+  "errors": []
+ },
+ {
+  "no": 7,
+  "name": "FB_DL_WaferCoolChuck",
+  "cat": "DL_Device",
+  "code": "16#03_2_0B",
+  "errors": []
+ },
+ {
+  "no": 8,
+  "name": "FB_DL_CurtainEFEMZone",
+  "cat": "DL_Device",
+  "code": "16#03_2_0C",
+  "errors": []
+ },
+ {
+  "no": 9,
+  "name": "FB_DL_VentPurgeDuty",
+  "cat": "DL_Device",
+  "code": "16#03_2_0D",
+  "errors": []
+ },
+ {
+  "no": 10,
+  "name": "FB_DL_SlurryLevelBank",
+  "cat": "DL_Device",
+  "code": "16#03_2_0E",
+  "errors": []
+ },
+ {
+  "no": 11,
+  "name": "FB_DL_FoupPurgeN2Flow",
+  "cat": "DL_Device",
+  "code": "16#03_2_0F",
+  "errors": []
+ },
+ {
+  "no": 12,
+  "name": "FB_DL_CartonErectVacMonitor",
+  "cat": "DL_Device",
+  "code": "16#03_2_10",
+  "errors": []
+ },
+ {
+  "no": 13,
+  "name": "FB_DL_CoderRibbonLife",
+  "cat": "DL_Device",
+  "code": "16#03_2_11",
+  "errors": []
+ }
+]

@@ -127,6 +127,7 @@ VAR
     _fBalAbs    : LREAL := 0.0;                         // 平衡电压绝对值 [伏] / the absolute balance voltage
     _fPctScale  : LREAL := 0.0;                         // 迟滞百分比换算中间量 [−] / the hysteresis percentage intermediate
     tonConfirm  : TON;                                  // 判据持续确认定时器，段 0 无条件刷新 / the confirmation timer refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_IFI_ZERO  : LREAL := 0.0;   // 实数零常量 [工程单位] / the real zero constant
     DL_IFI_HUND  : LREAL := 100.0; // 百分比换算系数 [%] / the percentage scaling factor

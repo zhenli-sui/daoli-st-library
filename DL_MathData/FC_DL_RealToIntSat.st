@@ -71,6 +71,7 @@ END_VAR
 VAR
     fLo : LREAL := 0.0; // 下界的实数形式 [−] / the floor in real form
     fHi : LREAL := 0.0; // 上界的实数形式 [−] / the ceiling in real form
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_R2I_ZERO : LREAL := 0.0;   // 实数零常量 [−] / the real zero constant
     DL_R2I_NONE : INT := 0;       // 整型零常量 [−] / the integer zero constant

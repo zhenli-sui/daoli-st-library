@@ -1,0 +1,177 @@
+{
+  "round": "R47",
+  "date": "2026-11-19",
+  "targets": 24,
+  "pass": 24,
+  "fail": 0,
+  "rows": [
+    {
+      "name": "FC_DL_IntFloorDiv",
+      "category": "DL_Base",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FC_DL_ByteArrayXor",
+      "category": "DL_Base",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FC_DL_CovarOnline",
+      "category": "DL_MathData",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_TrayerNestingCtrl",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_OcvTempNormalize",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_ElectrolyteFifoTrace",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_StringFifoRetry",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_TempCompClassify",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_TankBlanketPrCtrl",
+      "category": "DL_Device",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_IvBcdExport",
+      "category": "DL_Device",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_RfidTrayRoute",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_FoupRfidCheck",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_ChuckVacuumSeq",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_ChamberPumpDownSeq",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_EfEmoInterlock",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_LaminatorZoneSync",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_R2rRunLogAudit",
+      "category": "DL_Process",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_CassetteBcdLabel",
+      "category": "DL_Device",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_AxisBacklashIdent",
+      "category": "DL_Motion",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_AxisCoggingFf",
+      "category": "DL_Motion",
+      "repair": false,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_RlsEstimator",
+      "category": "DL_Algo",
+      "repair": true,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_LuenbergerObserver",
+      "category": "DL_Algo",
+      "repair": true,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_TabWeldingMonitor",
+      "category": "DL_Process",
+      "repair": true,
+      "result": "PASS",
+      "errors": []
+    },
+    {
+      "name": "FB_DL_AxisFeedbackFailoverSeq",
+      "category": "DL_Motion",
+      "repair": true,
+      "result": "PASS",
+      "errors": []
+    }
+  ]
+}

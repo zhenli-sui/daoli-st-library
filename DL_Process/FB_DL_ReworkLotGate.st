@@ -109,6 +109,7 @@ VAR
     _bCountSat  : BOOL := FALSE;  // 计数饱和标记（单拍信息位，段 6 映射）/ the count saturation flag of this scan
     rtReset     : R_TRIG;         // 复位沿实例，段 0 无条件刷新（R7）/ the reset edge instance refreshed unconditionally
     rtRelease   : R_TRIG;         // 合规放行沿实例，段 0 无条件刷新 / the compliant release edge instance refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_RLG_ZEROI: DINT  := 0;  // 整型零常量 [个] / the integer zero constant
     DL_RLG_ONEI : DINT  := 1;  // 整型一常量 [个] / the integer one constant

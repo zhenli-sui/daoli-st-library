@@ -1,23 +1,16 @@
-# 道莅 IEC 61131-3 工业代码库 — 版本控制忽略清单
-# 归档与备份（git 之外保留本地副本）
-_archive/
+# 备份与临时
+*.bak
 *.bak_*
-*.backup_*
-
-# 轮次工作目录的中间产物（战报/计划保留，脚本与临时 json 忽略）
-_Staging_Raw/**/_*.json
-_Staging_Raw/**/audit_*.py
-_Staging_Raw/**/closeout_*.py
-_Staging_Raw/**/docs_*.py
-_Staging_Raw/**/names_*.txt
-_Staging_Raw/**/*_raw*.json
-
-# AI 训练集大文件的历史备份
-_AI_Training_Dataset/*.bak*
-_AI_Training_Dataset/backup_*
-
-# 系统杂物
-.round.lock
-Thumbs.db
-desktop.ini
+*.backup*
+*.bak_gate
+*.bak_r[0-9]*
 __pycache__/
+*.pyc
+.round.lock
+# 归档区（不进版本库）
+_archive/
+# 抓取与中间产物
+_Staging_Raw/_harvest_manifest.json
+_Staging_Raw/_dedup_fingerprints.json
+_Staging_Raw/*/_gate_*.json
+_Staging_Raw/*/_compile_*.json

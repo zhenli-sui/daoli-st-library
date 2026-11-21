@@ -1,0 +1,77 @@
+[
+ {
+  "name": "FC_DL_MaxNanEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_MinNanEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RealEqTolEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RangeCheckEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RealToDintSat",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RealToRealSat",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RoundBankEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_DegToRadEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_RadToDegEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_MuxIntEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_StringToLowerEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_StringToUdintEx",
+  "cat": "DL_MathData",
+  "errors": []
+ },
+ {
+  "name": "FB_DL_SrEx",
+  "cat": "DL_Base",
+  "errors": []
+ },
+ {
+  "name": "FB_DL_RsEx",
+  "cat": "DL_Base",
+  "errors": []
+ },
+ {
+  "name": "FC_DL_IndexClampEx",
+  "cat": "DL_MathData",
+  "errors": []
+ }
+]

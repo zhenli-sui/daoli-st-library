@@ -134,6 +134,7 @@ VAR
     tonSlopeWin : TON;            // 斜率采样错峰窗（自复位，R188）/ the self resetting slope sampling window
     tonSlopeLow : TON;            // 斜率宽限计时器，段 0 无条件刷新 / the slope grace timer
     tonTotal    : TON;            // 总时限定时器，段 0 无条件刷新 / the total time timer
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_VPS_PCT     : LREAL := 100.0;  // 百分比换算系数 [%] / the percentage scaling factor
     DL_VPS_WINSEC  : LREAL := 0.5;    // 斜率窗时长换算 [秒]，与 T#500MS 配比一致（手工同步，R100）/ the window duration of half a second aligned with the timer

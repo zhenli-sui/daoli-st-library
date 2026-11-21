@@ -96,6 +96,7 @@ VAR
     _fTmp   : LREAL := 0.0; // 对调临时量 [工程单位] / the swap temporary
     _fGapUse: LREAL := 0.0; // 间隙工作副本 [工程单位] / the gap working copy
     _fEpsUse: LREAL := 0.0; // 容差工作副本 [工程单位] / the tolerance working copy
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_IGP_ZERO : LREAL := 0.0;    // 实数零常量 [工程单位] / the real zero constant
     DL_IGP_EPSDF: LREAL := 1.0E-6; // 默认容差常量 [工程单位]（fEps 非法时接管）/ the default tolerance taken over when the input is illegal

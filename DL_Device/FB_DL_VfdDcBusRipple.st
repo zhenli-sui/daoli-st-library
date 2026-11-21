@@ -124,6 +124,7 @@ VAR
     _bUnderL    : BOOL := FALSE;              // 欠压迟滞状态寄存器（跨拍保持）/ the undervoltage hysteresis state
     _bOverL     : BOOL := FALSE;              // 过压迟滞状态寄存器（跨拍保持）/ the overvoltage hysteresis state
     _bRipL      : BOOL := FALSE;              // 纹波迟滞状态寄存器（跨拍保持）/ the ripple hysteresis state
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_VFD_WMAX   : DINT := 128;     // 环形窗容量 [个]，与数组容量一致 / the ring capacity aligned with the array
     DL_VFD_WMIN   : DINT := 2;       // 窗长下界 [个]（单样本无峰峰值语义）/ the window floor, one sample has no peak to peak meaning

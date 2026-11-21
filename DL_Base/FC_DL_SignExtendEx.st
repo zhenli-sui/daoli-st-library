@@ -58,6 +58,7 @@ VAR
     udwHi   : DWORD := 16#0000_0000; // 高位全 1 掩码 [位] / the high side all ones mask in bits
     udwSign : DWORD := 16#0000_0000; // 符号位单点掩码 [位] / the single bit sign mask in bits
     udwOut  : DWORD := 16#0000_0000; // 扩展后位型 [位] / the extended bit pattern in bits
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_SEXT_MINW : DINT := 1;            // 位宽下界 [位] / the width floor in bits
     DL_SEXT_MAXW : DINT := 32;           // 位宽上界（DINT 容器位宽）[位] / the width ceiling, the DINT container width

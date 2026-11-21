@@ -72,6 +72,7 @@ VAR
     _bTodErr     : BOOL := FALSE;            // 委托 TOD 故障位承接量 / the delegate time of day fault holder
     _uTodErr     : UDINT := 16#0000_0000;    // 委托 TOD 错误码承接量 [码] / the delegate time of day error code holder
     _bTodClamped : BOOL := FALSE;            // 委托 TOD 钳位位承接量（仅留档，不参与分级）/ the delegate clamp holder, recorded only
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_DTT_SEC_PER_DAY : DINT := 86400;      // 每日秒数（日模）[秒] / the seconds of one day, the day modulus
     DL_DTT_MS_PER_SEC : DINT := 1000;        // 每秒毫秒数（毫秒域换算）[毫秒] / the milliseconds of one second

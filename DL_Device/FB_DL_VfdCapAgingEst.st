@@ -88,6 +88,7 @@ VAR
     _bFinMeas   : BOOL := FALSE;   // 实测值有限闸结果（逐拍重算）/ the measurement finiteness gate result
     _bCfgBad    : BOOL := FALSE;   // 组态非法标记（逐拍重算）/ the configuration fault flag
     _nRejectCnt : DINT := 0;       // 实测值拒绝计数 [个]（仅局部留档，不外显，R62-D7 口径）/ the rejected measurement count, local only and never exposed
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_VCA_PCT   : LREAL := 100.0; // 百分比换算与基线常量 [%] / the percentage scaling and the baseline constant
     DL_VCA_ZERO  : LREAL := 0.0;   // 实数零常量 [%] / the real zero constant

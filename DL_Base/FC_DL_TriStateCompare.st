@@ -65,6 +65,7 @@ END_VAR
 VAR
     fDiff  : LREAL := 0.0; // 差值工作副本 fA - fB [工程单位] / the difference working copy of the left minus the right
     fEpsUse: LREAL := 0.0; // 容差工作副本（钳位后）[工程单位] / the tolerance working copy after the clamp
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_TSC_ZERO  : LREAL := 0.0;   // 实数零常量 [工程单位] / the real zero constant
     DL_TSC_EPSMIN: LREAL := 1.0E-6; // 默认容差常量 [工程单位] / the default tolerance constant

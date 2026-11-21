@@ -120,6 +120,7 @@ VAR
     _bTapClamp: BOOL := FALSE;              // 抽头数钳位标记（逐拍重算，信息级 374A）/ the tap clamp flag
     _bDivWarn : BOOL := FALSE;              // 发散警告标记（逐拍重算，信息级 374B）/ the divergence warning flag
     rtWipe    : R_TRIG;                     // 权重清零沿实例，段 0 无条件刷新（R7）/ the wipe edge instance refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_LMS_TMAX  : DINT := 32;        // 抽头容量上界 [个]，与数组容量一致 / the tap capacity aligned with the array
     DL_LMS_TMIN  : DINT := 4;         // 抽头数下界 [个] / the tap floor

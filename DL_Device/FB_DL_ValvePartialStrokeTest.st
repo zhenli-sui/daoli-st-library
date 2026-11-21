@@ -252,6 +252,7 @@ ELSE
     bError  := TRUE;
     eNe107  := E_DL_Ne107Status.eFailure;
     _eState := E_DL_PstState.eFault;
+END_IF  // R64 结构补齐：缺失的 END_IF（门禁机械修复）
 END_CASE
 
 (* —— 段 5｜状态出口单点映射 —— *)

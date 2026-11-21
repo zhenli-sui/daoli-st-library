@@ -127,6 +127,7 @@ VAR
     _bSatI     : BOOL := FALSE;               // 本拍钳位内部位，段 1 预清段 12 映射 / the internal clamp bit
     _uLatch    : UDINT := 16#0000_0000;       // 故障码锁存（仅复位沿清除，FB33-1）/ the latched fault code cleared only by the reset edge
     rtReset    : R_TRIG;                      // 复位沿实例，段 0 无条件刷新（R7）/ the reset edge instance refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_BQ_EPS    : LREAL := 1.0E-9; // 系数变更判定容差 [−]，浮点禁判等 / the coefficient change tolerance, plain equality is forbidden
     DL_BQ_A2LIM  : LREAL := 1.0;    // Jury 条件一 |a2| 边界 [−] / the Jury first condition boundary on the absolute a2

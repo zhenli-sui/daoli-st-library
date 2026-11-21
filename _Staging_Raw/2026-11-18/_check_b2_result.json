@@ -1,0 +1,93 @@
+[
+ {
+  "no": 1,
+  "name": "FC_DL_SaturateAdd",
+  "cat": "DL_Base",
+  "code": "16#01_0_00",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 2,
+  "name": "FB_DL_ToggleButtonBank",
+  "cat": "DL_Base",
+  "code": "16#01_0_01",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 3,
+  "name": "FC_DL_LinearRegression2Var",
+  "cat": "DL_MathData",
+  "code": "16#05_0_02",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 4,
+  "name": "FC_DL_OscillationIndex",
+  "cat": "DL_MathData",
+  "code": "16#05_0_03",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 5,
+  "name": "FC_DL_PidLambdaTune",
+  "cat": "DL_Algo",
+  "code": "16#02_3_83",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 6,
+  "name": "FC_DL_HeatExchangerLmtd",
+  "cat": "DL_Algo",
+  "code": "16#02_3_84",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 7,
+  "name": "FB_DL_CrossCorrelationDelay",
+  "cat": "DL_Algo",
+  "code": "16#02_3_85",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 8,
+  "name": "FB_DL_SpindleOrientationStop",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A4",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 9,
+  "name": "FB_DL_ElectronicCamSwitchBank",
+  "cat": "DL_Motion",
+  "code": "16#04_0_A5",
+  "errors": [
+   "NOT CRLF"
+  ]
+ },
+ {
+  "no": 10,
+  "name": "FB_DL_VavBoxZeroCal",
+  "cat": "DL_Device",
+  "code": "16#03_2_12",
+  "errors": [
+   "ENUM COLON eFullWait : 20",
+   "NOT CRLF"
+  ]
+ }
+]

@@ -99,6 +99,7 @@ VAR
     _bFinDrop : BOOL := FALSE;   // 断相限值有限闸结果（逐拍重算）/ the drop limit finiteness gate result
     _bFinHyst : BOOL := FALSE;   // 迟滞有限闸结果（逐拍重算）/ the hysteresis finiteness gate result
     _bWarnLim : BOOL := FALSE;   // 上限 ≥ 100 警告标记（逐拍重算，信息级 0724）/ the over hundred warning flag
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_VOI_IDLEEPS : LREAL := 0.5;  // 待机判据门限 [安培]，低于此值不计算（提级禁魔法数）/ the idle threshold of half an ampere lifted out of the body
     DL_VOI_PCT     : LREAL := 100.0; // 百分比换算系数 [%] / the percentage scaling factor

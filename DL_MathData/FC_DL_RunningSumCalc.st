@@ -99,6 +99,7 @@ END_VAR
 VAR
     fY : LREAL := 0.0; // Kahan 增量工作副本（样本 − 补偿）[工程单位] / the kahan increment copy of the sample minus the compensation
     fT : LREAL := 0.0; // Kahan 中间和工作副本 [工程单位] / the kahan intermediate sum copy
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_RSC_ZERO : LREAL := 0.0; // 实数零常量 [工程单位] / the real zero constant
     DL_RSC_ZEROI: DINT   := 0;  // 整型零常量 [拍] / the integer zero constant

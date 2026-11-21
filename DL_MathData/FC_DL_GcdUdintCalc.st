@@ -69,6 +69,7 @@ VAR
     nX   : UDINT := 0; // 迭代被除数工作副本 [脉冲 / 计数] / the dividend working copy of the iteration
     nY   : UDINT := 0; // 迭代除数工作副本 [脉冲 / 计数] / the divisor working copy of the iteration
     nRem : UDINT := 0; // 余数承接量 [脉冲 / 计数] / the remainder holder
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_GCD_ZERO    : UDINT := 0;  // 无符号零常量 [脉冲 / 计数] / the unsigned zero constant
     DL_GCD_GUARDMAX: DINT   := 64; // WHILE 守卫计数上界 [次]（欧几里得迭代理论步数远小于此）/ the while guard ceiling, the euclid iteration converges far earlier

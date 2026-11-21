@@ -1,0 +1,262 @@
+{
+  "round": "R45",
+  "date": "2026-11-19",
+  "registry_total": 785,
+  "registry_version": "2.36.0",
+  "targets": 20,
+  "exact_collisions": 20,
+  "rejected_candidates": 11,
+  "rows": [
+    {
+      "idx": 1,
+      "name": "FB_DL_Vote2oo3",
+      "category": "DL_Base",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 2,
+      "name": "FB_DL_EdgeOrderCheck",
+      "category": "DL_Base",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 3,
+      "name": "FB_DL_AlarmFloodLimiter",
+      "category": "DL_Base",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 4,
+      "name": "FC_DL_CubicBezierEval",
+      "category": "DL_MathData",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 5,
+      "name": "FB_DL_KalmanFilter1D",
+      "category": "DL_Algo",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 6,
+      "name": "FB_DL_TensionObserver",
+      "category": "DL_Algo",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 7,
+      "name": "FB_DL_StictionCompensator",
+      "category": "DL_Algo",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": [
+        "FB_DL_ValveStictionDetect"
+      ]
+    },
+    {
+      "idx": 8,
+      "name": "FB_DL_LoopPerfIndex",
+      "category": "DL_Algo",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 9,
+      "name": "FB_DL_ThermalRampPredict",
+      "category": "DL_Algo",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 10,
+      "name": "FB_DL_AxisDualFeedbackGuard",
+      "category": "DL_Motion",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 11,
+      "name": "FB_DL_AxisSs1StopSeq",
+      "category": "DL_Motion",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 12,
+      "name": "FB_DL_AxisTeachOffset",
+      "category": "DL_Motion",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 13,
+      "name": "FB_DL_AxisInertiaIdent",
+      "category": "DL_Motion",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 14,
+      "name": "FB_DL_AxisRotaryShortPath",
+      "category": "DL_Motion",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 15,
+      "name": "FB_DL_SafetyRelayFeedback",
+      "category": "DL_Device",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 16,
+      "name": "FB_DL_ContactorWeldDetect",
+      "category": "DL_Device",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 17,
+      "name": "FB_DL_FlowSwitchResponseCheck",
+      "category": "DL_Device",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 18,
+      "name": "FB_DL_SlurryMixingSeq",
+      "category": "DL_Process",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 19,
+      "name": "FB_DL_FrameSealDispenseSeq",
+      "category": "DL_Process",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    },
+    {
+      "idx": 20,
+      "name": "FB_DL_BoilerBlowdownSeq",
+      "category": "DL_Process",
+      "exact_hit_registry_or_tree": true,
+      "in_roadmap": false,
+      "in_matrix": false,
+      "fuzzy_neighbors": []
+    }
+  ],
+  "rejected": [
+    {
+      "name": "FB_DL_CasePackerPatternVerify",
+      "reason": "同义邻件：registry 已注册 FB_DL_CasePackerPattern（同域装箱模式）",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FB_DL_PalletizerStation",
+      "reason": "registry 已注册（DL_Process），ROADMAP 仍空勾 → 三向一致差额样本",
+      "in_registry": true,
+      "in_tree": true
+    },
+    {
+      "name": "FB_DL_TrackBarcodeTrace",
+      "reason": "registry 已注册（DL_Process），ROADMAP 仍空勾 → 三向一致差额样本",
+      "in_registry": true,
+      "in_tree": true
+    },
+    {
+      "name": "FB_DL_StringBarcodeTrace",
+      "reason": "registry 已注册（DL_Process），同上",
+      "in_registry": true,
+      "in_tree": true
+    },
+    {
+      "name": "FB_DL_WindingAlignEdge",
+      "reason": "registry 已注册（DL_Motion），ROADMAP 仍空勾",
+      "in_registry": true,
+      "in_tree": true
+    },
+    {
+      "name": "FB_DL_FrequencyChirpGen",
+      "reason": "同义邻件：FB_DL_FrequencyGenerator 已覆盖扫频语义",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FC_DL_WelfordStdDev",
+      "reason": "同义邻件：FB_DL_SignalStatistics 已在册（在线统计）",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FB_DL_HeaterElementDiag",
+      "reason": "职责重叠：R44 新件 FB_DL_HeaterSsrBank 已含断偶/电流诊断",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FB_DL_MotionBlendZone",
+      "reason": "R22 已裁定「Blending 系列明确不立」，不得翻案",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FC_DL_ShlDwordEx",
+      "reason": "ROADMAP 自记「疑似与存量 ShlEx 同义」，按 R61 拒立项",
+      "in_registry": false,
+      "in_tree": false
+    },
+    {
+      "name": "FC_DL_ShrDwordEx",
+      "reason": "同上",
+      "in_registry": false,
+      "in_tree": false
+    }
+  ],
+  "assert_sentence": "20 名 grep registry 零匹配，另拒 11 条同名/同义候选"
+}

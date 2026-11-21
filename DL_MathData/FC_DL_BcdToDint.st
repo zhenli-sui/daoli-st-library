@@ -62,6 +62,7 @@ VAR
     nShift  : DINT := 0;  // 移位量 [位]，4·k ≤ 28 结构性安全 / the shift amount of four times the index, proven below the word width
     uDig    : USINT := 0; // 当前半字节码元 [位] / the current digit nibble
     nAcc    : DINT := 0;  // 十进制累加器（Horner 展开）[个] / the decimal accumulator of the Horner expansion
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_BCD_MASK  : DWORD := 16#0000000F; // 半字节掩码常量（提级禁魔法数）[-] / the nibble mask constant lifted out of the body
     DL_BCD_DIG9  : USINT := 9;           // 合法码元上界 [位] / the legal digit ceiling of nine

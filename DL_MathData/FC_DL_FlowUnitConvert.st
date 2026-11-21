@@ -92,6 +92,7 @@ VAR
     fBase : LREAL := 0.0; // 基准量工作副本 [m³/h] / the canonical working copy in the cubic meter per hour
     fFromF: LREAL := 0.0; // 源单位因子 [（m³/h）/ 源单位] / the source unit factor to the canonical
     fToF  : LREAL := 0.0; // 目标单位因子 [（m³/h）/ 目标单位] / the target unit factor to the canonical
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_FUC_ZERO   : LREAL := 0.0;      // 实数零常量 [目标单位] / the real zero constant
     DL_FUC_M3H    : LREAL := 1.0;      // m³/h 基准因子 [（m³/h）/（m³/h）] / the canonical factor of itself

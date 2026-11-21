@@ -73,6 +73,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     k : DINT := 0; // 遍历索引 [下标] / the traversal index
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_AFP_NMAX : DINT := 256;       // 数组容量上界 [个]，与数组容量一致 / the capacity aligned with the array
     DL_AFP_ONE  : DINT := 1;         // 整型一常量 [个] / the integer one constant

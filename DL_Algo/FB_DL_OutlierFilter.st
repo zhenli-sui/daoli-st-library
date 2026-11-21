@@ -120,6 +120,7 @@ VAR
     _bSortErr  : BOOL := FALSE;               // 中值委托故障位承接量 / the median delegate fault holder
     _bSortErr2 : BOOL := FALSE;               // MAD 委托故障位承接量 / the MAD delegate fault holder
     tonHold    : TON;                         // 保持超时定时器，段 0 无条件刷新 / the hold timeout timer refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_OF_WMAX  : DINT := 64;       // 窗容量上界 [个]，与数组容量一致 / the window capacity aligned with the array
     DL_OF_WMIN  : DINT := 4;        // 窗长下界 [个] / the window floor

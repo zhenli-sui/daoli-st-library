@@ -58,6 +58,7 @@ END_VAR
 VAR
     udwWork : DWORD := 16#0000_0000; // 逻辑右移工作寄存器 [位] / the logical shift working register in bits
     nUse    : DINT := 0;             // 归一后的移位量 [位] / the normalized shift amount in bits
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_SAR_ZERO : DINT := 0;         // 零常量 [位] / the zero constant
     DL_SAR_BITS : DINT := 32;        // DINT 容器位宽 [位] / the DINT container width in bits

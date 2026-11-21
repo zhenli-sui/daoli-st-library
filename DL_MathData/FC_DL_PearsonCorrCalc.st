@@ -92,6 +92,7 @@ VAR
     fDen      : LREAL := 0.0; // 归一化除子 SQRT(Sxx×Syy) [工程单位²] / the normalization divisor
     fCorrUse  : LREAL := 0.0; // 相关系数工作副本 [−] / the working correlation copy
     nPairsUse : DINT := 0;    // 有效对数工作副本 [对] / the working pair count
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_PCC_NMAX  : DINT := 256;       // 样本容量上界 [对]，与数组容量一致 / the capacity aligned with the arrays
     DL_PCC_MIN   : DINT := 3;         // 相关系数可定义最少对数 [对] / the minimum pair count for a defined correlation

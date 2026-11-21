@@ -101,6 +101,7 @@ VAR
     uSortErr  : UDINT := 16#0000_0000;         // 委托错误码承接量 [码] / the delegate error code holder
     bSortErr  : BOOL := FALSE;                 // 委托故障位承接量 / the delegate fault bit holder
     bSortOk   : BOOL := FALSE;                 // 返回值与可用位合取后的排序可用位 / the conjunction of the return value and the valid flag
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_PRK_NMAX : DINT := 256;         // 样本容量上界 [个]，与数组容量一致 / the capacity aligned with the array
     DL_PRK_ONE : DINT := 1;            // 整型一常量 [个] / the integer one constant

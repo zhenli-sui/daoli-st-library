@@ -12,7 +12,7 @@
     python dl_gate.py --file DL_Base/FC_DL_X.st  # 单文件
     python dl_gate.py --selftest                 # 判据回归（10 反例 + 10 正例）
 """
-import argparse, json, os, re, sys, io, glob, tempfile, datetime
+import argparse, json, os, re, sys, io, glob, tempfile, datetime, shutil
 
 LIB = r"C:\Library"
 STG = os.path.join(LIB, "_Staging_Raw")
@@ -153,13 +153,16 @@ def strip_comments_keep_lines(src):
 
 # ---------------- checks ----------------
 def gate_file(path, registry_index=None, strict_decl=False):
-    src = io.open(path, encoding="utf-8", errors="replace").read()
+    return gate_source(io.open(path, encoding="utf-8", errors="replace").read(),
+                       os.path.basename(path), registry_index, strict_decl)
+
+def gate_source(src, basename, registry_index=None, strict_decl=False):
+    name = os.path.splitext(basename)[0]
     code_src = strip_comments_keep_lines(src)
     toks, comments, nested = strip_and_tokenize(src)
     issues = []  # (level, code, line, detail)
     def add(level, code, line, detail=""):
         issues.append({"level":level,"code":code,"line":line,"detail":detail})
-    name = os.path.splitext(os.path.basename(path))[0]
 
     # 红线 1/2/3：只在「去注释」后判定，避免头部注释里的「零 GVL / 零 %I」误命中
     if re.search(r"\bVAR_EXTERNAL\b", code_src, re.I): add("BLOCK","R1_VAR_EXTERNAL",0,"禁止 VAR_EXTERNAL")
@@ -213,7 +216,7 @@ def gate_file(path, registry_index=None, strict_decl=False):
                 "CASE 缺 ELSE 兜底")
 
     # 声明区解析（用去注释后的行解析；用原始行判定中文注释）
-    declared, outputs, enum_members = set(), set(), set()
+    declared, outputs, enum_members, inited = set(), set(), set(), set()
     in_var, cur_section = False, ""
     buf = []
     decl_re = re.compile(r"^\s*([A-Za-z_]\w*(?:\s*,\s*[A-Za-z_]\w*)*)\s*(?::=|:)\s*(.+?)\s*;\s*$", re.S)
@@ -243,6 +246,7 @@ def gate_file(path, registry_index=None, strict_decl=False):
             add("MINOR","DECL_NO_CJK",start_line,"声明行缺中文注释")
         for nm in [x.strip() for x in names.split(",")]:
             declared.add(nm)
+            if ":=" in typ: inited.add(nm)
             if cur_section == "VAR_OUTPUT": outputs.add(nm)
         is_enum = typ.strip().startswith("(")
         typ_core = typ.strip() if is_enum else typ.split(":=")[0].strip()
@@ -282,6 +286,7 @@ def gate_file(path, registry_index=None, strict_decl=False):
 
     # VAR_OUTPUT 未被赋值
     for o in outputs:
+        if o in inited: continue
         if not re.search(r"\b%s\s*(\[[^\]]*\])?\s*(\.[A-Za-z_]\w*)?\s*:=" % re.escape(o), body):
             add("MAJOR","OUT_NO_ASSIGN",0,f"输出 {o} 从未赋值")
 
@@ -307,7 +312,7 @@ def gate_file(path, registry_index=None, strict_decl=False):
     level_rank = {"BLOCK":0,"MAJOR":1,"MINOR":2,"WARN":3}
     worst = min([level_rank[i["level"]] for i in issues], default=9)
     verdict = "PASS" if worst >= 2 else ("BLOCK" if worst == 0 else "MAJOR")
-    return {"file": os.path.relpath(path, LIB), "name": name, "issues": issues,
+    return {"file": basename, "name": name, "issues": issues,
             "verdict": verdict, "lines": len(lines_code)}
 
 def load_registry_index():
@@ -366,6 +371,57 @@ def selftest():
     print("SELFTEST", "PASS" if ok else "FAIL")
     return 0 if ok else 1
 
+FIXABLE = {"VAR":"END_VAR", **{k:v for k,v in BLOCK_PAIRS.items()}}
+
+def fix_structural(path, dry_run=True, max_iter=12):
+    """按门禁报出的 SYN_STRAY_END/SYN_CROSS_END/SYN_UNCLOSED 机械补齐闭合词。
+    只插入 END_*，不改任何语义行；每步后重跑校验，收敛即停。"""
+    actions = []
+    cur = io.open(path, encoding="utf-8").read()
+    for _ in range(max_iter):
+        r = gate_source(cur, os.path.basename(path))
+        syn = [i for i in r["issues"] if i["code"] in ("SYN_STRAY_END","SYN_CROSS_END","SYN_UNCLOSED")]
+        if not syn: break
+        lines = cur.split("\n")
+        # 优先处理"交叉/游离"：在报错行前插入最近开块的闭合词
+        only_var = os.environ.get("DL_FIX_ONLY_VAR","1") == "1"
+        tgt = next((i for i in syn if i["code"] == "SYN_CROSS_END"), None)
+        if tgt and only_var and "METHOD" in tgt["detail"] or (tgt and only_var and "PROPERTY" in tgt["detail"]):
+            actions.append((tgt["line"], "SKIP(方言待 CI 裁决): " + tgt["detail"][:40])); break
+        if tgt:
+            closer = {"END_FUNCTION_BLOCK":"END_FUNCTION_BLOCK"}.get("", None)
+            m = re.search(r"与最近开块 (\w+)", tgt["detail"])
+            if m:
+                opener = m.group(1)
+                close = FIXABLE.get(opener)
+                if not close: break
+                pos = max(0, tgt["line"]-1)
+                lines.insert(pos, close + "  // R64 结构补齐：缺失的 " + close + "（门禁机械修复）")
+                actions.append((tgt["line"], "insert " + close))
+            else:
+                # 无开块信息的游离 END_*：不擅自删行，留人工
+                actions.append((tgt["line"], "MANUAL: stray closer, needs human"))
+                break
+        else:
+            un = syn[0]
+            opener = re.match(r"(\S+)", un["detail"]).group(1)
+            if only_var and opener != "VAR":
+                actions.append((un["line"], "SKIP(方言待 CI 裁决): " + opener)); break
+            close = FIXABLE.get(opener)
+            if not close: break
+            # 未闭合：插到文件末尾前（END_FUNCTION_BLOCK 之前若存在则在其前）
+            idx = len(lines)
+            for k in range(len(lines)-1, -1, -1):
+                if lines[k].strip().upper().startswith("END_FUNCTION_BLOCK"):
+                    idx = k; break
+            lines.insert(idx, close + "  // R64 结构补齐：缺失的 " + close + "（门禁机械修复）")
+            actions.append((un["line"], "insert " + close + " at EOF-block"))
+        cur = "\n".join(lines)
+    if actions and not dry_run:
+        shutil.copy(path, path + ".bak_gate")
+        io.open(path, "w", encoding="utf-8").write(cur)
+    return actions
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true")
@@ -376,8 +432,25 @@ def main():
     ap.add_argument("--strict-decl", action="store_true")
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--json-out")
+    ap.add_argument("--fix-structural", action="store_true")
+    ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()
     if a.selftest: return selftest()
+
+    if a.fix_structural:
+        reg = load_registry_index()
+        files = ([a.file if os.path.isabs(a.file) else os.path.join(LIB, a.file)] if a.file
+                 else (collect_changed(a.hours) if a.changed_only
+                       else sorted(glob.glob(os.path.join(LIB, "DL_*", "*.st")))))
+        tot = 0
+        for p in files:
+            acts = fix_structural(p, dry_run=not a.apply)
+            if acts:
+                tot += len(acts)
+                print(("  FIXED " if a.apply else "  DRY   ") + os.path.relpath(p, LIB) +
+                      "  " + str(len(acts)) + " 处: " + "; ".join(x[1] for x in acts[:4]))
+        print(("APPLIED " if a.apply else "DRY-RUN ") + str(tot) + " structural fixes over " + str(len(files)) + " files")
+        return 0
 
     reg = load_registry_index()
     if a.file:

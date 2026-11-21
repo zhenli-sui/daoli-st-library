@@ -103,6 +103,7 @@ VAR
     _bCfgBad    : BOOL := FALSE;  // 组态非法标记（逐拍重算）/ the configuration fault flag
     rtReset     : R_TRIG;         // 复位沿实例，段 0 无条件刷新（R7）/ the reset edge instance refreshed unconditionally
     tonMismatch : TON;            // 不一致窗定时器，段 0 无条件刷新 / the mismatch window timer refreshed unconditionally
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_DVP_TIME0 : TIME := T#0S;        // 时间零常量 [毫秒] / the time zero constant
     DL_DVP_ZEROU : UDINT := 16#0000_0000; // 码零常量 / the code zero constant

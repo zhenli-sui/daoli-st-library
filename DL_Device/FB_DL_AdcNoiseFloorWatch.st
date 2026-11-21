@@ -103,6 +103,7 @@ VAR
     _bFinLim   : BOOL := FALSE;              // 上限有限闸结果（逐拍重算）/ the limit finiteness gate result
     _bFinHyst  : BOOL := FALSE;              // 迟滞有限闸结果（逐拍重算）/ the hysteresis finiteness gate result
     _bFinMeas  : BOOL := FALSE;              // 样本有限闸结果（逐拍重算）/ the sample finiteness gate result
+END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR CONSTANT
     DL_ANF_WMAX  : DINT := 256;      // 窗容量上界 [个]，与数组容量一致 / the capacity aligned with the array
     DL_ANF_WMIN  : DINT := 16;       // 窗长下界 [个] / the window floor
