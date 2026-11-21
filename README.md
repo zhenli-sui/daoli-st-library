@@ -576,3 +576,19 @@ SOFTWARE.
 > **Round 31（2026-11-18）：泵标定/PROFINET 诊断/晶圆交接/半导体腔体/暖通/流程计量 19 件（计划 20，序 1 与 R29 同名作废，4 批）**——DL_Process 11｜DL_Device 4｜DL_Motion 2（外部编码器族开族）｜DL_Algo 1｜DL_MathData 1；机检 **19/19 PASS fail=0**（71 码位 CLASH=NONE）；**终审 5 抽 → 4 修 1 过**（ReactorStepCtrl/ChamberLeakRate/FilmTensionDancer/EtchEndpointTrend 升 v1.0.1，WaferHandoffSeq PASS）；registry 539→**558**（v2.20.0，counts 75/163/59/106/57/98），JSONL **558 条**；专家进化新增 **R166~R175**；WebSearch 0/3 零检索轮。
 
 - 2026-11-20T10:44:00+08:00 R51：+20 新件（Process 18/MathData 2）+4 返修 v1.0.1，registry 905→925（v2.43.0），SFT 906→926，机检 24/24 PASS。
+
+---
+
+## 质量门禁与工具链 / Quality Gate
+
+自 R64 起，入库不再依赖人工抽检，改为**双层机器门**：
+
+| 层 | 命令 | 内容 | 状态 |
+|---|---|---|---|
+| L1 静态门 | `python _tools/dl_gate.py --changed-only --hours 3` | 自研 ST 结构化解析（构造栈 + 声明解析）+ 7 项红线 + 声明完整性 F 检 + 版本/码段一致性 | ✅ 已启用，15 例回归自检 |
+| L2 真编译门 | `python _tools/matic_runner.py --manifest …` | MatIEC `iec2iec` 全库解析（CI 构建） | ⏳ GitHub Actions（`.github/workflows/iec-compile.yml`） |
+| L3 向量门 | `_TESTS/<Name>.json` + `vector_runner` | 除零/NaN/越界/复位/状态机兜底断言 | 🚧 逐步铺开 |
+
+**首次全库扫描结论（2026-11-21）**：1,135 件 → PASS 1,005｜MAJOR 26｜BLOCK 104。其中 **34 件缺 `END_VAR`（编译级真缺陷）已机械修复**；剩余 71 个 BLOCK 为 `METHOD/PROPERTY` 闭合词方言问题，待 MatIEC CI 裁决。详见 `_Staging_Raw/2026-11-21/GATE_BASELINE_R64.md`。
+
+**开源资产管线**：`python _tools/oss_harvest.py --search`（GitHub 检索 → 许可证三色分级 → 签名抽取 → 三道去重 → 候选队列）。匿名 API 限 60 次/小时；规模化需 GitHub PAT。
