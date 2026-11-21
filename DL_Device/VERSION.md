@@ -822,3 +822,9 @@ R7 已交付设备件十件套（扫码枪/安全门/光幕/流量计/料位开�
 - 新增 `FB_DL_DualValveBlockSet`（v1.0.0，T2-2 LBP 阀组三段分层 clean-room）：双阀同令同闭 + 两路反馈不一致窗监视，锁存 072E、组态闸 072D 结构早退、复位沿解除可达。
 - **返修 1 件**：`FB_DL_VfdPrechargeSeq` v1.0.0 → **v1.0.1**（R63-D1 宽限计时串 `NOT _bMeasBad`；R63-D2 撤令判据上移至事件优先段首位，消除同拍竞态假锁存）。
 - 主库合计 204 件（+1）。本轮终审新挂账 1 处（DualValveBlockSet 的 tonMismatch 缺相位门控，R316），转 R65。
+
+## v1.28 — 2026-11-22（R65 追加）
+
+- 新增 2 件：`FB_DL_AnalogSignalHealth`（4-20mA 断线/低限/超上/卡滞四态，判据分立源）/ `FB_DL_PneuCylinderDiag`（气缸行程诊断 8 态机）。
+- 点修：`FB_DL_DualValveBlockSet` v1.0.1（tonMismatch 补 eRun 相位闸）。
+- 子库累计 206 件。

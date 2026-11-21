@@ -5,7 +5,8 @@
   前缀   Naming     : FB_DL_ ｜ b/n/u/f/t/e/st 类型前缀制（R265）
   码位   Code ID    : 16#0003_072D（故障级：组态非法）｜ 16#0003_072E（故障级：
                       反馈不一致窗超时）
-  版本   Version    : 1.0.0
+  版本   Version    : 1.0.1
+  变更   CHANGELOG  : v1.0.1 tonMismatch 相位闸
   复杂度 Complexity  : 中
   功能   Purpose    : 双阀冗余块组控：双阀同令同闭（单指令源统一下发）+ 两路
                       位置反馈不一致窗判定（一阀卡滞 / 位置开关故障的启动期
@@ -66,6 +67,13 @@
     V7 非法枚举态（强改 eState）→ ELSE 兜底落 eFault + 072D
   修订记录 Revision  :
     2026-11-21  v1.0.0  R64 首版（批 3 · 序号 8，LBP 阀组组织方式 clean-room）
+    2026-11-22  v1.0.1  R65 点修（tonMismatch 相位闸）：计时启动条件补 eRun
+                        相位门控——仅运行监视相才累计不一致窗，非运行相强制
+                        IN = FALSE（R300：计时启动与判定相不同源，修 v1.0.0
+                        「eIdle 期反馈不一致已累计、迁入 eRun 即刻误触发
+                        072E」的残留窗缺陷）；超时触发动作后窗残留由相位闸
+                        + 锁存门控双路自清（本件无 _nStep 类步序量，窗残留
+                        仅 tonMismatch 累计值），复位 / 重入不残留旧窗数据
   ==================================================================
 *)
 TYPE E_DL_DualValvePhase :
@@ -112,7 +120,8 @@ END_VAR
 // 段 0｜定时器与沿检测无条件周期刷新（禁入分支，R7；监视 TON 串锁存门控，FB50-1）/ segment 0, the unconditional refresh
 rtReset(CLK := bResetCmd); // 复位沿 / the reset edge
 _bMismatch := (bFbValveA <> bFbValveB); // 不一致电平逐拍重算（BOOL 直比无容差问题）/ the mismatch level recomputed, a plain boolean compare
-tonMismatch(IN := _bMismatch AND (NOT _bFaultLatch), PT := tMismatchWin); // 不一致窗计时（串锁存门控防复位同拍重锁）/ the mismatch window with the latch gate
+tonMismatch(IN := _bMismatch AND (NOT _bFaultLatch)
+         AND (_eState = E_DL_DualValvePhase.eRun), PT := tMismatchWin); // 不一致窗计时（v1.0.1 相位闸：仅 eRun 运行监视相累计，非运行相强制 IN = FALSE；串锁存门控防复位同拍重锁；超时触发后相位 + 锁存双路使 IN 自清，窗累计零残留，复位 / 重入不残留旧窗）/ the mismatch window with the v1.0.1 phase gate, accumulated only in the run phase
 
 // 段 1｜首拍初始化与复位沿作用域（R310 / R311）/ segment 1, the first scan init and the reset edge scope
 IF NOT _bInit THEN // 首拍一拍 / the first scan

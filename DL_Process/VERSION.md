@@ -837,3 +837,9 @@ R7 已交付统计/输送/配料三件；R8 已交付线体握手 / 配方管理
 
 - 新增 2 件：`FB_DL_ReworkLotGate`（v1.0.0，ISA-88 批次相语义 + PackML 纪律次源）：返工登记期拦截放行，越权放行锁存 3036、放行计数饱和信息级 3037；`FB_DL_UnscramblerSeq`（v1.0.0，PackML 相语义聚合四相）：进瓶整理 → 乱瓶分拣 → 完成，卡瓶窗锁存 3038、料满停进挂相不挂故障。
 - 主库合计 275 件（+2）。本轮终审两件均判「轻」（ReworkLotGate：eReleased 相不随复检失效回迁；UnscramblerSeq：`_bHold` 跨相粘滞一拍），挂 R65。
+
+## v1.34 — 2026-11-22（R65 追加）
+
+- 新增 `FC_DL_TankVolumeHoriCyl`（卧式圆柱罐弓形解析体积，与 TankLevelStrapping 查表法互引）。
+- 点修：`FB_DL_ReworkLotGate` v1.0.1（eReleased 单拍回迁）/ `FB_DL_UnscramblerSeq` v1.0.1（段 0a 统一清 _bHold）。
+- 子库累计 276 件。

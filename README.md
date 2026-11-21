@@ -1,20 +1,22 @@
 # 道莅工业自动化标准代码库 / Daoli Industrial ST Library
 
-[![Total Components](https://img.shields.io/badge/Total%20Components-1135%20%2F%2010%2C000-blue)](CHANGELOG.md)
-[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-135%20open-success)](DL_Base/VERSION.md)
-[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-267%20open-success)](DL_MathData/VERSION.md)
+[![Total Components](https://img.shields.io/badge/Total%20Components-1145%20%2F%2010%2C000-blue)](CHANGELOG.md)
+[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-141%20open-success)](DL_Base/VERSION.md)
+[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-268%20open-success)](DL_MathData/VERSION.md)
 [![Level 1 DL_Algo](https://img.shields.io/badge/Level%201%20DL--Algo-134%20open-yellow)](DL_Algo/VERSION.md)
-[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-204%20open-yellow)](DL_Device/VERSION.md)
+[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-206%20open-yellow)](DL_Device/VERSION.md)
 [![Level 1 DL_Motion](https://img.shields.io/badge/Level%201%20DL--Motion-120%20open-yellow)](DL_Motion/VERSION.md)
-[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-275%20open-yellow)](DL_Process/VERSION.md)
-[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-1154%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
+[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-276%20open-yellow)](DL_Process/VERSION.md)
+[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-1167%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
 [![Platform](https://img.shields.io/badge/Platform-CODESYS%20%7C%20TwinCAT%203%20%7C%20InoProShop-informational)](README.md)
 [![IEC 61131-3](https://img.shields.io/badge/IEC-61131--3%20ST-orange)](README.md)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> **Total Components: 1,135 / 10,000 (11.35%)** ｜ **Phase 2: 常态节奏 16~20 件/轮（R60 起按 R249/R193 动态下调）** ｜ **Version: v2.56.0** ｜ **SFT 语料: 1,154 条** ｜ **全库约 232,700 行**
+> **Total Components: 1,145 / 10,000 (11.45%)** ｜ **Phase 2: 常态节奏 16~20 件/轮（R60 起按 R249/R193 动态下调）** ｜ **Version: v2.57.0** ｜ **SFT 语料: 1,167 条** ｜ **全库约 234,200 行**
 
 > **R62（2026-11-21）**：11 新件（Base 4 / MathData 4 / Algo 1 / Device 2，饱和乘除·算术右移·符号扩展·INT 饱和转换·有符号转 UDINT·DT 提取·百分位排名·通用二阶节·母线纹波·离子风机联锁）+ 5 项返修（RailPowerSequence v1.0.2 / TurretToolSelect·SensorPairPlausibility·WeightedPercentile·LineClearanceVerify v1.0.1，R61 挂账全清）；总库 1,101→**1,112**，SFT 1,124，机检 16/16 PASS；零检索轮，T0 族内深化 8 件 + T1 1 件 + T2 2 件，撞名拒 7 条（留痕 ROUND_PLAN_R62 §2.3）；**终审 4 抽 7 处挂账（严重 2 / 中 2 / 轻 3）**，R63 配额 16→13。
+> **R65（2026-11-21/22）**：10 新件（Base 6 / MathData 1 / Device 2 / Process 1，字符串编辑距离·通配匹配·数组段填充/拷贝·稳定排序索引·滞回区间监视·角度单位换算·卧式罐解析体积·4-20mA 信号健康·气缸行程诊断）+ 3 项点修（DualValveBlockSet / ReworkLotGate / UnscramblerSeq v1.0.1，R64 挂账全清）；**pipeline v2 首轮**：dl_gate 增量门禁 13/13 零 BLOCK → registry(origin 100%) → JSONL → git；总库 1,135→**1,145**（141/268/134/206/120/276），SFT **1,167**。
+
 > **R64（2026-11-21）**：10 新件（Base 1 / MathData 6 / Device 1 / Process 2，三态比较·数组首匹配·切片拷贝·区间间隙·整数 GCD·滑动和·流量四单位互转·双阀冗余组控·返工放行闸·理瓶四相顺控）+ 2 项点修（VfdPrechargeSeq / AdaptiveLmsFilter v1.0.1，R63 挂账 4 处全清）+ **1 项终审就地修**（FlowUnitConvert v1.0.1：L/min 因子方向倒置 277.78 倍，R317 安全侧第①条）；总库 1,125→**1,135**（135/267/134/204/120/275），SFT **1,154**，机检 12/12 PASS；零检索轮（T0 三组 + LGF Comparator/Data Handling ◐ 深化 4 件 + LBP/ISA-88/PackML 次源），撞名拒 6 + 配额顺延 1；**终审 5 抽：严重 1 / 中 1 / 轻 2 / PASS 1**，就地修 1、挂 R65 3 处；新增可判定规则 5 条（R314~R318），不固化（距 FB-51 第 4 轮）。
 > **R63（2026-11-21）**：13 新件（MathData 4 / Algo 5 / Device 4，BCD 双向转换·双端截尾均值·皮尔逊相关·EWMA·MAD 野点剔除·RBJ 二阶节系数·多节级联·LMS 自适应·ADC 底噪·三相不平衡·电容老化·预充时序）+ 5 项返修（VfdDcBusRipple·BiquadFilter·IonFanInterlock v1.0.1 / RailPowerSequence v1.0.3 / PercentileRank v1.0.1，R62 挂账 7 处全清）；总库 1,112→**1,125**，SFT **1,142**，机检 18/18 PASS；零检索轮，族①②扩面深化 7 件 + T0-BCD 补口 2 件 + 统计族 2 件 + self 2 件；**终审 5 抽：严重 0 / 中 1 / 轻 3**（挂账 4 处挂 R64，分散型按 R309 点修，R64 配额 13→10）；族②组态早退 / 族①Jury 判据两族扩面目标达成，R62-D1/D2 家族在新件出厂层面关闭。
 > **R61（2026-11-21）**：16 新件（Base 4 / MathData 5 / Device 3 / Motion 2 / Algo 1 / Process 1，64 位位图反转·位扫描·三维模长·梯形积分·索引排序·加权分位·平均绝对偏差·长按识别·导轨分级上电·限位开关组·PID 参数闸·缺相保护·双传感器合理性·冷干机诊断·刀塔选刀·清线确认）+ 6 项 v1.0.1 返修（R60 挂账全清）；总库 1085→**1,101**，SFT 1,107，机检 16/16 PASS；零检索轮，撞名拒 24/40=60%（R267 双族避让）；R249/R193 联动下调 20→16。

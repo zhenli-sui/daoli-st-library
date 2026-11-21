@@ -4,6 +4,23 @@
 
 > 版本号规则：**MAJOR** 破坏性接口变更 ｜ **MINOR** 新增组件或新增可选输入 ｜ **PATCH** 实现与文档修正。
 
+## v2.57.0 — 2026-11-22（R65 十件入册 + 三件点修 ｜ pipeline v2 首轮：dl_gate 增量门禁 → registry(origin) → JSONL → git）
+
+### Added（10 件：DL_Base 6 / DL_MathData 1 / DL_Device 2 / DL_Process 1）
+- DL_Base 6 件：`FC_DL_StringEditDistance`（Levenshtein 滚动单行 DP，配方/批次模糊匹配）｜`FC_DL_StringWildMatch`（通配符迭代双指针回溯）｜`FC_DL_ArrFillEx` / `FC_DL_ArrCopySeg`（LGF DataHandling clean-room +2：段填充/段拷贝，越界截断信息级）｜`FC_DL_SortIndexInt`（稳定插入排序索引表）｜`FB_DL_HysteresisBandMon`（LGF Comparator clean-room：三态区间监视 + 滞回 + 越带沿，与 FC_DL_Hysteresis 互引分工）
+- DL_MathData 1 件：`FC_DL_AngleUnitConvert`（deg/rad/grad 统一桥接 rad，零除法面）
+- DL_Device 2 件：`FB_DL_AnalogSignalHealth`（4-20mA 断线/低限/超上/卡滞四态，卡滞窗与电平判据分立源）｜`FB_DL_PneuCylinderDiag`（气缸超时/中途卡滞/双传感器矛盾，8 态机）
+- DL_Process 1 件：`FC_DL_TankVolumeHoriCyl`（卧式圆柱罐弓形解析体积，与 TankLevelStrapping 查表法互引）
+
+### Fixed（3 件 v1.0.1，R64 终审挂账全清）
+- `FB_DL_DualValveBlockSet`：tonMismatch 计时补 eRun 相位闸（非运行相 IN=FALSE），窗残留双路自清
+- `FB_DL_ReworkLotGate`：eReleased 放行相单拍驻留后无条件回迁 eIdle
+- `FB_DL_UnscramblerSeq`：段 0a 对非保持相统一清 _bHold，堵跨相粘滞
+
+### 工程基建（本版同日落地）
+- `_tools/dl_gate.py` L1 静态门（构造栈解析 + 7 红线 + 声明完整性，15 例回归自检）启用为入库门禁：R65 增量 13/13 零 BLOCK
+- git 版本控制 / LICENSE(MIT) / NOTICE / 溯源 origin 1,135→1,145 全覆盖 / MatIEC CI 编排 / oss_harvest 采集管线 / _TESTS 向量契约
+
 ## v2.56.0 — 2026-11-21（R64 十件入册 + 二件点修 + 终审就地修一件）
 
 ### Added（10 件：DL_Base 1 / DL_MathData 6 / DL_Device 1 / DL_Process 2）

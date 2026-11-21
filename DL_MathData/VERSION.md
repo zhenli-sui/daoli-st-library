@@ -960,3 +960,8 @@ R59 新增 8 件：DmsAngleConvert / QuadraticSolve / DtlStringConv / AsciiFrame
 - 新增 6 件：`FC_DL_ArrayFindValue`（T2-1 Data Handling +1，数组首匹配 + 非有限剔除）、`FC_DL_ArraySliceCopy`（T2-1 Data Handling +1，切片拷贝 + 边界钳制）、`FC_DL_IntervalGapCalc`（T2-1 Comparator +1，区间间隙量）、`FC_DL_GcdUdintCalc`（T0 数论原子，欧几里得 + 守卫计数）、`FC_DL_RunningSumCalc`（T0 统计原子，滑动和）、`FC_DL_FlowUnitConvert`（T0-4 单位换算族三件齐）。
 - **返修 1 件**：`FC_DL_FlowUnitConvert` v1.0.0 → **v1.0.1**（R64 终审 S1 严重项就地修：`DL_FUC_LMIN` 因子方向倒置 16.666667 → 0.06，L/min 换算 277.78 倍错误修正，V1~V4 向量修复后自证成立；registry / JSONL 同步重注入）。
 - 主库合计 267 件（+6）。Comparator ◐→◐ 深化 +1、Data Handling ◐→◐ 深化 +1。
+
+## v1.37 — 2026-11-22（R65 追加）
+
+- 新增 `FC_DL_AngleUnitConvert`（deg/rad/grad 统一桥接 rad，系数预乘零除法面）。
+- 子库累计 268 件。

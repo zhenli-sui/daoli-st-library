@@ -699,3 +699,8 @@ R59 新增 TimerFailSafe / TwoStepConfirm / MultiSegmentTimer 三件（看门狗
 
 - 新增 `FC_DL_TriStateCompare`（v1.0.0，T2-1 LGF Comparator 深化 +1）：三态比较器（小于 / 相等 / 大于，带 `fEps` 容差与 NaN 前置闸），返回 `E_DL_TriState`；供区间/分级/表决类调用方统一比较口径。
 - 主库合计 135 件（+1）。本子库仍为 Level 0 纯基础件，零依赖。
+
+## v1.36 — 2026-11-22（R65 追加）
+
+- 新增 6 件：`FC_DL_StringEditDistance`（Levenshtein 滚动单行 DP）/ `FC_DL_StringWildMatch`（通配符双指针回溯）/ `FC_DL_ArrFillEx` / `FC_DL_ArrCopySeg`（LGF DataHandling clean-room）/ `FC_DL_SortIndexInt`（稳定排序索引）/ `FB_DL_HysteresisBandMon`（LGF Comparator clean-room，与 FC_DL_Hysteresis 互引分工）。
+- 子库累计 141 件。

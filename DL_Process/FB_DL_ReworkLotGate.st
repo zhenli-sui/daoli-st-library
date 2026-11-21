@@ -5,7 +5,8 @@
   前缀   Naming     : FB_DL_ ｜ b/n/u/f/t/e/st 类型前缀制（R265）
   码位   Code ID    : 16#0006_3036（故障级：越权放行锁存）｜ 16#0006_3037
                       （信息级：放行计数饱和钳位）
-  版本   Version    : 1.0.0
+  版本   Version    : 1.0.1
+  变更   CHANGELOG  : v1.0.1 eReleased 放行相单拍回迁
   复杂度 Complexity  : 中
   功能   Purpose    : 返工批拦截闸：返工标记登记期拦截放行指令，复检合格才
                       放行并计数；返工登记期未复检合格的放行指令判「越权
@@ -70,6 +71,15 @@
     V8 非法枚举态（强改 eState）→ ELSE 兜底落 eFault + 3036
   修订记录 Revision  :
     2026-11-21  v1.0.0  R64 首版（批 3 · 序号 9，ISA-88 / PackML 纪律次源 + 自研）
+    2026-11-22  v1.0.1  R65 点修（eReleased 回迁，R64 终审项）：v1.0.0 放行相
+                        在 bReleaseCmd 持续保持且无再登记时停留该相不回迁，
+                        下批次无法进入；v1.0.1 改放行相为单拍驻留相——完成后
+                        无条件回迁待判 / 空闲相 eIdle；回迁清理声明：本件无
+                        放行锁存与批次暂存变量（rtRelease 为自清沿实例，
+                        Q 单拍自灭；nReleased 为审计台账不属暂存，复位沿亦
+                        不清，边界四口径），回迁即天然清零，无需额外清零动作；
+                        登记电平若仍生效，由 eIdle 相在下一拍重新迁入拦截相
+                        （合法重入，rtRelease 沿不自触发，计数不受影响）
   ==================================================================
 *)
 TYPE E_DL_ReworkGatePhase :
@@ -173,12 +183,9 @@ CASE _eState OF
             _uLatch := 16#0006_3036; // 故障级：越权放行 / fault grade, the unauthorized release
             bError := TRUE; // 同拍置故障标志（R45 配对，段 6 故障分支沿用）/ raise the fault flag on the same scan
         END_IF
-    E_DL_ReworkGatePhase.eReleased: // 放行相（登记撤除或再登记由电平驱动回迁）/ the released phase driven back by the levels
-        IF bLotRework THEN // 再次登记 / registered again
-            _eState := E_DL_ReworkGatePhase.eReworkHold; // 迁回拦截相 / back to the hold phase
-        ELSIF NOT bReleaseCmd THEN // 放行指令撤回 / the release command withdrawn
-            _eState := E_DL_ReworkGatePhase.eIdle; // 回空闲 / back to idle
-        END_IF
+    E_DL_ReworkGatePhase.eReleased: // 放行相（v1.0.1 改单拍驻留：完成后强制回迁空闲，R64 终审修复「eReleased 不回迁」）/ the released phase, single scan dwell with the forced return since v1.0.1
+        _eState := E_DL_ReworkGatePhase.eIdle; // 放行相完成后无条件回迁待判 / 空闲相（下批次可正常进入；v1.0.0 在 bReleaseCmd 持续保持且无再登记时停留该相不回迁，为本次修复点）/ unconditional return to idle after the release completes
+        // 回迁清理声明（v1.0.1）：本件无放行锁存与批次暂存变量——rtRelease 为自清沿实例（Q 单拍自灭），nReleased 为审计台账不属暂存（复位沿亦不清，边界四），回迁即天然清零，无额外清零动作 / no release latch or batch staging exists, the return clears naturally
     E_DL_ReworkGatePhase.eFault: // 锁存故障相（驻留，解除由段 1 复位沿承担）/ the fault phase dwelling, the release belongs to the reset edge
         ; // 驻留语义由注释表达（禁自赋值死语句，R261）/ the dwell is expressed by this comment without a dead statement
     ELSE // 非法枚举值拦截（边界二：落故障相并锁存，禁静默）/ the illegal enumeration guard

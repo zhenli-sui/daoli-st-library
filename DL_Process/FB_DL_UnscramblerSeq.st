@@ -5,7 +5,8 @@
   前缀   Naming     : FB_DL_ ｜ b/n/u/f/t/e/st 类型前缀制（R265）
   码位   Code ID    : 16#0006_3038（故障级：卡瓶监视窗超时）｜ 16#0006_3039
                       （故障级：组态非法）
-  版本   Version    : 1.0.0
+  版本   Version    : 1.0.1
+  变更   CHANGELOG  : v1.0.1 _bHold 跨相粘滞统一清零
   复杂度 Complexity  : 中
   功能   Purpose    : 理瓶整理顺控：进瓶整理 → 乱瓶分拣 → 整理完成的相序推进，
                       卡瓶监视窗（卡瓶检测电平持续超窗即锁存故障）+ 料满停进
@@ -70,6 +71,16 @@
     V8 非法枚举态（强改 eState）→ ELSE 兜底落 eFault + 3039
   修订记录 Revision  :
     2026-11-21  v1.0.0  R64 首版（批 3 · 序号 10，PackML 相语义 + 自研顺控）
+    2026-11-22  v1.0.1  R65 点修（_bHold 跨相粘滞，R64 终审项）：v1.0.0 中
+                        _bHold 仅在 eFeed / eSort 相内随料满电平置清，迁移
+                        出口（停止回 eIdle / 分拣完成迁 eReady / 锁存落
+                        eFault）不清 _bHold，跨相粘滞使下一拍 tonPhase
+                        （串 NOT _bHold 门控）在非保持相读到旧值；v1.0.1
+                        采用统一入口清零式（择一实现声明）：在段 0 顶部
+                        （定时器刷新之前，保证同拍收敛）对非保持相强制
+                        _bHold := FALSE，理由——迁移出口分散于两相共 5 处，
+                        逐出口补清易漏且新增出口须重复纪律，单点集中清零
+                        全覆盖；eFeed / eSort 相内料满置清语义不受影响
   ==================================================================
 *)
 TYPE E_DL_UnscrPhase :
@@ -118,6 +129,12 @@ VAR CONSTANT
     DL_UNP_TIME0 : TIME := T#0S;          // 时间零常量 [毫秒] / the time zero constant
     DL_UNP_ZEROU : UDINT := 16#0000_0000; // 码零常量 / the code zero constant
 END_VAR
+
+// 段 0a｜_bHold 跨相粘滞统一清零（v1.0.1，R64 终审项修复；置段 0 之前保证
+//         tonPhase 同拍读到新值）/ segment 0a, the unified sticky clear of the hold flag
+IF (_eState <> E_DL_UnscrPhase.eFeed) AND (_eState <> E_DL_UnscrPhase.eSort) THEN // 非保持相（eIdle / eReady / eFault）/ outside the holding phases
+    _bHold := FALSE; // 非保持相强制清挂相标记（防跨相粘滞；eFeed / eSort 相内料满置清语义不受影响，v1.0.1 择统一式理由见修订记录）/ clear the hold flag outside the holding phases
+END_IF
 
 // 段 0｜定时器与沿检测无条件周期刷新（禁入分支，R7；监视 TON 串锁存门控，FB50-1）/ segment 0, the unconditional refresh
 rtReset(CLK := bResetCmd); // 复位沿 / the reset edge
