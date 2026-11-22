@@ -847,6 +847,7 @@
 - [x] `FB_DL_PumpCavitationGuard`：泵汽蚀判据与保护（复用 `FB_DL_SignalStatistics` 流量/扬程偏离 + `FB_DL_PeakDetector` 振动峰值 + `FB_DL_RateLimiter` 降速保护）→ **DL_Device** ｜ **P2** `[R12 新增]`（**R13 交付**；三判据同拍持续确认 + 只出降速请求不写变频频率（每次 −1 步不自动回升）+ 抑制窗「整个降速相」语义；559 行，v1.0.1 修复 5 处含兜底值污染判据门 A6-D2）
 - [x] `FB_DL_ReactorJacketDeltaT`：反应釜夹套温差控温（放热反应抑制）（复用 `FB_DL_CascadePid` 釜温-夹套串级 + `FB_DL_SplitRangeControl` 冷/热媒分程 + `FB_DL_RateLimiter` 温差变化限速）→ **DL_Process** ｜ **P1** `[R12 新增]`（**R13 交付**；约束层 + 分程层组合，PID 输出引脚注入不内联；温差触限 0.5 K 回差锁存 + 冻结升温侧经限速器斜坡回 0；487 行，终审 PASS 零修改）
 - [x] `FB_DL_FlowMeterKFactorDrift`：流量计 K 系数漂移核对（复用 `FB_DL_DeviceParamVerify` K 系数回读 + `FB_DL_FlowTotalizer` 批次总量比对 + `FC_DL_LinearScale` 漂移折算）→ **DL_Device** ｜ **P2** `[R12 新增]`
+  - **注记（R68）**：§19.6 漂移件已于 R68 重建并注册（registry `source=r68-plan`，DL_Device v1.0.1；R68 终审就地修「组态锁存解除路径不可达」后升版）。原「已勾未注册」漂移差额就此清零。
 
 > **扩容统计**：R12 扩容 **31 条**（锂电 5 / 光伏 5 / 半导体 5 / 包装 5 / 暖通 5 / 过程控制 6），全部不与既有 295 条及全库 186 个 POU 重名（逐条 grep 核验，命中数均为 0）；归属分布 `DL_Process` 14 条、`DL_Device` 8 条、`DL_Motion` 4 条、`DL_MathData` 1 条、`DL_Algo` 0 条、`DL_Base` 0 条（Level 0 本轮补 9 件，跨字位段/区间/字符串/天文钟四族已收口，暂不缺件）。**主线四条**：① **几何量在线测量族**（涂布留白 / 边缘跟随 / 极片蛇形）解锁 3 条，全部消费本轮新增的区间成员与锁存件；② **电学一致性族**（组串失配 / 自放电 / 降额）解锁 3 条，消费分位与分级件；③ **气氛与洁净族**（ESC 氦检 / FOUP 吹扫 / FOUP 前驱体）解锁 3 条，消费露点与流量件；④ **本体健康族**（阀门黏滞 / 换热器结垢 / 泵汽蚀）解锁 3 条，是本库第一次把「设备本体退化」而非「工艺偏差」作为立项对象。**本轮扩容 P0 为零**，P1 十四条为 R13 首批候选。
 
@@ -1121,3 +1122,53 @@
 - **【防撞名注记 ①】** `FC_DL_IntToUdintSat` **语义并入 `FC_DL_SignedToUdintSat` 重载，禁新增文件**：R62 已在 `FC_DL_SignedToUdintSat` 头注释写死该并入口径（16 位入口若需要，按重载而非新建，防同义邻件）。后续任何派单不得再以「INT→UDINT 饱和」为名立项，选题三查（R214）命中即拒。
 - **【防撞名注记 ②】** `FC_DL_ShlDwordEx` / `FC_DL_ShrDwordEx` 与存量 `FC_DL_ShlEx` / `ShrEx` **语义差未实测**：本轮按 ROADMAP L948 自标「疑似同义」继续回避，**不立项**；下轮（R63）出「输入域 × 移位量」边界差表（DWORD 广域 vs DWORD 有符号解释、移位量 >31 行为、结果截断位宽三行逐列），**有差才立项，无差则并入 `ShlEx`/`ShrEx` 并注销本注记**。→ 已列 R63 P0。
 - **【R62 P0 接续】** ① 终审 7 处 × 4 件挂账（严重 2：`FB_DL_VfdDcBusRipple` 除零不早退 / `FB_DL_BiquadFilter` 稳定判据不充分；中 2；轻 3），R63 配额 16→13（R193 扩面）；② 编译验证债：连欠 ≥3 轮，R63 首位实编译抽样（R195），闸未开不得新增编解码/数学/转换类高复杂度件；③ LGF 组内剩余件清单试点（`SOURCE_HUNTING_MATRIX` ◐ 组按剩余量降序取前 3 组出清单）。
+
+## R66 终审挂账与新增待办（2026-11-22，详见 _Staging_Raw/2026-11-22/REVIEW_R66.md）
+
+- [ ] **`FC_DL_QuadPolyFit` v1.0.1（R67 P0 点修，R67 批 1 认领）**：段 7 前补 `aM[2,2]` 舒尔补主元闸（两值 x 可达奇异落码 03 而非 02，REVIEW_R66 M2）＋段 4 ABS 溢出复核扩展至全部矩量（L1，合并点修）。
+- [ ] **`FB_DL_LotMergeGate` v1.0.1（R67 P1 点修，R67 批 1 认领）**：eFault 分支死迁出式（`IF NOT _bFaultLatch → eIdle`）删除（L3）；eIdle 留档型防御保留并按统一口径在头注登记（L2）。
+- [ ] **`FB_DL_TaktPaceMonitor` v1.0.2（R67 P2，R67 批 1 认领）**：fExpectR 闸界由 4.294967295E9 前移至 DINT 域 2147483647（转换链域界对齐，L4）。
+- [ ] `FB_DL_AnalogOutFailsafe` / `FB_DL_TaktPaceMonitor` v1.0.1 **JSONL 语料重注入**（R248 返修闭环语料侧，挂 R67 收口）。
+- [ ] 时间注入引脚「三形态选型表」固化进 coding-standard（UDINT ms 历史件 / TIME KPI 件 / LREAL s 斜坡件，REVIEW_R66 裁决 1）。
+- [ ] 机检锚点三项评估入库：TON 极性断言 / CASE 外层守卫与段内强制回写互斥 / 解除式禁沿式唯一载体（REVIEW_R66 §四）。
+- [ ] 值守轮事项（不占编码配额）：MatIEC CI 裁决 71 方言件 ｜ GATE MAJOR 存量人核 ｜ oss_harvest GITHUB_TOKEN 注入 + 单仓试跑（ROUND_PLAN_R66 §3）。
+
+> **R66 小结**：10 新件（Base 2 / MathData 4 / Device 1 / Motion 1 / Process 2）+ 终审就地修 2 件 v1.0.1；总库 1,145→1,155（143/272/134/207/121/278），SFT 1,177；机检 10/10 PASS；零检索轮 8 组取材，撞名拒 15；游标 R324；R67 配额 12（R309 分散型下调）。
+
+
+## R68 构建轮小结与新增待办（2026-11-22，详见 _Staging_Raw/2026-11-22/REVIEW_R68.md）
+
+> **R68 小结**：16 新件（Base 3 / MathData 2 / Device 6 / Process 4 / Motion 1）全部入册并注册，总库 1,163→**1,179**（148/280/134/213/122/282，sum 断言过），v2.60.0；SFT 语料 1,190→**1,206** 条（bad=0）；机检 16/16 PASS。**终审 5+1 抽 + 定向全量扩面**：抽件严重 6 / 中 3 / 轻 3 / 纯 PASS 0，扩面再命中 3 严重 → **就地修 9 件 10 处（全部 v1.0.1，单文件机检复跑 9/9 PASS）**，挂账 7 项转 R69。零检索轮（WebSearch 0/3）、撞名拒 20 条（含精确同名 3 条）、9 组源取材。游标 R346 → **R356**（编号基线订正：任务书 R328 / 实测 R346，取 R347~R356）。
+
+### 本轮勾选（仅本轮实际完成项）
+
+- [x] **FB_DL_FlowMeterKFactorDrift 漂移件重建并注册**（§19.6 已勾未注册的真缺口，registry `source=r68-plan`，R68 批 2）。→ 见 §19.6 注记行。
+- [x] **R68 16 目标全部注册**（ROUND_PLAN_R68 §2 总表逐行核对 registry，0 缺件、0 重名）。
+
+### R69 待办（P0 优先，按 REVIEW_R68 §4 挂账 + 值守三项）
+
+- [ ] **P0｜FB_DL_InterlockBypassAudit v1.0.1**：组态故障打断旁路后 `bBypassOn` 残留 TRUE（TON.IN 常真）→ 修复后首次旁路立即到期 04B1；迁相/回 eIdle 时补 `bBypassOn := FALSE`。（REVIEW_R68 M1）
+- [ ] **P0｜FB_DL_StretchWrapSeq v1.0.2**：`eCut` 相无失败出口 —— `bCutDone` 永不到则永久驻留且 `bCutOut` 常励磁；需产品决策「切膜失败出口 + 新码位」后实施。（M2）
+- [ ] **P1｜FB_DL_FlowMeterKFactorDrift v1.0.2**：头注「组态故障 → eFailure」未实现，补 `eHealth := eFailure`（或按 R350 订正注释二选一）。（M3）
+- [ ] **P1｜FB_DL_TruckScaleSeq v1.0.2**：`fWeight<>fWeight` 混入组态闸并锁存，与边界披露 5 矛盾；拆为信号闸 + 保持不锁存。（M4）
+- [ ] **P2｜轻项三处**：InterlockBypassAudit 信息码 04B1/04B2 无回落（L1）｜RotaryAirlockCtrl `bJogRevOut` 取上拍 `bRunOut` 反相（L2）｜StretchWrapSeq `bPreClampOut` 仅预压相有效（L3，待工艺确认）。
+- [ ] **P0｜编译验证硬闸（R195）**：连欠 5 轮；R69 首位实编译抽样，闸未开不得新增编解码/数学/转换类高复杂度件。
+- [ ] 值守轮三项（不占编码配额）：MatIEC CI 裁决 71 方言件 ｜ GATE MAJOR 存量人核 ｜ oss_harvest GITHUB_TOKEN 注入 + 单仓试跑。
+- [ ] 固化窗口：本轮为 FB-51 后**第 8 轮**且新增 **10 条 ≥10** → **达到窗口但本轮不执行**（固化需改写 Skill 规范文件，位于 `C:\Library` 之外，超出写入根契约）；转出「固化候选包」6 条可判定规则（R347/R348/R349/R351 + R353/R355），待人格/Skill 维护方落库。
+
+*R68 收口 ｜ 2026-11-22 ｜ 道莅工控代码库产品总监（主控直跑 R335）*
+
+### R69 小结（2026-11-22）
+- 挂账 7 项全清（R68 全部点修收口）；新增 10 件入库。编码超时（约 70′ > 50′ 硬顶）→ R70 配额按超时判据再下调（基线 13 → 建议 10）。
+- 未尽事项挂账：① 实编译债连欠 6 轮（本轮仅伪编译抽样，无本地 IEC 编译器）；② oss_harvest GITHUB_TOKEN 注入 + 单仓试跑（值守项顺延）；③ MatIEC CI 裁决 71 方言件（值守项顺延）；④ 固化候选包 6 条（R347~R355）待 Skill 文件落库。
+- R70 选题：值守轮优先（编译环境建设为主，编码减配），行业池延续。
+
+## R70 构建轮小结（2026-11-22）
+
+> **R70 小结**：10 新件（MathData 3 / Device 3 / Process 2 / Motion 1 / Base 1），总库 1,189→**1,199**，v2.62.0，SFT 1,221→**1,231**，机检 10/10 PASS。配额 10（R362 超时判据 −20 个百分点），对 20 目标如实少报，零注水。待办 55 > 30，本轮不补写新待办。
+> **R71 待办（P0）**：① **L2 编译闸修复**（RuSTy 已下载 C:/Library/_tools/rusty/plc.exe，缺 UCRT API-set 转发 DLL；装 VC++2015-2022 x64 运行库后跑 plc.exe --help 验证，通即可对存量件抽样真编译）；② FB_DL_ScaleRangeWatch 量程零域复核（本轮组态闸仅判 rawMax-rawMin）；③ 值守：oss_harvest GITHUB_TOKEN 单仓试跑｜MatIEC CI 71 方言件裁决。
+
+## R72 构建轮小结（2026-11-23）
+
+> **R72 小结**：12 新件（MathData 5 / Base 2 / Device 1 / Motion 1 / Process 2）+ 1 点修（AirSpecificVolume v1.0.1 E032 全回执），总库 1,206→**1,218**，v2.64.0，SFT 1,239→**1,252**，机检 13/13 PASS，L2 闸 12/13 PASS（OilLevelWatch 覆盖面缺口①留档）。零检索轮，撞名拒 14 条。对 20 目标如实少报 13，零注水。待办 55 > 30，本轮不补写新待办。
+> **R73 待办（P0）**：① VaporPressureSat 族 8 处缺 `bValid =>` 回执点修（HumidityRatioCalc×2 / MixAirStateCalc / RhFromDewPoint×2 / DewPointToPpmV / NightPurgeCtrl×2）；② 扩展复核 ~20 处多出参 FC 零回执调用点挂账候审（DryerExhaustHumidityCtl / ChamberPurgeDry / WeightClassifySort 等，R333 口径）；③ L2 闸每轮交付资格项常态化；④ 值守三项顺延第 4 轮（oss_harvest token 试跑 / MatIEC 71 方言件 / GATE MAJOR 存量人核）。

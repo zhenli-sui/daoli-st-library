@@ -130,14 +130,20 @@ VAR_IN_OUT
     stCfg : ST_DL_RfidCfg;           // 组态结构，调用方持有，接口侧只读 [结构] / Configuration structure owned by the caller, read-only here
 END_VAR
 
+    END_METHOD
+
 METHOD ReadTag : BOOL                // 发起读标签（唯一号与数据区），忙时拒绝（Start a tag read, rejected while busy）
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD WriteTag : BOOL               // 发起写数据区，内容经 VAR_IN_OUT 注入，忙时拒绝（Start a data write, rejected while busy）
 VAR_IN_OUT
     stTagIn : ST_DL_RfidTag;         // 待写内容，实现块须锁存副本防调用方中途改动 [结构] / Payload to write; the implementer must latch a copy
 END_VAR
+
+    END_METHOD
 
 METHOD Reset : BOOL                  // 清故障回就绪态，是故障态下唯一受理的方法（Clear the fault and return to ready）
 VAR_INPUT
@@ -161,4 +167,5 @@ END_VAR
  *   上层工站不得直接引用实现块类型，只能持有接口引用，替换硬件时只改注入点。
  *============================================================================*)
 
+    END_METHOD
 END_INTERFACE

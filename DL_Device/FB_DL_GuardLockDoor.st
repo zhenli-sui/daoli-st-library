@@ -118,6 +118,70 @@ VAR CONSTANT
     DL_UNLOCK_TIMEOUT : TIME := T#30S;  // 解锁链总超时（Unlock-chain timeout），静止确认未达即故障 / Unlock-chain timeout for standstill confirmation
 END_VAR
 
+METHOD CmdRequestUnlock : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) OR (NOT bDoorClosed) THEN
+    CmdRequestUnlock := FALSE;    // 故障态/门开态拒绝（Rejected in fault or door-open）
+ELSE
+    _bPendUnlock := TRUE;         // 登记解锁请求，主体状态机消化（Register unlock, consumed by body）
+    CmdRequestUnlock := TRUE;     // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdRelock —— 重新闭锁指令：门开态下关门后受理。
+ *      Method CmdRelock - relock, accepted on door close in opened state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdRelock : BOOL
+VAR_INPUT
+END_VAR
+IF (_eState = E_DL_SafetyDoorState.eOpened) AND bDoorClosed THEN
+    _bPendRelock := TRUE;         // 登记再闭锁请求（Register relock request）
+    CmdRelock := TRUE;            // 受理成功（Accepted）
+ELSE
+    CmdRelock := FALSE;           // 非门开态/门未关拒绝（Rejected outside opened-with-closed-door）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障：仅故障态受理（接口方法拒绝语义红线）。
+ *      Method CmdReset - reset, accepted only in fault state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) THEN
+    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
+    CmdReset := TRUE;             // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdAuditClear —— 清除开门审计记录：故障态拒绝。
+ *      Method CmdAuditClear - clears the open audit count, rejected in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdAuditClear : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) THEN
+    CmdAuditClear := FALSE;       // 故障态拒绝（Rejected in fault）
+ELSE
+    uOpenCount := 0;              // 审计记录清零（Audit count cleared）
+    CmdAuditClear := TRUE;        // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前解锁时序状态只读视图。
+ *      Property eState (GET) - read-only sequence state view.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（R7/0.5：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all instances (R7/0.5)
@@ -271,62 +335,10 @@ END_IF
  * 方法: CmdRequestUnlock —— 请求解锁：发起停机请求并进入解锁时序。
  *      Method CmdRequestUnlock - starts the unlock sequence via stop request.
  *------------------------------------------------------------------------------*)
-METHOD CmdRequestUnlock : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) OR (NOT bDoorClosed) THEN
-    CmdRequestUnlock := FALSE;    // 故障态/门开态拒绝（Rejected in fault or door-open）
-ELSE
-    _bPendUnlock := TRUE;         // 登记解锁请求，主体状态机消化（Register unlock, consumed by body）
-    CmdRequestUnlock := TRUE;     // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdRelock —— 重新闭锁指令：门开态下关门后受理。
- *      Method CmdRelock - relock, accepted on door close in opened state.
- *------------------------------------------------------------------------------*)
-METHOD CmdRelock : BOOL
-VAR_INPUT
-END_VAR
-IF (_eState = E_DL_SafetyDoorState.eOpened) AND bDoorClosed THEN
-    _bPendRelock := TRUE;         // 登记再闭锁请求（Register relock request）
-    CmdRelock := TRUE;            // 受理成功（Accepted）
-ELSE
-    CmdRelock := FALSE;           // 非门开态/门未关拒绝（Rejected outside opened-with-closed-door）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障：仅故障态受理（接口方法拒绝语义红线）。
- *      Method CmdReset - reset, accepted only in fault state.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) THEN
-    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
-    CmdReset := TRUE;             // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdAuditClear —— 清除开门审计记录：故障态拒绝。
- *      Method CmdAuditClear - clears the open audit count, rejected in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdAuditClear : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_SafetyDoorState.eFault) THEN
-    CmdAuditClear := FALSE;       // 故障态拒绝（Rejected in fault）
-ELSE
-    uOpenCount := 0;              // 审计记录清零（Audit count cleared）
-    CmdAuditClear := TRUE;        // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前解锁时序状态只读视图。
- *      Property eState (GET) - read-only sequence state view.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_SafetyDoorState
 eState := _eState;                // 返回内部状态（Return internal state）
 

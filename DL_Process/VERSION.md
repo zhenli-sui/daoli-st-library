@@ -6,6 +6,11 @@
 
 ---
 
+## v1.30 — 2026-11-22（R71）
+
+- R71 新增 1 件：`FB_DL_LaneDivertCtrl`（道岔分流四相，失能回夹先于状态机）。累计 286 件。
+
+---
 ## v1.29 — 2026-11-21（R59）
 
 R59 新增 LotoSequence / VisionResultGate / LotGenealogyLink；LotGenealogyLink 修循环配对编译阻断。
@@ -843,3 +848,32 @@ R7 已交付统计/输送/配料三件；R8 已交付线体握手 / 配方管理
 - 新增 `FC_DL_TankVolumeHoriCyl`（卧式圆柱罐弓形解析体积，与 TankLevelStrapping 查表法互引）。
 - 点修：`FB_DL_ReworkLotGate` v1.0.1（eReleased 单拍回迁）/ `FB_DL_UnscramblerSeq` v1.0.1（段 0a 统一清 _bHold）。
 - 子库累计 276 件。
+
+## v1.35 — 2026-11-22（R66 追加）
+
+- 新增 2 件：`FB_DL_LotMergeGate`（批次合并放行闸，双门槛 + 召回重入）/ `FB_DL_TaktPaceMonitor`（目标节拍偏差监视，EWMA + 欠产台账，ISO 22400-2）。
+- 终审就地修：`FB_DL_TaktPaceMonitor` v1.0.0 → **v1.0.1**（窗面/计时面静默降级并入码 01）；LotMergeGate 2 轻挂账 R67。
+- 子库累计 278 件。
+
+## v1.35 — 2026-11-22（R67 追加）
+
+- 点修 2 件：`FB_DL_LotMergeGate` → v1.0.1（删除 eFault 死迁出式，故障相出口只留复位沿）｜`FB_DL_TaktPaceMonitor` → v1.0.2（fExpectR 闸界 DINT 域对齐 2147483647）。R66 挂账清零。
+- 子库组件数不变（278 件）。
+
+## v1.36 — 2026-11-22（R68 追加）
+
+- 新增 4 件：`FB_DL_StretchWrapSeq`（缠绕膜七态最小子集，圈数配方 + 圈边界暂停，PackML 全集归属主）｜`FB_DL_OutdoorTempReset`（OAT 重置供水设定 + 斜坡 + 最小水温联锁）｜`FB_DL_KilnPressureCtrl`（窑压定值闭环 + 抽力限幅 + 窑门前馈）｜`FB_DL_TruckScaleSeq`（过磅七态 + 稳定窗 + 皮毛配对台账）。
+- 终审就地修：`FB_DL_TruckScaleSeq` v1.0.1（组态锁存解除可达化 + 超时重测清窗单拍化）｜`FB_DL_StretchWrapSeq` v1.0.1（总圈计数上限 255→510，消除合法配方死锁）。
+- 子库累计 282 件。
+
+## v1.37 — 2026-11-22（R69 追加）
+- 新增 1 件：`FB_DL_CuringOvenSeq`（固化炉四段顺控）。
+- 点修：`FB_DL_StretchWrapSeq` v1.0.1 → **v1.0.2**（eCut 切膜失败出口 03B3 + 压膜释放口径固化，R68 挂账）｜`FB_DL_TruckScaleSeq` v1.0.1 → **v1.0.2**（NaN 信号与组态闸拆拍防脏值）。
+
+## v1.30 — 2026-11-22（R70 追加）
+- 新增：FB_DL_BatchDoseSeq（五相定量给料）｜FB_DL_PumpAlternationLead（泵轮换主备）。
+- 子库累计 285 件。
+
+## v1.31 — 2026-11-23（R72 追加）
+
+- `FB_DL_RejectBlowCtrl` / `FB_DL_SipLineSterilSeq` 两件入册（气吹执行时序对账；SIP 保温跌破从零重计）。

@@ -70,13 +70,18 @@ METHOD CmdTotalReset : BOOL // 总量清零（Total reset），批控切换零�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdTotalPreset : BOOL // 总量预置（Total preset），非有限值/负值拒绝 / Total preset, non-finite or negative rejected
 VAR_INPUT
-    fPreset : LREAL // 预置总量（Preset volume）[L]，域 ≥0 / Preset volume [L], range >= 0
+    fPreset : LREAL; // 预置总量（Preset volume）[L]，域 ≥0 / Preset volume [L], range >= 0
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位故障（Reset fault），仅故障态受理 / Reset accepted only in fault state
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

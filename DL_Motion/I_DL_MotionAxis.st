@@ -170,13 +170,19 @@ VAR_INPUT
     bOn : BOOL;                            // 使能电平（Enable on/off），TRUE=上使能请求 / FALSE=下使能请求
 END_VAR
 
+    END_METHOD
+
 METHOD Reset : BOOL                        // 故障复位（Fault reset），MC_Reset 语义，确认报警
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD Stop                                // 受控停止（Controlled stop），MC_Stop 语义：停车并拒绝新任务
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD MoveAbsolute : BOOL                 // 绝对定位（Move absolute）
 VAR_INPUT
@@ -185,6 +191,8 @@ VAR_INPUT
     fAcc : REAL;                           // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
 END_VAR
 
+    END_METHOD
+
 METHOD MoveRelative : BOOL                 // 相对定位（Move relative）
 VAR_INPUT
     fDist : REAL;                          // 相对位移（Relative distance）[mm]，带符号，负值=负向
@@ -192,10 +200,13 @@ VAR_INPUT
     fAcc  : REAL;                          // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
 END_VAR
 
+    END_METHOD
+
 METHOD MoveVelocity : BOOL                 // 速度模式（Move velocity），可在连续运动中改速
 VAR_INPUT
     fVel : REAL;                           // 目标速度（Target velocity）[mm/s]，带符号，负值=负向
     fAcc : REAL;                           // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
 END_VAR
 
+    END_METHOD
 END_INTERFACE

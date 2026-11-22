@@ -78,3 +78,7 @@
 - **码位**：`16#0005_0410` ｜ `16#0005_0411` ｜ `16#0005_035A` ｜ `16#0005_035B` ｜ `16#0005_035C`
 
 *Last updated: 2026-11-17（R25 追加接口表 20 件）｜ 道莅工控代码库产品总监*
+
+## R68 新增件与终审就地修（2026-11-22）
+
+- `FB_DL_StretchWrapSeq` / `FB_DL_OutdoorTempReset` / `FB_DL_KilnPressureCtrl` / `FB_DL_TruckScaleSeq`（R68）：包装顺控 / OAT 重置 / 窑压控制 / 过磅称重；`StretchWrapSeq` 与 `TruckScaleSeq` 于 R68 终审升 v1.0.1（总圈上限 510 / 超时清窗单拍化），引脚契约不变。

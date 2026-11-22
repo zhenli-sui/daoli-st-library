@@ -75,16 +75,23 @@ METHOD CmdRequestUnlock : BOOL // 请求解锁（Request unlock）：发起停�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdRelock : BOOL // 重新闭锁指令（Relock command）：门开态下关门确认后受理 / Relock, accepted when the door is closed again
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位故障（Reset fault），仅故障态受理返回 TRUE / Reset accepted only in fault state
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdAuditClear : BOOL // 清除开门审计记录（Clear the open audit count），供批次收尾调用；故障态拒绝 / Clears the open audit count, rejected in fault
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

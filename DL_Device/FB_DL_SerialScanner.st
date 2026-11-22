@@ -131,6 +131,54 @@ VAR CONSTANT
     DL_RETRY_MAX_CAP     : USINT := 5;   // 重试上限钳位（Retry max clamp）/ Retry max clamp
 END_VAR
 
+METHOD CmdTrigger : BOOL
+VAR_INPUT
+END_VAR
+IF _eState = E_DL_ScannerState.eIdle THEN
+    _bPendTrigger := TRUE;        // 登记触发请求，主体状态机消化（Register trigger, consumed by body）
+    CmdTrigger := TRUE;           // 受理成功（Accepted）
+ELSE
+    CmdTrigger := FALSE;          // 非空闲态拒绝（Rejected outside idle）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdAck —— 应答清除结果保持位。仅 eOk/eNoRead 态受理。
+ *      Method CmdAck - acknowledge, accepted only in eOk/eNoRead.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdAck : BOOL
+VAR_INPUT
+END_VAR
+IF (_eState = E_DL_ScannerState.eOk) OR (_eState = E_DL_ScannerState.eNoRead) THEN
+    _bPendAck := TRUE;            // 登记应答请求（Register ack request）
+    CmdAck := TRUE;               // 受理成功（Accepted）
+ELSE
+    CmdAck := FALSE;              // 无结果可消费拒绝（Nothing to acknowledge）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障。仅故障态受理（接口方法拒绝语义红线）。
+ *      Method CmdReset - reset, accepted only in fault state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_ScannerState.eFault) THEN
+    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
+    CmdReset := TRUE;             // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前握手状态只读视图。
+ *      Property eState (GET) - read-only handshake state view.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（R7/0.5）+ R24 触发脉冲自清（自清位于实例调用之后）
 //      Unconditional instance refresh (R7/0.5) + R24 self-clear AFTER the TP call
@@ -299,48 +347,9 @@ END_IF
  * 方法: CmdTrigger —— 触发一次解码。仅空闲态受理，其余态（含故障态）拒绝。
  *      Method CmdTrigger - one decode, accepted only in idle, rejected otherwise.
  *------------------------------------------------------------------------------*)
-METHOD CmdTrigger : BOOL
-VAR_INPUT
-END_VAR
-IF _eState = E_DL_ScannerState.eIdle THEN
-    _bPendTrigger := TRUE;        // 登记触发请求，主体状态机消化（Register trigger, consumed by body）
-    CmdTrigger := TRUE;           // 受理成功（Accepted）
-ELSE
-    CmdTrigger := FALSE;          // 非空闲态拒绝（Rejected outside idle）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdAck —— 应答清除结果保持位。仅 eOk/eNoRead 态受理。
- *      Method CmdAck - acknowledge, accepted only in eOk/eNoRead.
- *------------------------------------------------------------------------------*)
-METHOD CmdAck : BOOL
-VAR_INPUT
-END_VAR
-IF (_eState = E_DL_ScannerState.eOk) OR (_eState = E_DL_ScannerState.eNoRead) THEN
-    _bPendAck := TRUE;            // 登记应答请求（Register ack request）
-    CmdAck := TRUE;               // 受理成功（Accepted）
-ELSE
-    CmdAck := FALSE;              // 无结果可消费拒绝（Nothing to acknowledge）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障。仅故障态受理（接口方法拒绝语义红线）。
- *      Method CmdReset - reset, accepted only in fault state.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_ScannerState.eFault) THEN
-    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
-    CmdReset := TRUE;             // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前握手状态只读视图。
- *      Property eState (GET) - read-only handshake state view.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_ScannerState
 eState := _eState;                // 返回内部状态（Return internal state）
 

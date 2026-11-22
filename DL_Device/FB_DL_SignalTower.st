@@ -168,6 +168,63 @@ VAR CONSTANT
     DL_TOWER_SILENCE_MAX : TIME := T#24H;   // 消音时长为零时的替代保持时长（Substitute hold time when the silence time is zero），等效永续 / Substitute hold time when silence time is zero, effectively forever
 END_VAR
 
+METHOD SetColor : BOOL
+VAR_INPUT
+    eColor   : E_DL_TowerColor;    // 目标灯色（Target color），eNone=撤销人工覆盖 / Target color, eNone revokes the override
+    ePattern : E_DL_TowerPattern;  // 目标模式（Target pattern），eOff=该色熄灭 / Target pattern, eOff turns the channel off
+END_VAR
+IF (NOT bEnable) OR _bFaultLatch THEN
+    SetColor := FALSE;                                  // 未使能或故障锁存拒绝（Rejected when disabled or latched）
+ELSIF _bMainLevel THEN
+    SetColor := FALSE;                                  // 主级占用拒绝，覆盖不抢占仲裁（Rejected while a main level owns the tower）
+ELSE
+    _eOvColor   := eColor;                              // 登记覆盖灯色（Register override color）
+    _eOvPattern := ePattern;                            // 登记覆盖模式（Register override pattern）
+    _bOvActive  := (eColor <> E_DL_TowerColor.eNone);   // 无色即撤销覆盖（No color revokes the override）
+    SetColor    := TRUE;                                // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: SilenceBuzzer —— 一次性消音。非蜂鸣期、蜂鸣禁能或安全事件期返回 FALSE。
+ *      Method SilenceBuzzer - one-shot silence, rejected outside the buzzer phase,
+ *      when the buzzer is disabled, or during a safety event.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD SilenceBuzzer : BOOL
+VAR_INPUT
+END_VAR
+IF (NOT bEnable) OR (NOT bBuzzerEnable) OR (NOT _bBuzzerReq) THEN
+    SilenceBuzzer := FALSE;                             // 非蜂鸣期无消音对象（Nothing to silence outside the buzzer phase）
+ELSIF _eDispState = E_DL_TowerState.eSafety THEN
+    SilenceBuzzer := FALSE;                             // 安全事件不受消音约束（Safety event cannot be silenced）
+ELSE
+    _bPendSilence := TRUE;                              // 登记消音请求，段 8 消费（Register silence request, consumed in section 8）
+    SilenceBuzzer := TRUE;                              // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: Reset —— 复位故障锁存。仅存在锁存故障时返回 TRUE。
+ *      Method Reset - release the fault latch, TRUE only when a latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch THEN
+    _bPendReset := TRUE;                                // 登记复位请求，段 3 消费（Register reset request, consumed in section 3）
+    Reset       := TRUE;                                // 可复位（Resettable）
+ELSE
+    Reset       := FALSE;                               // 无锁存可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 显示状态只读视图（仲裁结果的语义分类）。
+ *      Property eState (GET) - read-only displayed state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（公约 0.5：严禁置于 IF / CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances
@@ -442,57 +499,9 @@ bFault := _bFaultLatch;                                 // 故障锁存映射（
  *      Method SetColor - request a color and pattern, rejected on main level,
  *      fault latch or disabled state. Body consumer: section 7.
  *------------------------------------------------------------------------------*)
-METHOD SetColor : BOOL
-VAR_INPUT
-    eColor   : E_DL_TowerColor;    // 目标灯色（Target color），eNone=撤销人工覆盖 / Target color, eNone revokes the override
-    ePattern : E_DL_TowerPattern;  // 目标模式（Target pattern），eOff=该色熄灭 / Target pattern, eOff turns the channel off
-END_VAR
-IF (NOT bEnable) OR _bFaultLatch THEN
-    SetColor := FALSE;                                  // 未使能或故障锁存拒绝（Rejected when disabled or latched）
-ELSIF _bMainLevel THEN
-    SetColor := FALSE;                                  // 主级占用拒绝，覆盖不抢占仲裁（Rejected while a main level owns the tower）
-ELSE
-    _eOvColor   := eColor;                              // 登记覆盖灯色（Register override color）
-    _eOvPattern := ePattern;                            // 登记覆盖模式（Register override pattern）
-    _bOvActive  := (eColor <> E_DL_TowerColor.eNone);   // 无色即撤销覆盖（No color revokes the override）
-    SetColor    := TRUE;                                // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: SilenceBuzzer —— 一次性消音。非蜂鸣期、蜂鸣禁能或安全事件期返回 FALSE。
- *      Method SilenceBuzzer - one-shot silence, rejected outside the buzzer phase,
- *      when the buzzer is disabled, or during a safety event.
- *------------------------------------------------------------------------------*)
-METHOD SilenceBuzzer : BOOL
-VAR_INPUT
-END_VAR
-IF (NOT bEnable) OR (NOT bBuzzerEnable) OR (NOT _bBuzzerReq) THEN
-    SilenceBuzzer := FALSE;                             // 非蜂鸣期无消音对象（Nothing to silence outside the buzzer phase）
-ELSIF _eDispState = E_DL_TowerState.eSafety THEN
-    SilenceBuzzer := FALSE;                             // 安全事件不受消音约束（Safety event cannot be silenced）
-ELSE
-    _bPendSilence := TRUE;                              // 登记消音请求，段 8 消费（Register silence request, consumed in section 8）
-    SilenceBuzzer := TRUE;                              // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: Reset —— 复位故障锁存。仅存在锁存故障时返回 TRUE。
- *      Method Reset - release the fault latch, TRUE only when a latch exists.
- *------------------------------------------------------------------------------*)
-METHOD Reset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch THEN
-    _bPendReset := TRUE;                                // 登记复位请求，段 3 消费（Register reset request, consumed in section 3）
-    Reset       := TRUE;                                // 可复位（Resettable）
-ELSE
-    Reset       := FALSE;                               // 无锁存可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 显示状态只读视图（仲裁结果的语义分类）。
- *      Property eState (GET) - read-only displayed state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_TowerState
 eState := _eDispState;                                  // 返回显示状态（Return displayed state）
 

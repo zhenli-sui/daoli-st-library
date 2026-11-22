@@ -542,3 +542,5 @@ v1.6.0 两件补的是**同一类工艺上游缺口**：`FC_DL_WaterEnthalpy` �
 - 新增 5 件（族① 二阶/结构滤波族深化，R193 扩面）：`FB_DL_EwmaFilter`（EWMA 统计口径 α 直接入参，域闸 (0,1] 结构早退）、`FC_DL_BiquadCoeff`（低通/高通/带通/陷波四型系数生成，RBJ 类公开公式 clean-room，与 Jury 闸口径一致性声明）、`FB_DL_OutlierFilter`（MAD 野点剔除 + 保持上限 + 真阶跃重基线）、`FB_DL_BiquadCascade`（≤4 节 Direct Form II 级联，逐节 Jury 稳定闸 + 死节豁免 + 系数变更沿全链清零）、`FB_DL_AdaptiveLmsFilter`（LMS 在线权重更新，输入非有限冻结防污染 + `fWEnergy` 发散监视）。
 - 返修 1 件：`FB_DL_BiquadFilter` v1.0.0 → **v1.0.1**（R62-D2 严重 / D5 轻：稳定判据换 Jury 三条件 + V2b/V2c 双向向量 + 373A 独立出口表达；R62 挂账全清，恢复可用于安全相关回路）。
 - 子库累计 134 件。
+## v1.31 — 2026-11-22（R69 追加）
+- 新增 1 件：`FB_DL_CascadeCtrl`（串级骨架：三态切换无扰 + 双向抗饱和回投，与既有 FB_DL_CascadePid 分工——本件为通用骨架件，终审裁决保留双件）。

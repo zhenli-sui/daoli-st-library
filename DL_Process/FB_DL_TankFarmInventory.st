@@ -30,7 +30,7 @@ STRUCT
     aStrapVol : ARRAY[0..19] OF LREAL; // 罐表体积锚点 [m3] / Strapping volume anchors [m3]
     nStrapPts : DINT;               // 罐表有效点数 / Valid strapping point count
     fMassKeep : LREAL;              // 该罐上拍质量保持槽 [t] / Per-tank mass hold slot [t]
-    bErrKeep  : BOOL                // 该罐错误保持槽 / Per-tank error hold slot
+    bErrKeep  : BOOL; // 该罐错误保持槽 / Per-tank error hold slot
 END_STRUCT
 END_TYPE
 

@@ -179,6 +179,13 @@ VAR CONSTANT
     DL_HOM_VEL_FLOOR    : REAL := 1.0E-3;     // 速度/加速度参数下限（Velocity and acceleration floor）[mm/s 或 mm/s²]
 END_VAR
 
+METHOD IssueVel : BOOL
+VAR_INPUT
+    fV : REAL;                                   // 带符号速度指令（Signed velocity command）[mm/s]
+END_VAR
+IssueVel := iAxis.MoveVelocity(fV, fAccEff);     // 转发轴接口，受理结果即返回值
+    END_METHOD
+
 // 段 1｜沿检测与定时器无条件周期刷新（R7 红线，严禁置于分支内；实例入参先算成变量再喂实例）
 rtrigStart(CLK := bCmdStart);
 rtrigLimPos(CLK := bLimPos);      rtrigLimNeg(CLK := bLimNeg);
@@ -449,9 +456,4 @@ bBusy := (eStep = E_DL_HomingStep.eApproach) OR (eStep = E_DL_HomingStep.eRetrea
  * 方法实现（METHOD）：速度指令派发子过程，非阻塞，直接转发轴接口受理结果。
  *-----------------------------------------------------------------------------*)
 
-METHOD IssueVel : BOOL
-VAR_INPUT
-    fV : REAL;                                   // 带符号速度指令（Signed velocity command）[mm/s]
-END_VAR
-IssueVel := iAxis.MoveVelocity(fV, fAccEff);     // 转发轴接口，受理结果即返回值
 END_FUNCTION_BLOCK

@@ -78,8 +78,11 @@ METHOD CmdReset : BOOL // 复位故障（Reset fault），仅故障态受理 / R
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdTest : BOOL // 传感器功能测试请求（Sensor function test request），输出镜像进入测试态一拍 / Test request, test mirror asserted one scan
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

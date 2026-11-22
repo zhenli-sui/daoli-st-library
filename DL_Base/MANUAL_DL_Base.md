@@ -2426,3 +2426,7 @@ END_PROGRAM
 
 
 *Last updated: 2026-11-16（R22 追加接口表）｜ 道莅工控代码库产品总监*
+
+## R68 新增件与终审就地修（2026-11-22）
+
+- `FB_DL_InterlockBypassAudit` / `FB_DL_ClockDriftMonitor` / `FB_DL_DiagTextLookup`（R68）：旁路审计 / 漂移监视 / 诊断文本查表；`ClockDriftMonitor` 于 R68 终审升 v1.0.1（组态锁存解除式补可达）。

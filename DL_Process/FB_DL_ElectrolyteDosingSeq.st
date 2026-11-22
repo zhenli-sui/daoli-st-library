@@ -35,7 +35,7 @@
 //           FB_DL_StepSequencer（DL_Base，接口已核实：bStart/abStepDone/
 //           auStepTimeout/bAbort/bReset → nCurrentStep/bRunning/bDone/
 //           bError/nFaultStep），步号映射表见下方注释；全库单调用点（每拍
- *           恰好调用一次，防双调用边沿竞态）；防除零/防回绕/R79 防御齐备。
+ // *           恰好调用一次，防双调用边沿竞态）；防除零/防回绕/R79 防御齐备。
 // 修订历史：v1.0.0 2026-11-17 首版（R23 派单 · ROADMAP 锂电 P1 §409 + ISA-88 相语义次源）
 //           v1.0.1 2026-11-17 R23 终审修复：段 3 补组态一致性闸——tSettleTime
 //           > 步 1 超时 T#5S 时稳定窗结构性超时（必报 031A 假故障）、

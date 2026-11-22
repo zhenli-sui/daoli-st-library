@@ -192,6 +192,116 @@ VAR CONSTANT
     DL_ALM_STALL     : WORD := 16#0008; // 报警字 bit3 堵转超时（Alarm bit three, stall timeout）/ Stall timeout alarm bit
 END_VAR
 
+METHOD Init : BOOL
+VAR_IN_OUT
+    stCfg : ST_DL_StepperCfg;          // 步进组态（Stepper configuration），调用方持有 / Caller-owned configuration
+END_VAR
+IF (stCfg.uStepsPerMm = 0) OR (stCfg.uMicrostep = 0) OR (stCfg.fMaxSpeed <= DL_FLOAT_EPS) OR
+   (stCfg.fAccel <= DL_FLOAT_EPS) OR (stCfg.fTaskCycle <= DL_FLOAT_EPS) OR
+   (stCfg.fMaxSpeed <> stCfg.fMaxSpeed) OR (stCfg.fAccel <> stCfg.fAccel) OR
+   (stCfg.fTaskCycle <> stCfg.fTaskCycle) THEN
+    _uErrInt     := 16#0003_02E0;      // 0003_02E0 组态参数非法【故障级】（Illegal configuration, fault level）
+    _bFaultLatch := TRUE;              // 越界锁故障（Violation latches a fault）
+    _bInited     := FALSE;             // 保持未初始化（Remains uninitialized）
+    Init         := FALSE;             // 受理失败（Rejected）
+ELSE
+    _stCfg       := stCfg;             // 保存组态副本（Keep a copy）
+    _bInited     := TRUE;              // 置已初始化（Mark initialized）
+    _uErrInt     := 16#0000_0000;      // 故障码清零（Fault code cleared）
+    _bFaultLatch := FALSE;             // 成功初始化解除参数锁存（Successful init releases the latch）
+    Init         := TRUE;              // 受理成功（Accepted）
+END_IF
+
+// 方法: Enable —— 电平语义，TRUE 使能（故障态拒绝），FALSE 恒受理并冻结（Method Enable）
+    END_METHOD
+
+METHOD Enable : BOOL
+VAR_INPUT
+    bEnable : BOOL;                    // 使能指令（Enable command），TRUE = 使能 / TRUE enables
+END_VAR
+IF bEnable THEN
+    IF (NOT _bInited) OR _bFaultLatch OR (_eState = E_DL_StepperState.eFault) THEN
+        _uInfoHold := 16#0003_0133;    // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
+        Enable     := FALSE;           // 未初始化或故障态拒绝（Refused while uninitialized or faulty）
+    ELSE
+        _bEnableCmd := TRUE;           // 登记使能（Enable registered）
+        Enable      := TRUE;           // 受理成功（Accepted）
+    END_IF
+ELSE
+    _bEnableCmd := FALSE;              // 去使能恒受理（Disable always accepted）
+    Enable      := TRUE;               // 受理成功（Accepted）
+END_IF
+
+// 方法: MoveRelative —— 仅空闲态受理，参数与限位方向先行校验（Method MoveRelative）
+    END_METHOD
+
+METHOD MoveRelative : BOOL
+VAR_INPUT
+    fDistance : LREAL;                 // 相对位移（Relative distance）[mm]，带符号 / Signed distance [mm]
+    fSpeed    : LREAL;                 // 运行速度（Run speed）[mm/s]，必需为正 / Must be positive
+END_VAR
+IF (NOT _bInited) OR (NOT _bEnableCmd) OR _bFaultLatch OR (_eState <> E_DL_StepperState.eIdle) OR
+   (fDistance <> fDistance) OR (ABS(fDistance) <= DL_FLOAT_EPS) OR
+   (fSpeed <> fSpeed) OR (fSpeed <= DL_FLOAT_EPS) THEN
+    _uInfoHold   := 16#0003_0133;      // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
+    MoveRelative := FALSE;             // 拒绝受理（Rejected）
+ELSIF (fDistance > 0.0) AND bLimitPos THEN
+    _uInfoHold   := 16#0003_0134;      // 0003_0134 限位方向禁止【信息级】（Direction blocked, info level）
+    MoveRelative := FALSE;             // 正限位上禁止正向（Positive motion refused at the positive limit）
+ELSIF (fDistance < 0.0) AND bLimitNeg THEN
+    _uInfoHold   := 16#0003_0134;      // 0003_0134 限位方向禁止【信息级】（Direction blocked, info level）
+    MoveRelative := FALSE;             // 负限位上禁止负向（Negative motion refused at the negative limit）
+ELSE
+    IF (_stCfg.fMaxSpeed > DL_FLOAT_EPS) AND (fSpeed > _stCfg.fMaxSpeed) THEN
+        _fPendSpeed := _stCfg.fMaxSpeed; // 钳位到最大速度（Clamped to the maximum）
+        _uInfoHold  := 16#0003_0130;     // 0003_0130 速度超限已钳位【信息级】（Speed clamped, info level）
+    ELSE
+        _fPendSpeed := fSpeed;          // 合法速度直通（Valid speed passed through）
+    END_IF
+    _fPendDist   := fDistance;          // 登记位移（Distance registered）
+    _bPendMove   := TRUE;               // 登记运动请求（Move request registered）
+    MoveRelative := TRUE;               // 受理成功（Accepted）
+END_IF
+
+// 方法: Stop —— 受控停车：剩余步数压到减速段后按斜坡降频（Method Stop）
+    END_METHOD
+
+METHOD Stop : BOOL
+VAR_INPUT
+END_VAR
+IF _bMoveActive THEN
+    _bPendStop := TRUE;                // 登记停车请求（Stop request registered）
+    Stop       := TRUE;                // 受理成功（Accepted）
+ELSE
+    _uInfoHold := 16#0003_0133;        // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
+    Stop       := FALSE;               // 无运动可停（Nothing to stop）
+END_IF
+
+// 方法: Reset —— 仅故障锁存时受理；报警源未消失则保留锁存（Method Reset）
+    END_METHOD
+
+METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_StepperState.eFault) THEN
+    _bPendReset := TRUE;               // 登记复位请求，主体按报警源裁决（Reset registered, body decides）
+    Reset       := TRUE;               // 受理成功（Accepted）
+ELSE
+    _uInfoHold  := 16#0003_0133;       // 0003_0133 无故障可复位【信息级】（Nothing to reset, info level）
+    Reset       := FALSE;              // 拒绝受理（Rejected）
+END_IF
+
+// 方法: GetErrorId —— 故障码查询，与 uErrorId 引脚同源（Method GetErrorId）
+    END_METHOD
+
+METHOD GetErrorId : UDINT
+VAR_INPUT
+END_VAR
+GetErrorId := uErrorId;                // 直接透出末次码（Expose the last code）
+
+// 属性: bReady（GET）—— 已初始化 + 已使能 + 无故障 + 空闲（Property bReady）
+    END_METHOD
+
 // 段 1｜出口确定性与单拍标志预清零（公约 0.9 / R25 第一律：停发在本拍内完成）
 bPulse     := FALSE;                   // 脉冲默认低电平（Pulse defaults low）
 _uInfoCode := _uInfoHold;              // 先透出方法拍产生的信息级码，保留单拍（Method codes survive one body scan）
@@ -453,104 +563,12 @@ ELSE
 END_IF
 
 // 方法: Init —— 注入组态并校验参数域，越界锁故障（Method Init, configuration validation）
-METHOD Init : BOOL
-VAR_IN_OUT
-    stCfg : ST_DL_StepperCfg;          // 步进组态（Stepper configuration），调用方持有 / Caller-owned configuration
-END_VAR
-IF (stCfg.uStepsPerMm = 0) OR (stCfg.uMicrostep = 0) OR (stCfg.fMaxSpeed <= DL_FLOAT_EPS) OR
-   (stCfg.fAccel <= DL_FLOAT_EPS) OR (stCfg.fTaskCycle <= DL_FLOAT_EPS) OR
-   (stCfg.fMaxSpeed <> stCfg.fMaxSpeed) OR (stCfg.fAccel <> stCfg.fAccel) OR
-   (stCfg.fTaskCycle <> stCfg.fTaskCycle) THEN
-    _uErrInt     := 16#0003_02E0;      // 0003_02E0 组态参数非法【故障级】（Illegal configuration, fault level）
-    _bFaultLatch := TRUE;              // 越界锁故障（Violation latches a fault）
-    _bInited     := FALSE;             // 保持未初始化（Remains uninitialized）
-    Init         := FALSE;             // 受理失败（Rejected）
-ELSE
-    _stCfg       := stCfg;             // 保存组态副本（Keep a copy）
-    _bInited     := TRUE;              // 置已初始化（Mark initialized）
-    _uErrInt     := 16#0000_0000;      // 故障码清零（Fault code cleared）
-    _bFaultLatch := FALSE;             // 成功初始化解除参数锁存（Successful init releases the latch）
-    Init         := TRUE;              // 受理成功（Accepted）
-END_IF
 
-// 方法: Enable —— 电平语义，TRUE 使能（故障态拒绝），FALSE 恒受理并冻结（Method Enable）
-METHOD Enable : BOOL
-VAR_INPUT
-    bEnable : BOOL;                    // 使能指令（Enable command），TRUE = 使能 / TRUE enables
-END_VAR
-IF bEnable THEN
-    IF (NOT _bInited) OR _bFaultLatch OR (_eState = E_DL_StepperState.eFault) THEN
-        _uInfoHold := 16#0003_0133;    // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
-        Enable     := FALSE;           // 未初始化或故障态拒绝（Refused while uninitialized or faulty）
-    ELSE
-        _bEnableCmd := TRUE;           // 登记使能（Enable registered）
-        Enable      := TRUE;           // 受理成功（Accepted）
-    END_IF
-ELSE
-    _bEnableCmd := FALSE;              // 去使能恒受理（Disable always accepted）
-    Enable      := TRUE;               // 受理成功（Accepted）
-END_IF
 
-// 方法: MoveRelative —— 仅空闲态受理，参数与限位方向先行校验（Method MoveRelative）
-METHOD MoveRelative : BOOL
-VAR_INPUT
-    fDistance : LREAL;                 // 相对位移（Relative distance）[mm]，带符号 / Signed distance [mm]
-    fSpeed    : LREAL;                 // 运行速度（Run speed）[mm/s]，必需为正 / Must be positive
-END_VAR
-IF (NOT _bInited) OR (NOT _bEnableCmd) OR _bFaultLatch OR (_eState <> E_DL_StepperState.eIdle) OR
-   (fDistance <> fDistance) OR (ABS(fDistance) <= DL_FLOAT_EPS) OR
-   (fSpeed <> fSpeed) OR (fSpeed <= DL_FLOAT_EPS) THEN
-    _uInfoHold   := 16#0003_0133;      // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
-    MoveRelative := FALSE;             // 拒绝受理（Rejected）
-ELSIF (fDistance > 0.0) AND bLimitPos THEN
-    _uInfoHold   := 16#0003_0134;      // 0003_0134 限位方向禁止【信息级】（Direction blocked, info level）
-    MoveRelative := FALSE;             // 正限位上禁止正向（Positive motion refused at the positive limit）
-ELSIF (fDistance < 0.0) AND bLimitNeg THEN
-    _uInfoHold   := 16#0003_0134;      // 0003_0134 限位方向禁止【信息级】（Direction blocked, info level）
-    MoveRelative := FALSE;             // 负限位上禁止负向（Negative motion refused at the negative limit）
-ELSE
-    IF (_stCfg.fMaxSpeed > DL_FLOAT_EPS) AND (fSpeed > _stCfg.fMaxSpeed) THEN
-        _fPendSpeed := _stCfg.fMaxSpeed; // 钳位到最大速度（Clamped to the maximum）
-        _uInfoHold  := 16#0003_0130;     // 0003_0130 速度超限已钳位【信息级】（Speed clamped, info level）
-    ELSE
-        _fPendSpeed := fSpeed;          // 合法速度直通（Valid speed passed through）
-    END_IF
-    _fPendDist   := fDistance;          // 登记位移（Distance registered）
-    _bPendMove   := TRUE;               // 登记运动请求（Move request registered）
-    MoveRelative := TRUE;               // 受理成功（Accepted）
-END_IF
 
-// 方法: Stop —— 受控停车：剩余步数压到减速段后按斜坡降频（Method Stop）
-METHOD Stop : BOOL
-VAR_INPUT
-END_VAR
-IF _bMoveActive THEN
-    _bPendStop := TRUE;                // 登记停车请求（Stop request registered）
-    Stop       := TRUE;                // 受理成功（Accepted）
-ELSE
-    _uInfoHold := 16#0003_0133;        // 0003_0133 指令被拒绝【信息级】（Command rejected, info level）
-    Stop       := FALSE;               // 无运动可停（Nothing to stop）
-END_IF
 
-// 方法: Reset —— 仅故障锁存时受理；报警源未消失则保留锁存（Method Reset）
-METHOD Reset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_StepperState.eFault) THEN
-    _bPendReset := TRUE;               // 登记复位请求，主体按报警源裁决（Reset registered, body decides）
-    Reset       := TRUE;               // 受理成功（Accepted）
-ELSE
-    _uInfoHold  := 16#0003_0133;       // 0003_0133 无故障可复位【信息级】（Nothing to reset, info level）
-    Reset       := FALSE;              // 拒绝受理（Rejected）
-END_IF
 
-// 方法: GetErrorId —— 故障码查询，与 uErrorId 引脚同源（Method GetErrorId）
-METHOD GetErrorId : UDINT
-VAR_INPUT
-END_VAR
-GetErrorId := uErrorId;                // 直接透出末次码（Expose the last code）
 
-// 属性: bReady（GET）—— 已初始化 + 已使能 + 无故障 + 空闲（Property bReady）
 PROPERTY bReady : BOOL
 bReady := _bInited AND _bEnableCmd AND (NOT _bFaultLatch) AND (_eState = E_DL_StepperState.eIdle); // 就绪派生式（Ready derived form）
 

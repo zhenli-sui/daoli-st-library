@@ -104,10 +104,14 @@ VAR_IN_OUT
     stCfg : ST_DL_StepperCfg;       // 步进组态（Stepper configuration），调用方持有，实现块仅存副本 / Caller-owned configuration, the implementation keeps a copy
 END_VAR
 
+    END_METHOD
+
 METHOD Enable : BOOL                // 使能/去使能（Enable and disable），电平语义，FALSE 时本拍冻结脉冲
 VAR_INPUT
     bEnable : BOOL;                 // 使能指令（Enable command），TRUE = 使能 / FALSE = 去使能并冻结脉冲输出 / TRUE enables, FALSE disables and freezes the pulse output
 END_VAR
+
+    END_METHOD
 
 METHOD MoveRelative : BOOL          // 相对位移（Move relative）：从当前指令位置移动指定距离，梯形加减速由实现块规划
 VAR_INPUT
@@ -115,16 +119,23 @@ VAR_INPUT
     fSpeed    : LREAL;              // 运行速度（Run speed）[mm/s]，域 > 0，超最大速度自动钳位 / Must be positive, clamped to the maximum speed
 END_VAR
 
+    END_METHOD
+
 METHOD Stop : BOOL                  // 受控停车（Controlled stop）：按减速度斜坡降频至零并清除当前运动指令
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD Reset : BOOL                 // 故障复位（Fault reset）：清除限位/堵转/参数类锁存，报警源未消失时不解除
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD GetErrorId : UDINT           // 故障码查询（Error code query），0 = 无故障；方法返回 FALSE 时必为非零码
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

@@ -106,6 +106,42 @@ VAR CONSTANT
     DL_JOG_ACC_FLOOR : REAL := 1.0E-3;   // 加速度参数下限兜底（Acceleration parameter floor）[mm/s²]
 END_VAR
 
+METHOD DispatchJog : BOOL
+VAR_INPUT
+    bPositive : BOOL;                    // 点动方向（Jog direction），TRUE=正向
+END_VAR
+DispatchJog := FALSE;
+// 速度选择：长按低速，按住高速选择且延时到自动升高速
+fVelSel := fSlow;
+IF bFastSelect AND tonFast.Q THEN
+    fVelSel := fFast;
+END_IF
+// 软限位预判：制动距离内强制低速，限位处拒绝继续
+IF bPositive THEN
+    fDistToLim := fLimPos - iAxis.fPosition;          // 正向距限位 [mm]
+ELSE
+    fDistToLim := iAxis.fPosition - fLimNeg;          // 负向距限位 [mm]
+END_IF
+fBrakeDist := (fVelSel * fVelSel) / (2.0 * fAccEff);  // 制动距离 [mm]，fAccEff 有下限防除零
+IF fDistToLim <= DL_JOG_EPS THEN
+    bStopReq := TRUE;                    // 已在限位：拒绝继续点动
+    uErrorId := 16#0004_0105;
+    RETURN;
+ELSIF fDistToLim <= fBrakeDist THEN
+    fVelSel := fSlow;                    // 警戒区内强制降为低速（预判语义简化版）
+END_IF
+// 发速度指令：带符号速度走轴接口速度域限幅斜坡，不做阶跃
+IF bPositive THEN
+    fVelCmd := fVelSel;
+ELSE
+    fVelCmd := -fVelSel;
+END_IF
+IF iAxis.MoveVelocity(fVelCmd, fAccEff) THEN
+    bJogging := TRUE;
+    DispatchJog := TRUE;
+END_IF
+    END_METHOD
+
 // 段 1｜定时器/沿检测无条件周期刷新（R7 红线，严禁置于分支内）
 tonFast(CLK := (bJogPos XOR bJogNeg) AND bFastSelect AND (NOT bStopReq), PT := tFastDelay);
 rtrigStop(CLK := bStopReq);
@@ -192,38 +228,4 @@ END_IF
  * 三步串行，供主体点动决策机调用，正/负向共用一套逻辑。
  *-----------------------------------------------------------------------------*)
 
-METHOD DispatchJog : BOOL
-VAR_INPUT
-    bPositive : BOOL;                    // 点动方向（Jog direction），TRUE=正向
-END_VAR
-DispatchJog := FALSE;
-// 速度选择：长按低速，按住高速选择且延时到自动升高速
-fVelSel := fSlow;
-IF bFastSelect AND tonFast.Q THEN
-    fVelSel := fFast;
-END_IF
-// 软限位预判：制动距离内强制低速，限位处拒绝继续
-IF bPositive THEN
-    fDistToLim := fLimPos - iAxis.fPosition;          // 正向距限位 [mm]
-ELSE
-    fDistToLim := iAxis.fPosition - fLimNeg;          // 负向距限位 [mm]
-END_IF
-fBrakeDist := (fVelSel * fVelSel) / (2.0 * fAccEff);  // 制动距离 [mm]，fAccEff 有下限防除零
-IF fDistToLim <= DL_JOG_EPS THEN
-    bStopReq := TRUE;                    // 已在限位：拒绝继续点动
-    uErrorId := 16#0004_0105;
-    RETURN;
-ELSIF fDistToLim <= fBrakeDist THEN
-    fVelSel := fSlow;                    // 警戒区内强制降为低速（预判语义简化版）
-END_IF
-// 发速度指令：带符号速度走轴接口速度域限幅斜坡，不做阶跃
-IF bPositive THEN
-    fVelCmd := fVelSel;
-ELSE
-    fVelCmd := -fVelSel;
-END_IF
-IF iAxis.MoveVelocity(fVelCmd, fAccEff) THEN
-    bJogging := TRUE;
-    DispatchJog := TRUE;
-END_IF
 END_FUNCTION_BLOCK

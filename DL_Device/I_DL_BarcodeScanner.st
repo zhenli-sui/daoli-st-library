@@ -73,12 +73,17 @@ METHOD CmdTrigger : BOOL // 触发一次解码（Trigger one decode），仅空�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdAck : BOOL // 应答清除结果保持位（Acknowledge clears the result hold），eOk/eNoRead 态受理，为下一次解码前提 / Ack accepted in eOk/eNoRead
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位故障（Reset fault），仅故障态受理返回 TRUE / Reset accepted only in fault state
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

@@ -66,16 +66,23 @@ METHOD CmdEvacuate : BOOL // 建立真空指令（Evacuate command），单发�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdBlowOff : BOOL // 破真空吹气指令（Blow-off command），单发，实现块输出定宽脉冲 / One-shot blow-off, fixed-width pulse by implementation
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdStop : BOOL // 双阀全断保持现状（Stop command, both valves off, hold state）；故障态拒绝返回 FALSE / Rejected with FALSE in fault state
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdReset : BOOL // 复位指令（Reset command），返回是否可复位（存在故障时为 TRUE）/ Returns TRUE only when resettable
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

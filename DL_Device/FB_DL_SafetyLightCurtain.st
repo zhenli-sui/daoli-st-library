@@ -147,6 +147,58 @@ VAR CONSTANT
     MUT_STEP_CL1   : USINT := 6;        // 序列步：离开侧首传感器清离（4 传感器退出段）/ Step: first exit sensor cleared (4-sensor exit)
 END_VAR
 
+METHOD CmdOverride : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
+    CmdOverride := FALSE;         // 故障态拒绝（Rejected in fault）
+ELSIF _bAnyMutBlocked THEN
+    _bPendOverride := TRUE;       // 登记请求，主体编排消化（Register request, consumed by body）
+    CmdOverride := TRUE;          // 受理成功（Accepted）
+ELSE
+    CmdOverride := FALSE;         // 无遮挡拒绝（Rejected with nothing blocked）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdAck —— 屏蔽/故障确认复位：中止当前屏蔽序列回评估态（非故障态）。
+ *      Method CmdAck - aborts the current muting sequence back to evaluation.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdAck : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
+    CmdAck := FALSE;              // 故障态走 CmdReset（Fault goes through CmdReset）
+ELSIF _bMutingAct OR _bOverrideAct THEN
+    _bPendAck := TRUE;            // 登记确认请求（Register ack request）
+    CmdAck := TRUE;               // 受理成功（Accepted）
+ELSE
+    CmdAck := FALSE;              // 无屏蔽活动可确认（Nothing to acknowledge）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障与重启联锁：仅故障态受理（接口方法拒绝语义）。
+ *      Method CmdReset - reset fault and interlock, accepted only in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
+    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
+    CmdReset := TRUE;             // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前光幕状态只读视图。
+ *      Property eState (GET) - read-only curtain state view.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（R7/0.5：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all instances (R7/0.5)
@@ -388,52 +440,9 @@ bMutingLamp := _bMutingAct OR (_bOverrideAct AND _fbTonBlink.Q); // 屏蔽灯：
  * 方法: CmdOverride —— 滞留物清除请求：至少一个屏蔽传感器仍遮挡才受理。
  *      Method CmdOverride - override accepted only with a muting sensor blocked.
  *------------------------------------------------------------------------------*)
-METHOD CmdOverride : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
-    CmdOverride := FALSE;         // 故障态拒绝（Rejected in fault）
-ELSIF _bAnyMutBlocked THEN
-    _bPendOverride := TRUE;       // 登记请求，主体编排消化（Register request, consumed by body）
-    CmdOverride := TRUE;          // 受理成功（Accepted）
-ELSE
-    CmdOverride := FALSE;         // 无遮挡拒绝（Rejected with nothing blocked）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdAck —— 屏蔽/故障确认复位：中止当前屏蔽序列回评估态（非故障态）。
- *      Method CmdAck - aborts the current muting sequence back to evaluation.
- *------------------------------------------------------------------------------*)
-METHOD CmdAck : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
-    CmdAck := FALSE;              // 故障态走 CmdReset（Fault goes through CmdReset）
-ELSIF _bMutingAct OR _bOverrideAct THEN
-    _bPendAck := TRUE;            // 登记确认请求（Register ack request）
-    CmdAck := TRUE;               // 受理成功（Accepted）
-ELSE
-    CmdAck := FALSE;              // 无屏蔽活动可确认（Nothing to acknowledge）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障与重启联锁：仅故障态受理（接口方法拒绝语义）。
- *      Method CmdReset - reset fault and interlock, accepted only in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CurtainState.eFault) THEN
-    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
-    CmdReset := TRUE;             // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前光幕状态只读视图。
- *      Property eState (GET) - read-only curtain state view.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_CurtainState
 eState := _eState;                // 返回派生状态（Return derived state）
 

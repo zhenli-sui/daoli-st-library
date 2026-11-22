@@ -170,6 +170,102 @@ VAR CONSTANT
     DL_RFID_AGE_MAX   : TIME := T#24H;     // 通信年龄计时上限，超时后停在终点值 [毫秒] / Age timer span ceiling
 END_VAR
 
+METHOD Init : BOOL
+VAR_IN_OUT
+    stCfg : ST_DL_RfidCfg;    // 组态结构，调用方持有，本方法只登记不阻塞 [结构] / Configuration injected by the caller
+END_VAR
+Init := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 失能状态下拒绝初始化
+    RETURN;
+END_IF
+bReqInit := TRUE;                            // 只登记，装载在主体段 6 执行
+Init     := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：ReadTag（单发登记，忙时拒绝且不排队）
+ *      Method ReadTag: single-shot registration, rejected while busy, never queued
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD ReadTag : BOOL
+VAR_INPUT
+END_VAR
+ReadTag := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF NOT bInitDone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 未初始化：拒绝
+    RETURN;
+END_IF
+IF eState <> E_DL_RfidFsm.eIdle THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝，不排队
+    RETURN;
+END_IF
+IF eReq <> E_DL_RfidReq.eNone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 已有挂起请求：拒绝，避免覆盖
+    RETURN;
+END_IF
+eReq    := E_DL_RfidReq.eRead;
+ReadTag := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：WriteTag（单发登记 + 内容副本锁存）
+ *      Method WriteTag: single-shot registration with a latched payload copy
+ *      字符串长度越界：STRING(64) 已由编译器保证长度，故本分支退化为
+ *      「空内容拒绝」，并在头注释与本段注释双重声明（R11 留档）
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD WriteTag : BOOL
+VAR_IN_OUT
+    stTagIn : ST_DL_RfidTag;    // 待写内容，本方法立即拷贝到内部缓冲 [结构] / Payload latched into the internal buffer
+END_VAR
+WriteTag := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF NOT bInitDone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF eState <> E_DL_RfidFsm.eIdle THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝
+    RETURN;
+END_IF
+IF eReq <> E_DL_RfidReq.eNone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF stTagIn.sData = '' THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 空内容等同于写入长度非法
+    RETURN;
+END_IF
+sWrBuffer := stTagIn.sData;                  // 立即拷贝，防调用方中途改动
+eReq      := E_DL_RfidReq.eWrite;
+WriteTag  := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：Reset（故障态下唯一受理的方法）
+ *      Method Reset: the only method accepted in the fault state
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+Reset     := TRUE;
+bReqReset := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 属性实现（R22：接口成员一律只读 PROPERTY GET）
+ *      Property implementations, read-only GET as required by the interface
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
 (*------------------------------------------------------------------------------
  * 段 1｜单拍输出预清零（R25 律①）：两个成功脉冲必须在主体最前部清零
  *      Single-cycle output pre-clear: both success pulses cleared at the very top
@@ -472,94 +568,10 @@ stDiag.tLastComm    := fbAge.ET;
  * 方法实现：Init（单发登记 + 组态注入）
  *      Method Init: single-shot registration with configuration injection
  *-----------------------------------------------------------------------------*)
-METHOD Init : BOOL
-VAR_IN_OUT
-    stCfg : ST_DL_RfidCfg;    // 组态结构，调用方持有，本方法只登记不阻塞 [结构] / Configuration injected by the caller
-END_VAR
-Init := FALSE;
-IF NOT bEnable THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 失能状态下拒绝初始化
-    RETURN;
-END_IF
-bReqInit := TRUE;                            // 只登记，装载在主体段 6 执行
-Init     := TRUE;
 
-(*------------------------------------------------------------------------------
- * 方法实现：ReadTag（单发登记，忙时拒绝且不排队）
- *      Method ReadTag: single-shot registration, rejected while busy, never queued
- *-----------------------------------------------------------------------------*)
-METHOD ReadTag : BOOL
-VAR_INPUT
-END_VAR
-ReadTag := FALSE;
-IF NOT bEnable THEN
-    stDiag.uLastErrorId := 16#0003_02F0;
-    RETURN;
-END_IF
-IF NOT bInitDone THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 未初始化：拒绝
-    RETURN;
-END_IF
-IF eState <> E_DL_RfidFsm.eIdle THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝，不排队
-    RETURN;
-END_IF
-IF eReq <> E_DL_RfidReq.eNone THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 已有挂起请求：拒绝，避免覆盖
-    RETURN;
-END_IF
-eReq    := E_DL_RfidReq.eRead;
-ReadTag := TRUE;
 
-(*------------------------------------------------------------------------------
- * 方法实现：WriteTag（单发登记 + 内容副本锁存）
- *      Method WriteTag: single-shot registration with a latched payload copy
- *      字符串长度越界：STRING(64) 已由编译器保证长度，故本分支退化为
- *      「空内容拒绝」，并在头注释与本段注释双重声明（R11 留档）
- *-----------------------------------------------------------------------------*)
-METHOD WriteTag : BOOL
-VAR_IN_OUT
-    stTagIn : ST_DL_RfidTag;    // 待写内容，本方法立即拷贝到内部缓冲 [结构] / Payload latched into the internal buffer
-END_VAR
-WriteTag := FALSE;
-IF NOT bEnable THEN
-    stDiag.uLastErrorId := 16#0003_02F0;
-    RETURN;
-END_IF
-IF NOT bInitDone THEN
-    stDiag.uLastErrorId := 16#0003_02F0;
-    RETURN;
-END_IF
-IF eState <> E_DL_RfidFsm.eIdle THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝
-    RETURN;
-END_IF
-IF eReq <> E_DL_RfidReq.eNone THEN
-    stDiag.uLastErrorId := 16#0003_02F0;
-    RETURN;
-END_IF
-IF stTagIn.sData = '' THEN
-    stDiag.uLastErrorId := 16#0003_02F0;    // 空内容等同于写入长度非法
-    RETURN;
-END_IF
-sWrBuffer := stTagIn.sData;                  // 立即拷贝，防调用方中途改动
-eReq      := E_DL_RfidReq.eWrite;
-WriteTag  := TRUE;
 
-(*------------------------------------------------------------------------------
- * 方法实现：Reset（故障态下唯一受理的方法）
- *      Method Reset: the only method accepted in the fault state
- *-----------------------------------------------------------------------------*)
-METHOD Reset : BOOL
-VAR_INPUT
-END_VAR
-Reset     := TRUE;
-bReqReset := TRUE;
 
-(*------------------------------------------------------------------------------
- * 属性实现（R22：接口成员一律只读 PROPERTY GET）
- *      Property implementations, read-only GET as required by the interface
- *-----------------------------------------------------------------------------*)
 PROPERTY State : E_DL_RfidState
 (* 映射写死，禁止就近映射：无标签业务态优先级最高，其次故障，其次离线，最后忙态 *)
 IF bNoTag THEN

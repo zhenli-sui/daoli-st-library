@@ -105,6 +105,78 @@ VAR CONSTANT
     DL_FLOAT_EPS      : REAL := 1.0E-6;        // 浮点判等容差 [%] / float equality tolerance [%]
 END_VAR
 
+METHOD Open : BOOL
+VAR_INPUT
+END_VAR
+IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
+    Open := FALSE;                             // 故障态拒绝 / rejected in the fault state
+    bPendOpen := FALSE;                        // 清残留请求 / clear the stale request
+ELSE
+    bPendOpen := TRUE;                         // 登记张开请求，主体状态机消费 / register the request, consumed by the body
+    bPendClose := FALSE;                       // 互斥注销闭合请求 / cancel the opposite request
+    Open := TRUE;                              // 受理成功 / accepted
+END_IF
+
+(*-----------------------------------------------------------------------------
+ * 方法: Close —— 请求闭合到指定夹持力。故障锁存期拒绝并返回 FALSE。
+ *      Method Close - request closing at the given force, rejected while a fault is latched.
+ *----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD Close : BOOL
+VAR_INPUT
+    fForceSetpoint : REAL;                     // 目标夹持力 [%]，范围 0.0~100.0 / target clamping force [%], range 0.0~100.0
+END_VAR
+IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
+    Close := FALSE;                            // 故障态拒绝 / rejected in the fault state
+    bPendClose := FALSE;                       // 清残留请求 / clear the stale request
+ELSE
+    bPendClose := TRUE;                        // 登记闭合请求 / register the close request
+    fForceMeth := fForceSetpoint;              // 锁存方法形参，由段 4 消费 / latch the method parameter, consumed by segment four
+    bForceMeth := TRUE;                        // 置方法给定有效 / mark the method setpoint valid
+    bPendOpen := FALSE;                        // 互斥注销张开请求 / cancel the opposite request
+    Close := TRUE;                             // 受理成功 / accepted
+END_IF
+
+(*-----------------------------------------------------------------------------
+ * 方法: Release —— 松开并撤力。与 Open 的区别是不驱动到位，只泄力。
+ *      Method Release - drop the force without driving to the open end.
+ *----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD Release : BOOL
+VAR_INPUT
+END_VAR
+IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
+    Release := FALSE;                          // 故障态拒绝 / rejected in the fault state
+ELSE
+    bPendRelease := TRUE;                      // 登记泄力请求 / register the release request
+    bPendOpen := FALSE;                        // 撤销张开请求 / cancel the open request
+    bPendClose := FALSE;                       // 撤销闭合请求 / cancel the close request
+    Release := TRUE;                           // 受理成功 / accepted
+END_IF
+
+(*-----------------------------------------------------------------------------
+ * 方法: ClearFault —— 清故障锁存（热复位）。绝不隐式产生动作。
+ *      Method ClearFault - clear the fault latch, never produces any motion.
+ *----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD ClearFault : BOOL
+VAR_INPUT
+END_VAR
+IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
+    bPendClear := TRUE;                        // 登记清故障请求，主体状态机消化 / register the request, consumed by the body
+    ClearFault := TRUE;                        // 可复位 / resettable
+ELSE
+    ClearFault := FALSE;                       // 无故障可复位 / nothing to clear
+END_IF
+
+(*-----------------------------------------------------------------------------
+ * 属性: bOpened（GET）—— 全开到位只读视图 / property bOpened (GET), read-only view
+ *----------------------------------------------------------------------------*)
+    END_METHOD
+
 // 段 1｜边沿与两个定时器无条件周期刷新（红线：严禁放入条件分支）/ segment 1, unconditional refresh of the edge and both timers
 fbTrigReset(CLK := bReset);
 fbMove(IN := bEnable AND ((eState = E_DL_GripperState.eOpening) OR (eState = E_DL_GripperState.eClosing)), PT := tMoveTime); // 超时只服务动作态 / the timeout only serves the moving states
@@ -240,70 +312,10 @@ tElapsed := fbMove.ET;                         // 本动作已耗时 / elapsed t
  * 方法: Open —— 请求张开。故障锁存期拒绝并返回 FALSE。
  *      Method Open - request opening, rejected with FALSE while a fault is latched.
  *----------------------------------------------------------------------------*)
-METHOD Open : BOOL
-VAR_INPUT
-END_VAR
-IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
-    Open := FALSE;                             // 故障态拒绝 / rejected in the fault state
-    bPendOpen := FALSE;                        // 清残留请求 / clear the stale request
-ELSE
-    bPendOpen := TRUE;                         // 登记张开请求，主体状态机消费 / register the request, consumed by the body
-    bPendClose := FALSE;                       // 互斥注销闭合请求 / cancel the opposite request
-    Open := TRUE;                              // 受理成功 / accepted
-END_IF
 
-(*-----------------------------------------------------------------------------
- * 方法: Close —— 请求闭合到指定夹持力。故障锁存期拒绝并返回 FALSE。
- *      Method Close - request closing at the given force, rejected while a fault is latched.
- *----------------------------------------------------------------------------*)
-METHOD Close : BOOL
-VAR_INPUT
-    fForceSetpoint : REAL;                     // 目标夹持力 [%]，范围 0.0~100.0 / target clamping force [%], range 0.0~100.0
-END_VAR
-IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
-    Close := FALSE;                            // 故障态拒绝 / rejected in the fault state
-    bPendClose := FALSE;                       // 清残留请求 / clear the stale request
-ELSE
-    bPendClose := TRUE;                        // 登记闭合请求 / register the close request
-    fForceMeth := fForceSetpoint;              // 锁存方法形参，由段 4 消费 / latch the method parameter, consumed by segment four
-    bForceMeth := TRUE;                        // 置方法给定有效 / mark the method setpoint valid
-    bPendOpen := FALSE;                        // 互斥注销张开请求 / cancel the opposite request
-    Close := TRUE;                             // 受理成功 / accepted
-END_IF
 
-(*-----------------------------------------------------------------------------
- * 方法: Release —— 松开并撤力。与 Open 的区别是不驱动到位，只泄力。
- *      Method Release - drop the force without driving to the open end.
- *----------------------------------------------------------------------------*)
-METHOD Release : BOOL
-VAR_INPUT
-END_VAR
-IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
-    Release := FALSE;                          // 故障态拒绝 / rejected in the fault state
-ELSE
-    bPendRelease := TRUE;                      // 登记泄力请求 / register the release request
-    bPendOpen := FALSE;                        // 撤销张开请求 / cancel the open request
-    bPendClose := FALSE;                       // 撤销闭合请求 / cancel the close request
-    Release := TRUE;                           // 受理成功 / accepted
-END_IF
 
-(*-----------------------------------------------------------------------------
- * 方法: ClearFault —— 清故障锁存（热复位）。绝不隐式产生动作。
- *      Method ClearFault - clear the fault latch, never produces any motion.
- *----------------------------------------------------------------------------*)
-METHOD ClearFault : BOOL
-VAR_INPUT
-END_VAR
-IF bFaultLatch OR (eState = E_DL_GripperState.eFault) THEN
-    bPendClear := TRUE;                        // 登记清故障请求，主体状态机消化 / register the request, consumed by the body
-    ClearFault := TRUE;                        // 可复位 / resettable
-ELSE
-    ClearFault := FALSE;                       // 无故障可复位 / nothing to clear
-END_IF
 
-(*-----------------------------------------------------------------------------
- * 属性: bOpened（GET）—— 全开到位只读视图 / property bOpened (GET), read-only view
- *----------------------------------------------------------------------------*)
 PROPERTY bOpened : BOOL
 bOpened := bOpenFeedback;                      // 返回全开到位反馈 / return the open position feedback
 

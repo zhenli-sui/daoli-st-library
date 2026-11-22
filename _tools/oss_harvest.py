@@ -48,6 +48,26 @@ def raw(url):
     except Exception:
         return None
 
+def fetch_file(full, branch, path):
+    """取单个文件内容：优先 raw.githubusercontent.com，失败回退到 contents API(base64)。
+
+    背景：部分网络环境下 raw.githubusercontent.com 被代理拦截（502），
+    而 api.github.com 可用，故必须有兜底，否则采集会静默产出 0 候选。
+    """
+    txt = raw("https://raw.githubusercontent.com/%s/%s/%s" % (full, branch, path))
+    if txt:
+        return txt, "raw"
+    d = api("https://api.github.com/repos/%s/contents/%s?ref=%s"
+            % (full, urllib.parse.quote(path), urllib.parse.quote(branch)))
+    if isinstance(d, dict) and d.get("content"):
+        try:
+            enc = d.get("encoding") or "base64"
+            if enc == "base64":
+                return base64.b64decode(d["content"]).decode("utf-8", "replace"), "api"
+        except Exception:
+            return None, "api-decode-error"
+    return None, "unreachable"
+
 def load_registry_names():
     d = json.load(open(os.path.join(LIB, "INDEX_REGISTRY.json"), encoding="utf-8"))
     names = {c["name"].lower() for c in d["components"]}
@@ -160,9 +180,14 @@ def harvest_repo(full, max_files, names, norm, fp, queue_f, manifest):
              and t["path"].lower().endswith(ST_EXT) and t.get("size", 0) < 220000]
     files.sort(key=lambda x: x.get("size", 0))
     added = 0
+    fetched_ok, fetch_fail = 0, 0
+    branch = meta.get("default_branch", "HEAD")
     for f in files[:max_files]:
-        txt = raw("https://raw.githubusercontent.com/%s/%s/%s" % (full, meta.get("default_branch", "HEAD"), f["path"]))
-        if not txt: continue
+        txt, how = fetch_file(full, branch, f["path"])
+        if not txt:
+            fetch_fail += 1
+            continue
+        fetched_ok += 1
         txt = unwrap_tc_xml(txt)
         for s in extract_signatures(txt, f["path"]):
             hits, h = dedup(s["name"], s["inputs"], names, norm, fp)
@@ -181,7 +206,11 @@ def harvest_repo(full, max_files, names, norm, fp, queue_f, manifest):
             if "name-normalized" in hits: cand["dedup"]["name"] = "warn-close"
             queue_f.write(json.dumps(cand, ensure_ascii=False) + "\n"); added += 1
             fp[h] = cand["name"]
-    print("    files=%d scanned, candidates added=%d" % (len(files[:max_files]), added))
+    manifest["repos"][full]["files_listed"] = len(files[:max_files])
+    manifest["repos"][full]["files_fetched_ok"] = fetched_ok
+    manifest["repos"][full]["files_fetch_fail"] = fetch_fail
+    print("    files=%d listed, %d fetched, %d failed | candidates added=%d"
+          % (len(files[:max_files]), fetched_ok, fetch_fail, added))
     return added
 
 def search_repos(queries, per_q=8):
@@ -205,10 +234,12 @@ def main():
     ap.add_argument("--max-repos", type=int, default=15)
     ap.add_argument("--max-files-per-repo", type=int, default=20)
     ap.add_argument("--max-files", type=int, default=30)
-    ap.add_argument("--queries", default=("OSCAT|TcOpen|org:PLCnext-Community|"
-                                          "\"IEC 61131-3\" in:name,description|"
-                                          "codesys library in:name|twincat library in:name|"
-                                          "plc library structured text in:description"))
+    # 注意：查询串内部分隔符必须是 ; （GitHub 语法自身用 , 作限定符，如 in:name,description）
+    ap.add_argument("--queries", default=("OSCAT;TcOpen;org:PLCnext-Community;"
+                                          "\"IEC 61131-3\" in:name,description;"
+                                          "codesys library in:name;twincat library in:name;"
+                                          "plc library structured text in:description;"
+                                          "IEC61131-3 library;PLCopen"))
     ap.add_argument("--stats", action="store_true")
     a = ap.parse_args()
 
@@ -228,7 +259,9 @@ def main():
                 "repos": {}, "rejected": [], "red_quarantine": []}
     repos = list(a.repo)
     if a.search:
-        repos += search_repos(a.queries.split(","))
+        qs = [q.strip() for q in a.queries.split(";") if q.strip()]
+        print("search queries:", len(qs))
+        repos += search_repos(qs)
     repos = repos[:a.max_repos]
     print("repos to scan:", len(repos))
     total = 0

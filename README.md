@@ -1,18 +1,27 @@
 # 道莅工业自动化标准代码库 / Daoli Industrial ST Library
 
-[![Total Components](https://img.shields.io/badge/Total%20Components-1145%20%2F%2010%2C000-blue)](CHANGELOG.md)
-[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-141%20open-success)](DL_Base/VERSION.md)
-[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-268%20open-success)](DL_MathData/VERSION.md)
-[![Level 1 DL_Algo](https://img.shields.io/badge/Level%201%20DL--Algo-134%20open-yellow)](DL_Algo/VERSION.md)
-[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-206%20open-yellow)](DL_Device/VERSION.md)
-[![Level 1 DL_Motion](https://img.shields.io/badge/Level%201%20DL--Motion-120%20open-yellow)](DL_Motion/VERSION.md)
-[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-276%20open-yellow)](DL_Process/VERSION.md)
-[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-1167%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
+[![Total Components](https://img.shields.io/badge/Total%20Components-1218%20%2F%2010%2C000-blue)](CHANGELOG.md)
+[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-154%20open-success)](DL_Base/VERSION.md)
+[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-294%20open-success)](DL_MathData/VERSION.md)
+[![Level 1 DL_Algo](https://img.shields.io/badge/Level%201%20DL--Algo-135%20open-yellow)](DL_Algo/VERSION.md)
+[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-221%20open-yellow)](DL_Device/VERSION.md)
+[![Level 1 DL_Motion](https://img.shields.io/badge/Level%201%20DL--Motion-126%20open-yellow)](DL_Motion/VERSION.md)
+[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-288%20open-yellow)](DL_Process/VERSION.md)
+[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-1252%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
 [![Platform](https://img.shields.io/badge/Platform-CODESYS%20%7C%20TwinCAT%203%20%7C%20InoProShop-informational)](README.md)
 [![IEC 61131-3](https://img.shields.io/badge/IEC-61131--3%20ST-orange)](README.md)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> **Total Components: 1,145 / 10,000 (11.45%)** ｜ **Phase 2: 常态节奏 16~20 件/轮（R60 起按 R249/R193 动态下调）** ｜ **Version: v2.57.0** ｜ **SFT 语料: 1,167 条** ｜ **全库约 234,200 行**
+> **Total Components: 1218 / 10,000 (12.18%)** ｜ **Phase 2: 常态节奏 10~20 件/轮（R60 起按 R249/R193/R362 动态下调）** ｜ **Version: v2.64.0** ｜ **SFT 语料: 1252 条** ｜ **全库约 187,600 行（registry line_count 口径）**
+
+> **R72（2026-11-23）**：**13/20 如实少报**——12 新件（MathData 5：IntModChk·FiniteClassify·ArrayCumSumLreal·CharCodeConvert·WordToBinString·HmsToTodChk｜Base 2：DaysInMonthChk·BlinkOutput｜Device 1：OilLevelWatch｜Motion 1：ToolChangerSeq（C3）｜Process 2：RejectBlowCtrl·SipLineSterilSeq）+ 1 点修（AirSpecificVolume v1.0.1 补 bValid 全回执，E032/R381 首用）；总库 1,206→**1,218**（154/294/135/221/126/288），SFT **1,252**，机检 13/13 PASS，L2 闸 12/13 PASS（OilLevelWatch 为 INTERFACE-PROPERTY 覆盖面缺口①，不改码）；零检索轮（WebSearch 0/3），撞名拒 14 条。
+
+> **R66（2026-11-22）**：10 新件（Base 2 / MathData 4 / Device 1 / Motion 1 / Process 2，汉明距离·占空比测量·圆均值·ISO 周号·双线性插值·二次多项式拟合·模拟量输出失保·进给倍率斜坡·合批闸·节拍偏差监视）+ **2 件终审就地修 v1.0.1**（AnalogOutFailsafe 3 严重：TON 极性反相 / 失保相死路径 / 沿式解除不可达；TaktPaceMonitor 1 中：窗面静默降级）；总库 1,145→**1,155**（143/272/134/207/121/278），SFT **1,179**，机检 10/10 PASS；零检索轮（LGF 四组 ◐ 深化 + ISA-88/PLCopen/self-std），撞名拒 15 条；**终审 5+1 抽：严重 3（就地修）/ 中 1（就地修）/ 轻 4（挂 R67）/ PASS 2**；R67 配额 16→12（R309 分散型下调 20%）。
+> **R67（2026-11-22）**：**11/12 如实少报**——3 件点修（QuadPolyFit v1.0.1 舒尔补主元闸 + 矩量溢出复核扩展 / LotMergeGate v1.0.1 eFault 死迁出删除 / TaktPaceMonitor v1.0.2 fExpectR 闸界 DINT 域对齐，R66 挂账清零）+ 8 新件（Base 2：LastGoodValueHold 失效值保持·ImpulseRelay 定宽脉冲｜MathData 6：CalcDistance2D·AngleDiffRad·NormTo01·SlewRateCalc·HexToStr·StrToHex，后两件 T0 防御性包装）；TriangleGenerator 撞名 R39 注册件裁定撤销（R327 三查失准教训）；总库 1,155→**1,163**（145/278/134/207/121/278），SFT **1,190**（+8 新 +3 返修重注入），机检 11/11 PASS，零检索轮。
+> **R68（2026-11-22）**：16 新件（Base 3：联锁旁路全生命周期审计·时钟漂移监视·诊断码文本查表｜MathData 2：字节序组装/拆解双向对｜Device 6：流量计 K 系数漂移（§19.6 漂移件重建）·视觉相机健康看门狗·视觉光源组·星型卸料器·变极双速电机·控制柜热管理｜Process 4：缠绕膜顺控·室外气温重置·窑压定值控制·车辆过磅顺控｜Motion 1：轴上电自检）；**收口 3 处就地修**（三件 METHOD 补 END_METHOD / TruckScale 段 7 皮毛槽镜像输出）；**终审 5+1 抽 + 定向全量扩面：就地修 9 件 10 处 v1.0.1**（8 件同型「组态锁存解除路径不可达」+ 2 处死路径：超时重测每拍清窗 / 总圈计数 255 闸），挂账 7 项转 R69；总库 1,163→**1,179**（148/280/134/213/122/282），SFT **1,206** 条（bad=0），机检 16/16 PASS，零检索轮（9 组取材，撞名拒 20 条含精确同名 3 条）。
+> **R70（2026-11-22）**：**10/20 如实少报**（R362 超时判据配额 13→10，未注水）——10 新件（MathData 3：ModPosWrap·LerpClamped·ScaleRangeWatch｜Process 2：BatchDoseSeq·PumpAlternationLead｜Device 3：ValveSeatLeakTest·ConveyorJamDetect·CabinetTempDerate｜Motion 1：AxisSoftLimitGuard｜Base 1：RecipeStepExec）；总库 1,189→**1,199**（151/286/135/218/124/285），SFT **1,231**（+10），机检 10/10 PASS（dl_gate MAJOR 0/BLOCK 0）；零检索轮（WebSearch 0/3）。**值守突破**：RuSTy（PLC-lang v1.0.8）真编译器已下载就位（122MB），但因本机缺 UCRT API-set 转发 DLL（`api-ms-win-crt-*.dll`）暂不可执行，L2 编译闸仍未开（连欠 7 轮，修法已定位：装 VC++2015-2022 运行库或 KB2999226）。
+
+> **R69（2026-11-22）**：**17/20 如实少报**——7 项点修（InterlockBypassAudit v1.0.1 迁相清零+04B1/04B2 回落｜StretchWrapSeq v1.0.2 eCut 失败出口 03B3+压膜释放口径｜FlowMeterKFactorDrift v1.0.2 eFailure 落地｜TruckScaleSeq v1.0.2 NaN 拆拍｜RotaryAirlockCtrl v1.0.2 jog 同拍派生，R68 挂账 7 项全清）+ 10 新件（MathData 3：TimeMulSat·TimeClampEx·UdintToStringTrim 三件 T0 防御性包装｜Device 2：MotorHealthAoi·ValveIslandDiag｜Base 2：AlarmShelveMgmt·SignalFreeze｜Motion 1：AxisDroopComp｜Algo 1：CascadeCtrl｜Process 1：CuringOvenSeq）；总库 1,179→**1,189**（150/283/135/215/123/283），SFT **1,221**（+10 新 +5 返修重注入），机检 15/15 PASS（伪编译抽样：无实编译器如实标注），零检索轮。编码期约 70 分钟超 50′ 硬顶（17 件全落盘后收尾，下轮配额按超时判据下调）；CascadeCtrl 与既有 CascadePid 语义邻接终审裁决保留双件分工。
 
 > **R62（2026-11-21）**：11 新件（Base 4 / MathData 4 / Algo 1 / Device 2，饱和乘除·算术右移·符号扩展·INT 饱和转换·有符号转 UDINT·DT 提取·百分位排名·通用二阶节·母线纹波·离子风机联锁）+ 5 项返修（RailPowerSequence v1.0.2 / TurretToolSelect·SensorPairPlausibility·WeightedPercentile·LineClearanceVerify v1.0.1，R61 挂账全清）；总库 1,101→**1,112**，SFT 1,124，机检 16/16 PASS；零检索轮，T0 族内深化 8 件 + T1 1 件 + T2 2 件，撞名拒 7 条（留痕 ROUND_PLAN_R62 §2.3）；**终审 4 抽 7 处挂账（严重 2 / 中 2 / 轻 3）**，R63 配额 16→13。
 > **R65（2026-11-21/22）**：10 新件（Base 6 / MathData 1 / Device 2 / Process 1，字符串编辑距离·通配匹配·数组段填充/拷贝·稳定排序索引·滞回区间监视·角度单位换算·卧式罐解析体积·4-20mA 信号健康·气缸行程诊断）+ 3 项点修（DualValveBlockSet / ReworkLotGate / UnscramblerSeq v1.0.1，R64 挂账全清）；**pipeline v2 首轮**：dl_gate 增量门禁 13/13 零 BLOCK → registry(origin 100%) → JSONL → git；总库 1,135→**1,145**（141/268/134/206/120/276），SFT **1,167**。

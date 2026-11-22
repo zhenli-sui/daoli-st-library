@@ -113,8 +113,8 @@ IF NOT _bCfgBad THEN
            OR (LREAL(afSwitchWidthDeg[_nK]) >= DL_FULL) THEN
             _bCfgBad := TRUE;                  // 宽度 <= 0 或 >= 360
         END_IF
-        IF (LREAL(auPhaseOffsetDeg[_nK]) <> LREAL(auPhaseOffsetDeg[_nK]))
-           OR (ABS(LREAL(auPhaseOffsetDeg[_nK])) >= DL_FULL) THEN
+        IF (REAL_TO_LREAL(auPhaseOffsetDeg[_nK]) <> REAL_TO_LREAL(auPhaseOffsetDeg[_nK]))
+           OR (ABS(REAL_TO_LREAL(auPhaseOffsetDeg[_nK])) >= DL_FULL) THEN
             _bCfgBad := TRUE;                  // 相位偏移非有限或越一圈
         END_IF
     END_FOR
@@ -174,7 +174,7 @@ IF _eState = E_DL_CamSwState.eRun THEN
             ELSE
                 abSwitchOut[_nK] := TRUE;           // Cyclic：每圈重复触发
             END_IF
-            nActiveMask := nActiveMask OR SHL(DWORD(1), UINT(_nK));   // SHL 显式位号（禁魔法掩码）
+            nActiveMask := nActiveMask OR SHL(INT_TO_DWORD(1), _nK);   // SHL 显式位号（禁魔法掩码）
         END_IF
     END_FOR
     bAnyActive := nActiveMask <> 0;                 // 任一活动聚合

@@ -23,7 +23,7 @@
 TYPE ST_DL_CamPoint :
 STRUCT
     fMaster : LREAL; // 主轴位置锚点 [mm] / Master position anchor [mm]
-    fSlave  : LREAL  // 从轴位置锚点 [mm] / Slave position anchor [mm]
+    fSlave  : LREAL; // 从轴位置锚点 [mm] / Slave position anchor [mm]
 END_STRUCT
 END_TYPE
 

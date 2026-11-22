@@ -66,16 +66,23 @@ METHOD CmdExtend : BOOL // 伸出指令（Extend command），单发；故障态
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdRetract : BOOL // 缩回指令（Retract command），单发；故障态拒绝返回 FALSE
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdStop : BOOL // 停止指令（Stop command）：双线圈全断、保持当前位置；故障态拒绝返回 FALSE
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdReset : BOOL // 复位指令（Reset command），返回是否可复位（存在故障时为 TRUE）
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

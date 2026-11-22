@@ -85,6 +85,52 @@ VAR
     i                 : UINT;           // 滑窗求和循环索引（Sliding window sum loop index）/ Loop index for window sum
 END_VAR
 
+METHOD CmdStart : BOOL
+VAR_INPUT
+END_VAR
+IF (_eState <> E_DL_MotorState.eIdle) OR _bFaultLatch OR _bRestartInhibitAct THEN
+    CmdStart := FALSE;        // 非空闲/故障/冷却期拒绝（Refused: not idle, faulty, or cooling）
+ELSE
+    _bPendStart := TRUE;      // 登记启动请求，主体状态机评估（Register start request, evaluated by body）
+    CmdStart    := TRUE;      // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 无条件安全停止（双线圈全断语义，由主体在运行/启动态消化）。
+ *      Method CmdStop - unconditional safe stop, consumed by body in running/starting.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop
+VAR_INPUT
+END_VAR
+_bStopLatch := TRUE;          // 登记停止锁存，主体状态机消化（Register stop latch, consumed by body）
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位过载/故障，返回是否可复位（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset overload/fault, returns TRUE only when latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_MotorState.eFault) OR (_eState = E_DL_MotorState.eTripOverload) THEN
+    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset    := TRUE;      // 可复位（Resettable）
+ELSE
+    CmdReset    := FALSE;     // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+
+
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -240,43 +286,9 @@ bRestartInhibit := _bRestartInhibitAct;           // 重启抑制映射（Restar
  * 方法: CmdStart —— 启动指令（单发）。被抑制（冷却中）或故障态返回 FALSE。
  *      Method CmdStart - start command (one-shot), FALSE when inhibited or faulty.
  *------------------------------------------------------------------------------*)
-METHOD CmdStart : BOOL
-VAR_INPUT
-END_VAR
-IF (_eState <> E_DL_MotorState.eIdle) OR _bFaultLatch OR _bRestartInhibitAct THEN
-    CmdStart := FALSE;        // 非空闲/故障/冷却期拒绝（Refused: not idle, faulty, or cooling）
-ELSE
-    _bPendStart := TRUE;      // 登记启动请求，主体状态机评估（Register start request, evaluated by body）
-    CmdStart    := TRUE;      // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 无条件安全停止（双线圈全断语义，由主体在运行/启动态消化）。
- *      Method CmdStop - unconditional safe stop, consumed by body in running/starting.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop
-VAR_INPUT
-END_VAR
-_bStopLatch := TRUE;          // 登记停止锁存，主体状态机消化（Register stop latch, consumed by body）
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位过载/故障，返回是否可复位（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset overload/fault, returns TRUE only when latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_MotorState.eFault) OR (_eState = E_DL_MotorState.eTripOverload) THEN
-    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset    := TRUE;      // 可复位（Resettable）
-ELSE
-    CmdReset    := FALSE;     // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_MotorState
 eState := _eState;            // 返回内部状态（Return internal state）
 

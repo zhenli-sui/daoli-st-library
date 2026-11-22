@@ -106,6 +106,59 @@ VAR
     _fbTonDev      : TON;               // 偏差报警确认延时定时器（Deviation confirmation timer）/ Deviation confirmation timer
 END_VAR
 
+METHOD SetPosition : BOOL
+VAR_INPUT
+    fPos : REAL; // 阀位设定值（Position value）[%]，域 0..100 / Position value [%], range 0..100
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
+    SetPosition := FALSE;     // 故障态拒绝（Rejected in fault state）
+ELSIF (fPos <> fPos) OR (fPos < 0.0) OR (fPos > 100.0) THEN
+    SetPosition := FALSE;     // 非数或越域拒绝（Rejected on NaN or out of range）
+ELSE
+    _fPosMethVal := fPos;     // 登记方法设定值（Register method position value）
+    _bPosMethAct := TRUE;     // 激活方法设定通道（Activate method source channel）
+    _bHoldLatch  := FALSE;    // 设定即解除输出冻结（Set releases output freeze）
+    SetPosition := TRUE;      // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 冻结输出保持当前阀位，直至下次设定或使能撤除。
+ *      Method CmdStop - freeze output until next set or enable drop.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
+    CmdStop := FALSE;         // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bHoldLatch := TRUE;      // 登记冻结锁存，主体状态机消化（Register freeze latch, consumed by body）
+    CmdStop := TRUE;          // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
+    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset := TRUE;         // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -261,53 +314,9 @@ END_IF
  * 方法: SetPosition —— 阀位指令设定 [%]，越界/非有限值拒绝返回 FALSE。
  *      Method SetPosition - position set, out-of-range or NaN returns FALSE.
  *------------------------------------------------------------------------------*)
-METHOD SetPosition : BOOL
-VAR_INPUT
-    fPos : REAL // 阀位设定值（Position value）[%]，域 0..100 / Position value [%], range 0..100
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
-    SetPosition := FALSE;     // 故障态拒绝（Rejected in fault state）
-ELSIF (fPos <> fPos) OR (fPos < 0.0) OR (fPos > 100.0) THEN
-    SetPosition := FALSE;     // 非数或越域拒绝（Rejected on NaN or out of range）
-ELSE
-    _fPosMethVal := fPos;     // 登记方法设定值（Register method position value）
-    _bPosMethAct := TRUE;     // 激活方法设定通道（Activate method source channel）
-    _bHoldLatch  := FALSE;    // 设定即解除输出冻结（Set releases output freeze）
-    SetPosition := TRUE;      // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 冻结输出保持当前阀位，直至下次设定或使能撤除。
- *      Method CmdStop - freeze output until next set or enable drop.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
-    CmdStop := FALSE;         // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bHoldLatch := TRUE;      // 登记冻结锁存，主体状态机消化（Register freeze latch, consumed by body）
-    CmdStop := TRUE;          // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_ValveState.eFault) THEN
-    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset := TRUE;         // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_ValveState
 eState := _eState;            // 返回内部状态（Return internal state）
 

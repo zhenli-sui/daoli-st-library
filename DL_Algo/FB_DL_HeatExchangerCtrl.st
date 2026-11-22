@@ -18,6 +18,7 @@ VAR_INPUT
     fCondSafe_pct : REAL  := 30.0;     // 凝水阀安全位 0~100 % / Condensate safe position [%]
     bSteamAvail   : BOOL  := TRUE;     // 蒸汽可用 / Steam available
     bCondAvail    : BOOL  := TRUE;     // 凝水可用 / Condensate available
+    bReset        : BOOL  := FALSE;    // 故障复位（电平持有一个周期即生效）/ Fault reset, level held for one cycle
     tCycle        : TIME  := T#200MS;  // 周期 T#20MS~T#5S / Cycle [s]
 END_VAR
 VAR_OUTPUT

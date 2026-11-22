@@ -113,6 +113,93 @@ VAR CONSTANT
     DL_AX_DT_MAX          : REAL := 1.0;        // 采样周期钳位上限（Sample time clamp high）[s]
 END_VAR
 
+METHOD Enable : BOOL
+VAR_INPUT
+    bOn : BOOL;                                  // 使能电平（Enable on/off），TRUE=上使能请求
+END_VAR
+IF bOn AND ((_eState = E_DL_AxisState.eErrorStop) OR bDriveFault OR (NOT bDriveReady)) THEN
+    Enable := FALSE;                             // 故障/未就绪拒绝上使能（MC_Power 语义）
+ELSE
+    bReqEnable := bOn;
+    Enable := TRUE;
+END_IF
+    END_METHOD
+
+METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+Reset := FALSE;
+IF _eState = E_DL_AxisState.eErrorStop THEN
+    bReqReset := TRUE;                           // 复位请求单发化，主体 eErrorStop 分支消费
+    Reset := TRUE;
+END_IF
+    END_METHOD
+
+METHOD Stop
+VAR_INPUT
+END_VAR
+IF _bEnabled AND (_eState <> E_DL_AxisState.eErrorStop) THEN
+    bReqStop := TRUE;                            // MC_Stop 语义：受控停车并拒绝新任务
+END_IF
+    END_METHOD
+
+METHOD MoveAbsolute : BOOL
+VAR_INPUT
+    fPos : REAL;                                 // 目标绝对位置（Target absolute position）[mm]
+    fVel : REAL;                                 // 运行速度（Run velocity）[mm/s]，正值
+    fAcc : REAL;                                 // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
+END_VAR
+MoveAbsolute := FALSE;
+IF _eState <> E_DL_AxisState.eStandstill THEN RETURN; END_IF  // 非待机态拒绝
+IF (fPos <> fPos) OR (fVel <> fVel) OR (fAcc <> fAcc) OR (ABS(fPos) > DL_AX_INF_MAX)
+   OR (fVel <= DL_AX_PARAM_FLOOR) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF  // 参数非法/非有限值拒绝（0.8 公约）
+IF (fPos > fLimPos) OR (fPos < fLimNeg) THEN
+    _uErrorId := 16#0004_0202;                   // 软限位预判拦截：目标位超限直接拒绝
+    RETURN;
+END_IF
+fTgtPosition := fPos;  fTgtVelocity := MIN(fVel, fVelLim);           // 目标位置 [mm] / 速度钳位 [mm/s]
+fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);   // 加/减速度钳位 [mm/s²]
+bReqMoveAbs := TRUE;
+MoveAbsolute := TRUE;
+    END_METHOD
+
+METHOD MoveRelative : BOOL
+VAR_INPUT
+    fDist : REAL;                                // 相对位移（Relative distance）[mm]，带符号
+    fVel  : REAL;                                // 运行速度（Run velocity）[mm/s]，正值
+    fAcc  : REAL;                                // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
+END_VAR
+MoveRelative := FALSE;
+IF _eState <> E_DL_AxisState.eStandstill THEN RETURN; END_IF
+IF (fDist <> fDist) OR (fVel <> fVel) OR (fAcc <> fAcc) OR (ABS(fDist) > DL_AX_INF_MAX)
+   OR (fVel <= DL_AX_PARAM_FLOOR) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF  // 参数非法/非有限值拒绝（0.8 公约）
+IF (_fPosition + fDist > fLimPos) OR (_fPosition + fDist < fLimNeg) THEN
+    _uErrorId := 16#0004_0202;                   // 相对目标落点越限拒绝（预判）
+    RETURN;
+END_IF
+fRelDist := fDist;  fTgtVelocity := MIN(fVel, fVelLim);              // 相对位移暂存 [mm] / 速度钳位
+fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);
+bReqMoveRel := TRUE;
+MoveRelative := TRUE;
+    END_METHOD
+
+METHOD MoveVelocity : BOOL
+VAR_INPUT
+    fVel : REAL;                                 // 目标速度（Target velocity）[mm/s]，带符号
+    fAcc : REAL;                                 // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
+END_VAR
+MoveVelocity := FALSE;
+IF (_eState <> E_DL_AxisState.eStandstill) AND (_eState <> E_DL_AxisState.eContinuousMotion) THEN
+    RETURN;                                      // 待机/连续运动两态可进（连续运动中允许改速）
+END_IF
+IF (fVel <> fVel) OR (fAcc <> fAcc) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF
+fTgtVelSigned := MAX(MIN(fVel, fVelLim), -fVelLim);  // 带符号速度钳位 [mm/s]
+fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);
+bReqMoveVel := TRUE;
+MoveVelocity := TRUE;
+(* 属性实现（PROPERTY GET）：与规格引脚表 OUT 列一一对应（接口契约映射）。 *)
+    END_METHOD
+
 // 段 1｜沿检测与单发化消费：R_TRIG 无条件周期刷新（R7 红线），标志本拍即清
 rtrigReqAbs(CLK := bReqMoveAbs);  rtrigReqRel(CLK := bReqMoveRel);
 rtrigReqVel(CLK := bReqMoveVel);  rtrigReqStop(CLK := bReqStop);
@@ -248,81 +335,12 @@ _bError := (_eState = E_DL_AxisState.eErrorStop); // bError 派生式（R21：�
  * 方法实现（METHOD）：全部非阻塞，仅置内部请求标志，跨周期动作由主体状态机
  * 执行（OOP 方法设计准则）；接口方法共 6 个达红线临界，不得再增。
  *-----------------------------------------------------------------------------*)
-METHOD Enable : BOOL
-VAR_INPUT
-    bOn : BOOL;                                  // 使能电平（Enable on/off），TRUE=上使能请求
-END_VAR
-IF bOn AND ((_eState = E_DL_AxisState.eErrorStop) OR bDriveFault OR (NOT bDriveReady)) THEN
-    Enable := FALSE;                             // 故障/未就绪拒绝上使能（MC_Power 语义）
-ELSE
-    bReqEnable := bOn;
-    Enable := TRUE;
-END_IF
-METHOD Reset : BOOL
-VAR_INPUT
-END_VAR
-Reset := FALSE;
-IF _eState = E_DL_AxisState.eErrorStop THEN
-    bReqReset := TRUE;                           // 复位请求单发化，主体 eErrorStop 分支消费
-    Reset := TRUE;
-END_IF
-METHOD Stop
-VAR_INPUT
-END_VAR
-IF _bEnabled AND (_eState <> E_DL_AxisState.eErrorStop) THEN
-    bReqStop := TRUE;                            // MC_Stop 语义：受控停车并拒绝新任务
-END_IF
-METHOD MoveAbsolute : BOOL
-VAR_INPUT
-    fPos : REAL;                                 // 目标绝对位置（Target absolute position）[mm]
-    fVel : REAL;                                 // 运行速度（Run velocity）[mm/s]，正值
-    fAcc : REAL;                                 // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
-END_VAR
-MoveAbsolute := FALSE;
-IF _eState <> E_DL_AxisState.eStandstill THEN RETURN; END_IF  // 非待机态拒绝
-IF (fPos <> fPos) OR (fVel <> fVel) OR (fAcc <> fAcc) OR (ABS(fPos) > DL_AX_INF_MAX)
-   OR (fVel <= DL_AX_PARAM_FLOOR) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF  // 参数非法/非有限值拒绝（0.8 公约）
-IF (fPos > fLimPos) OR (fPos < fLimNeg) THEN
-    _uErrorId := 16#0004_0202;                   // 软限位预判拦截：目标位超限直接拒绝
-    RETURN;
-END_IF
-fTgtPosition := fPos;  fTgtVelocity := MIN(fVel, fVelLim);           // 目标位置 [mm] / 速度钳位 [mm/s]
-fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);   // 加/减速度钳位 [mm/s²]
-bReqMoveAbs := TRUE;
-MoveAbsolute := TRUE;
-METHOD MoveRelative : BOOL
-VAR_INPUT
-    fDist : REAL;                                // 相对位移（Relative distance）[mm]，带符号
-    fVel  : REAL;                                // 运行速度（Run velocity）[mm/s]，正值
-    fAcc  : REAL;                                // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
-END_VAR
-MoveRelative := FALSE;
-IF _eState <> E_DL_AxisState.eStandstill THEN RETURN; END_IF
-IF (fDist <> fDist) OR (fVel <> fVel) OR (fAcc <> fAcc) OR (ABS(fDist) > DL_AX_INF_MAX)
-   OR (fVel <= DL_AX_PARAM_FLOOR) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF  // 参数非法/非有限值拒绝（0.8 公约）
-IF (_fPosition + fDist > fLimPos) OR (_fPosition + fDist < fLimNeg) THEN
-    _uErrorId := 16#0004_0202;                   // 相对目标落点越限拒绝（预判）
-    RETURN;
-END_IF
-fRelDist := fDist;  fTgtVelocity := MIN(fVel, fVelLim);              // 相对位移暂存 [mm] / 速度钳位
-fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);
-bReqMoveRel := TRUE;
-MoveRelative := TRUE;
-METHOD MoveVelocity : BOOL
-VAR_INPUT
-    fVel : REAL;                                 // 目标速度（Target velocity）[mm/s]，带符号
-    fAcc : REAL;                                 // 加/减速度（Acceleration and deceleration）[mm/s²]，正值
-END_VAR
-MoveVelocity := FALSE;
-IF (_eState <> E_DL_AxisState.eStandstill) AND (_eState <> E_DL_AxisState.eContinuousMotion) THEN
-    RETURN;                                      // 待机/连续运动两态可进（连续运动中允许改速）
-END_IF
-IF (fVel <> fVel) OR (fAcc <> fAcc) OR (fAcc <= DL_AX_PARAM_FLOOR) THEN RETURN; END_IF
-fTgtVelSigned := MAX(MIN(fVel, fVelLim), -fVelLim);  // 带符号速度钳位 [mm/s]
-fTgtAccel := MIN(fAcc, fAccLim);  fTgtDecel := MIN(fAcc, fDecLim);
-bReqMoveVel := TRUE;
-MoveVelocity := TRUE;
-(* 属性实现（PROPERTY GET）：与规格引脚表 OUT 列一一对应（接口契约映射）。 *)
+
+
+
+
+
+
 PROPERTY eState : E_DL_AxisState
 eState := _eState;
 PROPERTY fPosition : REAL

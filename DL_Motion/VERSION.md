@@ -8,6 +8,11 @@
 
 > R37 增量行：组件总数 60→**62**（registry 实测口径，本轮 +2 `FB_DL_LineShaftClutch` 04_0_A2 / `FB_DL_FlyingCutSync` 04_0_A3）；两件均注入 `I_DL_MotionAxis`，无新增依赖。
 
+## v1.24 — 2026-11-22（R71）
+
+- R71 新增 1 件：`FB_DL_FlyingShearSync`（飞剪同步五相，同步窗线速失配即退相）。累计 125 件。
+
+---
 ## v1.23 — 2026-11-21（R59）
 
 R59 新增 PathCornerBlend / SpindleWarmupSeq / ToolLifeBudget，覆盖拐角过渡、热机顺控与刀具寿命预算。
@@ -630,3 +635,27 @@ R7 已交付软限位电子围栏；R8 已交付同步耦合族开族（电子�
 - 无新件（R62 选题侧无 Motion 缺口，配额让给 T0 族补口）。
 - 返修 1 件：`FB_DL_TurretToolSelect` v1.0.0 → **v1.0.1**（段 4b 统一故障迁入闸，补 `eFault` 死相位；R291 解除式可达自证）。
 - 子库累计 120 件（维持）。
+
+## v1.27 — 2026-11-22（R66 追加）
+
+- 新增 1 件：`FB_DL_FeedOverrideRamp`（进给倍率 0~150% 钳位 + 变化率限幅 + 快速归零/恢复速率分离，PLCopen 倍率域）。
+- 终审补抽 PASS（零缺陷）。
+- 子库累计 121 件。
+
+## v1.28 — 2026-11-22（R68 追加）
+
+- 新增 1 件：`FB_DL_AxisPowerOnSelfTest`（轴上电自检五步序检：驱动就绪→编码器回读→限位巡检→故障字扫描→结论锁存；轴状态零定义，bTestOk 供 `FB_DL_SingleAxis` 使能链消费）。
+- 终审就地修：v1.0.1（组态锁存解除路径可达化，原 bCfgLatch 全文件零清零 → 自检永久不可重测）。
+- 节号说明（R311 实测 +1）：实测上一节为 v1.27（R66 追加），本轮取 v1.28。
+- 子库累计 122 件。
+
+## v1.29 — 2026-11-22（R69 追加）
+- 新增 1 件：`FB_DL_AxisDroopComp`（跟随误差/垂度动态补偿，s7motion 借鉴 clean-room）。
+
+## v1.24 — 2026-11-22（R70 追加）
+- 新增：FB_DL_AxisSoftLimitGuard（软限位守卫）。
+- 子库累计 124 件。
+
+## v1.25 — 2026-11-23（R72 追加）
+
+- `FB_DL_ToolChangerSeq` 入册（C3，六相换刀顺控，互锁保持相防半程掉刀；与 TurretToolSelect 分工互引）。

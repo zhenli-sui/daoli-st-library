@@ -8,6 +8,11 @@
 
 > R37 增量行：组件总数 121→**128**（registry 实测口径，本轮 +7：`WaferCoolChuck` 03_2_0B / `CurtainEFEMZone` 0C / `VentPurgeDuty` 0D / `SlurryLevelBank` 0E / `FoupPurgeN2Flow` 0F / `CartonErectVacMonitor` 10 / `CoderRibbonLife` 11）；`E_DL_FailSafeDir` 由 `SlurryLevelBank` 同文件发布。
 
+## v1.25 — 2026-11-22（R71）
+
+- R71 新增 2 件：`FB_DL_AxisEncBatteryWatch`（编码器电池欠压监视，输入非有限安全侧收紧）｜`FB_DL_PumpPrimingWatch`（灌泵期双判据交叉验证）。累计 220 件。
+
+---
 ## v1.24 — 2026-11-21（R59）
 
 R59 新增 SprayNozzleBank / DustCollectorPulse；SoftStarterDrive 升 v1.0.1（复位故障相位门、删自赋值死语句）。
@@ -828,3 +833,28 @@ R7 已交付设备件十件套（扫码枪/安全门/光幕/流量计/料位开�
 - 新增 2 件：`FB_DL_AnalogSignalHealth`（4-20mA 断线/低限/超上/卡滞四态，判据分立源）/ `FB_DL_PneuCylinderDiag`（气缸行程诊断 8 态机）。
 - 点修：`FB_DL_DualValveBlockSet` v1.0.1（tonMismatch 补 eRun 相位闸）。
 - 子库累计 206 件。
+
+## v1.29 — 2026-11-22（R66 追加）
+
+- 新增 1 件：`FB_DL_AnalogOutFailsafe`（模拟量输出故障安全：冻结/安全值二选一 + 回程斜坡，NE43 输出侧）。
+- 终审就地修：`FB_DL_AnalogOutFailsafe` v1.0.0 → **v1.0.1**（3 严重：tonWd IN 极性反相 / 失保相死路径 / 沿式解除不可达改电平式，删 rtWdRecover；REVIEW_R66 §二）。
+- 子库累计 207 件。
+
+## v1.30 — 2026-11-22（R68 追加）
+
+- 新增 6 件：`FB_DL_FlowMeterKFactorDrift`（**§19.6 已勾未注册漂移件重建**，K 回读 + 批次总量 + 折算三委托 → NE107 分级）｜`FB_DL_CameraHealthWatch`（视觉相机三判据健康看门狗）｜`FB_DL_VisionLightBank`（光源组通道互斥 + 亮度保持 + 稳定延时）｜`FB_DL_RotaryAirlockCtrl`（星型卸料器料位联动 + 失速保护 + 反转点动）｜`FB_DL_TwoSpeedMotor`（变极双速电机死区互锁 + 反馈校验）｜`FB_DL_CabinetCoolingWatch`（柜内热管理三判据）。
+- 终审就地修（同型组态锁存解除不可达）：`FB_DL_FlowMeterKFactorDrift` / `FB_DL_CameraHealthWatch` / `FB_DL_VisionLightBank` / `FB_DL_RotaryAirlockCtrl` / `FB_DL_TwoSpeedMotor` 均升 **v1.0.1**。
+- 节号说明（R311 实测 +1）：实测上一节为 v1.29（R66 追加），本轮取 v1.30。
+- 子库累计 213 件。
+
+## v1.31 — 2026-11-22（R69 追加）
+- 新增 2 件：`FB_DL_MotorHealthAoi`（电机健康四维评级，rockwell-aoi 借鉴 clean-room）｜`FB_DL_ValveIslandDiag`（阀岛在线/槽数对账）。
+- 点修：`FB_DL_FlowMeterKFactorDrift` v1.0.1 → **v1.0.2**（eFailure 声明落地实现，R68 挂账）｜`FB_DL_RotaryAirlockCtrl` v1.0.1 → **v1.0.2**（jog 正/反转同拍派生，消除首拍延后）。
+
+## v1.25 — 2026-11-22（R70 追加）
+- 新增：FB_DL_ValveSeatLeakTest（阀座压降试验）｜FB_DL_ConveyorJamDetect（堵料双判据）｜FB_DL_CabinetTempDerate（柜温降额）。
+- 子库累计 218 件。
+
+## v1.26 — 2026-11-23（R72 追加）
+
+- `FB_DL_OilLevelWatch` 入册（油位双阈值迟滞 + 非有限安全侧收紧 + NE107 出口）。

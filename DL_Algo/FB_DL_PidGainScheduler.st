@@ -23,7 +23,7 @@ STRUCT
     fVar : LREAL; // 调度变量锚点 / Scheduling variable anchor
     fKp  : LREAL; // 该锚点比例增益 / Proportional gain at anchor
     fTi  : LREAL; // 该锚点积分时间 [s] / Integral time at anchor [s]
-    fTd  : LREAL  // 该锚点微分时间 [s] / Derivative time at anchor [s]
+    fTd  : LREAL; // 该锚点微分时间 [s] / Derivative time at anchor [s]
 END_STRUCT
 END_TYPE
 

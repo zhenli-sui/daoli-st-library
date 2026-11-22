@@ -118,6 +118,112 @@ VAR
     _fbTpResetPulse : TP;               // 复位端子定宽脉冲定时器（Reset terminal pulse timer），IEC 标准 TP / Reset terminal pulse timer, IEC standard TP
 END_VAR
 
+METHOD CmdRun : BOOL
+VAR_INPUT
+    bFwd : BOOL; // 方向选择（Direction select），TRUE=正转 / FALSE=反转 / TRUE = forward, FALSE = reverse
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) OR (_eState = E_DL_VfdState.eDisabled) THEN
+    CmdRun := FALSE;          // 故障/未使能态拒绝（Rejected in fault or disabled state）
+ELSE
+    IF bFwd THEN
+        _bPendRunFwd := TRUE; // 登记正转保持锁存（Register forward hold latch）
+        _bPendRunRev := FALSE; // 互斥注销反转锁存（Cancel opposite latch）
+    ELSE
+        _bPendRunRev := TRUE; // 登记反转保持锁存（Register reverse hold latch）
+        _bPendRunFwd := FALSE; // 互斥注销正转锁存（Cancel opposite latch）
+    END_IF
+    CmdRun := TRUE;           // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 停止指令：撤销运行/点动锁存，无条件受理。
+ *      Method CmdStop - revokes run and jog latches, unconditionally accepted.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop : BOOL
+VAR_INPUT
+END_VAR
+_bPendRunFwd := FALSE;        // 撤销正转锁存（Release forward latch）
+_bPendRunRev := FALSE;        // 撤销反转锁存（Release reverse latch）
+_bJogHold    := FALSE;        // 撤销点动保持（Release jog hold）
+CmdStop := TRUE;              // 无条件受理（Unconditionally accepted）
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdJog —— 点动指令（bFwd=TRUE 登记保持 / FALSE 撤销）。故障态拒绝。
+ *      Method CmdJog - jog hold register/release, rejected in fault state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdJog : BOOL
+VAR_INPUT
+    bFwd : BOOL; // 点动方向（Jog direction），TRUE=正向登记 / FALSE=撤销保持 / TRUE = register, FALSE = release
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) THEN
+    CmdJog := FALSE;          // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bJogHold := bFwd;        // 登记或撤销点动保持（Register or release jog hold）
+    CmdJog := TRUE;           // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: SetFrequency —— 频率设定 [Hz]，越界/非有限值拒绝返回 FALSE。
+ *      Method SetFrequency - frequency set, out-of-range or NaN returns FALSE.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD SetFrequency : BOOL
+VAR_INPUT
+    fHz : REAL; // 频率设定值（Frequency value）[Hz]，域 0..fFreqMax / Frequency value [Hz], range 0..fFreqMax
+END_VAR
+IF (fHz <> fHz) OR (fHz < 0.0) OR (fHz > _fFreqMaxEff) THEN
+    SetFrequency := FALSE;    // 非数或越域拒绝（Rejected on NaN or out of range）
+ELSE
+    _fFreqMethodVal := fHz;   // 登记方法频率设定（Register method frequency value）
+    _bFreqMethodAct := TRUE;  // 激活方法给定通道（Activate method reference channel）
+    SetFrequency := TRUE;     // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: SelectPresetSpeed —— 多段速选择，0=模拟量给定、1..7=段速，越界拒绝。
+ *      Method SelectPresetSpeed - preset select, 0 = analog, 1..7 = steps.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD SelectPresetSpeed : BOOL
+VAR_INPUT
+    nIdx : USINT; // 段速索引（Preset index），0=模拟量给定 / 1..7=段速 / Preset index, 0 = analog reference, 1..7 = steps
+END_VAR
+IF nIdx <= 7 THEN
+    _uPresetMethod := nIdx;   // 登记方法段速选择（Register method preset value）
+    _bPresetMethodAct := TRUE; // 激活方法段速通道（Activate method preset channel）
+    SelectPresetSpeed := TRUE; // 受理成功（Accepted）
+ELSE
+    SelectPresetSpeed := FALSE; // 越界拒绝（Rejected on out-of-range index）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位指令，返回是否受理（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset command, returns TRUE only when latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) THEN
+    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset := TRUE;         // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -311,100 +417,12 @@ fFreqRefPercent := _fFreqCmdEff * (100.0 / _fFreqMaxEff); // 模拟量域线性�
  * 方法: CmdRun —— 正/反转运行指令（受理为保持锁存）。故障/未使能态拒绝。
  *      Method CmdRun - run command held as latch, rejected in fault/disabled.
  *------------------------------------------------------------------------------*)
-METHOD CmdRun : BOOL
-VAR_INPUT
-    bFwd : BOOL // 方向选择（Direction select），TRUE=正转 / FALSE=反转 / TRUE = forward, FALSE = reverse
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) OR (_eState = E_DL_VfdState.eDisabled) THEN
-    CmdRun := FALSE;          // 故障/未使能态拒绝（Rejected in fault or disabled state）
-ELSE
-    IF bFwd THEN
-        _bPendRunFwd := TRUE; // 登记正转保持锁存（Register forward hold latch）
-        _bPendRunRev := FALSE; // 互斥注销反转锁存（Cancel opposite latch）
-    ELSE
-        _bPendRunRev := TRUE; // 登记反转保持锁存（Register reverse hold latch）
-        _bPendRunFwd := FALSE; // 互斥注销正转锁存（Cancel opposite latch）
-    END_IF
-    CmdRun := TRUE;           // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 停止指令：撤销运行/点动锁存，无条件受理。
- *      Method CmdStop - revokes run and jog latches, unconditionally accepted.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop : BOOL
-VAR_INPUT
-END_VAR
-_bPendRunFwd := FALSE;        // 撤销正转锁存（Release forward latch）
-_bPendRunRev := FALSE;        // 撤销反转锁存（Release reverse latch）
-_bJogHold    := FALSE;        // 撤销点动保持（Release jog hold）
-CmdStop := TRUE;              // 无条件受理（Unconditionally accepted）
 
-(*------------------------------------------------------------------------------
- * 方法: CmdJog —— 点动指令（bFwd=TRUE 登记保持 / FALSE 撤销）。故障态拒绝。
- *      Method CmdJog - jog hold register/release, rejected in fault state.
- *------------------------------------------------------------------------------*)
-METHOD CmdJog : BOOL
-VAR_INPUT
-    bFwd : BOOL // 点动方向（Jog direction），TRUE=正向登记 / FALSE=撤销保持 / TRUE = register, FALSE = release
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) THEN
-    CmdJog := FALSE;          // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bJogHold := bFwd;        // 登记或撤销点动保持（Register or release jog hold）
-    CmdJog := TRUE;           // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: SetFrequency —— 频率设定 [Hz]，越界/非有限值拒绝返回 FALSE。
- *      Method SetFrequency - frequency set, out-of-range or NaN returns FALSE.
- *------------------------------------------------------------------------------*)
-METHOD SetFrequency : BOOL
-VAR_INPUT
-    fHz : REAL // 频率设定值（Frequency value）[Hz]，域 0..fFreqMax / Frequency value [Hz], range 0..fFreqMax
-END_VAR
-IF (fHz <> fHz) OR (fHz < 0.0) OR (fHz > _fFreqMaxEff) THEN
-    SetFrequency := FALSE;    // 非数或越域拒绝（Rejected on NaN or out of range）
-ELSE
-    _fFreqMethodVal := fHz;   // 登记方法频率设定（Register method frequency value）
-    _bFreqMethodAct := TRUE;  // 激活方法给定通道（Activate method reference channel）
-    SetFrequency := TRUE;     // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: SelectPresetSpeed —— 多段速选择，0=模拟量给定、1..7=段速，越界拒绝。
- *      Method SelectPresetSpeed - preset select, 0 = analog, 1..7 = steps.
- *------------------------------------------------------------------------------*)
-METHOD SelectPresetSpeed : BOOL
-VAR_INPUT
-    nIdx : USINT // 段速索引（Preset index），0=模拟量给定 / 1..7=段速 / Preset index, 0 = analog reference, 1..7 = steps
-END_VAR
-IF nIdx <= 7 THEN
-    _uPresetMethod := nIdx;   // 登记方法段速选择（Register method preset value）
-    _bPresetMethodAct := TRUE; // 激活方法段速通道（Activate method preset channel）
-    SelectPresetSpeed := TRUE; // 受理成功（Accepted）
-ELSE
-    SelectPresetSpeed := FALSE; // 越界拒绝（Rejected on out-of-range index）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位指令，返回是否受理（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset command, returns TRUE only when latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VfdState.eFault) THEN
-    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset := TRUE;         // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_VfdState
 eState := _eState;            // 返回内部状态（Return internal state）
 

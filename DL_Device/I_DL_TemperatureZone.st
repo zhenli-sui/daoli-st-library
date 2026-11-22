@@ -68,13 +68,18 @@ VAR_INPUT
     fTemp : REAL;                           // 目标温度（Target temperature）[°C]，越界由实现块钳位，非有限值拒绝
 END_VAR
 
+    END_METHOD
+
 METHOD CmdEnable
 VAR_INPUT
     bOn : BOOL;                             // TRUE=投运（Commission on），FALSE=退出并切断双通道
 END_VAR
 
+    END_METHOD
+
 METHOD CmdReset : BOOL                      // 复位故障（Reset fault），返回当前是否可复位
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

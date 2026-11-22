@@ -76,12 +76,17 @@ METHOD CmdOverride : BOOL // 滞留物清除请求（Override request），前�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdAck : BOOL // 屏蔽/故障确认复位（Acknowledge of muting abort/fault），屏蔽序列中止后回评估态受理 / Ack after a muting abort, back to evaluation
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位故障与重启联锁（Reset fault and restart interlock），仅故障态受理 / Reset accepted only in fault state
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

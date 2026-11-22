@@ -111,6 +111,58 @@ VAR CONSTANT
     DL_REAL_EPS    : REAL := 1.0E-6;   // 浮点防零容差（Float divide-guard epsilon）/ Float divide-guard epsilon
 END_VAR
 
+METHOD CmdTotalReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
+    CmdTotalReset := FALSE;       // 故障态拒绝（Rejected in fault）
+ELSE
+    _bPendTotalRst := TRUE;       // 登记清零请求，主体消化（Register reset, consumed by body）
+    CmdTotalReset := TRUE;        // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdTotalPreset —— 总量预置 [L]，非有限值/负值拒绝返回 FALSE。
+ *      Method CmdTotalPreset - total preset [L], non-finite or negative rejected.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdTotalPreset : BOOL
+VAR_INPUT
+    fPreset : LREAL; // 预置总量（Preset volume）[L]，域 ≥0 / Preset volume [L], range >= 0
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
+    CmdTotalPreset := FALSE;      // 故障态拒绝（Rejected in fault）
+ELSIF (fPreset <> fPreset) OR (fPreset < 0.0) THEN
+    CmdTotalPreset := FALSE;      // 非数或负值拒绝（Rejected on NaN or negative）
+ELSE
+    _fPresetVal := fPreset;       // 登记预置值（Register preset value）
+    _bPendPreset := TRUE;         // 登记预置请求（Register preset request）
+    CmdTotalPreset := TRUE;       // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障。仅故障态受理（接口方法拒绝语义红线）。
+ *      Method CmdReset - reset, accepted only in fault state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
+    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
+    CmdReset := TRUE;             // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前计量状态只读视图。
+ *      Property eState (GET) - read-only metering state view.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（R7/0.5：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all instances (R7/0.5)
@@ -240,52 +292,9 @@ bTotalNearLimit := _fTotalInt > DL_TOTAL_LIMIT; // 总量精度边界预警（To
  * 方法: CmdTotalReset —— 总量清零。故障态拒绝。
  *      Method CmdTotalReset - total reset, rejected in fault.
  *------------------------------------------------------------------------------*)
-METHOD CmdTotalReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
-    CmdTotalReset := FALSE;       // 故障态拒绝（Rejected in fault）
-ELSE
-    _bPendTotalRst := TRUE;       // 登记清零请求，主体消化（Register reset, consumed by body）
-    CmdTotalReset := TRUE;        // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdTotalPreset —— 总量预置 [L]，非有限值/负值拒绝返回 FALSE。
- *      Method CmdTotalPreset - total preset [L], non-finite or negative rejected.
- *------------------------------------------------------------------------------*)
-METHOD CmdTotalPreset : BOOL
-VAR_INPUT
-    fPreset : LREAL // 预置总量（Preset volume）[L]，域 ≥0 / Preset volume [L], range >= 0
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
-    CmdTotalPreset := FALSE;      // 故障态拒绝（Rejected in fault）
-ELSIF (fPreset <> fPreset) OR (fPreset < 0.0) THEN
-    CmdTotalPreset := FALSE;      // 非数或负值拒绝（Rejected on NaN or negative）
-ELSE
-    _fPresetVal := fPreset;       // 登记预置值（Register preset value）
-    _bPendPreset := TRUE;         // 登记预置请求（Register preset request）
-    CmdTotalPreset := TRUE;       // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障。仅故障态受理（接口方法拒绝语义红线）。
- *      Method CmdReset - reset, accepted only in fault state.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_FlowMeterState.eFault) THEN
-    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
-    CmdReset := TRUE;             // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前计量状态只读视图。
- *      Property eState (GET) - read-only metering state view.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_FlowMeterState
 eState := _eState;                // 返回内部状态（Return internal state）
 

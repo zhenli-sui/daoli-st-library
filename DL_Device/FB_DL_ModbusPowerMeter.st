@@ -306,6 +306,54 @@ VAR CONSTANT
     DL_PHASE_OK_R      : REAL := 0.80;                // 正常相判据：高于额定的比例 [-] / Healthy-phase ratio
 END_VAR
 
+METHOD CmdResetEnergy : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch THEN
+    CmdResetEnergy := FALSE;                                // 故障期清零会抹掉追溯依据（Rejected, the audit trail would be lost）
+ELSE
+    _bPendResetEnergy := TRUE;                              // 登记请求，由段 7 消费（Registered, consumed in section 7）
+    CmdResetEnergy    := TRUE;                              // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位锁存。仅存在锁存时受理。
+ *      Method CmdReset - accepted only when a latch exists.
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR _bMaintLatch THEN
+    _bPendReset := TRUE;                                    // 登记请求，由段 7 消费（Registered, consumed in section 7）
+    CmdReset    := TRUE;                                    // 受理成功（Accepted）
+ELSE
+    CmdReset    := FALSE;                                   // 无锁存可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdAck —— 应答维护与越规。失效级不可应答。
+ *      Method CmdAck - acknowledges maintenance and out-of-spec only.
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdAck : BOOL
+VAR_INPUT
+END_VAR
+IF _bMaintLatch AND (NOT _bFaultLatch) THEN
+    _bPendAck := TRUE;                                      // 登记请求，由段 7 消费（Registered, consumed in section 7）
+    CmdAck    := TRUE;                                      // 受理成功（Accepted）
+ELSE
+    CmdAck    := FALSE;                                     // 失效不可被应答掉（A failure cannot be acknowledged away）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 计量状态只读视图。
+ *      Property eState (GET) - read-only metering state.
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
 (*------------------------------------------------------------------------------
  * 段 1｜确定性默认值与单拍标志预清零（R25 第一律：预清零）
  *      Deterministic defaults and one-shot flags pre-cleared every scan
@@ -865,48 +913,9 @@ uErrorId := _uErrFault;                                     // 末次故障码�
  * 方法: CmdResetEnergy —— 清零累计电能。故障锁存期一律拒绝。
  *      Method CmdResetEnergy - rejected while a failure latch exists.
  *-----------------------------------------------------------------------------*)
-METHOD CmdResetEnergy : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch THEN
-    CmdResetEnergy := FALSE;                                // 故障期清零会抹掉追溯依据（Rejected, the audit trail would be lost）
-ELSE
-    _bPendResetEnergy := TRUE;                              // 登记请求，由段 7 消费（Registered, consumed in section 7）
-    CmdResetEnergy    := TRUE;                              // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位锁存。仅存在锁存时受理。
- *      Method CmdReset - accepted only when a latch exists.
- *-----------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR _bMaintLatch THEN
-    _bPendReset := TRUE;                                    // 登记请求，由段 7 消费（Registered, consumed in section 7）
-    CmdReset    := TRUE;                                    // 受理成功（Accepted）
-ELSE
-    CmdReset    := FALSE;                                   // 无锁存可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdAck —— 应答维护与越规。失效级不可应答。
- *      Method CmdAck - acknowledges maintenance and out-of-spec only.
- *-----------------------------------------------------------------------------*)
-METHOD CmdAck : BOOL
-VAR_INPUT
-END_VAR
-IF _bMaintLatch AND (NOT _bFaultLatch) THEN
-    _bPendAck := TRUE;                                      // 登记请求，由段 7 消费（Registered, consumed in section 7）
-    CmdAck    := TRUE;                                      // 受理成功（Accepted）
-ELSE
-    CmdAck    := FALSE;                                     // 失效不可被应答掉（A failure cannot be acknowledged away）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 计量状态只读视图。
- *      Property eState (GET) - read-only metering state.
- *-----------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_PowerMeterState
 eState := _ePhase;                                          // 返回计量相位（Return the metering phase）
 

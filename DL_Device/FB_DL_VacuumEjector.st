@@ -100,6 +100,72 @@ VAR
     _fbTpBlow       : TP;             // 吹气定宽脉冲定时器（Blow-off pulse timer），IEC 标准 TP / Blow-off fixed-width pulse timer, IEC standard TP
 END_VAR
 
+METHOD CmdEvacuate : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
+    CmdEvacuate := FALSE;     // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bPendEvac  := TRUE;      // 登记抽真空请求，主体状态机消化（Register evacuate request, consumed by body）
+    CmdEvacuate := TRUE;      // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdBlowOff —— 破真空吹气指令（单发定宽脉冲）。故障态拒绝。
+ *      Method CmdBlowOff - blow-off command (one-shot pulse), rejected in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdBlowOff : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
+    CmdBlowOff := FALSE;      // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bPendBlow := TRUE;       // 登记吹气请求，主体状态机消化（Register blow request, consumed by body）
+    CmdBlowOff := TRUE;       // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 双阀全断保持现状。故障态拒绝返回 FALSE。
+ *      Method CmdStop - both valves off and hold, rejected with FALSE in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
+    CmdStop := FALSE;         // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bPendEvac := FALSE;      // 注销全部动作请求（Cancel all action requests）
+    _bPendBlow := FALSE;
+    _bPendStop := TRUE;       // 登记停止请求，主体状态机消化（Register stop request, consumed by body）
+    CmdStop    := TRUE;       // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
+    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset    := TRUE;      // 可复位（Resettable）
+ELSE
+    CmdReset    := FALSE;     // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -255,64 +321,10 @@ END_IF
  * 方法: CmdEvacuate —— 建立真空指令（单发）。故障态一律拒绝返回 FALSE。
  *      Method CmdEvacuate - evacuate command (one-shot), rejected with FALSE in fault.
  *------------------------------------------------------------------------------*)
-METHOD CmdEvacuate : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
-    CmdEvacuate := FALSE;     // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bPendEvac  := TRUE;      // 登记抽真空请求，主体状态机消化（Register evacuate request, consumed by body）
-    CmdEvacuate := TRUE;      // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdBlowOff —— 破真空吹气指令（单发定宽脉冲）。故障态拒绝。
- *      Method CmdBlowOff - blow-off command (one-shot pulse), rejected in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdBlowOff : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
-    CmdBlowOff := FALSE;      // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bPendBlow := TRUE;       // 登记吹气请求，主体状态机消化（Register blow request, consumed by body）
-    CmdBlowOff := TRUE;       // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 双阀全断保持现状。故障态拒绝返回 FALSE。
- *      Method CmdStop - both valves off and hold, rejected with FALSE in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
-    CmdStop := FALSE;         // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bPendEvac := FALSE;      // 注销全部动作请求（Cancel all action requests）
-    _bPendBlow := FALSE;
-    _bPendStop := TRUE;       // 登记停止请求，主体状态机消化（Register stop request, consumed by body）
-    CmdStop    := TRUE;       // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_VacuumState.eFault) THEN
-    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset    := TRUE;      // 可复位（Resettable）
-ELSE
-    CmdReset    := FALSE;     // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_VacuumState
 eState := _eState;            // 返回内部状态（Return internal state）
 

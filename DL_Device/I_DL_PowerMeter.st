@@ -129,14 +129,19 @@ END_VAR
 
 (* 复位锁存（Reset the latch）。仅存在锁存时返回 TRUE，否则 FALSE。
  * 方法内只登记请求，锁存清除与状态回退由实现块主体下一拍执行。 *)
+    END_METHOD
+
 METHOD CmdReset : BOOL
 VAR_INPUT
 END_VAR
 
 (* 应答维护与越规提示（Acknowledge maintenance and out-of-spec）。
  * 仅受理 eMaintenanceReq 与 eOutOfSpec，对 eFailure 返回 FALSE。 *)
+    END_METHOD
+
 METHOD CmdAck : BOOL
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

@@ -137,13 +137,18 @@ END_VAR
 
 (* 消音（Silence buzzer）：一次性受理，超过保持时长自动恢复蜂鸣；非蜂鸣期或
  * 处于安全事件期返回 FALSE（安全事件不受消音约束）。 *)
+    END_METHOD
+
 METHOD SilenceBuzzer : BOOL
 VAR_INPUT
 END_VAR
 
 (* 复位故障锁存（Reset fault latch）：仅存在锁存故障时返回 TRUE，否则 FALSE。 *)
+    END_METHOD
+
 METHOD Reset : BOOL
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

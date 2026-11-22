@@ -109,6 +109,38 @@ VAR
     _fbTonBare     : TON;               // 裸露确认延迟（Bare confirm delay）/ Bare confirm delay
 END_VAR
 
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_LevelState.eFault) THEN
+    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
+    CmdReset := TRUE;             // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdTest —— 传感器功能测试请求：输出镜像进入测试态一拍。故障态拒绝。
+ *      Method CmdTest - sensor test request, test mirror one scan, rejected in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdTest : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_LevelState.eFault) THEN
+    CmdTest := FALSE;             // 故障态拒绝（Rejected in fault）
+ELSE
+    _bPendTest := TRUE;           // 登记测试请求（Register test request）
+    CmdTest := TRUE;              // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前诊断状态只读视图。
+ *      Property eState (GET) - read-only diagnostic state view.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜实例无条件周期刷新（R7/0.5：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all instances (R7/0.5)
@@ -197,34 +229,8 @@ _bPendTest := FALSE;              // 方法测试请求消费（Method test requ
  * 方法: CmdReset —— 复位故障。仅故障态受理（接口方法拒绝语义红线）。
  *      Method CmdReset - reset, accepted only in fault state.
  *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_LevelState.eFault) THEN
-    _bPendReset := TRUE;          // 登记复位请求（Register reset request）
-    CmdReset := TRUE;             // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;            // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdTest —— 传感器功能测试请求：输出镜像进入测试态一拍。故障态拒绝。
- *      Method CmdTest - sensor test request, test mirror one scan, rejected in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdTest : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_LevelState.eFault) THEN
-    CmdTest := FALSE;             // 故障态拒绝（Rejected in fault）
-ELSE
-    _bPendTest := TRUE;           // 登记测试请求（Register test request）
-    CmdTest := TRUE;              // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前诊断状态只读视图。
- *      Property eState (GET) - read-only diagnostic state view.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_LevelState
 eState := _eState;                // 返回派生状态（Return derived state）
 

@@ -139,8 +139,11 @@ END_VAR
 (* 复位锁存（Reset the latch）。仅 bLatched 为 TRUE 时受理，返回 TRUE；
  * 无锁存时返回 FALSE。方法内只登记请求标志，锁存清除与状态回退由实现块主体
  * 在下一拍执行，避免与主体状态机同拍写冲突。 *)
+    END_METHOD
+
 METHOD CmdReset : BOOL
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

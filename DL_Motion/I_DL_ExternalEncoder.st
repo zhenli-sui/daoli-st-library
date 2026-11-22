@@ -65,11 +65,14 @@ PROPERTY bValid : BOOL    // 当前数据可信标志 / Current data validity fl
 // 失败返回 FALSE，stSnap 内容由实现块决定（约定不清写，调用方自行保持旧值）。
 METHOD Sample : BOOL
 VAR_IN_OUT
-    stSnap : ST_DL_EncSnapshot // 快照出参（IN-OUT 引用承载 OUT 语义）/ Snapshot output via in-out reference
+    stSnap : ST_DL_EncSnapshot; // 快照出参（IN-OUT 引用承载 OUT 语义）/ Snapshot output via in-out reference
 END_VAR
 
 // Reset：复位实现块内部采样历史（首扫同步标志、失效计数等），始终返回 TRUE。
 // 只清采样历史，不清物理编码器状态（清零/回零属驱动层职责，不在本契约内）。
+    END_METHOD
+
 METHOD Reset : BOOL
 
+    END_METHOD
 END_INTERFACE

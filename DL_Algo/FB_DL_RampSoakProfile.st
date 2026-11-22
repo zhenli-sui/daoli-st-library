@@ -133,6 +133,30 @@ VAR CONSTANT
     DL_RS_TMIN    : REAL := 1.0E-3;     // 有效斜坡时间下限（Effective ramp time floor）[s]，低于视为零斜坡阶跃
 END_VAR
 
+METHOD NextSegOrDone
+VAR_INPUT
+END_VAR
+IF fSoakSec > DL_RS_TEPS THEN
+    fSoakElapsed := 0.0;                 // 本段有保温：进入保温计时 [s]
+    ePhase := E_DL_RampSoakPhase.eSoak;
+ELSIF nSegAct < nSegEff THEN
+    nSegAct := nSegAct + 1;              // 无保温直通下段 [段]
+    bSegChange := TRUE;                  // 段切换沿单发
+    fRampStart := fSetpoint;             // 下段斜坡起点=当前值 [EU]
+    fSoakElapsed := 0.0;                 // 新段保温计时清零 [s]
+    ePhase := E_DL_RampSoakPhase.eRamp;
+ELSIF bLoopProfile THEN
+    nSegAct := 1;                        // 循环运行：段号回 1 [段]
+    bSegChange := TRUE;                  // 段切换沿单发
+    fRampStart := fSetpoint;             // 循环重启斜坡起点=当前值 [EU]
+    fSoakElapsed := 0.0;                 // 新段保温计时清零 [s]
+    ePhase := E_DL_RampSoakPhase.eRamp;
+ELSE
+    ePhase := E_DL_RampSoakPhase.eDone;  // 全部段完成
+    bDone := TRUE;
+END_IF
+    END_METHOD
+
 // 段 1｜沿检测无条件周期刷新（R7 红线，严禁置于分支内）
 rtrigStart(CLK := bStart);
 rtrigSkip(CLK := bSkipSeg);
@@ -268,26 +292,4 @@ END_CASE
  * 供斜坡到达与保温计满共用，保证段切换沿与计时清零只在一处发生。
  *------------------------------------------------------------------------------*)
 
-METHOD NextSegOrDone
-VAR_INPUT
-END_VAR
-IF fSoakSec > DL_RS_TEPS THEN
-    fSoakElapsed := 0.0;                 // 本段有保温：进入保温计时 [s]
-    ePhase := E_DL_RampSoakPhase.eSoak;
-ELSIF nSegAct < nSegEff THEN
-    nSegAct := nSegAct + 1;              // 无保温直通下段 [段]
-    bSegChange := TRUE;                  // 段切换沿单发
-    fRampStart := fSetpoint;             // 下段斜坡起点=当前值 [EU]
-    fSoakElapsed := 0.0;                 // 新段保温计时清零 [s]
-    ePhase := E_DL_RampSoakPhase.eRamp;
-ELSIF bLoopProfile THEN
-    nSegAct := 1;                        // 循环运行：段号回 1 [段]
-    bSegChange := TRUE;                  // 段切换沿单发
-    fRampStart := fSetpoint;             // 循环重启斜坡起点=当前值 [EU]
-    fSoakElapsed := 0.0;                 // 新段保温计时清零 [s]
-    ePhase := E_DL_RampSoakPhase.eRamp;
-ELSE
-    ePhase := E_DL_RampSoakPhase.eDone;  // 全部段完成
-    bDone := TRUE;
-END_IF
 END_FUNCTION_BLOCK

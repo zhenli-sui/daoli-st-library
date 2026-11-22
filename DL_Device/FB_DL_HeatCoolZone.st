@@ -168,6 +168,49 @@ VAR CONSTANT
     DL_ZONE_SPAN_EPS  : REAL := 1.0E-6; // 分程跨度防除零判据（Span epsilon）[%]，低于此值通道禁用
 END_VAR
 
+METHOD SetSetpoint : BOOL
+VAR_INPUT
+    fTemp : REAL;                        // 目标温度（Target temperature）[°C]，非有限值拒绝
+END_VAR
+// 返回合法性：非有限值一律拒绝（公约 0.8 判式），合法值锁存待主体钳位生效
+IF fTemp <> fTemp THEN
+    SetSetpoint := FALSE;                // 非有限值拒绝
+ELSE
+    _fReqSetSp := fTemp;                 // 请求原始值 [°C]
+    _bReqSetSp := TRUE;                  // 置单发标志，主体段 2/段 3 落实
+    SetSetpoint := TRUE;                 // 受理成功
+END_IF
+
+    END_METHOD
+
+METHOD CmdEnable
+VAR_INPUT
+    bOn : BOOL;                          // TRUE=投运（Commission on），FALSE=退出并切断双通道
+END_VAR
+_bReqEnable := TRUE;                     // 置请求标志
+_bValEnable := bOn;                      // 请求值随行
+
+    END_METHOD
+
+METHOD CmdReset : BOOL
+// 返回当前是否可复位：断偶锁存态要求信号质量快照已恢复 eGood（规格 §1.8 退出条件）
+_bReqReset := TRUE;                      // 置请求标志，主体段 7 各态消费
+IF _eState = E_DL_TempZoneState.eSensorBreak THEN
+    IF _bRefOk AND (_eQuality = E_DL_SignalQuality.eGood) AND (NOT _bSensorBad) THEN
+        CmdReset := TRUE;                // 质量已恢复，可复位
+    ELSE
+        CmdReset := FALSE;               // 仍在断线域，拒绝复位
+    END_IF
+ELSE
+    CmdReset := TRUE;                    // 非断偶态一律受理
+END_IF
+
+// =============================================================================
+// 属性实现区（PROPERTY GET ×5，接口契约逐字兑现；偏离 D1：属性即输出引脚语义）
+// =============================================================================
+
+    END_METHOD
+
 // -----------------------------------------------------------------------------
 // 段 1｜首扫与跟踪同步（公约 0.1 / R19 唯一合法范式：跟踪项在前、首扫项取反在后，
 //       禁止两项顺序颠倒的反式写法；验收向量 V3 覆盖运行中途跟踪脉冲）
@@ -461,42 +504,8 @@ _fPowerOutLast := _fPowerOut;            // 存档本拍功率，供下一拍跃
 // 方法实现区（METHOD，共 3 个，接口契约逐字兑现；非阻塞单发语义）
 // =============================================================================
 
-METHOD SetSetpoint : BOOL
-VAR_INPUT
-    fTemp : REAL;                        // 目标温度（Target temperature）[°C]，非有限值拒绝
-END_VAR
-// 返回合法性：非有限值一律拒绝（公约 0.8 判式），合法值锁存待主体钳位生效
-IF fTemp <> fTemp THEN
-    SetSetpoint := FALSE;                // 非有限值拒绝
-ELSE
-    _fReqSetSp := fTemp;                 // 请求原始值 [°C]
-    _bReqSetSp := TRUE;                  // 置单发标志，主体段 2/段 3 落实
-    SetSetpoint := TRUE;                 // 受理成功
-END_IF
 
-METHOD CmdEnable
-VAR_INPUT
-    bOn : BOOL;                          // TRUE=投运（Commission on），FALSE=退出并切断双通道
-END_VAR
-_bReqEnable := TRUE;                     // 置请求标志
-_bValEnable := bOn;                      // 请求值随行
 
-METHOD CmdReset : BOOL
-// 返回当前是否可复位：断偶锁存态要求信号质量快照已恢复 eGood（规格 §1.8 退出条件）
-_bReqReset := TRUE;                      // 置请求标志，主体段 7 各态消费
-IF _eState = E_DL_TempZoneState.eSensorBreak THEN
-    IF _bRefOk AND (_eQuality = E_DL_SignalQuality.eGood) AND (NOT _bSensorBad) THEN
-        CmdReset := TRUE;                // 质量已恢复，可复位
-    ELSE
-        CmdReset := FALSE;               // 仍在断线域，拒绝复位
-    END_IF
-ELSE
-    CmdReset := TRUE;                    // 非断偶态一律受理
-END_IF
-
-// =============================================================================
-// 属性实现区（PROPERTY GET ×5，接口契约逐字兑现；偏离 D1：属性即输出引脚语义）
-// =============================================================================
 
 PROPERTY fTempActual : REAL
 fTempActual := _fTempActual;             // 实测温度 [°C]

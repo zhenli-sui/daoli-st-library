@@ -115,6 +115,12 @@ VAR CONSTANT
     DL_REL_PAR_FLOOR : REAL := 1.0E-3;  // 速度/加速度参数下限（Velocity and acceleration floor）[mm/s 或 mm/s²]
 END_VAR
 
+METHOD IssueMove : BOOL
+VAR_INPUT
+END_VAR
+IssueMove := iAxis.MoveRelative(fDistance, fVelEff, fAccEff);  // 转发轴接口，受理结果即返回值
+    END_METHOD
+
 // 段 1｜沿检测无条件周期刷新（R7 红线，严禁置于分支内）
 rtrigExec(CLK := bCmdExecute);
 
@@ -213,8 +219,4 @@ END_CASE
  * 结果；步间距取当前 fDistance 输入值，链式运行中改位移即改步距。
  *-----------------------------------------------------------------------------*)
 
-METHOD IssueMove : BOOL
-VAR_INPUT
-END_VAR
-IssueMove := iAxis.MoveRelative(fDistance, fVelEff, fAccEff);  // 转发轴接口，受理结果即返回值
 END_FUNCTION_BLOCK

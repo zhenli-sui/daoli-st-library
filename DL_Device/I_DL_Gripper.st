@@ -51,17 +51,24 @@ METHOD Open : BOOL                             // 请求张开，到位由 bOpen
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD Close : BOOL                            // 请求闭合到指定夹持力 / request closing at the given clamping force
 VAR_INPUT
     fForceSetpoint : REAL;                     // 目标夹持力 [%]，范围 0.0~100.0 / target clamping force [%], range 0.0~100.0
 END_VAR
 
+    END_METHOD
+
 METHOD Release : BOOL                          // 松开并撤力，区别于 Open：不放到位只泄力 / release and drop the force, unlike Open it does not drive to the open end
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD ClearFault : BOOL                       // 清故障锁存（热复位），不产生任何动作 / clear the fault latch, produces no motion
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

@@ -66,12 +66,17 @@ METHOD CmdStart : BOOL // 启动指令（Start command），单发；被抑制/�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdStop // 停止指令（Stop command），无条件安全动作，双线圈全断 / Unconditional safe stop command
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位过载/故障（Reset overload and fault），返回是否可复位 / Returns TRUE only when resettable
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

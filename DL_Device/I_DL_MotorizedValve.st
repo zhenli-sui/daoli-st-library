@@ -71,16 +71,23 @@ METHOD CmdOpen : BOOL // 开阀指令（Open command），电平语义受理为�
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdClose : BOOL // 关阀指令（Close command），电平语义受理为保持锁存；故障态拒绝返回 FALSE / Close command held as latch, rejected in fault
 VAR_INPUT
 END_VAR
+
+    END_METHOD
 
 METHOD CmdStop : BOOL // 双脉冲全断保持（Stop command, both pulses off, hold position）；无条件受理 / Unconditionally accepted
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdReset : BOOL // 复位指令（Reset command），返回是否可复位（存在故障时为 TRUE）/ Returns TRUE only when resettable
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

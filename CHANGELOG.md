@@ -4,7 +4,93 @@
 
 > 版本号规则：**MAJOR** 破坏性接口变更 ｜ **MINOR** 新增组件或新增可选输入 ｜ **PATCH** 实现与文档修正。
 
-## v2.57.0 — 2026-11-22（R65 十件入册 + 三件点修 ｜ pipeline v2 首轮：dl_gate 增量门禁 → registry(origin) → JSONL → git）
+## v2.64.0 — 2026-11-23（R72 十二件入册 + AirSpecificVolume v1.0.1 契约级点修 ｜ 零检索轮）
+
+### Added（12 件：DL_MathData 5 / DL_Base 2 / DL_Device 1 / DL_Motion 1 / DL_Process 2 / DL_Algo 0 避让）
+- DL_MathData 5 件：`FC_DL_IntModChk`（DINT 取模防御包装：除零闸 + DINT_MIN/−1 溢出面拦截）｜`FC_DL_FiniteClassify`（LREAL 非有限四态分类原子，R79 判据原子化全库首件）｜`FC_DL_ArrayCumSumLreal`（数组前缀累计序列，双遍扫描 + 守卫计数器；LGF 统计线借鉴）｜`FC_DL_CharCodeConvert`（单字符↔码双向，码域/串长域闸）｜`FC_DL_WordToBinString`（WORD→16 字符定长二进制文本，MSB-first SHL 掩码法）｜`FC_DL_HmsToTodChk`（时/分/秒合成 TOD，钳位照算 + 属主件委托全回执）
+- DL_Base 2 件：`FC_DL_DaysInMonthChk`（年月→当月天数，闰年律复用 LeapYearChk 单源；承诺段与属主窗口求交 [1998,2099]）｜`FB_DL_BlinkOutput`（方波闪烁：tOn/tOff 独立两相 + 零值组态锁存防静默失效；OSCAT BLINK 行为定义借鉴）
+- DL_Device 1 件：`FB_DL_OilLevelWatch`（油位双阈值迟滞监视：非有限安全侧收紧 + NE107 出口 + 电平式解除双路）
+- DL_Motion 1 件：`FB_DL_ToolChangerSeq`（换刀机构顺控 C3：取刀/换刀/回库六相 + 互锁保持相防半程掉刀 + 逐相超时；与 TurretToolSelect 分工）
+- DL_Process 2 件：`FB_DL_RejectBlowCtrl`（剔除气吹执行时序：布防延时换算 + 确认窗复验 + 漏剔/误剔对账）｜`FB_DL_SipLineSterilSeq`（管路 SIP 灭菌顺控：保温跌破回升温从零重计，无菌保证不断点续计）
+
+### Fixed
+- `FC_DL_AirSpecificVolume` v1.0.1：段 5 属主件调用补第 6 形参回执 `bValid => _bPwsVld`（E032 编译合规，契约级修复行为零变更，R381 新规首用）；同族复核另报 8 处省略式调用挂账（R333 只挂账不改码）。
+
+### Tooling
+- L2 闸 stub 补齐：`INT_TO_UINT`/`UINT_TO_INT` 标准换算声明 + `CONCAT__STRING`/`MID__STRING` 重整名声明（RuSTy 泛型外部桩实例化缺口，闸侧资产不属库交付物）。
+
+## v2.63.0 — 2026-11-22（R71 七件入册 + ScaleRangeWatch v1.0.1 增益零域点修 ｜ 零检索轮 ｜ L2 真编译闸落地）
+
+### Added（7 件：DL_MathData 2 / DL_Device 2 / DL_Base 1 / DL_Motion 1 / DL_Process 1）
+- DL_MathData 2 件：`FC_DL_AirSpecificVolume`（湿空气比容 m³/kg 干空气；饱和压复用属主件 `FC_DL_VaporPressureSat` 常量单源，分母先判后除）｜`FC_DL_TriangleSolveSSS`（SSS 三边解角：三角不等式容差闸 + ACOS 入参钳位 + 三角和复验三闸）
+- DL_Device 2 件：`FB_DL_AxisEncBatteryWatch`（绝对值编码器电池欠压监视：双阈值迟滞 + 输入非有限安全侧收紧 + NE107 分级出口）｜`FB_DL_PumpPrimingWatch`（离心泵灌泵期监视：双判据交叉验证 + 双定时器无条件刷新）
+- DL_Base 1 件：`FC_DL_DurationFormat`（TIME 时长四分量分解，HMI 显示专用，常量除子级联零除零面）
+- DL_Motion 1 件：`FB_DL_FlyingShearSync`（飞剪同步：测长→进窗→同步→剪切→退出五相，同步窗内线速失配即退相，不留给「带病下刀」路径）
+- DL_Process 1 件：`FB_DL_LaneDivertCtrl`（道岔分流：到件→动作→尾件→恢复四相，失能回夹先于状态机）
+
+### Fixed（PATCH 级点修）
+- `FB_DL_ScaleRangeWatch` **v1.0.1**：补**增益零域**组态闸（`ABS(fGain) <= DL_SRW_GMIN`，GMIN=1.0E-15）——v1.0.0 在 `fGain=0.0` 时工程值被钉死在偏置值、上下限报警永久不触发且无故障码（保护静默失效）。码位沿用 `16#0002_0121` 不新开，不改引脚。
+
+### Docs
+- 徽章口径修正：分库徽章自 R70 起与 registry 漂移（合计 1,179 ≠ 1,199），本轮按 registry 实测重算回写（1,206 / 152·288·135·220·125·286 / SFT 1,239）。
+
+## v2.60.0 — 2026-11-22（R68 十六件入册 + 收口 3 处就地修 + 终审 9 件 10 处 v1.0.1 ｜ 零检索轮）
+
+### Added（16 件：DL_Base 3 / DL_MathData 2 / DL_Device 6 / DL_Process 4 / DL_Motion 1）
+- DL_Base 3 件：`FB_DL_InterlockBypassAudit`（联锁旁路全生命周期审计：申请→时限→到期自动恢复 + 8 条环形事件台账 + 旁路计数 255 饱和）｜`FB_DL_ClockDriftMonitor`（本地 RTC vs 外部标准钟漂移率 [ms/h] 监视，回拨单列校钟事件）｜`FB_DL_DiagTextLookup`（诊断码→HMI 双语文本查表，越界默认行 + 255 截断四步样板）
+- DL_MathData 2 件：`FC_DL_WordFromBytes` / `FC_DL_WordToBytes`（BYTE 数组 ↔ WORD/DWORD 双向，ABCD/CDAB/BADC/DCBA 四序，round-trip 逐字节验收；双向对，非凑数变体）
+- DL_Device 6 件：`FB_DL_FlowMeterKFactorDrift`（**§19.6 已勾未注册漂移件重建**：K 回读比对 + 批次总量对拍 + 漂移折算 → NE107 分级）｜`FB_DL_CameraHealthWatch`（触发超时 / 心跳丢失 / NG 率趋势三判据独立确认窗）｜`FB_DL_VisionLightBank`（2~8 通道互斥仲裁 + 亮度保持 + 稳定延时）｜`FB_DL_RotaryAirlockCtrl`（星型卸料器：料位禁启 + 失速判据 + 反转点动解卡互斥）｜`FB_DL_TwoSpeedMotor`（变极双绕组：切换死区互锁 + 高速禁止位 + 反馈校验）｜`FB_DL_CabinetCoolingWatch`（柜内-环境温差 + 风扇双判据 + 滤网阻塞趋势）
+- DL_Process 4 件：`FB_DL_StretchWrapSeq`（缠绕膜七态最小子集，圈数配方 + 圈边界暂停）｜`FB_DL_OutdoorTempReset`（OAT 线性重置供水设定 + 斜坡限速 + 最小水温联锁）｜`FB_DL_KilnPressureCtrl`（窑压定值闭环 + 抽力限幅 + 窑门扰动前馈）｜`FB_DL_TruckScaleSeq`（过磅七态 + 稳定窗判稳 + 皮毛配对台账 + 防作弊窗）
+- DL_Motion 1 件：`FB_DL_AxisPowerOnSelfTest`（上电自检五步序检 + 结论锁存禁使能，轴状态零定义 R31）
+
+### Fixed（收口期就地修 3 处）
+- `FB_DL_InterlockBypassAudit` / `FB_DL_ClockDriftMonitor` / `FB_DL_TruckScaleSeq`：METHOD 块补 `END_METHOD`（编码期引用的 DolMotor 先例失实，METHOD 块原缺闭合词）
+- `FB_DL_TruckScaleSeq`：段 7 补 `fTareLatched` / `fGrossLatched` 槽镜像输出（原漏赋值）
+
+### Fixed（R68 终审就地修 9 件 10 处 → v1.0.1，单文件机检 9/9 PASS）
+- 同型「组态锁存解除路径不可达」（8 件）：`ClockDriftMonitor` / `CameraHealthWatch` / `VisionLightBank` / `FlowMeterKFactorDrift` / `RotaryAirlockCtrl` / `TwoSpeedMotor` / `TruckScaleSeq` / `AxisPowerOnSelfTest` —— 置锁存后不迁相而清零行只写在不可达的 `eFault` 相，补可达解除式（复位沿 + 组态改对），引脚与码位不变
+- `FB_DL_TruckScaleSeq`：超时重测清窗单拍化（`TON.Q` 常真导致每拍清窗，判稳永不可达）
+- `FB_DL_StretchWrapSeq`：总圈计数上限改用 510（原以单段上界 255 作总数闸，合法配方 >255 圈死锁）
+
+### Changed
+- registry v2.59.0 → **v2.60.0**，`total_components` 1,163 → **1,179**（148/280/134/213/122/282，sum 断言过）；9 件 `version` 升 1.0.1 并追加标签 `r68-postfix`
+- SFT 语料 1,190 → **1,206** 条（+16 新件，bad=0）
+- 子库 VERSION 节号按实测 +1（R311）：Device 实测 v1.29 → **v1.30**、Motion 实测 v1.27 → **v1.28**（任务书假设 v1.28 / v1.27 滞后一轮）
+- 本轮零检索轮（WebSearch 0 次，连续第 5 轮），取材复用源矩阵既有组：isa182 / lgf-converter / lbp / packml / s7motion / tcopen / oscat-building / roadmap-industry-pool / self-std
+
+## v2.59.0 — 2026-11-22（R67 八件入册 + R66 挂账点修三件清零 ｜ 零检索轮）
+
+### Added（8 件：DL_Base 2 / DL_MathData 6）
+- DL_Base 2 件：`FB_DL_LastGoodValueHold`（传感器失效值保持：NE43 失效冻结最后有效值 + 陈旧超限置码，载体锁存/透传双轨不混用）｜`FB_DL_ImpulseRelay`（沿触发定宽脉冲输出，重触发重启全程脉宽）
+- DL_MathData 6 件：`FC_DL_CalcDistance2D`（2D 距离，Hypot 缩放防溢出）｜`FC_DL_AngleDiffRad`（弧度角最短带符号差，跨 ±π 回绕）｜`FC_DL_NormTo01`（线性归一化 0..1，反向域/零域/钳位三码分立）｜`FC_DL_SlewRateCalc`（采样间变化率，dt 有效性前置闸）｜`FC_DL_HexToStr`（字节串→HEX 文本，T0 防御性包装，整字节截断）｜`FC_DL_StrToHex`（HEX 文本→字节串，三面错误码 + 失败零写入原子性，T0 防御性包装）
+
+### Fixed（R66 挂账点修 3 件，当轮清零）
+- `FC_DL_QuadPolyFit` v1.0.1：段 7 回代前补舒尔补主元闸（`ABS(aM[2,2]) < QPF_PIV_MIN` → 码 03，两相异 x 值正规方程秩 2，原除零 NaN/Inf 错归码 02）；段 4 ABS 溢出复核扩至 s1/s2/s3/t0/t1 全部矩量
+- `FB_DL_LotMergeGate` v1.0.1：删除 eFault 分支死迁出式 `IF NOT _bFaultLatch → eIdle`（R323/R320 族：故障相出口只留复位沿）；L2 留档防御保留
+- `FB_DL_TaktPaceMonitor` v1.0.2：fExpectR 闸界 4.294967295E9 → 2147483647（DINT 转换链域对齐，常量 `TPM_DINT_MAX` 显式声明）
+
+### Changed
+- 三角波发生器撞名裁定：`FB_DL_TriangleGenerator` 与 R39 注册件（DL_Algo 02_3_87）重名，撤销本轮目标、未覆盖入库（宁少勿滥，11/12 如实少报）；三查流程失准登记总监 R327
+- SFT 语料返修重注入 3 条（上述点修件新版本源码），语料 1,179 → **1,190**（bad=0）
+- 本轮零检索轮（WebSearch 0 次），取材复用源矩阵既有组：lgf-math / lgf-technology / ne43 / oscat-basic / iec-std-wrapper
+
+## v2.58.0 — 2026-11-22（R66 十件入册 + 终审就地修两件 ｜ 零检索轮）
+
+### Added（10 件：DL_Base 2 / DL_MathData 4 / DL_Device 1 / DL_Motion 1 / DL_Process 2）
+- DL_Base 2 件：`FC_DL_HammingDist`（LWORD 两位串汉明距离，配方/位配置比对）｜`FB_DL_DutyCycleMeasure`（BOOL 信号周期 + 占空比在线测量，时间注入引脚）
+- DL_MathData 4 件：`FC_DL_CircularMeanCalc`（角度循环均值，Σsin/Σcos 向量合成，跨 0°/360° 不穿越）｜`FC_DL_WeekNumIsoCalc`（ISO 8601 周号计算，日历族补口）｜`FC_DL_BilinearInterp`（2D 等距表双线性插值，越界钳位显式置码）｜`FC_DL_QuadPolyFit`（二次多项式最小二乘拟合，3×3 正规方程 + 列主元 Gauss 消元）
+- DL_Device 1 件：`FB_DL_AnalogOutFailsafe`（模拟量输出故障安全：看门狗/请求非有限/配置非法 → 冻结或安全值二选一 + 回程斜坡）
+- DL_Motion 1 件：`FB_DL_FeedOverrideRamp`（进给倍率 0~150% 钳位 + 变化率限幅 + 快速归零与恢复速率分离）
+- DL_Process 2 件：`FB_DL_LotMergeGate`（批次合并放行闸，双门槛齐套 + 召回重入）｜`FB_DL_TaktPaceMonitor`（目标节拍偏差监视，EWMA + 累计欠产台账，ISO 22400-2 口径）
+
+### Fixed（终审就地修 2 件，升 v1.0.1）
+- `FB_DL_AnalogOutFailsafe`：3 严重——①tonWd IN 极性反相（健康心跳驻留即误锁 1001、真断线不检测）；②锁存期段 6 整体旁路致 eFrozen/eSafeHold 失保动作永不执行；③沿式解除在恒真心跳缺省组态下对 1002/1003 不可达 → 改电平式解除（REVIEW_R66 §二，R319~R321）
+- `FB_DL_TaktPaceMonitor`：1 中——窗面/计时基准面失效静默降级（不置码），并入码 01 电平面（R258 家族复发）
+
+### Changed
+- 全库 1,155 件 / v2.58.0；SFT 语料 1,177 条；终审 5+1 抽：严重 3（就地修）/ 中 1（就地修）/ 轻 4（挂 R67）/ PASS 2；R67 配额 16→12（R309 分散型下调 20%）；新增可判定规则 6 条（R319~R324），距 FB-51 第 6 轮不固化。
+
+
 
 ### Added（10 件：DL_Base 6 / DL_MathData 1 / DL_Device 2 / DL_Process 1）
 - DL_Base 6 件：`FC_DL_StringEditDistance`（Levenshtein 滚动单行 DP，配方/批次模糊匹配）｜`FC_DL_StringWildMatch`（通配符迭代双指针回溯）｜`FC_DL_ArrFillEx` / `FC_DL_ArrCopySeg`（LGF DataHandling clean-room +2：段填充/段拷贝，越界截断信息级）｜`FC_DL_SortIndexInt`（稳定插入排序索引表）｜`FB_DL_HysteresisBandMon`（LGF Comparator clean-room：三态区间监视 + 滞回 + 越带沿，与 FC_DL_Hysteresis 互引分工）
@@ -2112,3 +2198,18 @@
 
 ### Changed
 - 全库 1053 件 / v2.50.0；SFT 语料 1054 条。
+
+## v2.62.0 — 2026-11-22（R70 构建轮）
+- 新增 10 件（全部 v1.0.0，2,075 行）：
+  - `DL_MathData`（+3）：`FC_DL_ModPosWrap`（MOD 负数归正 + 模数零域闸）｜`FC_DL_LerpClamped`（线性插值 t 域钳位，禁外推）｜`FB_DL_ScaleRangeWatch`（工程量标定区间越界监视，回差 + 延时确认）
+  - `DL_Process`（+2）：`FB_DL_BatchDoseSeq`（预/快/慢/落料/校验五相定量给料，欠重超重分码）｜`FB_DL_PumpAlternationLead`（多泵运行小时选主 + 故障切备 + 周期轮换）
+  - `DL_Device`（+3）：`FB_DL_ValveSeatLeakTest`（压降保持 + 温度修正判定）｜`FB_DL_ConveyorJamDetect`（无件流 + 电流双判据）｜`FB_DL_CabinetTempDerate`（多点取最大 + 分级线性降额 + 失效保持窗）
+  - `DL_Motion`（+1）：`FB_DL_AxisSoftLimitGuard`（减速距离预判 + 越限方向禁止 + 反向放行退出）
+  - `DL_Base`（+1）：`FB_DL_RecipeStepExec`（步推进/步超时/暂停续步/跳步拒绝，单定时器逐相 PT 解耦）
+- 合计 1,199 / 10,000；SFT 语料 1,231 条（+10，bad=0）；机检 10/10 PASS。
+- 已知偏差：`nErrCode` 统一 UDINT（码段 16#0002_xxxx 为 32 位，WORD 域不足，已写入各件头注释）；L2 真编译闸未开（RuSTy 就位待 UCRT）。
+
+## v2.61.0 — 2026-11-22（R69）
+- **+10 新件**：MathData 3（FC_DL_TimeMulSat / FC_DL_TimeClampEx / FC_DL_UdintToStringTrim，T0 防御性包装）｜Device 2（FB_DL_MotorHealthAoi / FB_DL_ValveIslandDiag）｜Base 2（FB_DL_AlarmShelveMgmt / FB_DL_SignalFreeze）｜Motion 1（FB_DL_AxisDroopComp）｜Algo 1（FB_DL_CascadeCtrl）｜Process 1（FB_DL_CuringOvenSeq）。
+- **7 项点修**（R68 挂账全清）：InterlockBypassAudit v1.0.1 / StretchWrapSeq v1.0.2 / FlowMeterKFactorDrift v1.0.2 / TruckScaleSeq v1.0.2 / RotaryAirlockCtrl v1.0.2（含 04B1/04B2 回落随①合并）。
+- SFT 语料 1,206 → **1,221**（+10 新 +5 返修重注入），bad=0。总库 **1,189 / 10,000**。

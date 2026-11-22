@@ -68,30 +68,41 @@ PROPERTY uErrorId     : UDINT         // 末次故障码（Last error code），
 
 METHOD CmdRun : BOOL // 正/反转运行指令（Run command，bFwd=TRUE 正转 / FALSE 反转），电平语义受理为保持锁存；故障态拒绝返回 FALSE / Run command, held latch accepted, rejected in fault
 VAR_INPUT
-    bFwd : BOOL // 方向选择（Direction select），TRUE=正转 / FALSE=反转 / TRUE = forward, FALSE = reverse
+    bFwd : BOOL; // 方向选择（Direction select），TRUE=正转 / FALSE=反转 / TRUE = forward, FALSE = reverse
 END_VAR
+
+    END_METHOD
 
 METHOD CmdStop : BOOL // 停止指令（Stop command）：撤销运行/点动锁存；无条件受理 / Stop command, revokes run and jog latches, unconditionally accepted
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdJog : BOOL // 点动指令（Jog command，bFwd=TRUE 正向点动），优先级高于运行；故障态拒绝返回 FALSE / Jog command with priority over run, rejected in fault
 VAR_INPUT
-    bFwd : BOOL // 点动方向（Jog direction），TRUE=正向 / FALSE=撤销点动保持 / TRUE = jog forward, FALSE = release jog hold
+    bFwd : BOOL; // 点动方向（Jog direction），TRUE=正向 / FALSE=撤销点动保持 / TRUE = jog forward, FALSE = release jog hold
 END_VAR
+
+    END_METHOD
 
 METHOD SetFrequency : BOOL // 频率设定（Frequency set）[Hz]，越界/非有限值拒绝并返回 FALSE / Frequency set command, out-of-range or non-finite returns FALSE
 VAR_INPUT
-    fHz : REAL // 频率设定值（Frequency value）[Hz]，域 0..fFreqMax / Frequency value [Hz], range 0..fFreqMax
+    fHz : REAL; // 频率设定值（Frequency value）[Hz]，域 0..fFreqMax / Frequency value [Hz], range 0..fFreqMax
 END_VAR
+
+    END_METHOD
 
 METHOD SelectPresetSpeed : BOOL // 多段速选择（Preset speed select），0=模拟量给定、1..7=段速；越界拒绝返回 FALSE / Preset speed select, 0 = analog reference, 1..7 = preset steps, out-of-range returns FALSE
 VAR_INPUT
-    nIdx : USINT // 段速索引（Preset index），0=模拟量给定 / 1..7=段速 / Preset index, 0 = analog reference, 1..7 = preset steps
+    nIdx : USINT; // 段速索引（Preset index），0=模拟量给定 / 1..7=段速 / Preset index, 0 = analog reference, 1..7 = preset steps
 END_VAR
+
+    END_METHOD
 
 METHOD CmdReset : BOOL // 复位指令（Reset command），返回是否受理（存在故障时为 TRUE）/ Returns TRUE only when accepted
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

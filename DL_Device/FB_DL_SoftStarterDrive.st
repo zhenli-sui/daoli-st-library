@@ -96,6 +96,49 @@ VAR
     tonInh     : TON;             // 重启抑制冷却窗，段 0 无条件刷新 / the restart inhibit cooling window
 END_VAR
 
+METHOD CmdStart : BOOL
+VAR_INPUT
+END_VAR
+IF (_ePhase <> E_DL_SsdPhase.eSsdIdle) OR _bFault OR _bInhibit THEN // 非空闲 / 故障 / 抑制拒绝 / refused when not idle, faulty or inhibited
+    CmdStart := FALSE; // 拒绝 / refused
+ELSE // 受理 / accepted
+    _bPendStart := TRUE; // 登记启动请求，主体状态机消化 / register the start request for the body
+    CmdStart := TRUE; // 受理 / accepted
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 无条件安全停止（双命令全断语义，主体在载能相消化）。
+ *      Method CmdStop, the unconditional safe stop, consumed by the body in the powered phases.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop
+VAR_INPUT
+END_VAR
+_bStopLatch := TRUE; // 登记停止锁存，主体状态机消化 / register the stop latch for the body
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位过载 / 故障，返回是否可复位。
+ *      Method CmdReset, resets the overload or the fault, returns the resettable verdict.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFault OR (_ePhase = E_DL_SsdPhase.eSsdTrip) OR (_ePhase = E_DL_SsdPhase.eSsdFault) THEN // 存在锁存故障 / a latch exists
+    _bPendReset := TRUE; // 登记复位请求，主体状态机消化 / register the reset request for the body
+    CmdReset := TRUE; // 可复位 / resettable
+ELSE // 无故障可复位 / nothing to reset
+    CmdReset := FALSE; // 不可复位 / not resettable
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态（内部相位映射契约枚举 E_DL_MotorState）。
+ *      Property eState, the internal phase mapped onto the contract enum.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // 段 0｜定时器与沿检测无条件周期刷新（禁入分支，FB50-1）/ segment 0, the unconditional refresh
 rtStart(CLK := bCmdStart); // 启动沿 / the start edge
 rtReset(CLK := bReset); // 复位沿 / the reset edge
@@ -233,43 +276,9 @@ END_IF
  * 方法: CmdStart —— 启动指令（单发）。故障 / 脱扣 / 抑制 / 非空闲态返回 FALSE。
  *      Method CmdStart, a one shot start, FALSE when latched, tripped, inhibited or not idle.
  *------------------------------------------------------------------------------*)
-METHOD CmdStart : BOOL
-VAR_INPUT
-END_VAR
-IF (_ePhase <> E_DL_SsdPhase.eSsdIdle) OR _bFault OR _bInhibit THEN // 非空闲 / 故障 / 抑制拒绝 / refused when not idle, faulty or inhibited
-    CmdStart := FALSE; // 拒绝 / refused
-ELSE // 受理 / accepted
-    _bPendStart := TRUE; // 登记启动请求，主体状态机消化 / register the start request for the body
-    CmdStart := TRUE; // 受理 / accepted
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 无条件安全停止（双命令全断语义，主体在载能相消化）。
- *      Method CmdStop, the unconditional safe stop, consumed by the body in the powered phases.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop
-VAR_INPUT
-END_VAR
-_bStopLatch := TRUE; // 登记停止锁存，主体状态机消化 / register the stop latch for the body
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位过载 / 故障，返回是否可复位。
- *      Method CmdReset, resets the overload or the fault, returns the resettable verdict.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFault OR (_ePhase = E_DL_SsdPhase.eSsdTrip) OR (_ePhase = E_DL_SsdPhase.eSsdFault) THEN // 存在锁存故障 / a latch exists
-    _bPendReset := TRUE; // 登记复位请求，主体状态机消化 / register the reset request for the body
-    CmdReset := TRUE; // 可复位 / resettable
-ELSE // 无故障可复位 / nothing to reset
-    CmdReset := FALSE; // 不可复位 / not resettable
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态（内部相位映射契约枚举 E_DL_MotorState）。
- *      Property eState, the internal phase mapped onto the contract enum.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_MotorState
 CASE _ePhase OF // 内部相位到契约枚举映射 / the internal phase to the contract enum mapping
 E_DL_SsdPhase.eSsdIdle:   eState := E_DL_MotorState.eIdle;          // 空闲映射 / the idle mapping

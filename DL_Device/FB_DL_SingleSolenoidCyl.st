@@ -100,6 +100,76 @@ VAR
     _fbTonRetFb      : TON;            // 缩回磁开校验窗定时器（Retract reed check window timer）/ Retract reed check window timer instance
 END_VAR
 
+METHOD CmdExtend : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
+    CmdExtend       := FALSE;   // 故障态拒绝（Rejected in fault state）
+    _bMethRetLatch  := FALSE;   // 清反向残留锁存（Clear stale reverse latch）
+ELSE
+    _bMethExtLatch  := TRUE;    // 登记伸出保持锁存（Register extend hold latch）
+    _bMethRetLatch  := FALSE;   // 互斥注销缩回锁存（Cancel opposite retract latch）
+    CmdExtend       := TRUE;    // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdRetract —— 缩回指令（单线圈释放线圈，弹簧复位）。故障态拒绝。
+ *      Method CmdRetract - release coil for spring return, rejected in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdRetract : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
+    CmdRetract      := FALSE;   // 故障态拒绝（Rejected in fault state）
+    _bMethExtLatch  := FALSE;   // 清反向残留锁存（Clear stale reverse latch）
+ELSE
+    _bMethRetLatch  := TRUE;    // 登记缩回锁存（Register retract latch）
+    _bMethExtLatch  := FALSE;   // 互斥注销伸出锁存（Cancel opposite extend latch）
+    CmdRetract      := TRUE;    // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 线圈释放、弹簧复位至缩回位（单线圈安全侧）。
+ *      Method CmdStop - release coil, spring returns to retracted (safe side).
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
+    CmdStop         := FALSE;   // 故障态拒绝（Rejected in fault state）
+ELSE
+    _bMethExtLatch  := FALSE;   // 注销伸出锁存（Cancel extend latch）
+    _bMethRetLatch  := TRUE;    // 登记缩回锁存，主体状态机消化（Register retract latch, consumed by body）
+    _bPendStop      := TRUE;    // 登记停止请求（Register stop request）
+    CmdStop         := TRUE;    // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
+    _bPendReset     := TRUE;    // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset        := TRUE;    // 可复位（Resettable）
+ELSE
+    CmdReset        := FALSE;   // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -229,68 +299,10 @@ bMoving := (_eState = E_DL_CylinderState.eExtending) OR (_eState = E_DL_Cylinder
  * 方法: CmdExtend —— 伸出指令（登记保持锁存）。故障态一律拒绝返回 FALSE。
  *      Method CmdExtend - register extend hold latch, rejected with FALSE in fault.
  *------------------------------------------------------------------------------*)
-METHOD CmdExtend : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
-    CmdExtend       := FALSE;   // 故障态拒绝（Rejected in fault state）
-    _bMethRetLatch  := FALSE;   // 清反向残留锁存（Clear stale reverse latch）
-ELSE
-    _bMethExtLatch  := TRUE;    // 登记伸出保持锁存（Register extend hold latch）
-    _bMethRetLatch  := FALSE;   // 互斥注销缩回锁存（Cancel opposite retract latch）
-    CmdExtend       := TRUE;    // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdRetract —— 缩回指令（单线圈释放线圈，弹簧复位）。故障态拒绝。
- *      Method CmdRetract - release coil for spring return, rejected in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdRetract : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
-    CmdRetract      := FALSE;   // 故障态拒绝（Rejected in fault state）
-    _bMethExtLatch  := FALSE;   // 清反向残留锁存（Clear stale reverse latch）
-ELSE
-    _bMethRetLatch  := TRUE;    // 登记缩回锁存（Register retract latch）
-    _bMethExtLatch  := FALSE;   // 互斥注销伸出锁存（Cancel opposite extend latch）
-    CmdRetract      := TRUE;    // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 线圈释放、弹簧复位至缩回位（单线圈安全侧）。
- *      Method CmdStop - release coil, spring returns to retracted (safe side).
- *------------------------------------------------------------------------------*)
-METHOD CmdStop : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
-    CmdStop         := FALSE;   // 故障态拒绝（Rejected in fault state）
-ELSE
-    _bMethExtLatch  := FALSE;   // 注销伸出锁存（Cancel extend latch）
-    _bMethRetLatch  := TRUE;    // 登记缩回锁存，主体状态机消化（Register retract latch, consumed by body）
-    _bPendStop      := TRUE;    // 登记停止请求（Register stop request）
-    CmdStop         := TRUE;    // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_CylinderState.eFault) THEN
-    _bPendReset     := TRUE;    // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset        := TRUE;    // 可复位（Resettable）
-ELSE
-    CmdReset        := FALSE;   // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_CylinderState
 eState := _eState;            // 返回内部状态（Return internal state）
 

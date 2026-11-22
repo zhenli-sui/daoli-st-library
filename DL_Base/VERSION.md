@@ -6,6 +6,11 @@
 
 ---
 
+## v1.31 — 2026-11-22（R71）
+
+- R71 新增 1 件：`FC_DL_DurationFormat`（TIME → 天/时/分/秒 四分量，HMI 显示纯函数，常量除子级联零除零面，毫秒余量置 `bTruncated`）。累计 152 件。
+
+---
 ## v1.30 — 2026-11-21（R59）
 
 R59 新增 TimerFailSafe / TwoStepConfirm / MultiSegmentTimer 三件（看门狗失效安全、两步确认、多段时序），补足基础控制时序家族。
@@ -704,3 +709,31 @@ R59 新增 TimerFailSafe / TwoStepConfirm / MultiSegmentTimer 三件（看门狗
 
 - 新增 6 件：`FC_DL_StringEditDistance`（Levenshtein 滚动单行 DP）/ `FC_DL_StringWildMatch`（通配符双指针回溯）/ `FC_DL_ArrFillEx` / `FC_DL_ArrCopySeg`（LGF DataHandling clean-room）/ `FC_DL_SortIndexInt`（稳定排序索引）/ `FB_DL_HysteresisBandMon`（LGF Comparator clean-room，与 FC_DL_Hysteresis 互引分工）。
 - 子库累计 141 件。
+
+## v1.37 — 2026-11-22（R66 追加）
+
+- 新增 2 件：`FC_DL_HammingDist`（LWORD 两位串汉明距离，逐位异或 + 1 计数）/ `FB_DL_DutyCycleMeasure`（BOOL 周期 + 占空比在线测量，fCallCycleMs 时间注入）。
+- 子库累计 143 件。
+
+## v1.38 — 2026-11-22（R67 追加）
+
+- 新增 2 件：`FB_DL_LastGoodValueHold`（失效值保持 + 陈旧置码，ne43 族）｜`FB_DL_ImpulseRelay`（沿触发定宽脉冲，oscat-basic 借鉴 clean-room）。
+- 子库累计 145 件。
+
+## v1.39 — 2026-11-22（R68 追加）
+
+- 新增 3 件：`FB_DL_InterlockBypassAudit`（旁路全生命周期审计：申请/解除/超时三类事件 8 条环形台账 + 旁路计数 255 饱和；联锁本体归 `FB_DL_InterlockMatrix`）｜`FB_DL_ClockDriftMonitor`（RTC vs 标准钟漂移率 [ms/h] + 需校钟标志，只监视不写钟）｜`FB_DL_DiagTextLookup`（诊断码→双语文本查表，VAR_IN_OUT 数组注入零全局耦合）。
+- 终审就地修：`FB_DL_ClockDriftMonitor` v1.0.1（组态锁存解除路径可达化，原 eFault 相不可达）。
+- 子库累计 148 件。
+
+## v1.40 — 2026-11-22（R69 追加）
+- 新增 2 件：`FB_DL_AlarmShelveMgmt`（ISA-18.2 搁置生命周期）｜`FB_DL_SignalFreeze`（批量/报表期信号冻结采样）。
+- 点修：`FB_DL_InterlockBypassAudit` v1.0.0 → **v1.0.1**（迁相补 bBypassOn 清零 + 04B1/04B2 回落口径，R68 挂账）。
+
+## v1.31 — 2026-11-22（R70 追加）
+- 新增：FB_DL_RecipeStepExec（配方步序执行器）。
+- 子库累计 151 件。
+
+## v1.32 — 2026-11-23（R72 追加）
+
+- `FC_DL_DaysInMonthChk` / `FB_DL_BlinkOutput` 两件入册（日历原子复用 LeapYearChk 单源；OSCAT BLINK 行为定义借鉴，零值组态锁存防静默失效）。

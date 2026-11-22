@@ -65,3 +65,7 @@
 - **码位**：`16#0003_0196` ｜ `16#0003_0197` ｜ `16#0003_0372` ｜ `16#0003_0373` ｜ `16#0003_0374`
 
 *Last updated: 2026-11-17（R25 追加接口表 20 件）｜ 道莅工控代码库产品总监*
+
+## R68 新增件与终审就地修（2026-11-22）
+
+- `FB_DL_FlowMeterKFactorDrift`（§19.6 重建）/ `FB_DL_CameraHealthWatch` / `FB_DL_VisionLightBank` / `FB_DL_RotaryAirlockCtrl` / `FB_DL_TwoSpeedMotor` / `FB_DL_CabinetCoolingWatch`（R68）：六件设备健康与驱动件；前五件于 R68 终审升 v1.0.1（同型组态锁存解除式补可达，对外引脚与码位不变）。

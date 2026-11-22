@@ -117,6 +117,72 @@ VAR
     _fbTonCloseET  : TON;           // 关阀计时段定时器（Close timing segment timer），ET 供积分折算 / Close segment timer, ET feeds integration
 END_VAR
 
+METHOD CmdOpen : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
+    CmdOpen := FALSE;         // 故障态拒绝（Rejected in fault state）
+    _bPendClose := FALSE;     // 清反向残留锁存（Clear stale reverse latch）
+ELSE
+    _bPendOpen := TRUE;       // 登记开阀保持锁存（Register open hold latch）
+    _bPendClose := FALSE;     // 互斥注销关阀锁存（Cancel opposite close latch）
+    CmdOpen := TRUE;          // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdClose —— 关阀指令（受理为保持锁存）。故障态一律拒绝返回 FALSE。
+ *      Method CmdClose - close command held as latch, rejected with FALSE in fault.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdClose : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
+    CmdClose := FALSE;        // 故障态拒绝（Rejected in fault state）
+    _bPendOpen := FALSE;      // 清反向残留锁存（Clear stale reverse latch）
+ELSE
+    _bPendClose := TRUE;      // 登记关阀保持锁存（Register close hold latch）
+    _bPendOpen := FALSE;      // 互斥注销开阀锁存（Cancel opposite open latch）
+    CmdClose := TRUE;         // 受理成功（Accepted）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdStop —— 双脉冲全断保持当前位置。无条件受理。
+ *      Method CmdStop - both pulses off and hold position, unconditionally accepted.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdStop : BOOL
+VAR_INPUT
+END_VAR
+_bPendOpen  := FALSE;         // 注销开阀锁存（Cancel open latch）
+_bPendClose := FALSE;         // 注销关阀锁存（Cancel close latch）
+_bPendStop  := TRUE;          // 登记停止请求，主体状态机消化（Register stop request, consumed by body）
+CmdStop := TRUE;              // 无条件受理（Unconditionally accepted）
+
+(*------------------------------------------------------------------------------
+ * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
+ *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD CmdReset : BOOL
+VAR_INPUT
+END_VAR
+IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
+    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
+    CmdReset := TRUE;         // 可复位（Resettable）
+ELSE
+    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 属性: eState（GET）—— 当前状态机状态只读视图。
+ *      Property eState (GET) - read-only view of the current state machine state.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
 // ============================================================================
 // 段 1｜定时器与边缘检测实例无条件周期刷新（R7：严禁置于 IF/CASE 分支内）
 //      Unconditional per-cycle refresh of all timer and edge instances (R7)
@@ -344,64 +410,10 @@ bClosed := bLimClosed OR (_fEstInt <= 1.0); // 全关确认：限位优先 + 1% 
  * 方法: CmdOpen —— 开阀指令（受理为保持锁存）。故障态一律拒绝返回 FALSE。
  *      Method CmdOpen - open command held as latch, rejected with FALSE in fault.
  *------------------------------------------------------------------------------*)
-METHOD CmdOpen : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
-    CmdOpen := FALSE;         // 故障态拒绝（Rejected in fault state）
-    _bPendClose := FALSE;     // 清反向残留锁存（Clear stale reverse latch）
-ELSE
-    _bPendOpen := TRUE;       // 登记开阀保持锁存（Register open hold latch）
-    _bPendClose := FALSE;     // 互斥注销关阀锁存（Cancel opposite close latch）
-    CmdOpen := TRUE;          // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdClose —— 关阀指令（受理为保持锁存）。故障态一律拒绝返回 FALSE。
- *      Method CmdClose - close command held as latch, rejected with FALSE in fault.
- *------------------------------------------------------------------------------*)
-METHOD CmdClose : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
-    CmdClose := FALSE;        // 故障态拒绝（Rejected in fault state）
-    _bPendOpen := FALSE;      // 清反向残留锁存（Clear stale reverse latch）
-ELSE
-    _bPendClose := TRUE;      // 登记关阀保持锁存（Register close hold latch）
-    _bPendOpen := FALSE;      // 互斥注销开阀锁存（Cancel opposite open latch）
-    CmdClose := TRUE;         // 受理成功（Accepted）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: CmdStop —— 双脉冲全断保持当前位置。无条件受理。
- *      Method CmdStop - both pulses off and hold position, unconditionally accepted.
- *------------------------------------------------------------------------------*)
-METHOD CmdStop : BOOL
-VAR_INPUT
-END_VAR
-_bPendOpen  := FALSE;         // 注销开阀锁存（Cancel open latch）
-_bPendClose := FALSE;         // 注销关阀锁存（Cancel close latch）
-_bPendStop  := TRUE;          // 登记停止请求，主体状态机消化（Register stop request, consumed by body）
-CmdStop := TRUE;              // 无条件受理（Unconditionally accepted）
 
-(*------------------------------------------------------------------------------
- * 方法: CmdReset —— 复位故障，返回是否可复位（存在锁存故障时为 TRUE）。
- *      Method CmdReset - reset fault, returns TRUE only when a latch exists.
- *------------------------------------------------------------------------------*)
-METHOD CmdReset : BOOL
-VAR_INPUT
-END_VAR
-IF _bFaultLatch OR (_eState = E_DL_MotorValveState.eFault) THEN
-    _bPendReset := TRUE;      // 登记复位请求，主体状态机消化（Register reset request, consumed by body）
-    CmdReset := TRUE;         // 可复位（Resettable）
-ELSE
-    CmdReset := FALSE;        // 无故障可复位（Nothing to reset）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 属性: eState（GET）—— 当前状态机状态只读视图。
- *      Property eState (GET) - read-only view of the current state machine state.
- *------------------------------------------------------------------------------*)
 PROPERTY eState : E_DL_MotorValveState
 eState := _eState;            // 返回内部状态（Return internal state）
 

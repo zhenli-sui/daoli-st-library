@@ -63,15 +63,20 @@ PROPERTY uErrorId        : UDINT           // 末次事件码（Last error code�
 
 METHOD SetPosition : BOOL // 阀位指令设定（Position set）[%]，越界/非有限值拒绝并返回 FALSE / Position set command, out-of-range or non-finite returns FALSE
 VAR_INPUT
-    fPos : REAL // 阀位设定值（Position value）[%]，域 0..100 / Position value [%], range 0..100
+    fPos : REAL; // 阀位设定值（Position value）[%]，域 0..100 / Position value [%], range 0..100
 END_VAR
+
+    END_METHOD
 
 METHOD CmdStop : BOOL // 停止指令（Stop command）：冻结输出保持当前阀位，直至下次设定或使能撤除；故障态拒绝返回 FALSE / Freeze output until next set or enable drop, rejected in fault
 VAR_INPUT
 END_VAR
 
+    END_METHOD
+
 METHOD CmdReset : BOOL // 复位指令（Reset command），返回是否可复位（存在故障时为 TRUE）/ Returns TRUE only when resettable
 VAR_INPUT
 END_VAR
 
+    END_METHOD
 END_INTERFACE

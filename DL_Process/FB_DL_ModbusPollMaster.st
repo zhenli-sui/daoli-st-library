@@ -256,6 +256,63 @@ VAR CONSTANT
     DL_STN_MIN     : UINT := 1;         // 站数下限（Lower station bound）[站] / Lower bound of the station count
 END_VAR
 
+METHOD DoTransaction : BOOL
+VAR_IN_OUT
+    stItem : ST_DL_PollItem;           // 站表项（Poll item），只读意图，统计字段由主体维护 / Read-only intent, statistics maintained by the body
+END_VAR
+_stTxn.uSlaveAddr     := stItem.uSlaveAddr; // 装填从站地址（Fill the slave address）
+_stTxn.uFuncCode      := stItem.uFuncCode;  // 装填功能码（Fill the function code）
+_stTxn.uStartAddr     := stItem.uStartAddr; // 装填起始地址（Fill the start address）
+_stTxn.uQuantity      := stItem.uQuantity;  // 装填数量（Fill the quantity）
+_stTxn.eResult        := E_DL_MbTxnResult.ePending; // 结果置等待态（Result set to pending）
+_stTxn.uExceptionCode := 0;                 // 异常码清零（Exception code cleared）
+_stTxn.uRxLen         := 0;                 // 应答长度清零（Response length cleared）
+IF SendFrame(stTxn := _stTxn) THEN
+    IF RecvFrame(stTxn := _stTxn) THEN
+        _stTxn.eResult := E_DL_MbTxnResult.eDone; // 收帧完成即置成功（A complete response marks success）
+    END_IF
+ELSIF NOT _bTxnStub THEN
+    _stTxn.eResult := E_DL_MbTxnResult.eFailed; // 发送失败且非桩未覆盖（Send failure, not the stub case）
+END_IF
+DoTransaction := (_stTxn.eResult = E_DL_MbTxnResult.eDone); // 仅成功返回 TRUE（TRUE only on success）
+
+(*------------------------------------------------------------------------------
+ * 方法: SendFrame —— 帧级发送原语（抽象桩）。派生块覆盖后在体内完成组帧与发送。
+ *      Method SendFrame - frame level transmit primitive, an abstract stub here.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD SendFrame : BOOL
+VAR_IN_OUT
+    stTxn : ST_DL_ModbusTxn;           // 事务上下文（Transaction context），承载请求字段与中止标志 / Carries the request fields and the abort flag
+END_VAR
+IF stTxn.bAbort THEN
+    stTxn.eResult := E_DL_MbTxnResult.eFailed; // 已请求中止则不再发送（Aborted transactions are not transmitted）
+    SendFrame     := FALSE;            // 未发送（Not transmitted）
+ELSE
+    _bTxnStub := TRUE;                 // 标记抽象桩未被覆盖（Mark the stub as not overridden）
+    SendFrame := FALSE;                // 桩一律返回 FALSE（The stub always returns FALSE）
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 方法: RecvFrame —— 帧级接收原语（抽象桩）。派生块覆盖后在体内完成收帧与校验。
+ *      Method RecvFrame - frame level receive primitive, an abstract stub here.
+ *------------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD RecvFrame : BOOL
+VAR_IN_OUT
+    stTxn : ST_DL_ModbusTxn;           // 事务上下文（Transaction context），承载结果字段回填 / Carries the result fields to be filled in
+END_VAR
+IF stTxn.bAbort THEN
+    stTxn.eResult := E_DL_MbTxnResult.eFailed; // 已请求中止则不收帧（Aborted transactions are not received）
+    RecvFrame     := FALSE;            // 未接收（Not received）
+ELSE
+    _bTxnStub := TRUE;                 // 标记抽象桩未被覆盖（Mark the stub as not overridden）
+    RecvFrame := FALSE;                // 桩一律返回 FALSE（The stub always returns FALSE）
+END_IF
+    END_METHOD
+
 // ============================================================================
 // 段 1｜输出确定性默认值先赋（公约 0.9；R25 第一律：单拍标志每拍预清零）
 //      Deterministic defaults first, one-scan flags pre-cleared every scan
@@ -476,55 +533,6 @@ END_IF
  *      Method DoTransaction - abstract entry assembling the context and calling
  *      the frame level primitives. Derived blocks override this method.
  *------------------------------------------------------------------------------*)
-METHOD DoTransaction : BOOL
-VAR_IN_OUT
-    stItem : ST_DL_PollItem;           // 站表项（Poll item），只读意图，统计字段由主体维护 / Read-only intent, statistics maintained by the body
-END_VAR
-_stTxn.uSlaveAddr     := stItem.uSlaveAddr; // 装填从站地址（Fill the slave address）
-_stTxn.uFuncCode      := stItem.uFuncCode;  // 装填功能码（Fill the function code）
-_stTxn.uStartAddr     := stItem.uStartAddr; // 装填起始地址（Fill the start address）
-_stTxn.uQuantity      := stItem.uQuantity;  // 装填数量（Fill the quantity）
-_stTxn.eResult        := E_DL_MbTxnResult.ePending; // 结果置等待态（Result set to pending）
-_stTxn.uExceptionCode := 0;                 // 异常码清零（Exception code cleared）
-_stTxn.uRxLen         := 0;                 // 应答长度清零（Response length cleared）
-IF SendFrame(stTxn := _stTxn) THEN
-    IF RecvFrame(stTxn := _stTxn) THEN
-        _stTxn.eResult := E_DL_MbTxnResult.eDone; // 收帧完成即置成功（A complete response marks success）
-    END_IF
-ELSIF NOT _bTxnStub THEN
-    _stTxn.eResult := E_DL_MbTxnResult.eFailed; // 发送失败且非桩未覆盖（Send failure, not the stub case）
-END_IF
-DoTransaction := (_stTxn.eResult = E_DL_MbTxnResult.eDone); // 仅成功返回 TRUE（TRUE only on success）
 
-(*------------------------------------------------------------------------------
- * 方法: SendFrame —— 帧级发送原语（抽象桩）。派生块覆盖后在体内完成组帧与发送。
- *      Method SendFrame - frame level transmit primitive, an abstract stub here.
- *------------------------------------------------------------------------------*)
-METHOD SendFrame : BOOL
-VAR_IN_OUT
-    stTxn : ST_DL_ModbusTxn;           // 事务上下文（Transaction context），承载请求字段与中止标志 / Carries the request fields and the abort flag
-END_VAR
-IF stTxn.bAbort THEN
-    stTxn.eResult := E_DL_MbTxnResult.eFailed; // 已请求中止则不再发送（Aborted transactions are not transmitted）
-    SendFrame     := FALSE;            // 未发送（Not transmitted）
-ELSE
-    _bTxnStub := TRUE;                 // 标记抽象桩未被覆盖（Mark the stub as not overridden）
-    SendFrame := FALSE;                // 桩一律返回 FALSE（The stub always returns FALSE）
-END_IF
 
-(*------------------------------------------------------------------------------
- * 方法: RecvFrame —— 帧级接收原语（抽象桩）。派生块覆盖后在体内完成收帧与校验。
- *      Method RecvFrame - frame level receive primitive, an abstract stub here.
- *------------------------------------------------------------------------------*)
-METHOD RecvFrame : BOOL
-VAR_IN_OUT
-    stTxn : ST_DL_ModbusTxn;           // 事务上下文（Transaction context），承载结果字段回填 / Carries the result fields to be filled in
-END_VAR
-IF stTxn.bAbort THEN
-    stTxn.eResult := E_DL_MbTxnResult.eFailed; // 已请求中止则不收帧（Aborted transactions are not received）
-    RecvFrame     := FALSE;            // 未接收（Not received）
-ELSE
-    _bTxnStub := TRUE;                 // 标记抽象桩未被覆盖（Mark the stub as not overridden）
-    RecvFrame := FALSE;                // 桩一律返回 FALSE（The stub always returns FALSE）
-END_IF
 END_FUNCTION_BLOCK

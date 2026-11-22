@@ -44,7 +44,7 @@ TYPE E_DL_FbsPhase :
     eIdle        := 0,  // 空闲：变频运行保持，等切换申请 / idle, the VFD holds and waits for a swap request
     eStopVfd     := 10, // 停变频：撤变频命令等反馈消失 / stopping, the VFD command is withdrawn and the feedback awaited
     eWaitSpinDown:= 20,  // 等降速：转速阈值 + 最小间隔窗双判 / waiting, the speed threshold and the gap window
-    eCloseBypass : 30,  // 关旁通：出旁通命令等反馈确认 / closing, the bypass command waits for the feedback
+    eCloseBypass := 30,  // 关旁通：出旁通命令等反馈确认 / closing, the bypass command waits for the feedback
     eRunDurance  := 40, // 稳定中：旁通保持，驻留稳定窗 / running in, the bypass holds through the stability window
     eStable      := 50, // 已稳定：旁通运行，监视反馈 / stable, the bypass runs with feedback watch
     eFault       := 90  // 故障：成因锁存，双断 / fault, the cause is latched with both commands off
@@ -56,7 +56,7 @@ TYPE E_DL_FbsFault :
     eNone          := 0, // 无成因 / no cause
     eSwapTimeout   := 1, // 切换超时（停变频或降速窗耗尽，故障级，与 bError 配对）/ the swap timed out, fault grade paired with bError
     eFbLost        := 2, // 旁通反馈丢失（故障级，与 bError 配对）/ the bypass feedback was lost, fault grade paired with bError
-    eRetryExhausted: 3, // 重试用尽（故障级，与 bError 配对）/ the retries were exhausted, fault grade paired with bError
+    eRetryExhausted := 3, // 重试用尽（故障级，与 bError 配对）/ the retries were exhausted, fault grade paired with bError
     eCfgIllegal    := 4, // 组态非法（故障级，与 bError 配对）/ illegal configuration, fault grade paired with bError
     ePhaseBad      := 5  // 非法相位兜底（故障级，与 bError 配对）/ illegal phase fallback, fault grade paired with bError
 );

@@ -6,6 +6,12 @@
 
 ---
 
+## v1.32 — 2026-11-22（R71）
+
+- R71 新增 2 件：`FC_DL_AirSpecificVolume`（湿空气比容，饱和压复用属主件常量单源）｜`FC_DL_TriangleSolveSSS`（SSS 解角三闸）。
+- R71 点修 1 件：`FB_DL_ScaleRangeWatch` **v1.0.1** 增益零域组态闸（R70 挂账清）。累计 288 件。
+
+---
 ## v1.31 — 2026-11-21（R59）
 
 R59 新增 8 件：DmsAngleConvert / QuadraticSolve / DtlStringConv / AsciiFrameParse / DataResampler / FftRadix2 / ConductivityTempComp 等，覆盖单位换算、代数求解、时间串、帧解析、重采样与频域。
@@ -965,3 +971,32 @@ R59 新增 8 件：DmsAngleConvert / QuadraticSolve / DtlStringConv / AsciiFrame
 
 - 新增 `FC_DL_AngleUnitConvert`（deg/rad/grad 统一桥接 rad，系数预乘零除法面）。
 - 子库累计 268 件。
+
+## v1.38 — 2026-11-22（R66 追加）
+
+- 新增 4 件：`FC_DL_CircularMeanCalc`（角度循环均值向量合成）/ `FC_DL_WeekNumIsoCalc`（ISO 8601 周号，日历族补口）/ `FC_DL_BilinearInterp`（2D 等距表双线性插值）/ `FC_DL_QuadPolyFit`（二次多项式最小二乘拟合）。
+- 终审挂账：QuadPolyFit 舒尔补主元闸 + 段 4 复核扩展待 R67 点修（REVIEW_R66 M2/L1）。
+- 子库累计 272 件。
+
+## v1.38 — 2026-11-22（R67 追加）
+
+- 新增 4 件纯函数：`FC_DL_CalcDistance2D`（Hypot 缩放防溢出）/ `FC_DL_AngleDiffRad`（跨 ±π 最短角差）/ `FC_DL_NormTo01`（三码分立归一化）/ `FC_DL_SlewRateCalc`（变化率诊断测量，lgf-technology）。
+- 新增 2 件 T0 防御性包装：`FC_DL_HexToStr` / `FC_DL_StrToHex`（HEX 互转，委托平台字符串内建，IEC 标准语义溯源标注，iec-std-wrapper）。
+- 点修 `FC_DL_QuadPolyFit` → v1.0.1（舒尔补主元闸 + 矩量溢出复核扩展，R66 挂账）。
+- 子库累计 278 件。
+
+## v1.39 — 2026-11-22（R68 追加）
+
+- 新增 2 件：`FC_DL_WordFromBytes`（BYTE 数组→WORD/DWORD，四字节序 + 长度不足高段补零）｜`FC_DL_WordToBytes`（WORD/DWORD→BYTE 数组，与前者构成 round-trip 双向对）。
+- 子库累计 280 件。
+
+## v1.40 — 2026-11-22（R69 追加）
+- 新增 3 件（T0 防御性包装，溯源标注「IEC 61131-3 标准语义的道莅防御性实现」，委托内建不重实现内核）：`FC_DL_TimeMulSat`（TIME 乘法饱和）｜`FC_DL_TimeClampEx`（TIME 钳位扩展）｜`FC_DL_UdintToStringTrim`（UDINT→STRING 定宽去前导零）。
+
+## v1.32 — 2026-11-22（R70 追加）
+- 新增：FC_DL_ModPosWrap（MOD 负数归正）｜FC_DL_LerpClamped（插值钳位）｜FB_DL_ScaleRangeWatch（标定区间监视）。
+- 子库累计 286 件。
+
+## v1.33 — 2026-11-23（R72 追加）
+
+- `FC_DL_IntModChk` / `FC_DL_FiniteClassify` / `FC_DL_ArrayCumSumLreal` / `FC_DL_CharCodeConvert` / `FC_DL_WordToBinString` / `FC_DL_HmsToTodChk` 六件入册（T0 防御包装 4 + LGF 统计线 1 + 组态入口 1）；`FC_DL_AirSpecificVolume` v1.0.1 点修（补 `bValid => _bPwsVld` 全 6 形参回执，E032 契约级修复行为零变更）。
