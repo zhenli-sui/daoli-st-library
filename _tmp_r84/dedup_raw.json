@@ -1,0 +1,812 @@
+[
+ {
+  "name": "FB_DL_CncToolWearCompLoop",
+  "cat": "DL_Device",
+  "kind": "FB",
+  "sig": "7551bdae95fb0203",
+  "api": "bb72d075c554d176",
+  "in_n": 13,
+  "out_n": 11,
+  "sm": true,
+  "lines": 279,
+  "tokens": [
+   "cnc",
+   "comp",
+   "loop",
+   "tool",
+   "wear"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_CncLoadUnloadSeq",
+  "cat": "DL_Device",
+  "kind": "FB",
+  "sig": "11779bcccbb3ad2d",
+  "api": "3e65f7ed064baf8f",
+  "in_n": 10,
+  "out_n": 4,
+  "sm": true,
+  "lines": 140,
+  "tokens": [
+   "cnc",
+   "load",
+   "unload"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_ToolMagazinePosSeq",
+  "cat": "DL_Device",
+  "kind": "FB",
+  "sig": "e78ae3a6e59786ba",
+  "api": "3cb3396a08410e86",
+  "in_n": 9,
+  "out_n": 4,
+  "sm": true,
+  "lines": 105,
+  "tokens": [
+   "magazine",
+   "pos",
+   "tool"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CuttingForceCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "c5ea003424825bf6",
+  "api": "066adf56832530fd",
+  "in_n": 5,
+  "out_n": 2,
+  "sm": false,
+  "lines": 48,
+  "tokens": [
+   "cutting",
+   "force"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CncMrrCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "69c09f6d15936fd6",
+  "api": "b70757f4e064c87b",
+  "in_n": 4,
+  "out_n": 3,
+  "sm": false,
+  "lines": 50,
+  "tokens": [
+   "cnc",
+   "mrr"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CncSpindleLoadRatio",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "110b65881d912f02",
+  "api": "aac80c13ee86eca7",
+  "in_n": 4,
+  "out_n": 4,
+  "sm": false,
+  "lines": 48,
+  "tokens": [
+   "cnc",
+   "load",
+   "spindle"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CoolantConcCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "69c09f6d15936fd6",
+  "api": "505d52bcf1007533",
+  "in_n": 4,
+  "out_n": 3,
+  "sm": false,
+  "lines": 57,
+  "tokens": [
+   "conc",
+   "coolant"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ToolWearVbCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "1b4f164432f4e3e9",
+  "api": "bd74e38321691095",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 55,
+  "tokens": [
+   "tool",
+   "wear"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_PneuCvFlowCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ChipLoadPerToothCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "5d31ac7eb00af30e",
+  "api": "3674066c8b8e3236",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 58,
+  "tokens": [
+   "chip",
+   "load",
+   "per",
+   "tooth"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ClinkerLsfCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "c5fcc56a598dd56b",
+  "api": "bc484cee4f691506",
+  "in_n": 6,
+  "out_n": 4,
+  "sm": false,
+  "lines": 62,
+  "tokens": [
+   "clinker",
+   "lsf"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ClinkerC3sCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "958e283464bb405b",
+  "api": "4ff6b705e757e13b",
+  "in_n": 5,
+  "out_n": 4,
+  "sm": false,
+  "lines": 71,
+  "tokens": [
+   "clinker"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_SludgeAgeCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_KilnSpecificHeatCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "69c09f6d15936fd6",
+  "api": "62e47b7c3cdc3d4d",
+  "in_n": 4,
+  "out_n": 3,
+  "sm": false,
+  "lines": 54,
+  "tokens": [
+   "heat",
+   "kiln",
+   "specific"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_RawMealResidueCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "0285ad4b9d6340ed",
+  "api": "d31d61dd66b9cccc",
+  "in_n": 4,
+  "out_n": 4,
+  "sm": false,
+  "lines": 58,
+  "tokens": [
+   "meal",
+   "raw",
+   "residue"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_KilnPreheatStageSeq",
+  "cat": "DL_Device",
+  "kind": "FB",
+  "sig": "a9497b40ad0143eb",
+  "api": "477ebd0317a20d2e",
+  "in_n": 13,
+  "out_n": 4,
+  "sm": true,
+  "lines": 148,
+  "tokens": [
+   "kiln",
+   "preheat",
+   "stage"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CementMillLoadCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "d2678f28e4d804f0",
+  "api": "cf5e958c342cec24",
+  "in_n": 7,
+  "out_n": 3,
+  "sm": false,
+  "lines": 58,
+  "tokens": [
+   "cement",
+   "load",
+   "mill"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ClinkerFreeLimeCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "sig": "5a03b067ace91cf8",
+  "api": "e9f227ba7662c703",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 71,
+  "tokens": [
+   "clinker",
+   "free",
+   "lime"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_ReactorRunawayGuard",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "725b4cdd66f92bc2",
+  "api": "145e4ba6cf2405c7",
+  "in_n": 17,
+  "out_n": 19,
+  "sm": true,
+  "lines": 297,
+  "tokens": [
+   "reactor",
+   "runaway"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_TabletWeightAutoCtl",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "f238689b90a84c57",
+  "api": "02e4f4e8862a787c",
+  "in_n": 12,
+  "out_n": 12,
+  "sm": true,
+  "lines": 276,
+  "tokens": [
+   "auto",
+   "tablet",
+   "weight"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_HeadboxJetRatioLoop",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "d62aa45d34ca5fc3",
+  "api": "6c41ebdec11e308f",
+  "in_n": 13,
+  "out_n": 10,
+  "sm": true,
+  "lines": 249,
+  "tokens": [
+   "headbox",
+   "jet",
+   "loop"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_TabletCompactionSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "c08027254c2e6b31",
+  "api": "c72b47b622517b1c",
+  "in_n": 10,
+  "out_n": 4,
+  "sm": true,
+  "lines": 117,
+  "tokens": [
+   "compaction",
+   "tablet"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_ReactorChargeSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "61b29619f0778be2",
+  "api": "4bc1869471dc1357",
+  "in_n": 9,
+  "out_n": 4,
+  "sm": true,
+  "lines": 147,
+  "tokens": [
+   "charge",
+   "reactor"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_ReactorHeatupProfile",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "e4f655d7b65cd633",
+  "api": "a6b255766516cda0",
+  "in_n": 10,
+  "out_n": 4,
+  "sm": true,
+  "lines": 113,
+  "tokens": [
+   "heatup",
+   "profile",
+   "reactor"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FB_DL_HeadboxSliceSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "sig": "ebf0a3e19e1dca63",
+  "api": "aef930211a840da5",
+  "in_n": 13,
+  "out_n": 4,
+  "sm": true,
+  "lines": 130,
+  "tokens": [
+   "headbox",
+   "slice"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_TabletWeightRsdCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "5f5bb32b9c8d380f",
+  "api": "d5d918fe0605fdf6",
+  "in_n": 3,
+  "out_n": 4,
+  "sm": false,
+  "lines": 80,
+  "tokens": [
+   "rsd",
+   "tablet",
+   "weight"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_FluidBedDryLossCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "5aa123660f94164e",
+  "api": "0c8e59ecf10e398e",
+  "in_n": 3,
+  "out_n": 3,
+  "sm": false,
+  "lines": 55,
+  "tokens": [
+   "bed",
+   "dry",
+   "fluid",
+   "loss"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_WeighBatchYieldCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_CoatingPanSprayCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "958e283464bb405b",
+  "api": "468701c387e47599",
+  "in_n": 5,
+  "out_n": 4,
+  "sm": false,
+  "lines": 57,
+  "tokens": [
+   "coating",
+   "pan",
+   "spray"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_SludgeAgeCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_TabletCrushForceCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "795f5512592e5fa8",
+  "api": "942d75326666cc86",
+  "in_n": 3,
+  "out_n": 3,
+  "sm": false,
+  "lines": 55,
+  "tokens": [
+   "crush",
+   "force",
+   "tablet"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_RefCopCalc",
+   "FC_DL_MembraneFluxCalc",
+   "FC_DL_WeighSpanCalibRatio"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_BlendUniformityCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "707878245cb648bc",
+  "api": "3b8ff44933190f17",
+  "in_n": 4,
+  "out_n": 4,
+  "sm": false,
+  "lines": 89,
+  "tokens": [
+   "blend",
+   "uniformity"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_GranuleSizeD50Calc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "acaed013ab6e4820",
+  "api": "70cd548cd8e38335",
+  "in_n": 3,
+  "out_n": 4,
+  "sm": false,
+  "lines": 90,
+  "tokens": [
+   "granule",
+   "size"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_TabletFriabilityCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "4753cad96bf8e360",
+  "api": "4b4b50581ffe3166",
+  "in_n": 4,
+  "out_n": 3,
+  "sm": false,
+  "lines": 52,
+  "tokens": [
+   "friability",
+   "tablet"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_RefCondApproach"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ReactorHeatReleaseCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "56630689783647e6",
+  "api": "db556e2ddcf32d22",
+  "in_n": 8,
+  "out_n": 3,
+  "sm": false,
+  "lines": 62,
+  "tokens": [
+   "heat",
+   "reactor",
+   "release"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_ReactorAdiabaticRise",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "b5de57904710d986",
+  "api": "1225f6acbdf94611",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 56,
+  "tokens": [
+   "adiabatic",
+   "reactor",
+   "rise"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_PneuLeakRateCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_MtsrCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "1b4f164432f4e3e9",
+  "api": "2b635f391c2e5bbc",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 55,
+  "tokens": [
+   "mtsr"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_PneuCvFlowCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_JacketAreaCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "971faf0ada120495",
+  "api": "3effa4a0cc0e0ec1",
+  "in_n": 7,
+  "out_n": 3,
+  "sm": false,
+  "lines": 66,
+  "tokens": [
+   "area",
+   "jacket"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_PaperBasisWeightCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "22aae528ff7d9e11",
+  "api": "fcf176fd61638bb6",
+  "in_n": 6,
+  "out_n": 3,
+  "sm": false,
+  "lines": 60,
+  "tokens": [
+   "basis",
+   "paper",
+   "weight"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_RefCompressorCapacity",
+   "FC_DL_CoagulantDoseCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_StockConsistencyCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "69c09f6d15936fd6",
+  "api": "00086a172a3ea3ab",
+  "in_n": 4,
+  "out_n": 3,
+  "sm": false,
+  "lines": 56,
+  "tokens": [
+   "consistency",
+   "stock"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_RefinerFreenessCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "56630689783647e6",
+  "api": "257233ba9a2c2bde",
+  "in_n": 8,
+  "out_n": 3,
+  "sm": false,
+  "lines": 67,
+  "tokens": [
+   "freeness",
+   "refiner"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_DryerSteamDemandCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "22aae528ff7d9e11",
+  "api": "a85bc6111ce00dac",
+  "in_n": 6,
+  "out_n": 3,
+  "sm": false,
+  "lines": 60,
+  "tokens": [
+   "demand",
+   "dryer",
+   "steam"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_RefCompressorCapacity",
+   "FC_DL_CoagulantDoseCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_PaperFormationIndexCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "1b4f164432f4e3e9",
+  "api": "2ca537203c41c355",
+  "in_n": 5,
+  "out_n": 3,
+  "sm": false,
+  "lines": 60,
+  "tokens": [
+   "formation",
+   "paper"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [
+   "FC_DL_PneuCvFlowCalc"
+  ],
+  "api_hit": []
+ },
+ {
+  "name": "FC_DL_PressSectionDewaterCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "sig": "d2678f28e4d804f0",
+  "api": "2739d7b437c62c39",
+  "in_n": 7,
+  "out_n": 3,
+  "sm": false,
+  "lines": 70,
+  "tokens": [
+   "dewater",
+   "press",
+   "section"
+  ],
+  "name_exact": [],
+  "name_near": [],
+  "sig_hit": [],
+  "api_hit": []
+ }
+]

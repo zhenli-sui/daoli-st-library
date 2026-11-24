@@ -1,0 +1,1178 @@
+[
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" dyeing",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/build/plc_cell_openplc.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "tianjinpipixia/knit-compass-photo-capture",
+  "path": "scripts/validate_customer_sharing.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "klenndacoder69/lolcode-project-124",
+  "path": "source_code/parser.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "suren-atoyan/monaco-react",
+  "path": "demo/src/config/examples.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "boyter/scc",
+  "path": "languages.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "ndk123-web/ndk-rpc-cluster",
+  "path": "Readme.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "gabedln/ITZ5-CMSC-124-LOLCODE-Interpreter",
+  "path": "semantics.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "Michael-A-Kuykendall/rustchain",
+  "path": "src/transpiler/bash.rs",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "r/morph",
+  "path": "morph-core/src/structured.rs",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "gabedln/ITZ5-CMSC-124-LOLCODE-Interpreter",
+  "path": "syntax_analyzer.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/M1-G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/M1-final-G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/M1-retry-G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/M1-close-G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/M1-retry2-G3.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/W2.4-step1-suite.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/W2.4-step2-suite.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "Mentallyspammed1/worldguide",
+  "path": "Zsh",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "lyove/monaco-editor-react",
+  "path": "example/example.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" yarn",
+  "repo": "oaiz-io/polint",
+  "path": ".swarm/gate-logs/W2.4-step3b-suite.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "Lord-Zedd/H5Tags",
+  "path": "tags/(eqip)equipment.xml",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "lognd/frob",
+  "path": "notes/research/paradigms.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "Lord-Zedd/H4Tags",
+  "path": "tags/(eqip)equipment.xml",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "Surasia/ReclaimerFiles",
+  "path": "Halo5/(eqip)equipment.xml",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "camden-smallwood/definitions",
+  "path": "halo4_mcc/equipment.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "camden-smallwood/definitions",
+  "path": "halo2amp_mcc/equipment.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster13.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster19.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "camden-smallwood/definitions",
+  "path": "halo5_guardians/equipment.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "maka-tanmay/topnotch",
+  "path": "evidence/revision-02/old-process-sample.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "Jiawang1209/DAWN-Science",
+  "path": "docs/validation/delivery-efficiency-merge-review-20261107/desktop-exit/exit-lifecycle-diagnoses-a-31316-tive-process-is-still-alive/sample-43057.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" warp beam",
+  "repo": "plyght/foyer",
+  "path": "alcove_teardown/alcove-research/children/B_runtime/evidence/ev/proc/sample_alcove.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "superlinked/sie",
+  "path": "packages/sie_server/src/sie_server/processors/streaming.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "claude-dev-suite/claude-dev-suite",
+  "path": "skills/industrial/dcs-platforms/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "claude-dev-suite/claude-dev-suite",
+  "path": "skills/industrial/bulk-engineering/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "PLC-lang/rusty",
+  "path": "compiler/plc_header_generator/src/header_generator/header_generator_c.rs",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "ControlForge-Systems/controlforge-structured-text",
+  "path": "docs/IEC61131_SPECIFICATION.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "d-subrahmanyam/deno-fresh-microservices",
+  "path": ".agents/skills/dcs-platforms/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "BeamLabEU/phoenix_kit",
+  "path": "dev_docs/squash/generate_baseline.exs",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "d-subrahmanyam/deno-fresh-microservices",
+  "path": ".agents/skills/bulk-engineering/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "vertexai_facets.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "searchspring_facets.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "willyd61/nautobot-v2-custom-metrics-old",
+  "path": ".mcp-servers/skill-loader/skills/industrial/dcs-platforms/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "lognd/frob",
+  "path": "notes/research/paradigms.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "Kilo-Org/AutocompleteNextEditPoc",
+  "path": "legacy_code_rewrite/39-final-dead-code-report.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "willyd61/nautobot-v2-custom-metrics-old",
+  "path": ".mcp-servers/skill-loader/skills/industrial/bulk-engineering/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "Chenjie1002/Lee_Workshop",
+  "path": "src/data/initialData.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "JeroPluy/Automation_test_env",
+  "path": "src/backend/automation_gen/condtion_dissection.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "centroid-is/stc",
+  "path": ".planning/research/v1.2/SILDARVINNSLA-OPCUA-USAGE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "yasminwww/ym222bs_2dv515_A3",
+  "path": "wikipedia/Links/Programming/Visual_programming_language",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" plating",
+  "repo": "pcdshub/lcls-twincat-vacuum-sim",
+  "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_GAM_PIP.TcPOU",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" electroplating",
+  "repo": "pcdshub/lcls-twincat-vacuum-sim",
+  "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_GAM_PIP.TcPOU",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" electroplating",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" electroplating",
+  "repo": "pcdshub/lcls-twincat-vacuum-system-simulator",
+  "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_GAM_PIP.TcPOU",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "ianarawjo/evalstats",
+  "path": "simulations/harness/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "CHANGELOG.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "rockbenben/free-llm-intel",
+  "path": "docs/articles/aws_bedrock/93da9efb46c6.en.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "src/ai/profiles.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "febit/febit-rectify",
+  "path": "rectify-core/src/main/java/org/febit/rectify/wit/ScriptBuilder.java",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/19-motion-and-drives/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"VAR_INPUT\" rectifier current",
+  "repo": "febit/febit-rectify",
+  "path": "rectify-core/src/test/java/org/febit/rectify/RectifierTest.java",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "scripts/capabilities.mjs",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "plc/index.html",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/plc/conformanceCases.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "ilyeselallem/Siemens-TIA-Sorting-System-V16",
+  "path": "Siemens-TIA-Sorting-System-V16_Local/Src/FB_Sorter_Auto.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "public/st-capabilities.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "moocstudent/PROTOCOL_BOOK",
+  "path": "tools/listings/pr34/SorterDivert.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "SauronBronzeado/LinhaCompleta",
+  "path": "Projeto04 - Linha Completa/Workspace/Program blocks/STANDARD BLOCKS/Sorter.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "yunos0987/jiepp",
+  "path": "iec_61131-3/samples/nosplit.iec",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "yunos0987/jiepp",
+  "path": "iec_61131-3/samples/nosplit.piec",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/tasks/C08_M01_branching_sorter/reference.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/tasks/C08_M01_branching_sorter/interface.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "moocstudent/PROTOCOL_BOOK",
+  "path": "code3.jsx",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Q3son/Concurso_PLC",
+  "path": "plc/codesys/04_FB/FB_WheelSorter.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "e2e/verify-st-pou-ops.mjs",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/packages/internal_v0_1/public_tasks/C08_M01_branching_sorter/interface.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/_archive/native_profile_v5_20260810/tasks/C08_M01_branching_sorter/interface.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/_archive/native_profile_v2_20260810/tasks/C08_M01_branching_sorter/interface.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/_archive/native_profile_v3_20260810/tasks/C08_M01_branching_sorter/reference.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/_archive/native_profile_v6_20260811/tasks/C08_M01_branching_sorter/reference.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" sorter",
+  "repo": "warmjademe/plc_generation_empirical_study",
+  "path": "datasets/_archive/native_profile_v1_20260810/tasks/C08_M01_branching_sorter/interface.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "7jep7/plc-copilot",
+  "path": "st_code_library/conveyor_systems/belt_conveyor_with_safety.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "esbmc/esbmc",
+  "path": "docs/roadmap/safe-ld-implementation-plan.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "rivie13/studio5000-AI-Assistant",
+  "path": "src/ai_assistant/enhanced_code_assistant.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/catalog.json",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "Amin-Ahmed-G/6-days-plc-training-",
+  "path": "day4/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "Augusto-Dantas/weg-plc500-nodered-ml-pipeline",
+  "path": "plc/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "yatharthMogra/Mini-Conveyors-Automation",
+  "path": "plc/fb_metrics.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_motor.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "therealambadi/Plaxioide",
+  "path": "voltmdfile/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "natasha-maryam/pandaura_python",
+  "path": "builds/ConveyorLine_Palletizer/docs/Scada_Tag_Map.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "natasha-maryam/pandaura-backend",
+  "path": "src/ai/code-governor/vendor-profiles.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_motor_rev.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "natasha-maryam/pandaura_python",
+  "path": "generated-code",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "pierredantas/esbmc-plc-benchmark-suite",
+  "path": "ml/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "natasha-maryam/pandaura-backend",
+  "path": "src/ai/code-governor/simple-governor.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "chetto1983/Twinova",
+  "path": "docs/superpowers/specs/2026-11-09-component-behaviour-design.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "damula-byte/AI-driven-Engineering-Platform",
+  "path": "AI_Backend/data/scl_siemens_base.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "natasha-maryam/pandaura-backend",
+  "path": "src/ai/code-governor/simple-governor-fixed.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "Gorke07/OpenDVP",
+  "path": "docs/st-library.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" conveyor accumulation",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/docs/help/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "yatharthMogra/Mini-Conveyors-Automation",
+  "path": "plc/fb_diverter.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "zhouyongh/codesys-unittest",
+  "path": "examples/conveyor-loop/Application/FB_Diverter.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/OSCAT/airport_baggage_command_observer/oop/src/Main.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/OSCAT/airport_baggage_command_observer/non-oop/src/Main.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "Q3son/Concurso_PLC",
+  "path": "plc/codesys/04_FB/FB_ColorDiverter.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "malgaroshy-maker/factoryforge",
+  "path": "examples/tia/pivot-divert/pivot_divert.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/editor/demo/demoScenes.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/OSCAT/silo_loading_composite_mediator/oop/src/Main.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "malgaroshy-maker/factoryforge",
+  "path": "examples/tia/light-curtain-sorting/light_curtain_sorting.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "huuhuannt1998/CPSForge",
+  "path": "factoryio_scenes/FB_SortingStation.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/guides/oop-concepts-in-st.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "yatharthMogra/Mini-Conveyors-Automation",
+  "path": "plc/fb_jam_detection.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "bence-sebok/bme_vik_ipari",
+  "path": "hf2/ipari_hf2_st.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "huuhuannt1998/CPSForge",
+  "path": "factoryio_scenes/FB_SeparatingStation.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_alt2.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "Shutchon/iec-st-llm-benchmark",
+  "path": "benchmark/task_definitions.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "chetto1983/Twinova",
+  "path": "docs/superpowers/plans/2026-11-09-component-behaviour.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "rivie13/studio5000-AI-Assistant",
+  "path": "src/ai_assistant/enhanced_code_assistant.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "yasukei/benchtop-plc",
+  "path": "packages/web/e2e/sorting-conveyor.spec.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "\"FUNCTION_BLOCK\" diverter",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "scripts/run-gates.mjs",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/guides/ALARM_LIBRARY_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "espressif/esp-dev-kits",
+  "path": "docs/en/esp32-p4-eye/user_guide.rst",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "espressif/esp-dev-kits",
+  "path": "docs/en/esp32-p4x-eye/user_guide.rst",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "espressif/esp-dev-kits",
+  "path": "docs/zh_CN/esp32-p4x-eye/user_guide.rst",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "espressif/esp-dev-kits",
+  "path": "docs/zh_CN/esp32-p4-eye/user_guide.rst",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "ThorstenBrach/TcAgent",
+  "path": "agents/TCAGENT_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "ThorstenBrach/TcAgent",
+  "path": "docs/USER_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "dummyindex/OmiCairn-early",
+  "path": "docs/debugging/unified_bug_fixer_guide.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "dummyindex/OmiCairn-early",
+  "path": "docs/debugging/BUG_FIXER_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/core/agentGuide.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "luppiterw/qoplcpack",
+  "path": "docs/IDE_USER_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "PrefectHQ/prefect",
+  "path": "ui-v2/src/mocks/create-fake-block-type.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "dummyindex/OmiCairn-early",
+  "path": "docs/debugging/claude_code_sdk_guide.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "dummyindex/OmiCairn-early",
+  "path": "docs/guides/in_container_debugging_guide.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "yasukei/benchtop-plc",
+  "path": "docs/web-app.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "dummyindex/OmiCairn-early",
+  "path": "docs/guides/AGENT_IMPLEMENTATION_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "haizzdungnay/DDC24",
+  "path": "FBD_CREATION_AND_ACTIVATION_GUIDE.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "PrefectHQ/prefect",
+  "path": "ui-v2/src/mocks/create-fake-block-schema.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "ossf/fuzz-introspector",
+  "path": "tools/web-fuzzing-introspection/app/static/assets/db/web_db_creator_from_summary.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" web guide",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/guides/UML_STATECHART_EDITOR_ROADMAP.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "data61/MP-SPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "FudanMPL/Garnet",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "tbuchs/webSPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "AntCPLab/OpenCoral",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "ghoshbishakh/pci",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "KULeuven-COSIC/master-truncation",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "SionVerhoef/twincat-st",
+  "path": "scripts/tcpou.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "KULeuven-COSIC/gc-fast-sbox-eval",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "AntCPLab/malicious_3pc_arithmetic",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "isec-tugraz/MPC-Accumulator",
+  "path": "MP-SPDZ/Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "AlexKyster/mpspdz-exploit",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "MOZAIK-SBO/libmozaik",
+  "path": "mpc/MP-SPDZ/Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "Barkhausen-Institut/AlphaFL",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "FudanMPL/MPCGuard",
+  "path": "frameworks/MP-SPDZ/Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "haslersn/mp-spdz",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "ZhiBoChun/MP-SPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "carlos-zh/MPC-AS",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "LennyHuang15/MP-SPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "lemonviv/MP-SPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "\"FUNCTION_BLOCK\" printing register",
+  "repo": "tmanuszak/MP-SPDZ",
+  "path": "Compiler/library.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" pallet wrapper OR stretch",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/editor/demo/demoScenes.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" pallet wrapper OR stretch",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "scripts/run-gates.mjs",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" pallet wrapper OR stretch",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/12-data-structures/README.md",
+  "branch": "main"
+ }
+]

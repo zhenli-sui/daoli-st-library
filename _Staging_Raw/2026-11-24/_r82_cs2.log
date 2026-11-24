@@ -1,0 +1,83 @@
+OK F1  sludge       st     -> 15
+OK F1  sludge       TcPOU  -> 10
+OK F1  clarifier    st     -> 7
+OK F1  clarifier    TcPOU  -> 0
+OK F1  flocculant   st     -> 0
+OK F1  flocculant   TcPOU  -> 0
+OK F1  coagulant    st     -> 3
+OK F1  coagulant    TcPOU  -> 0
+OK F1  turbidity    st     -> 31
+OK F1  turbidity    TcPOU  -> 4
+OK F1  settling     st     -> 155
+OK F1  settling     TcPOU  -> 21
+OK F2  centrifuge   st     -> 7
+OK F2  centrifuge   TcPOU  -> 0
+OK F2  dewatering   st     -> 0
+OK F2  dewatering   TcPOU  -> 7
+OK F2  polymer      st     -> 23
+OK F2  polymer      TcPOU  -> 0
+OK F2  filtrate     st     -> 4
+OK F2  filtrate     TcPOU  -> 0
+OK F3  scrubber     st     -> 10
+OK F3  scrubber     TcPOU  -> 0
+OK F3  demister     st     -> 0
+OK F3  demister     TcPOU  -> 0
+OK F3  catalyst     st     -> 26
+OK F3  catalyst     TcPOU  -> 0
+OK F3  venturi      st     -> 6
+OK F3  venturi      TcPOU  -> 0
+OK F3  reagent      st     -> 9
+OK F3  reagent      TcPOU  -> 0
+OK F4  maintenance  st     -> 1232
+OK F4  maintenance  TcPOU  -> 396
+OK F4  vibration    st     -> 98
+OK F4  vibration    TcPOU  -> 29
+OK F4  MTBF         st     -> 12
+OK F4  MTBF         TcPOU  -> 4
+OK F4  lubrication  st     -> 10
+OK F4  lubrication  TcPOU  -> 2
+OK F5  biogas       st     -> 0
+OK F5  biogas       TcPOU  -> 10
+OK F5  methane      st     -> 49
+OK F5  methane      TcPOU  -> 0
+OK F5  digester     st     -> 6
+OK F5  digester     TcPOU  -> 0
+OK F5  alkalinity   st     -> 0
+OK F5  alkalinity   TcPOU  -> 0
+
+QUERIES_RUN 46 REPOS 152
+ 32 F4,F5  builovmaikl-art/SmartHomeNew                            ['PRG_System_Access_Maintenance.st']
+ 28 F1     MECTsrl/mect_apps                                       ['TPAC1005/Octopus_Prey/plc/Testing.st']
+ 24 F1,F5  sbeck11/SFWE511                                         ['build/plc.st']
+ 22 F1,F2,F5 Dariusz791/Rybno                                        ['plc/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU']
+ 19 F1,F2,F4 johannesPettersson80/trust-platform                     ['examples/OSCAT/filter_backwash_template/oop/src/Main.st']
+ 14 F1,F2  jash90/plc-vscode                                       ['tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Main.st']
+ 12 F2,F3  SymbianSource/oss.FCL.sf.os.ossrv                       ['lowlevellibsandfws/apputils/tsrc/t_strings/long.st']
+ 11 F4     minkhanh-ng/Tc3_VN001007_VMS                            ['Tc3_VN001007_VMS/RWPumpVMS/05_Application/FastSampling/PRG_VibrationSampling.TcPOU']
+  9 F1     snackmasta/Building-Automation                          ['Wastewater Treatment Plant/plc/global_vars.st']
+  9 F4     PeterZerlauth/Tc3_Logging                               ['Tc3_Logging/Tc3_Logging/Helpers/F_Hash.TcPOU']
+  8 F2,F3  hernanmd/BioSmalltalk                                   ['repository/BioPhysics/BioPolymer.class.st']
+  8 F3     gione100/SCR_2ndGen                                     ['NoNOx/POUs/IO_Update/LP/SetDOValue.st']
+  5 F1,F2  Dariusz791/Sekwencer                                    ['Sequencer/Sequencer/Sequencer/POUs/FB/Operations/DischargeR01ToVR01/FB_DischargeR01ToVR01.TcPOU']
+  5 F1,F4  pcdshub/lcls-twincat-motion                             ['lcls-twincat-motion/Library/POUs/Motion/DS402/MCS2/FB_MCS2Home.TcPOU']
+  5 F4     Beckhoff-USA-Community/SPT_V4_Samples                   ['SPT_ModeManager/SPT_ModeManager/PLC/Modules/00 Machine/Machine.TcPOU']
+  4 F1,F3,F4 midea-ai/SemaPLC                                        ['sema-plc-benchmark/spec2control-benchmark/data/st-baseline/waste_water_treatment_facility/pous/programs/Section4.st']
+  4 F1,F3,F4 FREEZONEX/ia2                                           ['library/process-control/pous/fb_dose.st']
+  4 F1     ZhongJiwei-sg/TF8540-Temperature                        ['Samples/TempLib_DemoProject/DemoApplication/POUs/MAIN.TcPOU']
+  4 F1     PatrickKuijer/xSTunit                                   ['tests/Fixtures/MiniloadSensorFixture/FB_DigitalInput.TcPOU']
+  4 F4     SeasideSt/Seaside                                       ['repository/Seaside-GemStone-Tools-Production.package/WAGemStoneMaintenanceTask.class/class/maintenanceTaskExpiration.st']
+  4 F4     bonzini/smalltalk                                       ['packages/httpd/Haiku.st']
+  4 F4     DynabookSmalltalk/DynabookSmalltalk_                    ['rST.package/RSTBroker.class/instance/maintenance.st']
+  4 F4     rko281/ReStoreForPharo                                  ['SSW ReStore SQL Entities/SSWMySQLDialect.class.st']
+  4 F4     Beckhoff-USA-Community/PackML_PLC_Example               ['VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_PullWheel.TcPOU']
+  4 F4     Inxton/TcOpen                                           ['src/TcoCore/src/XaeTcoCore/TcoCore/POUs/Prototypes/TcoComponent/TcoComponent.TcPOU']
+  4 F4     hpi-swa-teaching/PhidgetLab                             ['packages/Phidget-EToys.package/PhdETImageLoader.class/instance/vibration.st']
+  4 F4     hpi-swa-lab/SqueakXRNative                              ['squeak/OpenXR/XrActionType.class.st']
+  4 F4     TomF777/IIoT-opcua-TC3                                  ['IoT_OPCUA/POUs/FB/OPC_UA/VibrationSensor.TcPOU']
+  4 F4     syedsyafiq00/TwinCAT2.5                                 ['TwinCAT 3/TwinCAT 3 Program/FBs/B_JKS_NewFB_V2/FBP-MTBSubFB/fbV2_SubMTBFreeSlotGenerator.TcPOU']
+  3 F1,F2  dweepvira/water-treatment_simulator_CPS                 ['ST_code/plant.st']
+  3 F1     ebbcarbon/Beckhoff_Supervisor                           ['popa_supervisor/popa_supervisor/POUs/Function Blocks/modbus_analog_read.TcPOU']
+  3 F2,F3  Nv7-GitHub/studier                                      ['sets/bio/units/molecular.st']
+  3 F3,F4  undefine-org/spacetime                                  ['demos/liveview-kanban/index.st']
+  3 F4     feenkcom/lepiter                                        ['src/Lepiter-Utilities/LeReferenceMaintenanceSignal.class.st']
+  3 F4     0w8States/PLC-Design-Patterns                           ['Behavioral_Patterns/State/State_Pattern/PLC1/Bank ATM/FBs/FB_Maintenance.TcPOU']

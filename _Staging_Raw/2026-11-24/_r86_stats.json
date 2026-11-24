@@ -1,0 +1,21 @@
+{
+ "total_rows": 227,
+ "valid_rows": 225,
+ "dropped_rows": 2,
+ "tier": {
+  "green": 163,
+  "yellow": 62
+ },
+ "status": {
+  "pending": 201,
+  "rejected": 24
+ },
+ "added_r86": 10,
+ "added_r86_tier": {
+  "yellow": 10
+ },
+ "marked_dropped_this_round": [
+  "VAR_INPUT",
+  "E_SMStatus"
+ ]
+}

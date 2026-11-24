@@ -1,0 +1,317 @@
+[
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "NousResearch/hermes-agent",
+  "path": "agent/agent_runtime_helpers.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "bobisme/mess",
+  "path": "spikes/asterism_rebaseline/tooling/current/validate_fault.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "asgareyvazi/Drill-master",
+  "path": "tools/m35/open_register.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "ssbmNucleus/ssbmNucleus",
+  "path": "tools/liteaudit/stage_bake.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/25-vscode-product-contract.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/09-semantic-rules.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/03-variables.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/12-bytecode.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "verification/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/22-developer-workflows.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "SilkenHeynderickx/BachelorProefMod",
+  "path": "src/main/java/siheynde/bachelorproefmod/block/ModBlocks.java",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "zerasul/upython-book",
+  "path": "introduccion.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "iemejia/fabio",
+  "path": ".agents/RELEVANT-FILES.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/10-runtime-semantics.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "SilkenHeynderickx/BachelorProefMod",
+  "path": "src/main/java/siheynde/bachelorproefmod/block/entity/ModBlockEntities.java",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "Harangason/Network_Intelligence_Simulator",
+  "path": "backend/nis/agent/tools/function_blocks.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "ironplc/ironplc",
+  "path": "compiler/parser/src/parser.rs",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "GzoC/plc-logic-verifier",
+  "path": "docs/ST_SUBSET.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/notes/runtime-portability/a2-execution.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "\"FUNCTION_BLOCK\" fabric",
+  "repo": "SilkenHeynderickx/BachelorProefMod",
+  "path": "src/main/java/siheynde/bachelorproefmod/item/ModItemGroups.java",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "rockbenben/free-llm-intel",
+  "path": "docs/articles/aws_bedrock/93da9efb46c6.en.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "src/core/types.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "vtt132109/machsim",
+  "path": "src/i18n/samples.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "nk34player/skills",
+  "path": "multisim/SKILL.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "hnd92brtsk-del/EQM",
+  "path": "backup/equipment_crm_deploy_enums.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/19-motion-and-drives/README.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "eehubio/Agents_mobile",
+  "path": "docs/agent-03.md",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "vtt132109/machsim",
+  "path": "src/i18n/sampleNotes.ts",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "hnd92brtsk-del/EQM",
+  "path": "backup/equipment_crm.sql",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster19.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster13.txt",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "alvin66git/kg-data-cleaning",
+  "path": "python-data-cleaning/data/cleaned/screw_related_issues.csv",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "OCamlPro/richelieu",
+  "path": "scilab/CHANGES_5.3.X",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "FOSSEE/scilab_for_xcos_on_cloud_old",
+  "path": "CHANGES_5.3.X",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "rfabbri/scilab",
+  "path": "scilab/CHANGES_5.3.X",
+  "branch": "main"
+ },
+ {
+  "fam": "F3",
+  "query": "\"FUNCTION_BLOCK\" rectifier",
+  "repo": "kamakshidasan/scilab",
+  "path": "CHANGES_5.3.X",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "soham10i/stf-hw",
+  "path": "src/cad/line2/plc_io.py",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "DeLuAle/FRAMEWORK_PARSER",
+  "path": "PLC_410D1/Software units/34_Area04/Program blocks/50_Tracking/A04_0304TrkManager_FB.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "soham10i/stf-hw",
+  "path": "src/cad/line2/plc/FB_Airlock.st",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "DeLuAle/FRAMEWORK_PARSER",
+  "path": "PLC_410D1_Parsed_Final/Software units/34_Area04/Program blocks/50_Tracking/A04_0304TrkManager_FB.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "DeLuAle/FRAMEWORK_PARSER",
+  "path": "PLC_410D1_Parsed_Final/Software units/34_Area04/Program blocks/40_A0304_STAZIONE_4_SCARICO_PACCO/01_MANAGER/A0304_Manager_FB.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "DeLuAle/FRAMEWORK_PARSER",
+  "path": "PLC_410D1_Parsed_Final/Software units/34_Area04/Program blocks/40_A0304_STAZIONE_4_SCARICO_PACCO/10_NAVETTA/A0304_Navetta_FB.scl",
+  "branch": "main"
+ },
+ {
+  "fam": "F5",
+  "query": "\"FUNCTION_BLOCK\" shuttle OR stacker",
+  "repo": "DeLuAle/FRAMEWORK_PARSER",
+  "path": "PLC_410D1_Parsed_Final/Software units/34_Area04/Program blocks/30_A0303_STAZIONE_3_CREAZIONE_PACCO/01_MANAGER/A0303_Manager_FB.scl",
+  "branch": "main"
+ }
+]

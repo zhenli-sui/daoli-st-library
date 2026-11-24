@@ -1,0 +1,655 @@
+{
+ "round": "R86",
+ "ts": "2026-11-24T21:17:31+08:00",
+ "total": 40,
+ "complex": 4,
+ "simple": 36,
+ "targets": [
+  {
+   "name": "FB_DL_TrapezoidProfilePlanner",
+   "category": "DL_Motion",
+   "type": "FB",
+   "complexity": 4,
+   "function_tags": [
+    "motion",
+    "planning",
+    "profile",
+    "r86",
+    "factory"
+   ],
+   "function": "梯形/三角速度规划：起止速度不等，距离不足自动降级为三角曲线，逐周期输出设定值与完成/超差标志",
+   "band": "complex",
+   "batch": "C1"
+  },
+  {
+   "name": "FB_DL_AxisProbeTouchOffSeq",
+   "category": "DL_Motion",
+   "type": "FB",
+   "complexity": 3,
+   "function_tags": [
+    "motion",
+    "probing",
+    "sequence",
+    "r86",
+    "factory"
+   ],
+   "function": "探针触测状态机：快进-慢进-触发记录-回退，超程与未触发超时双兜底",
+   "band": "complex",
+   "batch": "C1"
+  },
+  {
+   "name": "FB_DL_SensorConsensusSelector",
+   "category": "DL_Algo",
+   "type": "FB",
+   "complexity": 3,
+   "function_tags": [
+    "algo",
+    "consensus",
+    "redundancy",
+    "r86",
+    "factory"
+   ],
+   "function": "多通道传感器共识选择：中位基准+偏差带剔除+通道不足降级到单通道，ENUM 状态机",
+   "band": "complex",
+   "batch": "C1"
+  },
+  {
+   "name": "FB_DL_Q15BiquadFilter",
+   "category": "DL_Algo",
+   "type": "FB",
+   "complexity": 3,
+   "function_tags": [
+    "algo",
+    "dsp",
+    "q15",
+    "filter",
+    "r86",
+    "factory"
+   ],
+   "function": "Q15 定点二阶 IIR 滤波：系数定点化、中间累加防溢出、移位饱和输出",
+   "band": "complex",
+   "batch": "C1"
+  },
+  {
+   "name": "FC_DL_Q15AddSat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 定点加法饱和，越界钳到 Q15_MAX/Q15_MIN",
+   "band": "simple",
+   "batch": "C2-1"
+  },
+  {
+   "name": "FC_DL_Q15SubSat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 定点减法饱和",
+   "band": "simple",
+   "batch": "C2-2"
+  },
+  {
+   "name": "FC_DL_Q15MulSat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 乘 Q15 得 Q15，中间 DINT 防溢出，含右移舍入",
+   "band": "simple",
+   "batch": "C2-3"
+  },
+  {
+   "name": "FC_DL_Q15DivSafe",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 安全除法，除零与商越界双保护",
+   "band": "simple",
+   "batch": "C2-4"
+  },
+  {
+   "name": "FC_DL_Q15AbsSat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 取绝对值饱和，正确处理 -32768 边界",
+   "band": "simple",
+   "batch": "C2-5"
+  },
+  {
+   "name": "FC_DL_Q15NegSat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 取负饱和，-32768 不回绕",
+   "band": "simple",
+   "batch": "C2-6"
+  },
+  {
+   "name": "FC_DL_Q15Lerp",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 线性插值，alpha 定点，端点饱和",
+   "band": "simple",
+   "batch": "C2-7"
+  },
+  {
+   "name": "FC_DL_Q15SqrtFloor",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "Q15 定点整数平方根（逐位法），结果 Q15",
+   "band": "simple",
+   "batch": "C2-8"
+  },
+  {
+   "name": "FC_DL_RealToQ15Sat",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "fixedpoint",
+    "q15",
+    "r86",
+    "familyA"
+   ],
+   "function": "REAL 转 Q15 定点，四舍五入加饱和，非有限值归零",
+   "band": "simple",
+   "batch": "C2-9"
+  },
+  {
+   "name": "FC_DL_EnthalpyUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "比焓换算 kJ/kg 与 kcal/kg 与 BTU/lb",
+   "band": "simple",
+   "batch": "C3-1"
+  },
+  {
+   "name": "FC_DL_SpecificHeatUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "比热容换算 kJ/(kg*K) 与 BTU/(lb*F)",
+   "band": "simple",
+   "batch": "C3-2"
+  },
+  {
+   "name": "FC_DL_ConcUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "浓度换算 ppm 与 % 与 mg/L",
+   "band": "simple",
+   "batch": "C3-3"
+  },
+  {
+   "name": "FC_DL_LevelUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "液位换算 m/mm/%，按罐高换算",
+   "band": "simple",
+   "batch": "C3-4"
+  },
+  {
+   "name": "FC_DL_CurrentUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "电流换算 A/mA/kA",
+   "band": "simple",
+   "batch": "C3-5"
+  },
+  {
+   "name": "FC_DL_TempDiffUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "温差换算 K 与摄氏差值与华氏差值，无偏移项",
+   "band": "simple",
+   "batch": "C3-6"
+  },
+  {
+   "name": "FC_DL_HeatFluxUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "热流密度换算 W/m2 与 kcal/(h*m2)",
+   "band": "simple",
+   "batch": "C3-7"
+  },
+  {
+   "name": "FC_DL_HtcUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "传热系数换算 W/(m2*K) 与 kcal/(h*m2*C) 与 BTU/(h*ft2*F)",
+   "band": "simple",
+   "batch": "C3-8"
+  },
+  {
+   "name": "FC_DL_VoltageUnitConvert",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "unit",
+    "conversion",
+    "r86",
+    "familyB"
+   ],
+   "function": "电压换算 V/mV/kV",
+   "band": "simple",
+   "batch": "C3-9"
+  },
+  {
+   "name": "FC_DL_MapRangeClamped",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "双端量程映射并对输入钳位",
+   "band": "simple",
+   "batch": "C4-1"
+  },
+  {
+   "name": "FC_DL_MapRangeBipolar",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "双极性对称映射，中点偏置",
+   "band": "simple",
+   "batch": "C4-2"
+  },
+  {
+   "name": "FC_DL_MapRangePercent",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "百分比与工程值互映，枚举方向",
+   "band": "simple",
+   "batch": "C4-3"
+  },
+  {
+   "name": "FC_DL_MapRangeInverseSolve",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "由工程值反解原始量程值，含钳位",
+   "band": "simple",
+   "batch": "C4-4"
+  },
+  {
+   "name": "FC_DL_MapRangePiecewise3",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "三段折线映射，分段斜率加断点连续校验",
+   "band": "simple",
+   "batch": "C4-5"
+  },
+  {
+   "name": "FC_DL_MapRangeDeadband",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "带中心死区的量程映射，死区内输出中点",
+   "band": "simple",
+   "batch": "C4-6"
+  },
+  {
+   "name": "FC_DL_MapRangeSatOut",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "输入量程映射后对输出独立饱和限幅",
+   "band": "simple",
+   "batch": "C4-7"
+  },
+  {
+   "name": "FC_DL_MapRangeIntQuant",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "量程映射加整数量化，步长加四舍五入",
+   "band": "simple",
+   "batch": "C4-8"
+  },
+  {
+   "name": "FC_DL_MapRangeHystSwitch",
+   "category": "DL_Base",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "base",
+    "mapping",
+    "range",
+    "r86",
+    "familyD"
+   ],
+   "function": "带滞环的二态阈值映射",
+   "band": "simple",
+   "batch": "C4-9"
+  },
+  {
+   "name": "FC_DL_SatAddDint",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "DINT 加法饱和，上下界检测",
+   "band": "simple",
+   "batch": "C5-1"
+  },
+  {
+   "name": "FC_DL_SatSubDint",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "DINT 减法饱和",
+   "band": "simple",
+   "batch": "C5-2"
+  },
+  {
+   "name": "FC_DL_SatMulDint",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "DINT 乘法饱和，先判溢出条件再乘",
+   "band": "simple",
+   "batch": "C5-3"
+  },
+  {
+   "name": "FC_DL_SatAddLreal",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "LREAL 加法饱和加非有限值闸",
+   "band": "simple",
+   "batch": "C5-4"
+  },
+  {
+   "name": "FC_DL_SatMulLreal",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "LREAL 乘法饱和加非有限值闸",
+   "band": "simple",
+   "batch": "C5-5"
+  },
+  {
+   "name": "FC_DL_SatNegDint",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "DINT 取负饱和，DINT_MIN 不回绕",
+   "band": "simple",
+   "batch": "C5-6"
+  },
+  {
+   "name": "FC_DL_SatScaleLreal",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "LREAL 增益缩放饱和",
+   "band": "simple",
+   "batch": "C5-7"
+  },
+  {
+   "name": "FC_DL_SatSumArrayDint",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 2,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "DINT 定长数组累加饱和，逐项防溢出",
+   "band": "simple",
+   "batch": "C5-8"
+  },
+  {
+   "name": "FC_DL_SatClampLrealBand",
+   "category": "DL_MathData",
+   "type": "FC",
+   "complexity": 1,
+   "function_tags": [
+    "mathdata",
+    "saturation",
+    "arithmetic",
+    "r86",
+    "familyC"
+   ],
+   "function": "LREAL 区间钳位，带上下限合法性自检",
+   "band": "simple",
+   "batch": "C5-9"
+  }
+ ],
+ "dup_checked": {
+  "registry": 1686,
+  "disk": 1686,
+  "collided": 0
+ }
+}

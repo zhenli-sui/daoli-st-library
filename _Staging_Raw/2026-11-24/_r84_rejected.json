@@ -1,0 +1,23 @@
+[
+{
+"name": "FB_DL_ToolMagazinePosSeq",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "刀库选刀定位时序（就近寻刀+到位确认）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_FluidBedDryLossCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "流化床干燥失重 LOD 计算",
+"tier": "简单"
+},
+{
+"name": "FB_DL_ReactorHeatupProfile",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "升温程序段执行（斜率/保温/超调抑制）",
+"tier": "简单"
+}
+]

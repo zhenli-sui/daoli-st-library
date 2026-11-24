@@ -1,0 +1,60 @@
+{
+ "round": "MANUAL",
+ "ts": "2026-11-22T21:10:42+08:00",
+ "total": 1,
+ "pass": 1,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_PumpPrimingWatch.st",
+   "name": "FB_DL_PumpPrimingWatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：E_DL_PpwPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：E_DL_PpwPhase"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 201
+  }
+ ]
+}

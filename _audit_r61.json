@@ -1,0 +1,130 @@
+[
+ {
+  "name": "FC_DL_ReverseBitsLword",
+  "path": "DL_Base/FC_DL_ReverseBitsLword.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 65,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_BitScanLword",
+  "path": "DL_Base/FC_DL_BitScanLword.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 93,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_Hypot3D",
+  "path": "DL_MathData/FC_DL_Hypot3D.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 102,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_TrapezoidArea",
+  "path": "DL_MathData/FC_DL_TrapezoidArea.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 125,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_SortIndexLReal",
+  "path": "DL_MathData/FC_DL_SortIndexLReal.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 121,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_WeightedPercentile",
+  "path": "DL_MathData/FC_DL_WeightedPercentile.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 201,
+  "biling": 100
+ },
+ {
+  "name": "FC_DL_MeanAbsDevCalc",
+  "path": "DL_MathData/FC_DL_MeanAbsDevCalc.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 113,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_LongPressButton",
+  "path": "DL_Base/FB_DL_LongPressButton.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 138,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_RailPowerSequence",
+  "path": "DL_Base/FB_DL_RailPowerSequence.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 203,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_AxisLimitSwitchBank",
+  "path": "DL_Motion/FB_DL_AxisLimitSwitchBank.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 121,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_PidParamGuard",
+  "path": "DL_Algo/FB_DL_PidParamGuard.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 137,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_PhaseLossGuard",
+  "path": "DL_Device/FB_DL_PhaseLossGuard.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 131,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_SensorPairPlausibility",
+  "path": "DL_Device/FB_DL_SensorPairPlausibility.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 211,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_AirDryerDiag",
+  "path": "DL_Device/FB_DL_AirDryerDiag.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 184,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_TurretToolSelect",
+  "path": "DL_Motion/FB_DL_TurretToolSelect.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 192,
+  "biling": 100
+ },
+ {
+  "name": "FB_DL_LineClearanceVerify",
+  "path": "DL_Process/FB_DL_LineClearanceVerify.st",
+  "verdict": "PASS",
+  "fails": [],
+  "lines": 169,
+  "biling": 100
+ }
+]

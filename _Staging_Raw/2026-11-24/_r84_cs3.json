@@ -1,0 +1,578 @@
+[
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "llvm/llvm-project",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "intel/llvm",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm16/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm18/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "root-project/root",
+  "path": "interpreter/llvm-project/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "celtera/libremidi",
+  "path": "include/libremidi/cmidi2.hpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "openbsd/src",
+  "path": "gnu/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "ravynsoft/ravynos",
+  "path": "Developer/Default.xctoolchain/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "yandex/perforator",
+  "path": "contrib/libs/llvm22/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "DeNA/DeClang",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "llvm-mos/llvm-mos",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "metashell/metashell",
+  "path": "3rd/templight/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "atsushieno/cmidi2",
+  "path": "cmidi2.h"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "opnsense/src",
+  "path": "contrib/llvm-project/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "leaningtech/cheerp-compiler",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "za233/Polaris-Obfuscator",
+  "path": "src/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "Xilinx/llvm-aie",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "aftermathlabs/llvm-msvc",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "truenas/os",
+  "path": "contrib/llvm-project/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" MPPT",
+  "repo": "CTSRD-CHERI/llvm-project",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "mutito/PV-RTPP",
+  "path": "RTPP_CALC/FB_RTPP_CALC.xml"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "BucurCosmin/PPC",
+  "path": "ANRE/PPC_Pf_PQ_Requirements.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "mutito/PV-RTPP",
+  "path": "RTPP_CALC/FB_MOVING_AVG.xml"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "BucurCosmin/PPC",
+  "path": "FB_PPC_FreqResponse.scl"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "tomas789/greenbuddies-ems-concept",
+  "path": "docs/data-model/codesys/EmsReference.st"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "mutito/PV-RTPP",
+  "path": "RTPP_CALC/FB_RTPP.xml"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" irradiance",
+  "repo": "mcquilleninteractive/validibot",
+  "path": "validibot/validations/tests/test_resolve_path.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"loss in weight\"",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/24-capstone-projects/24-2-batch-mixing-plant.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "ikskuh/spu-mark-ii",
+  "path": "soc/vhdl/ip-cores/embedded_function_block.vhd"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "Waigou33/w33-lab-alpha",
+  "path": "src/pl/ob_pl_stmt.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": ".codex/skills/trust-lsp-iec/SKILL.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "selfrender/Windows-Server-2003",
+  "path": "base/busdrv/sd/sys/sdbus.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "Autonomy-Logic/STruCpp",
+  "path": "src/diagnostic-pou-context.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/statecharts/HARDWARE_EXECUTION.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/editor/demo/demoScenes.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "ggnkua/Atari_ST_Sources",
+  "path": "C/gcc_56k/final.c"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "radevgit/plc",
+  "path": "plcscl/CHANGELOG.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "jjyg/metasm",
+  "path": "metasm/disassemble_api.rb"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "ggnkua/Atari_ST_Sources",
+  "path": "C/gcc_56k/config/tm-pyr.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "386bsd/386bsd",
+  "path": "usr/src/usr.bin/gcc/cc1/final.c"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "oldlinux-web/oldlinux-files",
+  "path": "gnu/gcc/gcc-2.2.2/ChangeLog.2"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "ggnkua/Atari_ST_Sources",
+  "path": "C/gcc_56k/config/tm-m68k.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "ggnkua/Atari_ST_Sources",
+  "path": "C/gcc_56k/config/tm-sparc.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/03-variables.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "radevgit/plc",
+  "path": "plcscl/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "PLC-lang/rusty",
+  "path": "src/resolver.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" dressing",
+  "repo": "MichielVanwelsenaere/HomeAutomation.CoDeSys3",
+  "path": "docs/CONTRIBUTING.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "hei-synd-aaut/rob_lab_01_2026",
+  "path": "MCS_Coordinate_System.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "Beckhoff-USA-Community/ApplicationDevelopment_Sample",
+  "path": "ApplicationBase/ApplicationBase/Utilities/Motion/XPlanar6DMoverToWorldTransform.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/01_AUTOMATION/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "Po-Yu-Chang/TcDigitalTwin",
+  "path": "CinPhown_PackML/DAS_CoreSys/Library/10_Machine/12_MachineControl/FB_MachineControl.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V006/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V001/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V003/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V007/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V005/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V002/PROMPTS.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool offset\"",
+  "repo": "rushabhsanjay/StudyNotes",
+  "path": "00_PLAN/AUTOMATION_BACKUPS/01_AUTOMATION_V004/PROMPTS.txt"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" autoclave",
+  "repo": "SlyPredator/plc_slm",
+  "path": "src/data/create_holdout.py"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" autoclave",
+  "repo": "SlyPredator/plc_slm",
+  "path": "data/meta/holdout_prompts.json"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" autoclave",
+  "repo": "Dadlorian/CLAUDE_SKILLS",
+  "path": "25_manufacturing_industry_4_0/skills/01_industrial_automation/src/ladder_logic_examples.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" reflux",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_split_range.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" reflux",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/Deepseek/R-I-S-E(Role-Input-Steps-Expectation)/Interlocks/Interlock Distillation Column.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" reflux",
+  "repo": "Ginsakura/AzurLane_Scripts32",
+  "path": "model/vo/activity.lua"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" reflux",
+  "repo": "ZzzJjt/IC-100",
+  "path": "Code Evaluation/json_generation/reference_tasks.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Inxton/tcopen-app-templates",
+  "path": "templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Inxton/tcopen-app-templates",
+  "path": "templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Pls/TcoPlsPaletizator.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Inxton/tcopen-app-templates",
+  "path": "templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plr/TcoPlrPaletizator.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Inxton/tcopen-app-templates",
+  "path": "templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Technology/CU00x/CU00x.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" blister",
+  "repo": "Inxton/tcopen-app-templates",
+  "path": "templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "krystalgamer/kelly-decomp",
+  "path": "tools/source_layout.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "cauctomanu-dotcom/eclats-sauvages-valdora",
+  "path": "tools/extract_v122_focus.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "microsoft/TypeScript",
+  "path": "tsc/internal/diagnostics/loc/pt-BR.generated.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "cogtool/cogtool",
+  "path": "clisp-sources/src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "src/core/types.ts"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "action-state-group/capsule-emit",
+  "path": "python/capsule_emit/adapters/msft_agent_framework.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "rurban/clisp",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "JoshCheek/clisp",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "Luoji-zju/Agents4PLC_release",
+  "path": "benchmark_v2/medium.jsonl"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "bkielbasa/loxone-portable",
+  "path": "crates/loxone-core/src/miniserver.rs"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "oxc-project/tsrs",
+  "path": "crates/tsrs_diagnostics/loc/pt-BR.generated.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "simatic-ax/iolink",
+  "path": "tiaexport/specifics/iolink-sirius-specific-blocks.scl"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "lisp-mirror/clisp",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "roswell/clisp",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "waxz/unified-mcp-server",
+  "path": "src/unified_mcp_server/files/code_analyzer.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "ynd/clisp-branch--ynd-devel",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "ormastes/simple",
+  "path": "doc/03_plan/compiler/cache/c0_schema_freeze_2026-08-09.md"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "Distrotech/clisp",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "ivan4th/clisp-maemo",
+  "path": "src/eval.d"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" capsule",
+  "repo": "simatic-ax/iolink",
+  "path": "inactiveCode/specific-devices/function-blocks/iolink-sirius-specific-blocks.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" \"closed loop\" density",
+  "repo": "dwlandry/DeltaV-AI-Integration",
+  "path": "data/html/BOL v14.3 Web Based/c_analog_input_function_block_application_information.html"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" \"closed loop\" density",
+  "repo": "eduardojvieira/ZPLC",
+  "path": "specs/011-zplc-2-0-remediation/spec.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" \"closed loop\" density",
+  "repo": "vtt132109/machsim",
+  "path": "src/i18n/samples.ts"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" \"closed loop\" density",
+  "repo": "andreamunafo/principles-of-automatic-controls",
+  "path": "nbs/09_Models_of_Control_Devices_and_Systems.ipynb"
+ }
+]

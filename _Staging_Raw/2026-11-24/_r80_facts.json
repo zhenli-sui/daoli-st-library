@@ -1,0 +1,67 @@
+{
+ "total": 1490,
+ "total_before": 1453,
+ "sft": 1529,
+ "today": 82,
+ "version": "2.72.0",
+ "n_new": 37,
+ "n_complex": 4,
+ "n_simple": 33,
+ "counts": {
+  "DL_Base": 196,
+  "DL_MathData": 420,
+  "DL_Algo": 161,
+  "DL_Device": 253,
+  "DL_Motion": 136,
+  "DL_Process": 324
+ },
+ "counts_delta": {
+  "DL_Base": 0,
+  "DL_MathData": 4,
+  "DL_Algo": 0,
+  "DL_Device": 15,
+  "DL_Motion": 0,
+  "DL_Process": 18
+ },
+ "cat_brief": {
+  "DL_Process": "称重配料 8 + 水处理 7 + 复杂 3",
+  "DL_Device": "液压气动 7 + 制冷冷媒 7 + 复杂 1",
+  "DL_MathData": "统计离散 4"
+ },
+ "gate_a_str": "36/36 PASS = 100%",
+ "gate_b_str": "4/4 PASS = 100%",
+ "gate_rate": "100.0",
+ "gate_note": "，零 EXEMPT；逻辑层 7 MAJOR 挂账",
+ "complex_list": "`FB_DL_MultiTankBlendSeq`（C4 多罐调和：进料/循环/取样/放行，超容与配方无效前置闸，eFault 可复位）｜`FB_DL_ConveyorMergePrioritySeq`（C3 汇流仲裁：主线优先、防止支线饿死计数、抢占恢复）｜`FB_DL_DryerZoneProfileSeq`（C4 多温区烘干曲线：斜率限制爬升、超温退避不跳相、复位清全部设定值）｜`FB_DL_RefDefrostCycleSeq`（C4 冷风机除霜：判霜/融霜/滴水/恢复，融霜与恢复双超时兜底）",
+ "simple_list": "称重配料族 8（毛净换算/皮重漂移/公差带/补料状态机/多头最优组合/批产率/蠕变补偿/量程标定）｜液压气动族 7（缸推力/缸流量/蓄能器/Cv 流量/沿程压降/建压斜坡/泄漏率）｜制冷冷媒族 7（COP/过热度/过冷度/饱和压力温度双向表/输气量/逼近温差）｜统计离散族 4（极差/pooled 标准差/滚动方差/离差平方和）｜水处理族 7（膜通量/TMP/回收率/污泥龄/溶解氧偏差/混凝投加/朗格利尔指数）",
+ "rejects": [
+  {
+   "name": "FC_DL_HydroPipePressDrop",
+   "reason": "语义同义：与在库 `FC_DL_PipeFrictionLoss`（DL_MathData，同一 Darcy-Weisbach 式，且既有件已参数化密度/黏度/粗糙度/局部阻力/kPa 输出）属严格子集；新件仅固化 ρ=850 与 cSt 方言，既有件一次调用即同值"
+  },
+  {
+   "name": "FC_DL_StatsIqrCalc",
+   "reason": "BLOCK：L69 `WHILE (j >= 0) AND (aBuf[j] > key)` 把下标闸与取值写在同一布尔式内，IEC 不保证短路 → j 递减到 −1 越界读；按 R501 判 BLOCK，修复配额 0 故拒收待 R81 返修"
+  },
+  {
+   "name": "FC_DL_StatsGeoMeanCalc",
+   "reason": "语义同义：与在库 `FC_DL_GeoMeanCalc` 同为 log 域 Σln/n→exp，仅 REAL/LREAL 精度与索引起点不同，按 R469「既有件一次调用能否给出同值」口径判重"
+  }
+ ],
+ "known_issues": [
+  "闸 A 批逻辑层 **5 件 MAJOR 挂账入库**（R489 口径：L2 PASS + 逻辑 MAJOR → 挂账并在 ROADMAP 记 P0）：`FB_DL_WeighHopperRefillSeq`（停止电平复位必复跳，R498）｜`FC_DL_WeighSpanCalibRatio`（量程误差式量纲错，正常标定被判 −99% 无效，R491）｜`FC_DL_HydroAccumulatorSizing`（容积分母用 p2/p1−1，预充压力成死输入，R492）｜`FC_DL_RefSatPressToTemp`＋`FC_DL_RefSatTempToPress`（R410A 行表偏 10 K 量级，R493）｜`FC_DL_PneuCvFlowCalc`（阀后压力死输入，非阻塞流高估，R494）",
+  "闸 B 批 2 件 MAJOR 已就地最小修并**复跑 L2 PASS**：`FB_DL_MultiTankBlendSeq` L240 启动判据补 `NOT bAbort`；`FB_DL_RefDefrostCycleSeq` L142 风机不符判据改为「应转未转」单向窗。余 1 件 MAJOR 挂账：`FB_DL_ConveyorMergePrioritySeq` 支线等待计数在默认参数下不可达（观测缺口，非安全侧）。",
+  "审校系统性问题 2 项挂账：① `(rX = rX)` 自反非有限闸 34 件——挡 NaN 不挡 Inf（R500，需与既有 `x<>x` + `(x−x)<>0` 双判范式对齐）；② 17 件头注复杂度与 ROUND_PLAN 档位不符（MINOR，锚点 A_COMPLEXITY_MISMATCH）。",
+  "开源溯源占比 **0/37 = 0%**，连续第 4 轮未达 30% 铁律：本轮队列 92 条全为 OSCAT 基础数学（HYPOT/NEGX/CABS 等），与本轮五族（称重/液压/制冷/统计/水处理）语义零交集；编码开跑（05:44）早于猎人回队（05:45）。",
+  "JSONL 比 registry 高 39 条（R70 前历史遗留，延续披露，待专项校准）。",
+  "MatIEC-CI 第 12 轮顺延：`git remote -v` 仍为空，需 `GITHUB_TOKEN=<PAT> bash C:\\Library\\_tools\\setup_github_remote.sh <owner>/<repo>`。",
+  "子代理 6 个/调用 6 次，**超 ≤5 预算 1 次**（双批编码 + 双批闸 + 审校并行，为保 T+60 收口所致）。"
+ ],
+ "roadmap_block": "## R80 构建轮小结（2026-11-24 凌晨第二轮 · 冲刺模式）\n\n> **R80 小结**：**37 件入册**（复杂 4 + 简单 33，5 族模板派生），总库 1,453→**1,490**（14.90%），v2.72.0，SFT 1,492→**1,529**。**L2 闸：批 A 36/36 PASS、批 B 4/4 PASS，终裁 40/40 = 100%，零 EXEMPT**。审校：批 A 33 PASS / 1 存疑→总监判拒收 / **2 拒收**（HydroPipePressDrop 与 PipeFrictionLoss 同义、StatsIqrCalc 数组越界 BLOCK、StatsGeoMeanCalc 与 GeoMeanCalc 同义），净入库 37。修复件 0（非当日首轮，配额归零）；复杂件 2 处闸建议最小修就地执行并复跑 PASS。开源队列 92→**107 条**（绿 84/黄 23，去重后唯一 96），溯源 **0/37**（连续第 4 轮未达 30%）。今日 **82/300（27.3%）**。墙钟 22′ 至入库。\n> **R81 待办（P0）**：① **5 件逻辑 MAJOR 定点修复**（SpanCalibRatio 量纲、AccumulatorSizing 分母、RefSat 表 R410A 行、PneuCvFlow 差压因子、WeighHopperRefill 复位判据类型）——这 5 件在合法输入下算出错值，优先级高于任何新增；② `FC_DL_StatsIqrCalc` 返修（下标闸与取值分句，R501）后重新送闸；③ L3 向量门落 5 条硬锚点（SpanCalib 典型标定 / Accumulator 200-100 bar / R410A 0 °C↔7.99 bar 与 40 °C↔24.2 bar / Hopper 停止复位保持 3 拍 / Langelier LOG 十进制）；④ 开源换道：队列 107 条全是 OSCAT 基础数学，须改挖「称重/液压/制冷/水处理」垂直工艺仓，否则溯源铁律结构性不可达；⑤ 值守三项第 12 轮顺延（MatIEC-CI 待配 remote / GITHUB_TOKEN / GATE MAJOR 人核）。",
+ "evolog_block": "## R80（2026-11-24 凌晨 · 冲刺轮 · 第 22 分钟收口）\n\n- **产能**：37 件入册（复杂 4 / 简单 33），简单占比 89%；五族 36 件**单次调用**批量写盘（05:44→05:50，约 6′）；全轮墙钟 22′ 到入库，为历史最快。\n- **质量**：L2 终裁 40/40 = 100%，连续第 4 轮零豁免；但逻辑层捕获 **7 件 MAJOR**（A 批 5 / B 批 2+1）、1 件 BLOCK、26 件 MINOR。**编译门全绿 ≠ 业务门全绿**，本轮是本库最清晰的一次证明：40 件全部可编译，其中 5 件在合法输入下算出错值。\n- **规划**：族级词根穷举前置（R480）生效，规划期零撞名损耗（R79 为 22.8%）；但仍有 3 件在**审校语义道**被判重（跨分类同义 + 数组越界），说明「词根穷举」只解决名称层，语义层仍需跨分类物理量检索（R502）。\n- **新增规则 14 条**：DIRECTOR R486~R490 / PLC R491~R494 / OSS R495~R496 / COMPILE R497~R499 / QA R500~R503（QA 席自行起编 R483~R486 与总监线撞号，已由主控统一重编，游标 → R503）。",
+ "battle": "# BATTLE REPORT — R80（2026-11-24 05:41 → 06:05 · 冲刺模式）\n\n## 1. 看板\n| 指标 | 值 | 说明 |\n|---|---|---|\n| 总库 | **1,490 / 10,000（14.90%）** | 上轮 1,453，+37 |\n| 今日（11-24） | **82 / 300（27.3%）** | R79 44 + R80 37 |\n| JSONL 语料 | **1,529 条** | 与 registry 差 +39（R70 前历史） |\n| 复杂 / 简单 | **4 / 33** | 简单占比 89%（≥70% 铁律达标） |\n| 修复件 | **0** | 非当日首轮，配额按铁律归零 |\n| 距 300 缺口 | 218 | 今日剩约 6 轮 → 需 36.3 件/轮 |\n\n## 2. L2 编译闸（全由 `daoli-compile-verifier` 原生裁决，主控未代判）\n| 批次 | 件数 | PASS | FAIL | EXEMPT | 通过率 |\n|---|---|---|---|---|---|\n| 批 A（简单 5 族） | 36 | 36 | 0 | 0 | **100%** |\n| 批 B（复杂 4） | 4 | 4 | 0 | 0 | **100%** |\n| 合计终裁 | **40** | **40** | 0 | 0 | **100%** |\n| 逻辑级 | — | BLOCK **0** / MAJOR **7** / MINOR **21** | — | — | — |\n\n- **CI（MatIEC）**：`git remote -v` 为空 → **待配 remote（第 12 轮顺延）**，不得视为编译通过。\n- 工具链自愈：0 次（缓存命中，无需 stub/iface/method 修复）。\n\n## 3. 审校去重（`daoli-qa-dedup` 原生）\n- 批 A 36 件：**PASS 33 / 存疑 1 / 拒收 2**；BLOCK 1、MAJOR 12、MINOR 12。\n- 拒收 3 件已移 `_quarantine/R80/` 并**撤销 registry 与 JSONL 登记**（先 mv 后核三数，未删源码）：\n  1. `FC_DL_HydroPipePressDrop` ↔ 在库 `FC_DL_PipeFrictionLoss`（同式且更参数化，严格子集）\n  2. `FC_DL_StatsIqrCalc` — BLOCK：L69 下标闸与取值同句，IEC 不保证短路 → `aBuf[-1]` 越界\n  3. `FC_DL_StatsGeoMeanCalc` ↔ 在库 `FC_DL_GeoMeanCalc`（仅精度/索引方言差）\n- 误杀防护：`RefSuperheatCalc ~ RefSubcoolCalc` 签名孪生判为**有效变体**（吸/排气侧物理量相反）；`StatsRangeCalc ~ StatsMinMaxWindow`、`WeighTareDriftCheck ~ LoadCellTareDrift` 等 7 组经跨分类复核判**非重复**。\n\n## 4. 开源供料（`daoli-oss-hunter` 原生）\n- 队列 92 → **107 条**（绿 84 / 黄 23 / 红 0），去重后唯一 96；11 条重复全为解析噪声（ENUM 名 / `METHOD` / `EXTENDS`），已 `dup_flag` 标记不删行。\n- **溯源 0/37 = 0%** ⚠ 连续第 4 轮未达 30%：队列 92 条全为 OSCAT 基础数学，与本轮五族语义零交集；编码 05:44 开跑，猎人 05:45 回队。\n- 许可证：本轮进入的候选 100% 绿/黄区，**红区零代码行入队**。\n\n## 5. 四席召唤模式\n| 席位 | subagent_type | 模式 | 调用 |\n|---|---|---|---|\n| 开源供料 | `daoli-oss-hunter` | **原生** | 1 |\n| 编码 | `plc-programming-expert` | **原生** | 2（简单批 / 复杂批） |\n| 编译闸 | `daoli-compile-verifier` | **原生** | 2（批 A / 批 B） |\n| 审校去重 | `daoli-qa-dedup` | **原生** | 1 |\n| 主控 | 本会话（dlf-lead） | — | 盘点/规划/终审/入库/文档/复盘 |\n\n**兜底 0，原生 4/4（连续第 61 轮）。** 子代理 6 个，**超 ≤5 预算 1 个**（双批编码 + 双批闸并行保 T+60 收口），已披露。\n\n## 6. 里程碑四检查点（T = 05:41）\n| 检查点 | 要求 | 实际 | 结果 |\n|---|---|---|---|\n| T+15′ | 规划 40 条落盘 | 05:42（T+1.2′） | ✅ |\n| T+40′ | 编码 ≥28 件 | 05:50 交付 36 件（T+9′） | ✅ |\n| T+50′ | 闸裁 ≥28 件 | 05:55:51 裁完 36 件（T+14.9′） | ✅ |\n| T+60′ | 入库 + 战报 | 入库 06:02:52（T+21.9′） | ✅ |\n\n**无需触发「简单件冲刺」**（T+40 前已交付 36 件 ≥28）。\n\n## 7. 三数一致性\n`registry 1,490` ｜ `JSONL 1,529` ｜ `.st 1,490` → **registry 与磁盘差集 0**；JSONL 高 39 条为 R70 前历史遗留（延续披露）。\n\n## 8. 进化\n新增 **14 条**（总监 R486~R490 / PLC R491~R494 / 猎人 R495~R496 / 闸 R497~R499 / 审校 R500~R503）。QA 席自行起编 R483~R486 与总监线撞号，主控已统一重编，**全局游标 → R503**。\n\n## 9. 当日复盘要点\n- **第一瓶颈：编码逻辑正确性（数值层）**。编译 100%，但 40 件中 5 件在合法输入下算出错值（量纲错 2 件、死输入 3 件），全部属「写前未做量纲/入参因果自检」，不是编译器能拦的。\n- **第二瓶颈：语料溯源 0%**。队列质量与本轮赛道完全不匹配，属选料错位而非采集不足。\n- **下轮优化**：① L3 向量门 5 条硬锚点（成本 2′，收益最高）② 编码席派单强制「量纲自检 + 入参因果表」（每件 3 行注释）③ 猎人改挖垂直工艺仓（称重/液压/制冷/水处理）。\n\n## 10. 一句话风险\n**「40 件全部可编译，5 件算错」——若继续只以 L2 通过率为质量看板，库会以 100% 的绿色通过率稳定积累错误数值组件。**\n",
+ "feishu": "**道莅工业代码库 · R80 战报**（2026-11-24 05:41→06:05 冲刺轮）\n\n**看板**\n- 总库 **1,490 / 10,000（14.90%）**，本轮 **+37**\n- 今日 **82 / 300（27.3%）**，缺口 218\n- SFT 语料 **1,529 条**（registry 与磁盘差集 0）\n\n**分档产出**\n- 复杂 4：MultiTankBlendSeq · ConveyorMergePrioritySeq · DryerZoneProfileSeq · RefDefrostCycleSeq\n- 简单 33（5 族单次调用批量写盘）：称重配料 8 / 液压气动 7 / 制冷冷媒 7 / 统计离散 4 / 水处理 7\n- 修复件 **0**（非当日首轮，配额归零）\n\n**质量门**\n- L2 终裁 **40/40 = 100%**，零 FAIL 零 EXEMPT（连续第 4 轮零豁免）\n- **但逻辑层 7 件 MAJOR + 1 件 BLOCK**：5 件在合法输入下算出错值（量纲错 2 / 死输入 3）→ 挂账 R81 P0\n- 闸建议 2 处最小修已就地执行并复跑 PASS\n- 审校 **拒收 3**（PipeFrictionLoss 同义 / IQR 数组越界 BLOCK / GeoMean 同义）→ 已隔离并撤登记\n- **CI：MatIEC 待配 remote（第 12 轮顺延）**\n\n**开源**\n- 队列 92 → **107 条**（绿 84 / 黄 23 / 红 0），唯一 96\n- **溯源 0/37 = 0%** ⚠ 连续第 4 轮未达 30%（队列全为 OSCAT 基础数学，与本轮五族零交集）\n\n**四席召唤**：原生 4/4（猎人/编码/编译闸/审校），兜底 0，连续第 61 轮。\n\n**当日复盘**\n- 第一瓶颈：**编码逻辑正确性**——编译全绿但 5 件算错，编译器结构性拦不住数值错误\n- 下轮优化：L3 向量门 5 条硬锚点 / 编码席强制量纲自检 / 猎人改挖垂直工艺仓\n\n**风险一句话**：40 件全部可编译、5 件算错——若继续只盯 L2 通过率，库里会稳定积累「能编译的错误组件」。\n",
+ "ms_coder": "9′",
+ "ms_gate": "14.9′",
+ "ms_close": "21.9′"
+}

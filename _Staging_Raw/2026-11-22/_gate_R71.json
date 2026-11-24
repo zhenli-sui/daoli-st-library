@@ -1,0 +1,266 @@
+{
+ "round": "MANUAL",
+ "ts": "2026-11-22T21:10:44+08:00",
+ "total": 8,
+ "pass": 8,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FC_DL_DurationFormat.st",
+   "name": "FC_DL_DurationFormat",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 111
+  },
+  {
+   "file": "FB_DL_AxisEncBatteryWatch.st",
+   "name": "FB_DL_AxisEncBatteryWatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 87,
+     "detail": "类型未识别：E_DL_Ne107Status"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 211
+  },
+  {
+   "file": "FB_DL_PumpPrimingWatch.st",
+   "name": "FB_DL_PumpPrimingWatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：E_DL_PpwPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：E_DL_PpwPhase"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 201
+  },
+  {
+   "file": "FB_DL_ScaleRangeWatch.st",
+   "name": "FB_DL_ScaleRangeWatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 208
+  },
+  {
+   "file": "FC_DL_AirSpecificVolume.st",
+   "name": "FC_DL_AirSpecificVolume",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 210
+  },
+  {
+   "file": "FC_DL_TriangleSolveSSS.st",
+   "name": "FC_DL_TriangleSolveSSS",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 166
+  },
+  {
+   "file": "FB_DL_FlyingShearSync.st",
+   "name": "FB_DL_FlyingShearSync",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 123,
+     "detail": "类型未识别：E_DL_FssPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 132,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 133,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 134,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 135,
+     "detail": "类型未识别：E_DL_FssPhase"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 346
+  },
+  {
+   "file": "FB_DL_LaneDivertCtrl.st",
+   "name": "FB_DL_LaneDivertCtrl",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：E_DL_LdcPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 105,
+     "detail": "类型未识别：F_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 106,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 107,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 108,
+     "detail": "类型未识别：E_DL_LdcPhase"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 231
+  }
+ ]
+}

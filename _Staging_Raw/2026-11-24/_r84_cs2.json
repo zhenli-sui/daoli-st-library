@@ -1,0 +1,854 @@
+[
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "llvm/llvm-project",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "llvm/llvm-project",
+  "path": "lldb/source/Symbol/SymbolContext.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "llvm/llvm-project",
+  "path": "lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "hfinkel/llvm-project-cxxjit",
+  "path": "clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ravynsoft/ravynos",
+  "path": "Developer/Default.xctoolchain/llvm/clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "intel/llvm",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm16/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm18/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "yrnkrn/zapcc",
+  "path": "lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "P2Tree/LLVM_for_cpu0",
+  "path": "llvm/tools/clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "root-project/root",
+  "path": "interpreter/llvm-project/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "openbsd/src",
+  "path": "gnu/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ravynsoft/ravynos",
+  "path": "Developer/Default.xctoolchain/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "openbsd/src",
+  "path": "gnu/llvm/lldb/source/Plugins/ExpressionParser/Clang/ClangUserExpression.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "yandex/perforator",
+  "path": "contrib/libs/llvm22/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "microsoft/llvm",
+  "path": "lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ravynsoft/ravynos",
+  "path": "Developer/Default.xctoolchain/llvm/lldb/source/Plugins/ExpressionParser/Swift/SwiftExpressionParser.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "leaningtech/cheerp-compiler",
+  "path": "clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "checkedc/checkedc-clang",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "bluesadi/Pluto",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "za233/Polaris-Obfuscator",
+  "path": "src/clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "DeNA/DeClang",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm18/lib/Bitcode/Reader/BitcodeAnalyzer.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "ydb-platform/ydb",
+  "path": "contrib/libs/llvm16/lib/Bitcode/Reader/BitcodeAnalyzer.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "llvm-mos/llvm-mos",
+  "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "GANGE666/xVMP",
+  "path": "src/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "triSYCL/sycl",
+  "path": "clang-tools-extra/clang-doc/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "root-project/root",
+  "path": "interpreter/llvm-project/llvm/lib/Bitcode/Reader/BitcodeAnalyzer.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "metashell/metashell",
+  "path": "3rd/templight/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" stringer",
+  "repo": "DeNA/DeClang",
+  "path": "lldb/source/Plugins/ExpressionParser/Clang/ClangUserExpression.cpp"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "rustcoreutils/posixutils-rs",
+  "path": "man/man_util/parse/mdoc.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "mahrr/raven",
+  "path": "src/compiler.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "JafarShamzsi/Disassembler",
+  "path": "src/graph.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "krobelus/neofish",
+  "path": "src/parser.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "SaharshDeshini/cvs",
+  "path": "bk/runner/tracer.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "deepin-community/fish",
+  "path": "src/parser.cpp"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "m-c-frank/fish-shell",
+  "path": "src/parser.cpp"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "posit-dev/ark",
+  "path": "crates/ark_macros/src/lib.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "AFDudley/mogfish",
+  "path": "fish/src/parser.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "clasp-developers/clasp",
+  "path": "src/core/primitives.cc"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "autc04/Retro68",
+  "path": "gcc/gcc/system.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "slime/slime",
+  "path": "lib/hyperspec.el"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "posit-dev/ark",
+  "path": "crates/harp_macros/src/lib.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "yrnkrn/zapcc",
+  "path": "include/llvm/Bitcode/LLVMBitCodes.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "joaotavora/sly",
+  "path": "lib/hyperspec.el"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "itszor/gcc-6502",
+  "path": "gcc/system.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "jmeubank/tdm-gcc-src",
+  "path": "gcc/system.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "NVIDIA/cuda-gdb",
+  "path": "gdb/frame.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "jcmvbkbc/gcc-xtensa",
+  "path": "gcc/system.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "adobe-flash/crossbridge",
+  "path": "llvm-gcc-4.2-2.9/gcc/varasm.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "adobe-flash/crossbridge",
+  "path": "llvm-gcc-4.2-2.9/gcc/output.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "modula3/cm3",
+  "path": "m3-sys/m3cc/gcc-4.7/gcc/system.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "adobe-flash/crossbridge",
+  "path": "llvm-gcc-4.2-2.9/gcc/ChangeLog-1997"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "yrnkrn/zapcc",
+  "path": "docs/BitCodeFormat.rst"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "jcbeaudoin/MKCL",
+  "path": "src/c/compiler.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "EricLBuehler/candle-vllm",
+  "path": "src/tools/stream_parser.rs"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "hack-different/apple-knowledge",
+  "path": "symbols/ExecutionPolicy.txt"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "jcbeaudoin/MKCL",
+  "path": "src/c/assignment.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "itszor/gcc-6502",
+  "path": "gcc/except.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" unwind",
+  "repo": "jmeubank/tdm-gcc-src",
+  "path": "gcc/except.c"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "Beckhoff-USA-Community/SPT-Libraries",
+  "path": "docs/Getting_Started/DesignGuide.html"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "AlexZacroisky/ArdanTech-Project",
+  "path": "VCIgh/PLC_1/Program blocks/Radius_Calc/RaduisCalc.scl"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/docs/help/README.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "Billal-MOKHTARI/ics_battery_manufacturing_under_normal_and_attack_conditions",
+  "path": "plc_simulations/plc_programs/slitting_notching/build/POUS.h"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "Billal-MOKHTARI/ics_battery_manufacturing_under_normal_and_attack_conditions",
+  "path": "plc_simulations/plc_programs/slitting_notching/build/plc.st"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/15-pid-control/README.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "Billal-MOKHTARI/ics_battery_manufacturing_under_normal_and_attack_conditions",
+  "path": "plc_simulations/plc_programs/slitting_notching/build/generated_plc.st"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "apiarytech/beedance",
+  "path": "wasm/web/app.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/assets/catalog/industrial-reference-register.json"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" \"dancer\"",
+  "repo": "FranDiazGomez/Filet",
+  "path": "Filet.Device.Application.xml"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit",
+  "path": "twincat/PLC/src/2_Devices/FB_Spindle.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "dberlin/Beckhoff-CNC-PLC",
+  "path": "ShopSabre Pro3636/CNCControl/POUs/Spindle/SpindleCIA402Velocity.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "dberlin/Beckhoff-CNC-PLC",
+  "path": "ShopSabre Pro3636/CNCControl/POUs/Spindle/SpindleKEBWithEncoder.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "damianjurkiewicz/BB8-Seedra-4024",
+  "path": "BB-Seedra-4024/PLC/POUs/Executor/FB_Exec_Spindle_PTP.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "mwesteinde/BX130X_Kawasaki_Nootka",
+  "path": "BX130XControlCode/BX130XPLC/POUs/Components/FB_Spindle.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "damianjurkiewicz/BB8-Seedra-4024",
+  "path": "BB-Seedra-4024/PLC/POUs/Executor/FB_Exec_Spindle_GCodeXYZ.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "smith-doug/pushcorp_opcua_twincat",
+  "path": "PushcorpOPCUA/PushcorpCtrl/POUs/FB_Spindle.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "klaus-liebler/factory_in_a_box",
+  "path": "firmware_factory_control_unit/web_packages/plc/src/ide/sim-lib.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "Beckhoff-USA-Community/SPT-Libraries",
+  "path": "docs/Getting_Started/DesignGuide.html"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "dberlin/Beckhoff-CNC-PLC",
+  "path": "ShopSabre Pro3636/CNCControl/POUs/Spindle/SpindleDeltaVFDOverEIP.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "HeytalePazguato/plc-st-review",
+  "path": "docs/preset-packs.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "MarkusFANUC/BasePMC",
+  "path": "config.def"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "pscale-commons/agents",
+  "path": "gen-3/1-magi-onen-kael/magi.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit",
+  "path": "tools/export_st.ps1"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "xunjyin/plc-code-builder",
+  "path": ".cursor/skills/plc-code-generator-tsm-plus/ReferenceAtlasFlexSpindle.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "pscale-commons/agents",
+  "path": "gen-3/3-magi-merged/magi.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "pscale-commons/agents",
+  "path": "gen-3/2-magi-v3-thresher/magi.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "SeanyCash/TwinCAT_CNC",
+  "path": "CNC_MACHINE/Main/POUs/FB_ModbusRTU.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "BabraAjaz/CS-725-Baggage-Handling-System",
+  "path": "Ring-Token-Implem/doc/despats/mvc/MACH_CTL.htm"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "SionVerhoef/twincat-st",
+  "path": "evals/fixture-line/POUs/FB_Capper.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit",
+  "path": "twincat/PLC/src/3_Cnc/FB_MFunctions.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "trianglexx/fse",
+  "path": "dataset/original/lb_claude_assisted_5359f367f65f_0011.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "trianglexx/fse",
+  "path": "dataset/logic_bomb/lb_claude_assisted_5359f367f65f_0011.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "sumonkhosal/AKUS_Python_Dashboard",
+  "path": "reference/FB_AkusNonlinearAccKF.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "singh-tushar2005/Industrial-automation-using-LLMs",
+  "path": "datasets/Industrial_data/Implementation_datasets/TOOL_CHANGER.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "sumonkhosal/AKUS_Python_Dashboard",
+  "path": "akuskf/twincat_export.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "Chenjie1002/Lee_Workshop",
+  "path": "src/data/initialData.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "trianglexx/fse",
+  "path": "dataset/original/lb_5359f367f65f_state_transition_manipulation_0050.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "trianglexx/fse",
+  "path": "dataset/logic_bomb/lb_5359f367f65f_state_transition_manipulation_0050.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"spindle\"",
+  "repo": "Ofeecc/STAR-PLC-Agent",
+  "path": "results/raw/four_group_20261114/codex_terra/SELF003/generation/agent/prompt.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool breakage\"",
+  "repo": "CristhianARV/pi",
+  "path": "data_eval/eval_pool.csv"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" \"tool breakage\"",
+  "repo": "CristhianARV/pi",
+  "path": "data_eval/synthetic_qa.csv"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"cooling jacket\"",
+  "repo": "Aneesh495/gantry",
+  "path": "README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"cooling jacket\"",
+  "repo": "Dadlorian/CLAUDE_SKILLS",
+  "path": "25_manufacturing_industry_4_0/skills/01_industrial_automation/skill.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Aneesh495/gantry",
+  "path": "README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed_courses_v2.py"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/15-pid-control/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/16-alarms-and-diagnostics/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/13-sequential-control/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/21-architecture-and-standards/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exothermic",
+  "repo": "ZzzJjt/IC-100",
+  "path": "Code Evaluation/json_generation/reference_tasks.json"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "tools/rig/builds/tia-shaped/reference/dosing.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/OSCAT/chemical_dosing_command/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "malgaroshy-maker/factoryforge",
+  "path": "examples/tia/batch-dosing/batch_dosing.scl"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/batch-skid/lib/recipes.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/guides/oop-concepts-in-st.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/OSCAT/pasteurizer_quality_chain/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "tools/rig/builds/tia-shaped/PLAN.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/batch-skid/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "fisothemes/FisoThemes-Error-Library-for-TwinCAT",
+  "path": "README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "docs/design/examples-dogfood.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "02_Software_Design/PLC/02_Structures/ST_RecipeExecution.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "rivie13/studio5000-AI-Assistant",
+  "path": "src/ai_assistant/enhanced_code_assistant.py"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "joyautomation/nautilus",
+  "path": "tools/vscode-iec/CHANGELOG.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Gorke07/OpenDVP",
+  "path": "src/st/stdlib/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "02_Software_Design/PLC/01_Function_Blocks/FB_LineManager.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "aneklavya/plc-guard",
+  "path": "docs/01-background.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "Archive/Legacy/PLC/Mixed_Managers/70_FB_RecipeManager.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "komatic1/SCL_PCS7_AdvLib",
+  "path": "DoseL.scl"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "02_Software_Design/PLC/01_Function_Blocks/FB_SystemManager.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "pierredantas/esbmc-plc-benchmark-suite",
+  "path": "ml/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "ThorstenBrach/TcAgent",
+  "path": "docs/USER_GUIDE.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Gorke07/OpenDVP",
+  "path": "docs/st-library.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch PVC.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "02_Software_Design/PLC/07_Implementation/VENDOR_COMPILE_GATE.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch Cocoa Milk.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Torpass/tridi",
+  "path": "physics/src/pid_assembler.js"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "ypf2001/xiaweiji",
+  "path": "src/xiaweiji.scl"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "00_Project_Management/PLC_MODULE_INDEX.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" \"recipe\" \"dosing\"",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "02_Software_Design/PLC/07_Implementation/Function_Blocks/FB_LineManager.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" \"basis weight\"",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed_courses_v2.py"
+ }
+]

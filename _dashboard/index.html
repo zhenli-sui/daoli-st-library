@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>道莅工业代码库工厂 · Harness 看板</title>
+<style>
+:root{
+  --bg:#0a0e1a; --panel:#111827cc; --panel2:#0f1626; --line:#1f2a44;
+  --cyan:#22d3ee; --blue:#3b82f6; --green:#34d399; --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --pink:#f472b6;
+  --txt:#e5eefb; --dim:#8fa3c4; --dim2:#5b6f94;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--bg); color:var(--txt); overflow-x:hidden;
+}
+#bgCanvas{position:fixed;inset:0;z-index:0;opacity:.5}
+.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:20px 28px 40px}
+
+/* ---------- header ---------- */
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 4px 18px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#0ea5e9,#6366f1);box-shadow:0 0 24px #3b82f655;font-size:22px}
+h1{font-size:22px;letter-spacing:1px}
+h1 small{display:block;font-size:11px;color:var(--dim);font-weight:400;letter-spacing:2px;margin-top:2px}
+.head-right{display:flex;align-items:center;gap:14px}
+.live-dot{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--green)}
+.live-dot i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.35)}}
+#clock{font-family:Consolas,monospace;font-size:13px;color:var(--dim)}
+.round-badge{background:linear-gradient(135deg,#7c3aed22,#22d3ee22);border:1px solid #22d3ee44;
+  padding:6px 14px;border-radius:20px;font-size:13px;color:var(--cyan);font-weight:600}
+
+/* ---------- tabs ---------- */
+nav{display:flex;gap:8px;margin:6px 0 20px;border-bottom:1px solid var(--line);padding-bottom:0}
+nav button{background:none;border:none;color:var(--dim);font-size:14px;padding:10px 18px;cursor:pointer;
+  border-bottom:2px solid transparent;transition:.25s;letter-spacing:1px}
+nav button:hover{color:var(--txt)}
+nav button.on{color:var(--cyan);border-bottom-color:var(--cyan);text-shadow:0 0 12px #22d3ee66}
+.tab{display:none;animation:fadeUp .45s ease}
+.tab.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  backdrop-filter:blur(8px);position:relative;overflow:hidden;transition:.3s}
+.card:hover{border-color:#2f437055;box-shadow:0 6px 30px #0ea5e915}
+.card h3{font-size:13px;color:var(--dim);font-weight:600;letter-spacing:2px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h3::before{content:"";width:3px;height:14px;border-radius:2px;background:linear-gradient(var(--cyan),var(--blue))}
+
+/* KPI */
+.kpis{grid-template-columns:repeat(5,1fr)}
+.kpi{text-align:left;padding:16px 18px}
+.kpi .v{font-size:32px;font-weight:700;font-family:Consolas,monospace}
+.kpi .l{font-size:12px;color:var(--dim);margin-top:4px}
+.kpi .s{font-size:11px;margin-top:6px;color:var(--dim2)}
+.bar-mini{height:4px;border-radius:3px;background:#1a2440;margin-top:10px;overflow:hidden}
+.bar-mini i{display:block;height:100%;border-radius:3px;width:0;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
+
+/* pipeline */
+.pipe{display:flex;align-items:stretch;gap:0;margin:6px 0 4px}
+.stage{flex:1;min-width:0;position:relative;padding:0 4px;cursor:pointer}
+.stage .box{border:1px solid var(--line);border-radius:12px;padding:14px 10px 12px;text-align:center;
+  background:var(--panel2);transition:.3s;height:100%}
+.stage:hover .box{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 8px 24px #22d3ee22}
+.stage .ic{font-size:22px;margin-bottom:6px}
+.stage .nm{font-size:13px;font-weight:600}
+.stage .ag{font-size:10.5px;color:var(--dim);margin-top:4px}
+.stage .st{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;margin-top:8px;padding:3px 9px;border-radius:10px}
+.st.ok{background:#34d39915;color:var(--green)}
+.st.run{background:#fbbf2418;color:var(--amber)}
+.st i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.5s infinite}
+.link{align-self:center;width:52px;height:2px;flex:none;position:relative;background:#1e2a48;overflow:visible;border-radius:2px}
+.link i{position:absolute;top:-2.5px;left:0;width:7px;height:7px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 8px var(--cyan);animation:flow 2.6s linear infinite}
+.link i:nth-child(2){animation-delay:1.3s}
+@keyframes flow{0%{left:-6px;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:52px;opacity:0}}
+
+/* round chart */
+#roundChart{display:flex;align-items:flex-end;gap:14px;height:190px;padding:8px 6px 0}
+.rcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.rbar{width:100%;max-width:44px;background:linear-gradient(180deg,var(--cyan),#3b82f688);border-radius:6px 6px 2px 2px;
+  height:0;transition:height 1s cubic-bezier(.22,1,.36,1);position:relative;box-shadow:0 0 14px #22d3ee33}
+.rbar:hover{filter:brightness(1.3)}
+.rbar .tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-size:11px;color:var(--txt);background:#0b1120ee;border:1px solid var(--line);padding:3px 9px;border-radius:6px;
+  opacity:0;transition:.2s;pointer-events:none}
+.rcol:hover .tip{opacity:1}
+.rlab{font-size:11px;color:var(--dim);font-family:Consolas,monospace}
+.rval{font-size:12px;font-weight:700;color:var(--cyan);font-family:Consolas,monospace}
+.rline{position:absolute;left:0;right:0;border-top:1.5px dashed #f8717166}
+.rline span{position:absolute;right:0;top:-18px;font-size:10.5px;color:#f87171cc}
+
+/* library tab */
+.libgrid{grid-template-columns:340px 1fr}
+.ring-wrap{position:relative;display:grid;place-items:center;padding:8px 0}
+.ring-wrap svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:#18233f;stroke-width:14}
+.ring-fg{fill:none;stroke:url(#rg);stroke-width:14;stroke-linecap:round;stroke-dasharray:0 999;
+  transition:stroke-dasharray 1.6s cubic-bezier(.22,1,.36,1);filter:drop-shadow(0 0 8px #22d3ee88)}
+.ring-txt{position:absolute;text-align:center}
+.ring-txt .big{font-size:40px;font-weight:800;font-family:Consolas,monospace}
+.ring-txt .sub{font-size:12px;color:var(--dim);margin-top:2px}
+.cat-row{display:flex;align-items:center;gap:10px;padding:9px 6px;border-radius:8px;cursor:pointer;transition:.2s}
+.cat-row:hover{background:#ffffff08}
+.cat-row .dot{width:10px;height:10px;border-radius:3px;flex:none}
+.cat-row .nm{width:110px;font-size:13px}
+.cat-row .tr{flex:1;height:9px;background:#141d33;border-radius:5px;overflow:hidden}
+.cat-row .tr i{display:block;height:100%;width:0;border-radius:5px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.cat-row .ct{width:44px;text-align:right;font-family:Consolas,monospace;font-size:13px}
+.cat-kids{display:none;padding-left:34px}
+.cat-kids .cat-row{padding:6px}
+.cat-kids .nm{font-size:12px;color:var(--dim)}
+.cmplx{display:flex;align-items:flex-end;gap:10px;height:170px;padding-top:8px}
+.ccol{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.cbar{width:70%;background:linear-gradient(180deg,var(--purple),#6366f177);border-radius:5px 5px 1px 1px;height:0;
+  transition:height 1s cubic-bezier(.22,1,.36,1)}
+.cbar:hover{filter:brightness(1.3)}
+.ticker{margin-top:14px;overflow:hidden;border-top:1px solid var(--line);padding-top:10px}
+.ticker-inner{display:flex;gap:40px;white-space:nowrap;animation:tick 30s linear infinite;font-size:12px;color:var(--dim)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker b{color:var(--cyan);font-family:Consolas,monospace}
+
+/* experts */
+.exp-grid{grid-template-columns:repeat(5,1fr)}
+.exp{cursor:pointer;text-align:center;padding:22px 14px}
+.exp:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 10px 30px #22d3ee22}
+.exp .avatar{width:64px;height:64px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;font-size:28px;
+  position:relative}
+.exp .avatar::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid currentColor;opacity:.35;
+  animation:ringPulse 2.4s infinite}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.1);opacity:.12}}
+.exp .nm{font-size:14.5px;font-weight:700}
+.exp .rl{font-size:11px;color:var(--dim);margin-top:4px;line-height:1.5}
+.exp .mt{margin-top:10px;font-size:11px;color:var(--dim2);font-family:Consolas,monospace}
+.exp .pill{display:inline-block;margin-top:9px;font-size:10.5px;padding:3px 10px;border-radius:10px;background:#34d39915;color:var(--green)}
+
+/* quality tab */
+.qgrid{grid-template-columns:1fr 1fr}
+.ci-line{display:flex;justify-content:space-between;padding:9px 4px;border-bottom:1px solid #182238;font-size:13px}
+.ci-line:last-child{border:none}
+.ci-line .k{color:var(--dim)}
+.ci-line .v{font-family:Consolas,monospace}
+.tag-ok{color:var(--green)} .tag-warn{color:var(--amber)} .tag-info{color:var(--cyan)}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.rule{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:11.5px;
+  transition:.2s;cursor:default}
+.rule:hover{border-color:var(--purple);transform:translateY(-2px)}
+.rule b{color:var(--purple);font-family:Consolas,monospace;margin-right:6px}
+.ledger{padding:10px 6px;border-bottom:1px dashed #1c2740;font-size:12.5px;display:flex;justify-content:space-between;align-items:center}
+.ledger:last-child{border:none}
+.ledger .cur{font-family:Consolas,monospace;color:var(--cyan);font-size:12px}
+
+/* modal */
+#modal{position:fixed;inset:0;background:#04071199;backdrop-filter:blur(4px);z-index:50;display:none;
+  align-items:center;justify-content:center}
+#modal.on{display:flex;animation:fadeUp .3s ease}
+.mbox{width:min(680px,92vw);max-height:82vh;overflow-y:auto;background:#0d1424;border:1px solid #2a3c66;
+  border-radius:16px;padding:26px 30px;box-shadow:0 20px 60px #000a}
+.mbox h2{font-size:18px;margin-bottom:4px}
+.mbox .role{color:var(--cyan);font-size:13px;margin-bottom:16px}
+.mbox p,.mbox li{font-size:13px;line-height:1.8;color:#c6d5ec}
+.mbox ul{margin:8px 0 8px 20px}
+.mbox .sec{margin-top:16px;padding-top:12px;border-top:1px solid #1c2a4a}
+.mbox .sec h4{font-size:12px;color:var(--dim);letter-spacing:2px;margin-bottom:8px}
+.mbox .path{font-family:Consolas,monospace;font-size:11px;color:var(--dim2);word-break:break-all}
+.mclose{float:right;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer}
+.mclose:hover{color:var(--red)}
+footer{margin-top:26px;text-align:center;font-size:11px;color:var(--dim2)}
+h2.sec-title{font-size:15px;color:var(--dim);letter-spacing:2px;margin:22px 0 12px;font-weight:600}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <div class="logo">⚙️</div>
+    <h1>道莅工业代码库工厂 · Harness 看板<small>DAOLI ST-LIBRARY FACTORY — AUTONOMOUS BUILD PIPELINE</small></h1>
+  </div>
+  <div class="head-right">
+    <div class="round-badge">当前轮次 R80</div>
+    <div class="live-dot"><i></i>产线在线</div>
+    <div id="clock"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="on" data-t="t1">🚀 产线总览</button>
+  <button data-t="t2">📚 库存看板</button>
+  <button data-t="t3">🧠 专家团队</button>
+  <button data-t="t4">🛡️ 质量与 CI</button>
+</nav>
+
+<!-- ═══════════ TAB 1 产线总览 ═══════════ -->
+<div class="tab on" id="t1">
+  <div class="grid kpis">
+    <div class="card kpi"><div class="v" style="color:var(--cyan)"><span data-cnt="1490">0</span></div><div class="l">总库组件 / 10,000</div><div class="s">达成 14.9% · 最近入库 R80</div><div class="bar-mini"><i data-w="14.9" style="background:linear-gradient(90deg,var(--cyan),var(--blue))"></i></div></div>
+    <div class="card kpi"><div class="v" style="color:var(--amber)"><span data-cnt="82">0</span><small style="font-size:14px;color:var(--dim)">/300</small></div><div class="l">今日产出（11-24）</div><div class="s">R79 +44 / R80 +37 · 缺口 218</div><div class="bar-mini"><i data-w="27.3" style="background:linear-gradient(90deg,var(--amber),#f97316)"></i></div></div>
+    <div class="card kpi"><div class="v" style="color:var(--purple)"><span data-cnt="1492">0</span></div><div class="l">SFT 训练语料（条）</div><div class="s">instruction + CoT + 全源码</div><div class="bar-mini"><i data-w="74.6" style="background:linear-gradient(90deg,var(--purple),var(--pink))"></i></div></div>
+    <div class="card kpi"><div class="v" style="color:var(--green)"><span data-cnt="100">0</span><small style="font-size:14px;color:var(--dim)">%</small></div><div class="l">R80 L2 终裁通过率</div><div class="s">首裁 94.6% → 返修后 100% · 零豁免</div><div class="bar-mini"><i data-w="100" style="background:linear-gradient(90deg,var(--green),#10b981)"></i></div></div>
+    <div class="card kpi"><div class="v" style="color:var(--pink)">R<span data-cnt="490">0</span></div><div class="l">进化规则游标</div><div class="s">五席账本 · 连续 60+ 轮零兜底</div><div class="bar-mini"><i data-w="81.7" style="background:linear-gradient(90deg,var(--pink),var(--red))"></i></div></div>
+  </div>
+
+  <h2 class="sec-title">五步生命周期产线（五席专家流水线 · 点击节点查看席位详情）</h2>
+  <div class="card">
+    <div class="pipe" id="pipe"></div>
+    <div style="margin-top:12px;font-size:12px;color:var(--dim2);display:flex;gap:22px;flex-wrap:wrap">
+      <span>🟢 绿点 = 本轮该席位原生召唤成功（连续 60+ 轮零兜底）</span>
+      <span>⚡ 编码 / 采集 / 审校三席并行，编译闸 jobs=1 串行保真</span>
+      <span>🔒 registry / JSONL 单点写入，五步串行生命周期</span>
+    </div>
+  </div>
+
+  <div class="grid" style="grid-template-columns:1.4fr 1fr;margin-top:16px">
+    <div class="card">
+      <h3>近九轮产出曲线（R72 → R80）</h3>
+      <div style="position:relative">
+        <div class="rline" style="bottom:calc(38px + 148px*0.38/0.42)"><span>日目标折算线 38 件/轮</span></div>
+        <div id="roundChart"></div>
+      </div>
+      <div style="font-size:11.5px;color:var(--dim2);margin-top:10px">R72~R74 产能低谷（12~20 件）→ R75 起执行「族模板批量派生 + 修复分轨」铁律后跃升至 36~42 件/轮，<b style="color:var(--green)">产能提升 2.6 倍</b></div>
+    </div>
+    <div class="card">
+      <h3>今日轮次时间线（11-24）</h3>
+      <div id="todayLine"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 2 库存看板 ═══════════ -->
+<div class="tab" id="t2">
+  <div class="grid libgrid">
+    <div class="card">
+      <h3>万件目标进度</h3>
+      <div class="ring-wrap">
+        <svg width="230" height="230">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#6366f1"/>
+          </linearGradient></defs>
+          <circle class="ring-bg" cx="115" cy="115" r="96"/>
+          <circle class="ring-fg" id="ring" cx="115" cy="115" r="96"/>
+        </svg>
+        <div class="ring-txt"><div class="big" style="color:var(--cyan)"><span data-cnt="14.9" data-dec="1">0</span>%</div><div class="sub">1,490 / 10,000</div><div class="sub">剩余 <b style="color:var(--amber)">8,510</b> 件待建</div></div>
+      </div>
+      <div style="font-size:12px;color:var(--dim);text-align:center;margin-top:4px">按当前 37 件/轮 × 8 轮/日 ≈ <b style="color:var(--green)">296 件/日</b>，预计 <b style="color:var(--cyan)">~29 个工作日</b>达成万件</div>
+    </div>
+    <div class="card">
+      <h3>六大子库分类树状统计（点击展开查看构成）</h3>
+      <div id="catTree"></div>
+    </div>
+  </div>
+
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+    <div class="card">
+      <h3>复杂度分布（C1 简单 → C9 旗舰）</h3>
+      <div class="cmplx" id="cmplxChart"></div>
+      <div style="font-size:11.5px;color:var(--dim2);margin-top:8px">C1~C2 简单件 <b style="color:var(--cyan)">439</b>（29.5%）｜C3~C5 中坚 <b style="color:var(--purple)">785</b>（52.7%）｜C6~C9 旗舰 FB/状态机 <b style="color:var(--pink)">266</b>（17.9%）</div>
+    </div>
+    <div class="card">
+      <h3>语料与产出质量面板</h3>
+      <div class="ci-line"><span class="k">SFT 语料总条数</span><span class="v tag-info">1,492</span></div>
+      <div class="ci-line"><span class="k">语料结构</span><span class="v">真实工况需求 + 架构 CoT + 全源码</span></div>
+      <div class="ci-line"><span class="k">R80 审校去重拦截</span><span class="v tag-warn">2 件（同义词根召回）</span></div>
+      <div class="ci-line"><span class="k">R80 返修位救回</span><span class="v tag-ok">2 件（E045 数组同构）</span></div>
+      <div class="ci-line"><span class="k">修复件配额（分轨铁律）</span><span class="v tag-ok">≤4 件/轮 · 仅当日首轮</span></div>
+      <div class="ci-line"><span class="k">开源候选队列</span><span class="v tag-info">64 条（绿 60 / 黄 4 / 红 0）</span></div>
+      <div class="ticker"><div class="ticker-inner" id="tk"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 3 专家团队 ═══════════ -->
+<div class="tab" id="t3">
+  <div class="card" style="margin-bottom:16px">
+    <h3>专家团编制（daoli-lib-factory 五席 · 缺任一席不得入库）</h3>
+    <div style="font-size:12.5px;color:var(--dim);line-height:1.9">
+      主循环直接承担 <b style="color:var(--cyan)">dlf-lead（产品总监）</b> 职责：盘点、规划、终审、注册入库、文档、复盘。
+      四个成员席位每轮强制原生召唤（subagent），<b style="color:var(--red)">一票否决权在编译闸席</b>；召唤失败须先自诊断 settings.json，两次失败才允许降级兜底（需强制读取人格与规范文件），战报逐席披露召唤模式。
+    </div>
+  </div>
+  <div class="grid exp-grid" id="expGrid"></div>
+  <div class="card" style="margin-top:16px">
+    <h3>五席进化账本（_EXPERT_EVOLUTION · 每轮各追加 ≤5 条，游标 R490）</h3>
+    <div id="ledgerList"></div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 4 质量与 CI ═══════════ -->
+<div class="tab" id="t4">
+  <div class="grid qgrid">
+    <div class="card">
+      <h3>云端 MatIEC-CI（GitHub Actions · 已闭环）</h3>
+      <div class="ci-line"><span class="k">远端仓库</span><span class="v tag-info">zhenli-sui/daoli-st-library</span></div>
+      <div class="ci-line"><span class="k">最近全量推送</span><span class="v">1,891 文件 / 54.4MB · commit c7087cd</span></div>
+      <div class="ci-line"><span class="k">L1 静态门（tree-sitter + 7 红线）</span><span class="v tag-ok">1,425 / 1,490 PASS（95.6%）</span></div>
+      <div class="ci-line"><span class="k">L1 存量</span><span class="v tag-warn">MAJOR 19 / BLOCK 46（接口存量，挂产线清理）</span></div>
+      <div class="ci-line"><span class="k">L2 iec2iec 全库解析</span><span class="v tag-warn">0 / 1,490（MatIEC 老方言差异 → dialect 适配专项 P1）</span></div>
+      <div class="ci-line"><span class="k">本地 RuSTy 快闸</span><span class="v tag-ok">R80 终裁 100% · 零豁免 · jobs=1 串行</span></div>
+      <div class="ci-line"><span class="k">推送通道</span><span class="v">Git Data API 三步法（代理限制下 git push 不可用）</span></div>
+    </div>
+    <div class="card">
+      <h3>质量门禁体系（三层闸 · 逐件必过）</h3>
+      <div class="ci-line"><span class="k">L1 本地静态门 dl_gate.py</span><span class="v">tree-sitter 解析 + 7 红线 + 交叉核对</span></div>
+      <div class="ci-line"><span class="k">L2 真编译门</span><span class="v">本地 RuSTy 1.0.8 + 云端 MatIEC 双验证</span></div>
+      <div class="ci-line"><span class="k">L3 向量门（铺开中）</span><span class="v">除零 / NaN / 越界 / 超时 / 复位断言</span></div>
+      <div class="ci-line"><span class="k">豁免口径</span><span class="v">仅编译器不支持的合法 IEC 语法 · 同错误码连挂 3 轮升级 P0</span></div>
+      <div class="ci-line"><span class="k">拒收机制</span><span class="v">FAIL → 隔离区 _quarantine → 返修位（≤2 轮）</span></div>
+      <div class="ci-line"><span class="k">三数一致性</span><span class="v tag-ok">registry = .st 文件数 = 1,490（diff 0）</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>PLC 编码 16 条红线（R1~R16 · 违反必失败，专家账本另有 R467+ 细则）</h3>
+    <div class="rules" id="ruleGrid"></div>
+  </div>
+  <div class="grid qgrid" style="margin-top:16px">
+    <div class="card">
+      <h3>每日复盘 · 第一瓶颈跟踪</h3>
+      <div id="bottle"></div>
+    </div>
+    <div class="card">
+      <h3>当前挂账与下轮计划</h3>
+      <div id="todo"></div>
+    </div>
+  </div>
+</div>
+
+<footer>道莅工业代码库工厂 · 数据截至 2026-11-24 08:10（R80 轮后快照）· 本看板为静态演示版，可接入实时数据源升级为 Live 版</footer>
+</div>
+
+<!-- modal -->
+<div id="modal"><div class="mbox" id="mbox"></div></div>
+
+<script>
+/* ═════════ 数据区 ═════════ */
+const DATA = {
+  cats:[
+    {k:"DL_MathData", n:"数学与数据处理", c:420, col:"#22d3ee", kids:[["字符/字符串族",68],["单位换算族",64],["对齐取整族",42],["统计滤波族",55],["BCD/位运算族",48],["限幅爬坡族",52],["其他算法族",91]]},
+    {k:"DL_Process", n:"过程控制", c:324, col:"#34d399", kids:[["温度/换热控制",72],["泵阀逻辑",58],["批次/配方序列",66],["PID/串级",44],["联锁保护",48],["其他",36]]},
+    {k:"DL_Device", n:"设备控制", c:253, col:"#a78bfa", kids:[["电机/变频",64],["传感器诊断",58],["执行机构",52],["通讯协议栈",44],["其他",35]]},
+    {k:"DL_Base", n:"基础类型与工具", c:196, col:"#3b82f6", kids:[["位运算/字节序",52],["奇偶校验",34],["时间/定时",38],["字符串工具",40],["其他",32]]},
+    {k:"DL_Algo", n:"核心算法", c:161, col:"#fbbf24", kids:[["滤波/估计",44],["插值/拟合",36],["状态机框架",30],["搜索/排序",22],["其他",29]]},
+    {k:"DL_Motion", n:"运动控制", c:136, col:"#f472b6", kids:[["定位/点动",40],["张力/卷绕",32],["凸轮/电子齿轮",24],["其他",40]]}
+  ],
+  cmplx:[["C1",97,"#22d3ee"],["C2",342,"#22d3ee"],["C3",359,"#a78bfa"],["C4",242,"#a78bfa"],["C5",184,"#a78bfa"],["C6",131,"#f472b6"],["C7",75,"#f472b6"],["C8",38,"#f87171"],["C9",22,"#f87171"]],
+  rounds:[["R72",12,"11-23"],["R73",20,"11-23"],["R74",14,"11-23"],["R75",36,"11-23"],["R76",14,"11-23"],["R77",42,"11-23"],["R78",39,"11-23"],["R79",44,"11-24"],["R80",37,"11-24"]],
+  stages:[
+    {ic:"🗺️",nm:"① 规划",ag:"dlf-lead · 主控",st:"ok",stt:"R80 落盘 T+4′",d:"读注册表/路线图/源矩阵 → 40~45 条目标规划表（族模板连号、撞名四查、磁盘差集前置）"},
+    {ic:"🕸️",nm:"② 开源供料",ag:"daoli-oss-hunter",st:"ok",stt:"真跑采集 ✔",d:"oss_harvest.py API 采集 → 许可证分级（绿参考/黄借语义/红只读思想）→ candidate_queue.jsonl。当前队列 64 条（绿 60/黄 4/红 0）"},
+    {ic:"⌨️",nm:"③ 编码",ag:"plc-programming-expert",st:"ok",stt:"37 件批量写盘",d:"族模板单次调用批量派生（简单 10 件/批、复杂 5 件/批）；16 条红线 + R1~R16 硬规则；严禁占位符"},
+    {ic:"🚦",nm:"④ L2 编译闸",ag:"daoli-compile-verifier",st:"ok",stt:"终裁 100% · 零豁免",d:"RuSTy 1.0.8 本地快闸 jobs=1 串行逐件裁决（一票否决）+ L1 逻辑复核 + 云端 MatIEC 方言闭环；FAIL → 返修位"},
+    {ic:"🔍",nm:"⑤ 审校去重",ag:"daoli-qa-dedup",st:"ok",stt:"12 项扫查全过",d:"12 项定向扫查（行号证据）+ 三道去重（名称/签名指纹/语义同义）；同族位宽/精度变体不算重"},
+    {ic:"📦",nm:"⑥ 注册入库",ag:"dlf-lead · 主控",st:"ok",stt:"三数一致 diff 0",d:"仅 L2 PASS 且审校 PASS 的件写 INDEX_REGISTRY + JSONL 单行 + 勾 ROADMAP；registry = .st = JSONL 源核对"},
+    {ic:"📄",nm:"⑦ 文档战报",ag:"dlf-lead · 主控",st:"ok",stt:"追加式增量 ✔",d:"README 徽章 / CHANGELOG / ROADMAP / SOURCE_HUNTING_MATRIX 追加，BATTLE_REPORT ≤100 行"},
+    {ic:"📡",nm:"⑧ 飞书播报",ag:"lark-cli bot",st:"ok",stt:"已送达战报群",d:"看板 + 分档 + L2 通过率 + CI 结论 + 队列 + 复盘瓶颈 + 风险一句话 → 代码战报群（严禁私聊）"}
+  ],
+  experts:[
+    {name:"dlf-lead（产品总监）",zh:"工控代码库产品总监",role:"主控 · 盘点/规划/终审/入库/文档/复盘",ic:"🎯",col:"#22d3ee",path:"C:\\Users\\Administrator\\.workbuddy\\plugins\\cache\\my-experts\\daoli-library-director\\1.0.0\\agents\\daoli-library-director.md",ledger:"DIRECTOR_EVOLUTION.md · 游标 R231（架构线）",stats:"规划四查 + 磁盘差集前置 · R80 规划 T+4′ 落盘",
+     desc:"道莅工业自动化标准代码库的首席维护者与产品经理。负责 hunt、clean、refactor、review、archive 与文档化 IEC 61131-3 / CODESYS 结构化文本代码，维护 C:\\Library 全库，同步版本与手册，规划下一阶段组件路线图。在产线中承担主控席：每轮产出规划表（族模板连号 + 撞名四查）、终审裁决、注册入库与每日复盘。"},
+    {name:"daoli-oss-hunter",zh:"开源资产猎人",role:"每轮真跑采集 + 许可证分级 + 队列维护",ic:"🕸️",col:"#34d399",path:"C:\\Users\\Administrator\\.workbuddy\\plugins\\cache\\my-experts\\daoli-oss-hunter\\1.0.0\\agents\\daoli-oss-hunter.md",ledger:"OSS_HUNTER_EVOLUTION.md · R474+ 检索策略沉淀",stats:"队列 64 条（绿 60/黄 4/红 0）· R80 净增 +7",
+     desc:"道莅工业代码库的开源资产猎人与合规官。唯一使命：把全网可用的 IEC 61131-3 资产变成一份已去重、已定许可证、已分级、可直接下单生产的候选队列。不写业务代码，只负责「料」。产线位置：挖掘 → 许可证分级 → 签名抽取 → 去重 → candidate_queue.jsonl，供编码专家按队列取件。铁律：绿区（MIT/Apache/BSD/MPL/ISC）可参考并标注；黄区（EPL/OSCAT/WTFPL）只借语义；红区（GPL/AGPL/LGPL）只读思想，代码一行不进队列。"},
+    {name:"plc-programming-expert",zh:"PLC 编码专家",role:"按批次顺序写盘（复杂 5 件/批、简单 10 件/批）",ic:"⌨️",col:"#fbbf24",path:"C:\\Users\\Administrator\\.workbuddy\\plugins\\cache\\my-experts\\plc-programming-expert\\1.0.0\\agents\\plc-programming-expert.md",ledger:"PLC_EXPERT_EVOLUTION.md · 游标 R490（主游标）",stats:"R80 一次调用族模板批量写盘 · 单轮峰值 44 件",
+     desc:"资深工业自动化软件架构师，专精 IEC 61131-3（第 3 版）结构化文本、CODESYS OOP 架构、跨平台可移植 PLC 代码生成与代码评审。核心纪律：族模板批量派生（严禁一件一调用）、16 条红线（零 GVL/零物理地址/纯跨平台语法/防除零越界/双语注释/ENUM+CASE+ELSE…）与 R1~R16 硬规则（METHOD 声明顺序、END_METHOD 完整性、显式类型转换、声明分号、禁 PROPERTY、禁 VLA 透传、引用前确认 PASS）。"},
+    {name:"daoli-compile-verifier",zh:"编译验证工程师",role:"L1/L2 逐件裁决 · 一票否决 · 独立于编码",ic:"🚦",col:"#f87171",path:"C:\\Users\\Administrator\\.workbuddy\\plugins\\cache\\my-experts\\daoli-compile-verifier\\1.0.0\\agents\\daoli-compile-verifier.md",ledger:"COMPILE_VERIFIER_EVOLUTION.md · R475~R476 工具自愈沉淀",stats:"R80 首裁 94.6% → 返修终裁 100% · 零豁免",
+     desc:"道莅代码库的编译验证工程师，独立于编码专家，拥有一票否决权。职责只有一件事：让「能编译、能跑通向量」成为入库的硬条件。双层门禁模型：L1 本地静态门（dl_gate.py，tree-sitter 解析 + 7 红线 + 声明/引用交叉核对）FAIL 即阻断；L2 真编译门（本地 RuSTy / 云端 MatIEC 全量语义编译）FAIL 即阻断并回派编码专家；L3 向量门逐步铺开（除零/NaN/越界/超时/复位边界断言）。"},
+    {name:"daoli-qa-dedup",zh:"审校去重官",role:"12 项扫查 + 三道去重 · 独立与总监不同源",ic:"🔍",col:"#a78bfa",path:"C:\\Users\\Administrator\\.workbuddy\\plugins\\cache\\my-experts\\daoli-qa-dedup\\1.0.0\\agents\\daoli-qa-dedup.md",ledger:"QA_DEDUP_EVOLUTION.md · 误杀判例库持续积累",stats:"历史抽检严重缺陷率 13% → 零放行缺陷 · R80 拦截 2 件",
+     desc:"道莅代码库的独立审校与去重官。与产品总监不同源——总监管「要不要做、做成什么形状」，此席管「做出来的东西能不能发、和别人重不重」，不参与规划以避免自审。成立依据：R59~R64 抽检 30 件严重缺陷率 13%，100% 靠 LLM 阅读发现、覆盖仅 25~50%。双职责：A. 独立深度审校（每轮 10~15% 抽样且不少于 3 件，12 项扫查给行号证据）；B. 三道去重（名称 / 签名指纹 / 语义同义），注意误杀豁免：同族位宽变体、REAL/LREAL 精度变体、不同协议方言属有效变体。"}
+  ],
+  rules:[
+    ["R1","零 GVL / VAR_EXTERNAL"],["R2","零 %I/%Q 物理地址"],["R3","纯 IEC 61131-3 跨平台语法"],["R4","防除零/越界/浮点容差"],
+    ["R5","变量中英双语注释"],["R6","状态机 ENUM+CASE+ELSE 兜底"],["R7","TON/R_TRIG 无条件周期刷新"],["R8","METHOD 先声明后实现"],
+    ["R9","每个 METHOD 必有 END_METHOD"],["R10","禁构造函数式转换（用 X_TO_Y）"],["R11","VAR 声明必须分号结尾"],["R12","ENUM 成员 := 赋值"],
+    ["R13","编码前语义查重+邻件声明"],["R14","FB 内禁用 PROPERTY"],["R15","禁 VLA→VLA 透传"],["R16","引用他件须已 PASS 否则内联"]
+  ],
+  ledgers:[
+    ["PLC_EXPERT_EVOLUTION","编码席 · 主游标","R490","闸位清单 / 数组声明访问同构 / 换算族写前查重"],
+    ["DIRECTOR_EVOLUTION","主控席（架构线）","R231","撞名四查 / 磁盘差集前置 / MAJOR 处置口径统一"],
+    ["OSS_HUNTER_EVOLUTION","开源供料席","R474+","短查询策略 / OSCAT 黄区借骨换道"],
+    ["COMPILE_VERIFIER_EVOLUTION","编译闸席","R476","find_def_file 兜底 / 预筛告警两条建议"],
+    ["QA_DEDUP_EVOLUTION","审校去重席","持续","误杀判例 / 语义同义召回 / 词根分搜"]
+  ],
+  bottles:[
+    ["R74","修复吃名额 + 一件一调用 → 单轮仅 14 件","四条产能铁律（分轨/七成简单/族模板/里程碑）"],
+    ["R78","撞名/重复损耗 17.8%（登记滞后+词根漏检）","三查升级四查 + 磁盘差集前置"],
+    ["R80","日目标 300 与 3h/轮节律结构性不匹配（第 4 次提出）","建议降目标至 180~200 或加密至 2h/轮，待创始人裁决"]
+  ],
+  todos:[
+    ["P1","dialect 适配专项：MatIEC L2 全库 0/1,490 → 清偿方言差异清单（CI 工作面已产出）"],
+    ["P0","4 FB bReset 电平判据 → R_TRIG 系统性 MAJOR 清偿"],
+    ["P1","开源换道：OSCAT 镜像黄区借骨 + PLCnext-Community owner: 直挖（队列深度 64 < 200 红色告警）"],
+    ["P2","队列容量告警：300 件/日 × 50% 语料占比下库存不足 1 天"],
+    ["值守","JSONL 历史 +39 漂移校准 / GitHub PAT 建议 regenerate"]
+  ],
+  today:[["R79",44,"05:12 → 05:41","29′","简单 41 + 复杂 3 · L2 终裁 100%"],["R80",37,"05:41 → 06:08","27′","简单 34 + 复杂 3 · 五族单次写盘 · 并行节省 31%"]],
+  ticker:["FB_DL_RefDefrostCycleSeq · 制冷除霜周期序列（R80）","FC_DL_QuantizeStepLreal · LREAL 步距量化","FB_DL_RollChangeOptimizer · 换卷优化器","FC_DL_BcdAddWord · BCD 字加法","FB_DL_TempZoneCascadeCtrl · 温区串级控制","FC_DL_ParityOddLword · 奇校验 LWORD","FB_DL_ValveStrokeDiagnose · 阀行程诊断"]
+};
+
+/* ═════════ 背景粒子 ═════════ */
+const cv=document.getElementById('bgCanvas'),cx=cv.getContext('2d');let ps=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}
+rs();addEventListener('resize',rs);
+for(let i=0;i<70;i++)ps.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.6+.4});
+(function lp(){cx.clearRect(0,0,cv.width,cv.height);
+ for(const p of ps){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
+  cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fillStyle='#22d3ee55';cx.fill();}
+ for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const a=ps[i],b=ps[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+  if(d<130){cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.strokeStyle='#22d3ee'+Math.floor(30*(1-d/130)).toString(16).padStart(2,'0');cx.stroke();}}
+ requestAnimationFrame(lp)})();
+
+/* ═════════ tabs ═════════ */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+ document.getElementById(b.dataset.t).classList.add('on');
+ if(b.dataset.t==='t2')setTimeout(animLib,80);
+});
+setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('zh-CN',{hour12:false})},500);
+
+/* ═════════ count-up ═════════ */
+function countUp(el){const t=parseFloat(el.dataset.cnt),dec=+(el.dataset.dec||0),dur=1400,st=performance.now();
+ (function f(now){const p=Math.min((now-st)/dur,1),e=1-Math.pow(1-p,3);
+  el.textContent=(t*e).toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  if(p<1)requestAnimationFrame(f)})(st);}
+setTimeout(()=>{document.querySelectorAll('[data-cnt]').forEach(countUp);
+ document.querySelectorAll('.bar-mini i').forEach(i=>i.style.width=Math.min(+i.dataset.w,100)+'%');
+ const ring=document.getElementById('ring'),L=2*Math.PI*96;
+ ring.style.strokeDasharray=(L*0.149)+' '+L;},200);
+
+/* ═════════ pipeline ═════════ */
+const pipe=document.getElementById('pipe');
+DATA.stages.forEach((s,i)=>{
+ const d=document.createElement('div');d.className='stage';
+ d.innerHTML=`<div class="box"><div class="ic">${s.ic}</div><div class="nm">${s.nm}</div><div class="ag">${s.ag}</div>
+  <div class="st ${s.st}"><i></i>${s.stt}</div></div>`;
+ d.onclick=()=>showStage(s);pipe.appendChild(d);
+ if(i<DATA.stages.length-1){const l=document.createElement('div');l.className='link';l.innerHTML='<i></i><i></i>';pipe.appendChild(l);}
+});
+
+/* ═════════ round chart ═════════ */
+const rc=document.getElementById('roundChart'),mx=44;
+DATA.rounds.forEach(([n,v,d])=>{
+ const c=document.createElement('div');c.className='rcol';
+ c.innerHTML=`<div class="rbar" style="height:${v/mx*148}px"><div class="tip">${d} · ${v} 件入册</div></div>
+  <div class="rval">${v}</div><div class="rlab">${n}</div>`;
+ rc.appendChild(c);
+});
+
+/* ═════════ today timeline ═════════ */
+const tl=document.getElementById('todayLine');
+DATA.today.forEach(([n,v,t,dur,note])=>{
+ tl.insertAdjacentHTML('beforeend',`<div style="display:flex;gap:12px;align-items:flex-start;padding:10px 4px;border-left:2px solid var(--cyan);margin:8px 0 8px 6px;padding-left:14px">
+  <div style="flex:1"><b style="color:var(--cyan)">R${n.slice(1)}</b> <span style="font-size:12px;color:var(--dim)">${t} · ${dur}</span>
+  <div style="font-size:12px;color:var(--dim);margin-top:3px">${note}</div></div>
+  <div style="font-size:22px;font-weight:700;color:var(--amber);font-family:Consolas,monospace">+${v}</div></div>`);
+});
+tl.insertAdjacentHTML('beforeend',`<div style="margin-top:10px;font-size:12px;color:var(--dim2)">今日累计 <b style="color:var(--amber)">82/300</b> · 距目标缺口 218 · 当日还剩约 6 轮窗口</div>`);
+
+/* ═════════ category tree ═════════ */
+const ct=document.getElementById('catTree'),mx2=420;
+DATA.cats.forEach((c,i)=>{
+ const row=document.createElement('div');
+ row.innerHTML=`<div class="cat-row" data-i="${i}"><span class="dot" style="background:${c.col};box-shadow:0 0 8px ${c.col}"></span>
+  <span class="nm">${c.k} · ${c.n}</span><span class="tr"><i style="background:linear-gradient(90deg,${c.col},${c.col}66)"></i></span>
+  <span class="ct">${c.c}</span><span style="color:var(--dim2);font-size:11px">▸</span></div>
+  <div class="cat-kids" id="kids${i}">${c.kids.map(k=>`<div class="cat-row"><span class="nm">└ ${k[0]}</span><span class="tr" style="max-width:180px"><i style="background:${c.col}55;width:${k[1]/c.c*100}%"></i></span><span class="ct" style="color:var(--dim)">${k[1]}</span></div>`).join('')}</div>`;
+ ct.appendChild(row);
+});
+ct.querySelectorAll('.cat-row[data-i]').forEach(r=>{
+ const i=r.dataset.i;
+ requestAnimationFrame(()=>r.querySelector('.tr i').style.width=(DATA.cats[i].c/mx2*100)+'%');
+ r.onclick=()=>{const k=document.getElementById('kids'+i);k.style.display=k.style.display==='block'?'none':'block'};
+});
+
+/* ═════════ complexity chart ═════════ */
+const cc=document.getElementById('cmplxChart'),mx3=359;
+DATA.cmplx.forEach(([n,v,col])=>{
+ cc.insertAdjacentHTML('beforeend',`<div class="ccol"><div class="rval" style="color:${col}">${v}</div>
+  <div class="cbar" style="background:linear-gradient(180deg,${col},${col}44)" data-h="${v/mx3*120}px"></div>
+  <div class="rlab">${n}</div></div>`);
+});
+
+/* ═════════ ticker ═════════ */
+const tk=document.getElementById('tk');
+tk.innerHTML=[...DATA.ticker,...DATA.ticker].map(t=>`<span>◆ <b>${t}</b></span>`).join('');
+
+/* ═════════ experts ═════════ */
+const eg=document.getElementById('expGrid');
+DATA.experts.forEach(e=>{
+ const d=document.createElement('div');d.className='card exp';d.style.color=e.col;
+ d.innerHTML=`<div class="avatar" style="background:${e.col}18;color:${e.col}">${e.ic}</div>
+  <div class="nm" style="color:var(--txt)">${e.name}</div><div class="rl">${e.role}</div>
+  <div class="mt">${e.ledger.split('·')[0].trim()}</div><div class="pill">● 在线 · 原生召唤</div>`;
+ d.onclick=()=>showExpert(e);eg.appendChild(d);
+});
+
+/* ═════════ ledgers ═════════ */
+DATA.ledgers.forEach(([f,role,cur,note])=>{
+ document.getElementById('ledgerList').insertAdjacentHTML('beforeend',
+  `<div class="ledger"><span><b style="font-family:Consolas,monospace;color:var(--txt)">${f}</b> <span style="color:var(--dim2);font-size:11px">— ${role}</span><br><span style="font-size:11.5px;color:var(--dim2)">最新沉淀：${note}</span></span><span class="cur">${cur}</span></div>`);
+});
+
+/* ═════════ rules ═════════ */
+DATA.rules.forEach(([n,t])=>{
+ document.getElementById('ruleGrid').insertAdjacentHTML('beforeend',`<div class="rule"><b>${n}</b>${t}</div>`);
+});
+
+/* ═════════ bottles & todos ═════════ */
+DATA.bottles.forEach(([r,b,s])=>{
+ document.getElementById('bottle').insertAdjacentHTML('beforeend',
+  `<div style="padding:9px 4px;border-bottom:1px dashed #1c2740;font-size:12.5px"><b style="color:var(--red)">${r}</b>　${b}<div style="color:var(--dim2);font-size:11.5px;margin-top:3px">→ 对策：${s}</div></div>`);
+});
+DATA.todos.forEach(([p,t])=>{
+ const col=p==='P0'?'var(--red)':p==='P1'?'var(--amber)':'var(--dim)';
+ document.getElementById('todo').insertAdjacentHTML('beforeend',
+  `<div style="padding:9px 4px;border-bottom:1px dashed #1c2740;font-size:12.5px"><b style="color:${col}">[${p}]</b>　${t}</div>`);
+});
+
+/* ═════════ modal ═════════ */
+const modal=document.getElementById('modal'),mbox=document.getElementById('mbox');
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('on')});
+function openM(html){mbox.innerHTML=`<button class="mclose" onclick="document.getElementById('modal').classList.remove('on')">✕</button>`+html;modal.classList.add('on')}
+function showExpert(e){openM(`<h2>${e.ic} ${e.name}</h2><div class="role">${e.zh} · ${e.role}</div>
+ <p>${e.desc}</p><div class="sec"><h4>进化账本</h4><p>${e.ledger}</p><h4 style="margin-top:10px">最近状态</h4><p>${e.stats}</p></div>
+ <div class="sec"><h4>人格定义文件</h4><p class="path">${e.path}</p></div>`)}
+function showStage(s){openM(`<h2>${s.ic} ${s.nm}</h2><div class="role">${s.ag} · 状态：${s.stt}</div><p>${s.d}</p>
+ <div class="sec"><h4>铁律保障</h4><ul><li>五步生命周期串行：前一步没过不进下一步</li><li>L2 编译 jobs=1 串行（并行实测产生 E004 假阳性）</li><li>INDEX_REGISTRY / JSONL 单点写入</li><li>四席原生召唤，缺一不得入库</li></ul></div>`)}
+</script>
+</body>
+</html>

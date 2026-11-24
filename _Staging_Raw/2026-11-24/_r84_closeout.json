@@ -1,0 +1,21 @@
+{
+ "round": "R84",
+ "version": "v2.76.0",
+ "registered": 37,
+ "rejected": 3,
+ "registry": 1646,
+ "jsonl": 1685,
+ "st_files": 1646,
+ "reg_minus_disk": [],
+ "disk_minus_reg": [],
+ "jsonl_minus_reg": 39,
+ "counts": {
+  "DL_Base": 196,
+  "DL_MathData": 421,
+  "DL_Algo": 168,
+  "DL_Device": 288,
+  "DL_Motion": 144,
+  "DL_Process": 429
+ },
+ "at": "2026-11-24T16:44:58+08:00"
+}

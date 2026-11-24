@@ -1,0 +1,745 @@
+[
+ {
+  "fam": "A",
+  "q": "\"FUNCTION_BLOCK\" quench",
+  "hits": [
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/T-A-G(Task-Action-Goal)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/T-A-G(Task-Action-Goal)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "FREEZONEX/ia2",
+    "path": "library/process-control/pous/fb_motor_rev.st",
+    "url": "https://github.com/FREEZONEX/ia2/blob/518555a8260f5cd2daceb400b82562a8136e1826/library/process-control/pous/fb_motor_rev.st"
+   },
+   {
+    "repo": "digitable-lol/flang",
+    "path": "flang/translation/matcher.c",
+    "url": "https://github.com/digitable-lol/flang/blob/7ccc03fe843da71f483cbe79490e196dccec178c/flang/translation/matcher.c"
+   },
+   {
+    "repo": "t-w/s7cli",
+    "path": "S7LibTests/resources/sources/FB1_Flowchart1.AWL",
+    "url": "https://github.com/t-w/s7cli/blob/04441f123ecadc5dc71ceb43d85f38e10f9d4e33/S7LibTests/resources/sources/FB1_Flowchart1.AWL"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Programmer Support/Optimize Batch Code.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Programmer Support/Optimize Batch Code.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/GPT/R-I-S-E(Role-Input-Steps-Expectation)/Programmer Support/Optimize Batch Code.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/GPT/R-I-S-E(Role-Input-Steps-Expectation)/Programmer Support/Optimize Batch Code.md"
+   },
+   {
+    "repo": "ZzzJjt/IC-100",
+    "path": "Code Evaluation/json_generation/reference_tasks.json",
+    "url": "https://github.com/ZzzJjt/IC-100/blob/24d2b84955c29ecf466a71acf59df5dc18aef519/Code Evaluation/json_generation/reference_tasks.json"
+   }
+  ],
+  "total": 10,
+  "err": null
+ },
+ {
+  "fam": "A",
+  "q": "\"FUNCTION_BLOCK\" carburizing",
+  "hits": [],
+  "total": 0,
+  "err": null
+ },
+ {
+  "fam": "A",
+  "q": "\"FUNCTION_BLOCK\" austenitizing",
+  "hits": [],
+  "total": 0,
+  "err": null
+ },
+ {
+  "fam": "B",
+  "q": "\"FUNCTION_BLOCK\" anodizing",
+  "hits": [],
+  "total": 0,
+  "err": null
+ },
+ {
+  "fam": "B",
+  "q": "\"FUNCTION_BLOCK\" extrusion press",
+  "hits": [
+   {
+    "repo": "Eguono22/PLC-Extruder-project",
+    "path": "plc/FB_ExtrusionMotor.st",
+    "url": "https://github.com/Eguono22/PLC-Extruder-project/blob/4272f12b47299f573a2b7cdc21b68c6da2ae168a/plc/FB_ExtrusionMotor.st"
+   },
+   {
+    "repo": "Lone-Wolfgang/Distill-FineWeb2",
+    "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+    "url": "https://github.com/Lone-Wolfgang/Distill-FineWeb2/blob/5b7881e5a9a6e20bf3dda177fc97adc6f24611eb/hub_dataset/jpn_Jpan/links/engineer-education.txt"
+   },
+   {
+    "repo": "johnmichaloski/STEPNCpp",
+    "path": "StepExpress2CppV2/archive/output.txt",
+    "url": "https://github.com/johnmichaloski/STEPNCpp/blob/067c9a774c997670a33066ebb311d5ce152fd931/StepExpress2CppV2/archive/output.txt"
+   },
+   {
+    "repo": "johnmichaloski/STEPNCpp",
+    "path": "StepExpress2CppV2/archive/outputtree.txt",
+    "url": "https://github.com/johnmichaloski/STEPNCpp/blob/067c9a774c997670a33066ebb311d5ce152fd931/StepExpress2CppV2/archive/outputtree.txt"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Polyethylene.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Polyethylene.md"
+   },
+   {
+    "repo": "modelscript/modelscript",
+    "path": "packages/editor/src/workbench/panels/PolyglotDomainPanel.tsx",
+    "url": "https://github.com/modelscript/modelscript/blob/bd62a42a4205ed12c148cfa57724a198dc7d1c0d/packages/editor/src/workbench/panels/PolyglotDomainPanel.tsx"
+   },
+   {
+    "repo": "Lord-Zedd/H5Tags",
+    "path": "tags/(vehi)vehicle.xml",
+    "url": "https://github.com/Lord-Zedd/H5Tags/blob/658a95f4d757073b98f3ccede3c8b0af901c63f0/tags/(vehi)vehicle.xml"
+   },
+   {
+    "repo": "Lord-Zedd/H4Tags",
+    "path": "tags/(vehi)vehicle.xml",
+    "url": "https://github.com/Lord-Zedd/H4Tags/blob/46a06276de1bfdb9fa0ac169d8f65ca55ec39d58/tags/(vehi)vehicle.xml"
+   },
+   {
+    "repo": "Surasia/ReclaimerFiles",
+    "path": "Halo5/(vehi)vehicle.xml",
+    "url": "https://github.com/Surasia/ReclaimerFiles/blob/757ad77c361b98944d3b026619e995cc6b56a435/Halo5/(vehi)vehicle.xml"
+   },
+   {
+    "repo": "camden-smallwood/definitions",
+    "path": "halo5_guardians/vehicle.json",
+    "url": "https://github.com/camden-smallwood/definitions/blob/a368be50d5a961b32307cde4826e33e8704e2b52/halo5_guardians/vehicle.json"
+   },
+   {
+    "repo": "camden-smallwood/definitions",
+    "path": "haloce_evolved/scenario.json",
+    "url": "https://github.com/camden-smallwood/definitions/blob/a368be50d5a961b32307cde4826e33e8704e2b52/haloce_evolved/scenario.json"
+   },
+   {
+    "repo": "r29g82b81/H5F-TagFramework",
+    "path": "Res/Plugins/vehi.xml",
+    "url": "https://github.com/r29g82b81/H5F-TagFramework/blob/c0abf34150bcfa4bf9d28b6d6274989a73391090/Res/Plugins/vehi.xml"
+   },
+   {
+    "repo": "NicmeisteR/halo-meister",
+    "path": "src/HaloMeister.App/Assets/Definitions/haloce_evolved/scenario.json",
+    "url": "https://github.com/NicmeisteR/halo-meister/blob/370b914884fb788763e4a02182f776dbfc44c293/src/HaloMeister.App/Assets/Definitions/haloce_evolved/scenario.json"
+   },
+   {
+    "repo": "r29g82b81/H5F-TagFramework",
+    "path": "Res/Plugins/scnr.xml",
+    "url": "https://github.com/r29g82b81/H5F-TagFramework/blob/c0abf34150bcfa4bf9d28b6d6274989a73391090/Res/Plugins/scnr.xml"
+   },
+   {
+    "repo": "op3x/manualforge-backend",
+    "path": "test/round4.test.js",
+    "url": "https://github.com/op3x/manualforge-backend/blob/174b466721549e6b3f1c62e6b6392059a3da1113/test/round4.test.js"
+   }
+  ],
+  "total": 17,
+  "err": null
+ },
+ {
+  "fam": "B",
+  "q": "\"FUNCTION_BLOCK\" billet",
+  "hits": [
+   {
+    "repo": "LIEH-SAD/LIEH-SAD-NeoMTR",
+    "path": "common/src/main/resources/assets/nanbin/lang/fr_fr.json",
+    "url": "https://github.com/LIEH-SAD/LIEH-SAD-NeoMTR/blob/22cc742393531fefa634eff0caac6c43517b9fa5/common/src/main/resources/assets/nanbin/lang/fr_fr.json"
+   },
+   {
+    "repo": "LIEH-SAD/Nanbin-Create-Mod",
+    "path": "common/src/main/resources/assets/nanbin/lang/fr_fr.json",
+    "url": "https://github.com/LIEH-SAD/Nanbin-Create-Mod/blob/4eaa9ebc3332a3701acf24cefecaedb9b3447b7a/common/src/main/resources/assets/nanbin/lang/fr_fr.json"
+   }
+  ],
+  "total": 2,
+  "err": null
+ },
+ {
+  "fam": "C",
+  "q": "\"FUNCTION_BLOCK\" die casting",
+  "hits": [
+   {
+    "repo": "llvm/llvm-project",
+    "path": "lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp",
+    "url": "https://github.com/llvm/llvm-project/blob/7394ab089ce8f804ff4d769aec55fd3c81e5e139/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+   },
+   {
+    "repo": "llvm/llvm-project",
+    "path": "llvm/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/llvm/llvm-project/blob/7394ab089ce8f804ff4d769aec55fd3c81e5e139/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "llvm/llvm-project",
+    "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp",
+    "url": "https://github.com/llvm/llvm-project/blob/7394ab089ce8f804ff4d769aec55fd3c81e5e139/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "diesel-rs/diesel",
+    "path": "diesel/src/sqlite/connection/functions.rs",
+    "url": "https://github.com/diesel-rs/diesel/blob/fc7dc64457ed2dba404a0ae485410053a2d3c7ab/diesel/src/sqlite/connection/functions.rs"
+   },
+   {
+    "repo": "modular/modular",
+    "path": "Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/17/BitcodeWriter17.cpp",
+    "url": "https://github.com/modular/modular/blob/34af1f28d8a796b21802566e7ac7faadf98d3945/Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/17/BitcodeWriter17.cpp"
+   },
+   {
+    "repo": "modular/modular",
+    "path": "Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/19/BitcodeWriter19.cpp",
+    "url": "https://github.com/modular/modular/blob/34af1f28d8a796b21802566e7ac7faadf98d3945/Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/19/BitcodeWriter19.cpp"
+   },
+   {
+    "repo": "modular/modular",
+    "path": "Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/21/BitcodeWriter21.cpp",
+    "url": "https://github.com/modular/modular/blob/34af1f28d8a796b21802566e7ac7faadf98d3945/Mojo/lib/Compiler/ObjectCompiler/LLVM/Bitcode/21/BitcodeWriter21.cpp"
+   },
+   {
+    "repo": "openbsd/src",
+    "path": "gnu/llvm/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp",
+    "url": "https://github.com/openbsd/src/blob/6ff61ed967522af7a4930022582cb6855c5c2808/gnu/llvm/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+   },
+   {
+    "repo": "ravynsoft/ravynos",
+    "path": "Developer/Default.xctoolchain/llvm/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp",
+    "url": "https://github.com/ravynsoft/ravynos/blob/60aa4ff4b16a54ef8cc1a9ea656b8a827b3419b7/Developer/Default.xctoolchain/llvm/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+   },
+   {
+    "repo": "yrnkrn/zapcc",
+    "path": "lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/yrnkrn/zapcc/blob/c6a8aa30006d997eff0d60fd37b0e62b8aa0ea50/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "intel/llvm",
+    "path": "llvm/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/intel/llvm/blob/56319c44b5cfc555e039b2ed1e51c3bf825f7249/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "ydb-platform/ydb",
+    "path": "contrib/libs/llvm16/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/ydb-platform/ydb/blob/58e4a913bb629e4ffae49f8107edc0c301cdf5d2/contrib/libs/llvm16/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "ydb-platform/ydb",
+    "path": "contrib/libs/llvm18/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/ydb-platform/ydb/blob/58e4a913bb629e4ffae49f8107edc0c301cdf5d2/contrib/libs/llvm18/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "intel/llvm",
+    "path": "llvm/lib/Bitcode/Reader/BitcodeReader.cpp",
+    "url": "https://github.com/intel/llvm/blob/56319c44b5cfc555e039b2ed1e51c3bf825f7249/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "root-project/root",
+    "path": "interpreter/llvm-project/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/root-project/root/blob/b3145947745d1665864244cb4c119c1e3d532238/interpreter/llvm-project/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "openbsd/src",
+    "path": "gnu/llvm/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/openbsd/src/blob/6ff61ed967522af7a4930022582cb6855c5c2808/gnu/llvm/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "checkedc/checkedc-clang",
+    "path": "lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp",
+    "url": "https://github.com/checkedc/checkedc-clang/blob/a2843eae17d96cbfad2cf386dd60de0b849cfb6d/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+   },
+   {
+    "repo": "ravynsoft/ravynos",
+    "path": "Developer/Default.xctoolchain/llvm/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp",
+    "url": "https://github.com/ravynsoft/ravynos/blob/60aa4ff4b16a54ef8cc1a9ea656b8a827b3419b7/Developer/Default.xctoolchain/llvm/llvm/lib/Bitcode/Writer/BitcodeWriter.cpp"
+   },
+   {
+    "repo": "openbsd/src",
+    "path": "gnu/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp",
+    "url": "https://github.com/openbsd/src/blob/6ff61ed967522af7a4930022582cb6855c5c2808/gnu/llvm/llvm/lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/ChangeLog",
+    "url": "https://github.com/oldlinux-web/oldlinux-files/blob/af7120d204d37af256fa9bbca1572e91f89b8ef0/gnu/gcc/gcc-2.2.2/ChangeLog"
+   }
+  ],
+  "total": 1081,
+  "err": null
+ },
+ {
+  "fam": "C",
+  "q": "\"FUNCTION_BLOCK\" diecast",
+  "hits": [],
+  "total": 0,
+  "err": null
+ },
+ {
+  "fam": "C",
+  "q": "\"FUNCTION_BLOCK\" shot velocity",
+  "hits": [
+   {
+    "repo": "ssbmNucleus/ssbmNucleus",
+    "path": "tools/liteaudit/stage_bake.py",
+    "url": "https://github.com/ssbmNucleus/ssbmNucleus/blob/533b59810d06cf3c0302c8776df96e1cd4ed8ba0/tools/liteaudit/stage_bake.py"
+   },
+   {
+    "repo": "horizon-rust/horizon",
+    "path": "crates/horizon-client/src/game/modding/native_server.rs",
+    "url": "https://github.com/horizon-rust/horizon/blob/f5e55979e34c1745db4f7a013bc7f2fedbc1a2f4/crates/horizon-client/src/game/modding/native_server.rs"
+   },
+   {
+    "repo": "Open-Industry-Project/Open-Industry-Project",
+    "path": "e2e/verify-agent-mcp-electron.mjs",
+    "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/e2e/verify-agent-mcp-electron.mjs"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/guides/PLCOPEN_MOTION_LIBRARY_GUIDE.md",
+    "url": "https://github.com/johannesPettersson80/trust-platform/blob/e1eb737db3234f938b88f4c5d43662b6e42c913f/docs/guides/PLCOPEN_MOTION_LIBRARY_GUIDE.md"
+   },
+   {
+    "repo": "microsoft/MIDI",
+    "path": "src/in-box/Libs/MidiSynthLib/UmpDispatcher.cpp",
+    "url": "https://github.com/microsoft/MIDI/blob/c7a71dff6c495733261b32d400f9ce3139286147/src/in-box/Libs/MidiSynthLib/UmpDispatcher.cpp"
+   },
+   {
+    "repo": "Open-Industry-Project/Open-Industry-Project",
+    "path": "src/editor/demo/demoScenes.ts",
+    "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/editor/demo/demoScenes.ts"
+   },
+   {
+    "repo": "twist84/ManagedDonkey",
+    "path": "game/source/game/game_globals.hpp",
+    "url": "https://github.com/twist84/ManagedDonkey/blob/38295bdc94a3839921a33d2fa6efee64e44ff13b/game/source/game/game_globals.hpp"
+   },
+   {
+    "repo": "Open-Industry-Project/Open-Industry-Project",
+    "path": "src/editor/agent/tools.ts",
+    "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/editor/agent/tools.ts"
+   },
+   {
+    "repo": "Inxton/TcOpen",
+    "path": "src/TcoRexrothPress/README.md",
+    "url": "https://github.com/Inxton/TcOpen/blob/e5775805b2e65cfedfc50fd67e68bb5c614876c8/src/TcoRexrothPress/README.md"
+   },
+   {
+    "repo": "Open-Industry-Project/Open-Industry-Project",
+    "path": "scripts/run-gates.mjs",
+    "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/scripts/run-gates.mjs"
+   },
+   {
+    "repo": "Open-Industry-Project/Open-Industry-Project",
+    "path": "plc/index.html",
+    "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/plc/index.html"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/internal/testing/checklists/plc-verification-program/phase18-zero-debt-execution-board.md",
+    "url": "https://github.com/johannesPettersson80/trust-platform/blob/e1eb737db3234f938b88f4c5d43662b6e42c913f/docs/internal/testing/checklists/plc-verification-program/phase18-zero-debt-execution-board.md"
+   },
+   {
+    "repo": "stratuMAK/stratumak",
+    "path": "docs/dev/MISSING_FEATURES.md",
+    "url": "https://github.com/stratuMAK/stratumak/blob/a01a5605da8e434bdafab59386545819716ae4e2/docs/dev/MISSING_FEATURES.md"
+   },
+   {
+    "repo": "MirisWisdom/OpenSauce",
+    "path": "BlamLib/BlamLib/Blam/Halo3/Tags/Objects.cs",
+    "url": "https://github.com/MirisWisdom/OpenSauce/blob/d200c970c918921d40e9fb376ec685c77797c8b7/BlamLib/BlamLib/Blam/Halo3/Tags/Objects.cs"
+   },
+   {
+    "repo": "lusipad/plcopen",
+    "path": "python/pyplcopen.cpp",
+    "url": "https://github.com/lusipad/plcopen/blob/8cab29be3b80154beccca0b2e0588d288cd1e490/python/pyplcopen.cpp"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/internal/testing/evidence/plcopen-motion-library-post-parity-reconciliation-2026-04-12.md",
+    "url": "https://github.com/johannesPettersson80/trust-platform/blob/e1eb737db3234f938b88f4c5d43662b6e42c913f/docs/internal/testing/evidence/plcopen-motion-library-post-parity-reconciliation-2026-04-12.md"
+   },
+   {
+    "repo": "rivie13/studio5000-AI-Assistant",
+    "path": "src/ai_assistant/enhanced_code_assistant.py",
+    "url": "https://github.com/rivie13/studio5000-AI-Assistant/blob/dab542019f1cd372208949d46ab45aeb14678266/src/ai_assistant/enhanced_code_assistant.py"
+   },
+   {
+    "repo": "joyautomation/nautilus",
+    "path": "docs/functions.md",
+    "url": "https://github.com/joyautomation/nautilus/blob/01a7b8a1029a5e610617368f30fb9837153ea073/docs/functions.md"
+   },
+   {
+    "repo": "wamdam/raspimidihub",
+    "path": "src/raspimidihub/alsa_seq.py",
+    "url": "https://github.com/wamdam/raspimidihub/blob/3a661123eaf7c0806350afe10e21c64534b61356/src/raspimidihub/alsa_seq.py"
+   },
+   {
+    "repo": "Project-Cartographer/H2PC_TagExtraction",
+    "path": "BlamLib/BlamLib/Blam/Halo2/Tags/Objects.cs",
+    "url": "https://github.com/Project-Cartographer/H2PC_TagExtraction/blob/e9d5a395b2af076fa88f4597502ee900903005d4/BlamLib/BlamLib/Blam/Halo2/Tags/Objects.cs"
+   }
+  ],
+  "total": 335,
+  "err": null
+ },
+ {
+  "fam": "D",
+  "q": "\"FUNCTION_BLOCK\" sintering",
+  "hits": [],
+  "total": 0,
+  "err": null
+ },
+ {
+  "fam": "D",
+  "q": "\"FUNCTION_BLOCK\" powder metallurgy",
+  "hits": [
+   {
+    "repo": "mnwinter/RungProof",
+    "path": "rungproof-next/assets/catalog/industrial-reference-register.json",
+    "url": "https://github.com/mnwinter/RungProof/blob/423380b8455dbd0237480ddab96d89d9c402762c/rungproof-next/assets/catalog/industrial-reference-register.json"
+   }
+  ],
+  "total": 1,
+  "err": null
+ },
+ {
+  "fam": "D",
+  "q": "\"FUNCTION_BLOCK\" dew point furnace",
+  "hits": [
+   {
+    "repo": "nbermudezs/UIUC_CS512",
+    "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+    "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster1.txt"
+   },
+   {
+    "repo": "paganDeity/LCEReborn",
+    "path": "source/mod/ModApiIds_generated.hpp",
+    "url": "https://github.com/paganDeity/LCEReborn/blob/b4961fa441914f6962a3316a6f7377b883ecc6b4/source/mod/ModApiIds_generated.hpp"
+   }
+  ],
+  "total": 2,
+  "err": null
+ },
+ {
+  "fam": "E",
+  "q": "\"FUNCTION_BLOCK\" brewhouse",
+  "hits": [
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/21-architecture-and-standards/README.md",
+    "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+   }
+  ],
+  "total": 1,
+  "err": null
+ },
+ {
+  "fam": "E",
+  "q": "\"FUNCTION_BLOCK\" mash tun",
+  "hits": [
+   {
+    "repo": "Cisco-Talos/clamav",
+    "path": "libclamav/c++/bytecode2llvm.cpp",
+    "url": "https://github.com/Cisco-Talos/clamav/blob/cad7b18a3e6505195fe08db1412449a18fc9f012/libclamav/c++/bytecode2llvm.cpp"
+   },
+   {
+    "repo": "MirisWisdom/OpenSauce",
+    "path": "BlamLib/BlamLib/Blam/Halo3/Tags/Objects.cs",
+    "url": "https://github.com/MirisWisdom/OpenSauce/blob/d200c970c918921d40e9fb376ec685c77797c8b7/BlamLib/BlamLib/Blam/Halo3/Tags/Objects.cs"
+   },
+   {
+    "repo": "Project-Cartographer/H2PC_TagExtraction",
+    "path": "BlamLib/BlamLib/Blam/Halo2/Tags/Objects.cs",
+    "url": "https://github.com/Project-Cartographer/H2PC_TagExtraction/blob/e9d5a395b2af076fa88f4597502ee900903005d4/BlamLib/BlamLib/Blam/Halo2/Tags/Objects.cs"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/21-architecture-and-standards/README.md",
+    "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+   },
+   {
+    "repo": "jichu4n/prc-tools-remix",
+    "path": "gcc-2.95.3/gcc/config/sparc/sparc.h",
+    "url": "https://github.com/jichu4n/prc-tools-remix/blob/db9a91d746bac4c5921e3786c39b5dc3eca7b83c/gcc-2.95.3/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "sinapordanesh/DetectCodeGPT",
+    "path": "results/csn-codellama7b-10k/figures/python_human_token_freqs.txt",
+    "url": "https://github.com/sinapordanesh/DetectCodeGPT/blob/a71da9ca3ea519793ba49b28b2a4fd7965f16cb8/results/csn-codellama7b-10k/figures/python_human_token_freqs.txt"
+   },
+   {
+    "repo": "adtools/amigaos-gcc-2.95.3",
+    "path": "gcc/config/sparc/sparc.h",
+    "url": "https://github.com/adtools/amigaos-gcc-2.95.3/blob/75a558d4cf5561d7db8c3be1280fb9e816f2a41c/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "pmret/gcc-papermario",
+    "path": "config/sparc/sparc.h",
+    "url": "https://github.com/pmret/gcc-papermario/blob/d97824ffc7517675646960442b3f512a473e4404/config/sparc/sparc.h"
+   },
+   {
+    "repo": "haiku/buildtools",
+    "path": "legacy/gcc/gcc/config/sparc/sparc.h",
+    "url": "https://github.com/haiku/buildtools/blob/33d46bf5c300bd34cd07c596431e4545c754ac03/legacy/gcc/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "lenticularis39/gcc-aix-ia64",
+    "path": "gcc/config/sparc/sparc.h",
+    "url": "https://github.com/lenticularis39/gcc-aix-ia64/blob/5b17fbbc826929c64a695a354f6df54401d5123f/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "nbermudezs/UIUC_CS512",
+    "path": "assignment_1/results/DBLP/clusters-80/cluster17.txt",
+    "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-80/cluster17.txt"
+   },
+   {
+    "repo": "chrissicool/l4openbsd",
+    "path": "gnu/egcs/gcc/config/sparc/sparc.h",
+    "url": "https://github.com/chrissicool/l4openbsd/blob/077177814444e08500e47bc2488502f11469bc60/gnu/egcs/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "mid-kid/arm-000512",
+    "path": "gcc/config/sparc/sparc.h",
+    "url": "https://github.com/mid-kid/arm-000512/blob/92c16b45be4ea4d2c0adb6de36d6bc6c766e5687/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "modula3/pm3",
+    "path": "language/modula3/m3compiler/m3cc/gcc-old/config/sparc/sparc.h",
+    "url": "https://github.com/modula3/pm3/blob/f90a26bac6871db6a282ae514ed88dc31b4f03aa/language/modula3/m3compiler/m3cc/gcc-old/config/sparc/sparc.h"
+   },
+   {
+    "repo": "modula3/pm3",
+    "path": "language/modula3/m3compiler/m3cc/gcc/gcc/config/sparc/sparc.h",
+    "url": "https://github.com/modula3/pm3/blob/f90a26bac6871db6a282ae514ed88dc31b4f03aa/language/modula3/m3compiler/m3cc/gcc/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "goyamamoto/zephyr-tc32",
+    "path": "doc/security/vulnerabilities.rst",
+    "url": "https://github.com/goyamamoto/zephyr-tc32/blob/44b8901c2642ed2170abd5e079bc38fe11764fef/doc/security/vulnerabilities.rst"
+   },
+   {
+    "repo": "decompals/mips-gcc-egcs-2.91.66",
+    "path": "gcc/config/sparc/sparc.h",
+    "url": "https://github.com/decompals/mips-gcc-egcs-2.91.66/blob/65ef5babab920752e7b61e54cc39d5ef422ae7f3/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "xXorAa/qdos-gcc-2.95.3",
+    "path": "gcc/config/sparc/sparc.h",
+    "url": "https://github.com/xXorAa/qdos-gcc-2.95.3/blob/41cffa334c118b557a2288ef9383cda47b509a34/gcc/config/sparc/sparc.h"
+   },
+   {
+    "repo": "modula3/pm3",
+    "path": "m3/pm3/language/modula3/m3compiler/m3cc/gcc-old/config/sparc/sparc.h",
+    "url": "https://github.com/modula3/pm3/blob/f90a26bac6871db6a282ae514ed88dc31b4f03aa/m3/pm3/language/modula3/m3compiler/m3cc/gcc-old/config/sparc/sparc.h"
+   },
+   {
+    "repo": "modula3/pm3",
+    "path": "m3/pm3/language/modula3/m3compiler/m3cc/gcc/gcc/config/sparc/sparc.h",
+    "url": "https://github.com/modula3/pm3/blob/f90a26bac6871db6a282ae514ed88dc31b4f03aa/m3/pm3/language/modula3/m3compiler/m3cc/gcc/gcc/config/sparc/sparc.h"
+   }
+  ],
+  "total": 136,
+  "err": null
+ },
+ {
+  "fam": "E",
+  "q": "\"FUNCTION_BLOCK\" crystallizer",
+  "hits": [
+   {
+    "repo": "Alpha9463/pandid",
+    "path": "pandid/render/drawio.py",
+    "url": "https://github.com/Alpha9463/pandid/blob/a2be1f63d654efd2d54302a62fb6a585ffc778a1/pandid/render/drawio.py"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Aspirin.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Batch Aspirin.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch Aspirin.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/B-A-B(Before-After-Before)/Sequential Control/Batch Aspirin.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/T-A-G(Task-Action-Goal)/Sequential Control/Batch Aspirin.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/T-A-G(Task-Action-Goal)/Sequential Control/Batch Aspirin.md"
+   },
+   {
+    "repo": "ZzzJjt/Industrial-Control",
+    "path": "Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Aspirin.md",
+    "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-T-F(Role-Task-Format)/Sequential Control/Batch Aspirin.md"
+   },
+   {
+    "repo": "dlai-sd/waooaw-platform",
+    "path": "CHANGELOG.md",
+    "url": "https://github.com/dlai-sd/waooaw-platform/blob/c96e2ca6ddd8c681ce6a2778523b2b34da54bbc7/CHANGELOG.md"
+   },
+   {
+    "repo": "dctime/progress-through-skies-modpack",
+    "path": "kubejs/server_scripts/recipes/chipped/tinker.js",
+    "url": "https://github.com/dctime/progress-through-skies-modpack/blob/df601cf3a42797e9eb16c99fb4d60e191a7d7267/kubejs/server_scripts/recipes/chipped/tinker.js"
+   },
+   {
+    "repo": "ZzzJjt/IC-100",
+    "path": "Code Evaluation/json_generation/reference_tasks.json",
+    "url": "https://github.com/ZzzJjt/IC-100/blob/24d2b84955c29ecf466a71acf59df5dc18aef519/Code Evaluation/json_generation/reference_tasks.json"
+   }
+  ],
+  "total": 8,
+  "err": null
+ },
+ {
+  "fam": "E",
+  "q": "\"FUNCTION_BLOCK\" sugar boiling",
+  "hits": [
+   {
+    "repo": "ZzzJjt/IC-100",
+    "path": "Code Evaluation/json_generation/reference_tasks.json",
+    "url": "https://github.com/ZzzJjt/IC-100/blob/24d2b84955c29ecf466a71acf59df5dc18aef519/Code Evaluation/json_generation/reference_tasks.json"
+   }
+  ],
+  "total": 1,
+  "err": null
+ },
+ {
+  "fam": "X",
+  "q": "\"FUNCTION_BLOCK\" case depth",
+  "hits": [
+   {
+    "repo": "rustcoreutils/posixutils-rs",
+    "path": "man/man_util/parse/mdoc.rs",
+    "url": "https://github.com/rustcoreutils/posixutils-rs/blob/b58b676dff0061ed961221c6cef8f90f0da73039/man/man_util/parse/mdoc.rs"
+   },
+   {
+    "repo": "Ephraim-Bryski/mini-C",
+    "path": "compiler/compiler.py",
+    "url": "https://github.com/Ephraim-Bryski/mini-C/blob/d16de71bc760a3fa16f921edc81d005d6fac8ece/compiler/compiler.py"
+   },
+   {
+    "repo": "manux81/stc",
+    "path": "src/stc/parsing/lexer.py",
+    "url": "https://github.com/manux81/stc/blob/1790745e64ec8f5bbb96a8b98a1d1e9eef849602/src/stc/parsing/lexer.py"
+   },
+   {
+    "repo": "krobelus/neofish",
+    "path": "src/parser.rs",
+    "url": "https://github.com/krobelus/neofish/blob/fe20434386bc915487b9bcdbed86f8bcac41e6f1/src/parser.rs"
+   },
+   {
+    "repo": "apiarytech/beebread",
+    "path": "tools/stclean/main.go",
+    "url": "https://github.com/apiarytech/beebread/blob/3fdb4e7b18805e939f5f777d4e456d2cbcba7a60/tools/stclean/main.go"
+   },
+   {
+    "repo": "m-c-frank/fish-shell",
+    "path": "src/parser.h",
+    "url": "https://github.com/m-c-frank/fish-shell/blob/a3cb9d341e3863a71a208cb95eb63a4ac838cdbb/src/parser.h"
+   },
+   {
+    "repo": "joxeankoret/diaphora",
+    "path": "pygments/lexers/pascal.py",
+    "url": "https://github.com/joxeankoret/diaphora/blob/3c7ec2a8f20375a0d8d62d4cac0d172788a92288/pygments/lexers/pascal.py"
+   },
+   {
+    "repo": "atsushiksy/Jeda",
+    "path": "src/compiler/codegen.c",
+    "url": "https://github.com/atsushiksy/Jeda/blob/11b1e8ff11bf145f897a175f4f673e255156b5ef/src/compiler/codegen.c"
+   },
+   {
+    "repo": "AFDudley/mogfish",
+    "path": "fish/src/parser.rs",
+    "url": "https://github.com/AFDudley/mogfish/blob/33f0151911850d0d803d793a960bc6dc7fc8fe8d/fish/src/parser.rs"
+   },
+   {
+    "repo": "pygments/pygments",
+    "path": "pygments/lexers/pascal.py",
+    "url": "https://github.com/pygments/pygments/blob/156d85fdd18d34427fe893527e71da91dcfb0eb5/pygments/lexers/pascal.py"
+   },
+   {
+    "repo": "rtmachines/tc3-emulator",
+    "path": "tc_emulator/validation.py",
+    "url": "https://github.com/rtmachines/tc3-emulator/blob/ab6ac66d3d3154bcfb6a9cbfc800d28bae059fb8/tc_emulator/validation.py"
+   },
+   {
+    "repo": "codygunton/binary-fv-experiment",
+    "path": "tools/analyze_rv64.py",
+    "url": "https://github.com/codygunton/binary-fv-experiment/blob/38a3a14a959067688ee253919929742ca51e26a6/tools/analyze_rv64.py"
+   },
+   {
+    "repo": "61131/echidna",
+    "path": "src/operator/op_call.c",
+    "url": "https://github.com/61131/echidna/blob/bc3946bedaae0308b719231ed67d52736b716c9a/src/operator/op_call.c"
+   },
+   {
+    "repo": "autc04/Retro68",
+    "path": "gcc/gcc/system.h",
+    "url": "https://github.com/autc04/Retro68/blob/a4a389c41e90b1095a40ccf13f28678b6cfbba86/gcc/gcc/system.h"
+   },
+   {
+    "repo": "joxeankoret/pigaios",
+    "path": "pygments/lexers/pascal.py",
+    "url": "https://github.com/joxeankoret/pigaios/blob/8807972f08d5613f5dd291329306abdfb68d60ec/pygments/lexers/pascal.py"
+   },
+   {
+    "repo": "61131/echidna",
+    "path": "src/frame.c",
+    "url": "https://github.com/61131/echidna/blob/bc3946bedaae0308b719231ed67d52736b716c9a/src/frame.c"
+   },
+   {
+    "repo": "Electrical-Age/ElectricalAge",
+    "path": "tools/icons/schematic/STYLE.md",
+    "url": "https://github.com/Electrical-Age/ElectricalAge/blob/ef949977740817f163a34402bfe1c0a0c84f668a/tools/icons/schematic/STYLE.md"
+   },
+   {
+    "repo": "ggnkua/Atari_ST_Sources",
+    "path": "C/gcc_56k/final.c",
+    "url": "https://github.com/ggnkua/Atari_ST_Sources/blob/63e0a458f522f4cd47e7941d02e693ad776fe0af/C/gcc_56k/final.c"
+   },
+   {
+    "repo": "getcadcraft/bimcraft",
+    "path": "app/plc/st.js",
+    "url": "https://github.com/getcadcraft/bimcraft/blob/79b603f6683f2f000b9e8346c1fc92cf466ab01d/app/plc/st.js"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/guides/oop-concepts-in-st.md",
+    "url": "https://github.com/johannesPettersson80/trust-platform/blob/e1eb737db3234f938b88f4c5d43662b6e42c913f/docs/guides/oop-concepts-in-st.md"
+   }
+  ],
+  "total": 18528,
+  "err": null
+ },
+ {
+  "fam": "X",
+  "q": "\"FUNCTION_BLOCK\" supersaturation",
+  "hits": [],
+  "total": 0,
+  "err": null
+ }
+]

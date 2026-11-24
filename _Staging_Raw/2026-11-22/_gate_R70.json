@@ -1,0 +1,330 @@
+{
+ "round": "R70",
+ "ts": "2026-11-22T17:35:56+08:00",
+ "total": 10,
+ "pass": 10,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FC_DL_ModPosWrap.st",
+   "name": "FC_DL_ModPosWrap",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 90
+  },
+  {
+   "file": "FC_DL_LerpClamped.st",
+   "name": "FC_DL_LerpClamped",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 126
+  },
+  {
+   "file": "FB_DL_ScaleRangeWatch.st",
+   "name": "FB_DL_ScaleRangeWatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 73,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 74,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 75,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 184
+  },
+  {
+   "file": "FB_DL_BatchDoseSeq.st",
+   "name": "FB_DL_BatchDoseSeq",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：E_DL_BdsPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 112,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 113,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：E_DL_BdsPhase"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 311
+  },
+  {
+   "file": "FB_DL_PumpAlternationLead.st",
+   "name": "FB_DL_PumpAlternationLead",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 76,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 77,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 251
+  },
+  {
+   "file": "FB_DL_ValveSeatLeakTest.st",
+   "name": "FB_DL_ValveSeatLeakTest",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 88,
+     "detail": "类型未识别：E_DL_VltState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：E_DL_VltState"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 281
+  },
+  {
+   "file": "FB_DL_ConveyorJamDetect.st",
+   "name": "FB_DL_ConveyorJamDetect",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 69,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 70,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 71,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 155
+  },
+  {
+   "file": "FB_DL_AxisSoftLimitGuard.st",
+   "name": "FB_DL_AxisSoftLimitGuard",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 86,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 199
+  },
+  {
+   "file": "FB_DL_RecipeStepExec.st",
+   "name": "FB_DL_RecipeStepExec",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 78,
+     "detail": "类型未识别：E_DL_RseState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 90,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 91,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：E_DL_RseState"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 236
+  },
+  {
+   "file": "FB_DL_CabinetTempDerate.st",
+   "name": "FB_DL_CabinetTempDerate",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：E_DL_CtdTier"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：E_DL_CtdTier"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 252
+  }
+ ]
+}

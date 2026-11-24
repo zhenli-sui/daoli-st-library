@@ -1,0 +1,162 @@
+{
+ "FC_DL_QuenchOilTempRiseCalc": {
+  "desc": "淬火油槽温升与换热负荷：按油量比热与工件带入热量算温升速率与稳态油温",
+  "src": "internal"
+ },
+ "FC_DL_AustenitizeHoldTimeCalc": {
+  "desc": "奥氏体化保温时间：按有效厚度与升温速率算目标温度下的保温时间",
+  "src": "internal"
+ },
+ "FC_DL_CarburizeCaseDepthCalc": {
+  "desc": "气体渗碳层深：Harris 公式由保温时间算层深，并支持目标层深反算时间",
+  "src": "queue"
+ },
+ "FC_DL_TemperEmpiricalHardnessCalc": {
+  "desc": "回火温度-硬度经验曲线：按含碳量与回火温度分段线性插值输出 HRC 并钳位",
+  "src": "internal"
+ },
+ "FB_DL_InductionHardeningScanCtrl": {
+  "desc": "感应淬火扫描：ENUM 状态机驱动加热/扫描/喷淋，功率与扫描速度联动",
+  "src": "internal"
+ },
+ "FB_DL_QuenchTankAgitatorCtrl": {
+  "desc": "淬火槽搅拌器：按油温三级投运，超温联锁停泵，上升沿捕捉",
+  "src": "queue"
+ },
+ "FC_DL_MartensiteFinishTempCalc": {
+  "desc": "马氏体终了温度：按合金元素含量算 Ms 与 Mf，负值钳位",
+  "src": "internal"
+ },
+ "FB_DL_SoakPitTemperatureCtrl": {
+  "desc": "坑式炉均热控制：偏差带比例积分限幅输出，保温计时完成标志",
+  "src": "internal"
+ },
+ "FC_DL_ExtrusionBilletHeatCalc": {
+  "desc": "铝挤压铸锭加热：按锭重温升比热效率算功率与能耗",
+  "src": "queue"
+ },
+ "FC_DL_ExtrusionSpecificPressureCalc": {
+  "desc": "挤压比压：按挤压筒面积与摩擦修正算比压，并算挤压比",
+  "src": "internal"
+ },
+ "FC_DL_AnodizeBathChargeCalc": {
+  "desc": "阳极氧化电量：法拉第电量与电流密度，按膜厚反算时间",
+  "src": "internal"
+ },
+ "FC_DL_ExtrusionDieWearIndexCalc": {
+  "desc": "挤压模磨损指数：按累计吨位周长与温度因子算磨损指数与剩余寿命",
+  "src": "queue"
+ },
+ "FB_DL_AnodizeRinseCascadeCtrl": {
+  "desc": "逆流漂洗级联补水：按末级电导率与液位分级补水，超电导报警",
+  "src": "internal"
+ },
+ "FB_DL_BilletShearGaugeSeq": {
+  "desc": "铸锭定尺剪切：ENUM 状态机完成送料/定尺/夹紧/剪切/去头尾/释放",
+  "src": "internal"
+ },
+ "FC_DL_AnodizeFilmThicknessCalc": {
+  "desc": "氧化膜厚换算：按电量密度与膜密度算膜厚并反算时间",
+  "src": "queue"
+ },
+ "FC_DL_AnodizeSealBoilTimeCalc": {
+  "desc": "沸水封孔：按膜厚算封孔时间，pH 与温度窗口判定合格",
+  "src": "internal"
+ },
+ "FC_DL_DieCastShotVelocityCalc": {
+  "desc": "压射速度：按充填体积与冲头面积算速度，PQ² 交点校核超限降速",
+  "src": "internal"
+ },
+ "FC_DL_DieCastIntensifyPressureCalc": {
+  "desc": "增压比压：按投影面积算所需锁模力并输出设备余量比",
+  "src": "queue"
+ },
+ "FC_DL_DieThermalBalanceCalc": {
+  "desc": "压铸模热平衡：按循环周期金属放热与冷却水流量算模温与模温机负荷",
+  "src": "internal"
+ },
+ "FC_DL_CastingSolidificationTimeCalc": {
+  "desc": "凝固时间：Chvorinov 公式按模数算凝固时间并判断是否加冷铁",
+  "src": "internal"
+ },
+ "FB_DL_DieSprayReleaseSeq": {
+  "desc": "喷涂脱模剂：ENUM 状态机驱动开模/喷涂/吹扫/合模，喷涂次数可设",
+  "src": "queue"
+ },
+ "FB_DL_LadlePourWeightCtrl": {
+  "desc": "浇包定量浇注：快慢两段浇注，称重提前量补偿，超差报警",
+  "src": "internal"
+ },
+ "FC_DL_DieCastPorosityRiskIndexCalc": {
+  "desc": "气孔风险指数：卷气/温差/排气三因子加权输出 0~100 与等级",
+  "src": "internal"
+ },
+ "FC_DL_PowderFillDensityCalc": {
+  "desc": "装粉密度：按粉重与模腔面积算填充高度与压缩比",
+  "src": "queue"
+ },
+ "FC_DL_CompactionPressureCalc": {
+  "desc": "压制压力：按压坯密度与材料常数算压制压力与压机吨位需求",
+  "src": "internal"
+ },
+ "FB_DL_SinterFurnaceRampCtrl": {
+  "desc": "烧结炉升温曲线：ENUM 状态机驱动吹扫/升温/保温/降温，露点联锁",
+  "src": "internal"
+ },
+ "FC_DL_GreenStrengthIndexCalc": {
+  "desc": "生坯强度指数：按压压/润滑剂/密度算强度指数与脱模安全判定",
+  "src": "queue"
+ },
+ "FC_DL_SinterShrinkageCalc": {
+  "desc": "烧结收缩：按烧结前后密度算线收缩率并反算模具尺寸",
+  "src": "internal"
+ },
+ "FB_DL_PowderBlendDoseSeq": {
+  "desc": "混粉配料：多组分顺序放料，累计称重到量提前量，超差重称",
+  "src": "internal"
+ },
+ "FC_DL_DelubeResidualCarbonCalc": {
+  "desc": "润滑剂烧除残碳：按露点温度停留时间估算残碳并判定",
+  "src": "queue"
+ },
+ "FC_DL_MashStrikeWaterTempCalc": {
+  "desc": "糖化投料水温：按麦芽量水量与目标醪温算投料水温含热损修正",
+  "src": "internal"
+ },
+ "FC_DL_WortExtractYieldCalc": {
+  "desc": "麦汁收得率：按麦汁量浓度与麦芽量算收得率与糖化效率",
+  "src": "internal"
+ },
+ "FC_DL_SugarBoilSupersaturationCalc": {
+  "desc": "煮糖过饱和度：按锤度纯度温度算过饱和度系数并判晶核窗口",
+  "src": "queue"
+ },
+ "FC_DL_MolassesExhaustionCalc": {
+  "desc": "废蜜纯度：按糖膏与废蜜纯度算糖分排出率与损失",
+  "src": "internal"
+ },
+ "FB_DL_CrystallizerVacuumCtrl": {
+  "desc": "结晶罐真空：真空泵分级投运与沸点升高补偿，真空丢失联锁",
+  "src": "internal"
+ },
+ "FB_DL_CipCaneJuiceLineSeq": {
+  "desc": "蔗汁线 CIP：五步清洗状态机，回液电导判定与步超时",
+  "src": "queue"
+ },
+ "FB_DL_QuenchTemperLineSeq": {
+  "desc": "淬火回火联动线：全流程状态机含分级异常处置与节拍统计",
+  "src": "internal"
+ },
+ "FB_DL_AnodizeLineTransferSeq": {
+  "desc": "阳极氧化线行车转序：三轴联动与槽位占用互锁，防双载防撞",
+  "src": "internal"
+ },
+ "FB_DL_DieCastCycleSupervise": {
+  "desc": "压铸单循环监控：压射曲线四点监控与黄红黑三级停机",
+  "src": "queue"
+ },
+ "FB_DL_SugarPanBatchSeq": {
+  "desc": "煮糖罐批次：进料浓缩投晶助晶放糖全时序，过饱和度作相迁移判据",
+  "src": "internal"
+ }
+}

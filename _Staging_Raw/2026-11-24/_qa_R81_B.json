@@ -1,0 +1,117 @@
+{
+  "round": "R81_B",
+  "reviewer": "dlf-qa-dedup",
+  "date": "2026-11-24",
+  "scope": {"sampled": 4, "total_in_batch": 4, "mode": "精简版12项扫查(高危6项优先)+三道去重"},
+  "summary": {"BLOCK": 0, "MAJOR": 3, "MINOR": 7, "PASS_items": 2, "SUSPECT_items": 2, "REJECT": 0, "inplace_fix": 0},
+  "items": [
+    {
+      "name": "FB_DL_RotaryIndexerCycleSeq", "version": "1.0.1", "complexity": "C5",
+      "verdict": "SUSPECT", "states": 6, "fp": "487a6b1910292ead",
+      "defects": [
+        {"id": "R81B-RIX-M1", "grade": "MAJOR", "kind": "数值误报", "lines": "213-216,128,177,197,316-319",
+         "issue": "tonEject 使能域用 NOT _aCupOk[_iEjectIdx]，空工位亦满足；tEjectTimeout 合法下限 20ms < 整定窗 100ms，无杯空转可误锁码 21",
+         "fix": "增相内保持位 _bBadAtEject 作为 timer 判据；或段2加域闸 tEjectTimeout > DL_RIX_SETTLE"},
+        {"id": "R81B-RIX-M2", "grade": "MAJOR", "kind": "计数口径不自洽", "lines": "261-268,124,203",
+         "issue": "寄位器每拍装1杯(L261)，计数器按 _iCupPer(1..4) 累加(L264/266)；iCupPerCycle=4 时产量虚计4倍；件头L11-12自述'装入一杯'与引脚语义矛盾",
+         "fix": "计数改 +1；或寄位器扩为 ARRAY[0..11] OF ARRAY[0..3] OF BOOL（待产品口径确认）"},
+        {"id": "R81B-RIX-m1", "grade": "MINOR", "kind": "死输入/注释不符", "lines": "120,293",
+         "issue": "非故障态 bReset 无任何作用，与接口注释'清锁存与寄位器与计数'不符（全库一致约定）",
+         "fix": "注释改为'仅故障退出'"},
+        {"id": "R81B-RIX-m2", "grade": "MINOR", "kind": "结构性冗余", "lines": "227,244,217,320-323",
+         "issue": "eReady ELSE 出口本拍不可达，tonReady(5s)+码12 实际不可触发",
+         "fix": "注释标注结构性冗余（R448 出口互补保留）"}
+      ],
+      "checks_passed": ["组态闸结构早退(段2→段7 L326-332)", "无除法", "无浮点", "CASE 6成员全覆盖+ELSE", "eFault 复位出口穷举(L293-305)",
+                        "TON/R_TRIG 全在 CASE 外(L206-218) 且 IN 含 NOT .Q", "输出全覆盖(段8 L338-357)", "复位清单完整(L294-303)", "下标 LIMIT 钳 0..11(L202)", "镜像下标升序移位等价于 DOWNTO(L258-260)"]
+    },
+    {
+      "name": "FB_DL_AsrsSlotAllocSeq", "version": "1.0.1", "complexity": "C4",
+      "verdict": "PASS", "states": 6, "fp": "a94c43f817bdcef3",
+      "defects": [
+        {"id": "R81B-ASA-m1", "grade": "MINOR", "kind": "信息码陈旧", "lines": "211,229,297",
+         "issue": "_iInfoCode 仅 L197/L257 清零；冲突或超时轮后本轮最终放行时，放行拍同时输出 iErrCode=31/33 与 bGrant=TRUE",
+         "fix": "eCommit 内 _iInfoCode := 0"},
+        {"id": "R81B-ASA-m2", "grade": "MINOR", "kind": "请求沿静默丢弃", "lines": "195",
+         "issue": "bAllocReq 上升沿仅在 eIdle 消费，busy 期请求沿无丢弃计数/码位，上位无法判断需重发",
+         "fix": "增丢弃计数或信息码"}
+      ],
+      "checks_passed": ["序号三律（_diOutSeq 三写入点 L214/239/258 互斥相）", "同拍竞态 事件优先超时最后(L221→227)",
+                        "序号超前判据限相生效(L224)", "DINT 直比无回绕", "无除法/无浮点", "CASE 6成员+ELSE",
+                        "eValidate/eRetry 零驻留域证成立", "撤使能降级清单完整(L279-283)"],
+      "note": "同号 diReqSeq 复用必然走 33→34 耗尽，L76 已声明为 fail-closed 契约，建议文档加'重发须换号'"
+    },
+    {
+      "name": "FB_DL_FillPreactSelfLearn", "version": "1.0.0", "complexity": "C4",
+      "verdict": "SUSPECT", "states": 7, "fp": "e1650181d908f15a",
+      "defects": [
+        {"id": "R81B-FPS-M1", "grade": "MAJOR", "kind": "时限口径与实现不符→误报故障", "lines": "279-282,58-61,148",
+         "issue": "tonPhase IN=(eCoarse OR eFine)，相迁移不复位→实为粗+细流累计看门狗；文档称'单相驻留上限'。粗流1.8s+细流1.5s(各<3s)合计3.3s>3s → 误锁43",
+         "fix": "拆两个 TON 各串本相闸（同 L283 tonSettle 款）"},
+        {"id": "R81B-FPS-m1", "grade": "MINOR", "kind": "域闸缺失(PREACT vs margin)", "lines": "146,264,299,307",
+         "issue": "_fPreactKg < _fMargin 时 eFine 阈值低于 eCoarse 阈值，细流段退化为0拍，精度只靠粗流终点",
+         "fix": "加 PREACT>=margin 约束，或 margin 上限钳 min(PREACT,target/2)"},
+        {"id": "R81B-FPS-m2", "grade": "MINOR", "kind": "限幅退化静默", "lines": "256-262",
+         "issue": "rPreactMax=0 时有效限幅 [0,0]，学习恒夹0、bLearnClamped 恒真但无故障码",
+         "fix": "加 _fPmax<=EPS → 45 或 42 域闸"},
+        {"id": "R81B-FPS-m3", "grade": "MINOR", "kind": "声明不一致", "lines": "161",
+         "issue": "bLearnClamped 无 := 初值，与同文件其余输出写法不一致（段10恒赋值，无实害）",
+         "fix": "补 := FALSE"}
+      ],
+      "checks_passed": ["学习律符号正确(err=实称−目标 L328，超目标→PREACT增大→更早切细流)", "7处非有限全用 x<>x + (x-x)<>(x-x) 字面双判 零 ABS(x−x)",
+                        "6个浮点入参逐项枚举(L228-252)", "除零防护走量纲闸 target<=EPS→42(L233)", "不稳定样本跳过学习(L331 只读稳定标志)",
+                        "学习资产不被复位误清(L357-363)", "TON/R_TRIG 全在 CASE 外(L278-284)", "CASE 7成员+ELSE", "eFault 复位出口"]
+    },
+    {
+      "name": "FB_DL_MeasureInputLatch", "version": "1.0.0", "complexity": "C3",
+      "verdict": "PASS", "states": 5, "fp": "3458d354c59e719c",
+      "defects": [
+        {"id": "R81B-MIL-m1", "grade": "MINOR", "kind": "计数器回绕无防护", "lines": "144-145,160-161,247,252,284-285",
+         "issue": "iEdgeCnt/iOutsideCnt 为 INT 且 +1 无饱和/回绕处理（同批 FillPreactSelfLearn 计数用 DINT）；32767 次后回绕为负，仅故障复位清",
+         "fix": "升 DINT 或加饱和"},
+        {"id": "R81B-MIL-m2", "grade": "MINOR", "kind": "死常量/文档不符", "lines": "171,7",
+         "issue": "DL_MIL_ZERO 声明未引用；L7 兼容性声明列 ABS 而全文无 ABS 调用",
+         "fix": "删常量、订正依赖声明"}
+      ],
+      "checks_passed": ["非有限双判(L204/209/221/325)", "窗口倒置闸严格 <=EPS(L215)", "同拍竞态 rtProbe 优先于 tonArm(L246→254)",
+                        "eArmed 三出口/eHold 两出口/eLatched 单拍", "TON 全在 CASE 外(L231-234)", "锁存位置保持槽出口兜底(L325-329)",
+                        "复位保留 _fLatchPos(L280-287)", "窗口合法性每拍生效(边界⑤与实现一致)"],
+      "note": "软件扫描边沿锁存，高速轴存在 ±v·Tscan 位置误差；L10/L76-79 已声明划归上游，判非缺陷，建议件头加'非 MC_MeasuringInput 硬件锁存替代'免责一行"
+    }
+  ],
+  "dedup": {
+    "name_pass": {"registry_size": 1489, "normalized_hits": 0, "synonym_sweep_hits": 0,
+                  "sweep_terms": ["rotary","indexer","cup","denest","palletizer","slot","queue","asrs","alloc","fill","preact","weigh","dose","hopper","recipe","latch","measure","probe","mark"]},
+    "fingerprint_pass": {"db": "_Staging_Raw/_dedup_fingerprints.json", "db_entries": 84, "coverage_pct": 5.6,
+                         "db_usable": false, "degrade_reason": "键值对为 hash→符号名（样本 'VAR'/'Direction'/'LOGLEVEL'），非结构指纹索引",
+                         "batch_internal_collision": 0, "fps": {"FB_DL_RotaryIndexerCycleSeq": "487a6b1910292ead", "FB_DL_AsrsSlotAllocSeq": "a94c43f817bdcef3", "FB_DL_FillPreactSelfLearn": "e1650181d908f15a", "FB_DL_MeasureInputLatch": "3458d354c59e719c"},
+                         "backlog": "指纹库需按「规范化签名+输入类型序列+相数」重建"},
+    "semantic_pass": [
+      {"new": "FB_DL_RotaryIndexerCycleSeq", "neighbor": "FB_DL_RotaryIndexTable", "verdict": "VALID_VARIANT",
+       "evidence": "邻件=工站调度(bAtPos/bIndexDone 外部反馈驱动+启用表+工艺号+空跑,5态,无寄位器)；新件=内部计时推进+12位环形杯位寄位器+坏杯剔除裁决；动因不同(物料追踪 vs 工位放行)",
+       "gap": "件头 L72-74 分工声明未提 RotaryIndexTable，建议补边界"},
+      {"new": "FB_DL_RotaryIndexerCycleSeq", "neighbor": "FB_DL_CupFillDenest / FB_DL_PalletizerLayerSeq", "verdict": "NO_COLLISION"},
+      {"new": "FB_DL_AsrsSlotAllocSeq", "neighbor": "FB_DL_WaferCassetteSlot / FB_DL_MotionCmdQueue", "verdict": "VALID_NEW",
+       "evidence": "库内无 Asrs/PalletSlotJobQueue 类件；唯一「序号三律+单事务校验-握手-放行」语义，域唯一"},
+      {"new": "FB_DL_FillPreactSelfLearn", "neighbor": "FB_DL_FillWeightCtrl / FB_DL_WeighHopperRefillSeq / FB_DL_BatchDoseSeq", "verdict": "VALID_VARIANT",
+       "evidence": "邻件均为控制器/时序器(出阀命令/补料时序)；新件出学习参数(单参数在线学习+限幅+不稳定样本跳过)，新增工程价值成立"},
+      {"new": "FB_DL_MeasureInputLatch", "neighbor": "FB_DL_MarkPositionLatch", "verdict": "VALID_VARIANT_SUSPECT",
+       "evidence": "重叠>70%：均为布防沿→触发沿→锁存→读。但邻件布防窗为时间窗(tArmWindow)且带速度锁存/增量/历史环缓/一次布防只认首沿；新件为位置窗[start,end]、窗口外沿只计数不废布防、tLatchHold 自动解除布防；策略互补，C3 更低复杂度",
+       "action": "交总监复议：建议二者择一收敛或加边界声明"},
+      {"new": "FB_DL_MeasureInputLatch", "neighbor": "FB_DL_AxisProbeMeasCycle", "verdict": "NO_COLLISION", "evidence": "邻件为完整测量循环(趋近/回退/重复/离散度/超程)，上游依赖轴运动"},
+      {"new": "FB_DL_MeasureInputLatch", "neighbor": "FB_DL_ExternalEncoderLatch", "verdict": "NO_COLLISION", "evidence": "编码器快照采样，无窗口裁决"}
+    ],
+    "reject_count": 0
+  },
+  "suspect_release": [
+    "MeasureInputLatch ↔ MarkPositionLatch 重叠 >70%，判有效变体但建议收敛，请复议",
+    "RotaryIndexerCycleSeq M2 若 iCupPerCycle 为多腔模设计意图，正解是寄位器扩维而非改计数，待产品口径确认",
+    "MeasureInputLatch 软件扫描沿误差已声明划归上游，判非缺陷，建议件头加免责"
+  ],
+  "backlog_priority": ["FPS-M1", "RIX-M1", "RIX-M2(待产品)", "ASA-m1", "FPS-m1", "FPS-m2", "MIL-m1", "注释订正4处", "指纹库重建"],
+  "gate_anchors_proposed": [
+    "A1: TON 的 IN 用 OR 连接两个不同相位判据 → 跨相累计看门狗嫌疑",
+    "A2: 定时器 PT 组态下限 < 同相其它定时器 PT 常量 → 相内双窗配比未证",
+    "A3: 计数器以 `+ <变量>` 步进而该变量未出现在容器/存储写入式 → 计数口径无对应容量"
+  ]
+}

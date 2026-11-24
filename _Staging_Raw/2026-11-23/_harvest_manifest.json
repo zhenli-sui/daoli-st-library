@@ -1,0 +1,133 @@
+{
+ "round": "R76",
+ "timestamp": "2026-11-23T16:00:25+08:00",
+ "tool": "C:/Library/_tools/oss_harvest.py",
+ "mode": [
+  "--repo targeted",
+  "--search"
+ ],
+ "repos_tried": [
+  {
+   "repo": "TcOpenGroup/TcUnit",
+   "result": "404 (moved, no redirect follow)",
+   "listed": 0,
+   "fetched": 0,
+   "failed": 0
+  },
+  {
+   "repo": "TcUnit/TcUnit",
+   "license": "NOASSERTION",
+   "tier": "yellow",
+   "result": "ok",
+   "listed": 20,
+   "fetched": 20,
+   "failed": 0,
+   "candidates_raw": 2,
+   "net": 2
+  },
+  {
+   "repo": "zhouyongh/codesys-sync",
+   "license": "Unlicense",
+   "tier": "green",
+   "result": "0 ST files, skipped",
+   "listed": 0,
+   "fetched": 0,
+   "failed": 0
+  },
+  {
+   "repo": "ThorstenBrach/SRCI_CLIENT_PLC",
+   "license": "MIT",
+   "tier": "green",
+   "result": "re-harvest of R75 repo (no --exclude); ALL 12 rejected: 7 fp-dup + 1 dup + 4 garbage-name",
+   "listed": 12,
+   "fetched": 12,
+   "failed": 0,
+   "candidates_raw": 12,
+   "net": 0
+  },
+  {
+   "repo": "FellowWithLaptop/FB_CaseStateMachine",
+   "license": "CC0-1.0",
+   "tier": "yellow",
+   "result": "ok",
+   "listed": 3,
+   "fetched": 3,
+   "failed": 0,
+   "candidates_raw": 2,
+   "net": 1
+  },
+  {
+   "repo": "KIT-77/codesys-option-activation",
+   "license": "None",
+   "tier": "yellow",
+   "result": "1 file, entry garbage-name rejected",
+   "listed": 1,
+   "fetched": 1,
+   "failed": 0,
+   "candidates_raw": 1,
+   "net": 0
+  }
+ ],
+ "totals": {
+  "listed": 24,
+  "fetched": 24,
+  "failed": 0,
+  "candidates_raw": 17,
+  "rejected": 14,
+  "net_added": 3
+ },
+ "rejections": {
+  "fp_duplicate_vs_R75": [
+   "LogLevelEnum",
+   "AreaTypeEnum",
+   "SequenceFlagEnum",
+   "MessageLevelEnum",
+   "AbortingModeEnum",
+   "ProcessingModeEnum",
+   "ReturnMode",
+   "EXTENDS(fp-dup)"
+  ],
+  "garbage_name": [
+   "METHOD x2 (IRobotLibraryCommandFB.st / IMessageLogger.st)",
+   "EXTENDS x2 (MC_ReadServerLog_ToDo / MC_ReadSafeReferencePosition)",
+   "VAR (FB_CaseStateMachine.TcPOU)",
+   "VAR_INPUT (FB_CodeActivation.st)"
+  ]
+ },
+ "queue": {
+  "file": "candidate_queue.jsonl",
+  "backup": "candidate_queue.jsonl.backup_R76.jsonl",
+  "final": 53,
+  "green": 49,
+  "yellow": 4,
+  "red": 0
+ },
+ "new_entries": [
+  {
+   "name": "E_XmlError",
+   "repo": "TcUnit/TcUnit",
+   "license": "NOASSERTION",
+   "tier": "yellow",
+   "fp": "37fe9063aebda74b"
+  },
+  {
+   "name": "ST_AdsLogStringMessage",
+   "repo": "TcUnit/TcUnit",
+   "license": "NOASSERTION",
+   "tier": "yellow",
+   "fp": "3eaa08a3cf05be98"
+  },
+  {
+   "name": "E_MainStateMachine",
+   "repo": "FellowWithLaptop/FB_CaseStateMachine",
+   "license": "CC0-1.0",
+   "tier": "yellow",
+   "fp": "17c1dc8ab5546a67"
+  }
+ ],
+ "compliance": {
+  "red_zone_leak": 0,
+  "unknown_license_queued": 0,
+  "note": "TcUnit NOASSERTION queued as yellow (semantic-only borrow); Fellow CC0 downgraded to yellow per green whitelist"
+ }
+}

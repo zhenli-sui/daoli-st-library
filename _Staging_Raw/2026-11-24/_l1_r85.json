@@ -1,0 +1,1342 @@
+[
+ {
+  "file": "FC_DL_QuenchOilTempRiseCalc.st",
+  "name": "FC_DL_QuenchOilTempRiseCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 59
+ },
+ {
+  "file": "FC_DL_AustenitizeHoldTimeCalc.st",
+  "name": "FC_DL_AustenitizeHoldTimeCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 82
+ },
+ {
+  "file": "FC_DL_CarburizeCaseDepthCalc.st",
+  "name": "FC_DL_CarburizeCaseDepthCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 85
+ },
+ {
+  "file": "FC_DL_TemperEmpiricalHardnessCalc.st",
+  "name": "FC_DL_TemperEmpiricalHardnessCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 96
+ },
+ {
+  "file": "FB_DL_InductionHardeningScanCtrl.st",
+  "name": "FB_DL_InductionHardeningScanCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 45,
+    "detail": "类型未识别：E_DL_IhScanPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 51,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 52,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 53,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 54,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 55,
+    "detail": "类型未识别：E_DL_IhScanPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 188
+ },
+ {
+  "file": "FB_DL_QuenchTankAgitatorCtrl.st",
+  "name": "FB_DL_QuenchTankAgitatorCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 33,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 34,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 35,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 126
+ },
+ {
+  "file": "FC_DL_MartensiteFinishTempCalc.st",
+  "name": "FC_DL_MartensiteFinishTempCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 71
+ },
+ {
+  "file": "FB_DL_SoakPitTemperatureCtrl.st",
+  "name": "FB_DL_SoakPitTemperatureCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 34,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 35,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 36,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 136
+ },
+ {
+  "file": "FC_DL_ExtrusionBilletHeatCalc.st",
+  "name": "FC_DL_ExtrusionBilletHeatCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 72
+ },
+ {
+  "file": "FC_DL_ExtrusionSpecificPressureCalc.st",
+  "name": "FC_DL_ExtrusionSpecificPressureCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 73
+ },
+ {
+  "file": "FC_DL_AnodizeBathChargeCalc.st",
+  "name": "FC_DL_AnodizeBathChargeCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 69
+ },
+ {
+  "file": "FC_DL_ExtrusionDieWearIndexCalc.st",
+  "name": "FC_DL_ExtrusionDieWearIndexCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 88
+ },
+ {
+  "file": "FB_DL_AnodizeRinseCascadeCtrl.st",
+  "name": "FB_DL_AnodizeRinseCascadeCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 30,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 31,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 122
+ },
+ {
+  "file": "FB_DL_BilletShearGaugeSeq.st",
+  "name": "FB_DL_BilletShearGaugeSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：E_DL_ShearPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 54,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 55,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 56,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 57,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 58,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 59,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 60,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 61,
+    "detail": "类型未识别：E_DL_ShearPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 211
+ },
+ {
+  "file": "FC_DL_AnodizeFilmThicknessCalc.st",
+  "name": "FC_DL_AnodizeFilmThicknessCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 72
+ },
+ {
+  "file": "FC_DL_AnodizeSealBoilTimeCalc.st",
+  "name": "FC_DL_AnodizeSealBoilTimeCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 76
+ },
+ {
+  "file": "FC_DL_DieCastShotVelocityCalc.st",
+  "name": "FC_DL_DieCastShotVelocityCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 82
+ },
+ {
+  "file": "FC_DL_DieCastIntensifyPressureCalc.st",
+  "name": "FC_DL_DieCastIntensifyPressureCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 59
+ },
+ {
+  "file": "FC_DL_DieThermalBalanceCalc.st",
+  "name": "FC_DL_DieThermalBalanceCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 83
+ },
+ {
+  "file": "FC_DL_CastingSolidificationTimeCalc.st",
+  "name": "FC_DL_CastingSolidificationTimeCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 54
+ },
+ {
+  "file": "FB_DL_DieSprayReleaseSeq.st",
+  "name": "FB_DL_DieSprayReleaseSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 42,
+    "detail": "类型未识别：E_DL_SprayPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 47,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 48,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 51,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 52,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 53,
+    "detail": "类型未识别：E_DL_SprayPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 156
+ },
+ {
+  "file": "FB_DL_LadlePourWeightCtrl.st",
+  "name": "FB_DL_LadlePourWeightCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 42,
+    "detail": "类型未识别：E_DL_PourPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 47,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 48,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：E_DL_PourPhase"
+   },
+   {
+    "level": "MAJOR",
+    "code": "R527_TON_CROSS_PHASE",
+    "line": 67,
+    "detail": "TON(tonPourTo) 的 IN 跨相 OR（((_ePhase = E_DL_PourPhase.eFast) OR (_ePhase = ），须注释声明为累计看门狗或拆两个 TON 各串本相闸"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "MAJOR",
+  "lines": 180
+ },
+ {
+  "file": "FC_DL_DieCastPorosityRiskIndexCalc.st",
+  "name": "FC_DL_DieCastPorosityRiskIndexCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 104
+ },
+ {
+  "file": "FC_DL_PowderFillDensityCalc.st",
+  "name": "FC_DL_PowderFillDensityCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 59
+ },
+ {
+  "file": "FC_DL_CompactionPressureCalc.st",
+  "name": "FC_DL_CompactionPressureCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 63
+ },
+ {
+  "file": "FB_DL_SinterFurnaceRampCtrl.st",
+  "name": "FB_DL_SinterFurnaceRampCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 44,
+    "detail": "类型未识别：E_DL_SintPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 51,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 52,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 53,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 54,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 55,
+    "detail": "类型未识别：E_DL_SintPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 205
+ },
+ {
+  "file": "FC_DL_GreenStrengthIndexCalc.st",
+  "name": "FC_DL_GreenStrengthIndexCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 72
+ },
+ {
+  "file": "FC_DL_SinterShrinkageCalc.st",
+  "name": "FC_DL_SinterShrinkageCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 55
+ },
+ {
+  "file": "FB_DL_PowderBlendDoseSeq.st",
+  "name": "FB_DL_PowderBlendDoseSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 41,
+    "detail": "类型未识别：E_DL_BlendPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 46,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 47,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 48,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：E_DL_BlendPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 189
+ },
+ {
+  "file": "FC_DL_DelubeResidualCarbonCalc.st",
+  "name": "FC_DL_DelubeResidualCarbonCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 91
+ },
+ {
+  "file": "FC_DL_MashStrikeWaterTempCalc.st",
+  "name": "FC_DL_MashStrikeWaterTempCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 69
+ },
+ {
+  "file": "FC_DL_WortExtractYieldCalc.st",
+  "name": "FC_DL_WortExtractYieldCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 66
+ },
+ {
+  "file": "FC_DL_SugarBoilSupersaturationCalc.st",
+  "name": "FC_DL_SugarBoilSupersaturationCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 74
+ },
+ {
+  "file": "FC_DL_MolassesExhaustionCalc.st",
+  "name": "FC_DL_MolassesExhaustionCalc",
+  "issues": [
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 49
+ },
+ {
+  "file": "FB_DL_CrystallizerVacuumCtrl.st",
+  "name": "FB_DL_CrystallizerVacuumCtrl",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 40,
+    "detail": "类型未识别：E_DL_VacMode"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 45,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 46,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 47,
+    "detail": "类型未识别：E_DL_VacMode"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 197
+ },
+ {
+  "file": "FB_DL_CipCaneJuiceLineSeq.st",
+  "name": "FB_DL_CipCaneJuiceLineSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 43,
+    "detail": "类型未识别：E_DL_CaneCipPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 49,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 50,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 51,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 52,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 53,
+    "detail": "类型未识别：E_DL_CaneCipPhase"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 240
+ },
+ {
+  "file": "FB_DL_QuenchTemperLineSeq.st",
+  "name": "FB_DL_QuenchTemperLineSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 94,
+    "detail": "类型未识别：E_DL_QtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 95,
+    "detail": "类型未识别：E_DL_QtlCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 96,
+    "detail": "类型未识别：E_DL_QtlGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 108,
+    "detail": "类型未识别：E_DL_QtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 109,
+    "detail": "类型未识别：E_DL_QtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 110,
+    "detail": "类型未识别：E_DL_QtlCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 111,
+    "detail": "类型未识别：E_DL_QtlGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 130,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 131,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 132,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 133,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 134,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 135,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 136,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 137,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 138,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 139,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 448
+ },
+ {
+  "file": "FB_DL_AnodizeLineTransferSeq.st",
+  "name": "FB_DL_AnodizeLineTransferSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 100,
+    "detail": "类型未识别：E_DL_AtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 101,
+    "detail": "类型未识别：E_DL_AtlCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 102,
+    "detail": "类型未识别：E_DL_AtlGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 114,
+    "detail": "类型未识别：E_DL_AtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 115,
+    "detail": "类型未识别：E_DL_AtlPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 116,
+    "detail": "类型未识别：E_DL_AtlCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 117,
+    "detail": "类型未识别：E_DL_AtlGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 132,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 133,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 134,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 135,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 136,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 137,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 138,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 139,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 453
+ },
+ {
+  "file": "FB_DL_DieCastCycleSupervise.st",
+  "name": "FB_DL_DieCastCycleSupervise",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 106,
+    "detail": "类型未识别：E_DL_DcsPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 107,
+    "detail": "类型未识别：E_DL_DcsCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 108,
+    "detail": "类型未识别：E_DL_DcsGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 123,
+    "detail": "类型未识别：E_DL_DcsPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 124,
+    "detail": "类型未识别：E_DL_DcsCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 125,
+    "detail": "类型未识别：E_DL_DcsGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 145,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 146,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 147,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 148,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 149,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 150,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 151,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 152,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 153,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 154,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 155,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 205,
+    "detail": "类型未识别：E_DL_DcsGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 206,
+    "detail": "类型未识别：E_DL_DcsCause"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 486
+ },
+ {
+  "file": "FB_DL_SugarPanBatchSeq.st",
+  "name": "FB_DL_SugarPanBatchSeq",
+  "issues": [
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 100,
+    "detail": "类型未识别：E_DL_SpbPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 101,
+    "detail": "类型未识别：E_DL_SpbCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 102,
+    "detail": "类型未识别：E_DL_SpbGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 113,
+    "detail": "类型未识别：E_DL_SpbPhase"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 114,
+    "detail": "类型未识别：E_DL_SpbCause"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 115,
+    "detail": "类型未识别：E_DL_SpbGrade"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 139,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 140,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 141,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 142,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 143,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 144,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 145,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 146,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 147,
+    "detail": "类型未识别：TON"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 148,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "WARN",
+    "code": "DECL_UNKNOWN_TYPE",
+    "line": 149,
+    "detail": "类型未识别：R_TRIG"
+   },
+   {
+    "level": "MINOR",
+    "code": "VER_HEADER",
+    "line": 0,
+    "detail": "文件头缺 VERSION: x.y.z"
+   }
+  ],
+  "verdict": "PASS",
+  "lines": 481
+ }
+]

@@ -1,0 +1,441 @@
+{
+ "round": "R82",
+ "reviewer": "QA/Dedup",
+ "built_at": "2026-11-24T11:52:00+08:00",
+ "input": {
+  "expected": 40,
+  "found": 40,
+  "missing": 0,
+  "list": "_names_r82_actual.txt"
+ },
+ "sampled": {
+  "count": 14,
+  "pct": 35,
+  "fb_all": true,
+  "fb": [
+   "FB_DL_CoagDoseJarTestSeq",
+   "FB_DL_ScrewPressDewaterSeq",
+   "FB_DL_ScrubberReagentDoseSeq",
+   "FB_DL_AnaerobDigesterLoadCtrl"
+  ],
+  "fc": [
+   "FC_DL_CoagDoseFromJarTest",
+   "FC_DL_NtuCoagDoseAdj",
+   "FC_DL_CakeSolidsCalc",
+   "FC_DL_DewaterMassBalance",
+   "FC_DL_SettleVelocityCalc",
+   "FC_DL_ComponentRulEstimate",
+   "FC_DL_PmScheduleNext",
+   "FC_DL_CatalystActivityDecay",
+   "FC_DL_FlareFlowSizing",
+   "FC_DL_DemisterVelocityChk"
+  ]
+ },
+ "verdict": {
+  "pass_clean": 0,
+  "defective": 14,
+  "rejected": 0,
+  "unaudited": 26
+ },
+ "severity": {
+  "BLOCK": 2,
+  "MAJOR": 12,
+  "MINOR": 9
+ },
+ "dedup": {
+  "d1_name_exact": {
+   "hits": 0,
+   "checked": 40
+  },
+  "d2_fingerprint": {
+   "sig_hits": 0,
+   "api_hits": 0,
+   "sig_suspect_groups": 0,
+   "method": "r82_fp_rebuild.py 同算法重算 sig/api 后比对 sig_groups(60)/api_groups(46)/components(1530)"
+  },
+  "d3_semantic": {
+   "rejected": 0,
+   "pairs_deep_read": 5,
+   "coverage_note": "仅5组最近邻做正文比对，其余35件仅过名/指纹层"
+  },
+  "false_kill_review": {
+   "valid_variants": 5,
+   "pending_feedback_to_director": 2,
+   "unverified_pairs": 5
+  },
+  "r528_selfcheck": {
+   "fingerprint_count": 1530,
+   "registry_names": 1530,
+   "coverage_ratio": 1.0,
+   "threshold": 0.9,
+   "pass": true,
+   "note": "components 键即组件名且含 kind/sig/api/in_n/out_n/sm/lines/file 可反查；旧库84条(5.6%)不可映射问题已由 r82_fp_rebuild.py 消除 → 本轮道2未降级"
+  }
+ },
+ "blocks": [
+  {
+   "id": "B1",
+   "file": "DL_Process/FB_DL_CoagDoseJarTestSeq.st",
+   "lines": [
+    103,
+    212,
+    216,
+    217,
+    220,
+    223,
+    277,
+    278,
+    281,
+    315
+   ],
+   "item": 4,
+   "issue": "NaN 烧杯结果穿透码13闸，_rBaseMgL 永久 NaN，rDoseLh 输出 NaN 且 bDoseOn=TRUE/iErrCode=0",
+   "basis": "NaN<=eps 与 ABS(NaN)>1e15 均 FALSE，闸恒放行",
+   "fix": "按 R508 双条件补全：段2增 IF NOT ((rJarResultMgL = rJarResultMgL) AND (ABS(rJarResultMgL) <= DL_CDJ_FIN)) THEN 码13；223行后对 _rBaseMgL 做同款双条件复核"
+  },
+  {
+   "id": "B2",
+   "file": "DL_Process/FC_DL_CatalystActivityDecay.st",
+   "lines": [
+    8,
+    91
+   ],
+   "item": 5,
+   "issue": "RUL 公式符号错，应为 (LN(1/0.7)-LN(1/act))/k，代码写成加号，寿命随时间增长",
+   "basis": "k=1e-4,t=10000h: 代码 13567h vs 真值 -6426h(已耗尽)，偏差1.36e4h；act=0.7 时代码仍报满寿命",
+   "fix": "91 行改减号；8 行注释同步"
+  }
+ ],
+ "majors": [
+  {
+   "id": "M1",
+   "file": "DL_Device/FC_DL_ComponentRulEstimate.st",
+   "lines": [
+    51,
+    75
+   ],
+   "item": 4,
+   "issue": "ABS>1e15 NaN 盲，rRulHours=NaN 且 bValid=TRUE"
+  },
+  {
+   "id": "M2",
+   "file": "DL_Process/FC_DL_CoagDoseFromJarTest.st",
+   "lines": [
+    45
+   ],
+   "item": 4,
+   "issue": "NaN 盲且全文无输入有限性闸，rDoseLh=NaN + bValid=TRUE"
+  },
+  {
+   "id": "M3",
+   "file": "DL_Process/FC_DL_NtuCoagDoseAdj.st",
+   "lines": [
+    59,
+    68,
+    70
+   ],
+   "item": 4,
+   "issue": "NaN 盲，rDoseOut=NaN + bValid=TRUE"
+  },
+  {
+   "id": "M4",
+   "file": "DL_Process/FC_DL_SettleVelocityCalc.st",
+   "lines": [
+    59,
+    66,
+    67,
+    73
+   ],
+   "item": 4,
+   "issue": "NaN 盲且跳过 Re 域闸，rVsMmS=NaN + bValid=TRUE"
+  },
+  {
+   "id": "M5",
+   "file": "DL_Process/FC_DL_DemisterVelocityChk.st",
+   "lines": [
+    54,
+    73,
+    84,
+    85
+   ],
+   "item": 4,
+   "issue": "NaN 盲，夹带判据 NaN>NaN=FALSE 报不夹带"
+  },
+  {
+   "id": "M6",
+   "file": "DL_Process/FC_DL_CakeSolidsCalc.st",
+   "lines": [
+    56,
+    70,
+    71
+   ],
+   "item": 6,
+   "issue": "rRecoveryPct 代数恒 100%，死输出"
+  },
+  {
+   "id": "M7",
+   "file": "DL_Process/FC_DL_DewaterMassBalance.st",
+   "lines": [
+    51,
+    70
+   ],
+   "item": 6,
+   "issue": "rRecoveryPct 代数恒 100%，死输出（与 M6 同型，系统性 2 件）"
+  },
+  {
+   "id": "M8",
+   "file": "DL_Process/FC_DL_FlareFlowSizing.st",
+   "lines": [
+    70,
+    80,
+    88,
+    92
+   ],
+   "item": 7,
+   "issue": "bOver 结构恒 FALSE（rVelMs 恒等于 0.7 倍限值），超速监视器为哑"
+  },
+  {
+   "id": "M9",
+   "file": "DL_Process/FB_DL_AnaerobDigesterLoadCtrl.st",
+   "lines": [
+    190,
+    196,
+    206,
+    257,
+    382
+   ],
+   "item": 4,
+   "issue": "码46 NaN 盲，VFA NaN 判为不越限，满负荷进料不报警"
+  },
+  {
+   "id": "M10",
+   "file": "DL_Process/FB_DL_AnaerobDigesterLoadCtrl.st",
+   "lines": [
+    176,
+    178,
+    194,
+    378,
+    401,
+    438
+   ],
+   "item": 6,
+   "issue": "码42 运行中不复检，rFeedMax=0 时限流器静默退化为直通"
+  },
+  {
+   "id": "M11",
+   "file": "DL_Process/FB_DL_ScrubberReagentDoseSeq.st",
+   "lines": [
+    160,
+    164,
+    165,
+    172
+   ],
+   "item": 4,
+   "issue": "pH NaN 对 ABS>FIN / <0 / >14 三者全 FALSE，码35 不报，泵设定 NaN"
+  },
+  {
+   "id": "M12",
+   "file": "DL_Process/FB_DL_ScrewPressDewaterSeq.st",
+   "lines": [],
+   "item": 4,
+   "locate": "段2 ELSIF _iErrLatch = 25 分支",
+   "issue": "码25 抬码侧与残留侧同用 ABS>FIN，含固率 NaN 时码25 抬不起也退不掉"
+  }
+ ],
+ "minors": [
+  {
+   "id": "m1",
+   "file": "FC_DL_CakeSolidsCalc.st",
+   "lines": [
+    63,
+    68
+   ],
+   "item": 11,
+   "issue": "码4 bValid=TRUE 而码1/2/3/5 为 FALSE，口径分裂"
+  },
+  {
+   "id": "m2",
+   "file": "FC_DL_DemisterVelocityChk.st",
+   "lines": [
+    65,
+    70,
+    84
+   ],
+   "item": 11,
+   "issue": "码3 bValid=TRUE 且 vcrit=0 与 bCarryOver=FALSE 互相矛盾"
+  },
+  {
+   "id": "m3",
+   "file": "FC_DL_DemisterVelocityChk.st",
+   "lines": [
+    78,
+    79
+   ],
+   "item": 2,
+   "issue": "rKFactor 无域闸，负值被静默夹到 0 且 bValid=TRUE"
+  },
+  {
+   "id": "m4",
+   "file": "FC_DL_NtuCoagDoseAdj.st",
+   "lines": [
+    56,
+    63,
+    69
+   ],
+   "item": 7,
+   "issue": "rDoseBase=0 则输出恒 0，比例修正被无声吞掉"
+  },
+  {
+   "id": "m5",
+   "file": "FC_DL_CoagDoseFromJarTest.st",
+   "lines": [
+    33,
+    51,
+    53
+   ],
+   "item": 2,
+   "issue": "闸用 ABS 放行负母液浓度，归零后 bValid=TRUE 且无码"
+  },
+  {
+   "id": "m6",
+   "file": "FC_DL_CatalystActivityDecay.st",
+   "lines": [
+    72,
+    78,
+    87
+   ],
+   "item": 7,
+   "issue": "rActivity 已钳到 [1e-4,1]，87 行 <=0 永假不可达"
+  },
+  {
+   "id": "m7",
+   "file": "FC_DL_CatalystActivityDecay.st",
+   "lines": [
+    44
+   ],
+   "item": 7,
+   "issue": "错误路径预置 rActivity=1e-4，读值方易误判催化剂报废"
+  },
+  {
+   "id": "m8",
+   "file": "FC_DL_PmScheduleNext.st",
+   "lines": [
+    9,
+    74
+   ],
+   "item": 2,
+   "issue": "DINT_TO_INT 无结果侧上限闸，逾期超过 32767d 静默回绕"
+  },
+  {
+   "id": "m9",
+   "file": "FC_DL_CakeSolidsCalc.st / FC_DL_DewaterMassBalance.st",
+   "lines": [
+    51,
+    42
+   ],
+   "item": 5,
+   "issue": "互逆两件各只闸一半域条件，交叉调用口径不一致"
+  }
+ ],
+ "dedup_neighbors": [
+  {
+   "new": "FC_DL_CoagDoseFromJarTest",
+   "near": "FC_DL_CoagulantDoseCalc",
+   "verdict": "valid_variant",
+   "why": "邻件浊度前馈出 kg/h；新件烧杯结果+母液浓度出 L/h 体积流，新增 g/L 到 L/h 换算链"
+  },
+  {
+   "new": "FC_DL_NtuCoagDoseAdj",
+   "near": "FC_DL_CoagulantDoseCalc / FB_DL_WaterChlorineDoseTrim",
+   "verdict": "valid_variant",
+   "why": "沉后浊度反馈比例微调（双限幅）vs 开环前馈 vs 加氯，控制结构与药剂均不同"
+  },
+  {
+   "new": "FC_DL_ComponentRulEstimate",
+   "near": "FB_DL_RulEstimator",
+   "verdict": "valid_variant_pending_director",
+   "why": "C2 无状态两点斜率 vs C4 滑窗LS+置信带+状态机；邻件需至少16采样点且有实例，不可互替。功能标签同为估寿命，故交总监复议"
+  },
+  {
+   "new": "FC_DL_CakeSolidsCalc",
+   "near": "FC_DL_DewaterMassBalance",
+   "verdict": "valid_variant_pending_director",
+   "why": "同一3变量平衡的互逆求解方向，现场分两支（有/无泥饼流量计）；但两者回收率均恒100%死输出且域闸口径不一致，建议总监裁是否合并"
+  },
+  {
+   "new": "FC_DL_FlocDilutionRatio / FC_DL_CentrateTurbidityIdx / FC_DL_PackedBedHtu / FC_DL_VfaAlkalinityRatio / FC_DL_MtbfCalc / FC_DL_SviCalc",
+   "near": null,
+   "verdict": "valid_variant",
+   "why": "核心词根在 1530 件倒排索引命中数为 0，族 E 与浊度域全库空白"
+  }
+ ],
+ "unverified_dedup_pairs": [
+  "FC_DL_LubeIntervalCalc vs FC_DL_DrainIntervalCalc",
+  "FC_DL_OilChangeInterval vs FC_DL_DrainIntervalCalc / FB_DL_OilLevelWatch",
+  "FC_DL_SpareReorderPoint vs FB_DL_TankFarmInventory / FC_DL_StocktakeVarianceCalc",
+  "FC_DL_PmScheduleNext vs FC_DL_IntervalGapCalc",
+  "FC_DL_SludgeBlanketLevel vs FB_DL_TankBlanketPrCtrl"
+ ],
+ "gate_anchors": [
+  {
+   "id": "ANCHOR_FIN_HALF",
+   "priority": 1,
+   "hits": "35/40",
+   "rule": "出现 ABS(...) > 1.0E15 或引用 *_FIN 常量，且同文件内无 (X = X) 自反半边，报非有限闸只有 ABS 半边、对 NaN 盲。规范形态按 R508 定稿双条件 (x = x) AND (ABS(x) <= R_MAX)；禁的是单条件而非 ABS 式，R483 白名单口径已被 R508 取代",
+   "evidence": "8/12 MAJOR 属此类",
+   "reference": "FB_DL_RulEstimator.st:199-201 为库内现存正确写法"
+  },
+  {
+   "id": "ANCHOR_DEAD_SELF_EVIDENT",
+   "priority": 2,
+   "hits": "2",
+   "rule": "Y := A*B/C 后出现 R := Y*C/(A*B) 回代，报输出代数恒等"
+  },
+  {
+   "id": "ANCHOR_DEAD_TAUTOLOGY",
+   "priority": 3,
+   "hits": "1",
+   "rule": "比较阈值由被比较量自身乘同一常量系数推导，报判据结构恒假"
+  },
+  {
+   "id": "ANCHOR_CODE_VALID_SPLIT",
+   "priority": 4,
+   "hits": "2",
+   "rule": "同一 iErrCode 集合内 bValid 既有 TRUE 分支又有 FALSE 分支，报码表有效性口径分裂"
+  },
+  {
+   "id": "ANCHOR_DEAD_GUARD_AFTER_CLAMP",
+   "priority": 5,
+   "hits": "1",
+   "rule": "变量被钳位后再出现小于等于钳位下限的判据，报钳位后永假防御"
+  }
+ ],
+ "top3_findings": [
+  "ABS(x)>1.0E15 是全库统一的假非有限判据，35/40 件在用，对 NaN 全盲；库内本有正确范式 FB_DL_RulEstimator:199-201",
+  "三处结构恒假死输出无需异常输入即失效：FlareFlowSizing:92 bOver 恒 FALSE、CakeSolidsCalc:71 与 DewaterMassBalance:70 回收率恒 100%",
+  "CatalystActivityDecay:91 的加号，且头注释:8 把错公式写成规格，代码符合注释式复核抓不到"
+ ],
+ "backlog": [
+  {
+   "p": "P0",
+   "item": "B1/B2 安全侧就地修（本轮未改任何 st 文件）"
+  },
+  {
+   "p": "P0",
+   "item": "35 件非有限判据按 R508 双条件补全 (x = x) 半边"
+  },
+  {
+   "p": "P1",
+   "item": "M6/M7 回收率死输出；M8 bOver 重设计；M9/M10 厌氧两处"
+  },
+  {
+   "p": "P2",
+   "item": "道3 补做 5 组正文比对；m9 物料平衡族域闸口径统一"
+  }
+ ],
+ "boundaries": {
+  "modified_st_files": 0,
+  "touched_registry": false,
+  "participated_in_planning": false
+ }
+}

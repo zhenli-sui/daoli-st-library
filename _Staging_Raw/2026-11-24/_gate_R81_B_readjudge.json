@@ -1,0 +1,112 @@
+{
+  "round": "R81-C",
+  "kind": "readjudge",
+  "supersedes_round": "R81-B",
+  "gate": "dlf-compile-verifier",
+  "time": "2026-11-24",
+  "l2_mode": "local-rusty-serial",
+  "l2_jobs": 1,
+  "verdict": "PASS",
+  "registry_write_allowed": true,
+  "items": [
+    {
+      "file": "C:\\Library\\DL_Process\\FB_DL_RotaryIndexerCycleSeq.st",
+      "name": "FB_DL_RotaryIndexerCycleSeq",
+      "version_file_header": "1.0.0",
+      "version_expected": "1.0.1",
+      "prev_verdict": "FAIL",
+      "prev_defect": "E007 FOR..DOWNTO (L237/255/291)",
+      "l1": {"rc": 0, "pass": true, "block": 0, "major": 0},
+      "l2": {"rc": 0, "pass": true, "first_error": "", "dep_rounds": 0},
+      "defect_closed": true,
+      "evidence": {
+        "mirror_equiv_cases": 20000,
+        "mirror_equiv_mismatch": 0,
+        "downto_code_remaining": 0,
+        "downto_comment_only": ["L255"],
+        "loop": "FOR _nIdx := 0 TO (ARR_MAX-1); dst = ARR_MAX-_nIdx (11..1), src = dst-1 (10..0) => strictly descending destinations, source always older high half => no overwrite",
+        "clearloop_lines": ["L237", "L293"],
+        "clearloop_semantics": "ascending 0..ARR_MAX clear, order-independent"
+      },
+      "recheck": {
+        "enum_case_coverage": "6/6 + CASE ELSE (L306)",
+        "efault_exit": "rtReset.Q only (L292-304)",
+        "ton_fallback": "5xTON + rtReset outside CASE (L205-217), IN all include NOT .Q",
+        "r7": "ok",
+        "ton_settle_wait": "tonSettle(eSettle) + tonEject(bad-cup dwell / eject-ready loss) present"
+      },
+      "new_defects": [],
+      "findings": [
+        {"id": "M1-1", "level": "MINOR", "kind": "doc-audit", "lines": ["L3", "L86"],
+         "text": "header version 1.0.0 and revision history lacks v1.0.1 entry; must be published as 1.0.1 with a revision line",
+         "blocks_registry": false, "blocks_closeout": true}
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "file": "C:\\Library\\DL_Process\\FB_DL_AsrsSlotAllocSeq.st",
+      "name": "FB_DL_AsrsSlotAllocSeq",
+      "version_file_header": "1.0.0",
+      "version_expected": "1.0.1",
+      "prev_verdict": "FAIL",
+      "prev_defect": "LOGIC zero-handshake false grant (diReqSeq=0 => diAckSeq(0)=_diOutSeq(0) => bGrant)",
+      "l1": {"rc": 0, "pass": true, "block": 0, "major": 0},
+      "l2": {"rc": 0, "pass": true, "first_error": "", "dep_rounds": 0},
+      "defect_closed": true,
+      "evidence": {
+        "fix_points": {
+          "err36_gate": "L198-200",
+          "ack_snapshot": "L210",
+          "handshake_criteria": "L216",
+          "new_var": "L148"
+        },
+        "simulation": {
+          "normal_seq7_ack0_to_7": "grant=true",
+          "first_tx_seq1_ack0_to_1": "grant=true",
+          "retry_resend_same_seq": "grant=true",
+          "seq0": "Fault/36/grant=false (tick1)",
+          "seq-1": "Fault/36/grant=false (tick1)",
+          "stale_equal_ack": "Fault/34/grant=false (bounded, tick12)",
+          "eager_ack_at_publish": "Fault/34/grant=false (bounded, tick12)"
+        },
+        "zero_handshake_paths_reachable": 0,
+        "ack_publish_reset_needed": false,
+        "ack_publish_reset_reason": "single entry into eHandshake (L211) always rewrites snapshot at L210; eRetry/_diOutSeq:=0 and reset path cannot leak a stale snapshot; adding reset points would break the single-write-point set"
+      },
+      "recheck": {
+        "enum_case_coverage": "6/6 + CASE ELSE (L258)",
+        "efault_exit": "rtReset.Q only (L249-256)",
+        "ton_fallback": "tonAck single wait phase, IN includes NOT .Q and NOT _bFaultLatch",
+        "r7": "rtReset/rtAlloc/tonAck outside CASE (L181-184)",
+        "case_else": "present"
+      },
+      "new_defects": [
+        {"id": "M2-2", "level": "MAJOR-DOC", "kind": "undocumented-code + contract tightening",
+         "lines": ["L37", "L61-73", "L88-99"],
+         "text": "fault code 36 not registered in code table (no counter-argument row), transition (5) lacks the new predicate, no acceptance vector; also ack contract tightened (ack must be post-publish new value; eager/reused equal ack now converges to 33->34). Behavior is fail-safe, hence not a registry blocker, but it blocks closeout.",
+         "blocks_registry": false, "blocks_closeout": true}
+      ],
+      "findings": [
+        {"id": "M2-1", "level": "MINOR", "kind": "doc-audit", "lines": ["L3", "L87"],
+         "text": "header version 1.0.0 and revision history lacks v1.0.1 entry", "blocks_registry": false, "blocks_closeout": true}
+      ],
+      "verdict": "PASS"
+    }
+  ],
+  "l1": {"total": 2, "pass": 2, "fail": 0, "issues": []},
+  "l2": {"total": 2, "pass": 2, "fail": 0},
+  "l3": {"total": 2, "pass": 0, "fail": 0, "covered": 0,
+         "status": "pending-vectors", "missing": ["FB_DL_RotaryIndexerCycleSeq", "FB_DL_AsrsSlotAllocSeq"],
+         "required_cases": {
+           "FB_DL_RotaryIndexerCycleSeq": ["shift-direction bit-order (12 ticks, no overwrite)", "cfg out of domain -> 11", "eject not ready -> 21", "reset edge -> cleared"],
+           "FB_DL_AsrsSlotAllocSeq": ["diReqSeq=0 -> 36, no grant", "stale equal ack -> 33 x3 -> 34, no grant", "normal ack 0->7 -> single-scan grant, iAllocSlot=42", "bSlotLocked -> 32", "reset -> diOutSeq=0/iErrCode=0"]
+         }},
+  "blocking": [],
+  "open_items": ["M1-1", "M2-1", "M2-2", "L3-vectors"],
+  "registry_version_to_write": "1.0.1",
+  "repro": {
+    "l1": "python _tools\\dl_gate.py --file DL_Process\\FB_DL_RotaryIndexerCycleSeq.st --round R81-C",
+    "l2": "python _tools\\l2_check.py DL_Process\\FB_DL_RotaryIndexerCycleSeq.st",
+    "l2_serial_note": "jobs=1, --jobs not used anywhere in this round"
+  }
+}

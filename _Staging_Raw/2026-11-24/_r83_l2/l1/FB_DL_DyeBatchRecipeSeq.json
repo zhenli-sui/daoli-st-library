@@ -1,0 +1,84 @@
+{
+ "round": "R83",
+ "ts": "2026-11-24T13:56:16+08:00",
+ "total": 1,
+ "pass": 1,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_DyeBatchRecipeSeq.st",
+   "name": "FB_DL_DyeBatchRecipeSeq",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：E_DL_DbrPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 99,
+     "detail": "类型未识别：E_DL_DbrPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：E_DL_DbrCause"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 258
+  }
+ ]
+}

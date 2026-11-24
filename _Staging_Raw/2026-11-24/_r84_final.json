@@ -1,0 +1,256 @@
+[
+ {
+  "name": "FB_RTPP",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/FB_RTPP.xml",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "FB_RTPP — RTPP_CALC/FB_RTPP.xml",
+  "signature": "VAR_INPUT: TotalInverters:REAL, AvailableInverters:REAL, NumberOfFPOASensors:INT, NumberOfRPOASensors:INT, NumberOfBOMTempSensors:INT, DCPowerNominalMW:REAL, commYear:DINT, commMonth:DINT, BifacialityFactor:REAL, TempCoef:REAL, DegradationRate:REAL, DCLossesPercent:REAL || VAR_OUTPUT: RTPP_MW:REAL, HSL_MW:REAL, Reg_M:REAL, Reg_C:REAL, Reg_N:INT, FrontPOA_Avg:REAL, RearPOA_Avg:REAL, BOMTemp_Avg:REAL",
+  "loc": 257,
+  "dialect": [],
+  "defense_gaps": [
+   "存在裸除法，需检查除子闸",
+   "依赖平台定时器/边沿块，需映射到 IEC 标准定时器"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "A",
+  "fp": "251ffade0f4b07ef",
+  "note": "光伏屋顶电站性能比(RTPP)计算：辐照/温度/发电量 → PR，含传感器均值与效率折算"
+ },
+ {
+  "name": "FB_RTPP_CALC",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/FB_RTPP_CALC.xml",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "FB_RTPP_CALC — RTPP_CALC/FB_RTPP_CALC.xml",
+  "signature": "VAR_INPUT: averageIrr:REAL, rearIrr:REAL, tempBOMAverage:REAL, bifacialityFactor:REAL, tempCoef:REAL, degradationRate:REAL, dcLossesPercent:REAL, acLossesPercent:REAL, invEfficiency:REAL, dcPowerNominalMW:REAL, totalInverters:REAL, availableInverters:REAL || VAR_OUTPUT: acPowerOutputMW:REAL",
+  "loc": 90,
+  "dialect": [],
+  "defense_gaps": [
+   "存在裸除法，需检查除子闸"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "A",
+  "fp": "9bb930c537eda498",
+  "note": "RTPP 数值折算层：多路传感器工程量与实际功率对齐"
+ },
+ {
+  "name": "RTPP_REG",
+  "suggest_category": "DL_Process",
+  "kind": "TYPE",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/RTPP_REG.xml",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "RTPP_REG — RTPP_CALC/RTPP_REG.xml",
+  "signature": "VAR_INPUT: rtpp:REAL, active_p:REAL, sum_w:REAL, sum_x:REAL, sum_y:REAL, sum_xy:REAL, sum_x2:REAL, denom:REAL, w:REAL, i:INT, writeIndex:INT, oldestIndex:INT || VAR_IN_OUT: M:REAL, C:REAL || VAR_OUTPUT: N:INT",
+  "loc": 98,
+  "dialect": [],
+  "defense_gaps": [
+   "存在裸除法，需检查除子闸",
+   "数组下标为变量，需检查越界钳位"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "A",
+  "fp": "b3ddf47da186dc6f",
+  "note": "RTPP 寄存器/遥测结构体：PV 电站量测点定义（可作为 DUT 模板骨）"
+ },
+ {
+  "name": "FB_Unwind",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Unwind.TcPOU",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "FB_Unwind — EquipmentModules/FB_Unwind.TcPOU",
+  "signature": "VAR_INPUT: Axis:FB_Component_BasicAxis, Sensor:FB_DigitalSensor, Recipe:ST_UnwindRecipe, fbControlSourceHMI:FB_ControlSource_HMI, FAULT:INT, UNWIND_ALARM_COUNT:INT, ErrorInput:BOOL, WarnInput:BOOL, InfoInput:BOOL, i:UDINT, varInfo:__SYSTEM.VAR_INFO, AllSubUnitsInitialized:BOOL || VAR_IN_OUT: Alarm:FB_TcAlarm",
+  "loc": 327,
+  "dialect": [
+   "EXTENDS",
+   "OOP-METHOD",
+   "TC_",
+   "__SYSTEM"
+  ],
+  "defense_gaps": [
+   "含平台方言依赖，clean-room 时需剥离",
+   "依赖平台定时器/边沿块，需映射到 IEC 标准定时器",
+   "CASE 状态机无 ELSE 兜底（非法相号无默认分支）",
+   "数组下标为变量，需检查越界钳位"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "B",
+  "fp": "33bbe25fce19411c",
+  "note": "VFFS 制袋机放卷设备模块：PackML 相序 + 膜卷直径/张力 + 换卷报警 + 配方"
+ },
+ {
+  "name": "FB_PullWheel",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_PullWheel.TcPOU",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "FB_PullWheel — EquipmentModules/FB_PullWheel.TcPOU",
+  "signature": "VAR_INPUT: LeftPullWheel:FB_Component_BasicSlaveAxis, RightPullWheel:FB_Component_BasicSlaveAxis, PullWheelCylinder:FB_Cylinder, Recipe:ST_PullWheelsRecipe, fbControlSourceHMI:FB_ControlSource_HMI, FAULT:INT, PULL_WHEELS_ALARM_COUNT:INT, ErrorInput:BOOL, WarnInput:BOOL, InfoInput:BOOL, i:UDINT, varInfo:__SYSTEM.VAR_INFO || VAR_IN_OUT: Alarm:FB_TcAlarm",
+  "loc": 395,
+  "dialect": [
+   "EXTENDS",
+   "OOP-METHOD",
+   "TC_",
+   "__SYSTEM"
+  ],
+  "defense_gaps": [
+   "含平台方言依赖，clean-room 时需剥离",
+   "依赖平台定时器/边沿块，需映射到 IEC 标准定时器",
+   "CASE 状态机无 ELSE 兜底（非法相号无默认分支）",
+   "数组下标为变量，需检查越界钳位"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "B",
+  "fp": "e94336c7ff024232",
+  "note": "牵引轮（拉膜）模块：速度/张力设定与相序管理，薄膜线速度闭环骨架"
+ },
+ {
+  "name": "FB_Sealer",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Sealer.TcPOU",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "FB_Sealer — EquipmentModules/FB_Sealer.TcPOU",
+  "signature": "VAR_INPUT: SealerAxis:FB_Component_BasicAxis, SealBar:FB_SealBar, Recipe:ST_SealerRecipe, fbControlSourceHMI:FB_ControlSource_HMI, FAULTID:INT, CURRTEMP:INT, CURRPOS:INT, SEALER_ALARM_COUNT:INT, ErrorInput:BOOL, WarnInput:BOOL, InfoInput:BOOL, TempFeedbackBad:BOOL || VAR_IN_OUT: Alarm:FB_TcAlarm",
+  "loc": 389,
+  "dialect": [
+   "EXTENDS",
+   "OOP-METHOD",
+   "TC_",
+   "__SYSTEM"
+  ],
+  "defense_gaps": [
+   "含平台方言依赖，clean-room 时需剥离",
+   "依赖平台定时器/边沿块，需映射到 IEC 标准定时器",
+   "CASE 状态机无 ELSE 兜底（非法相号无默认分支）",
+   "数组下标为变量，需检查越界钳位"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "B",
+  "fp": "bf2fcaddc5188fcb",
+  "note": "立式封口模块：封刀温度/停留时间/压力三量协同与 PackML 相序"
+ },
+ {
+  "name": "ST_UnwindRecipe",
+  "suggest_category": "DL_Process",
+  "kind": "TYPE",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/DUTs/Recipe/ST_UnwindRecipe.TcDUT",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "ST_UnwindRecipe — DUTs/Recipe/ST_UnwindRecipe.TcDUT",
+  "signature": "VAR_INPUT: (无)",
+  "loc": 5,
+  "dialect": [],
+  "defense_gaps": [
+   "未见明显防御缺口，需人工判定增量价值"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "B",
+  "fp": "76e608c8622c0a89",
+  "note": "放卷配方结构体：膜卷参数与张力设定域（配方 DUT 模板）"
+ },
+ {
+  "name": "ST_PullWheelsRecipe",
+  "suggest_category": "DL_Process",
+  "kind": "TYPE",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/DUTs/Recipe/ST_PullWheelsRecipe.TcDUT",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "ST_PullWheelsRecipe — DUTs/Recipe/ST_PullWheelsRecipe.TcDUT",
+  "signature": "VAR_INPUT: (无)",
+  "loc": 9,
+  "dialect": [],
+  "defense_gaps": [
+   "未见明显防御缺口，需人工判定增量价值"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "B",
+  "fp": "15ed8292eee60100",
+  "note": "牵引轮配方结构体：轮径/速比参数域"
+ },
+ {
+  "name": "TcoOscilatingConveyorFeeder",
+  "suggest_category": "DL_Process",
+  "kind": "FB",
+  "tier": "green",
+  "license": "MIT",
+  "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder.TcPOU",
+  "commit": "HEAD(2026-11-24 codeload)",
+  "extraction_point": "TcoOscilatingConveyorFeeder — OscilatingFeeder/TcoOscilatingConveyorFeeder.TcPOU",
+  "signature": "VAR_INPUT: inSafeCondition:BOOL, inDoorOpen:BOOL, inMOde:eCUMode, _config:TcoOscilatingConveyorFeeder_Config_v_1_x_x, _status:TcoOscilatingConveyorFeeder_Status_v_1_x_x, _control:TcoOscilatingConveyorFeeder_Control_v_1_x_x, _components:TcoOscilatingConveyorFeederComponents, _timerEntryEmpty:ton, _timerOutFull:ton, _timerDisableSafety:TON, _temporarilyDisableSafety:BOOL, restoreDone:BOOL",
+  "loc": 746,
+  "dialect": [
+   "EXTENDS",
+   "OOP-METHOD"
+  ],
+  "defense_gaps": [
+   "依赖平台定时器/边沿块，需映射到 IEC 标准定时器"
+  ],
+  "dedup": {
+   "name": "pass",
+   "fingerprint": "new",
+   "semantic": "new"
+  },
+  "priority": 1,
+  "family": "E",
+  "fp": "9075821d6d3496f9",
+  "note": "摆动式给料输送（泡罩线上料）：启停/节拍/堵料检测与工位互锁"
+ }
+]

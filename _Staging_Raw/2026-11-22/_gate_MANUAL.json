@@ -1,0 +1,60 @@
+{
+ "round": "MANUAL",
+ "ts": "2026-11-22T14:16:41+08:00",
+ "total": 1,
+ "pass": 1,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_TruckScaleSeq.st",
+   "name": "FB_DL_TruckScaleSeq",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：E_DL_ScaleSeqState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 116,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 117,
+     "detail": "类型未识别：FB_DL_SignalStatistics"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 118,
+     "detail": "类型未识别：E_DL_ScaleSeqState"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 393
+  }
+ ]
+}

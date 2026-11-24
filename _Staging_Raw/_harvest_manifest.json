@@ -1,0 +1,144 @@
+{
+ "started": "2026-11-24T21:17:10+08:00",
+ "repos": {
+  "OttoMeister/Siemens-Tia-Portal-PID-Controller": {
+   "spdx": "WTFPL",
+   "tier": "yellow",
+   "stars": 115,
+   "url": "https://github.com/OttoMeister/Siemens-Tia-Portal-PID-Controller",
+   "pushed_at": "2025-07-05T04:05:51Z",
+   "files_listed": 8,
+   "files_fetched_ok": 8,
+   "files_fetch_fail": 0,
+   "origin": "mandated --search (rescan of R73/R74, 0 net new)"
+  },
+  "RWTH-EBC/AixOCAT": {
+   "spdx": "MIT",
+   "tier": "green",
+   "stars": 104,
+   "url": "https://github.com/RWTH-EBC/AixOCAT",
+   "pushed_at": "2025-12-01T15:43:38Z",
+   "files_listed": 12,
+   "files_fetched_ok": 12,
+   "files_fetch_fail": 0,
+   "origin": "mandated --search (rescan of R73/R74, 0 net new)"
+  },
+  "NathanLi/iOSCategoryPropertyDynamicSupport": {
+   "spdx": null,
+   "tier": "yellow",
+   "stars": 71,
+   "url": "https://github.com/NathanLi/iOSCategoryPropertyDynamicSupport",
+   "pushed_at": "2016-11-28T15:08:15Z",
+   "files_listed": 0,
+   "files_fetched_ok": 0,
+   "files_fetch_fail": 0,
+   "origin": "mandated --search (rescan of R73/R74, 0 net new)"
+  },
+  "mod-bee/modbee-openplc": {
+   "spdx": "NOASSERTION",
+   "tier": "red",
+   "stars": 0,
+   "url": "https://github.com/mod-bee/modbee-openplc",
+   "st_files": 143,
+   "files_listed": 12,
+   "origin": "code search 定向查询 (R86)",
+   "license_adjudication": "GitHub API license=NOASSERTION，但仓库根 LICENSE 正文为 GNU AFFERO GPL v3 —— 按红区处理；本地 tar.gz 已删除，零代码入队，仅登记思想（阀位-阀座-行程三参诊断的分级判据结构）"
+  },
+  "Chenjie1002/Lee_Workshop": {
+   "spdx": null,
+   "tier": "yellow",
+   "stars": 0,
+   "url": "https://github.com/Chenjie1002/Lee_Workshop",
+   "st_files": 0,
+   "files_listed": 0,
+   "origin": "code search 定向查询 (R86)"
+  },
+  "brentjm/chemical-process-digital-twin": {
+   "spdx": null,
+   "tier": "yellow",
+   "stars": 0,
+   "url": "https://github.com/brentjm/chemical-process-digital-twin",
+   "st_files": 0,
+   "files_listed": 0,
+   "origin": "code search 定向查询 (R86)"
+  },
+  "simatic-ax/LAxisCtrl": {
+   "spdx": "NOASSERTION",
+   "tier": "yellow",
+   "stars": 4,
+   "url": "https://github.com/simatic-ax/LAxisCtrl",
+   "st_files": 58,
+   "files_listed": 12,
+   "origin": "code search 定向查询 (R86)",
+   "license_adjudication": "SPDX 检测为 NOASSERTION，实际为 Siemens『Royalty-free Licensed Material』v1.4（闭源文档类）→ 按黄区只借骨",
+   "files_fetched_ok": 58,
+   "candidates": 10
+  },
+  "DavidWenzler/reAM250": {
+   "spdx": "NOASSERTION",
+   "tier": "yellow",
+   "stars": 113,
+   "url": "https://github.com/DavidWenzler/reAM250",
+   "st_files": 0,
+   "files_listed": 0,
+   "origin": "code search 定向查询 (R86)"
+  },
+  "Aneesh495/gantry": {
+   "spdx": "MIT",
+   "tier": "green",
+   "stars": 3,
+   "url": "https://github.com/Aneesh495/gantry",
+   "st_files": 0,
+   "files_listed": 0,
+   "origin": "code search 定向查询 (R86)"
+  }
+ },
+ "rejected": [
+  {
+   "repo": "Chenjie1002/Lee_Workshop",
+   "why": "无 LICENSE(unknown) + 0 个 ST 文本文件"
+  },
+  {
+   "repo": "brentjm/chemical-process-digital-twin",
+   "why": "无 LICENSE(unknown) + 0 个 ST 文件（反应釜夹套为 Python 仿真）"
+  },
+  {
+   "repo": "DavidWenzler/reAM250",
+   "why": "NOASSERTION + 0 个 ST 文件"
+  },
+  {
+   "repo": "Aneesh495/gantry",
+   "why": "MIT 但 0 个 ST 文件（仅 gantry 配置/文档）"
+  },
+  {
+   "repo": "Beckhoff-USA-Community/SPT-Libraries",
+   "why": "codeload master 分支 404/非 gzip，本轮未取得内容（不计入）"
+  },
+  {
+   "name": "VAR_INPUT",
+   "repo": "OttoMeister/Siemens-Tia-Portal-PID-Controller",
+   "why": [
+    "dup-of-queue"
+   ]
+  },
+  {
+   "name": "E_SMStatus",
+   "repo": "RWTH-EBC/AixOCAT",
+   "why": [
+    "dup-of-queue"
+   ]
+  }
+ ],
+ "red_quarantine": [
+  "mod-bee/modbee-openplc"
+ ],
+ "finished": "2026-11-24T21:28:00+08:00",
+ "added": 10,
+ "round": "R86",
+ "note": "前置 3 仓为任务书强制命令 oss_harvest.py --search --max-repos 3 的产出（与 R73/R74 同 3 仓，命中 2 条与存量重复，已标 dropped）；本轮真实增量来自 code search 定向 + codeload 整仓抽取。",
+ "added_tier": {
+  "green": 0,
+  "yellow": 10,
+  "red": 0
+ }
+}

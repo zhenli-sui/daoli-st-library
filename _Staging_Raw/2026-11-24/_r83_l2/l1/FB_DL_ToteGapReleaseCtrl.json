@@ -1,0 +1,36 @@
+{
+ "round": "R83",
+ "ts": "2026-11-24T13:56:05+08:00",
+ "total": 1,
+ "pass": 1,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_ToteGapReleaseCtrl.st",
+   "name": "FB_DL_ToteGapReleaseCtrl",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 24,
+     "detail": "类型未识别：E_DL_GapSt"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 26,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 51
+  }
+ ]
+}

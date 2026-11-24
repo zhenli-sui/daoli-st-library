@@ -1,0 +1,846 @@
+{
+ "round": "R82",
+ "ts": "2026-11-24",
+ "tool": "RuSTy 1.0.8 (d1f14ee) serial jobs=1",
+ "l1": {
+  "total": 40,
+  "block": 0,
+  "major_reported": 2,
+  "major_real": 0,
+  "minor_ver_header": 40,
+  "warn_unknown_type": 26
+ },
+ "l2": {
+  "mode": "local-rusty",
+  "jobs": 1,
+  "total": 40,
+  "pass": 40,
+  "fail": 0,
+  "exempt": 0
+ },
+ "l3_logic": {
+  "sampled": 12,
+  "pass": 7,
+  "major": 5,
+  "minor": 3
+ },
+ "totals": {
+  "pass": 34,
+  "major": 6,
+  "fail": 0,
+  "exempt": 0
+ },
+ "verdict": "BLOCK_PARTIAL",
+ "blocking": [
+  "FC_DL_DewaterMassBalance.st",
+  "FC_DL_PackedBedHtu.st",
+  "FC_DL_CatalystActivityDecay.st",
+  "FC_DL_MethaneRatioCalc.st",
+  "FC_DL_OrganicLoadRate.st",
+  "FB_DL_CoagDoseJarTestSeq.st"
+ ],
+ "results": [
+  {
+   "file": "FC_DL_CoagDoseFromJarTest.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_FlocDilutionRatio.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_SettleVelocityCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [
+    "DOMAIN_DP"
+   ],
+   "lines": [],
+   "worst": "MINOR",
+   "logic_note": "L50 后缺 rDpUm>0 闸",
+   "minor": [
+    "DOMAIN_DP"
+   ]
+  },
+  {
+   "file": "FC_DL_SludgeBlanketLevel.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_ClarifierSurfaceLoad.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_SviCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_NtuCoagDoseAdj.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_LamellaAreaCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_ScrewPressThroughput.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_CakeSolidsCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_PolymerDoseCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_CentrateTurbidityIdx.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_FiltrateRecycleRatio.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_DewaterMassBalance.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_IDENTITY_OUT"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L70 rRecoveryPct 恒等 100%，无信息量且误导"
+  },
+  {
+   "file": "FC_DL_BeltPressLoadRate.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_ScrubberLiquidGasRatio.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_PackedBedHtu.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_DIM_MISSING_P"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L61 Kga 含 atm，HTU 需 /P；缺 rPressAtm"
+  },
+  {
+   "file": "FC_DL_ReagentConsumeCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_CatalystActivityDecay.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_RUL_SIGN"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L91 (LN(1/act)+Ln07)/k 应为 (Ln07-LN(1/act))/k；t=1000h 时给 1195.7h 而非 0"
+  },
+  {
+   "file": "FC_DL_VenturiScrubDpEst.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_DemisterVelocityChk.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_StackEmissionDilute.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_ComponentRulEstimate.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [
+    "LOGIC_ABS_SLOPE"
+   ],
+   "lines": [],
+   "worst": "MINOR",
+   "logic_note": "L74 ABS(slope) 丢方向，健康度回升被判退化",
+   "minor": [
+    "LOGIC_ABS_SLOPE"
+   ]
+  },
+  {
+   "file": "FC_DL_BrgThermalDriftRate.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_OilChangeInterval.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_MtbfCalc.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_SpareReorderPoint.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_PmScheduleNext.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_LubeIntervalCalc.st",
+   "dir": "DL_Device",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_BiogasYieldCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_MethaneRatioCalc.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_NEG_COMP"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L48/L54 分量负值无闸，CH4 可 >100%、LHV 超 35.8 物理上限"
+  },
+  {
+   "file": "FC_DL_OrganicLoadRate.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_DIM_COD_AS_TS"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L54 VS=Q*COD*VS/TS；COD 与 TS 非同量纲，OLS 低估约 4 倍、bOver 漏报"
+  },
+  {
+   "file": "FC_DL_VfaAlkalinityRatio.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_GasHolderLevel.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FC_DL_DigesterRetentionTime.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [
+    "CALIBER_HRT"
+   ],
+   "lines": [],
+   "worst": "MINOR",
+   "logic_note": "L49 HRT 分母含排泥，与 V/Q进 口径不同（头注已声明负荷假设）",
+   "minor": [
+    "CALIBER_HRT"
+   ]
+  },
+  {
+   "file": "FC_DL_FlareFlowSizing.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FB_DL_CoagDoseJarTestSeq.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "MAJOR",
+   "codes": [
+    "LOGIC_HOLD_CARRIER"
+   ],
+   "lines": [],
+   "worst": "MAJOR",
+   "logic_note": "L313 eHold 出冻结体积流量，流量变化即投加率失真"
+  },
+  {
+   "file": "FB_DL_ScrewPressDewaterSeq.st",
+   "dir": "DL_Process",
+   "static": "PASS",
+   "static_notes": [
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FB_DL_ScrubberReagentDoseSeq.st",
+   "dir": "DL_Process",
+   "static": "MAJOR",
+   "static_notes": [
+    {
+     "code": "R527_TON_CROSS_PHASE",
+     "line": 222,
+     "level": "MAJOR"
+    },
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  },
+  {
+   "file": "FB_DL_AnaerobDigesterLoadCtrl.st",
+   "dir": "DL_Process",
+   "static": "MAJOR",
+   "static_notes": [
+    {
+     "code": "R527_TON_CROSS_PHASE",
+     "line": 222,
+     "level": "MAJOR"
+    },
+    {
+     "code": "R527_TON_CROSS_PHASE",
+     "line": 226,
+     "level": "MAJOR"
+    },
+    {
+     "code": "VER_HEADER",
+     "line": 0,
+     "level": "MINOR"
+    }
+   ],
+   "l2": "PASS",
+   "l2_rc": 0,
+   "verdict": "PASS",
+   "codes": [],
+   "lines": [],
+   "worst": "PASS",
+   "logic_note": ""
+  }
+ ]
+}

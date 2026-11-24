@@ -1,0 +1,82 @@
+{
+  "round": "R81-A",
+  "batch": "A",
+  "date": "2026-11-24",
+  "gate": "dlf-compile-verifier",
+  "l2_runner": "RuSTy plc.exe --check, serial jobs=1",
+  "l2_log": "_Staging_Raw/2026-11-24/_l2_r81a.json",
+  "l2_summary": {"total": 36, "pass": 36, "fail": 0, "note": "PASS=36 FAIL=0 TOTAL=36 (re-run with --out, per-file rc=0)"},
+  "summary": {"total": 36, "pass": 35, "fail": 1, "exempt": 0, "pass_rate": "97.2%"},
+  "verdict": "BLOCK",
+  "released": 35,
+  "withheld": ["DL_Process/FC_DL_BeamToppleRiskChk.st"],
+  "name_corrections": [
+    "FC_DL_SlipRatioCalc -> DL_Motion/FC_DL_RollerSlipRatioCalc.st",
+    "FC_DL_SuctionCupCount -> DL_Device/FC_DL_SuctionCupCountCalc.st"
+  ],
+  "items": [
+    {"file": "DL_Process/FC_DL_ShuttleStrokeTimeEst.st", "verdict": "PASS", "errcode": "-", "note": "梯形判据 Vmax^2/Acc 与 t=d/V+V/Acc、2*sqrt(d/Acc) 均正确；Acc/Vmax 正闸前置"},
+    {"file": "DL_Process/FC_DL_ShuttleAisleLockChk.st", "verdict": "PASS", "errcode": "-", "note": "冲突计数与 deny 码同源，bGrant 仅 deny=0"},
+    {"file": "DL_Process/FC_DL_LifterCycleTimeEst.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: rCap=3600/rCycle 隐含 1 件/循环，一取一放实为 2 件/循环，口径待明确"},
+    {"file": "DL_Process/FC_DL_StocktakeVarianceCalc.st", "verdict": "PASS", "errcode": "-", "note": "DINT 中间量+双侧饱和正确；MINOR: 账面为负时差异率为负"},
+    {"file": "DL_Process/FC_DL_BeamToppleRiskChk.st", "verdict": "FAIL", "errcode": "-", "note": "FAIL(LOGIC) MAJOR/BLOCK: L70 偏心系数用带符号 rCgOffset_mm，负偏移使系数<1 甚至为负 -> 利用率低估/负值、倾覆风险漏报；修法 L70 改 1.0 + ABS(rCgOffset_mm)/rBeamDepth_mm，并在域闸补 ABS(offset)<=depth"},
+    {"file": "DL_Process/FC_DL_CellOccupyRateCalc.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 超占时占用率可>100% 未截断；死常量 DL_R_MAX"},
+    {"file": "DL_Process/FC_DL_ForkExtendSafeChk.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 死常量 DL_EPS；判据与余量同源"},
+    {"file": "DL_Process/FC_DL_BinLabelCheckSum.st", "verdict": "PASS", "errcode": "-", "note": "校验和上限 72 无 INT 溢出；WHILE 有看门狗"},
+    {"file": "DL_Process/FC_DL_FoamSuppressDutyCalc.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 占空比缺泵额定投加量、量纲不闭环；DL_DUTY_LO 复用为液位下界(名实不符)；死常量 DL_EPS"},
+    {"file": "DL_Process/FC_DL_RinseWaterVolumeCalc.st", "verdict": "PASS", "errcode": "-", "note": "mm->m(/2000)->m2*m*1000->L 单位链正确"},
+    {"file": "DL_Process/FC_DL_SanitizeHoldTimeCalc.st", "verdict": "PASS", "errcode": "-", "note": "浓度比方向正确；温度系数限幅后取倒数，顺序合规"},
+    {"file": "DL_Process/FC_DL_ConductivityDilutionCalc.st", "verdict": "PASS", "errcode": "-", "note": "R=(Cf-Cw)/(Ct-Cw)、配水比(1-1/R) 推导正确"},
+    {"file": "DL_Process/FC_DL_NozzleClogIndexCalc.st", "verdict": "PASS", "errcode": "-", "note": "超流截断为 0，报警门限与限幅后值一致"},
+    {"file": "DL_Process/FC_DL_SipResidueVolumeEst.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 坡度项 sin*0.5 作用于全长管容，90 度时残留达 50% 管容"},
+    {"file": "DL_Process/FC_DL_FillValveSealWearEst.st", "verdict": "PASS", "errcode": "-", "note": "仅超温部分加速；额定为零前置闸"},
+    {"file": "DL_Process/FC_DL_BottleNeckLevelMargin.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 死常量 DL_EPS"},
+    {"file": "DL_Process/FC_DL_ReceiverPressureDropCalc.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: Nm3/min 未按 P_atm 1.013 归一/未表压转绝压，系统偏差约 1.3%"},
+    {"file": "DL_Process/FC_DL_AirQualityClassifyCalc.st", "verdict": "PASS", "errcode": "-", "note": "ISO 8573-1 分级边界与 ELSIF 链一致；出口预置 4 级最不利；MINOR: 死常量 DL_EPS"},
+    {"file": "DL_Process/FC_DL_DesiccantLifeEstimate.st", "verdict": "PASS", "errcode": "-", "note": "有效容量乘积正闸后再作分母"},
+    {"file": "DL_Process/FC_DL_MotorLoadFactorCalc.st", "verdict": "PASS", "errcode": "-", "note": "过载位用限幅前 raw 判定"},
+    {"file": "DL_Process/FC_DL_CompressorDutyCycleCalc.st", "verdict": "PASS", "errcode": "-", "note": "加载+卸载>窗口 判无效；能耗分母零前置闸"},
+    {"file": "DL_Process/FC_DL_DrainIntervalCalc.st", "verdict": "PASS", "errcode": "-", "note": "间隔与间隔内积水量回代自洽"},
+    {"file": "DL_Process/FC_DL_IdleRunRatioCalc.st", "verdict": "PASS", "errcode": "-", "note": "加载时间越界判无效；空转负值截断"},
+    {"file": "DL_Device/FC_DL_VacuumPadForceCalc.st", "verdict": "PASS", "errcode": "-", "note": "F=(pi/4)d^2*dp，mm->m 与 kPa->Pa 正确（50mm/60kPa->118N 量级校验通过）"},
+    {"file": "DL_Device/FC_DL_SuctionFlowEst.st", "verdict": "PASS", "errcode": "-", "note": "Q=Cd*A*sqrt(2dp/rho)、m3/s*60000->L/min 正确；MINOR: rFlowNm3h 实为实际态 m3/h"},
+    {"file": "DL_Device/FC_DL_SheetPeelForceCalc.st", "verdict": "PASS", "errcode": "-", "note": "mm2*1e-6、kPa*1000 得 N；角度系数 0->1/90->0.5/180->0 正确；MINOR: 死常量 DL_EPS"},
+    {"file": "DL_Device/FC_DL_VacHoldDecayChk.st", "verdict": "PASS", "errcode": "-", "note": "真空回升走 bSuspect 双清零，不误报泄漏"},
+    {"file": "DL_Device/FC_DL_PadWearIndexCalc.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 0.7x% + 0.3xmmx10 混量纲加权，10 倍增益无物理出处"},
+    {"file": "DL_Device/FC_DL_VacuumGenDutyCalc.st", "verdict": "PASS", "errcode": "-", "note": "通电>周期 判无效；占空比限幅后再算耗气"},
+    {"file": "DL_Device/FC_DL_SuctionCupCountCalc.st", "verdict": "PASS", "errcode": "-", "note": "截断+余量进位等价 CEIL，REAL_TO_INT 前 32000 兜底，无回绕"},
+    {"file": "DL_Motion/FC_DL_LineSpeedMatchRatio.st", "verdict": "PASS", "errcode": "-", "note": "MINOR: 设定速比仅>EPS 即放行，极小时偏差放大"},
+    {"file": "DL_Motion/FC_DL_ChainWearElongation.st", "verdict": "PASS", "errcode": "-", "note": "伸长率方向正确，仅正伸长触发更换"},
+    {"file": "DL_Motion/FC_DL_RollerSlipRatioCalc.st", "verdict": "PASS", "errcode": "-", "note": "打滑率=(辊-带)/辊；报警用限幅后绝对值不产生漏报"},
+    {"file": "DL_Motion/FC_DL_SkateWheelLoadCalc.st", "verdict": "PASS", "errcode": "-", "note": "前轴占比 0.5+e/base 限幅 0.1~0.9；(n+1)/2 整型除法正确"},
+    {"file": "DL_Motion/FC_DL_LaneDiverterAngleCalc.st", "verdict": "PASS", "errcode": "-", "note": "ATAN 弧度->度；通过时间 mm->m、m/min->m/s 正确"},
+    {"file": "DL_Motion/FC_DL_TrackingOffsetChk.st", "verdict": "PASS", "errcode": "-", "note": "脉冲->m 折算正确，偏移与容差同量纲，每米脉冲零前置闸"}
+  ],
+  "logic_findings": {
+    "BLOCK": ["FC_DL_BeamToppleRiskChk L70: 带符号偏心 -> 系数可<1 或为负 -> 利用率低估、倾覆风险漏报"],
+    "MAJOR": ["FC_DL_BeamToppleRiskChk L70 (同上)"],
+    "MINOR": [
+      "FC_DL_ReceiverPressureDropCalc L81: Nm3/min 未按 P_atm 归一",
+      "FC_DL_SuctionFlowEst L96: rFlowNm3h 实为实际态 m3/h",
+      "FC_DL_FoamSuppressDutyCalc L70/L62: 量纲不闭环 + DL_DUTY_LO 名实不符",
+      "FC_DL_PadWearIndexCalc L80: 混量纲加权",
+      "FC_DL_StocktakeVarianceCalc L89: 账面负时差异率为负",
+      "FC_DL_CellOccupyRateCalc L83: 占用率可>100% 未截断",
+      "FC_DL_SipResidueVolumeEst L93: 坡度项作用于全长管容",
+      "FC_DL_LifterCycleTimeEst L78: rCap 隐含 1 件/循环",
+      "FC_DL_LineSpeedMatchRatio L74: 设定速比过小时偏差放大",
+      "死常量: CellOccupyRateCalc:DL_R_MAX, ForkExtendSafeChk:DL_EPS, FoamSuppressDutyCalc:DL_EPS, BottleNeckLevelMargin:DL_EPS, AirQualityClassifyCalc:DL_EPS, SheetPeelForceCalc:DL_EPS"
+    ]
+  },
+  "positives": [
+    "36/36 出口预置均位于首个 RETURN 之前，无 bValid/bErr 未赋值即返回",
+    "36/36 除法均为先闸后除、同段前置，不依赖短路求值",
+    "量纲链逐件重算通过（mm->m、kPa->Pa、L/min->m3/s、m/min->m/s）",
+    "限幅上下界均为顺序 IF/ELSIF，未见 MIN/MAX 反序"
+  ],
+  "pending": {
+    "l1_dl_gate": "本轮未跑 dl_gate.py --changed-only，建议注册前补跑",
+    "l3_vectors": "36 件均无 _TESTS/*.json，建议优先补 5 件安全类",
+    "registry": "36 件均未入 registry(1490 件存量查无)，码段唯一与版本头一致性留待注册脚本校验"
+  }
+}

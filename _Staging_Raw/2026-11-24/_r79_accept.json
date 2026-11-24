@@ -1,0 +1,530 @@
+[
+ {
+  "name": "FC_DL_ChkAdler32",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_ChkFletcher16",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_ChkFletcher32",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_ChkParityBlock",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_ChkSum32Mod",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_ChkTwosCompSum16",
+  "category": "DL_Algo",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "algo",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_StatsWelfordVar",
+  "category": "DL_MathData",
+  "type": "FB",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalAddMonths",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalDateFromDayOfYear",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalDateSpanMonths",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalDayOfYear",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalIsWeekend",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_CalQuarterIndex",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoBBoxFromPtsFixed",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoCentroid3Pt",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoChordHeightCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoCircleSectorArea",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoLineAngleXY",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoPointInConvexQuadXY",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoPointInRectXY",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoPointLineDist",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoPointRotateXY",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_GeoPolylineLenFixed",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntDigitCountUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntDigitSumUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntFloorLog2Udint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntIsPerfectSquareUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntIsPrimeUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntLcmSafeUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntModPowUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntNextPrimeUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntPowSatUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntReverseDigitsUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_IntSqrtFloorUdint",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsCoeffVarCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsEntropyCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsHistogramBin",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsPercentileRankFixed",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsRunLengthMax",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FC_DL_StatsZScoreClamp",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "tags": [
+   "mathdata",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_AerationBlowerCycle",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 3,
+  "tags": [
+   "process",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_CoolingTowerFanStageSeq",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "tags": [
+   "process",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_PressForceCurveExec",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "tags": [
+   "process",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_ScrewConveyorDoseSeq",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "tags": [
+   "process",
+   "r79"
+  ],
+  "origin": "道莅原创（R79 族模板派生）",
+  "license": "MIT"
+ }
+]

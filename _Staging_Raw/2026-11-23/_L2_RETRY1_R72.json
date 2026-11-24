@@ -1,0 +1,50 @@
+{
+ "total": 2,
+ "pass": 0,
+ "fail": 2,
+ "seed": 0,
+ "jobs": 4,
+ "iface_excluded": [
+  "I_DL_AnalogSensor.st",
+  "I_DL_BarcodeScanner.st",
+  "I_DL_Cylinder.st",
+  "I_DL_DeviceHealth.st",
+  "I_DL_FlowMeter.st",
+  "I_DL_Gripper.st",
+  "I_DL_LevelSwitch.st",
+  "I_DL_LightCurtain.st",
+  "I_DL_MotorDriver.st",
+  "I_DL_MotorizedValve.st",
+  "I_DL_PowerMeter.st",
+  "I_DL_ProportionalValve.st",
+  "I_DL_RfidReader.st",
+  "I_DL_SafetyDoor.st",
+  "I_DL_StepperOpenLoop.st",
+  "I_DL_TemperatureZone.st",
+  "I_DL_TowerLight.st",
+  "I_DL_VacuumGenerator.st",
+  "I_DL_VfdDrive.st",
+  "I_DL_ExternalEncoder.st",
+  "I_DL_MotionAxis.st"
+ ],
+ "results": [
+  {
+   "file": "DL_MathData/FC_DL_CharCodeConvert.st",
+   "name": "FC_DL_CharCodeConvert.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E048 Could not resolve reference to MID__STRING",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "DL_MathData/FC_DL_WordToBinString.st",
+   "name": "FC_DL_WordToBinString.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E048 Could not resolve reference to CONCAT__STRING",
+   "dep_rounds": 0,
+   "dep_count": 0
+  }
+ ]
+}

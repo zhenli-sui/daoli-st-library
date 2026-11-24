@@ -1,0 +1,162 @@
+{
+ "DL_Process\\FC_DL_CoagDoseFromJarTest.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_FlocDilutionRatio.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_SettleVelocityCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_SludgeBlanketLevel.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_ClarifierSurfaceLoad.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_SviCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_NtuCoagDoseAdj.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_LamellaAreaCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_ScrewPressThroughput.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_CakeSolidsCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_PolymerDoseCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_CentrateTurbidityIdx.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_FiltrateRecycleRatio.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_DewaterMassBalance.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_BeltPressLoadRate.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_ScrubberLiquidGasRatio.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_PackedBedHtu.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_ReagentConsumeCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_CatalystActivityDecay.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_VenturiScrubDpEst.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_DemisterVelocityChk.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_StackEmissionDilute.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_ComponentRulEstimate.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_BrgThermalDriftRate.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_OilChangeInterval.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_MtbfCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_SpareReorderPoint.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_PmScheduleNext.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Device\\FC_DL_LubeIntervalCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_BiogasYieldCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_MethaneRatioCalc.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_OrganicLoadRate.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_VfaAlkalinityRatio.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_GasHolderLevel.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_DigesterRetentionTime.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FC_DL_FlareFlowSizing.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FB_DL_CoagDoseJarTestSeq.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FB_DL_ScrewPressDewaterSeq.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 1 | MAJOR 0 | BLOCK 0\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FB_DL_ScrubberReagentDoseSeq.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 0 | MAJOR 1 | BLOCK 0\n  MAJOR  FB_DL_ScrubberReagentDoseSeq.st\n         L219  R527_TON_CROSS_PHASE TON(tonLow) 的 IN 跨相 OR（((_eState = E_DL_SCRUB_STATE.eDose) OR (_\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ },
+ "DL_Process\\FB_DL_AnaerobDigesterLoadCtrl.st": {
+  "rc": 0,
+  "out": "GATE MANUAL: 1 files | PASS 0 | MAJOR 1 | BLOCK 0\n  MAJOR  FB_DL_AnaerobDigesterLoadCtrl.st\n         L222  R527_TON_CROSS_PHASE TON(tonConfirm) 的 IN 跨相 OR（((_eState = E_DL_AD_STATE.eNormal) OR\n         L226  R527_TON_CROSS_PHASE TON(tonRecover) 的 IN 跨相 OR（((_eState = E_DL_AD_STATE.eDerate) OR\nreport -> C:\\Library\\_Staging_Raw\\2026-11-24\\_gate_MANUAL.json\n"
+ }
+}

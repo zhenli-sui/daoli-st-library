@@ -1,0 +1,406 @@
+{
+ "round": "R86",
+ "registry": 1686,
+ "rows": [
+  {
+   "name": "FB_DL_TrapezoidProfilePlanner",
+   "name_hit": null,
+   "sig": "xEnable:BOOL|xStart:BOOL|fDist:LREAL|fVelMax:LREAL|fAccMax:LREAL|fVelStart:LREAL|fVelEnd:LREAL|fDt:LREAL|fPosCmd:LREAL|fVelCmd:LREAL|xBusy:BOOL|xDone:BOOL|xOverrun:BOOL|xValid:BOOL|eSeg:E_DL_TrapSeg|eState:E_DL_TrapSeg|xStartPrev:BOOL|xEdgeStart:BOOL|xParamBad:BOOL|xTriangle:BOOL|fSgn:LREAL|fDistAbs:LREAL|fVStartAbs:LREAL|fVEndAbs:LREAL|fVp:LREAL|fVp2:LREAL|fTa:LREAL|fTc:LREAL|fTd:LREAL|fTtot:LREAL|fDa:LREAL|fDc:LREAL|fDd:LREAL|fTElapsed:LREAL|fTd2:LREAL|fS:LREAL|fV:LREAL|DL_EPS:LREAL|DL_ZERO:LREAL|DL_TWO:LREAL",
+   "fp": "1f9b13885e29",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FB_DL_AxisProbeTouchOffSeq",
+   "name_hit": null,
+   "sig": "xEnable:BOOL|xStart:BOOL|fPosAct:LREAL|xProbeTrig:BOOL|fFastVel:LREAL|fSlowVel:LREAL|fFastSpan:LREAL|fSoftMax:LREAL|fSoftMin:LREAL|fRetractDist:LREAL|tTimeout:TIME|tDwell:TIME|fVelCmd:LREAL|fProbePos:LREAL|xBusy:BOOL|xDone:BOOL|xFault:BOOL|eStateOut:E_DL_ProbState|eState:E_DL_ProbState|xStartPrev:BOOL|xProbePrev:BOOL|xStartEdge:BOOL|xProbeEdge:BOOL|xTimeoutLatch:BOOL|xApproaching:BOOL|xParamBad:BOOL|fPosRef:LREAL|fProbeLast:LREAL|tonTimeout:TON|tonDwell:TON|DL_EPS:LREAL|DL_ZERO:LREAL",
+   "fp": "79b3be37bcfb",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FB_DL_SensorConsensusSelector",
+   "name_hit": null,
+   "sig": "xEnable:BOOL|arrVal:ARRAY[0..4] OF REAL|arrValid:ARRAY[0..4] OF BOOL|fDevBand:REAL|fAbsMax:REAL|fOut:REAL|nValidOut:INT|xValid:BOOL|xDegraded:BOOL|xLost:BOOL|eMode:E_DL_ConsMode|afSort:ARRAY[0..4] OF REAL|nCnt:INT|nIn:INT|k:INT|j:INT|fTmp:REAL|fMed:REAL|fSum:REAL|fMean:REAL|fCand:REAL|fDiff:REAL|fLastOut:REAL|xHasLast:BOOL|eCand:E_DL_ConsMode|DL_CM_ZERO:INT|DL_CM_ONE:INT|DL_CM_NCH:INT|DL_CM_MINC:INT|DL_CM_R0:REAL|DL_CM_EPS:REAL",
+   "fp": "e48de9a3bc07",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FB_DL_Q15BiquadFilter",
+   "name_hit": null,
+   "sig": "xEnable:BOOL|xReset:BOOL|iIn:INT|arrCoef:ARRAY[0..4] OF INT|iOut:INT|xOverflow:BOOL|arrHist:ARRAY[0..3] OF INT|diProd1:DINT|diProd2:DINT|diAcc:DINT|diSh:DINT|diSum:DINT|iNewZ1:INT|iNewZ2:INT|iSat:INT|Q15_MAX:DINT|Q15_MIN:DINT|DL_BQ_RND:DINT|DL_BQ_SC:DINT|DL_BQ_Z:DINT|DL_BQ_I0:INT|DL_BQ_I1:INT|DL_BQ_I2:INT|DL_BQ_I3:INT|DL_BQ_I4:INT",
+   "fp": "29eeed81b96f",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15AddSat",
+   "name_hit": null,
+   "sig": "iA:INT|iB:INT|xSat:BOOL|diSum:DINT|Q15_MAX:DINT|Q15_MIN:DINT",
+   "fp": "027b8bdcbc9b",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15SubSat",
+   "name_hit": null,
+   "sig": "iA:INT|iB:INT|xSat:BOOL|diDiff:DINT|Q15_MAX:DINT|Q15_MIN:DINT",
+   "fp": "04878516f508",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15MulSat",
+   "name_hit": null,
+   "sig": "iA:INT|iB:INT|xSat:BOOL|diProd:DINT|diQ:DINT|Q15_MAX:DINT|Q15_MIN:DINT|DL_QM_RND:DINT|DL_QM_SC:DINT|DL_QM_HI:DINT|DL_QM_LO:DINT|DL_QM_Z:DINT",
+   "fp": "4118e05094f6",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15DivSafe",
+   "name_hit": null,
+   "sig": "iNum:INT|iDen:INT|xValid:BOOL|xSat:BOOL|diNum:DINT|diQ:DINT|Q15_MAX:DINT|Q15_MIN:DINT|DL_QD_SC:DINT|DL_QD_Z:DINT",
+   "fp": "e3f7637624f7",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15AbsSat",
+   "name_hit": null,
+   "sig": "iIn:INT|xSat:BOOL|diAbs:DINT|Q15_MAX:DINT",
+   "fp": "ca078aa7a3a7",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15NegSat",
+   "name_hit": null,
+   "sig": "iIn:INT|xSat:BOOL|diNeg:DINT|Q15_MAX:DINT|Q15_MIN:DINT|DL_QN_Z:DINT",
+   "fp": "adff9d935335",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15Lerp",
+   "name_hit": null,
+   "sig": "iA:INT|iB:INT|iAlpha:INT|xSat:BOOL|diD:DINT|diP:DINT|diQ:DINT|diR:DINT|Q15_MAX:DINT|Q15_MIN:DINT|DL_QL_ONE:DINT|DL_QL_Z:DINT",
+   "fp": "52e026b36b31",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_Q15SqrtFloor",
+   "name_hit": null,
+   "sig": "iIn:INT|xClamp:BOOL|diV:DINT|diRem:DINT|diRoot:DINT|diBit:DINT|DL_QS_SC:DINT|DL_QS_TOP:DINT|DL_QS_Z:DINT|DL_QS_TWO:DINT|DL_QS_FOUR:DINT",
+   "fp": "34d13300ef43",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_RealToQ15Sat",
+   "name_hit": null,
+   "sig": "fIn:REAL|xInvalid:BOOL|xSat:BOOL|fScaled:LREAL|diR:DINT|Q15_MAX:DINT|Q15_MIN:DINT|DL_QR_SC:LREAL|DL_QR_HALF:LREAL|DL_QR_LIM:LREAL|DL_QR_INF:REAL|DL_QR_TINY:LREAL|DL_QR_Z:DINT",
+   "fp": "c79655ca4c80",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_EnthalpyUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_EnthUnit|fOut:LREAL|DL_EU_KCAL:LREAL|DL_EU_BTU:LREAL|DL_EU_INF:LREAL|DL_EU_Z:LREAL",
+   "fp": "cc911375874b",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SpecificHeatUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_ShcUnit|fOut:LREAL|DL_SC_BTU:LREAL|DL_SC_INF:LREAL|DL_SC_Z:LREAL",
+   "fp": "821a4208faee",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_ConcUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_CncUnit|fOut:LREAL|DL_CN_PPM:LREAL|DL_CN_PCT:LREAL|DL_CN_INF:LREAL|DL_CN_Z:LREAL",
+   "fp": "c2600ab7df39",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_LevelUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_LvlUnit|fTankHeight:LREAL|fOut:LREAL|DL_LV_MM:LREAL|DL_LV_HUND:LREAL|DL_LV_INF:LREAL|DL_LV_EPS:LREAL|DL_LV_Z:LREAL",
+   "fp": "041462e52266",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_CurrentUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_CurUnit|fOut:LREAL|DL_CU_MA:LREAL|DL_CU_KA:LREAL|DL_CU_INF:LREAL|DL_CU_Z:LREAL",
+   "fp": "a952b0583df4",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_TempDiffUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_TdUnit|fOut:LREAL|DL_TD_ONE:LREAL|DL_TD_FIVE:LREAL|DL_TD_INF:LREAL|DL_TD_Z:LREAL",
+   "fp": "0c487cc78e88",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_HeatFluxUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_HfxUnit|fOut:LREAL|DL_HF_KCAL:LREAL|DL_HF_INF:LREAL|DL_HF_Z:LREAL",
+   "fp": "73119e24655e",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_HtcUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_HtcUnit|fOut:LREAL|DL_HT_KCAL:LREAL|DL_HT_BTU:LREAL|DL_HT_INF:LREAL|DL_HT_Z:LREAL",
+   "fp": "3db3caa08a9a",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_VoltageUnitConvert",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eUnit:E_DL_VoltUnit|fOut:LREAL|DL_VT_MV:LREAL|DL_VT_KV:LREAL|DL_VT_INF:LREAL|DL_VT_Z:LREAL",
+   "fp": "06ce165bacf3",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeClamped",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fInMin:LREAL|fInMax:LREAL|fOutMin:LREAL|fOutMax:LREAL|fOut:LREAL|xBad:BOOL|fInClamp:LREAL|fSpanIn:LREAL|fSpanOut:LREAL|DL_MR_EPS:LREAL|DL_MR_INF:LREAL|DL_MR_Z:LREAL|DL_MR_ONE:LREAL",
+   "fp": "706f947cec2f",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "与 FC_DL_LinearScale(REAL,bClamp) 语义近同，差异=LREAL 精度变体+反向量程+非有限闸，按防误杀红线放行",
+   "verdict": "ACCEPT_SUSPECT"
+  },
+  {
+   "name": "FC_DL_MapRangeBipolar",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fInMin:LREAL|fInMax:LREAL|fOutAmp:LREAL|fOut:LREAL|xBad:BOOL|fInClamp:LREAL|fSpanIn:LREAL|fMid:LREAL|fHalf:LREAL|DL_MB_EPS:LREAL|DL_MB_INF:LREAL|DL_MB_Z:LREAL|DL_MB_TWO:LREAL",
+   "fp": "89e5fc515608",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangePercent",
+   "name_hit": null,
+   "sig": "fIn:LREAL|eDir:E_DL_MapDir|fEngMin:LREAL|fEngMax:LREAL|fOut:LREAL|xBad:BOOL|fInClamp:LREAL|fEngSpan:LREAL|DL_MP_EPS:LREAL|DL_MP_INF:LREAL|DL_MP_Z:LREAL|DL_MP_HUND:LREAL",
+   "fp": "5d8fa55e3a64",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeInverseSolve",
+   "name_hit": null,
+   "sig": "fEng:LREAL|fInMin:LREAL|fInMax:LREAL|fOutMin:LREAL|fOutMax:LREAL|fRaw:LREAL|xBad:BOOL|fEngClamp:LREAL|fOutSpan:LREAL|fInSpan:LREAL|fRawCalc:LREAL|DL_MI_EPS:LREAL|DL_MI_INF:LREAL|DL_MI_Z:LREAL",
+   "fp": "0d9494fa1f58",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangePiecewise3",
+   "name_hit": null,
+   "sig": "fIn:LREAL|afX:ARRAY[0..3] OF LREAL|afY:ARRAY[0..3] OF LREAL|fOut:LREAL|nSeg:INT|xBad:BOOL|xFound:BOOL|i:INT|k:INT|fSpan:LREAL|DL_MW_EPS:LREAL|DL_MW_INF:LREAL|DL_MW_Z:LREAL|DL_MW_N:INT|DL_MW_I0:INT",
+   "fp": "6cf4b0aa999a",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeDeadband",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fInMin:LREAL|fInMax:LREAL|fOutMin:LREAL|fOutMax:LREAL|fDbHalf:LREAL|fOut:LREAL|xInDb:BOOL|xBad:BOOL|fInMid:LREAL|fOutMid:LREAL|fInHalf:LREAL|fOutHalf:LREAL|fRel:LREAL|fDev:LREAL|DL_MD_EPS:LREAL|DL_MD_INF:LREAL|DL_MD_Z:LREAL|DL_MD_TWO:LREAL",
+   "fp": "75b9209b86b7",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeSatOut",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fInMin:LREAL|fInMax:LREAL|fOutMin:LREAL|fOutMax:LREAL|fSatMin:LREAL|fSatMax:LREAL|fOut:LREAL|xSat:BOOL|xBad:BOOL|fInClamp:LREAL|fInSpan:LREAL|fMapped:LREAL|DL_MS_EPS:LREAL|DL_MS_INF:LREAL|DL_MS_Z:LREAL",
+   "fp": "57aabbff3740",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeIntQuant",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fInMin:LREAL|fInMax:LREAL|fOutMin:LREAL|fOutMax:LREAL|fStep:LREAL|fOut:LREAL|fTick:LREAL|xBad:BOOL|fInSpan:LREAL|fMapped:LREAL|fTicks:LREAL|diTick:DINT|DL_MQ_EPS:LREAL|DL_MQ_INF:LREAL|DL_MQ_TICK:LREAL|DL_MQ_HALF:LREAL|DL_MQ_Z:LREAL",
+   "fp": "1c1b78a183dd",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_MapRangeHystSwitch",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fThOn:LREAL|fThOff:LREAL|xState:BOOL|xOut:BOOL|xBad:BOOL|DL_MH_EPS:LREAL|DL_MH_INF:LREAL",
+   "fp": "fd7598dca412",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatAddDint",
+   "name_hit": null,
+   "sig": "diA:DINT|diB:DINT|xSat:BOOL|DL_DINT_MAX:DINT|DL_DINT_MIN:DINT",
+   "fp": "ebcc89c9cab2",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "FC_DL_SaturateAdd 为 (4 入参)->BOOL+nOut 组态界口径，本件为 (2 入参)->DINT 固定 DINT 域，接口形态不同，存疑放行",
+   "verdict": "ACCEPT_SUSPECT"
+  },
+  {
+   "name": "FC_DL_SatSubDint",
+   "name_hit": null,
+   "sig": "diA:DINT|diB:DINT|xSat:BOOL|DL_DINT_MAX:DINT|DL_DINT_MIN:DINT",
+   "fp": "3ca5925fb68f",
+   "name_hit_note": "近义撞名 FC_DL_SaturateSub",
+   "fp_hit": "saturate-sub-family",
+   "semantic": "与在册 FC_DL_SaturateSub 同签名(DINT,DINT)->DINT、同 DINT 域饱和语义，纯命名变体",
+   "verdict": "REJECT"
+  },
+  {
+   "name": "FC_DL_SatMulDint",
+   "name_hit": null,
+   "sig": "diA:DINT|diB:DINT|xSat:BOOL|xNeg:BOOL|DL_DINT_MAX:DINT|DL_DINT_MIN:DINT",
+   "fp": "212c39256430",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatAddLreal",
+   "name_hit": null,
+   "sig": "fA:LREAL|fB:LREAL|fMin:LREAL|fMax:LREAL|xSat:BOOL|xValid:BOOL|fSum:LREAL|DL_AL_INF:LREAL|DL_AL_Z:LREAL",
+   "fp": "4fe259d939b5",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatMulLreal",
+   "name_hit": null,
+   "sig": "fA:LREAL|fB:LREAL|fMin:LREAL|fMax:LREAL|xSat:BOOL|xValid:BOOL|fProd:LREAL|DL_ML_INF:LREAL|DL_ML_Z:LREAL",
+   "fp": "8c0c27c5e8a1",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatNegDint",
+   "name_hit": null,
+   "sig": "diIn:DINT|xSat:BOOL|DL_DINT_MAX:DINT|DL_DINT_MIN:DINT",
+   "fp": "63f1d93f4215",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatScaleLreal",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fGain:LREAL|fMin:LREAL|fMax:LREAL|xSat:BOOL|xValid:BOOL|fScaled:LREAL|DL_SL_INF:LREAL|DL_SL_Z:LREAL",
+   "fp": "41928cbcaff6",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatSumArrayDint",
+   "name_hit": null,
+   "sig": "arrIn:ARRAY[0..7] OF DINT|nCnt:INT|nUsed:INT|xSat:BOOL|i:INT|diAcc:DINT|diItem:DINT|xStop:BOOL|DL_DINT_MAX:DINT|DL_DINT_MIN:DINT|DL_SA_NMAX:INT|DL_SA_Z:INT",
+   "fp": "cffef4ac01be",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  },
+  {
+   "name": "FC_DL_SatClampLrealBand",
+   "name_hit": null,
+   "sig": "fIn:LREAL|fMin:LREAL|fMax:LREAL|xClamped:BOOL|xValid:BOOL|DL_CL_INF:LREAL|DL_CL_Z:LREAL",
+   "fp": "a94b60117b07",
+   "name_hit_note": "registry 无同名；近义邻件见 report",
+   "fp_hit": null,
+   "semantic": "see report",
+   "verdict": "ACCEPT"
+  }
+ ]
+}

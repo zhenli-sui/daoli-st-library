@@ -1,0 +1,49 @@
+# ============================================================
+# 道莅 ST 代码库 · 版本控制排除规则
+# 原则：交付物（.st / 文档 / 工具源码 / 语料）入库；
+#       二进制、中间产物、备份、缓存一律不入库。
+# ============================================================
+
+# --- 备份与临时 ---
+*.bak
+*.bak_*
+*.backup*
+*.bak_gate
+*.bak_r[0-9]*
+*.bak_str_*
+*.bak_enum_*
+*.bak_ci*
+__pycache__/
+*.pyc
+.round.lock
+_tmp_*/
+_temp_*/
+
+# --- 归档区（体积大，仅本地留存）---
+_archive/
+
+# --- 抓取与中间产物 ---
+_Staging_Raw/_harvest_manifest.json
+_Staging_Raw/_dedup_fingerprints.json
+_Staging_Raw/*/_gate_*.json
+_Staging_Raw/*/_compile_*.json
+_Staging_Raw/*/candidate_queue.jsonl
+
+# --- 第三方二进制工具（GitHub 单文件 100MB 硬限；靠脚本按需获取）---
+_tools/rusty/*.exe
+_tools/rusty/*.dll
+_tools/rusty/*.pdb
+_tools/rusty/.iface_cache.json
+_tools/rusty/_probe/
+_tools/rusty/_iface_stubs/
+_tools/vcr*
+_tools/*.cab
+_tools/*.zip
+*.exe
+*.dll
+
+# --- 运行期生成物 ---
+_tools/_perf*.json
+_tools/_t_*.json
+_tools/_gate_*.json
+_tools/_check*.json

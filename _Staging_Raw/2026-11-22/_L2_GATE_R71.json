@@ -1,0 +1,211 @@
+{
+ "total": 20,
+ "pass": 16,
+ "fail": 4,
+ "seed": 71,
+ "iface_excluded": [
+  "I_DL_AnalogSensor.st",
+  "I_DL_BarcodeScanner.st",
+  "I_DL_Cylinder.st",
+  "I_DL_DeviceHealth.st",
+  "I_DL_FlowMeter.st",
+  "I_DL_Gripper.st",
+  "I_DL_LevelSwitch.st",
+  "I_DL_LightCurtain.st",
+  "I_DL_MotorDriver.st",
+  "I_DL_MotorizedValve.st",
+  "I_DL_PowerMeter.st",
+  "I_DL_ProportionalValve.st",
+  "I_DL_RfidReader.st",
+  "I_DL_SafetyDoor.st",
+  "I_DL_StepperOpenLoop.st",
+  "I_DL_TemperatureZone.st",
+  "I_DL_TowerLight.st",
+  "I_DL_VacuumGenerator.st",
+  "I_DL_VfdDrive.st",
+  "I_DL_ExternalEncoder.st",
+  "I_DL_MotionAxis.st"
+ ],
+ "results": [
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_FreshAirStepperDamper.st",
+   "name": "FB_DL_FreshAirStepperDamper.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E006 Missing expected Token KeywordEndInterface",
+   "dep_rounds": 1,
+   "dep_count": 1
+  },
+  {
+   "file": "C:\\Library\\DL_MathData\\FC_DL_SolveLinear3.st",
+   "name": "FC_DL_SolveLinear3.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Base\\FB_DL_RuntimeMeter.st",
+   "name": "FB_DL_RuntimeMeter.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Motion\\I_DL_ExternalEncoder.st",
+   "name": "I_DL_ExternalEncoder.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E006 Missing expected Token KeywordEndInterface",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_DeviceParamWrite.st",
+   "name": "FB_DL_DeviceParamWrite.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_ElectrolyteMoistureGuard.st",
+   "name": "FB_DL_ElectrolyteMoistureGuard.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_MathData\\FC_DL_PolarTransform2D.st",
+   "name": "FC_DL_PolarTransform2D.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Algo\\FC_DL_WaterEnthalpy.st",
+   "name": "FC_DL_WaterEnthalpy.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Motion\\FB_DL_AxisSafetyStateMon.st",
+   "name": "FB_DL_AxisSafetyStateMon.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Process\\FB_DL_LeakTestStation.st",
+   "name": "FB_DL_LeakTestStation.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Process\\FB_DL_SteamCondensatePot.st",
+   "name": "FB_DL_SteamCondensatePot.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_IonizerAirflowInterlock.st",
+   "name": "FB_DL_IonizerAirflowInterlock.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Algo\\FB_DL_Integrator.st",
+   "name": "FB_DL_Integrator.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_MathData\\FC_DL_Affine2DChain.st",
+   "name": "FC_DL_Affine2DChain.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 1,
+   "dep_count": 1
+  },
+  {
+   "file": "C:\\Library\\DL_Process\\FB_DL_QuarterCellCutSeq.st",
+   "name": "FB_DL_QuarterCellCutSeq.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_BrakeResistorThermal.st",
+   "name": "FB_DL_BrakeResistorThermal.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_MathData\\FC_DL_AmpDbToRatio.st",
+   "name": "FC_DL_AmpDbToRatio.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Motion\\FB_DL_AxisInposGuard.st",
+   "name": "FB_DL_AxisInposGuard.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E006 Missing expected Token KeywordEndInterface",
+   "dep_rounds": 1,
+   "dep_count": 1
+  },
+  {
+   "file": "C:\\Library\\DL_MathData\\FC_DL_TimeAbsSat.st",
+   "name": "FC_DL_TimeAbsSat.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "C:\\Library\\DL_Device\\FB_DL_StarDeltaMotor.st",
+   "name": "FB_DL_StarDeltaMotor.st",
+   "rc": 1,
+   "pass": false,
+   "first_error": "E006 Missing expected Token KeywordEndInterface",
+   "dep_rounds": 1,
+   "dep_count": 1
+  }
+ ]
+}

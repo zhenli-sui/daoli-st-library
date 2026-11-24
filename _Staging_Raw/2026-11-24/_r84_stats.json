@@ -1,0 +1,84 @@
+{
+ "complex_n": 4,
+ "simple_n": 33,
+ "prev_total": 1609,
+ "prev_jsonl": 1648,
+ "today_total": 238,
+ "pass": 39,
+ "fail": 1,
+ "exempt": 0,
+ "pass_rate": 97.5,
+ "qa_pass": 34,
+ "qa_doubt": 2,
+ "qa_reject": 3,
+ "wall_min": 30,
+ "fam": {
+  "A": [
+   "CuttingForceCalc",
+   "CncMrrCalc",
+   "CncSpindleLoadRatio",
+   "CncLoadUnloadSeq",
+   "CoolantConcCalc",
+   "ToolWearVbCalc",
+   "ChipLoadPerToothCalc"
+  ],
+  "B": [
+   "TabletWeightRsdCalc",
+   "CoatingPanSprayCalc",
+   "TabletCrushForceCalc",
+   "BlendUniformityCalc",
+   "GranuleSizeD50Calc",
+   "TabletCompactionSeq",
+   "TabletFriabilityCalc"
+  ],
+  "C": [
+   "ReactorHeatReleaseCalc",
+   "ReactorAdiabaticRise",
+   "MtsrCalc",
+   "ReactorChargeSeq",
+   "JacketAreaCalc"
+  ],
+  "D": [
+   "ClinkerLsfCalc",
+   "ClinkerC3sCalc",
+   "KilnSpecificHeatCalc",
+   "RawMealResidueCalc",
+   "KilnPreheatStageSeq",
+   "CementMillLoadCalc",
+   "ClinkerFreeLimeCalc"
+  ],
+  "E": [
+   "PaperBasisWeightCalc",
+   "StockConsistencyCalc",
+   "RefinerFreenessCalc",
+   "HeadboxSliceSeq",
+   "DryerSteamDemandCalc",
+   "PaperFormationIndexCalc",
+   "PressSectionDewaterCalc"
+  ],
+  "X": [
+   "CncToolWearCompLoop",
+   "ReactorRunawayGuard",
+   "TabletWeightAutoCtl",
+   "HeadboxJetRatioLoop"
+  ]
+ },
+ "rejected_md": "- `FB_DL_ToolMagazinePosSeq`：择向算法未取模（req<cur 走长路）+ 出口 `iDirCtrl` 退化为单拍脉冲；且与 `FB_DL_TurretToolSelect` 语义重叠 → 隔离 `_quarantine/R84/`。\n- `FB_DL_ReactorHeatupProfile`：与 `FB_DL_ReactorStepCtrl` 时间程序语义重复（三段式斜率/保温同构）→ 隔离。\n- `FC_DL_FluidBedDryLossCalc`：与 `FC_DL_MoistureContentCalc` 同义（同一 LOD 公式换名）→ 隔离。",
+ "next_p0": "① 3 件拒收件返修后送闸（ToolMagazinePosSeq 择向取模 + 方向电平保持；另两件转语义合并或彻底重构）；② `FB_DL_RunawayGuard` 死变量 `_fFrac` 清理；③ 存量 4 件 FOR..DOWNTO 次日首轮清剿（占 4 件修复配额）；④ 道2 指纹分组键缺陷修正（本轮 sig 道命中 11 条含假阳性）；⑤ 队列补仓至 ≥220；⑥ 值守三项第 16 轮顺延。",
+ "evo_n": 18,
+ "evo_from": 568,
+ "evo_to": 586,
+ "evo": {
+  "dir_n": 3,
+  "dir": "规划前先做「域覆盖度普查」；收口三字段同刷；复杂/简单双编码席并行为净收益",
+  "plc_n": 4,
+  "plc": "每相独立 TON（禁相或）；磨损曲线量纲 N/mm2·mm3/s=mW 须除 1e6；bReset 一律 R_TRIG；稳定相不得积分",
+  "oss_n": 3,
+  "oss": "五族垂直域语义命中 0，改用公式自研；不再把采集 KPI 强加于垂直工艺族",
+  "cv_n": 3,
+  "cv": "l2 编译与 L1 逻辑必须双跑（本轮 5 件编译过而逻辑不过）；E052 优先查 TYPE 名与引用是否错配",
+  "qa_n": 5,
+  "qa": "拒收判定须区分「同名」与「同构三段式」；跨相 OR 定时器连 3 轮出现，应升为 BLOCK 级静态锚点",
+  "issue": "本轮 5 件 FAIL 全为「编译通过但逻辑不成立」，编译层已连续 4 轮 ≥97.5%，瓶颈彻底转移到逻辑层与去重层。"
+ }
+}

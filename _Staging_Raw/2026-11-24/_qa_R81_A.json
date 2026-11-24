@@ -1,0 +1,149 @@
+{
+  "round": "R81",
+  "batch": "A",
+  "officer": "dlf-qa-dedup",
+  "date": "2026-11-24",
+  "scope": {
+    "total_files": 36,
+    "dirs": {"DL_Process": 23, "DL_Device": 7, "DL_Motion": 6},
+    "sample_mode": "full (100%)"
+  },
+  "premise": {
+    "gate_verdict": "35 PASS / 1 FAIL(LOGIC)",
+    "gate_source": "GATE_R81_A.md",
+    "failed_item": "FC_DL_BeamToppleRiskChk",
+    "reviewed_version": "1.0.1",
+    "version_check": "header L7 version=1.0.1 confirmed; L72 段4b guard added; L76 uses ABS()"
+  },
+  "summary": {
+    "PASS": 36,
+    "DOUBT_RELEASE": 3,
+    "REJECT": 0,
+    "BLOCK": 0,
+    "MAJOR": 0,
+    "MINOR": 8
+  },
+  "dedup": {
+    "name": {
+      "verdict": "PASS",
+      "basis_file": "_names_r81.txt",
+      "basis_count": 1489,
+      "normalization": "strip FC_/FB_/DL_/I_/ST_/E_ prefixes + lowercase",
+      "library_hits": 0,
+      "intra_batch_hits": 0,
+      "evidence": "36/36 normalized names unique and absent from registry"
+    },
+    "fingerprint": {
+      "verdict": "PASS",
+      "method_A": "type-sequence payload >=0.80 positional match",
+      "method_A_hits": 120,
+      "method_A_valid": false,
+      "method_A_note": "ALL 120 pairs are false positives: batch is REAL-dense numeric FC family sharing bEnable/bErr/bValid skeleton; type sequence saturates at 0.83-1.00 across ANY two numeric components, zero discriminating power",
+      "method_B": "normalized formula-core sha1 (assign RHS, constant names -> C, literals -> N)",
+      "method_B_collisions": 0,
+      "conclusion": "no structural duplicate; recommend gate anchor change to formula-core + dimension-vector dual key for numeric FC family"
+    },
+    "semantic": {
+      "verdict": "PASS",
+      "rejections": 0,
+      "rule_applied": "same family AND same input shape AND same output semantics => duplicate; different order/dimension/protocol dialect => valid variant",
+      "doubt_release": [
+        {
+          "pair": ["FC_DL_RinseWaterVolumeCalc", "FC_DL_SipResidueVolumeEst"],
+          "shared": "pi*r^2*L -> litre pipe volume sub-formula",
+          "why_valid_variant": "outputs differ: rinse water CONSUMPTION (x cycle count x residue factor) vs RETAINED RESIDUE (main slope drain + blind leg); inputs differ (iRinseCnt vs rSlopeDeg/rBlindLen_m)"
+        },
+        {
+          "pair": ["FC_DL_VacuumPadForceCalc", "FC_DL_SuctionFlowEst"],
+          "shared": "pi/4*d^2*(kPa->Pa) area sub-formula",
+          "why_valid_variant": "terminal physics differ: F=P*A*S -> N (force) vs Q=Cd*A*v -> L/min (flow); different output dimension"
+        },
+        {
+          "pair": ["FC_DL_TrackingOffsetChk", "FC_DL_LineSpeedMatchRatio"],
+          "shared": "measured-vs-reference + tolerance + alarm shape",
+          "why_valid_variant": "measured quantity differs: position drift (pulse->distance vs ref distance) vs speed ratio (master/slave vs setpoint)"
+        }
+      ]
+    }
+  },
+  "scan_12": {
+    "1_dimension_closure": {"verdict": "PASS", "constants_verified": 9, "note": "DL_MM_TO_M=2000 (dia mm->radius m, 100mm->0.05m OK), DL_MM_TO_M=1000, DL_KPA_TO_PA=1000, DL_M3S_TO_LPM=60000 (1m3/s=1000L/s*60 OK), DL_M3S_TO_NM3H=3600, DL_M3_TO_L=1000, DL_MM2_TO_M2=1E-6, DL_MIN_PER_H=60, DL_SEC_H=3600, DL_DEG_TO_RAD=0.0174533; zero inverted factors"},
+    "2_dead_input": {"verdict": "PASS", "hits": 0},
+    "3_denominator_guard_preposed": {"verdict": "PASS", "divisions_scanned": 40, "unguarded": 0, "note": "no guard+divide in same boolean expr (IEC no short-circuit honoured)"},
+    "4_clamp_bounds_reversed": {"verdict": "PASS", "note": "all LO<HI with correct branch direction; SkateWheel 0.1<0.9, SanitizeHold 0.5<2.0"},
+    "5_output_preset_before_first_return": {"verdict": "PASS"},
+    "6_unused_const_var": {"verdict": "MINOR", "files": 6, "findings": "M3-M8"},
+    "7_overflow_beyond_divzero": {"verdict": "PASS", "note": "SuctionCupCount L108 REAL_TO_INT guarded by DL_INT_SAFE at L98 + dual clamp L114/L117; StocktakeVariance DINT saturate both sides L71-76; CellOccupy DINT throughout"},
+    "8_float_direct_equality": {"verdict": "PASS", "note": "only x=x NaN self-comparison; no real-real equality"},
+    "9_banned_nonfinite_criteria": {"verdict": "PASS", "note": "0 ABS(x-x), 0 (x-x)<>0; all use (x=x) AND (ABS(x)<=DL_R_MAX)"},
+    "10_bilingual_comment_coverage": {"verdict": "PASS", "gaps": 0},
+    "11_semicolon_before_comment": {"verdict": "PASS", "issues": 0},
+    "12_std_function_misuse": {"verdict": "PASS", "note": "SQRT x2 args provably non-negative (ShuttleStroke L71 guarded L58/L61; SuctionFlow L92); ATAN L81 both operands non-negative, gap>=1.0>0 so no quadrant ambiguity; SIN/COS x2 both multiply DL_DEG_TO_RAD first, no deg/rad mixing; MOD unused"}
+  },
+  "minor_findings": [
+    {"id": "M1", "file": "DL_Motion/FC_DL_LaneDiverterAngleCalc.st", "lines": "L37, L82", "item": 1, "sev": "MINOR", "issue": "DL_RAD_TO_DEG := 0.0174533 but name + declared unit [度/rad] require 57.2957795; stored value is actually [rad/度]. L82 uses DIVISION so arithmetic is correct (rad / 0.0174533 = deg). Name/unit label is inverted vs value. A future 'fix to match name' would inject a silent 3282x error. Also inconsistent with repo-wide DL_DEG_TO_RAD := 0.0174533 naming (SipResidueVolumeEst L41, SheetPeelForceCalc L42)", "fix": "rename to DL_RAD_PER_DEG keeping division, OR set DL_RAD_TO_DEG := 57.2957795 and turn L82 into multiplication; never change value without changing operator"},
+    {"id": "M2", "file": "DL_Process/FC_DL_SanitizeHoldTimeCalc.st", "lines": "L46", "item": 10, "sev": "MINOR", "issue": "VAR comment says reciprocal computed BEFORE the guard, but implementation is L86 guard -> L89 reciprocal; contradicts sibling section comment L85 which is correct. Code correct, comment wrong", "fix": "comment -> 'guard zero first, then take reciprocal; order must not be reversed'"},
+    {"id": "M3", "file": "DL_Process/FC_DL_ForkExtendSafeChk.st", "lines": "L36", "item": 6, "sev": "MINOR", "issue": "DL_EPS declared, never referenced (no variable division in this FC)", "fix": "delete DL_EPS declaration"},
+    {"id": "M4", "file": "DL_Process/FC_DL_FoamSuppressDutyCalc.st", "lines": "L33", "item": 6, "sev": "MINOR", "issue": "DL_EPS declared, never referenced (L69/L70 divide only by constant DL_PCT)", "fix": "delete DL_EPS declaration"},
+    {"id": "M5", "file": "DL_Process/FC_DL_BottleNeckLevelMargin.st", "lines": "const block", "item": 6, "sev": "MINOR", "issue": "DL_EPS declared, never referenced", "fix": "delete DL_EPS declaration"},
+    {"id": "M6", "file": "DL_Process/FC_DL_AirQualityClassifyCalc.st", "lines": "L36", "item": 6, "sev": "MINOR", "issue": "DL_EPS declared, never referenced", "fix": "delete DL_EPS declaration"},
+    {"id": "M7", "file": "DL_Device/FC_DL_SheetPeelForceCalc.st", "lines": "const block", "item": 6, "sev": "MINOR", "issue": "DL_EPS declared, never referenced", "fix": "delete DL_EPS declaration"},
+    {"id": "M8", "file": "DL_Process/FC_DL_CellOccupyRateCalc.st", "lines": "L34", "item": 6, "sev": "MINOR", "issue": "DL_R_MAX declared, never referenced (all inputs INT, no non-finite gate needed); DL_EPS correctly used at L80", "fix": "delete DL_R_MAX declaration"}
+  ],
+  "systemic_alert": {
+    "triggered": true,
+    "type": "template constant block copied verbatim without pruning",
+    "affected_count": 6,
+    "affected": ["FC_DL_ForkExtendSafeChk", "FC_DL_FoamSuppressDutyCalc", "FC_DL_BottleNeckLevelMargin", "FC_DL_AirQualityClassifyCalc", "FC_DL_SheetPeelForceCalc", "FC_DL_CellOccupyRateCalc"],
+    "pattern": "DL_EPS (x5) / DL_R_MAX (x1) declared but zero-referenced where component has no variable division or no REAL input",
+    "action": "report to director to trigger expanded review; propose dl_gate.py anchor 'declared constant with zero reference' over the 1490-item library"
+  },
+  "per_file": [
+    {"file": "DL_Process/FC_DL_ShuttleStrokeTimeEst.st", "verdict": "PASS", "notes": "SQRT guarded L58/L61"},
+    {"file": "DL_Process/FC_DL_ShuttleAisleLockChk.st", "verdict": "PASS", "notes": "no division, no REAL"},
+    {"file": "DL_Process/FC_DL_LifterCycleTimeEst.st", "verdict": "PASS", "notes": "speed gate L62 + cycle gate L78"},
+    {"file": "DL_Process/FC_DL_StocktakeVarianceCalc.st", "verdict": "PASS", "notes": "book-zero branch sets alarm, no division"},
+    {"file": "DL_Process/FC_DL_BeamToppleRiskChk.st", "verdict": "PASS", "notes": "v1.0.1 L72 domain gate added, L76 ABS fix closes negative-offset under-report"},
+    {"file": "DL_Process/FC_DL_CellOccupyRateCalc.st", "verdict": "PASS", "notes": "M8 dead const"},
+    {"file": "DL_Process/FC_DL_ForkExtendSafeChk.st", "verdict": "PASS", "notes": "M3 dead const"},
+    {"file": "DL_Process/FC_DL_BinLabelCheckSum.st", "verdict": "PASS", "notes": "DL_SCAN_MAX watchdog vs infinite loop"},
+    {"file": "DL_Process/FC_DL_FoamSuppressDutyCalc.st", "verdict": "PASS", "notes": "M4 dead const"},
+    {"file": "DL_Process/FC_DL_RinseWaterVolumeCalc.st", "verdict": "PASS", "notes": "2000/1000 factors verified"},
+    {"file": "DL_Process/FC_DL_SanitizeHoldTimeCalc.st", "verdict": "PASS", "notes": "M2 comment contradicts code (code correct)"},
+    {"file": "DL_Process/FC_DL_ConductivityDilutionCalc.st", "verdict": "PASS", "notes": "den+num gates, ratio range gate"},
+    {"file": "DL_Process/FC_DL_NozzleClogIndexCalc.st", "verdict": "PASS", "notes": "denominator gated"},
+    {"file": "DL_Process/FC_DL_SipResidueVolumeEst.st", "verdict": "PASS", "notes": "near-neighbour to RinseWater, see semantic doubt_release 1"},
+    {"file": "DL_Process/FC_DL_FillValveSealWearEst.st", "verdict": "PASS", "notes": "temp acceleration factor clamped"},
+    {"file": "DL_Process/FC_DL_BottleNeckLevelMargin.st", "verdict": "PASS", "notes": "M5 dead const"},
+    {"file": "DL_Process/FC_DL_ReceiverPressureDropCalc.st", "verdict": "PASS", "notes": "drop-positive gate + approximation validity gate"},
+    {"file": "DL_Process/FC_DL_AirQualityClassifyCalc.st", "verdict": "PASS", "notes": "M6 dead const; worst-class preset direction correct"},
+    {"file": "DL_Process/FC_DL_DesiccantLifeEstimate.st", "verdict": "PASS", "notes": "derated capacity gated"},
+    {"file": "DL_Process/FC_DL_MotorLoadFactorCalc.st", "verdict": "PASS", "notes": "power factor gated"},
+    {"file": "DL_Process/FC_DL_CompressorDutyCycleCalc.st", "verdict": "PASS", "notes": "load/unload dual share"},
+    {"file": "DL_Process/FC_DL_DrainIntervalCalc.st", "verdict": "PASS", "notes": "min/h round trip self-closing"},
+    {"file": "DL_Process/FC_DL_IdleRunRatioCalc.st", "verdict": "PASS", "notes": "load-time overrun gate + dual clamp"},
+    {"file": "DL_Device/FC_DL_VacuumPadForceCalc.st", "verdict": "PASS", "notes": "pi/4*d^2*P dimensionally closed"},
+    {"file": "DL_Device/FC_DL_SuctionFlowEst.st", "verdict": "PASS", "notes": "60000 factor correct, SQRT guarded"},
+    {"file": "DL_Device/FC_DL_SheetPeelForceCalc.st", "verdict": "PASS", "notes": "M7 dead const; angle factor clamped 0..1"},
+    {"file": "DL_Device/FC_DL_VacHoldDecayChk.st", "verdict": "PASS", "notes": "negative drop routed to suspect branch, no false leak alarm"},
+    {"file": "DL_Device/FC_DL_PadWearIndexCalc.st", "verdict": "PASS", "notes": "weighted index clamped"},
+    {"file": "DL_Device/FC_DL_VacuumGenDutyCalc.st", "verdict": "PASS", "notes": "duty clamped"},
+    {"file": "DL_Device/FC_DL_SuctionCupCountCalc.st", "verdict": "PASS", "notes": "REAL_TO_INT fully guarded"},
+    {"file": "DL_Motion/FC_DL_LineSpeedMatchRatio.st", "verdict": "PASS", "notes": "speed ratio deviation"},
+    {"file": "DL_Motion/FC_DL_ChainWearElongation.st", "verdict": "PASS", "notes": "pitch elongation"},
+    {"file": "DL_Motion/FC_DL_RollerSlipRatioCalc.st", "verdict": "PASS", "notes": "relative slip"},
+    {"file": "DL_Motion/FC_DL_SkateWheelLoadCalc.st", "verdict": "PASS", "notes": "share clamp 0.1-0.9 direction correct"},
+    {"file": "DL_Motion/FC_DL_LaneDiverterAngleCalc.st", "verdict": "PASS", "notes": "M1 label inversion, arithmetic correct"},
+    {"file": "DL_Motion/FC_DL_TrackingOffsetChk.st", "verdict": "PASS", "notes": "negative pulse not blocked (documented as normal)"}
+  ],
+  "inplace_fixes": [],
+  "backlog_next_round": [
+    {"priority": 1, "item": "M1", "file": "FC_DL_LaneDiverterAngleCalc", "why": "only 3282x latent trap in batch, naming/unit label inverted"},
+    {"priority": 2, "item": "M2", "file": "FC_DL_SanitizeHoldTimeCalc", "why": "comment contradicts implementation and sibling comment"},
+    {"priority": 3, "item": "M3-M8", "file": "6 files", "why": "dead template constants, batch-cleanable once gate anchor added"}
+  ],
+  "notes": [
+    "In-place fix not applied: no BLOCK and no safety-side defect, so R333 exception does not apply; all 8 MINORs deferred to next round per SOP.",
+    "Source files untouched; rejection list empty so no _quarantine/R81/ move required."
+  ]
+}

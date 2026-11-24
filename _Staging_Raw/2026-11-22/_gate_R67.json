@@ -1,0 +1,202 @@
+{
+ "round": "R67",
+ "ts": "2026-11-22T06:12:48+08:00",
+ "total": 11,
+ "pass": 11,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_ImpulseRelay.st",
+   "name": "FB_DL_ImpulseRelay",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 53,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 54,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 100
+  },
+  {
+   "file": "FB_DL_LastGoodValueHold.st",
+   "name": "FB_DL_LastGoodValueHold",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 63,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 139
+  },
+  {
+   "file": "FC_DL_AngleDiffRad.st",
+   "name": "FC_DL_AngleDiffRad",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "DECL_NO_CJK",
+     "line": 51,
+     "detail": "声明行缺中文注释"
+    },
+    {
+     "level": "MINOR",
+     "code": "DECL_NO_CJK",
+     "line": 52,
+     "detail": "声明行缺中文注释"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 93
+  },
+  {
+   "file": "FC_DL_CalcDistance2D.st",
+   "name": "FC_DL_CalcDistance2D",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 113
+  },
+  {
+   "file": "FC_DL_HexToStr.st",
+   "name": "FC_DL_HexToStr",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 48,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 55,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 62,
+     "detail": "类型未识别：STRING(1)"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 126
+  },
+  {
+   "file": "FC_DL_NormTo01.st",
+   "name": "FC_DL_NormTo01",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 104
+  },
+  {
+   "file": "FC_DL_QuadPolyFit.st",
+   "name": "FC_DL_QuadPolyFit",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 223
+  },
+  {
+   "file": "FC_DL_SlewRateCalc.st",
+   "name": "FC_DL_SlewRateCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 89
+  },
+  {
+   "file": "FC_DL_StrToHex.st",
+   "name": "FC_DL_StrToHex",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 46,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 62,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 63,
+     "detail": "类型未识别：STRING(1)"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 151
+  },
+  {
+   "file": "FB_DL_LotMergeGate.st",
+   "name": "FB_DL_LotMergeGate",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 74,
+     "detail": "类型未识别：E_DL_MergeState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：E_DL_MergeState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 86,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 87,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 88,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 89,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 226
+  },
+  {
+   "file": "FB_DL_TaktPaceMonitor.st",
+   "name": "FB_DL_TaktPaceMonitor",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 231
+  }
+ ]
+}

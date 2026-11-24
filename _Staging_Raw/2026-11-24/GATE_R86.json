@@ -1,0 +1,34 @@
+{
+ "round": "R86",
+ "ts": "2026-11-24T21:36:00+08:00",
+ "l1": {"status": "not-run-this-seat", "note": "本轮任务书仅指派 L2 编译闸；L1 由 dl_gate.py 负责，未在本轮执行"},
+ "l2": {
+  "tool": "C:/Library/_tools/l2_check.py",
+  "compiler": "C:/Library/_tools/rusty/plc.exe (RuSTy 1.0.8)",
+  "mode": "serial jobs=1",
+  "cmd": "python C:/Library/_tools/l2_check.py <40 个绝对路径> --out _l2_r86.json",
+  "iface_stub": "可用 22 / 排除 0 / 缓存命中",
+  "total": 40,
+  "pass": 40,
+  "fail": 0,
+  "exempt": 0,
+  "wall_clock_s": 15.8,
+  "result_file": "C:/Library/_Staging_Raw/2026-11-24/_l2_r86.json"
+ },
+ "l3": {"mode": "not-run-this-seat", "note": "向量门未在本轮指派范围"},
+ "negative_control": [
+  {"case": "NEG_NoEndFunction.st", "expect": "FAIL", "got": "FAIL", "code": "E007",
+   "msg": "Unexpected token: expected KeywordEndFunction but found ''"},
+  {"case": "NEG_TypeMismatch.st", "expect": "FAIL", "got": "FAIL", "code": "E037",
+   "msg": "Invalid assignment: cannot assign 'STRING' to 'INT'"}
+ ],
+ "selfheal": [],
+ "findings": [
+  {"id": "F1", "level": "INFO", "file": "FB_DL_SensorConsensusSelector.st",
+   "detail": "主控预筛报 DOWNTO 关键字为准报：第 14/94 行命中均在注释内（原文『无 FOR..DOWNTO』『禁 FOR..DOWNTO』），实际循环为 FOR k:=TO 与 WHILE 显式递减带下界判断（第 80/95/99/124 行），编译器 PASS，无需修改。"},
+  {"id": "F2", "level": "MAJOR", "scope": "工具链/流程",
+   "detail": "首次批跑因文件列表 CRLF（\\r 未剥离）致路径尾带 \\r，39 件被当『文件不存在』，输出 rc=1 且 first_error 为空 —— 典型全 FAIL 假阴性（与历史参数错位事故同型）。判据：first_error 为空且 rc!=0 即视为参数/环境故障，必须重跑而非记 FAIL。已修（tr -d '\\r'）后重跑得 40 PASS。"}
+ ],
+ "verdict": "PASS",
+ "blocking": []
+}

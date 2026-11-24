@@ -1,0 +1,68 @@
+{
+ "round": "R69",
+ "mode": "pseudo-compile (dl_gate, no real IEC compiler)",
+ "files": [
+  {
+   "file": "FC_DL_TimeMulSat.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FC_DL_TimeClampEx.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FC_DL_UdintToStringTrim.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_MotorHealthAoi.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_ValveIslandDiag.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_AlarmShelveMgmt.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_SignalFreeze.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_AxisDroopComp.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_CascadeCtrl.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_CuringOvenSeq.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_InterlockBypassAudit.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_FlowMeterKFactorDrift.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_RotaryAirlockCtrl.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_StretchWrapSeq.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  },
+  {
+   "file": "FB_DL_TruckScaleSeq.st",
+   "raw_tail": "report -> C:\\Library\\_Staging_Raw\\2026-11-22\\_gate_MANUAL.json"
+  }
+ ],
+ "MAJOR": 0,
+ "BLOCK": 0
+}

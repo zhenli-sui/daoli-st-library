@@ -1,0 +1,322 @@
+[
+ {
+  "name": "FC_DL_QuenchOilTempRiseCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Quench oil tank temperature rise and heat load calc",
+  "family": "A"
+ },
+ {
+  "name": "FC_DL_AustenitizeHoldTimeCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Austenitizing hold time by effective thickness",
+  "family": "A"
+ },
+ {
+  "name": "FC_DL_CarburizeCaseDepthCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Gas carburizing case depth Harris formula",
+  "family": "A"
+ },
+ {
+  "name": "FC_DL_TemperEmpiricalHardnessCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Tempering temperature vs hardness empirical curve",
+  "family": "A"
+ },
+ {
+  "name": "FB_DL_InductionHardeningScanCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Induction hardening scan heating and spray sequence",
+  "family": "A"
+ },
+ {
+  "name": "FB_DL_QuenchTankAgitatorCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Quench tank agitator staging with oil temp interlock",
+  "family": "A"
+ },
+ {
+  "name": "FC_DL_MartensiteFinishTempCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Martensite start finish temperature empirical",
+  "family": "A"
+ },
+ {
+  "name": "FB_DL_SoakPitTemperatureCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Heat treat furnace multi zone soak and overtemp interlock",
+  "family": "A"
+ },
+ {
+  "name": "FC_DL_ExtrusionBilletHeatCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Aluminium extrusion billet induction heating power",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_ExtrusionSpecificPressureCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Extrusion specific pressure and ratio with friction",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_AnodizeBathChargeCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Anodizing bath Faraday charge and current density",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_ExtrusionDieWearIndexCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Extrusion die wear index and remaining life",
+  "family": "B"
+ },
+ {
+  "name": "FB_DL_AnodizeRinseCascadeCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Anodizing counterflow rinse cascade make up control",
+  "family": "B"
+ },
+ {
+  "name": "FB_DL_BilletShearGaugeSeq",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Billet cut to length with head tail trim sequence",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_AnodizeFilmThicknessCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Anodize film thickness charge time conversion",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_AnodizeSealBoilTimeCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Boiling water sealing dwell time and pH window",
+  "family": "B"
+ },
+ {
+  "name": "FC_DL_DieCastShotVelocityCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Die cast shot velocity PQ2 intersection fill time",
+  "family": "C"
+ },
+ {
+  "name": "FC_DL_DieCastIntensifyPressureCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Intensification pressure and clamping force check",
+  "family": "C"
+ },
+ {
+  "name": "FC_DL_DieThermalBalanceCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Die thermal balance and die heater load",
+  "family": "C"
+ },
+ {
+  "name": "FC_DL_CastingSolidificationTimeCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Chvorinov solidification time and modulus",
+  "family": "C"
+ },
+ {
+  "name": "FB_DL_DieSprayReleaseSeq",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Die spray release agent and blow off sequence",
+  "family": "C"
+ },
+ {
+  "name": "FB_DL_LadlePourWeightCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Ladle metered pour weight closed loop",
+  "family": "C"
+ },
+ {
+  "name": "FC_DL_DieCastPorosityRiskIndexCalc",
+  "category": "DL_Device",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Die cast porosity risk index",
+  "family": "C"
+ },
+ {
+  "name": "FC_DL_PowderFillDensityCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Powder apparent fill density and fill height",
+  "family": "D"
+ },
+ {
+  "name": "FC_DL_CompactionPressureCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Compaction pressure vs green density",
+  "family": "D"
+ },
+ {
+  "name": "FB_DL_SinterFurnaceRampCtrl",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Sinter furnace zone profile with dew point interlock",
+  "family": "D"
+ },
+ {
+  "name": "FC_DL_GreenStrengthIndexCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Green strength index and eject safety",
+  "family": "D"
+ },
+ {
+  "name": "FC_DL_SinterShrinkageCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Sinter linear shrinkage and size compensation",
+  "family": "D"
+ },
+ {
+  "name": "FB_DL_PowderBlendDoseSeq",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Powder blend weigh and discharge sequence",
+  "family": "D"
+ },
+ {
+  "name": "FC_DL_DelubeResidualCarbonCalc",
+  "category": "DL_Device",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Lubricant burn off dew point and residual carbon",
+  "family": "D"
+ },
+ {
+  "name": "FC_DL_MashStrikeWaterTempCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Mash strike water temperature equilibrium",
+  "family": "E"
+ },
+ {
+  "name": "FC_DL_WortExtractYieldCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Wort extract yield and mash efficiency",
+  "family": "E"
+ },
+ {
+  "name": "FC_DL_SugarBoilSupersaturationCalc",
+  "category": "DL_Process",
+  "type": "FC",
+  "complexity": 2,
+  "desc_en": "Sugar boil supersaturation and nucleation window",
+  "family": "E"
+ },
+ {
+  "name": "FC_DL_MolassesExhaustionCalc",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 1,
+  "desc_en": "Molasses purity and sugar exhaustion",
+  "family": "E"
+ },
+ {
+  "name": "FB_DL_CrystallizerVacuumCtrl",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Crystallizer vacuum and boiling point elevation",
+  "family": "E"
+ },
+ {
+  "name": "FB_DL_CipCaneJuiceLineSeq",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 2,
+  "desc_en": "Cane juice line CIP five step sequence",
+  "family": "E"
+ },
+ {
+  "name": "FB_DL_QuenchTemperLineSeq",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "desc_en": "Quench temper linked line full state machine",
+  "family": "A"
+ },
+ {
+  "name": "FB_DL_AnodizeLineTransferSeq",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 4,
+  "desc_en": "Anodizing line transfer with tank interlock",
+  "family": "B"
+ },
+ {
+  "name": "FB_DL_DieCastCycleSupervise",
+  "category": "DL_Device",
+  "type": "FB",
+  "complexity": 4,
+  "desc_en": "Die cast single cycle supervision and graded stop",
+  "family": "C"
+ },
+ {
+  "name": "FB_DL_SugarPanBatchSeq",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "desc_en": "Sugar pan batch charge concentrate graining discharge",
+  "family": "E"
+ }
+]

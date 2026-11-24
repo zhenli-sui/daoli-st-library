@@ -1,0 +1,282 @@
+{
+ "round": "R80",
+ "batch": "A",
+ "date": "2026-11-24",
+ "total": 36,
+ "pass": 36,
+ "fail": 0,
+ "exempt": 0,
+ "rate": 100.0,
+ "jobs": 1,
+ "compiler": "RuSTy plc.exe 1.0.8 / l2_check.py",
+ "repro": "python C:\\Library\\_tools\\l2_check.py --out _Staging_Raw/2026-11-24/_l2_r80a_raw.json <36 files>",
+ "raw_output": "PASS=36 FAIL=0 TOTAL=36 ; iface 可用22 排除0 ; jobs=1",
+ "logic": {
+  "block": 0,
+  "major": 5,
+  "minor": 14
+ },
+ "verdict": "L2_PASS / BUSINESS_BLOCK",
+ "blocking": [
+  "FC_DL_WeighSpanCalibRatio",
+  "FC_DL_HydroAccumulatorSizing",
+  "FC_DL_RefSatPressToTemp",
+  "FC_DL_PneuCvFlowCalc",
+  "FB_DL_WeighHopperRefillSeq"
+ ],
+ "items": [
+  {
+   "name": "FC_DL_WeighNetFromGross",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_WeighTareDriftCheck",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_WeighDoseTolBand",
+   "result": "PASS",
+   "code": "",
+   "note": "L26 注释「三实数输入」实为五输入（复制残留）",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FB_DL_WeighHopperRefillSeq",
+   "result": "PASS",
+   "code": "",
+   "note": "eFault 复位(L117 沿)与停止电平(L75)互锁，用停止复位拍 N+1 必复跳；修法 L75 改 rtStop.Q",
+   "logic": "MAJOR"
+  },
+  {
+   "name": "FC_DL_WeighMultiHeadSum",
+   "result": "PASS",
+   "code": "",
+   "note": "aWeight[] 未做有限闸，NaN 头仅污染含该头组合，契约未披露",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_WeighBatchYieldCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_WeighCreepCompensate",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_WeighSpanCalibRatio",
+   "result": "PASS",
+   "code": "",
+   "note": "L54 _rPred=_rRatio*rRefSpan 量纲错误(kg2/count)，典型标定(0/10000count/100kg)算得 -99% → bValid 误判 FALSE",
+   "logic": "MAJOR"
+  },
+  {
+   "name": "FC_DL_MembraneFluxCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_MembraneTmpCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "L61 仅 _rTmp>0 置 bValid，_rNetDriving<0 时仍 TRUE 未分档",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_WaterRecoveryRatio",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_SludgeAgeCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "L55-58 排泥固体浓度取 max(WAS TSS,出水SS)，出水SS与排泥量无关 → 泥龄偏小",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_DoDeficitCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_CoagulantDoseCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "上下限全负时 L62 把下限抬到0而上限<0 → LIMIT(MN>MX) 边界倒置",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_WaterLangelierIndex",
+   "result": "PASS",
+   "code": "",
+   "note": "A/B/C/D 与标准 LSI 一致，但全部依赖 LOG 十进制语义，需 L3 锚定 LOG(100)=2",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_HydroCylForceCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "L70 背压>供压时推力为负且 bValid 仍 TRUE，未标注反向工况",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_HydroCylFlowNeed",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_HydroAccumulatorSizing",
+   "result": "PASS",
+   "code": "",
+   "note": "L59-70 容积分母口径错误(pmax/pmin-1)，缺 pmin/pmax 因子且预充压力为死输入；200/100bar 等温偏小2倍、绝热偏小1.64倍",
+   "logic": "MAJOR"
+  },
+  {
+   "name": "FC_DL_PneuAirConsumeCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "L63 标准状态折算漏除 p_atm，体积偏高 1.013 倍",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_PneuCvFlowCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "rDownPressBarA 仅驱动 rCritical 标志，不进入 L67 流量式 → 非阻塞工况流量高估(保守方向)",
+   "logic": "MAJOR"
+  },
+  {
+   "name": "FC_DL_HydroPipePressDrop",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FB_DL_HydroPressRampSeq",
+   "result": "PASS",
+   "code": "",
+   "note": "状态机5相全可达、eFault 用沿复位不复跳(与 Hopper 对照)；L113 泄压到位硬编码 rPressAct<0.5 bar 未参数化",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_PneuLeakRateCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "终压>起压(温升)时泄漏率/压降百分比为负且 bValid=TRUE，未拦截",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_RefCopCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_RefSuperheatCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_RefSubcoolCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_RefSatPressToTemp",
+   "result": "PASS",
+   "code": "",
+   "note": "R410A 行表值与公开物性严重不符：8bar abs 实际约0C(表列11.4C)，40C 实际约24.2bar(表列18bar↔45C)；下游 SH/SC/逼近度系统性偏 10K",
+   "logic": "MAJOR"
+  },
+  {
+   "name": "FC_DL_RefSatTempToPress",
+   "result": "PASS",
+   "code": "",
+   "note": "与 SatPressToTemp 同源同表，R410A 风险同上；L12 头注释「温度为绝对压力输出」缺字",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_RefCompressorCapacity",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_RefCondApproach",
+   "result": "PASS",
+   "code": "",
+   "note": "输入 rApproachRef 声明后从未参与计算(死输入)，仅用 rApproachAlarm",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_StatsRangeCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_StatsIqrCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_StatsPooledStd",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FB_DL_StatsRollingVar",
+   "result": "PASS",
+   "code": "",
+   "note": "环缓冲换出/换入成对且 _nFilled 封顶正确；复位沿与采样同拍「先清后插」未在口径披露",
+   "logic": "MINOR"
+  },
+  {
+   "name": "FC_DL_StatsGeoMeanCalc",
+   "result": "PASS",
+   "code": "",
+   "note": "",
+   "logic": "OK"
+  },
+  {
+   "name": "FC_DL_StatsDevSumSq",
+   "result": "PASS",
+   "code": "",
+   "note": "L47 在 bUseGivenMean=FALSE 时仍强制校验 rMeanGiven 有限→无谓无效；给定均值口径仍除 n-1 未披露",
+   "logic": "MINOR"
+  }
+ ],
+ "toolchain_fixes": []
+}

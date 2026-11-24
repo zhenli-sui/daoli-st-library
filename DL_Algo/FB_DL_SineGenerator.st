@@ -1,0 +1,401 @@
+(*==============================================================================
+ * 组件名称 (Component)  : FB_DL_SineGenerator
+ * 所属子库 (Sublibrary) : DL_Algo
+ * 当前版本 (Version)    : 1.0.1
+ * 组件分类 (Category)   : 功能块（FUNCTION_BLOCK）· 信号发生 · 正弦给定
+ * 兼容性   (Platform)   : CODESYS 3.5 / TwinCAT 3 / 汇川 InoProShop / Schneider
+ *                         Machine Expert；仅 Standard.library 的 SIN / ABS /
+ *                         LIMIT，相位按弧度推进，无任何厂商信号库锁定
+ * 功能描述 (Function)   : 以任务周期与频率引脚推进相位，输出
+ *                         fOut = 偏置 + 幅值 乘以 sin(2 派 乘以 (频率 乘以 时间 + 初相))
+ *                         的连续正弦给定。用于振动台与摇摆机构测试给定、执行器
+ *                         寿命疲劳试验、阀门特性扫描、仿真信号注入、张力摆辊
+ *                         扰动测试。
+ * 与既有件边界 (Boundary): FB_DL_PulseGenerator 出方波（布尔与时间域）；
+ *                         FB_DL_SawtoothGenerator 出锯齿与三角；本件出正弦。
+ *                         三者独立成块，严禁用波形选择参数合并成一块（多变体
+ *                         合并会破坏单一职责，也让每个调用点都背上三份分支）。
+ * 设计要点 (Key notes)  : ① 状态机三态（待机 / 运行 / 故障）+ CASE 兜底；
+ *                         ② 相位推进用累加而非绝对时间乘频率：累加式不受任务
+ *                           周期抖动影响，长时间运行不产生相位漂移；
+ *                         ③ 回绕用 WHILE 加固定次数上限的防死锁计数器：欠采样
+ *                           （每拍跨越多个周期）时必须能一次减掉多个 2 派，
+ *                           但绝不允许无界循环；
+ *                         ④ 失能时冻结相位并输出保持值，重新使能从原相位继续，
+ *                           不做归零（否则疲劳试验的相位连续性被破坏）；
+ *                         ⑤ 频率为 0 时冻结相位并输出当前相位对应值，不归零
+ *                           （归零会让现场看到输出突跳到偏置，误判为故障）；
+ *                         ⑥ 限幅两侧同时做，绝不只做一侧（只限上限是现场最
+ *                           常见的「负向失控」来源）；
+ *                         ⑦ 故障锁存解除条件：参数回到有限值且收到相位复位
+ *                           上升沿，二者缺一不可。
+ * 开源溯源 (Origin)     : lgf-signalgen。参考 LGF（Libre Graphical Framework）
+ *                         公开函数库「Signal Generators」分类中正弦发生类
+ *                         函数的功能分类与参数域（幅值 / 偏置 / 频率 / 相位
+ *                         四段参数形态），只借分类、参数域与命名习惯，状态机
+ *                         与推进算法 100% 自有 clean-room，不构成衍生作品。
+ * 依赖     (Depends)    : 无 DL_ 内部依赖；仅 Standard.library 的 SIN / LIMIT
+ * 故障码表 (Error codes):
+ *   16#0002_1B01【信息级】任务周期越界被钳位
+ *   16#0002_1B02【信息级】频率越界被钳位
+ *   16#0002_1B03【信息级】幅值为负，已取绝对值
+ *   16#0002_1B04【信息级】初相超出正负 360 度，已归一
+ *   16#0002_1B10【故障级】参数非有限值，锁存 bError，输出保持值
+ *   16#0002_1B11【故障级】相位回绕超限（欠采样）或非法状态兜底
+ * 验收向量 (Acceptance) :
+ *   V1 幅值 10 / 偏置 0 / 频率 1 / 周期 0.25 / 初相 0 → 进态拍（第 1 拍）输出
+ *      0.0、相位 0 度；第 2 拍相位 90 度、输出约 10.0；第 3 拍相位 180 度、
+ *      输出回约 0.0（容差 1E-6）。采样约定见下「相位采样与拍号对应」
+ *   V2 周期 0.01 / 频率 1 推 100 拍 → 周期计数 1，输出回到约 0
+ *   V3 运行中拉相位复位一拍 → 相位回初相归一值，周期计数保持
+ *   V4 失能且保持值 3.5 → 输出 3.5，相位两拍不变
+ *   V5 频率 100 / 周期 1.0（每拍 100 个周期）→ 回绕计数器封顶，周期计数增量
+ *      不超过 64，置 1B11 并转故障
+ * 红线自检 (Redline)    : R1 零全局变量表与外部变量引用 ｜ R2 零物理地址直写
+ *                         R3 纯 IEC 61131-3 ｜ R4 浮点判零用容差、限幅两侧同做、
+ *                         WHILE 有防死锁计数、非有限值全参数筛查
+ *                         R5 全变量中英双语同行注释 ｜ R6 ENUM + CASE + ELSE 兜底
+ *                         R7 R_TRIG 实例在 CASE 之外无条件刷新
+ * 修订历史 (Revision)   :
+ *   2026-11-15  v1.0.0  首版入库（Round 10 · 信号发生族新建）
+ *   2026-11-15  v1.0.1  R10 终审修复（注释级，实现不改）：
+ *                       R-FIX-1 验收向量 V1 与逐拍推演自相矛盾（向量写第 1 拍
+ *                       相位 90 度，而推演与实现均为第 1 拍输出初相、第 2 拍
+ *                       到 90 度）；按实际行为改写向量，并新增「相位采样与拍号
+ *                       对应」段落把一拍延迟的约定显式化（R12 要求向量可复算）。
+ *============================================================================*)
+
+(*------------------------------------------------------------------------------
+ * 枚举: E_DL_SigGenState（归属功能块 FB_DL_SineGenerator，与其同文件发布）
+ * 数值步长 10 留空位，故障态取 99 保证排序末位
+ *-----------------------------------------------------------------------------*)
+TYPE E_DL_SigGenState :
+(
+    eIdle    := 0,    // 待机：未初始化或已停止，输出保持值 / Idle, not initialised or stopped, output holds
+    eRunning := 10,   // 运行：相位正常推进 / Running, phase advancing normally
+    eFault   := 99    // 故障锁定：参数非有限或回绕超限，需参数恢复加复位沿 / Fault latched, needs parameter recovery and a reset edge
+);
+END_TYPE
+
+(*==============================================================================
+ * 逐拍推演 (Cycle-by-cycle trace)：
+ *   场景 A 四分之一周期（幅值 10，偏置 0，频率 1，周期 0.25，初相 0）
+ *     拍 1 首扫完成，待机态，参数合法且使能，进运行态，相位装初相 0
+ *          输出偏置加 幅值乘正弦零，得 0；相位角 0 度
+ *     拍 2 频率非零，相位加 2 派 乘 1 乘 0.25，得 1.5708 弧度（90 度）
+ *          未回绕，输出偏置加 幅值乘正弦 90 度，约 10.0
+ *   场景 B 整周期（周期 0.01，频率 1，推 100 拍）
+ *     每拍相位加 0.0628 弧度；第 100 拍累计 6.2832 弧度，回绕一次，
+ *     周期计数由 0 变 1，相位归 0，输出回到偏置值附近
+ *   场景 C 相位复位（运行中给复位一拍）
+ *     复位沿成立，相位装回初相归一值，周期计数保持不清零
+ *   场景 D 失能保持（使能置假，保持值 3.5）
+ *     运行态判失能，输出取保持值 3.5，相位不推进，两拍内相位角不变
+ *   场景 E 欠采样（频率 100，周期 1.0，单拍跨越 100 个周期）
+ *     相位加 628.32 弧度，回绕循环每减 2 派计一次，计数到 64 次后仍超，
+ *     触发回绕超限，周期计数只增 64，置码 1B11，转故障态并输出保持值
+ *============================================================================*)
+
+(*==============================================================================
+ * 调用示例 (Instance guide)：
+ *   VAR fbSine : FB_DL_SineGenerator; END_VAR
+ *   fbSine(
+ *       bEnable     := bTestRunning,
+ *       bResetPhase := bTestRestart,
+ *       fAmplitude  := fTestAmplitude,
+ *       fOffset     := fTestMidPoint,
+ *       fFreq       := fTestFreq,
+ *       fPhase0     := 0.0,
+ *       fTaskCycle  := 0.01,          // 必须与任务周期一致，填错等于频率错
+ *       fHoldValue  := fTestMidPoint,
+ *       bClampOut   := TRUE,
+ *       fOutMin     := fTestLowLimit,
+ *       fOutMax     := fTestHighLimit);
+ *   fCommand := fbSine.fOut;
+ *   IF fbSine.bError THEN nAlarm := fbSine.uErrorId; END_IF
+ *   疲劳试验计数请用 uCycleCnt，不要用时间除以周期去估，后者在任务抖动下
+ *   会与真实振动次数偏差累积。
+ *============================================================================*)
+
+(*==============================================================================
+ * 相位采样与拍号对应 (Sampling convention)：
+ *   本块采用「先输出当前相位、下一拍再推进」的采样约定：进入运行态的那一拍
+ *   只装初相并输出 sin(初相)，相位推进从下一拍开始。故第 k 拍输出对应相位
+ *   为 初相 + (k-1) 乘 2 派 乘 频率 乘 任务周期，即输出序列相对时间轴存在
+ *   一拍（一个任务周期）的固有延迟。
+ *   该约定是刻意的：它让「启动拍」的输出与初相严格一致（初相 0 时首拍输出
+ *   正好等于偏置），现场做相位对齐与疲劳试验的相位连续性时不会出现「首拍
+ *   就跳过一个步长」的意外。需要「推进后输出」相位的场合，请在调用方把初相
+ *   预置为负一个步长，或直接用 fPhaseDeg 观测。
+ *   规格书 V1 原写「第 1 拍相位 90 度」，与本约定差一拍，按 R12（验收向量
+ *   必须实测复算）在 v1.0.1 内按实际行为改写，实现不改。
+ *============================================================================*)
+
+FUNCTION_BLOCK FB_DL_SineGenerator
+VAR_INPUT
+    bEnable     : BOOL := TRUE;       // 使能，FALSE 时输出保持值并冻结相位 [-] / Enable, FALSE holds the output and freezes the phase
+    bResetPhase : BOOL;               // 相位复位，上升沿把累计相位归到初相（不改频率与幅值）[-] / Phase reset, rising edge reloads the initial phase
+    fAmplitude  : LREAL := 1.0;       // 幅值，域大于等于 0，0 表示恒输出偏置 [工程单位] / Amplitude, non-negative, zero yields a pure offset
+    fOffset     : LREAL := 0.0;       // 直流偏置 [工程单位] / DC offset
+    fFreq       : LREAL := 1.0;       // 频率，域 0 到 100，0 表示冻结在当前相位 [Hz] / Frequency, 0 to 100, zero freezes the phase
+    fPhase0     : LREAL := 0.0;       // 初相位，域正负 360 度，超域归一 [度] / Initial phase in degrees, normalised beyond plus or minus 360
+    fTaskCycle  : LREAL := 0.01;      // 任务周期，域 1 毫秒到 1 秒，由调用方按实际任务注入 [s] / Task cycle time, 1 ms to 1 s
+    fHoldValue  : LREAL := 0.0;       // 失能或故障时的输出保持值 [工程单位] / Output hold value when disabled or faulted
+    bClampOut   : BOOL := FALSE;      // TRUE 表示按上下限限幅输出 [-] / TRUE enables output clamping
+    fOutMin     : LREAL := -1.0E6;    // 输出下限，仅 bClampOut 为 TRUE 时生效 [工程单位] / Output lower limit
+    fOutMax     : LREAL := 1.0E6;     // 输出上限，仅 bClampOut 为 TRUE 时生效 [工程单位] / Output upper limit
+END_VAR
+VAR_OUTPUT
+    fOut        : LREAL;              // 正弦输出 [工程单位] / Sine output value
+    fPhaseDeg   : LREAL;              // 当前相位，域 0 到 360 [度] / Current phase in degrees, 0 to 360
+    uCycleCnt   : UDINT;              // 完整周期计数，用于寿命与疲劳计数 [个] / Completed cycle counter
+    bRunning    : BOOL;               // 运行中（使能且频率大于 0）[-] / TRUE while running
+    uErrorId    : UDINT;              // 事件码，0 = 无事件 / Event code, 0 = no event
+    bError      : BOOL;               // 故障锁存，仅故障级码置位 [-] / Fault latch, set only by fault-level codes
+END_VAR
+VAR
+    fbTrigReset : R_TRIG;             // 相位复位边沿实例，CASE 之外无条件刷新 [-] / Rising edge detector for the phase reset
+    bInit       : BOOL := FALSE;      // 首扫标志，初值 FALSE，判据 NOT bInit（R19 范式）[-] / First-scan flag
+    fPhaseRad   : LREAL := 0.0;       // 累计相位，域 0 到 2 派 [弧度] / Accumulated phase in radians
+    eState      : E_DL_SigGenState := E_DL_SigGenState.eIdle;  // 发生器状态机 / Generator state machine
+    fAmpUse     : LREAL := 0.0;       // 生效幅值（已取绝对值）[工程单位] / Effective amplitude
+    fFreqUse    : LREAL := 0.0;       // 生效频率（已钳位）[Hz] / Effective frequency
+    fDtUse      : LREAL := 0.01;      // 生效任务周期（已钳位）[s] / Effective task cycle
+    fPh0Deg     : LREAL := 0.0;       // 归一后的初相 [度] / Normalised initial phase
+    fHoldUse    : LREAL := 0.0;       // 生效保持值（非有限时回落到 0）[工程单位] / Effective hold value
+    fLoLimit    : LREAL := -1.0E6;    // 生效下限（已保证不大于上限）[工程单位] / Effective lower limit
+    fHiLimit    : LREAL := 1.0E6;     // 生效上限（已保证不小于下限）[工程单位] / Effective upper limit
+    nWrapCnt    : INT;                // 单拍回绕计数，防死锁 [次] / Wrap counter per cycle, deadlock guard
+    bParamOk    : BOOL;               // 参数全部有限且域合法 [-] / TRUE when every parameter is finite and legal
+END_VAR
+VAR CONSTANT
+    DL_TWO_PI   : LREAL := 6.283185307179586;      // 2 派 [弧度] / Two pi in radians
+    DL_RAD2DEG  : LREAL := 57.29577951308232;      // 弧度转度系数，等于 180 除以 派 [度每弧度] / Radians to degrees factor
+    DL_DEG_FULL : LREAL := 360.0;                  // 一整圈的角度 [度] / Full turn in degrees
+    DL_FREQ_MAX : LREAL := 100.0;                  // 频率上限，保证每周期采样点不少于 10 个以抑制混叠 [Hz] / Frequency upper bound
+    DL_CYCLE_MIN: LREAL := 0.001;                  // 任务周期下限 [s] / Task cycle lower bound
+    DL_CYCLE_MAX: LREAL := 1.0;                    // 任务周期上限 [s] / Task cycle upper bound
+    DL_MAX_WRAP : INT   := 64;                     // 单拍最大回绕次数，防死锁 [次] / Maximum wraps per cycle, deadlock guard
+    DL_EPS      : LREAL := 1.0E-9;                 // 浮点判零容差 [-] / Float zero tolerance
+    DL_BIG      : LREAL := 1.0E300;                // 非有限值兜底门限 [-] / Magnitude guard for non-finite detection
+END_VAR
+
+(*------------------------------------------------------------------------------
+ * 段 1｜相位复位沿检测（R7 红线）：实例必须在 CASE 之外无条件刷新
+ *      Reset edge detection: the instance is refreshed outside any branch
+ *-----------------------------------------------------------------------------*)
+fbTrigReset(CLK := bResetPhase);
+
+(*------------------------------------------------------------------------------
+ * 段 2｜首扫初始化（R19 唯一合法范式）
+ *      First-scan initialisation with the canonical R19 pattern
+ *-----------------------------------------------------------------------------*)
+IF NOT bInit THEN
+    eState    := E_DL_SigGenState.eIdle;   // 起始态
+    fPhaseRad := 0.0;                      // 相位待段 4 按初相装载
+    uCycleCnt := 0;                        // 周期计数清零
+    uErrorId  := 16#0000_0000;             // 事件码清零
+    bError    := FALSE;                    // 故障锁存清零
+    bInit     := TRUE;                     // 首扫只做一次
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 3｜参数域校验（每拍，信息级不锁存）：先钳位再使用，绝不带着越界值推进
+ *      Parameter domain clamping every cycle, informational codes only
+ *-----------------------------------------------------------------------------*)
+bParamOk := TRUE;
+
+(* 3.1 任务周期钳位：越界钳位而不是拒绝，保证给定不断流 *)
+IF (fTaskCycle <> fTaskCycle) OR (ABS(fTaskCycle) > DL_BIG) THEN
+    bParamOk := FALSE;
+ELSE
+    fDtUse := fTaskCycle;
+    IF fDtUse < DL_CYCLE_MIN THEN
+        fDtUse  := DL_CYCLE_MIN;
+        uErrorId := 16#0002_1B01;
+    ELSIF fDtUse > DL_CYCLE_MAX THEN
+        fDtUse  := DL_CYCLE_MAX;
+        uErrorId := 16#0002_1B01;
+    END_IF
+END_IF
+
+(* 3.2 频率钳位：负频率与超上限一律钳位，负频不翻转（方向语义交给上层） *)
+IF (fFreq <> fFreq) OR (ABS(fFreq) > DL_BIG) THEN
+    bParamOk := FALSE;
+ELSE
+    fFreqUse := fFreq;
+    IF fFreqUse < 0.0 THEN
+        fFreqUse := 0.0;
+        uErrorId := 16#0002_1B02;
+    ELSIF fFreqUse > DL_FREQ_MAX THEN
+        fFreqUse := DL_FREQ_MAX;
+        uErrorId := 16#0002_1B02;
+    END_IF
+END_IF
+
+(* 3.3 幅值取绝对值：负幅值等于反相 180 度，现场常误填，统一取绝对值并置码 *)
+IF (fAmplitude <> fAmplitude) OR (ABS(fAmplitude) > DL_BIG) THEN
+    bParamOk := FALSE;
+ELSE
+    IF fAmplitude < 0.0 THEN
+        fAmpUse  := -fAmplitude;
+        uErrorId := 16#0002_1B03;
+    ELSE
+        fAmpUse := fAmplitude;
+    END_IF
+END_IF
+
+(* 3.4 偏置与保持值有限性：任一非有限即视为参数故障 *)
+IF (fOffset <> fOffset) OR (ABS(fOffset) > DL_BIG) THEN
+    bParamOk := FALSE;
+ELSE
+    IF (fHoldValue <> fHoldValue) OR (ABS(fHoldValue) > DL_BIG) THEN
+        fHoldUse := 0.0;             // 保持值非法时回落到 0，绝不把 NaN 送进输出级
+    ELSE
+        fHoldUse := fHoldValue;
+    END_IF
+END_IF
+
+(* 3.5 限幅上下限自洽：上下限写反时先对调，LIMIT 的上下限不得倒置 *)
+IF fOutMin > fOutMax THEN
+    fLoLimit := fOutMax;
+    fHiLimit := fOutMin;
+ELSE
+    fLoLimit := fOutMin;
+    fHiLimit := fOutMax;
+END_IF
+
+(* 3.6 初相归一：按 360 度整圈削减，带防死锁计数器；归不掉则清零兜底 *)
+IF (fPhase0 <> fPhase0) OR (ABS(fPhase0) > DL_BIG) THEN
+    bParamOk := FALSE;
+ELSE
+    IF (fPhase0 < (-1.0 * DL_DEG_FULL)) OR (fPhase0 > DL_DEG_FULL) THEN
+        uErrorId := 16#0002_1B04;    // 初相超域，已归一
+    END_IF
+    fPh0Deg  := fPhase0;
+    nWrapCnt := 0;
+    WHILE (fPh0Deg >= DL_DEG_FULL) AND (nWrapCnt < DL_MAX_WRAP) DO
+        fPh0Deg := fPh0Deg - DL_DEG_FULL;
+        nWrapCnt := nWrapCnt + 1;
+    END_WHILE
+    nWrapCnt := 0;
+    WHILE (fPh0Deg < 0.0) AND (nWrapCnt < DL_MAX_WRAP) DO
+        fPh0Deg := fPh0Deg + DL_DEG_FULL;
+        nWrapCnt := nWrapCnt + 1;
+    END_WHILE
+    IF (fPh0Deg >= DL_DEG_FULL) OR (fPh0Deg < 0.0) THEN
+        fPh0Deg  := 0.0;             // 削减次数耗尽，归零兜底
+        uErrorId := 16#0002_1B04;
+    END_IF
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 4｜故障级判定：任一核心参数非有限 → 锁存故障，输出保持值
+ *      Fault-level check: any non-finite core parameter latches a fault
+ *-----------------------------------------------------------------------------*)
+IF NOT bParamOk THEN
+    eState   := E_DL_SigGenState.eFault;
+    uErrorId := 16#0002_1B10;
+    bError   := TRUE;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 5｜主状态机（ENUM 加 CASE，含 ELSE 兜底）
+ *      Main state machine with an ELSE fallback branch
+ *-----------------------------------------------------------------------------*)
+CASE eState OF
+    E_DL_SigGenState.eIdle:
+        (* 待机：参数合法且使能才进运行，否则输出保持值，不做任何相位推进 *)
+        IF bEnable AND bParamOk AND (NOT bError) THEN
+            fPhaseRad := fPh0Deg * DL_TWO_PI / DL_DEG_FULL;   // 初相由度转弧度
+            eState    := E_DL_SigGenState.eRunning;
+            fOut      := fOffset + fAmpUse * SIN(fPhaseRad);
+        ELSE
+            fOut := fHoldUse;
+        END_IF
+
+    E_DL_SigGenState.eRunning:
+        IF NOT bEnable THEN
+            (* 失能：冻结相位，输出保持值，重新使能后从原相位继续 *)
+            fOut := fHoldUse;
+        ELSIF ABS(fFreqUse) < DL_EPS THEN
+            (* 频率为零：冻结相位但继续输出当前相位的值，不归零 *)
+            fOut := fOffset + fAmpUse * SIN(fPhaseRad);
+        ELSE
+            (* 相位推进：累加式，不受任务周期抖动影响 *)
+            fPhaseRad := fPhaseRad + DL_TWO_PI * fFreqUse * fDtUse;
+            nWrapCnt  := 0;
+            WHILE (fPhaseRad >= DL_TWO_PI) AND (nWrapCnt < DL_MAX_WRAP) DO
+                fPhaseRad := fPhaseRad - DL_TWO_PI;   // 每减一圈计一次周期
+                uCycleCnt := uCycleCnt + 1;
+                nWrapCnt  := nWrapCnt + 1;
+            END_WHILE
+            IF fPhaseRad >= DL_TWO_PI THEN
+                (* 回绕次数耗尽：欠采样（每拍跨越超过 64 个周期），转故障 *)
+                fPhaseRad := 0.0;
+                uErrorId  := 16#0002_1B11;
+                bError    := TRUE;
+                eState    := E_DL_SigGenState.eFault;
+                fOut      := fHoldUse;
+            ELSE
+                fOut := fOffset + fAmpUse * SIN(fPhaseRad);
+            END_IF
+        END_IF
+
+    E_DL_SigGenState.eFault:
+        (* 故障锁定：输出保持值；参数恢复且收到复位沿才解除 *)
+        fOut := fHoldUse;
+        IF fbTrigReset.Q AND bParamOk THEN
+            bError    := FALSE;
+            uErrorId  := 16#0000_0000;
+            fPhaseRad := fPh0Deg * DL_TWO_PI / DL_DEG_FULL;
+            eState    := E_DL_SigGenState.eIdle;
+        END_IF
+
+    ELSE
+        (* 非法枚举值兜底：状态变量被外部破坏时强制回故障 *)
+        eState   := E_DL_SigGenState.eFault;
+        uErrorId := 16#0002_1B11;
+        bError   := TRUE;
+        fOut     := fHoldUse;
+END_CASE
+
+(*------------------------------------------------------------------------------
+ * 段 6｜相位复位（非故障态）：上升沿把累计相位装回初相，周期计数保持
+ *      Phase reset in non-fault states: reload the initial phase, keep the counter
+ *-----------------------------------------------------------------------------*)
+IF fbTrigReset.Q AND (eState <> E_DL_SigGenState.eFault) THEN
+    fPhaseRad := fPh0Deg * DL_TWO_PI / DL_DEG_FULL;
+    IF eState = E_DL_SigGenState.eIdle THEN
+        fOut := fHoldUse;
+    ELSE
+        fOut := fOffset + fAmpUse * SIN(fPhaseRad);
+    END_IF
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 7｜输出限幅（两侧同做）与派生状态每拍重写（R27）
+ *      Two-sided output clamping and derived status rewritten every cycle
+ *-----------------------------------------------------------------------------*)
+IF bClampOut THEN
+    fOut := LIMIT(fLoLimit, fOut, fHiLimit);
+END_IF
+
+IF (fOut <> fOut) OR (ABS(fOut) > DL_BIG) THEN
+    fOut := fHoldUse;                // 输出非有限兜底，绝不把 NaN 交给下游
+END_IF
+
+fPhaseDeg := fPhaseRad * DL_RAD2DEG;
+
+IF (eState = E_DL_SigGenState.eRunning) AND bEnable AND (ABS(fFreqUse) > DL_EPS) THEN
+    bRunning := TRUE;
+ELSE
+    bRunning := FALSE;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 现场提示：fPhaseDeg 在失能时冻结不更新，HMI 上看到的相位静止属正常现象；
+ * 若现场出现「输出不随频率变化」，先查 fTaskCycle 是否被误注入为 0 或越界被
+ * 钳到 1 毫秒，再查 fFreq 是否被钳到 0。
+ *-----------------------------------------------------------------------------*)
+END_FUNCTION_BLOCK

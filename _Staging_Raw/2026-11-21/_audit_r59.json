@@ -1,0 +1,143 @@
+[
+ {
+  "name": "FB_DL_TimerFailSafe",
+  "pass": true,
+  "issues": [],
+  "lines": 77
+ },
+ {
+  "name": "FB_DL_TwoStepConfirm",
+  "pass": true,
+  "issues": [],
+  "lines": 84
+ },
+ {
+  "name": "FB_DL_MultiSegmentTimer",
+  "pass": true,
+  "issues": [],
+  "lines": 112
+ },
+ {
+  "name": "FC_DL_DmsAngleConvert",
+  "pass": true,
+  "issues": [],
+  "lines": 155
+ },
+ {
+  "name": "FC_DL_QuadraticSolve",
+  "pass": true,
+  "issues": [],
+  "lines": 128
+ },
+ {
+  "name": "FC_DL_DtlStringConv",
+  "pass": true,
+  "issues": [],
+  "lines": 177
+ },
+ {
+  "name": "FC_DL_AsciiFrameParse",
+  "pass": true,
+  "issues": [],
+  "lines": 136
+ },
+ {
+  "name": "FB_DL_DataResampler",
+  "pass": true,
+  "issues": [],
+  "lines": 113
+ },
+ {
+  "name": "FB_DL_SprayNozzleBank",
+  "pass": true,
+  "issues": [],
+  "lines": 191
+ },
+ {
+  "name": "FB_DL_PathCornerBlend",
+  "pass": true,
+  "issues": [],
+  "lines": 134
+ },
+ {
+  "name": "FB_DL_MracAdaptiveCtrl",
+  "pass": true,
+  "issues": [],
+  "lines": 127
+ },
+ {
+  "name": "FB_DL_CraneAntiSway",
+  "pass": true,
+  "issues": [],
+  "lines": 98
+ },
+ {
+  "name": "FB_DL_SpindleWarmupSeq",
+  "pass": true,
+  "issues": [],
+  "lines": 194
+ },
+ {
+  "name": "FB_DL_DustCollectorPulse",
+  "pass": true,
+  "issues": [],
+  "lines": 155
+ },
+ {
+  "name": "FB_DL_LotoSequence",
+  "pass": true,
+  "issues": [],
+  "lines": 162
+ },
+ {
+  "name": "FC_DL_FftRadix2",
+  "pass": true,
+  "issues": [],
+  "lines": 146
+ },
+ {
+  "name": "FC_DL_ConductivityTempComp",
+  "pass": true,
+  "issues": [],
+  "lines": 107
+ },
+ {
+  "name": "FB_DL_VisionResultGate",
+  "pass": true,
+  "issues": [],
+  "lines": 161
+ },
+ {
+  "name": "FB_DL_ToolLifeBudget",
+  "pass": true,
+  "issues": [],
+  "lines": 132
+ },
+ {
+  "name": "FB_DL_LotGenealogyLink",
+  "pass": false,
+  "issues": [
+   "G2 FOR/END_FOR 不配对：2 / 3",
+   "G2 WHILE/END_WHILE 不配对：2 / 1"
+  ],
+  "lines": 178
+ },
+ {
+  "name": "FC_DL_PmvComfortIndex [repair]",
+  "pass": true,
+  "issues": [],
+  "lines": 217
+ },
+ {
+  "name": "FB_DL_SoftStarterDrive [repair]",
+  "pass": true,
+  "issues": [],
+  "lines": 312
+ },
+ {
+  "name": "FB_DL_PeriodicDisturbComp [repair]",
+  "pass": true,
+  "issues": [],
+  "lines": 134
+ }
+]

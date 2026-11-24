@@ -1,0 +1,8 @@
+{
+ "round": "R64-BASELINE",
+ "l2": {
+  "mode": "pending-ci",
+  "queued": 1135,
+  "reason": "本机无 iec2iec/iec2c（无 gcc/bison/docker，WSL 被策略禁用）"
+ }
+}

@@ -1,0 +1,204 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""iface_stub_gen.py —— I_DL_* 接口文件的「L2 可编译降级桩」生成器
+
+问题背景（2026-11-23 定位）:
+    RuSTy 1.0.8 不支持 IEC 61131-3 第3版 INTERFACE 内的 PROPERTY / METHOD
+    （报 E006 Missing KeywordEndInterface / E007 found PROPERTY），
+    导致 21 个 I_DL_*.st 全部无法独立编译，被 l2_check 预筛整份排除。
+
+    但真正的损失不是这 21 个文件本身——而是**它们内部定义的 TYPE/ENUM**
+    （如 I_DL_MotorDriver.st 里的 E_DL_MotorState）。接口一旦被排除，
+    依赖这些 ENUM 的所有 FB 都变成 Unknown type 编译失败。
+
+    实测：40 件抽样通过率仅 75%，其中多数失败源于此，而非代码本身有错。
+
+做法:
+    为每个 I_DL_*.st 生成等价降级桩，只在 L2 检查时使用，**绝不修改源文件**：
+      1. 全部 TYPE ... END_TYPE / ENUM 汇总进 _all_types.st（跨文件可见）
+      2. INTERFACE X         → FUNCTION_BLOCK X
+      3. PROPERTY name : T   → 收集进 VAR 块（与已有 VAR 同名者跳过，避免重名）
+      4. METHOD name : T     → 丢弃（无法等价表达），计入报告
+      5. VAR / VAR_INPUT / VAR_OUTPUT / VAR_IN_OUT 块 → 原样保留
+
+    产物写入 _tools/rusty/_iface_stubs/，l2_check 优先取用桩、回退原文件。
+
+用法:
+    python iface_stub_gen.py            # 全量生成 + 汇总
+    python iface_stub_gen.py --verify   # 生成后逐个 plc.exe --check 验证
+"""
+import glob
+import os
+import re
+import subprocess
+import sys
+
+LIB = r"C:\Library"
+RUSTY = os.path.join(LIB, "_tools", "rusty", "plc.exe")
+STUB = os.path.join(LIB, "_tools", "rusty", "iec_std_stub.st")
+OUTDIR = os.path.join(LIB, "_tools", "rusty", "_iface_stubs")
+ALL_TYPES = "_all_types.st"
+
+
+def split_type_blocks(text):
+    """提取所有 TYPE ... END_TYPE 块（原样保留）。"""
+    return re.findall(r"^\s*TYPE\b.*?^\s*END_TYPE\b", text, re.M | re.S)
+
+
+def find_interface(text):
+    """返回 (接口名, 接口体) 或 (None, None)。"""
+    m = re.search(r"^\s*INTERFACE\s+([A-Za-z_][A-Za-z0-9_]*)\s*$", text, re.M)
+    if not m:
+        return None, None
+    name = m.group(1)
+    start = m.end()
+    end = re.search(r"^\s*END_INTERFACE\b", text[start:], re.M)
+    body = text[start:start + end.start()] if end else text[start:]
+    return name, body
+
+
+def parse_members(body):
+    """解析接口体：返回 (properties, method_blocks, var_blocks)。
+
+    method_blocks 为 METHOD ... END_METHOD 的完整原文块——实测 RuSTy 接受
+    无实现体的 METHOD 声明（T3 探针通过），故原样保留即可，这样调用方
+    （如 axis.MoveRelative(...)）才能解析，避免 E048 假失败。
+
+    注意：METHOD 内部的 VAR 块不再被提升到 FB 层级（否则 Duplicate symbol）。
+    """
+    props = []
+    for m in re.finditer(
+            r"^\s*PROPERTY\s+([A-Za-z_][A-Za-z0-9_]*)\s*:\s*([^;/\n]+?)\s*"
+            r"(?::=\s*([^;/\n]+?))?\s*(?://[^\n]*)?$", body, re.M):
+        props.append((m.group(1), m.group(2).strip(), (m.group(3) or "").strip()))
+
+    method_blocks = [m.group(0).strip() for m in
+                     re.finditer(r"^\s*METHOD\b.*?^\s*END_METHOD\b", body, re.M | re.S)]
+
+    body_wo_method = re.sub(r"^\s*METHOD\b.*?^\s*END_METHOD\b", "", body, flags=re.M | re.S)
+    body_wo_method = re.sub(r"^\s*PROPERTY\b.*?^\s*END_PROPERTY\b", "", body_wo_method,
+                            flags=re.M | re.S)
+
+    var_blocks = []
+    for m in re.finditer(r"^\s*(VAR(?:_INPUT|_OUTPUT|_IN_OUT|_STAT)?)\b(.*?)^\s*END_VAR\b",
+                         body_wo_method, re.M | re.S):
+        var_blocks.append((m.group(1), m.group(2)))
+
+    return props, method_blocks, var_blocks
+
+
+def build_stub(text):
+    """把 I_DL 源码转成降级桩；返回 (stub_text, n_props_kept, methods)。"""
+    _types = split_type_blocks(text)
+    iname, body = find_interface(text)
+    if not iname:
+        return None, 0, []
+
+    props, method_blocks, var_blocks = parse_members(body)
+
+    existing = set()
+    for _kind, content in var_blocks:
+        for line in content.split("\n"):
+            m = re.match(r"^\s*([A-Za-z_][A-Za-z0-9_]*)", line)
+            if m and ":" in line:
+                existing.add(m.group(1))
+
+    out = ["(* AUTO-GENERATED L2 STUB by iface_stub_gen.py — 仅用于编译闸，非交付物 *)\n",
+           "(* 类型定义见同目录 %s *)\n" % ALL_TYPES,
+           "FUNCTION_BLOCK %s\n" % iname]
+    for kind, content in var_blocks:
+        out.append("%s%sEND_VAR\n" % (kind, content))
+    kept = [(n, t, i) for n, t, i in props if n not in existing]
+    if kept:
+        out.append("VAR\n")
+        for pname, ptype, pinit in kept:
+            line = "    %s : %s" % (pname, ptype)
+            if pinit:
+                line += " := %s" % pinit
+            out.append(line + ";\n")
+        out.append("END_VAR\n")
+    # METHOD 声明原样保留（无实现体，RuSTy 接受），保证调用方可解析
+    for blk in method_blocks:
+        out.append("\n" + re.sub(r"^", "    ", blk, flags=re.M) + "\n")
+    out.append("END_FUNCTION_BLOCK\n")
+    return "".join(out), len(kept), method_blocks
+
+
+def build_all_types(files):
+    """汇总所有接口文件的 TYPE 块到一个文件，返回 (文本, 类型块数)。"""
+    blocks, seen = [], set()
+    for fp in files:
+        try:
+            text = open(fp, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        for blk in split_type_blocks(text):
+            m = re.search(r"^\s*TYPE\s+([A-Za-z_][A-Za-z0-9_]*)", blk, re.M)
+            name = m.group(1) if m else None
+            if name and name in seen:
+                continue
+            if name:
+                seen.add(name)
+            blocks.append(blk.strip())
+    head = ("(* AUTO-GENERATED by iface_stub_gen.py — 全库接口/组件 TYPE 汇总，"
+            "供 L2 编译闸解析跨文件 ENUM，非交付物 *)\n")
+    return head + "\n\n".join(blocks) + "\n", len(blocks)
+
+
+def main():
+    verify = "--verify" in sys.argv
+    os.makedirs(OUTDIR, exist_ok=True)
+    files = sorted(glob.glob(os.path.join(LIB, "DL_*", "I_DL_*.st")))
+    files = [f for f in files if not f.endswith((".bak", ".bak_gate"))]
+
+    # 只汇总**接口文件**的 TYPE：FB 文件自带其 ENUM 定义，若一并汇总会与
+    # 组件内的同名 TYPE 冲突（E004 Ambiguous datatype）。
+    all_types_text, n_types = build_all_types(files)
+    with open(os.path.join(OUTDIR, ALL_TYPES), "w", encoding="utf-8", newline="\n") as f:
+        f.write(all_types_text)
+
+    ok, noiface, failed = 0, 0, []
+    tot_props, tot_methods = 0, 0
+    for fp in files:
+        try:
+            text = open(fp, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        stub, nprops, methods = build_stub(text)
+        if stub is None:
+            noiface += 1
+            continue
+        outp = os.path.join(OUTDIR, os.path.basename(fp))
+        with open(outp, "w", encoding="utf-8", newline="\n") as f:
+            f.write(stub)
+        tot_props += nprops
+        tot_methods += len(methods)
+
+        if verify:
+            p = subprocess.run([RUSTY, "--check", STUB,
+                                os.path.join(OUTDIR, ALL_TYPES), outp],
+                               capture_output=True, text=True,
+                               encoding="utf-8", errors="ignore", timeout=180)
+            if p.returncode == 0:
+                ok += 1
+            else:
+                msg = (p.stdout or "") + (p.stderr or "")
+                e = re.search(r"error\[(E\d+)\]:\s*([^\n]*)", msg)
+                failed.append((os.path.basename(fp),
+                               "%s %s" % (e.group(1), e.group(2)[:60]) if e else "?"))
+        else:
+            ok += 1
+
+    print("全库 TYPE 汇总: %d 个类型块 → %s" % (n_types, ALL_TYPES))
+    print("接口文件 %d → 降级桩 %d 个（PROPERTY 降级 %d 条，METHOD 丢弃 %d 个）"
+          % (len(files), len(files) - noiface, tot_props, tot_methods))
+    if verify:
+        print("桩自校验: PASS %d / FAIL %d" % (ok, len(failed)))
+        for n, e in failed:
+            print("  FAIL %-34s %s" % (n, e))
+    print("输出目录:", OUTDIR)
+    return 1 if failed else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

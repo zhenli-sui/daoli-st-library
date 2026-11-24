@@ -1,0 +1,66 @@
+{
+ "round": "MANUAL",
+ "ts": "2026-11-24T11:27:19+08:00",
+ "total": 1,
+ "pass": 0,
+ "major": 1,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_AnaerobDigesterLoadCtrl.st",
+   "name": "FB_DL_AnaerobDigesterLoadCtrl",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：E_DL_AD_STATE"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 117,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 118,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 119,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 120,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MAJOR",
+     "code": "R527_TON_CROSS_PHASE",
+     "line": 222,
+     "detail": "TON(tonConfirm) 的 IN 跨相 OR（((_eState = E_DL_AD_STATE.eNormal) OR (_eState =），须注释声明为累计看门狗或拆两个 TON 各串本相闸"
+    },
+    {
+     "level": "MAJOR",
+     "code": "R527_TON_CROSS_PHASE",
+     "line": 226,
+     "detail": "TON(tonRecover) 的 IN 跨相 OR（((_eState = E_DL_AD_STATE.eDerate) OR (_eState =），须注释声明为累计看门狗或拆两个 TON 各串本相闸"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "MAJOR",
+   "lines": 465
+  }
+ ]
+}

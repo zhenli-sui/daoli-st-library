@@ -1,0 +1,261 @@
+[
+{
+"name": "FB_DL_CncToolWearCompLoop",
+"category": "DL_Device",
+"complexity": 4,
+"desc": "CNC 刀具磨损量在线估计与刀补闭环（多段磨损曲线+换刀阈值）",
+"tier": "复杂"
+},
+{
+"name": "FB_DL_ReactorRunawayGuard",
+"category": "DL_Process",
+"complexity": 5,
+"desc": "间歇釜放热失控五级联锁（温升速率/绝热温升外推/冷却失效三判据）",
+"tier": "复杂"
+},
+{
+"name": "FB_DL_TabletWeightAutoCtl",
+"category": "DL_Process",
+"complexity": 4,
+"desc": "压片片重自动控制（充填深度闭环+剔废联锁）",
+"tier": "复杂"
+},
+{
+"name": "FB_DL_HeadboxJetRatioLoop",
+"category": "DL_Process",
+"complexity": 4,
+"desc": "流浆箱唇口喷射比闭环（浆速/网速比寻优）",
+"tier": "复杂"
+},
+{
+"name": "FC_DL_CuttingForceCalc",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "车削/铣削切削力经验公式估算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_CncMrrCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "材料去除率 MRR 计算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_CncSpindleLoadRatio",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "主轴负载率与过载裕度",
+"tier": "简单"
+},
+{
+"name": "FB_DL_CncLoadUnloadSeq",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "CNC 上下料时序（门开-夹紧-松爪-确认）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_CoolantConcCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "切削液浓度配比与补液量",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ToolWearVbCalc",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "后刀面磨损量 VB 由切削时间/材料系数估算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ChipLoadPerToothCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "每齿进给量与切屑厚度校核",
+"tier": "简单"
+},
+{
+"name": "FC_DL_TabletWeightRsdCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "片重相对标准偏差 RSD（滚动窗口）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_CoatingPanSprayCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "包衣锅喷量与增重速率",
+"tier": "简单"
+},
+{
+"name": "FC_DL_TabletCrushForceCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "片剂破碎力与硬度换算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_BlendUniformityCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "混合均匀度（多点取样 CV + 混合指数）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_GranuleSizeD50Calc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "颗粒粒径分布 D10/D50/D90 插值",
+"tier": "简单"
+},
+{
+"name": "FB_DL_TabletCompactionSeq",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "压片压实时序（充填-预压-主压-出片-剔废）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_TabletFriabilityCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "片剂脆碎度计算与判定",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ReactorHeatReleaseCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "由夹套温差反算反应放热速率",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ReactorAdiabaticRise",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "绝热温升 dTad 由累积投料量估算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_MtsrCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "最高合成温度 MTSR 计算",
+"tier": "简单"
+},
+{
+"name": "FB_DL_ReactorChargeSeq",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "多组分投料顺序时序（互锁+搅拌前置）",
+"tier": "简单"
+},
+{
+"name": "FC_DL_JacketAreaCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "夹套/盘管传热面积与换热能力",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ClinkerLsfCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "熟料石灰饱和系数 LSF",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ClinkerC3sCalc",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "Bogue 法 C3S/C2S/C3A/C4AF 计算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_KilnSpecificHeatCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "窑单位熟料热耗",
+"tier": "简单"
+},
+{
+"name": "FC_DL_RawMealResidueCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "生料筛余与细度合格判定",
+"tier": "简单"
+},
+{
+"name": "FB_DL_KilnPreheatStageSeq",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "预热器旋风级联投料时序",
+"tier": "简单"
+},
+{
+"name": "FC_DL_CementMillLoadCalc",
+"category": "DL_Device",
+"complexity": 2,
+"desc": "磨机填充率与循环负荷",
+"tier": "简单"
+},
+{
+"name": "FC_DL_ClinkerFreeLimeCalc",
+"category": "DL_Device",
+"complexity": 1,
+"desc": "游离石灰 f-CaO 与烧成度判定",
+"tier": "简单"
+},
+{
+"name": "FC_DL_PaperBasisWeightCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "纸页定量由绝干量与幅宽换算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_StockConsistencyCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "浆料浓度由稀释比与稠度推算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_RefinerFreenessCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "打浆度 CSF 由能耗与比边缘负荷估算",
+"tier": "简单"
+},
+{
+"name": "FB_DL_HeadboxSliceSeq",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "流浆箱唇口开度调节时序",
+"tier": "简单"
+},
+{
+"name": "FC_DL_DryerSteamDemandCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "烘缸组汽耗与传热需求",
+"tier": "简单"
+},
+{
+"name": "FC_DL_PaperFormationIndexCalc",
+"category": "DL_Process",
+"complexity": 2,
+"desc": "纸页成形指数由絮聚波长估算",
+"tier": "简单"
+},
+{
+"name": "FC_DL_PressSectionDewaterCalc",
+"category": "DL_Process",
+"complexity": 1,
+"desc": "压榨部脱水：出压榨干度由入口干度/比压/车速经验式估算，输出干度提升与断纸风险位",
+"tier": "简单"
+}
+]

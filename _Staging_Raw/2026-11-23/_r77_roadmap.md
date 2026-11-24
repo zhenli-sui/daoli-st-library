@@ -1,0 +1,4 @@
+## R77 构建轮小结（2026-11-23）
+
+> **R77 小结**：**42 件入册**（复杂 4 + 简单 38，5 族模板派生），总库 1,327→**1,369**，v2.69.0，SFT 1,376→**1,408**（并清偿 12 条历史缺 output 债）。**L2 闸：批 A 41/41 PASS = 100%；批 B1 4 件复杂件首裁 2 PASS / 2 FAIL（均为"能编译但跑不对"的逻辑缺陷）→ 定点修复后复裁 2/2 PASS**，零 EXEMPT。审校 41 件：PASS 34 / 存疑放行 6 / **拒收 3**（StringPadLeftZeros 与 StringPad 同义、StatsRmsCalc 与 RmsCalc 同义、RunningAverageN 3 项 MAJOR 暂缓入库）。开源队列 53→**57 条**（绿 53），溯源 10/42 = 23.8%（未达 30%）。今日 124→**166/300（55.3%）**。
+> **R78 待办（P0）**：① `FB_DL_RunningAverageN` 环形缓冲均值口径修复（审校 3 MAJOR：首填区间输出恒 0、分母应为实际样本数、N 变更未重置缓冲），验后入库；② 闸席 L1 逻辑级复核常态化——本轮据此拦下 2 件复杂件（Inf 判据死谓词 / eFault 无出口死锁），建议把「eFault 必须有出口」「非有限判据禁 `ABS(x-x)`」写入 `l2_check.py` 预筛告警；③ 队列净增受 GitHub 匿名限额（search 10/min + core 60/h）压制，仅 +4，需注入 GITHUB_TOKEN；④ 溯源占比 23.8% 未达 30%，R78 编码前先从队列取料（TcDynStringKit 4 条字符串候选已入队）；⑤ 值守三项第 9 轮顺延（MatIEC-CI 待配 remote / GITHUB_TOKEN 真检索 / GATE MAJOR 人核）。

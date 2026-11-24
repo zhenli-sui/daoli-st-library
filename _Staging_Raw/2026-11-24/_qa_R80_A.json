@@ -1,0 +1,86 @@
+{
+  "round": "R80",
+  "batch": "A",
+  "total": 36,
+  "pass": 33,
+  "hold": 1,
+  "reject": 2,
+  "block": 1,
+  "major": 12,
+  "minor": 12,
+  "rejects": [
+    {
+      "name": "FC_DL_HydroPipePressDrop",
+      "reason": "语义同义：与在库 FC_DL_PipeFrictionLoss（DL_MathData，Darcy-Weisbach，层流/过渡/湍流+粗糙度+密度黏度+局部阻力+kPa 全参数）同族同输入形态同输出语义；新件仅固定 ρ=850、cSt 方言、bar 输出、去过渡区与局部阻力，既有件 fRho_kgm3=850/fMu_cP=cSt*0.85 一次调用即同值 → 严格子集再实现。可复议（介质方言豁免请总监裁决）。"
+    },
+    {
+      "name": "FC_DL_StatsIqrCalc",
+      "reason": "BLOCK：L69 `WHILE (j >= 0) AND (aBuf[j] > _rKey)` 内层 j 递减至 −1，IEC 不保证 AND 短路 → aBuf[-1] 越界。须返修后入库（本轮修复配额 0）。"
+    }
+  ],
+  "holds": [
+    {
+      "name": "FC_DL_StatsGeoMeanCalc",
+      "reason": "与在库 FC_DL_GeoMeanCalc 同为 log 域 Σln/n→exp；豁免依据 REAL[0..31] vs LREAL[1..32] 精度/索引方言 + 新增 nSkipped 逐点剔除语义（既有件整体拒算）。请总监复议，维持则须头注声明口径差。"
+    }
+  ],
+  "items": [
+    {"name": "FC_DL_WeighNetFromGross", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_WeighTareDriftCheck", "verdict": "PASS", "defects": ["MINOR-1", "MAJOR-族级-12"]},
+    {"name": "FC_DL_WeighDoseTolBand", "verdict": "PASS", "defects": ["MINOR-2", "MAJOR-族级-12"]},
+    {"name": "FB_DL_WeighHopperRefillSeq", "verdict": "PASS", "defects": ["MAJOR-3", "MINOR-11"]},
+    {"name": "FC_DL_WeighMultiHeadSum", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_WeighBatchYieldCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_WeighCreepCompensate", "verdict": "PASS", "defects": []},
+    {"name": "FC_DL_WeighSpanCalibRatio", "verdict": "PASS", "defects": ["MAJOR-1", "MINOR-3"]},
+    {"name": "FC_DL_MembraneFluxCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_MembraneTmpCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_WaterRecoveryRatio", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_SludgeAgeCalc", "verdict": "PASS", "defects": ["MAJOR-10", "MINOR-11"]},
+    {"name": "FC_DL_DoDeficitCalc", "verdict": "PASS", "defects": ["MINOR-5", "MAJOR-族级-12"]},
+    {"name": "FC_DL_CoagulantDoseCalc", "verdict": "PASS", "defects": ["MINOR-4", "MAJOR-族级-12"]},
+    {"name": "FC_DL_WaterLangelierIndex", "verdict": "PASS", "defects": ["MINOR-11", "MAJOR-族级-12"]},
+    {"name": "FC_DL_HydroCylForceCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_HydroCylFlowNeed", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_HydroAccumulatorSizing", "verdict": "PASS", "defects": ["MAJOR-2", "MINOR-11"]},
+    {"name": "FC_DL_PneuAirConsumeCalc", "verdict": "PASS", "defects": ["MAJOR-8", "MAJOR-族级-12"]},
+    {"name": "FC_DL_PneuCvFlowCalc", "verdict": "PASS", "defects": ["MAJOR-4", "MINOR-11"]},
+    {"name": "FC_DL_HydroPipePressDrop", "verdict": "REJECT", "defects": ["DEDUP-D", "MINOR-12"]},
+    {"name": "FB_DL_HydroPressRampSeq", "verdict": "PASS", "defects": ["MAJOR-11", "MINOR-11"]},
+    {"name": "FC_DL_PneuLeakRateCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_RefCopCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_RefSuperheatCalc", "verdict": "PASS", "defects": ["MINOR-9", "MAJOR-族级-12"]},
+    {"name": "FC_DL_RefSubcoolCalc", "verdict": "PASS", "defects": ["MINOR-9", "MAJOR-族级-12"]},
+    {"name": "FC_DL_RefSatPressToTemp", "verdict": "PASS", "defects": ["MAJOR-5"]},
+    {"name": "FC_DL_RefSatTempToPress", "verdict": "PASS", "defects": ["MAJOR-6"]},
+    {"name": "FC_DL_RefCompressorCapacity", "verdict": "PASS", "defects": ["MAJOR-7", "MAJOR-族级-12"]},
+    {"name": "FC_DL_RefCondApproach", "verdict": "PASS", "defects": ["MINOR-6", "MAJOR-族级-12"]},
+    {"name": "FC_DL_StatsRangeCalc", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FC_DL_StatsIqrCalc", "verdict": "REJECT", "defects": ["BLOCK-1", "MINOR-7"]},
+    {"name": "FC_DL_StatsPooledStd", "verdict": "PASS", "defects": ["MAJOR-族级-12"]},
+    {"name": "FB_DL_StatsRollingVar", "verdict": "PASS", "defects": ["MAJOR-9", "MINOR-10"]},
+    {"name": "FC_DL_StatsGeoMeanCalc", "verdict": "HOLD", "defects": ["DEDUP-HOLD"]},
+    {"name": "FC_DL_StatsDevSumSq", "verdict": "PASS", "defects": ["MINOR-8"]}
+  ],
+  "dedup": {
+    "name_pass": {"hits": 0, "near": ["FC_DL_StatsGeoMeanCalc ~ FC_DL_GeoMeanCalc"]},
+    "fingerprint_pass": {"cross_file_dups": 0, "twins": ["FC_DL_RefSuperheatCalc ~ FC_DL_RefSubcoolCalc"]},
+    "semantic_pass": {
+      "reject": [{"name": "FC_DL_HydroPipePressDrop", "dup_of": "FC_DL_PipeFrictionLoss"}],
+      "hold": [{"name": "FC_DL_StatsGeoMeanCalc", "dup_of": "FC_DL_GeoMeanCalc"}],
+      "cleared": [
+        "FC_DL_StatsRangeCalc ~ FC_DL_StatsMinMaxWindow",
+        "FC_DL_StatsIqrCalc ~ FC_DL_QuartileCalc",
+        "FB_DL_StatsRollingVar ~ FB_DL_StatsWelfordVar/FC_DL_StdDevOnline",
+        "FC_DL_WeighTareDriftCheck ~ FB_DL_LoadCellTareDrift",
+        "FC_DL_PneuLeakRateCalc ~ FB_DL_AirLeakDecayTest",
+        "FC_DL_HydroAccumulatorSizing ~ FB_DL_HydraulicAccumPreChg",
+        "FC_DL_WeighBatchYieldCalc ~ FC_DL_WaferCountYield"
+      ]
+    }
+  },
+  "systemic": [
+    {"id": "MAJOR-族级-12", "files": 34, "pattern": "(rX = rX) 非有限闸挡 NaN 不挡 Inf", "rule": "R482", "action": "扩面复审 + dl-gate 锚点 A_NAN_SELF"},
+    {"id": "MINOR-11", "files": 17, "pattern": "头注复杂度与 ROUND_PLAN 不符", "action": "锚点 A_COMPLEXITY_MISMATCH"}
+  ]
+}

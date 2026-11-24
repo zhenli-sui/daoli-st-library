@@ -1,0 +1,24 @@
+{
+ "round": "R83",
+ "ts": "2026-11-24T13:55:36+08:00",
+ "total": 1,
+ "pass": 1,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FC_DL_DryerSolventLoadCalc.st",
+   "name": "FC_DL_DryerSolventLoadCalc",
+   "issues": [
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 51
+  }
+ ]
+}

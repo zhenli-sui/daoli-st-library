@@ -1,0 +1,3064 @@
+{
+ "round": "R65",
+ "ts": "2026-11-22T00:01:59+08:00",
+ "total": 96,
+ "pass": 40,
+ "major": 4,
+ "block": 52,
+ "results": [
+  {
+   "file": "FB_DL_AdaptiveLmsFilter.st",
+   "name": "FB_DL_AdaptiveLmsFilter",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 122,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 271
+  },
+  {
+   "file": "FB_DL_BiquadCascade.st",
+   "name": "FB_DL_BiquadCascade",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 116,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 310
+  },
+  {
+   "file": "FB_DL_BiquadFilter.st",
+   "name": "FB_DL_BiquadFilter",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 129,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 298
+  },
+  {
+   "file": "FB_DL_DisturbanceObserver.st",
+   "name": "FB_DL_DisturbanceObserver",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_UNCLOSED",
+     "line": 38,
+     "detail": "FUNCTION_BLOCK 未闭合"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 61,
+     "detail": "类型未识别：E_DL_ObserverState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 64,
+     "detail": "类型未识别：FB_DL_LowPassFilter"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 65,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 66,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 67,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 68,
+     "detail": "类型未识别：E_DL_ObserverState"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 208
+  },
+  {
+   "file": "FB_DL_EwmaFilter.st",
+   "name": "FB_DL_EwmaFilter",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 157
+  },
+  {
+   "file": "FB_DL_OutlierFilter.st",
+   "name": "FB_DL_OutlierFilter",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 122,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 350
+  },
+  {
+   "file": "FB_DL_RampSoakProfile.st",
+   "name": "FB_DL_RampSoakProfile",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 293,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 METHOD(L271) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 109,
+     "detail": "类型未识别：E_DL_RampSoakPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 125,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 126,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 127,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 294
+  },
+  {
+   "file": "FC_DL_BiquadCoeff.st",
+   "name": "FC_DL_BiquadCoeff",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 76,
+     "detail": "类型未识别：E_DL_BiquadType"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 223
+  },
+  {
+   "file": "FB_DL_HysteresisBandMon.st",
+   "name": "FB_DL_HysteresisBandMon",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 89,
+     "detail": "类型未识别：E_DL_HbmZone"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：E_DL_HbmErr"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：E_DL_HbmZone"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：E_DL_HbmZone"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 179
+  },
+  {
+   "file": "FC_DL_ArrCopySeg.st",
+   "name": "FC_DL_ArrCopySeg",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 152
+  },
+  {
+   "file": "FC_DL_ArrFillEx.st",
+   "name": "FC_DL_ArrFillEx",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 120
+  },
+  {
+   "file": "FC_DL_SaturateDiv.st",
+   "name": "FC_DL_SaturateDiv",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 146
+  },
+  {
+   "file": "FC_DL_SaturateMul.st",
+   "name": "FC_DL_SaturateMul",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 166
+  },
+  {
+   "file": "FC_DL_ShiftArithEx.st",
+   "name": "FC_DL_ShiftArithEx",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 151
+  },
+  {
+   "file": "FC_DL_SignExtendEx.st",
+   "name": "FC_DL_SignExtendEx",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 143
+  },
+  {
+   "file": "FC_DL_SortIndexInt.st",
+   "name": "FC_DL_SortIndexInt",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 120
+  },
+  {
+   "file": "FC_DL_StringEditDistance.st",
+   "name": "FC_DL_StringEditDistance",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 52,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 53,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 70,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 71,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 72,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 73,
+     "detail": "类型未识别：STRING(1)"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 147
+  },
+  {
+   "file": "FC_DL_StringWildMatch.st",
+   "name": "FC_DL_StringWildMatch",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 54,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 55,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 72,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 73,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 74,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 75,
+     "detail": "类型未识别：STRING(1)"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 175
+  },
+  {
+   "file": "FC_DL_TriStateCompare.st",
+   "name": "FC_DL_TriStateCompare",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 113
+  },
+  {
+   "file": "FB_DL_AdcNoiseFloorWatch.st",
+   "name": "FB_DL_AdcNoiseFloorWatch",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 255
+  },
+  {
+   "file": "FB_DL_AnalogSignalHealth.st",
+   "name": "FB_DL_AnalogSignalHealth",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：E_DL_AshHealth"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 113,
+     "detail": "类型未识别：E_DL_AshHealth"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 119,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 120,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 221
+  },
+  {
+   "file": "FB_DL_AnalogTransmitter.st",
+   "name": "FB_DL_AnalogTransmitter",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 393,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L391) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 77,
+     "detail": "类型未识别：E_DL_BreakDir"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 91,
+     "detail": "类型未识别：E_DL_SignalQuality"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 105,
+     "detail": "类型未识别：E_DL_SignalQuality"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 394
+  },
+  {
+   "file": "FB_DL_AnalogValve.st",
+   "name": "FB_DL_AnalogValve",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 354,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L348) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：E_DL_ValveState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 105,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 106,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 355
+  },
+  {
+   "file": "FB_DL_DolMotor.st",
+   "name": "FB_DL_DolMotor",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 310,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L308) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 55,
+     "detail": "类型未识别：E_DL_MotorState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 64,
+     "detail": "类型未识别：E_DL_MotorState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 78,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 79,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 80,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 81,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 84,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 311
+  },
+  {
+   "file": "FB_DL_DualValveBlockSet.st",
+   "name": "FB_DL_DualValveBlockSet",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：E_DL_DualValvePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 107,
+     "detail": "类型未识别：E_DL_DualValvePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 112,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 113,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MAJOR",
+     "code": "VER_MISMATCH",
+     "line": 0,
+     "detail": "文件头 1.0.1 ≠ registry 1.0.0"
+    }
+   ],
+   "verdict": "MAJOR",
+   "lines": 210
+  },
+  {
+   "file": "FB_DL_GuardLockDoor.st",
+   "name": "FB_DL_GuardLockDoor",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 381,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L375) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：E_DL_SafetyDoorState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 110,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 111,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 112,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 113,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 382
+  },
+  {
+   "file": "FB_DL_HeatCoolZone.st",
+   "name": "FB_DL_HeatCoolZone",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 516,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L513) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：E_DL_BreakAction"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 122,
+     "detail": "类型未识别：I_DL_AnalogSensor"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 123,
+     "detail": "类型未识别：FB_DL_PidController"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 124,
+     "detail": "类型未识别：FB_DL_PwmDutyController"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 125,
+     "detail": "类型未识别：FB_DL_PwmDutyController"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 133,
+     "detail": "类型未识别：E_DL_TempZoneState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 164,
+     "detail": "类型未识别：E_DL_SignalQuality"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 517
+  },
+  {
+   "file": "FB_DL_IonFanInterlock.st",
+   "name": "FB_DL_IonFanInterlock",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 106,
+     "detail": "类型未识别：E_DL_IonFanPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 113,
+     "detail": "类型未识别：E_DL_IonFanPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 129,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 262
+  },
+  {
+   "file": "FB_DL_LevelSwitchVib.st",
+   "name": "FB_DL_LevelSwitchVib",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 272,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L266) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：E_DL_FailSafeMode"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：E_DL_LevelState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 105,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 106,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 107,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 108,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 109,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 273
+  },
+  {
+   "file": "FB_DL_ModbusPowerMeter.st",
+   "name": "FB_DL_ModbusPowerMeter",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 998,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L995) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 160,
+     "detail": "类型未识别：E_DL_ByteOrder"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 188,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 189,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 190,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 191,
+     "detail": "类型未识别：E_DL_PowerMeterState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 278,
+     "detail": "类型未识别：E_DL_ByteOrder"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 279,
+     "detail": "类型未识别：E_DL_ByteOrder"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 280,
+     "detail": "类型未识别：E_DL_ByteOrder"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 281,
+     "detail": "类型未识别：E_DL_Ne107Status"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 999
+  },
+  {
+   "file": "FB_DL_ParallelGripper.st",
+   "name": "FB_DL_ParallelGripper",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 349,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L347) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 84,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：E_DL_GripperState"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 350
+  },
+  {
+   "file": "FB_DL_PneuCylinderDiag.st",
+   "name": "FB_DL_PneuCylinderDiag",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：E_DL_PcdSt"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 117,
+     "detail": "类型未识别：E_DL_PcdErr"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 122,
+     "detail": "类型未识别：E_DL_PcdSt"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 124,
+     "detail": "类型未识别：E_DL_PcdErr"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 125,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 126,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 127,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 128,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 129,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 130,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 248
+  },
+  {
+   "file": "FB_DL_PneumaticCylinder.st",
+   "name": "FB_DL_PneumaticCylinder",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 332,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L330) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 56,
+     "detail": "类型未识别：E_DL_CylinderState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 66,
+     "detail": "类型未识别：E_DL_CylinderState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 77,
+     "detail": "类型未识别：FB_DL_SignalDebounce"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 78,
+     "detail": "类型未识别：FB_DL_SignalDebounce"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 79,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 80,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 81,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 84,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 333
+  },
+  {
+   "file": "FB_DL_PulseDirStepper.st",
+   "name": "FB_DL_PulseDirStepper",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 564,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L562) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 141,
+     "detail": "类型未识别：ST_DL_StepperCfg"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 142,
+     "detail": "类型未识别：E_DL_StepperState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 179,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 458,
+     "detail": "类型未识别：ST_DL_StepperCfg"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 565
+  },
+  {
+   "file": "FB_DL_PulseFlowMeter.st",
+   "name": "FB_DL_PulseFlowMeter",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 331,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L325) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 81,
+     "detail": "类型未识别：E_DL_FlowMeterState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 332
+  },
+  {
+   "file": "FB_DL_RfidTagHandler.st",
+   "name": "FB_DL_RfidTagHandler",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 582,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L580) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 134,
+     "detail": "类型未识别：ST_DL_RfidCfg"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 137,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 138,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 139,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 140,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 143,
+     "detail": "类型未识别：E_DL_RfidFsm"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 144,
+     "detail": "类型未识别：E_DL_RfidReq"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 148,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 149,
+     "detail": "类型未识别：STRING(64)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 150,
+     "detail": "类型未识别：ST_DL_RfidTag"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 151,
+     "detail": "类型未识别：ST_DL_RfidDiag"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 477,
+     "detail": "类型未识别：ST_DL_RfidCfg"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 522,
+     "detail": "类型未识别：ST_DL_RfidTag"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 583
+  },
+  {
+   "file": "FB_DL_SafetyLightCurtain.st",
+   "name": "FB_DL_SafetyLightCurtain",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 488,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L482) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 108,
+     "detail": "类型未识别：E_DL_CurtainState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 127,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 128,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 129,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 130,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 131,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 489
+  },
+  {
+   "file": "FB_DL_SerialScanner.st",
+   "name": "FB_DL_SerialScanner",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 400,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L394) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 86,
+     "detail": "类型未识别：STRING(31)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：E_DL_ScannerState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：STRING(255)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 116,
+     "detail": "类型未识别：STRING(1)"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 119,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 120,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 121,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 122,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 123,
+     "detail": "类型未识别：TP"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 401
+  },
+  {
+   "file": "FB_DL_SignalTower.st",
+   "name": "FB_DL_SignalTower",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 565,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L559) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 126,
+     "detail": "类型未识别：E_DL_TowerState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 127,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 128,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 129,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 130,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 131,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 155,
+     "detail": "类型未识别：E_DL_TowerColor"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 156,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 159,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 160,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 161,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 162,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 163,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 164,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 447,
+     "detail": "类型未识别：E_DL_TowerColor"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 448,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 566
+  },
+  {
+   "file": "FB_DL_SingleSolenoidCyl.st",
+   "name": "FB_DL_SingleSolenoidCyl",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 324,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L322) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 77,
+     "detail": "类型未识别：E_DL_CylinderState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：FB_DL_SignalDebounce"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：FB_DL_SignalDebounce"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 99,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 325
+  },
+  {
+   "file": "FB_DL_SoftStarterDrive.st",
+   "name": "FB_DL_SoftStarterDrive",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 312,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L310) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：E_DL_SsdPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 91,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 94,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MAJOR",
+     "code": "VER_MISMATCH",
+     "line": 0,
+     "detail": "文件头 1.0.1 ≠ registry 1.0.0"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 313
+  },
+  {
+   "file": "FB_DL_ThreePointValve.st",
+   "name": "FB_DL_ThreePointValve",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 448,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L442) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：E_DL_MotorValveState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 115,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 116,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 117,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 449
+  },
+  {
+   "file": "FB_DL_VacuumEjector.st",
+   "name": "FB_DL_VacuumEjector",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 346,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L344) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 78,
+     "detail": "类型未识别：E_DL_VacuumState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 95,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 96,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 97,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 99,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：TP"
+    },
+    {
+     "level": "MAJOR",
+     "code": "OUT_NO_ASSIGN",
+     "line": 0,
+     "detail": "输出 bHolding 从未赋值"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 347
+  },
+  {
+   "file": "FB_DL_ValvePartialStrokeTest.st",
+   "name": "FB_DL_ValvePartialStrokeTest",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 75,
+     "detail": "类型未识别：E_DL_Ne107Status"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 76,
+     "detail": "类型未识别：E_DL_PstState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 77,
+     "detail": "类型未识别：E_DL_PstCause"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 84,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 86,
+     "detail": "类型未识别：E_DL_PstState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 87,
+     "detail": "类型未识别：E_DL_PstCause"
+    },
+    {
+     "level": "MAJOR",
+     "code": "OUT_NO_ASSIGN",
+     "line": 0,
+     "detail": "输出 eCause 从未赋值"
+    }
+   ],
+   "verdict": "MAJOR",
+   "lines": 261
+  },
+  {
+   "file": "FB_DL_VfdCapAgingEst.st",
+   "name": "FB_DL_VfdCapAgingEst",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 175
+  },
+  {
+   "file": "FB_DL_VfdDcBusRipple.st",
+   "name": "FB_DL_VfdDcBusRipple",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 343
+  },
+  {
+   "file": "FB_DL_VfdGeneric.st",
+   "name": "FB_DL_VfdGeneric",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 452,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L446) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：E_DL_VfdState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 116,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 117,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 118,
+     "detail": "类型未识别：TP"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 453
+  },
+  {
+   "file": "FB_DL_VfdOutputImbalance.st",
+   "name": "FB_DL_VfdOutputImbalance",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 225
+  },
+  {
+   "file": "FB_DL_VfdPrechargeSeq.st",
+   "name": "FB_DL_VfdPrechargeSeq",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 112,
+     "detail": "类型未识别：E_DL_PrechargePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 119,
+     "detail": "类型未识别：E_DL_PrechargePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 132,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 133,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 134,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 135,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 136,
+     "detail": "类型未识别：TON"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 291
+  },
+  {
+   "file": "I_DL_AnalogSensor.st",
+   "name": "I_DL_AnalogSensor",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 67,
+     "detail": "END_INTERFACE 与最近开块 PROPERTY(L65) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 68
+  },
+  {
+   "file": "I_DL_BarcodeScanner.st",
+   "name": "I_DL_BarcodeScanner",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 84,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L80) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 85
+  },
+  {
+   "file": "I_DL_Cylinder.st",
+   "name": "I_DL_Cylinder",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 81,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L77) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 82
+  },
+  {
+   "file": "I_DL_DeviceHealth.st",
+   "name": "I_DL_DeviceHealth",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 146,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L142) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 147
+  },
+  {
+   "file": "I_DL_FlowMeter.st",
+   "name": "I_DL_FlowMeter",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 82,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L78) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 83
+  },
+  {
+   "file": "I_DL_Gripper.st",
+   "name": "I_DL_Gripper",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 67,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L63) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 68
+  },
+  {
+   "file": "I_DL_LevelSwitch.st",
+   "name": "I_DL_LevelSwitch",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 85,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L81) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 86
+  },
+  {
+   "file": "I_DL_LightCurtain.st",
+   "name": "I_DL_LightCurtain",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 87,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L83) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 88
+  },
+  {
+   "file": "I_DL_MotorDriver.st",
+   "name": "I_DL_MotorDriver",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 77,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L73) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 78
+  },
+  {
+   "file": "I_DL_MotorizedValve.st",
+   "name": "I_DL_MotorizedValve",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 86,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L82) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 87
+  },
+  {
+   "file": "I_DL_PowerMeter.st",
+   "name": "I_DL_PowerMeter",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 142,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L138) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 143
+  },
+  {
+   "file": "I_DL_ProportionalValve.st",
+   "name": "I_DL_ProportionalValve",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 77,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L73) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 78
+  },
+  {
+   "file": "I_DL_RfidReader.st",
+   "name": "I_DL_RfidReader",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 164,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L142) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 130,
+     "detail": "类型未识别：ST_DL_RfidCfg"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 139,
+     "detail": "类型未识别：ST_DL_RfidTag"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 165
+  },
+  {
+   "file": "I_DL_SafetyDoor.st",
+   "name": "I_DL_SafetyDoor",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 90,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L86) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 91
+  },
+  {
+   "file": "I_DL_StepperOpenLoop.st",
+   "name": "I_DL_StepperOpenLoop",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 130,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L126) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：ST_DL_StepperCfg"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 131
+  },
+  {
+   "file": "I_DL_TemperatureZone.st",
+   "name": "I_DL_TemperatureZone",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 80,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L76) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 81
+  },
+  {
+   "file": "I_DL_TowerLight.st",
+   "name": "I_DL_TowerLight",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 149,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L145) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 134,
+     "detail": "类型未识别：E_DL_TowerColor"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 135,
+     "detail": "类型未识别：E_DL_TowerPattern"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 150
+  },
+  {
+   "file": "I_DL_VacuumGenerator.st",
+   "name": "I_DL_VacuumGenerator",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 81,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L77) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 82
+  },
+  {
+   "file": "I_DL_VfdDrive.st",
+   "name": "I_DL_VfdDrive",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 97,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L93) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 98
+  },
+  {
+   "file": "FC_DL_AngleUnitConvert.st",
+   "name": "FC_DL_AngleUnitConvert",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 62,
+     "detail": "类型未识别：E_DL_AngUnit"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 63,
+     "detail": "类型未识别：E_DL_AngUnit"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 125
+  },
+  {
+   "file": "FC_DL_ArrayFindValue.st",
+   "name": "FC_DL_ArrayFindValue",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 120
+  },
+  {
+   "file": "FC_DL_ArraySliceCopy.st",
+   "name": "FC_DL_ArraySliceCopy",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 122
+  },
+  {
+   "file": "FC_DL_BcdToDint.st",
+   "name": "FC_DL_BcdToDint",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 108
+  },
+  {
+   "file": "FC_DL_CubicSplineInterp.st",
+   "name": "FC_DL_CubicSplineInterp",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_UNCLOSED",
+     "line": 27,
+     "detail": "FUNCTION 未闭合"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 218
+  },
+  {
+   "file": "FC_DL_DintToBcd.st",
+   "name": "FC_DL_DintToBcd",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 122
+  },
+  {
+   "file": "FC_DL_DtToTodWrap.st",
+   "name": "FC_DL_DtToTodWrap",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 146
+  },
+  {
+   "file": "FC_DL_FlowUnitConvert.st",
+   "name": "FC_DL_FlowUnitConvert",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：E_DL_FlowUnit"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 83,
+     "detail": "类型未识别：E_DL_FlowUnit"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 154
+  },
+  {
+   "file": "FC_DL_GcdUdintCalc.st",
+   "name": "FC_DL_GcdUdintCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 119
+  },
+  {
+   "file": "FC_DL_HarmonicSpectrumBin.st",
+   "name": "FC_DL_HarmonicSpectrumBin",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_UNCLOSED",
+     "line": 34,
+     "detail": "FUNCTION 未闭合"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 41,
+     "detail": "类型未识别：E_DL_SpectrumWindow"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 199
+  },
+  {
+   "file": "FC_DL_IntervalGapCalc.st",
+   "name": "FC_DL_IntervalGapCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 175
+  },
+  {
+   "file": "FC_DL_PearsonCorrCalc.st",
+   "name": "FC_DL_PearsonCorrCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 205
+  },
+  {
+   "file": "FC_DL_PercentileRank.st",
+   "name": "FC_DL_PercentileRank",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 80,
+     "detail": "类型未识别：E_DL_RankMethod"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 98,
+     "detail": "类型未识别：E_DL_RankMethod"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 217
+  },
+  {
+   "file": "FC_DL_RatioToPwrDb.st",
+   "name": "FC_DL_RatioToPwrDb",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_END_VAR",
+     "line": 36,
+     "detail": "END_VAR 无匹配的 VAR 段"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 140
+  },
+  {
+   "file": "FC_DL_RealToIntSat.st",
+   "name": "FC_DL_RealToIntSat",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 144
+  },
+  {
+   "file": "FC_DL_RunningSumCalc.st",
+   "name": "FC_DL_RunningSumCalc",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：ST_DL_RunningSumState"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 183
+  },
+  {
+   "file": "FC_DL_TrimmedMeanCalc.st",
+   "name": "FC_DL_TrimmedMeanCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 188
+  },
+  {
+   "file": "FB_DL_AxisHomingSeq.st",
+   "name": "FB_DL_AxisHomingSeq",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 457,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 METHOD(L452) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 118,
+     "detail": "类型未识别：E_DL_HomingMode"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 136,
+     "detail": "类型未识别：I_DL_MotionAxis"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 141,
+     "detail": "类型未识别：E_DL_HomingStep"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 164,
+     "detail": "类型未识别：E_DL_HomingStep"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 165,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 166,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 167,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 168,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 169,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 170,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 171,
+     "detail": "类型未识别：F_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 172,
+     "detail": "类型未识别：F_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 173,
+     "detail": "类型未识别：F_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 174,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 458
+  },
+  {
+   "file": "FB_DL_AxisJogController.st",
+   "name": "FB_DL_AxisJogController",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 229,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 METHOD(L195) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 81,
+     "detail": "类型未识别：I_DL_MotionAxis"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 100,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 230
+  },
+  {
+   "file": "FB_DL_AxisRelativeMove.st",
+   "name": "FB_DL_AxisRelativeMove",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 220,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 METHOD(L216) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：I_DL_MotionAxis"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：E_DL_RelStep"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 110,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 221
+  },
+  {
+   "file": "FB_DL_SingleAxis.st",
+   "name": "FB_DL_SingleAxis",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 340,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L338) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 73,
+     "detail": "类型未识别：E_DL_AxisState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 101,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 102,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 103,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 104,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 105,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 341
+  },
+  {
+   "file": "I_DL_ExternalEncoder.st",
+   "name": "I_DL_ExternalEncoder",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 75,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L73) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 76
+  },
+  {
+   "file": "I_DL_MotionAxis.st",
+   "name": "I_DL_MotionAxis",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 201,
+     "detail": "END_INTERFACE 与最近开块 METHOD(L195) 交叉"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 202
+  },
+  {
+   "file": "FB_DL_BatchDosingControl.st",
+   "name": "FB_DL_BatchDosingControl",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 440,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 PROPERTY(L434) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 130,
+     "detail": "类型未识别：E_DL_DosingPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 150,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 151,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 152,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 153,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 154,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 441
+  },
+  {
+   "file": "FB_DL_ModbusPollMaster.st",
+   "name": "FB_DL_ModbusPollMaster",
+   "issues": [
+    {
+     "level": "BLOCK",
+     "code": "SYN_CROSS_END",
+     "line": 530,
+     "detail": "END_FUNCTION_BLOCK 与最近开块 METHOD(L519) 交叉"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 226,
+     "detail": "类型未识别：E_DL_PollState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 241,
+     "detail": "类型未识别：ST_DL_ModbusTxn"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 247,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 248,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 249,
+     "detail": "类型未识别：F_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 481,
+     "detail": "类型未识别：ST_DL_PollItem"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 505,
+     "detail": "类型未识别：ST_DL_ModbusTxn"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 521,
+     "detail": "类型未识别：ST_DL_ModbusTxn"
+    },
+    {
+     "level": "MINOR",
+     "code": "VER_HEADER",
+     "line": 0,
+     "detail": "文件头缺 VERSION: x.y.z"
+    }
+   ],
+   "verdict": "BLOCK",
+   "lines": 531
+  },
+  {
+   "file": "FB_DL_ReworkLotGate.st",
+   "name": "FB_DL_ReworkLotGate",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 107,
+     "detail": "类型未识别：E_DL_ReworkGatePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 114,
+     "detail": "类型未识别：E_DL_ReworkGatePhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 120,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 121,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "MAJOR",
+     "code": "VER_MISMATCH",
+     "line": 0,
+     "detail": "文件头 1.0.1 ≠ registry 1.0.0"
+    }
+   ],
+   "verdict": "MAJOR",
+   "lines": 230
+  },
+  {
+   "file": "FB_DL_UnscramblerSeq.st",
+   "name": "FB_DL_UnscramblerSeq",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 112,
+     "detail": "类型未识别：E_DL_UnscrPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 119,
+     "detail": "类型未识别：E_DL_UnscrPhase"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 124,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 125,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 126,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "MAJOR",
+     "code": "VER_MISMATCH",
+     "line": 0,
+     "detail": "文件头 1.0.1 ≠ registry 1.0.0"
+    }
+   ],
+   "verdict": "MAJOR",
+   "lines": 262
+  },
+  {
+   "file": "FC_DL_TankVolumeHoriCyl.st",
+   "name": "FC_DL_TankVolumeHoriCyl",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 160
+  }
+ ]
+}

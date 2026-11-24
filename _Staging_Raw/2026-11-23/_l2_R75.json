@@ -1,0 +1,202 @@
+[
+ {
+  "file": "DL_Device/FB_DL_BurnerFlameGuard",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_InjectionMoldClampSeq",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Motion/FB_DL_DeltaRobotIk",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Device/FB_DL_VfdStateWordMatch",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_PaintBoothAirBalance",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_WeirFlowCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_WaterChlorineDoseTrim",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_CentrifugeSpinSeq",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_AkimaInterp1D",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Device/FB_DL_VfdCtrlWordBuild",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FB_DL_ManualOverride",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Device/FB_DL_IoLinkPortDiag",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Algo/FB_DL_PeltierTempCtrl",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Motion/FC_DL_CamTableInterp",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_CabsComplexCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_Exp10Calc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_SpeedUnitConvert",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/E_DL_ControlModeSel",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FB_DL_FirstOrderImpResp",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FC_DL_DwRealReinterp",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FB_DL_DualWindowBandCmp",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_QuartileCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_PowerFactorCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Device/ST_DL_EtSlaveDiagBase",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Device/ST_DL_EtSyncUnitDiagBase",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FB_DL_DitherSignalGen",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_MathData/FC_DL_MoistureContentCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FB_DL_ParamSnapshotRestore",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FB_DL_SignalCrossbar8",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FC_DL_WorkdayCalendarCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Base/FB_DL_SmokeDetZoneMon",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_VocVentTrim",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Motion/FC_DL_GearRatioCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Motion/FB_DL_CrankKinFwd",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Motion/FC_DL_BeltLengthCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Algo/FC_DL_OvershootPctCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Algo/FC_DL_SettleTimeCalc",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_DryerExhaustHumidityCtl",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_WeightClassifySort",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ },
+ {
+  "file": "DL_Process/FB_DL_ChamberPurgeDry",
+  "rc": 0,
+  "out": "接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中\nPASS=1 FAIL=0 TOTAL=1\n"
+ }
+]

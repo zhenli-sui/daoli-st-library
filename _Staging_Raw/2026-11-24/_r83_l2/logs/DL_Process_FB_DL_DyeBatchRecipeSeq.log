@@ -1,0 +1,3 @@
+接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中
+FAIL FB_DL_DyeBatchRecipeSeq.st               E037 Invalid assignment: cannot assign 'ARRAY[0..3] OF LREAL' to 'VARIABLE LENGTH ARRAY'
+PASS=0 FAIL=1 TOTAL=1

@@ -1,0 +1,594 @@
+(*==============================================================================
+ * 组件名称 (Component)  : FB_DL_RfidTagHandler
+ * 所属子库 (Sublibrary) : DL_Device
+ * 当前版本 (Version)    : 1.0.1
+ * 组件分类 (Category)   : 功能块（FUNCTION_BLOCK）· 设备实现件 · 状态机
+ * 兼容性   (Platform)   : CODESYS 3.5 / TwinCAT 3 / 汇川 InoProShop / Schneider
+ *                         Machine Expert；仅 Standard.library 的 TON 与 R_TRIG
+ * 功能描述 (Function)   : I_DL_RfidReader 的标准实现件。以「请求 到 执行 到
+ *                         应答」三拍握手驱动外部读写头（硬件经引脚注入就绪、
+ *                         完成、报错、标签号、数据区、原始错误码，零硬编码
+ *                         地址），内置单指令互斥、超时转重试转耗尽报错链、
+ *                         同标签重复读抑制窗、写后回读校验、读写计数与诊断。
+ * 双类故障 (Fault split) : 借 AOI 的「组态类与工艺类故障分离」思想，本块把
+ *                         故障分两段：
+ *                         组态与使用类 16#0003_02F0 / 02F1（忙时重入、写入内容
+ *                         非法、超时重试耗尽）表示参数或调用方式有问题，
+ *                         HMI 应提示改组态或查线缆；
+ *                         工艺类 16#0003_02F2 / 02F3（读写头报错重试耗尽、
+ *                         写后回读不符、非法状态兜底）表示硬件或工件有问题，
+ *                         HMI 应提示叫维修。
+ *                         两类同置 bError，但码段分开，便于报警分级。
+ * 设计要点 (Key notes)  : ① 单指令互斥：忙态再调用读写方法一律返回 FALSE 并
+ *                           置 02F0，不排队（硬件本身互斥，排队会让上层误判）；
+ *                         ② 无标签是业务态（bNoTag）不是故障：不置 bError、
+ *                           不计重试次数，HMI 直接提示「请放标签」；
+ *                         ③ 计时器栅极复位范式：TON 复位只能靠 IN 拉低一整拍，
+ *                           故用「栅极加再武装」两个标志实现，禁止用清 ET 的
+ *                           厂商写法（ET 不可写才是跨平台共识）；
+ *                         ④ 阈值三源优先级写死：常量域（最终兜底）低于引脚，
+ *                           引脚低于 Init 注入的组态；同一字段只有一个方向，
+ *                           不出现隐式切换；
+ *                         ⑤ 单拍输出（bReadDoneOk / bWriteDoneOk）在主体首行
+ *                           预清零（R25 律①）；bNoTag 与 Tag 快照为保持型
+ *                           （R27），直到下一次成功或新指令开始。
+ * 开源溯源 (Origin)     : tcopen-component / rockwell-aoi。参考 TcOpen 公开组件
+ *                         库的契约实现分离与状态只读属性思想，以及 Rockwell AOI
+ *                         公开手册所述参数分段与「程序类故障与操作类故障分离」
+ *                         的组织方式。仅借组织思想与分类，状态机、码位、结构体
+ *                         布局 100% 自有 clean-room，不构成衍生作品。
+ * 依赖     (Depends)    : I_DL_RfidReader（本文件实现其全部 7 个成员）
+ * 故障码表 (Error codes):
+ *   16#0003_0138【信息级】同标签重复读被抑制窗拦下
+ *   16#0003_0139【信息级】指令超时或抑制窗参数越界被钳位
+ *   16#0003_013A【信息级】重试次数越界被钳位
+ *   16#0003_02F0【故障级·组态使用类】未初始化、忙时重入或写入内容非法
+ *   16#0003_02F1【故障级·组态类】超时重试耗尽
+ *   16#0003_02F2【故障级·工艺类】读写头报错重试耗尽
+ *   16#0003_02F3【故障级·工艺类】写后回读校验不符或非法状态兜底
+ * 验收向量 (Acceptance) :
+ *   V1 读链：就绪后调 ReadTag → 请求下发、忙态 → 硬件完成一拍并给出标签号
+ *      → 读成功脉冲单拍、标签快照更新、读计数加 1
+ *   V2 防重复读：抑制窗内再读到同一标签 → 不产生成功脉冲，置 0138；
+ *      超过窗口后同一标签可再次成功
+ *   V3 无标签：完成但标签号为空 → bNoTag 为 TRUE、bError 为 FALSE、
+ *      重试计数不增不减
+ *   V4 超时重试链：不给完成信号，重试上限 2 → 共 3 次下发后锁 02F1
+ *   V5 写校验：写入后回读内容不一致 → 锁 02F3，写成功脉冲不产生
+ *   V6 忙时重入：执行中再调读方法 → 返回 FALSE 并置 02F0
+ *   V7 保持语义：读成功后停 10 拍，标签快照仍有效且内容不变
+ * 红线自检 (Redline)    : R1 零全局变量表与外部变量引用 ｜ R2 零物理地址直写
+ *                         R3 纯 IEC 61131-3 ｜ R4 字符串判等有注释说明（非浮点）、
+ *                         计时器有界、无除法 ｜ R5 全变量中英双语同行注释
+ *                         R6 ENUM 加 CASE 加 ELSE 兜底 ｜ R7 TON 与 R_TRIG 全部
+ *                         在 CASE 之外无条件刷新
+ * 修订历史 (Revision)   :
+ *   2026-11-15  v1.0.0  首版入库（Round 10 · T2-6 Rockwell AOI 开组）
+ *   2026-11-15  v1.0.1  R10 终审修复两处：
+ *                       R-FIX-1【中等】uHwErrorCode 入参声明后从未使用，规格
+ *                       要求的「读写头原始错误码透传进诊断」实际缺失；改为在
+ *                       硬件报错拍写入诊断，并让段 9 的码刷新仅在块级码非零时
+ *                       发生，避免每拍把透传值清成 0；
+ *                       R-FIX-2【注释级】由此同步了诊断字段的真实刷新规则。
+ * 规格偏离登记 (Deviations):
+ *   D1 接口方法 Init 的 VAR_IN_OUT 形参名 stCfg 与本块 VAR_IN_OUT 引脚 stCfg
+ *      同名（规格书两处都叫 stCfg），方法体内形参遮蔽同名引脚且方法体不引用
+ *      形参，实际组态以块级引脚为准。改形参名会破坏 I_DL_RfidReader 契约，
+ *      故按「契约优先」保留，现场联调务必把同一份组态实例同时接到引脚与
+ *      Init 调用上（同一实例时二者天然一致）。
+ *   D2 bHwReq / bHwWr 由规格书的内部 VAR 提为 VAR_OUTPUT：它们是送协议层或
+ *      IO 层的指令电平，必须可被外部观测与接线，属向后兼容的可见性扩展。
+ *============================================================================*)
+
+(*------------------------------------------------------------------------------
+ * 枚举: E_DL_RfidFsm（归属功能块 FB_DL_RfidTagHandler，与其同文件发布）
+ * 内部五态，经属性 State 按写死的映射表折算为接口的五态
+ *-----------------------------------------------------------------------------*)
+TYPE E_DL_RfidFsm :
+(
+    eIdle   := 0,     // 待机：可受理请求 / Idle, accepts requests
+    eWaitHw := 10,    // 已下发，等完成、报错或超时 / Command issued, waiting for done, error or timeout
+    eVerify := 20,    // 写后回读校验 / Read-back verification after a write
+    eRetry  := 30,    // 重试退避，单拍停留后重新下发 / Retry back-off, one cycle dwell then re-issue
+    eFault  := 99     // 故障锁定，仅复位可退 / Fault latched, only reset leaves
+);
+END_TYPE
+
+(*------------------------------------------------------------------------------
+ * 枚举: E_DL_RfidReq（挂起请求类型，单发登记，消费即清）
+ *-----------------------------------------------------------------------------*)
+TYPE E_DL_RfidReq :
+(
+    eNone  := 0,      // 无挂起请求 / No pending request
+    eRead  := 1,      // 挂起读标签请求 / Pending read request
+    eWrite := 2       // 挂起写数据区请求 / Pending write request
+);
+END_TYPE
+
+FUNCTION_BLOCK FB_DL_RfidTagHandler IMPLEMENTS I_DL_RfidReader
+VAR_INPUT
+    bEnable      : BOOL := TRUE;      // 使能，FALSE 转离线并拒绝全部方法 [-] / Enable, FALSE goes offline and rejects every method
+    bHwReady     : BOOL;              // 读写头就绪反馈，由协议层或 IO 层注入 [-] / Reader ready feedback injected by the transport layer
+    bHwDone      : BOOL;              // 本次指令执行完成，单拍或电平，内部取上升沿 [-] / Command done feedback, edge detected internally
+    bHwError     : BOOL;              // 读写头报错反馈 [-] / Reader error feedback
+    sHwTagId     : STRING(64);        // 读回的标签唯一号，空串表示视野内无标签 [ASCII] / Tag identifier read back, empty means no tag
+    sHwData      : STRING(64);        // 读回的数据区内容 [ASCII 或十六进制] / Data area content read back
+    uHwErrorCode : UDINT;             // 读写头原始错误码，透传进诊断不改语义 [代码] / Raw reader error code forwarded into diagnostics
+    tCmdTimeout  : TIME := T#500MS;   // 单指令超时，域 50 毫秒到 5 秒 [毫秒] / Per-command timeout, 50 ms to 5 s
+    nMaxRetry    : INT := 2;          // 重试次数，域 0 到 5 [次] / Retry count, 0 to 5
+    bDupFilterEn : BOOL := TRUE;      // 同标签重复读抑制使能 [-] / Duplicate-read suppression enable
+    tDupWindow   : TIME := T#2S;      // 重复读抑制窗，域 100 毫秒到 60 秒 [毫秒] / Duplicate suppression window
+END_VAR
+VAR_OUTPUT
+    bReadDoneOk  : BOOL;              // 读成功，单拍脉冲 [-] / Read succeeded, single-cycle pulse
+    bWriteDoneOk : BOOL;              // 写成功，单拍脉冲 [-] / Write succeeded, single-cycle pulse
+    bNoTag       : BOOL;              // 视野内无标签，保持型业务态 [-] / No tag in field, holding business state
+    bBusy        : BOOL;              // 指令执行中 [-] / Command in progress
+    bError       : BOOL;              // 故障锁存，组态类与工艺类同置，码区分 [-] / Fault latch, both classes set it, the code tells them apart
+    uErrorId     : UDINT;             // 事件码，0 = 无事件 / Event code, 0 = no event
+    nRetryCnt    : INT;               // 本次指令已重试次数 [次] / Retries already spent on the current command
+    bHwReq       : BOOL;              // 硬件请求电平，送协议层或 IO 层 [-] / Hardware request level towards the transport layer
+    bHwWr        : BOOL;              // 硬件读写方向，FALSE 为读，TRUE 为写 [-] / Direction towards the hardware, FALSE reads, TRUE writes
+END_VAR
+VAR_IN_OUT
+    stCfg        : ST_DL_RfidCfg;     // 组态，调用方持有，本块只读使用 [结构] / Configuration owned by the caller, read-only here
+END_VAR
+VAR
+    fbTrigDone   : R_TRIG;            // 硬件完成沿检测，CASE 之外无条件刷新 [-] / Rising edge detector for the hardware done signal
+    fbTmo        : TON;               // 单指令超时计时，CASE 之外无条件刷新 [-] / Command timeout timer refreshed outside the CASE
+    fbDupTmo     : TON;               // 重复读抑制窗计时，栅极复位 [-] / Duplicate suppression window timer with gate reset
+    fbAge        : TON;               // 通信年龄计时，成功时栅极复位 [-] / Communication age timer reset on success
+    bInit        : BOOL := FALSE;     // 首扫标志，初值 FALSE，判据 NOT bInit（R19 范式）[-] / First-scan flag
+    bInitDone    : BOOL;              // 已收到 Init 请求且组态已装载 [-] / TRUE after a successful Init request
+    eState       : E_DL_RfidFsm := E_DL_RfidFsm.eIdle;  // 内部主状态机 / Internal main state machine
+    eReq         : E_DL_RfidReq := E_DL_RfidReq.eNone;  // 挂起请求类型 / Pending request type
+    bReqInit     : BOOL;              // Init 方法登记的单发请求 [-] / Single-shot request registered by the Init method
+    bReqReset    : BOOL;              // Reset 方法登记的单发请求 [-] / Single-shot request registered by the Reset method
+    bTmoIn       : BOOL;              // 超时定时器输入条件，先算后调以免条件调用实例 [-] / Timer input condition computed before the unconditional call
+    sLastTagId   : STRING(64);        // 上次成功读取的标签号，重复抑制比对源 [ASCII] / Last accepted tag identifier, the comparison source
+    sWrBuffer    : STRING(64);        // 待写内容副本，防止调用方中途改动 [ASCII] / Latched write payload, immune to caller changes
+    stTag        : ST_DL_RfidTag;     // 当前标签快照，属性出口 [-] / Current tag snapshot served by the Tag property
+    stDiag       : ST_DL_RfidDiag;    // 诊断结构，属性出口 [-] / Diagnostic structure served by the Diag property
+    bDupGate     : BOOL := TRUE;      // 重复窗计时栅极，接受标签后拉低一拍 [-] / Gate of the duplicate timer, pulled low for one cycle on accept
+    bDupRearm    : BOOL;              // 重复窗栅极再武装标志 [-] / Re-arm flag of the duplicate timer gate
+    bAgeGate     : BOOL := TRUE;      // 通信年龄计时栅极，成功后拉低一拍 [-] / Gate of the age timer, pulled low for one cycle on success
+    bAgeRearm    : BOOL;              // 通信年龄栅极再武装标志 [-] / Re-arm flag of the age timer gate
+    tTmoUse      : TIME := T#500MS;   // 生效超时（已仲裁与钳位）[毫秒] / Effective timeout after arbitration and clamping
+    tDupUse      : TIME := T#2S;      // 生效抑制窗（已仲裁与钳位）[毫秒] / Effective suppression window after arbitration and clamping
+    nRetryUse    : INT := 2;          // 生效重试次数（已仲裁与钳位）[次] / Effective retry count after arbitration and clamping
+    bDupUse      : BOOL := TRUE;      // 生效重复抑制使能 [-] / Effective duplicate suppression enable
+    bLastTimeout : BOOL;              // 上次失败是否为超时，用于区分耗尽码 [-] / TRUE when the last failure was a timeout
+END_VAR
+VAR CONSTANT
+    DL_RFID_TMO_MIN   : TIME := T#50MS;    // 超时下限 [毫秒] / Timeout lower bound
+    DL_RFID_TMO_MAX   : TIME := T#5S;      // 超时上限 [毫秒] / Timeout upper bound
+    DL_RFID_DUP_MIN   : TIME := T#100MS;   // 抑制窗下限 [毫秒] / Suppression window lower bound
+    DL_RFID_DUP_MAX   : TIME := T#60S;     // 抑制窗上限 [毫秒] / Suppression window upper bound
+    DL_RFID_RETRY_MAX : INT  := 5;         // 重试上限 [次] / Retry upper bound
+    DL_RFID_RETRY_MIN : INT  := 0;         // 重试下限，0 表示不重试 [次] / Retry lower bound, zero means no retry
+    DL_STR_MAX        : INT  := 64;        // 字符串域长度上限，与 STRING(64) 一致 [字符] / String capacity, kept in sync with STRING(64)
+    DL_RFID_AGE_MAX   : TIME := T#24H;     // 通信年龄计时上限，超时后停在终点值 [毫秒] / Age timer span ceiling
+END_VAR
+
+METHOD Init : BOOL
+VAR_IN_OUT
+    stCfg : ST_DL_RfidCfg;    // 组态结构，调用方持有，本方法只登记不阻塞 [结构] / Configuration injected by the caller
+END_VAR
+Init := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 失能状态下拒绝初始化
+    RETURN;
+END_IF
+bReqInit := TRUE;                            // 只登记，装载在主体段 6 执行
+Init     := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：ReadTag（单发登记，忙时拒绝且不排队）
+ *      Method ReadTag: single-shot registration, rejected while busy, never queued
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD ReadTag : BOOL
+VAR_INPUT
+END_VAR
+ReadTag := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF NOT bInitDone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 未初始化：拒绝
+    RETURN;
+END_IF
+IF eState <> E_DL_RfidFsm.eIdle THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝，不排队
+    RETURN;
+END_IF
+IF eReq <> E_DL_RfidReq.eNone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 已有挂起请求：拒绝，避免覆盖
+    RETURN;
+END_IF
+eReq    := E_DL_RfidReq.eRead;
+ReadTag := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：WriteTag（单发登记 + 内容副本锁存）
+ *      Method WriteTag: single-shot registration with a latched payload copy
+ *      字符串长度越界：STRING(64) 已由编译器保证长度，故本分支退化为
+ *      「空内容拒绝」，并在头注释与本段注释双重声明（R11 留档）
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD WriteTag : BOOL
+VAR_IN_OUT
+    stTagIn : ST_DL_RfidTag;    // 待写内容，本方法立即拷贝到内部缓冲 [结构] / Payload latched into the internal buffer
+END_VAR
+WriteTag := FALSE;
+IF NOT bEnable THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF NOT bInitDone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF eState <> E_DL_RfidFsm.eIdle THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 忙时重入：拒绝
+    RETURN;
+END_IF
+IF eReq <> E_DL_RfidReq.eNone THEN
+    stDiag.uLastErrorId := 16#0003_02F0;
+    RETURN;
+END_IF
+IF stTagIn.sData = '' THEN
+    stDiag.uLastErrorId := 16#0003_02F0;    // 空内容等同于写入长度非法
+    RETURN;
+END_IF
+sWrBuffer := stTagIn.sData;                  // 立即拷贝，防调用方中途改动
+eReq      := E_DL_RfidReq.eWrite;
+WriteTag  := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：Reset（故障态下唯一受理的方法）
+ *      Method Reset: the only method accepted in the fault state
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+METHOD Reset : BOOL
+VAR_INPUT
+END_VAR
+Reset     := TRUE;
+bReqReset := TRUE;
+
+(*------------------------------------------------------------------------------
+ * 属性实现（R22：接口成员一律只读 PROPERTY GET）
+ *      Property implementations, read-only GET as required by the interface
+ *-----------------------------------------------------------------------------*)
+    END_METHOD
+
+(*------------------------------------------------------------------------------
+ * 段 1｜单拍输出预清零（R25 律①）：两个成功脉冲必须在主体最前部清零
+ *      Single-cycle output pre-clear: both success pulses cleared at the very top
+ *-----------------------------------------------------------------------------*)
+bReadDoneOk  := FALSE;
+bWriteDoneOk := FALSE;
+
+(*------------------------------------------------------------------------------
+ * 段 2｜完成沿检测（R7 红线）：实例在 CASE 之外无条件刷新
+ *      Done edge detection, instance refreshed outside any branch
+ *-----------------------------------------------------------------------------*)
+fbTrigDone(CLK := bHwDone);
+
+(*------------------------------------------------------------------------------
+ * 段 3｜首扫初始化（R19 唯一合法范式）
+ *      First-scan initialisation with the canonical R19 pattern
+ *-----------------------------------------------------------------------------*)
+IF NOT bInit THEN
+    eState     := E_DL_RfidFsm.eIdle;
+    eReq       := E_DL_RfidReq.eNone;
+    nRetryCnt  := 0;
+    bError     := FALSE;
+    uErrorId   := 16#0000_0000;
+    bNoTag     := FALSE;
+    bInitDone  := FALSE;
+    sLastTagId := '';
+    sWrBuffer  := '';
+    stTag.sTagId := '';
+    stTag.sData  := '';
+    stTag.uPage  := 0;
+    stTag.nRssi  := 0;
+    stTag.bValid := FALSE;
+    stDiag.uLastErrorId := 0;
+    stDiag.nCommRetry   := 0;
+    stDiag.nReadTotal   := 0;
+    stDiag.nWriteTotal  := 0;
+    stDiag.bAntennaOk   := FALSE;
+    stDiag.tLastComm    := T#0S;
+    bInit      := TRUE;                  // 首扫只做一次
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 4｜组态仲裁与钳位（三源优先级写死：常量域 低于 引脚 低于 Init 组态）
+ *      Configuration arbitration with a fixed three-level priority
+ *      同一字段只沿一个方向回落，不出现隐式切换；越界一律钳位并置 0139 或 013A
+ *-----------------------------------------------------------------------------*)
+IF bInitDone AND (stCfg.tTimeout >= DL_RFID_TMO_MIN) AND (stCfg.tTimeout <= DL_RFID_TMO_MAX) THEN
+    tTmoUse := stCfg.tTimeout;
+ELSE
+    tTmoUse := tCmdTimeout;
+END_IF
+IF tTmoUse < DL_RFID_TMO_MIN THEN
+    tTmoUse  := DL_RFID_TMO_MIN;
+    uErrorId := 16#0003_0139;
+ELSIF tTmoUse > DL_RFID_TMO_MAX THEN
+    tTmoUse  := DL_RFID_TMO_MAX;
+    uErrorId := 16#0003_0139;
+END_IF
+
+IF bInitDone AND (stCfg.tDupWindow >= DL_RFID_DUP_MIN) AND (stCfg.tDupWindow <= DL_RFID_DUP_MAX) THEN
+    tDupUse := stCfg.tDupWindow;
+ELSE
+    tDupUse := tDupWindow;
+END_IF
+IF tDupUse < DL_RFID_DUP_MIN THEN
+    tDupUse  := DL_RFID_DUP_MIN;
+    uErrorId := 16#0003_0139;
+ELSIF tDupUse > DL_RFID_DUP_MAX THEN
+    tDupUse  := DL_RFID_DUP_MAX;
+    uErrorId := 16#0003_0139;
+END_IF
+
+IF bInitDone THEN
+    nRetryUse := stCfg.nMaxRetry;
+ELSE
+    nRetryUse := nMaxRetry;
+END_IF
+IF nRetryUse < DL_RFID_RETRY_MIN THEN
+    nRetryUse := DL_RFID_RETRY_MIN;
+    uErrorId  := 16#0003_013A;
+ELSIF nRetryUse > DL_RFID_RETRY_MAX THEN
+    nRetryUse := DL_RFID_RETRY_MAX;
+    uErrorId  := 16#0003_013A;
+END_IF
+
+IF bInitDone THEN
+    bDupUse := stCfg.bDupFilterEn;
+ELSE
+    bDupUse := bDupFilterEn;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 5｜计时器无条件周期刷新（红线第 7 条）：三个 TON 全部在 CASE 之外
+ *      All three timers refreshed outside the CASE, mandatory by the red line
+ *      单指令超时：IN 条件先算进 bTmoIn，再无条件调用实例，禁止把调用写进 IF
+ *-----------------------------------------------------------------------------*)
+IF eState = E_DL_RfidFsm.eWaitHw THEN
+    bTmoIn := TRUE;
+ELSE
+    bTmoIn := FALSE;
+END_IF
+fbTmo(IN := bTmoIn, PT := tTmoUse);
+
+(* 重复抑制窗：栅极拉低一整拍才能复位 TON，再武装标志在调用之后置回高电平 *)
+fbDupTmo(IN := bDupGate AND bDupUse, PT := tDupUse);
+IF bDupRearm THEN
+    bDupRearm := FALSE;
+    bDupGate  := TRUE;
+END_IF
+
+(* 通信年龄：成功一次即复位并重新计时，用于诊断「多久没读到东西」 *)
+fbAge(IN := bAgeGate, PT := DL_RFID_AGE_MAX);
+IF bAgeRearm THEN
+    bAgeRearm := FALSE;
+    bAgeGate  := TRUE;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 6｜单发请求消费（Init 与 Reset）：置位 到 消费 到 复位，三律齐全
+ *      Consume the Init and Reset single-shot requests, place, consume, clear
+ *-----------------------------------------------------------------------------*)
+IF bReqInit THEN
+    bReqInit := FALSE;                       // 先复位标志，避免跨拍泄漏
+    IF bEnable THEN
+        bInitDone           := TRUE;
+        stDiag.bAntennaOk   := TRUE;         // 天线由组态确认；实际自检由硬件层给
+        stDiag.uLastErrorId := 0;
+        uErrorId            := 16#0000_0000;
+    END_IF
+END_IF
+
+IF bReqReset THEN
+    bReqReset := FALSE;                      // 先复位标志
+    bError    := FALSE;
+    uErrorId  := 16#0000_0000;
+    nRetryCnt := 0;
+    bNoTag    := FALSE;
+    bHwReq    := FALSE;
+    eReq      := E_DL_RfidReq.eNone;
+    eState    := E_DL_RfidFsm.eIdle;
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 7｜失能拦截（每拍最先判）：清请求与硬件请求，故障锁存保留
+ *      Disable interception: clear requests and the hardware request, keep the latch
+ *-----------------------------------------------------------------------------*)
+IF NOT bEnable THEN
+    bHwReq := FALSE;
+    bBusy  := FALSE;
+    eReq   := E_DL_RfidReq.eNone;
+    IF eState <> E_DL_RfidFsm.eFault THEN
+        eState := E_DL_RfidFsm.eIdle;
+    END_IF
+END_IF
+
+(*------------------------------------------------------------------------------
+ * 段 8｜主状态机（ENUM 加 CASE，含 ELSE 兜底）
+ *      Main state machine with an ELSE fallback branch
+ *-----------------------------------------------------------------------------*)
+CASE eState OF
+    E_DL_RfidFsm.eIdle:
+        bHwReq := FALSE;
+        IF bEnable AND bHwReady AND bInitDone AND (eReq <> E_DL_RfidReq.eNone) THEN
+            IF eReq = E_DL_RfidReq.eWrite THEN
+                bHwWr := TRUE;               // 写方向
+            ELSE
+                bHwWr := FALSE;              // 读方向
+            END_IF
+            bHwReq       := TRUE;            // 下发请求（电平，硬件层取上升沿）
+            nRetryCnt    := 0;               // 新指令重试计数清零
+            bNoTag       := FALSE;           // 新指令开始清业务态
+            bLastTimeout := FALSE;
+            eState       := E_DL_RfidFsm.eWaitHw;
+        END_IF
+
+    E_DL_RfidFsm.eWaitHw:
+        bHwReq := TRUE;                      // 保持请求电平直到有结论
+        IF fbTrigDone.Q THEN
+            IF bHwError THEN
+                (* 读写头报错：走重试链，耗尽按工艺类 02F2 报
+                   硬件原始码在此处原样透传进诊断（不改语义），现场据此查手册；
+                   耗尽后 uLastErrorId 会记块级码 02F2，原始码仍可经 uHwErrorCode
+                   引脚读取，两级信息都不丢 *)
+                stDiag.uLastErrorId := uHwErrorCode;
+                bLastTimeout := FALSE;
+                bHwReq       := FALSE;
+                eState       := E_DL_RfidFsm.eRetry;
+            ELSIF sHwTagId = '' THEN
+                (* 无标签：业务态，不计重试、不置故障 *)
+                bNoTag := TRUE;
+                eReq   := E_DL_RfidReq.eNone;
+                bHwReq := FALSE;
+                eState := E_DL_RfidFsm.eIdle;
+            ELSIF eReq = E_DL_RfidReq.eRead THEN
+                IF bDupUse AND (sHwTagId = sLastTagId) AND (NOT fbDupTmo.Q) THEN
+                    (* 抑制窗内同一标签：丢弃结果，只记信息级码 *)
+                    uErrorId := 16#0003_0138;
+                    eReq     := E_DL_RfidReq.eNone;
+                    bHwReq   := FALSE;
+                    eState   := E_DL_RfidFsm.eIdle;
+                ELSE
+                    (* 正常读取：锁存快照并置单拍成功脉冲 *)
+                    stTag.sTagId := sHwTagId;
+                    stTag.sData  := sHwData;
+                    stTag.uPage  := 0;
+                    stTag.nRssi  := 0;
+                    stTag.bValid := TRUE;
+                    sLastTagId   := sHwTagId;
+                    stDiag.nReadTotal := stDiag.nReadTotal + 1;
+                    bReadDoneOk  := TRUE;
+                    bDupGate     := FALSE;   // 抑制窗从零重新计时
+                    bDupRearm    := TRUE;
+                    bAgeGate     := FALSE;   // 通信年龄从零重新计时
+                    bAgeRearm    := TRUE;
+                    eReq         := E_DL_RfidReq.eNone;
+                    bHwReq       := FALSE;
+                    eState       := E_DL_RfidFsm.eIdle;
+                END_IF
+            ELSE
+                (* 写请求完成：转回读校验态，不在本态直接报成功 *)
+                bHwWr  := TRUE;
+                eState := E_DL_RfidFsm.eVerify;
+            END_IF
+        ELSIF fbTmo.Q THEN
+            (* 超时：走重试链，耗尽按组态类 02F1 报 *)
+            bLastTimeout := TRUE;
+            bHwReq       := FALSE;
+            eState       := E_DL_RfidFsm.eRetry;
+        END_IF
+
+    E_DL_RfidFsm.eVerify:
+        (* 写后回读校验：字符串判等合法（字符串不是浮点数，不存在容差问题） *)
+        bHwReq := FALSE;
+        IF sHwData = sWrBuffer THEN
+            stTag.sData  := sWrBuffer;
+            stTag.bValid := TRUE;
+            stDiag.nWriteTotal := stDiag.nWriteTotal + 1;
+            bWriteDoneOk := TRUE;
+            bAgeGate     := FALSE;
+            bAgeRearm    := TRUE;
+            eReq         := E_DL_RfidReq.eNone;
+            eState       := E_DL_RfidFsm.eIdle;
+        ELSE
+            uErrorId := 16#0003_02F3;        // 工艺类：回读不符
+            bError   := TRUE;
+            eReq     := E_DL_RfidReq.eNone;
+            eState   := E_DL_RfidFsm.eFault;
+        END_IF
+
+    E_DL_RfidFsm.eRetry:
+        (* 退避单拍：请求电平拉低一拍，重新下发时自然形成新的上升沿 *)
+        bHwReq    := FALSE;
+        nRetryCnt := nRetryCnt + 1;
+        IF nRetryCnt > nRetryUse THEN
+            IF bLastTimeout THEN
+                uErrorId := 16#0003_02F1;    // 组态类：超时重试耗尽
+            ELSE
+                uErrorId := 16#0003_02F2;    // 工艺类：读写头报错重试耗尽
+            END_IF
+            bError := TRUE;
+            eReq   := E_DL_RfidReq.eNone;
+            eState := E_DL_RfidFsm.eFault;
+        ELSE
+            eState := E_DL_RfidFsm.eWaitHw;  // 重新下发，请求域沿用锁存值
+        END_IF
+
+    E_DL_RfidFsm.eFault:
+        (* 故障锁定：请求电平清零，退出只能靠 Reset 方法（段 6 已消费） *)
+        bHwReq := FALSE;
+
+    ELSE
+        (* 非法枚举值兜底 *)
+        eState   := E_DL_RfidFsm.eFault;
+        uErrorId := 16#0003_02F3;
+        bError   := TRUE;
+        bHwReq   := FALSE;
+END_CASE
+
+(*------------------------------------------------------------------------------
+ * 段 9｜派生输出与诊断每拍重写（R27）
+ *      Derived outputs and diagnostics rewritten every cycle
+ *-----------------------------------------------------------------------------*)
+IF eState = E_DL_RfidFsm.eFault THEN
+    bError := TRUE;              // 故障锁存：进入故障态即置位，退出只能靠 Reset
+END_IF
+
+IF (eState = E_DL_RfidFsm.eWaitHw) OR (eState = E_DL_RfidFsm.eVerify) OR (eState = E_DL_RfidFsm.eRetry) THEN
+    bBusy := TRUE;
+ELSE
+    bBusy := FALSE;
+END_IF
+
+stDiag.nCommRetry   := nRetryCnt;
+IF uErrorId <> 16#0000_0000 THEN
+    stDiag.uLastErrorId := uErrorId;   // 仅在块级码非零时刷新，避免把透传的硬件原始码清掉
+END_IF
+stDiag.tLastComm    := fbAge.ET;
+
+(*------------------------------------------------------------------------------
+ * 方法实现：Init（单发登记 + 组态注入）
+ *      Method Init: single-shot registration with configuration injection
+ *-----------------------------------------------------------------------------*)
+
+
+
+
+PROPERTY State : E_DL_RfidState
+(* 映射写死，禁止就近映射：无标签业务态优先级最高，其次故障，其次离线，最后忙态 *)
+IF bNoTag THEN
+    State := E_DL_RfidState.eNoTag;
+ELSIF eState = E_DL_RfidFsm.eFault THEN
+    State := E_DL_RfidState.eError;
+ELSIF (NOT bEnable) OR (NOT bInitDone) OR (NOT bHwReady) THEN
+    State := E_DL_RfidState.eOffline;
+ELSIF eState = E_DL_RfidFsm.eIdle THEN
+    State := E_DL_RfidState.eReady;
+ELSE
+    State := E_DL_RfidState.eBusy;
+END_IF
+
+PROPERTY Tag : ST_DL_RfidTag
+Tag := stTag;                    // 保持型快照（R27），直到下次成功读取覆盖
+
+PROPERTY Diag : ST_DL_RfidDiag
+Diag := stDiag;                  // 诊断整体回读，等价于 AOI 的 InOut 段封装
+END_FUNCTION_BLOCK

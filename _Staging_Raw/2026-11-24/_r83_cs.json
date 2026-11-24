@@ -1,0 +1,634 @@
+[
+ {
+  "fam": "F2",
+  "query": "dyeing extension:st",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/st/types_dmix.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "dyeing extension:st",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/build/plc_cell_openplc.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "NikolaySuslov/croquet-squeak",
+  "path": "Croquet-Objects.package/TPortal.class/instance/testEnter.avatar..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "NikolaySuslov/croquet-squeak",
+  "path": "Croquet-Objects.package/TPortal3D.class/instance/testEnter.avatar..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "NikolaySuslov/croquet-squeak",
+  "path": "Croquet-Objects.package/TAvatarUser.class/instance/testEnter.portal..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "hpi-swa-lab/SandBlocks-BlocksToTheRescue",
+  "path": "BlocksToTheRescue-Blocks.package/BTRState.class/instance/postEnter.via..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "tkucic/brOscatLib",
+  "path": "oscatNetw/GET_WAN_IP.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "GsSqueak/GsSqueak",
+  "path": "deprecated/SqueakImport/Morphic.package/BorderedSubpaneDividerMorph.class/instance/firstEnter..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "NikolaySuslov/croquet-squeak",
+  "path": "Croquet-Objects.package/TSpace.class/instance/renderSpace..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "tkucic/brOscatLib",
+  "path": "oscatNetw/IP2GEO.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "tkucic/brOscatLib",
+  "path": "oscatNetw/HTTP_GET.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "cangkui/AutoPLC",
+  "path": "data/rag_data/st/st_case_code/GET_WAN_IP.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "tkucic/brOscatLib",
+  "path": "oscatNetw/WORLD_WEATHER.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "DynabookSmalltalk/DynabookSmalltalk_",
+  "path": "Morphic.package/BorderedSubpaneDividerMorph.class/instance/firstEnter..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "camillobruni/squeak-camis-addons",
+  "path": "repository/Morphic.package/BorderedSubpaneDividerMorph.class/instance/firstEnter..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "cangkui/AutoPLC",
+  "path": "data/rag_data/st/st_case_code/IP2GEO.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "cangkui/AutoPLC",
+  "path": "data/rag_data/st/st_case_code/HTTP_GET.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "tkucic/brOscatLib",
+  "path": "oscatNetw/YAHOO_WEATHER.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "NikolaySuslov/croquet-squeak",
+  "path": "Croquet-Objects.package/TPortal.class/instance/render.depth..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "cangkui/AutoPLC",
+  "path": "data/rag_data/st/st_case_code/WORLD_WEATHER.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "cangkui/AutoPLC",
+  "path": "data/rag_data/st/st_case_code/YAHOO_WEATHER.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "stenter extension:st",
+  "repo": "pharo-graphics/Bloc",
+  "path": "src/Bloc/BlMouseProcessor.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "yarn tension extension:st",
+  "repo": "pharo-pulsar/pulsar",
+  "path": "src/Pulsar-Tool-FileEditor/PulsarVSCodeFileTypeIconProvider.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "yarn tension extension:st",
+  "repo": "pharo-pulsar/pulsar",
+  "path": "src/Pulsar-Tool-FileEditor/PulsarFileModel.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "yarn tension extension:st",
+  "repo": "Sangeetha2022/github",
+  "path": "generator/services/screen-gen-manager/template/angular7/baseSt/gitignore.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F2",
+  "query": "yarn tension extension:st",
+  "repo": "osoco/PharoPDS",
+  "path": "src/PDS-Core/PDSIcons.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario9_Final.xml_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario13_Final.xml_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario11_Final.xml_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario12_Final.xml_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario10_Final.xml_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario9_Final.xml_Main.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario11_Final.xml_Main.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario13_Final.xml_Main.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario10_Final.xml_Main.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario12_Final.xml_Main.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario9_Final.xml.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario10_Final.xml.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario11_Final.xml.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario12_Final.xml.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario13_Final.xml.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "sudarshanchaudhari05/Placement-Prep",
+  "path": "Calculator/CODESYS_Conveyor_Sorting/PRG_Conveyor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario9_Final.xml.st0.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "geteta/examples/RTT_if/Code_13.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario10_Final.xml.st0.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "sorter conveyor extension:st",
+  "repo": "VerifAPS/verifaps-lib",
+  "path": "share/PPU.stold/Scenario11_Final.xml.st0.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "7jep7/plc-copilot",
+  "path": "st_code_library/conveyor_systems/belt_conveyor_with_safety.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "yatharthMogra/Mini-Conveyors-Automation",
+  "path": "plc/fb_metrics.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_motor.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_motor_rev.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "Gorke07/OpenDVP",
+  "path": "src/st/stdlib/logic.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "DFFM-maker/IDP",
+  "path": "Logic_st/GlobalVariable.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "SymbianSource/oss.FCL.sf.os.ossrv",
+  "path": "lowlevellibsandfws/apputils/tsrc/t_strings/long.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "SymbianSource/oss.FCL.sf.os.ossrv",
+  "path": "lowlevellibsandfws/apputils/tsrc/t_strings/longCS.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "SymbianSource/oss.FCL.sf.os.ossrv",
+  "path": "lowlevellibsandfws/apputils/tsrc/t_strings/irrelevant.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F4",
+  "query": "accumulation conveyor extension:st",
+  "repo": "SymbianSource/oss.FCL.sf.os.ossrv",
+  "path": "lowlevellibsandfws/apputils/tsrc/t_strings/IrrelevantCS.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "SeasideSt/Seaside",
+  "path": "repository/Seaside-Benchmark.package/WAWebPageRenderer.class/instance/renderContentOn..st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "hpi-swa-lab/home-desktop-system",
+  "path": "repository/Home.package/WikiDataResolver.class/class/propertiesJson.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "DuneSt/MonacoCodeEditor",
+  "path": "src/MonacoCodeEditor-Demo/MonacoSimpleDemo.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "DuneSt/MaterialDesignLite",
+  "path": "src/Material-Design-Lite-Extensions/ManifestMaterialDesignLiteExtensions.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "DuneSt/MaterialDesignLite",
+  "path": "src/Material-Design-Lite-Demo/ManifestMaterialDesignLiteDemo.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "HeSe/amber-processingJs",
+  "path": "src/Processing-Core.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "seandenigris/Computer-World",
+  "path": "repository/ComputerWorld/CwVirtualBox.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "healther3/CrossRow",
+  "path": "backend/src/main/resources/prompts/philosophy-agent-prompt.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "feenkcom/gtoolkit-roadmaps",
+  "path": "src/GToolkit-Roadmaps-LLM/TopicMergingExperiments.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "yannij/PDFtalk",
+  "path": "PDFtalk-Document/PtOutputIntent.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "pbella/Cuis-Ports",
+  "path": "VBRegex.pck.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "Ducasse/Kozen",
+  "path": "src/KozStef/XPBasePatcher.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "healther3/CrossRow",
+  "path": "backend/src/main/resources/prompts/system-prompt.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "Afibre/QCMagritte",
+  "path": "src/QC-Magritte-Tutorial.package/QCTutChapterTechnicalDetails.class/instance/builders.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "Billal-MOKHTARI/ics_battery_manufacturing_under_normal_and_attack_conditions",
+  "path": "plc_simulations/plc_programs/slitting_notching/build/plc.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "GunterMueller/ST_STX_Fork",
+  "path": "build/stx/libbasic2/ZipArchive.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "Billal-MOKHTARI/ics_battery_manufacturing_under_normal_and_attack_conditions",
+  "path": "plc_simulations/plc_programs/slitting_notching/build/generated_plc.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "Ducasse/Kozen",
+  "path": "src/KozStef/StefSite.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "dynabook-smalltalk/dynabook",
+  "path": "System/SmalltalkImage.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "web guide tension extension:st",
+  "repo": "psvensson/cloudops",
+  "path": "CloudOps/CoGoogleComputeEngineClient.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "flexo printing extension:st",
+  "repo": "pharo-project/pharo",
+  "path": "src/Morphic-Core/TransformationMorph.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "flexo printing extension:st",
+  "repo": "pharo-project/pharo",
+  "path": "src/Morphic-Core/Morph.class.st",
+  "stars": 0,
+  "branch": "main"
+ },
+ {
+  "fam": "F1",
+  "query": "flexo printing extension:st",
+  "repo": "dynabook-smalltalk/dynabook",
+  "path": "Morphic/TransformationMorph.class.st",
+  "stars": 0,
+  "branch": "main"
+ }
+]

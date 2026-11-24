@@ -1,0 +1,202 @@
+[
+ {
+  "name": "FC_DL_QuenchOilTempRiseCalc",
+  "sha256": "892aaedcf4717e976327765d000928eb540af332317cb30111da8a73b0d836fd",
+  "size": 3606
+ },
+ {
+  "name": "FC_DL_AustenitizeHoldTimeCalc",
+  "sha256": "9d0568a208bdd97296ca0d5d1e86312495d50b10e3b1bd9c6241e96a0263c780",
+  "size": 4797
+ },
+ {
+  "name": "FC_DL_CarburizeCaseDepthCalc",
+  "sha256": "5d215a0f167c9a6fb7dc804961c63e7565e31588f5f81dd4c4d6ddea65c21a5c",
+  "size": 4848
+ },
+ {
+  "name": "FC_DL_TemperEmpiricalHardnessCalc",
+  "sha256": "5ff1e8c0dba9afa41d3953340a6629b20b234d55800c700183f4818053bcf258",
+  "size": 5281
+ },
+ {
+  "name": "FB_DL_InductionHardeningScanCtrl",
+  "sha256": "ae46eb9ed2375e5e04919333f43a68ff9da392b306febd8ca2bfd23460d9e52f",
+  "size": 9587
+ },
+ {
+  "name": "FB_DL_QuenchTankAgitatorCtrl",
+  "sha256": "6160182986b5447c868d0683aaf2bf1986af1c3cfea06bd94f87df88879c774a",
+  "size": 6049
+ },
+ {
+  "name": "FC_DL_MartensiteFinishTempCalc",
+  "sha256": "0bbf3cf1aa87d43d03f5ab5ba79b1c306c86fab28c920da80693cbe6d62b9e20",
+  "size": 3812
+ },
+ {
+  "name": "FB_DL_SoakPitTemperatureCtrl",
+  "sha256": "85986d51a24e36072183c539a6d5945bb27e842241d6176405cfad67f9692cad",
+  "size": 6536
+ },
+ {
+  "name": "FC_DL_ExtrusionBilletHeatCalc",
+  "sha256": "2bedb5555d27c701a5ee39cefee697cff993e158048f5513c6bd6c38e4a4a048",
+  "size": 4022
+ },
+ {
+  "name": "FC_DL_ExtrusionSpecificPressureCalc",
+  "sha256": "9e18fba642a60291239742c22e617e8ac303fa532710fa94690e7f2735156dcd",
+  "size": 4213
+ },
+ {
+  "name": "FC_DL_AnodizeBathChargeCalc",
+  "sha256": "deed6d40921050f33975824d032ed305e692594c7aa579d0b861ac1f703028c2",
+  "size": 3974
+ },
+ {
+  "name": "FC_DL_ExtrusionDieWearIndexCalc",
+  "sha256": "1794577eea3c4e84fee31b9efb12cb1061bac26a06ce6f28ed0e2eae72f1db25",
+  "size": 5230
+ },
+ {
+  "name": "FB_DL_AnodizeRinseCascadeCtrl",
+  "sha256": "e8a156979ee8eb949b7df5c33806f55a1a55e9eb0ea7b481a9b5456d84252008",
+  "size": 6013
+ },
+ {
+  "name": "FB_DL_BilletShearGaugeSeq",
+  "sha256": "ff6ae64b2f54950a61737491b668fb909597c3a9cbf4464db404113039c66601",
+  "size": 10317
+ },
+ {
+  "name": "FC_DL_AnodizeFilmThicknessCalc",
+  "sha256": "ea8b2f42d9af69e76c6477b214d2e284d448642c311475acda2d01fa41aeafeb",
+  "size": 4523
+ },
+ {
+  "name": "FC_DL_AnodizeSealBoilTimeCalc",
+  "sha256": "6df33dad7b53437f8b7bf05f70c35b074472ffbfb83705fbe5c0f197a0d919ab",
+  "size": 4241
+ },
+ {
+  "name": "FC_DL_DieCastShotVelocityCalc",
+  "sha256": "db58b19599a1e139f870c29a483e211187580939c51739afb34647ee9eaf46ba",
+  "size": 4693
+ },
+ {
+  "name": "FC_DL_DieCastIntensifyPressureCalc",
+  "sha256": "e30ec4939c4e499c24dc7fb10ab00c95c68da0f6e5cb5c59f4732d7f81211a0e",
+  "size": 3722
+ },
+ {
+  "name": "FC_DL_DieThermalBalanceCalc",
+  "sha256": "054b65a1b4080d93e7dc6a9d92e5de820616b71c42ad38653d6507f65afb566e",
+  "size": 4894
+ },
+ {
+  "name": "FC_DL_CastingSolidificationTimeCalc",
+  "sha256": "1f46a6d0602687720e3c7c08ce96f114037b818f4fddb12dcf75afcfb5c90147",
+  "size": 3028
+ },
+ {
+  "name": "FB_DL_DieSprayReleaseSeq",
+  "sha256": "0e69db71e443cbd4a7417c76250212cf7c0f92999bf034f06399f333883af494",
+  "size": 7315
+ },
+ {
+  "name": "FB_DL_LadlePourWeightCtrl",
+  "sha256": "90a281ae316e5a22edef93867d1d1d1afe869d4c33eed7c501c6c9576ed567de",
+  "size": 9010
+ },
+ {
+  "name": "FC_DL_DieCastPorosityRiskIndexCalc",
+  "sha256": "0e98482b84712109d366d3bbdccbeb399c7595a3d7694d942b9fa5329edb0467",
+  "size": 5157
+ },
+ {
+  "name": "FC_DL_PowderFillDensityCalc",
+  "sha256": "33fdbdc220fd8b318d3490fc3f1830df3741b0369f3cd1dd09d60a28d3f1eb63",
+  "size": 3334
+ },
+ {
+  "name": "FC_DL_CompactionPressureCalc",
+  "sha256": "f39328bada4794be06529011996675922e0d552986ac353e36399182347c6078",
+  "size": 3663
+ },
+ {
+  "name": "FB_DL_SinterFurnaceRampCtrl",
+  "sha256": "e6755f46977e0af833b0a3d4f2b8483215da8f17c4a68458c3974d6761ebfd11",
+  "size": 9950
+ },
+ {
+  "name": "FC_DL_GreenStrengthIndexCalc",
+  "sha256": "e2b29fe636c2c7125a59aa17f86c214590a4830015f05314f43cbdfc276540ca",
+  "size": 4136
+ },
+ {
+  "name": "FC_DL_SinterShrinkageCalc",
+  "sha256": "3c95ef5ad9792813c7991c97d5ae066ab155a627e84cae420908f39bae66f2e9",
+  "size": 3193
+ },
+ {
+  "name": "FB_DL_PowderBlendDoseSeq",
+  "sha256": "6fe67562c31d36a4ebc10cda0a2871843f12811d726de7dfc4c0a21361d4f0f1",
+  "size": 9145
+ },
+ {
+  "name": "FC_DL_DelubeResidualCarbonCalc",
+  "sha256": "fea347182d1750d261ec793e5e590311916fbdebe58db778073ff12fdae57d99",
+  "size": 4805
+ },
+ {
+  "name": "FC_DL_MashStrikeWaterTempCalc",
+  "sha256": "088a4ca3d9f67ddbb394484f3eb8df22d96042d72ac4817ee6a248962fefdb76",
+  "size": 4081
+ },
+ {
+  "name": "FC_DL_WortExtractYieldCalc",
+  "sha256": "b408a4352be01dfd949571027504fd19b832a689e966d9cf53ed346e5ca8ab1c",
+  "size": 3956
+ },
+ {
+  "name": "FC_DL_SugarBoilSupersaturationCalc",
+  "sha256": "a51bdb377327822026efdb697de4387110b5de4ab87a1c1732a6cf2349498670",
+  "size": 4794
+ },
+ {
+  "name": "FC_DL_MolassesExhaustionCalc",
+  "sha256": "47e5fc2e4eaa39de7c6358b01cc72a476975a0ed6b67a93f587bffa290bcd748",
+  "size": 2705
+ },
+ {
+  "name": "FB_DL_CrystallizerVacuumCtrl",
+  "sha256": "8d57fed589a075dfd3cd72070a42d870ab3ec522e6dcfcafe4faf9d6e7c1d6b7",
+  "size": 9229
+ },
+ {
+  "name": "FB_DL_CipCaneJuiceLineSeq",
+  "sha256": "9354f92108e889c9061cbdd3caca3bc2c5ae210ecef06d8b0f7d2e10324a9413",
+  "size": 11734
+ },
+ {
+  "name": "FB_DL_QuenchTemperLineSeq",
+  "sha256": "fa6801024da37e1dde5e61d7fb724614e109a599abaa9331153cd5dc28dd1855",
+  "size": 30260
+ },
+ {
+  "name": "FB_DL_AnodizeLineTransferSeq",
+  "sha256": "65b5f931fd0230e2568a170af3adb6e668c4d0d945f93be26f086278b64aca4a",
+  "size": 30625
+ },
+ {
+  "name": "FB_DL_DieCastCycleSupervise",
+  "sha256": "4ce9662801c38710104f1d0b77ff12a280d539bb028c0a3767ddcdbd50d8d765",
+  "size": 35439
+ },
+ {
+  "name": "FB_DL_SugarPanBatchSeq",
+  "sha256": "5c339f5b6851f0fe3f4391e3667c18c84278a8a177c39e8de1a565886185b20d",
+  "size": 37752
+ }
+]

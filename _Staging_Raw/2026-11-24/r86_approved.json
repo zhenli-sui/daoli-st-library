@@ -1,0 +1,56 @@
+{
+ "round": "R86",
+ "approved": [
+  "FB_DL_TrapezoidProfilePlanner",
+  "FB_DL_AxisProbeTouchOffSeq",
+  "FB_DL_SensorConsensusSelector",
+  "FB_DL_Q15BiquadFilter",
+  "FC_DL_Q15AddSat",
+  "FC_DL_Q15SubSat",
+  "FC_DL_Q15MulSat",
+  "FC_DL_Q15DivSafe",
+  "FC_DL_Q15AbsSat",
+  "FC_DL_Q15NegSat",
+  "FC_DL_Q15Lerp",
+  "FC_DL_Q15SqrtFloor",
+  "FC_DL_RealToQ15Sat",
+  "FC_DL_EnthalpyUnitConvert",
+  "FC_DL_SpecificHeatUnitConvert",
+  "FC_DL_ConcUnitConvert",
+  "FC_DL_LevelUnitConvert",
+  "FC_DL_CurrentUnitConvert",
+  "FC_DL_TempDiffUnitConvert",
+  "FC_DL_HeatFluxUnitConvert",
+  "FC_DL_HtcUnitConvert",
+  "FC_DL_VoltageUnitConvert",
+  "FC_DL_MapRangeClamped",
+  "FC_DL_MapRangeBipolar",
+  "FC_DL_MapRangePercent",
+  "FC_DL_MapRangeInverseSolve",
+  "FC_DL_MapRangePiecewise3",
+  "FC_DL_MapRangeDeadband",
+  "FC_DL_MapRangeSatOut",
+  "FC_DL_MapRangeIntQuant",
+  "FC_DL_MapRangeHystSwitch",
+  "FC_DL_SatAddDint",
+  "FC_DL_SatMulDint",
+  "FC_DL_SatAddLreal",
+  "FC_DL_SatMulLreal",
+  "FC_DL_SatNegDint",
+  "FC_DL_SatScaleLreal",
+  "FC_DL_SatSumArrayDint",
+  "FC_DL_SatClampLrealBand"
+ ],
+ "rejected": [
+  "FC_DL_SatSubDint"
+ ],
+ "notes": {
+  "FB_DL_AxisProbeTouchOffSeq": "qa-block-fixed(撤使能总闸)",
+  "FB_DL_TrapezoidProfilePlanner": "qa-major-fixed(非有限值闸)",
+  "FB_DL_Q15BiquadFilter": "qa-semantic-variant(定点 vs 浮点二阶)",
+  "FC_DL_MapRangeClamped": "qa-semantic-variant(vs LinearScale)"
+ },
+ "rejected_reason": {
+  "FC_DL_SatSubDint": "与在册 FC_DL_SaturateSub 三同（名称近义/签名同构/语义同义），违反 R13"
+ }
+}

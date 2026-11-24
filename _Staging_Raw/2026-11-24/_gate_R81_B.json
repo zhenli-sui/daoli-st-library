@@ -1,0 +1,62 @@
+{
+  "round": "R81_B",
+  "date": "2026-11-24",
+  "gate": "dlf-compile-verifier",
+  "l1": {
+    "tool": "dl_gate.py --file (tree-sitter)",
+    "total": 5,
+    "pass": 5,
+    "fail": 0,
+    "block": 0,
+    "issues": [
+      {"file": "FB_DL_RotaryIndexerCycleSeq.st", "level": "MINOR", "item": "L4 码位注释轮次笔误 R83（应 R81）"},
+      {"file": "FB_DL_RotaryIndexerCycleSeq.st", "level": "MINOR", "item": "iCupPerCycle>1 时寄位器只记 1 位而计数 +N，口径不一致"},
+      {"file": "FC_DL_BeamToppleRiskChk.st", "level": "MINOR", "item": "头注缺修订历史行（v1.0.0→v1.0.1 未留痕）"}
+    ]
+  },
+  "l2": {
+    "tool": "l2_check.py (RuSTy plc.exe, serial jobs=1)",
+    "total": 5,
+    "pass": 4,
+    "fail": 1,
+    "failing": [
+      {"file": "DL_Process/FB_DL_RotaryIndexerCycleSeq.st", "code": "E007", "msg": "Unexpected token: expected KeywordTo but found DOWNTO", "lines": [237, 255, 291], "attribution": "compiler-limitation-confirmed-by-6line-repro", "exempt": false, "reason": "DOWNTO 非 IEC 61131-3 标准语法（仅 TO/BY），不在 EXEMPT 口径内"}
+    ],
+    "fix_probe": {"file": "_tmp_r81/FB_DL_RotaryIndexerCycleSeq_fixprobe.st", "result": "PASS", "note": "三处 DOWNTO 改镜像下标升序，其余零改动，证明 E007 为唯一 L2 阻断项"},
+    "precedent_scan": [
+      {"file": "DL_MathData/FC_DL_PolyEvalHorner.st", "result": "FAIL", "code": "E007"},
+      {"file": "DL_Motion/FB_DL_MarkPositionLatch.st", "result": "FAIL", "code": "E007"}
+    ]
+  },
+  "l3": {"total": 0, "pass": 0, "fail": 0, "mode": "not-run", "note": "5 件均无 _TESTS/<Name>.json；#2 修复后须补 V7/V8 向量"},
+  "state_machine_review": {
+    "checks": ["enum_label_coverage", "state_exit_exhaustive", "wait_phase_ton_backstop", "reset_edge_rtrig", "ton_rtrig_unconditional_r7", "case_else", "outputs_preset_single_mapping", "counter_wrap_guard", "learning_asset_kept"],
+    "per_file": {
+      "FB_DL_RotaryIndexerCycleSeq": {"enum_total": 6, "label_missing": [], "else": true, "ton_rtrig": 6, "ton_in_case": 0, "reset_rtrig": true, "blocking": "E007 DOWNTO"},
+      "FB_DL_AsrsSlotAllocSeq": {"enum_total": 6, "label_missing": [], "else": true, "ton_rtrig": 3, "ton_in_case": 0, "reset_rtrig": true, "blocking": "diReqSeq=0 -> 零握手假放行"},
+      "FB_DL_FillPreactSelfLearn": {"enum_total": 7, "label_missing": [], "else": true, "ton_rtrig": 3, "ton_in_case": 0, "reset_rtrig": true, "blocking": null, "major": ["无 PREACT 回灌引脚（学习资产上电即丢，与头注 L23 矛盾）", "43 码与相推进同拍竞态误锁"], "minor": ["rPreactMax>rTargetKg 使粗流阈值退化未声明"]},
+      "FB_DL_MeasureInputLatch": {"enum_total": 5, "label_missing": [], "else": true, "ton_rtrig": 5, "ton_in_case": 0, "reset_rtrig": true, "blocking": null, "minor": ["撤销的锁存仍写 rLatchPosMm 出口（L248 加 AND bEnable 可修）", "iEdgeCnt/iOutsideCnt INT 无回绕钳", "软件沿锁存分辨率=1 扫描周期未量化声明"]}
+    }
+  },
+  "recheck_v101": {
+    "file": "DL_Process/FC_DL_BeamToppleRiskChk.st",
+    "version": "1.0.1",
+    "verdict": "PASS",
+    "fix_correctness": "correct",
+    "items": {
+      "abs_removes_sign_bias": "ok: 系数恒 >=1，消除负偏移漏报方向",
+      "domain_gate": "ok: |offset|>depth/2 -> bValid=FALSE，同时把系数封顶 1.5",
+      "div_by_zero": "ok: 段4 已先闸 depth>EPS",
+      "non_finite": "ok: 段3 八项枚举，NaN/Inf 在 L76/L79 之前 RETURN",
+      "gate_order": "ok: 段4b 先于段5；RETURN 时为段1 预置值",
+      "new_issues": ["MINOR: rUtilPct/rEffLoadKg 出口无非有限兜底（rLoadKg≈3e38×1.5 可溢出为 Inf）", "MINOR: 缺修订历史行"]
+    }
+  },
+  "verdict": "BLOCK",
+  "blocking": [
+    {"file": "DL_Process/FB_DL_RotaryIndexerCycleSeq.st", "type": "COMPILE", "code": "E007", "action": "回派编码专家：L237/L255/L291 DOWNTO → 镜像下标升序（修法见 GATE_R81_B.md ②）"},
+    {"file": "DL_Process/FB_DL_AsrsSlotAllocSeq.st", "type": "LOGIC", "code": "no-code", "action": "回派编码专家：eValidate 加 diReqSeq<=0 域闸（码 36）+ eHandshake 加陈旧 ack 判据（修法见 ②），并补 V7/V8 向量"}
+  ],
+  "registry_write_allowed": ["DL_Process/FB_DL_FillPreactSelfLearn.st", "DL_Motion/FB_DL_MeasureInputLatch.st", "DL_Process/FC_DL_BeamToppleRiskChk.st"],
+  "registry_write_denied": ["DL_Process/FB_DL_RotaryIndexerCycleSeq.st", "DL_Process/FB_DL_AsrsSlotAllocSeq.st"]
+}

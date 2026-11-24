@@ -1,0 +1,2365 @@
+{
+ "added": [
+  {
+   "name": "FC_ColorFromSensors",
+   "suggest_category": "DL_Algo",
+   "kind": "FC",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Q3son/Concurso_PLC/blob/main/plc/codesys/03_FUN/FC_ColorFromSensors.st",
+   "commit": "2026-10-12T06:42:17Z",
+   "extraction_point": "FC_ColorFromSensors (plc/codesys/03_FUN/FC_ColorFromSensors.st)",
+   "signature": "IN: xGreen:BOOL, xBlue:BOOL",
+   "loc": 17,
+   "dialect": [],
+   "defense_gaps": [
+    "传感器判据无消抖/稳定窗"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "-",
+   "family_label": "未归类",
+   "priority": 1,
+   "fp": "05de608c19dac771",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "Q3son/Concurso_PLC MIT 直采；无方言依赖"
+  },
+  {
+   "name": "FB_ColorDiverter",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Q3son/Concurso_PLC/blob/main/plc/codesys/04_FB/FB_ColorDiverter.st",
+   "commit": "2026-10-12T06:42:17Z",
+   "extraction_point": "FB_ColorDiverter (plc/codesys/04_FB/FB_ColorDiverter.st)",
+   "signature": "IN: xEnable:BOOL, xAutoMode:BOOL, xManualMode:BOOL, xManPush:BOOL, xGreen:BOOL, xFrontLimit:BOOL, xBackLimit:BOOL, tCenter:TIME | OUT: xHoldBelt:BOOL, xPush:BOOL, xDiverted:BOOL, xBusy:BOOL, xHome:BOOL, xErrExtend:BOOL",
+   "loc": 52,
+   "dialect": [],
+   "defense_gaps": [
+    "传感器判据无消抖/稳定窗"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "a1e59088efc8c60b",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "Q3son/Concurso_PLC MIT 直采；无方言依赖"
+  },
+  {
+   "name": "FB_MachiningCenter",
+   "suggest_category": "DL_Algo",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Q3son/Concurso_PLC/blob/main/plc/codesys/04_FB/FB_MachiningCenter.st",
+   "commit": "2026-10-12T06:42:17Z",
+   "extraction_point": "FB_MachiningCenter (plc/codesys/04_FB/FB_MachiningCenter.st)",
+   "signature": "IN: xEnable:BOOL, xRun:BOOL, xManualMode:BOOL, xManRun:BOOL, xProduceLids:BOOL, xBusy:BOOL, xEntry:BOOL, xReset:BOOL | OUT: xStart:BOOL, xStop:BOOL, xResetOut:BOOL, xLidsOut:BOOL, xLoaded:BOOL, xFinished:BOOL",
+   "loc": 73,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "-",
+   "family_label": "未归类",
+   "priority": 1,
+   "fp": "9c82e0f9332dc880",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "Q3son/Concurso_PLC MIT 直采；无方言依赖"
+  },
+  {
+   "name": "FB_Pusher",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Q3son/Concurso_PLC/blob/main/plc/codesys/04_FB/FB_Pusher.st",
+   "commit": "2026-10-12T06:42:17Z",
+   "extraction_point": "FB_Pusher (plc/codesys/04_FB/FB_Pusher.st)",
+   "signature": "IN: xEnable:BOOL, xStart:BOOL, xFrontLimit:BOOL, xBackLimit:BOOL, tTimeout:TIME, xReset:BOOL | OUT: xPush:BOOL, xBusy:BOOL, xDone:BOOL, xErrExtend:BOOL, xErrRetract:BOOL, xHome:BOOL",
+   "loc": 85,
+   "dialect": [],
+   "defense_gaps": [
+    "CASE 无 ELSE 兜底（非法状态悬空）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "cb8492c65d2032f5",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "Q3son/Concurso_PLC MIT 直采；无方言依赖"
+  },
+  {
+   "name": "FB_WheelSorter",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Q3son/Concurso_PLC/blob/main/plc/codesys/04_FB/FB_WheelSorter.st",
+   "commit": "2026-10-12T06:42:17Z",
+   "extraction_point": "FB_WheelSorter (plc/codesys/04_FB/FB_WheelSorter.st)",
+   "signature": "IN: xEnable:BOOL, xAutoMode:BOOL, xManualMode:BOOL, xManPlus:BOOL, xManLeft:BOOL, xManRight:BOOL, eColorAtRead:E_Color, xPresence:BOOL | OUT: xPlus:BOOL, xLeft:BOOL, xRight:BOOL, xHoldMain:BOOL, xDone:BOOL, xDiscarded:BOOL",
+   "loc": 189,
+   "dialect": [],
+   "defense_gaps": [
+    "数组下标无边界校验"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "3362c6e69a2d74f2",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "Q3son/Concurso_PLC MIT 直采；无方言依赖"
+  },
+  {
+   "name": "BeltBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.belt@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "BeltBehaviour (app/src-tauri/library/components/twinova.belt@1.st)",
+   "signature": "IN: start_delay:TIME, accel_time:TIME, decel_time:TIME, speed_at_30:REAL | OUT: surface_speed:REAL",
+   "loc": 62,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "5968998ab5a1e6a4",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "BeltCurveBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.belt_curve@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "BeltCurveBehaviour (app/src-tauri/library/components/twinova.belt_curve@1.st)",
+   "signature": "IN: start_delay:TIME, accel_time:TIME, decel_time:TIME, speed_at_30:REAL | OUT: surface_speed:REAL",
+   "loc": 62,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "7d799f7bca5d728d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.chain_transfer@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "ChainTransferBehaviour (app/src-tauri/library/components/twinova.chain_transfer@1.st)",
+   "signature": "IN: raise_time:TIME | OUT: lift:REAL, raised:BOOL",
+   "loc": 30,
+   "dialect": [],
+   "defense_gaps": [
+    "分拣/换向无动作超时与到位确认",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "0cd48a29e2f3ac4d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "PusherBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.pusher@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "PusherBehaviour (app/src-tauri/library/components/twinova.pusher@1.st)",
+   "signature": "IN: push_time:TIME | OUT: reach:REAL",
+   "loc": 29,
+   "dialect": [],
+   "defense_gaps": [
+    "分拣/换向无动作超时与到位确认",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "bea94c1f930bbba4",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "RollerBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.roller@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "RollerBehaviour (app/src-tauri/library/components/twinova.roller@1.st)",
+   "signature": "IN: start_delay:TIME, accel_time:TIME, decel_time:TIME, speed_at_30:REAL | OUT: surface_speed:REAL",
+   "loc": 62,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "734ec8bb8d79eab5",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "RollerCurveBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.roller_curve@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "RollerCurveBehaviour (app/src-tauri/library/components/twinova.roller_curve@1.st)",
+   "signature": "IN: start_delay:TIME, accel_time:TIME, decel_time:TIME, speed_at_30:REAL | OUT: surface_speed:REAL",
+   "loc": 62,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "91b61a076f875f2c",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "StopperBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.stopper@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "StopperBehaviour (app/src-tauri/library/components/twinova.stopper@1.st)",
+   "signature": "IN: raise_time:TIME | OUT: lift:REAL",
+   "loc": 27,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "f94117c4f7221de1",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "TurntableBehaviour",
+   "suggest_category": "DL_Device",
+   "kind": "FB",
+   "tier": "green",
+   "license": "Apache-2.0",
+   "source_url": "https://github.com/chetto1983/Twinova/blob/main/app/src-tauri/library/components/twinova.turntable@1.st",
+   "commit": "2026-11-23T23:18:37Z",
+   "extraction_point": "TurntableBehaviour (app/src-tauri/library/components/twinova.turntable@1.st)",
+   "signature": "IN: angle:REAL, rotation_speed:REAL, start_delay:TIME, accel_time:TIME, decel_time:TIME, speed_at_30:REAL | OUT: deck_angle:REAL, deck_rate:REAL, surface_speed:REAL",
+   "loc": 115,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F4",
+   "family_label": "物料输送分拣",
+   "priority": 1,
+   "fp": "0683de01c064edf4",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "chetto1983/Twinova Apache-2.0 直采；无方言依赖"
+  },
+  {
+   "name": "ST_MechPump",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MechPump.TcDUT",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "ST_MechPump (VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MechPump.TcDUT)",
+   "signature": "IN: ",
+   "loc": 32,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "5c602f0dd3ff526d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "ST_Volume",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_Volume.TcDUT",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "ST_Volume (VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_Volume.TcDUT)",
+   "signature": "IN: ",
+   "loc": 10,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "a44b0d6be08e0e7f",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_Aperture",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_Aperture.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_Aperture (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_Aperture.TcPOU)",
+   "signature": "IN: i_rC:REAL",
+   "loc": 46,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "f560c273420c56d7",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_CapManometer",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_CapManometer.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_CapManometer (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_CapManometer.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 51,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "f2879c60270a7bc3",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_CapManometer_CMR362",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_CapManometer_CMR362.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_CapManometer_CMR362 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_CapManometer_CMR362.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 50,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "7f4b47c5ca1f857d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_GAM_PIP",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_GAM_PIP.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_GAM_PIP (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_GAM_PIP.TcPOU)",
+   "signature": "IN: ",
+   "loc": 32,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "3c74dc274f62a67e",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_275",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_275.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_275 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_275.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 92,
+   "dialect": [],
+   "defense_gaps": [
+    "数组下标无边界校验",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "5cb6416f3a6f618d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_500",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_500.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_500 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_500.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 95,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸",
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "0d154e29f42408a3",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_903",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_903.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_903 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_903.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 66,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "a4388488996d5c3d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_907",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_907.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_907 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_907.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 127,
+   "dialect": [],
+   "defense_gaps": [
+    "数组下标无边界校验",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "4f16963501eb4565",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_909",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_909.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_909 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_909.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 46,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "3f4c3391c34b65ac",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_MKS_925",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_925.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_MKS_925 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_925.TcPOU)",
+   "signature": "IN: stVolume:ST_Volume",
+   "loc": 63,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "589c83bbaf78aa90",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_PfeifferTurboPump",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_PfeifferTurboPump.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_PfeifferTurboPump (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_PfeifferTurboPump.TcPOU)",
+   "signature": "IN: ",
+   "loc": 9,
+   "dialect": [],
+   "defense_gaps": [
+    "泵/阀无动作超时与反馈确认"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "bb8b1f050a0433de",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_RoughPump",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_RoughPump.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_RoughPump (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_RoughPump.TcPOU)",
+   "signature": "IN: ",
+   "loc": 25,
+   "dialect": [],
+   "defense_gaps": [
+    "泵/阀无动作超时与反馈确认"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "54b4218ec5440145",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_RoughPump_Demo",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_RoughPump_Demo.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_RoughPump_Demo (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_RoughPump_Demo.TcPOU)",
+   "signature": "IN: i_xRun:BOOL",
+   "loc": 16,
+   "dialect": [],
+   "defense_gaps": [
+    "泵/阀无动作超时与反馈确认"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "2ae581bef175335c",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_SetChamberPressure",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_SetChamberPressure.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_SetChamberPressure (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_SetChamberPressure.TcPOU)",
+   "signature": "IN: rNewPressure:REAL, Override:BOOL",
+   "loc": 17,
+   "dialect": [],
+   "defense_gaps": [
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "7524ce4203dca71b",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_TurboPump",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_TurboPump.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_TurboPump (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_TurboPump.TcPOU)",
+   "signature": "IN: RunUpTime:TIME, OverloadTime:TIME, OverTempTime:TIME",
+   "loc": 131,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸",
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "07ffc7eaf651afcb",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_TurboPump_Demo",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_TurboPump_Demo.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_TurboPump_Demo (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_TurboPump_Demo.TcPOU)",
+   "signature": "IN: RunUpTime:TIME, OverloadTime:TIME, OverTempTime:TIME",
+   "loc": 65,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸",
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "6bca6fb9da95f0dc",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_VacuumValve",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_VacuumValve (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve.TcPOU)",
+   "signature": "IN: ValveTime:TIME, ETime:TIME, CalcTime:TIME",
+   "loc": 148,
+   "dialect": [],
+   "defense_gaps": [
+    "泵/阀无动作超时与反馈确认",
+    "CASE 无 ELSE 兜底（非法状态悬空）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "e784f396d80c1da8",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_VacuumValve_Vent",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve_Vent.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_VacuumValve_Vent (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve_Vent.TcPOU)",
+   "signature": "IN: ValveTime:TIME, ETime:TIME, CalcTime:TIME",
+   "loc": 114,
+   "dialect": [],
+   "defense_gaps": [
+    "内置定时器实例，需核查时基与重入",
+    "CASE 无 ELSE 兜底（非法状态悬空）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "238e17d193b45cb5",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "FB_VacuumValve_old",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve_old.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "FB_VacuumValve_old (VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VacuumValve_old.TcPOU)",
+   "signature": "IN: ValveTime:TIME",
+   "loc": 64,
+   "dialect": [],
+   "defense_gaps": [
+    "泵/阀无动作超时与反馈确认",
+    "内置定时器实例，需核查时基与重入"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "5e1c87a46765e85e",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_275",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_275.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_275 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_275.TcPOU)",
+   "signature": "IN: stGauge:ST_MKS_275",
+   "loc": 66,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位",
+    "数组下标无边界校验",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "9bd97fe753478320",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_500",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_500.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_500 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_500.TcPOU)",
+   "signature": "IN: i_rPress:REAL, i_xHVOn:BOOL, i_xICOn:BOOL",
+   "loc": 33,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需加除子非零闸",
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "f42616aebedd448b",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_903",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_903.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_903 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_903.TcPOU)",
+   "signature": "IN: stGauge:ST_MKS_903",
+   "loc": 19,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "1f203c4e097661dd",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_907",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_907.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_907 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_907.TcPOU)",
+   "signature": "IN: stGauge:ST_MKS_907",
+   "loc": 93,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位",
+    "数组下标无边界校验",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "0a10e98223aae12a",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_909",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_909.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_909 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_909.TcPOU)",
+   "signature": "IN: stGauge:ST_MKS_909",
+   "loc": 13,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "e26a1292aed5e438",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_925",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_925.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_925 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_925.TcPOU)",
+   "signature": "IN: stGauge:ST_MKS_925",
+   "loc": 28,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "69724015be4a1d9d",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  },
+  {
+   "name": "F_MKS_937",
+   "suggest_category": "DL_Process",
+   "kind": "FC",
+   "tier": "BSD-3-Clause",
+   "license": "BSD-3-Clause",
+   "source_url": "https://github.com/pcdshub/lcls-twincat-vacuum-sim/blob/master/VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_937.TcPOU",
+   "commit": "2026-11-01T23:07:47Z",
+   "extraction_point": "F_MKS_937 (VacuumSystemSimulator/VacuumSystemSimulator/POUs/VacuumGaugePressureFunctions/F_MKS_937.TcPOU)",
+   "signature": "IN: rPress:REAL",
+   "loc": 13,
+   "dialect": [],
+   "defense_gaps": [
+    "浮点转整无越界钳位",
+    "REAL 相等比较风险（无 EPS 容差）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "family": "F3",
+   "family_label": "表面处理/真空镀膜支撑",
+   "priority": 2,
+   "fp": "58db3339c7ca9144",
+   "status": "pending",
+   "dup_flag": false,
+   "harvested_at": "2026-11-24T13:55:47+08:00",
+   "note": "LICENSE 正文为 SLAC/Stanford 三条款 BSD 变体（Redistribution and use in source and binary forms...），GitHub 未识别为 NOASSERTION"
+  }
+ ],
+ "rejected": [
+  {
+   "repo": "DeLuAle/FRAMEWORK_PARSER",
+   "why": "unknown-license",
+   "n": 835,
+   "candidates_dropped": 11
+  },
+  {
+   "repo": "Juunary/body_measure",
+   "why": "unknown-license",
+   "n": 5,
+   "candidates_dropped": 10
+  },
+  {
+   "name": "E_AlarmClass",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_AlarmClass.st"
+  },
+  {
+   "name": "E_Branch",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_Branch.st"
+  },
+  {
+   "name": "E_Color",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_Color.st"
+  },
+  {
+   "name": "E_MachineState",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_MachineState.st"
+  },
+  {
+   "name": "E_PusherStep",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_PusherStep.st"
+  },
+  {
+   "name": "E_SorterStep",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "plc/codesys/01_DUT/E_SorterStep.st"
+  },
+  {
+   "name": "ST_Alarm",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_AlarmManager / FB_DL_AlarmShelving 已覆盖报警结构"
+   ],
+   "path": "plc/codesys/01_DUT/ST_Alarm.st"
+  },
+  {
+   "name": "ST_Fifo",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_FifoBuffer 已覆盖环形 FIFO 结构"
+   ],
+   "path": "plc/codesys/01_DUT/ST_Fifo.st"
+  },
+  {
+   "name": "FC_FifoClear",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_FifoBuffer#Reset 已覆盖清空语义"
+   ],
+   "path": "plc/codesys/03_FUN/FC_FifoClear.st"
+  },
+  {
+   "name": "FC_FifoPack",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_FifoBuffer 已覆盖紧凑打包语义"
+   ],
+   "path": "plc/codesys/03_FUN/FC_FifoPack.st"
+  },
+  {
+   "name": "FC_FifoPop",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_FifoBuffer 已覆盖出队语义"
+   ],
+   "path": "plc/codesys/03_FUN/FC_FifoPop.st"
+  },
+  {
+   "name": "FC_FifoPush",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_FifoBuffer 已覆盖入队语义"
+   ],
+   "path": "plc/codesys/03_FUN/FC_FifoPush.st"
+  },
+  {
+   "name": "FB_AlarmManager",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_AlarmManager 同名同义"
+   ],
+   "path": "plc/codesys/04_FB/FB_AlarmManager.st"
+  },
+  {
+   "name": "FB_Conveyor",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "plc/codesys/04_FB/FB_Conveyor.st"
+  },
+  {
+   "name": "FB_FeederStation",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "plc/codesys/04_FB/FB_FeederStation.st"
+  },
+  {
+   "name": "FB_Kpi",
+   "repo": "Q3son/Concurso_PLC",
+   "why": [
+    "semantic-dup:FB_DL_EnergyKpiAggregator 已覆盖 KPI 聚合"
+   ],
+   "path": "plc/codesys/04_FB/FB_Kpi.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/bool_on_double_word/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/bool_on_double_word/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/bool_on_double_word/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/case_collision/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/case_collision/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/case_collision/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/duplicate_id/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/duplicate_id/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/duplicate_id/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/input_on_output_area/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/input_on_output_area/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/input_on_output_area/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/merge_bad_at/components/twinova.belt@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/merge_two_peers/components/twinova.belt@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/out_of_range/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/out_of_range/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/out_of_range/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/overlapping_addresses/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/overlapping_addresses/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/overlapping_addresses/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/parent_cycle/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/parent_cycle/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/parent_cycle/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/path_traversal/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/path_traversal/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/path_traversal/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/two_peers/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/two_peers/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/two_peers/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_field/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_field/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_field/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_override/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_override/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/unknown_override/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/version_newer/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/version_newer/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/invalid/version_newer/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/code_sort_line/components/twinova.belt@1.st"
+  },
+  {
+   "name": "PusherBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/code_sort_line/components/twinova.pusher@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/code_sort_line/components/twinova.roller@1.st"
+  },
+  {
+   "name": "StopperBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/code_sort_line/components/twinova.stopper@1.st"
+  },
+  {
+   "name": "TurntableBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/code_sort_line/components/twinova.turntable@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/curve_line/components/twinova.belt@1.st"
+  },
+  {
+   "name": "BeltCurveBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/curve_line/components/twinova.belt_curve@1.st"
+  },
+  {
+   "name": "RollerCurveBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/curve_line/components/twinova.roller_curve@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/demo_m3/components/twinova.belt@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/ladder_line/components/twinova.belt@1.st"
+  },
+  {
+   "name": "ChainTransferBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/ladder_line/components/twinova.chain_transfer@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/ladder_line/components/twinova.roller@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/merge_line/components/twinova.belt@1.st"
+  },
+  {
+   "name": "BeltBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/sort_line/components/twinova.belt@1.st"
+  },
+  {
+   "name": "PusherBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/sort_line/components/twinova.pusher@1.st"
+  },
+  {
+   "name": "RollerBehaviour",
+   "repo": "chetto1983/Twinova",
+   "why": [
+    "fingerprint-dup",
+    "intra-round-name-dup"
+   ],
+   "path": "app/src-tauri/project/tests/fixtures/valid/sort_line/components/twinova.roller@1.st"
+  },
+  {
+   "repo": "enesuslu15/Advanced-PLC-Dyeing-System",
+   "why": "unknown-license",
+   "n": 1,
+   "candidates_dropped": 0
+  },
+  {
+   "repo": "feleastefan05-ai/PLC_Automation_Sorting_Station",
+   "why": "unknown-license",
+   "n": 1,
+   "candidates_dropped": 0
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/graded/first_hour_sorting_by_height.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/graded/first_hour_sorting_by_height.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/accumulation-buffer/accumulation_buffer.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/accumulation-buffer/accumulation_buffer.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/accumulation-buffer/accumulation_buffer.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/air-receiver/air_receiver.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/air-receiver/air_receiver.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/air-receiver/air_receiver.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/batch-dosing/batch_dosing.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/batch-dosing/batch_dosing.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/batch-dosing/batch_dosing.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/cooling-tunnel/cooling_tunnel.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/cooling-tunnel/cooling_tunnel.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/guarded-cell/guarded_cell.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/guarded-cell/guarded_cell.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/heat-treat-station/heat_treat_station.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/heat-treat-station/heat_treat_station.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/light-curtain-sorting/light_curtain_sorting.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/light-curtain-sorting/light_curtain_sorting.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/mezzanine-lift/mezzanine_lift.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/mezzanine-lift/mezzanine_lift.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/pick-and-place-cell/pick_and_place_cell.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/pick-and-place-cell/pick_and_place_cell.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/pick-and-place-cell/pick_and_place_cell.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/pivot-divert/pivot_divert.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/pivot-divert/pivot_divert.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/press-station/press_station.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/press-station/press_station.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/roller-line-weighing/roller_line_weighing.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/roller-line-weighing/roller_line_weighing.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/rotary-index/rotary_index.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/rotary-index/rotary_index.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/servo-positioning/servo_positioning.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/servo-positioning/servo_positioning.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/sorting-by-height/sorting_by_height.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/sorting-by-height/sorting_by_height.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/star-delta-start/star_delta_start.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/star-delta-start/star_delta_start.st"
+  },
+  {
+   "name": "FF_WORDS_TO_DINT",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword / FC_DL_PackBitsToWord 已覆盖字拼装"
+   ],
+   "path": "examples/openplc/start-stop-station/start_stop_station.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/start-stop-station/start_stop_station.st"
+  },
+  {
+   "name": "FF_WORDS_TO_REAL",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_WordsToDword 族已覆盖字→实数拼装"
+   ],
+   "path": "examples/openplc/tank-level-control/tank_level_control.st"
+  },
+  {
+   "name": "FF_REAL_TO_DWORD",
+   "repo": "malgaroshy-maker/factoryforge",
+   "why": [
+    "semantic-dup:FC_DL_DwordToWords 族已覆盖实数→字节拆装"
+   ],
+   "path": "examples/openplc/tank-level-control/tank_level_control.st"
+  },
+  {
+   "name": "ST_CapManometer",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(1字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_CapManometer.TcDUT"
+  },
+  {
+   "name": "ST_CapManometer_CMR362",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(1字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_CapManometer_CMR362.TcDUT"
+  },
+  {
+   "name": "ST_GAM_PIP",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_GAM_PIP.TcDUT"
+  },
+  {
+   "name": "ST_MKS_275",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(2字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_275.TcDUT"
+  },
+  {
+   "name": "ST_MKS_317",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_317.TcDUT"
+  },
+  {
+   "name": "ST_MKS_422",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(1字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_422.TcDUT"
+  },
+  {
+   "name": "ST_MKS_500",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(1字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_500.TcDUT"
+  },
+  {
+   "name": "ST_MKS_626",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_626.TcDUT"
+  },
+  {
+   "name": "ST_MKS_722",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_722.TcDUT"
+  },
+  {
+   "name": "ST_MKS_903",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(2字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_903.TcDUT"
+  },
+  {
+   "name": "ST_MKS_907",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(2字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_907.TcDUT"
+  },
+  {
+   "name": "ST_MKS_909",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(1字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_909.TcDUT"
+  },
+  {
+   "name": "ST_MKS_925",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_MKS_925.TcDUT"
+  },
+  {
+   "name": "ST_TwinScrewRoughPump",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_TwinScrewRoughPump.TcDUT"
+  },
+  {
+   "name": "ST_VAT_77FS",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_VAT_77FS.TcDUT"
+  },
+  {
+   "name": "ST_VacuumGauge",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(2字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_VacuumGauge.TcDUT"
+  },
+  {
+   "name": "ST_VacuumValve",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "declaration-only-thin(0字段)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/DUTs/ST_VacuumValve.TcDUT"
+  },
+  {
+   "name": "FB_MKS_275_to_500_HvOn",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_275_to_500_HvOn.TcPOU"
+  },
+  {
+   "name": "FB_MKS_422",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_MKS_422.TcPOU"
+  },
+  {
+   "name": "FB_VirtualLeak",
+   "repo": "pcdshub/lcls-twincat-vacuum-sim",
+   "why": [
+    "no-increment(无逻辑/无缺口可守)"
+   ],
+   "path": "VacuumSystemSimulator/VacuumSystemSimulator/POUs/FB_VirtualLeak.TcPOU"
+  },
+  {
+   "repo": "rmoorewrs/sorter_demo",
+   "why": "unknown-license",
+   "n": 0,
+   "candidates_dropped": 0
+  },
+  {
+   "repo": "warmjademe/plc_generation_empirical_study",
+   "why": "unknown-license",
+   "n": 4397,
+   "candidates_dropped": 60
+  },
+  {
+   "repo": "yatharthMogra/Mini-Conveyors-Automation",
+   "why": "unknown-license",
+   "n": 10,
+   "candidates_dropped": 11
+  }
+ ]
+}

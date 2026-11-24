@@ -1,0 +1,32 @@
+{
+ "muqsithanif/reactor-plc-trainer": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ },
+ "MadMods96/industrial-batch-reactor-digital-shadow": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ },
+ "ZengLLQ/galen-pulse": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ },
+ "2325842824-eng/pv-ptz-monitor": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ },
+ "abelwknd/PLC-based-green-energy-monitoring-system": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ },
+ "martin-encina/flocculation-water-treatment-plc-hmi": {
+  "spdx": "MIT",
+  "branch": "main",
+  "files": []
+ }
+}

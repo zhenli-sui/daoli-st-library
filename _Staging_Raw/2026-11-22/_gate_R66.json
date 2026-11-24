@@ -1,0 +1,168 @@
+{
+ "round": "R66",
+ "ts": "2026-11-22T02:43:20+08:00",
+ "total": 10,
+ "pass": 10,
+ "major": 0,
+ "block": 0,
+ "results": [
+  {
+   "file": "FB_DL_DutyCycleMeasure.st",
+   "name": "FB_DL_DutyCycleMeasure",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 51,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 52,
+     "detail": "类型未识别：F_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 138
+  },
+  {
+   "file": "FC_DL_HammingDist.st",
+   "name": "FC_DL_HammingDist",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 69
+  },
+  {
+   "file": "FB_DL_AnalogOutFailsafe.st",
+   "name": "FB_DL_AnalogOutFailsafe",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 71,
+     "detail": "类型未识别：E_DL_FailMode"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 79,
+     "detail": "类型未识别：E_DL_AnaOutFsState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 85,
+     "detail": "类型未识别：E_DL_AnaOutFsState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 92,
+     "detail": "类型未识别：TON"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 93,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 269
+  },
+  {
+   "file": "FC_DL_BilinearInterp.st",
+   "name": "FC_DL_BilinearInterp",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 181
+  },
+  {
+   "file": "FC_DL_CircularMeanCalc.st",
+   "name": "FC_DL_CircularMeanCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 128
+  },
+  {
+   "file": "FC_DL_QuadPolyFit.st",
+   "name": "FC_DL_QuadPolyFit",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 208
+  },
+  {
+   "file": "FC_DL_WeekNumIsoCalc.st",
+   "name": "FC_DL_WeekNumIsoCalc",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 187
+  },
+  {
+   "file": "FB_DL_FeedOverrideRamp.st",
+   "name": "FB_DL_FeedOverrideRamp",
+   "issues": [],
+   "verdict": "PASS",
+   "lines": 137
+  },
+  {
+   "file": "FB_DL_LotMergeGate.st",
+   "name": "FB_DL_LotMergeGate",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 67,
+     "detail": "类型未识别：E_DL_MergeState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 75,
+     "detail": "类型未识别：E_DL_MergeState"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 79,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 80,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 81,
+     "detail": "类型未识别：R_TRIG"
+    },
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 82,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 219
+  },
+  {
+   "file": "FB_DL_TaktPaceMonitor.st",
+   "name": "FB_DL_TaktPaceMonitor",
+   "issues": [
+    {
+     "level": "WARN",
+     "code": "DECL_UNKNOWN_TYPE",
+     "line": 73,
+     "detail": "类型未识别：R_TRIG"
+    }
+   ],
+   "verdict": "PASS",
+   "lines": 220
+  }
+ ]
+}

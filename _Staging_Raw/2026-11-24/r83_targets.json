@@ -1,0 +1,738 @@
+[
+ {
+  "name": "FC_DL_InkViscosityTempComp",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "油墨黏度温度补偿系数计算",
+  "cmplx": 1,
+  "fam": "A",
+  "hits": {
+   "viscosity": [
+    "FB_DL_SlurryViscosityComp",
+    "FC_DL_DynViscosityUnitConvert",
+    "FC_DL_ViscosityUnitConvert"
+   ],
+   "temp": [
+    "FB_DL_BathTempHoldCtrl",
+    "FB_DL_BundleShrinkTemp",
+    "FB_DL_CabinetTempDerate"
+   ],
+   "comp": [
+    "FB_DL_AirCompDutyN2",
+    "FB_DL_AxisBacklashComp",
+    "FB_DL_AxisBacklashStepComp"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_RegisterErrorCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "套准横纵误差合成偏差计算",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "register": [
+    "FB_DL_BitShiftRegister"
+   ],
+   "error": [
+    "FB_DL_AxisFollowingErrorMonitor"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_AniloxInkTransferCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "网纹辊单位面积传墨量计算",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "transfer": [
+    "FB_DL_BatchTransferSeq",
+    "FB_DL_BumplessTransfer",
+    "FB_DL_TankFarmTransferSeq"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_SpliceOverlapWidthCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "接卷搭接宽度与胶带用量计算",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "splice": [
+    "FB_DL_FilmSpliceCurtain",
+    "FB_DL_FilmSpliceDetect",
+    "FB_DL_FilmSpliceTensionHold"
+   ],
+   "width": [
+    "FB_DL_MinPulseWidthFilter",
+    "FB_DL_PulseWidthFilter"
+   ],
+   "overlap": [
+    "FC_DL_RangeOverlapCheck"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_CutLengthDeviationCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "定长裁切偏差与补偿量计算",
+  "cmplx": 1,
+  "fam": "A",
+  "hits": {
+   "length": [
+    "FB_DL_VffsBagLength",
+    "FC_DL_BeltLengthCalc",
+    "FC_DL_BitRunLength"
+   ],
+   "deviation": [
+    "FB_DL_BatchDeviationAlarm",
+    "FB_DL_BatchDeviationTierAlarm",
+    "FB_DL_DualEncoderDeviationWatch"
+   ],
+   "cut": [
+    "FB_DL_FlyingCutSync",
+    "FB_DL_QuarterCellCutSeq",
+    "FB_DL_StringCutAlign"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_DryerSolventLoadCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "干燥箱单位时间溶剂负荷估算",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "load": [
+    "FB_DL_AirCompressorLoadUnload",
+    "FB_DL_AnaerobDigesterLoadCtrl",
+    "FB_DL_AxisLoadEncoderLossMonitor"
+   ],
+   "dryer": [
+    "FB_DL_AirDryerDiag",
+    "FB_DL_DryerExhaustHumidityCtl",
+    "FB_DL_DryerZoneProfileSeq"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_SpliceCountdownCtrl",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "接卷剩余米数倒计时与报警",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "splice": [
+    "FB_DL_FilmSpliceCurtain",
+    "FB_DL_FilmSpliceDetect",
+    "FB_DL_FilmSpliceTensionHold"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_ImpulseSealDwellCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "脉冲热封通电与保压时间计算",
+  "cmplx": 2,
+  "fam": "A",
+  "hits": {
+   "dwell": [
+    "FB_DL_SealJawDwellTrim"
+   ],
+   "seal": [
+    "FB_DL_CaseSealTapeMonitor",
+    "FB_DL_FrameSealDispenseSeq",
+    "FB_DL_HeatSealProfile"
+   ],
+   "impulse": [
+    "FB_DL_ImpulseRelay"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_DyeLiquorRatioCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "染浴浴比与总液量计算",
+  "cmplx": 1,
+  "fam": "B",
+  "hits": {
+   "ratio": [
+    "FB_DL_MfcRatioCheck",
+    "FB_DL_RatioController",
+    "FB_DL_RatioStationCalc"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_FabricWeightAreaCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "织物单位面积克重计算",
+  "cmplx": 1,
+  "fam": "B",
+  "hits": {
+   "weight": [
+    "FB_DL_DerivativeNoiseWeight",
+    "FB_DL_FillWeightCheckweigher",
+    "FB_DL_FillWeightCtrl"
+   ],
+   "area": [
+    "FC_DL_AreaUnitConvert",
+    "FC_DL_GeoCircleSectorArea",
+    "FC_DL_LamellaAreaCalc"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_PaddingPickupCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "轧车轧余率与带液量计算",
+  "cmplx": 2,
+  "fam": "B",
+  "hits": {}
+ },
+ {
+  "name": "FC_DL_StenterHeatSetCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "定型机热定形时间与超喂计算",
+  "cmplx": 2,
+  "fam": "B",
+  "hits": {
+   "set": [
+    "FB_DL_DualValveBlockSet",
+    "FC_DL_BitLowestSet",
+    "FC_DL_BitSet"
+   ],
+   "heat": [
+    "FB_DL_BeltHeatRecovery",
+    "FB_DL_HeatCoolZone",
+    "FB_DL_HeatExchangerCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_YarnCountConvert",
+  "cat": "DL_MathData",
+  "kind": "FC",
+  "desc": "纱线支数制式换算",
+  "cmplx": 1,
+  "fam": "B",
+  "hits": {
+   "count": [
+    "FB_DL_EncoderQuadCount",
+    "FB_DL_ValveCycleCountBank",
+    "FB_DL_WaferCountAxis"
+   ],
+   "convert": [
+    "FC_DL_AccelUnitConvert",
+    "FC_DL_AngleUnitConvert",
+    "FC_DL_AreaUnitConvert"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_BeamWarpLengthCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "经轴可卷绕经纱长度计算",
+  "cmplx": 2,
+  "fam": "B",
+  "hits": {
+   "beam": [
+    "FC_DL_BeamToppleRiskChk"
+   ],
+   "length": [
+    "FB_DL_VffsBagLength",
+    "FC_DL_BeltLengthCalc",
+    "FC_DL_BitRunLength"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_DyeBathReplenishCtrl",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "染浴液位与助剂补加联动控制",
+  "cmplx": 2,
+  "fam": "B",
+  "hits": {
+   "bath": [
+    "FB_DL_BathTempHoldCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_ShadeDriftIndexCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "色光漂移指数与回修判定",
+  "cmplx": 2,
+  "fam": "B",
+  "hits": {
+   "drift": [
+    "FB_DL_AnalogDriftWatch",
+    "FB_DL_ClockDriftMonitor",
+    "FB_DL_FlowMeterKFactorDrift"
+   ],
+   "index": [
+    "FB_DL_LoopPerfIndex",
+    "FB_DL_RotaryIndexModulo",
+    "FB_DL_RotaryIndexTable"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_PlatingThicknessChargeCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "法拉第定律镀层厚度与电量折算",
+  "cmplx": 2,
+  "fam": "C",
+  "hits": {
+   "thickness": [
+    "FB_DL_CoatingThicknessCtrl"
+   ],
+   "plating": [
+    "FB_DL_PlatingCurrentCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_FaradayEfficiencyCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "镀液电流效率由实测增重反算",
+  "cmplx": 1,
+  "fam": "C",
+  "hits": {}
+ },
+ {
+  "name": "FC_DL_AnodeCurrentDensityCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "阳极面积基准电流密度计算",
+  "cmplx": 2,
+  "fam": "C",
+  "hits": {
+   "current": [
+    "FB_DL_EscChuckCurrentMonitor",
+    "FB_DL_PlatingCurrentCtrl",
+    "FB_DL_StringCurrentMismatch"
+   ],
+   "density": [
+    "FB_DL_GasDensityComp",
+    "FB_DL_SlurryDensityTrim",
+    "FC_DL_AirDensity"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_RinseDragOutCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "漂洗槽带出量与补水率估算",
+  "cmplx": 2,
+  "fam": "C",
+  "hits": {
+   "rinse": [
+    "FC_DL_RinseWaterVolumeCalc"
+   ],
+   "out": [
+    "FB_DL_AnalogOutFailsafe",
+    "FB_DL_FirstOutLatch",
+    "FB_DL_VacuumBakeOutSeq"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_BarrelRotationRpmCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "滚镀滚筒转速与临界转速比",
+  "cmplx": 2,
+  "fam": "C",
+  "hits": {
+   "rotation": [
+    "FB_DL_DutyStandbyRotation",
+    "FB_DL_MultiPumpRotationCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_ElectrolessBathReplenishCtrl",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "化学镀浴按负荷补加控制",
+  "cmplx": 2,
+  "fam": "C",
+  "hits": {
+   "bath": [
+    "FB_DL_BathTempHoldCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_HexChromeTriRatioCalc",
+  "cat": "DL_Process",
+  "kind": "FC",
+  "desc": "六价三价铬浓度比与老化判定",
+  "cmplx": 1,
+  "fam": "C",
+  "hits": {
+   "tri": [
+    "FC_DL_TriStateCompare"
+   ],
+   "ratio": [
+    "FB_DL_MfcRatioCheck",
+    "FB_DL_RatioController",
+    "FB_DL_RatioStationCalc"
+   ],
+   "hex": [
+    "FC_DL_BytesToHexString",
+    "FC_DL_CharIsHexDigit",
+    "FC_DL_DwordToHexString"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_SortChuteTimingCalc",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "滑槽分拣释放延时计算",
+  "cmplx": 2,
+  "fam": "D",
+  "hits": {
+   "sort": [
+    "FB_DL_CartonScannerSort",
+    "FB_DL_CellOcvBinSort",
+    "FB_DL_WeightClassifySort"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_BeltThroughputCalc",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "皮带单位时间通过量计算",
+  "cmplx": 1,
+  "fam": "D",
+  "hits": {
+   "belt": [
+    "FB_DL_BeltHeatRecovery",
+    "FB_DL_FanBeltSlipDetect",
+    "FB_DL_FanBeltSlipDiag"
+   ],
+   "throughput": [
+    "FC_DL_ScrewPressThroughput"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_DiverterLeadTimeCalc",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "分流器动作提前量计算",
+  "cmplx": 2,
+  "fam": "D",
+  "hits": {
+   "diverter": [
+    "FC_DL_LaneDiverterAngleCalc"
+   ],
+   "time": [
+    "FB_DL_AndonRespTimeReport",
+    "FB_DL_CycleTimeMeasure",
+    "FB_DL_CylStrokeTimeBank"
+   ],
+   "lead": [
+    "FB_DL_AdaptiveLeadLag",
+    "FB_DL_LeadLagCompensator",
+    "FB_DL_PumpAlternationLead"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_ScannerReadRateCalc",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "读码首读率与重读次数统计",
+  "cmplx": 1,
+  "fam": "D",
+  "hits": {
+   "rate": [
+    "FB_DL_ChamberLeakRate",
+    "FB_DL_DuctLeakRateEst",
+    "FB_DL_EventRateCalc"
+   ],
+   "scanner": [
+    "FB_DL_CartonScannerSort",
+    "FB_DL_PipeScannerRoute",
+    "FB_DL_SerialScanner"
+   ],
+   "read": [
+    "FB_DL_PdiReadScheduler"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_ChuteFullPredict",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "滑槽满料到达时间预测",
+  "cmplx": 2,
+  "fam": "D",
+  "hits": {
+   "predict": [
+    "FB_DL_AxisBrakeDistPredict",
+    "FB_DL_AxisSoftLimitPredict",
+    "FB_DL_ThermalRampPredict"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_ToteGapReleaseCtrl",
+  "cat": "DL_Algo",
+  "kind": "FB",
+  "desc": "料箱最小间隔放行控制",
+  "cmplx": 2,
+  "fam": "D",
+  "hits": {
+   "gap": [
+    "FB_DL_CoatingGapMeasure",
+    "FB_DL_ElectrodeGapMark",
+    "FB_DL_GapForceSwitchover"
+   ],
+   "release": [
+    "FB_DL_BrakeReleaseInterlock"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_AccumulationZoneFillCalc",
+  "cat": "DL_Algo",
+  "kind": "FC",
+  "desc": "积放区占位率计算",
+  "cmplx": 1,
+  "fam": "D",
+  "hits": {
+   "fill": [
+    "FB_DL_CupFillDenest",
+    "FB_DL_ElectrolyteFillCtrl",
+    "FB_DL_ElectrolyteFillVacuum"
+   ],
+   "zone": [
+    "FB_DL_AdaptiveDeadbandZone",
+    "FB_DL_ConveyorZone",
+    "FB_DL_CurtainEFEMZone"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_SlotHeightFitCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "货位净高与货高匹配校验",
+  "cmplx": 1,
+  "fam": "E",
+  "hits": {
+   "fit": [
+    "FB_DL_PressFitCurveArchive",
+    "FB_DL_PressFitStation",
+    "FC_DL_QuadPolyFit"
+   ],
+   "slot": [
+    "FB_DL_AsrsSlotAllocSeq",
+    "FB_DL_WaferCassetteSlot"
+   ],
+   "height": [
+    "FC_DL_GeoChordHeightCalc"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_PalletOverhangCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "托盘悬垂量与允许上限校验",
+  "cmplx": 1,
+  "fam": "E",
+  "hits": {
+   "pallet": [
+    "FB_DL_PalletGripperSafe",
+    "FB_DL_PalletLabelVerify",
+    "FB_DL_PalletZoneMerge"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_ForkEntryClearanceCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "货叉入叉左右余量计算",
+  "cmplx": 2,
+  "fam": "E",
+  "hits": {
+   "fork": [
+    "FC_DL_ForkExtendSafeChk"
+   ],
+   "clearance": [
+    "FB_DL_LineClearanceVerify"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_AsrsCycleTimeCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "堆垛机单循环作业时间估算",
+  "cmplx": 2,
+  "fam": "E",
+  "hits": {
+   "cycle": [
+    "FB_DL_AerationBlowerCycle",
+    "FB_DL_AxisProbeMeasCycle",
+    "FB_DL_CycleBarrierGate"
+   ],
+   "asrs": [
+    "FB_DL_AsrsSlotAllocSeq"
+   ],
+   "time": [
+    "FB_DL_AndonRespTimeReport",
+    "FB_DL_CycleTimeMeasure",
+    "FB_DL_CylStrokeTimeBank"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_StackerMastSwayCalc",
+  "cat": "DL_Motion",
+  "kind": "FC",
+  "desc": "堆垛机立柱加减速摆幅估算",
+  "cmplx": 2,
+  "fam": "E",
+  "hits": {
+   "sway": [
+    "FB_DL_CraneAntiSway"
+   ]
+  }
+ },
+ {
+  "name": "FC_DL_InventoryAgeIndexCalc",
+  "cat": "DL_Device",
+  "kind": "FC",
+  "desc": "出库优先级库龄指数计算",
+  "cmplx": 1,
+  "fam": "E",
+  "hits": {
+   "age": [
+    "FC_DL_SludgeAgeCalc"
+   ],
+   "inventory": [
+    "FB_DL_TankFarmInventory"
+   ],
+   "index": [
+    "FB_DL_LoopPerfIndex",
+    "FB_DL_RotaryIndexModulo",
+    "FB_DL_RotaryIndexTable"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_PrintRegisterAutoTrimSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "印刷套准自动调整状态机",
+  "cmplx": 4,
+  "fam": "X",
+  "hits": {
+   "auto": [
+    "FB_DL_AutoTuneRelay",
+    "FB_DL_BumplessHandAuto",
+    "FB_DL_HandAutoModeGateBank"
+   ],
+   "register": [
+    "FB_DL_BitShiftRegister"
+   ],
+   "trim": [
+    "FB_DL_AhuFanArrayTrim",
+    "FB_DL_BiasAdaptiveTrim",
+    "FB_DL_BypassValveTrim"
+   ],
+   "print": [
+    "FB_DL_ScreenPrintAlign"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_DyeBatchRecipeSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "染批配方分段升温加料时序",
+  "cmplx": 4,
+  "fam": "X",
+  "hits": {
+   "recipe": [
+    "FB_DL_MixRecipeControl",
+    "FB_DL_RecipeManager",
+    "FB_DL_RecipeSearchFifo"
+   ],
+   "batch": [
+    "FB_DL_BatchDeviationAlarm",
+    "FB_DL_BatchDeviationTierAlarm",
+    "FB_DL_BatchDoseSeq"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_PlatingLineTransferSeq",
+  "cat": "DL_Process",
+  "kind": "FB",
+  "desc": "电镀线行车转序与槽位占用时序",
+  "cmplx": 4,
+  "fam": "X",
+  "hits": {
+   "line": [
+    "FB_DL_AndonLinePack",
+    "FB_DL_ConveyorLineLink",
+    "FB_DL_LineChangeoverChecklist"
+   ],
+   "transfer": [
+    "FB_DL_BatchTransferSeq",
+    "FB_DL_BumplessTransfer",
+    "FB_DL_TankFarmTransferSeq"
+   ],
+   "plating": [
+    "FB_DL_PlatingCurrentCtrl"
+   ]
+  }
+ },
+ {
+  "name": "FB_DL_SortDiverterSeq",
+  "cat": "DL_Algo",
+  "kind": "FB",
+  "desc": "分拣分流器握手与故障恢复状态机",
+  "cmplx": 3,
+  "fam": "X",
+  "hits": {
+   "diverter": [
+    "FC_DL_LaneDiverterAngleCalc"
+   ],
+   "sort": [
+    "FB_DL_CartonScannerSort",
+    "FB_DL_CellOcvBinSort",
+    "FB_DL_WeightClassifySort"
+   ]
+  }
+ }
+]

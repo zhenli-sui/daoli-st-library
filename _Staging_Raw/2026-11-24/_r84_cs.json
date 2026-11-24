@@ -1,0 +1,2305 @@
+[
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "src/core/types.ts",
+  "url": "https://github.com/SchemaTex/SchemaTex/blob/8f2365057a110ca9a769df5ebd7fd59aeb891db4/src/core/types.ts"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "mrcjkb/Polysun-4diac-ControllerPlugin",
+  "path": "4diac_function_blocks/cpp/PVActor.h",
+  "url": "https://github.com/mrcjkb/Polysun-4diac-ControllerPlugin/blob/fda017e423c43443d946a6d71da6472dc06e593e/4diac_function_blocks/cpp/PVActor.h"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "mrcjkb/Polysun-4diac-ControllerPlugin",
+  "path": "4diac_function_blocks/cpp/PVSensor.h",
+  "url": "https://github.com/mrcjkb/Polysun-4diac-ControllerPlugin/blob/fda017e423c43443d946a6d71da6472dc06e593e/4diac_function_blocks/cpp/PVSensor.h"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "vrees/HeatpumpSPS",
+  "path": "doc/StateMachine-Dokumentation.md",
+  "url": "https://github.com/vrees/HeatpumpSPS/blob/7bccfa3f6fbb7da891f05745a25eb20f049f1977/doc/StateMachine-Dokumentation.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster1.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster19.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster19.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster13.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-20/cluster13.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "vrees/HeatpumpSPS",
+  "path": "Heatpump/POUs/FB_StateMachine.TcPOU",
+  "url": "https://github.com/vrees/HeatpumpSPS/blob/7bccfa3f6fbb7da891f05745a25eb20f049f1977/Heatpump/POUs/FB_StateMachine.TcPOU"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "vrees/HeatpumpSPS",
+  "path": "Heatpump/POUs/FB_RunningState.TcPOU",
+  "url": "https://github.com/vrees/HeatpumpSPS/blob/7bccfa3f6fbb7da891f05745a25eb20f049f1977/Heatpump/POUs/FB_RunningState.TcPOU"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" photovoltaic",
+  "repo": "riseclipse/riseclipse-metamodel-cgmes-3-0-0",
+  "path": "fr.centralesupelec.edf.riseclipse.cim.cgmes-v3.0.0/src/fr/centralesupelec/edf/riseclipse/cim/cgmes_v3_0_0/cim/impl/CimFactoryImpl.java",
+  "url": "https://github.com/riseclipse/riseclipse-metamodel-cgmes-3-0-0/blob/aae6c1f833464553b8cbfaed2d01fb44aac884fb/fr.centralesupelec.edf.riseclipse.cim.cgmes-v3.0.0/src/fr/centralesupelec/edf/riseclipse/cim/cgmes_v3_0_0/cim/impl/CimFactoryImpl.java"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "Electrical-Age/ElectricalAge",
+  "path": "tools/icons/schematic/kit/catalog.py",
+  "url": "https://github.com/Electrical-Age/ElectricalAge/blob/ef949977740817f163a34402bfe1c0a0c84f668a/tools/icons/schematic/kit/catalog.py"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "Electrical-Age/ElectricalAge",
+  "path": "tools/icons/schematic/STYLE.md",
+  "url": "https://github.com/Electrical-Age/ElectricalAge/blob/ef949977740817f163a34402bfe1c0a0c84f668a/tools/icons/schematic/STYLE.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "SchemaTex/SchemaTex",
+  "path": "src/core/types.ts",
+  "url": "https://github.com/SchemaTex/SchemaTex/blob/8f2365057a110ca9a769df5ebd7fd59aeb891db4/src/core/types.ts"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "ps3dev/gcc-4.5.2-PS3",
+  "path": "gcc/ChangeLog",
+  "url": "https://github.com/ps3dev/gcc-4.5.2-PS3/blob/85ad49b05b6eac8f6949f6833dc36ee697728954/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "fru1tworld/cs-study",
+  "path": "reference/article/modern-programming/062-065.md",
+  "url": "https://github.com/fru1tworld/cs-study/blob/847638caf88034b68b0a74b7744710b17c66433e/reference/article/modern-programming/062-065.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "ccompiler4pic32/pic32-gcc",
+  "path": "gcc/ChangeLog",
+  "url": "https://github.com/ccompiler4pic32/pic32-gcc/blob/c8ac50e220f54e61ab5bd1908c30193d70c8ce4e/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "url": "https://github.com/Lone-Wolfgang/Distill-FineWeb2/blob/5b7881e5a9a6e20bf3dda177fc97adc6f24611eb/hub_dataset/jpn_Jpan/links/engineer-education.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nirhasabnis/seclab_eissec",
+  "path": "pkgs/gcc-4.5.1/gcc/ChangeLog",
+  "url": "https://github.com/nirhasabnis/seclab_eissec/blob/55bdb0e4a975d1421bcf46691db5c5c5e37b3ea3/pkgs/gcc-4.5.1/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "lyove/monaco-editor-react",
+  "path": "example/example.ts",
+  "url": "https://github.com/lyove/monaco-editor-react/blob/9fe8d5ad3f8d1cd44d3aeb33c19300ceb0f95a3a/example/example.ts"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "tizenorg/toolchains.gcc",
+  "path": "gcc/ChangeLog",
+  "url": "https://github.com/tizenorg/toolchains.gcc/blob/4ee924ac918007faa1457f75fa4ea73bc15778b7/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "lendaviva2020/eletricaip",
+  "path": "AGENTS.md",
+  "url": "https://github.com/lendaviva2020/eletricaip/blob/d4084d8e7bc4540685b59c00cf7928a223795690/AGENTS.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-80/cluster17.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-80/cluster17.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "kolenaIO/autoarena",
+  "path": "examples/convince_me_AutoArena_works/models/vicuna-33b.csv",
+  "url": "https://github.com/kolenaIO/autoarena/blob/554ed028c4b47ab948ca02a61d619a349d98af11/examples/convince_me_AutoArena_works/models/vicuna-33b.csv"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster25.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster25.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "unitedcolorsofg/vizio_oss-toolchain",
+  "path": "toolchain-mtk-src/OpenS/gcc/4.5.1/gcc/ChangeLog",
+  "url": "https://github.com/unitedcolorsofg/vizio_oss-toolchain/blob/e0d306a97f73e84cc868d10221837b8a6ebe4ff5/toolchain-mtk-src/OpenS/gcc/4.5.1/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "sdudley/maximus",
+  "path": "mex/mex_tab.y",
+  "url": "https://github.com/sdudley/maximus/blob/1cc413a28df645aeb7170ac7524a05abf501e6ab/mex/mex_tab.y"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "zeha/xc16",
+  "path": "src/src/XC_GCC/gcc/gcc/ChangeLog",
+  "url": "https://github.com/zeha/xc16/blob/79a887203edf921f4b74cd82f83f4e069b9512b2/src/src/XC_GCC/gcc/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "sinapordanesh/DetectCodeGPT",
+  "path": "results/csn-codellama7b-10k/figures/python_human_token_freqs.txt",
+  "url": "https://github.com/sinapordanesh/DetectCodeGPT/blob/a71da9ca3ea519793ba49b28b2a4fd7965f16cb8/results/csn-codellama7b-10k/figures/python_human_token_freqs.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "pmret/gcc-papermario",
+  "path": "config/sparc/sparc.c",
+  "url": "https://github.com/pmret/gcc-papermario/blob/d97824ffc7517675646960442b3f512a473e4404/config/sparc/sparc.c"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "svp-dev/gcc",
+  "path": "src/gcc/ChangeLog",
+  "url": "https://github.com/svp-dev/gcc/blob/66513ef1bc85d8a4fdf3d9e8047c6f777695216a/src/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster1.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "fdev1/freexc16",
+  "path": "src/XC_GCC/gcc/gcc/ChangeLog",
+  "url": "https://github.com/fdev1/freexc16/blob/95cad1ccc9568b9e83ddc25a28711011546a5c63/src/XC_GCC/gcc/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster19.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster19.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "soderstrom-rikard/adi-toolchain",
+  "path": "gcc-4.5/gcc/ChangeLog",
+  "url": "https://github.com/soderstrom-rikard/adi-toolchain/blob/3cc497a5c60fbe68a2a30a4b88f099c09b6dae9a/gcc-4.5/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster13.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-20/cluster13.txt"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "lx324310/or32_gnu_stable",
+  "path": "gcc-4.5.1/gcc/ChangeLog",
+  "url": "https://github.com/lx324310/or32_gnu_stable/blob/91bcd185ca5e60430f85e3c4af2b8aaf42916a80/gcc-4.5.1/gcc/ChangeLog"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "Abhiroop/Clean",
+  "path": "src/CodeGenerator/cgcode.c",
+  "url": "https://github.com/Abhiroop/Clean/blob/6633e225027228cd92fce4ad71df8707e91d1a5d/src/CodeGenerator/cgcode.c"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "llambitintegration/tcpServos",
+  "path": "docu/TF6310_TC3_TCP_IP_EN.pdf.md",
+  "url": "https://github.com/llambitintegration/tcpServos/blob/8b149a79448ec38fbb914be353e2ff16babe5f75/docu/TF6310_TC3_TCP_IP_EN.pdf.md"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "mod-bee/modbee-openplc",
+  "path": "modbee-communication/modbee-gsm/pous/function-blocks/FB_GsmModemA7670.cpp",
+  "url": "https://github.com/mod-bee/modbee-openplc/blob/b563043c1da60313e72e9b3b056ae1ff0b9b5b23/modbee-communication/modbee-gsm/pous/function-blocks/FB_GsmModemA7670.cpp"
+ },
+ {
+  "family": "A",
+  "query": "\"FUNCTION_BLOCK\" solar cell",
+  "repo": "matjam/maximus",
+  "path": "mex/mex_tab.y",
+  "url": "https://github.com/matjam/maximus/blob/afcbd759aa8418675bd9156b9acc81cef011d05b/mex/mex_tab.y"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/docs/help/README.md",
+  "url": "https://github.com/mnwinter/RungProof/blob/423380b8455dbd0237480ddab96d89d9c402762c/rungproof-next/docs/help/README.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "vertexai_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/vertexai_facets.txt"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "searchspring_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/searchspring_facets.txt"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/build/plc_cell_openplc.st",
+  "url": "https://github.com/Juunary/body_measure/blob/f0bc13054f0c8bd05dbba0f01387419de2ea267b/plc-cell/build/plc_cell_openplc.st"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "mismatched_keys.json",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/mismatched_keys.json"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/fact_anchor_chat_ledger_20261101.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/fact_anchor_chat_ledger_20261101.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/approved_fact_recheck_triage_20261029.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/approved_fact_recheck_triage_20261029.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_current_queue_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_current_queue_20261030.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_recheck_queue_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_recheck_queue_20261030.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_contract_audit_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_contract_audit_20261030.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_current_contract_audit_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_current_contract_audit_20261030.csv"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/assets/catalog/industrial-reference-register.json",
+  "url": "https://github.com/mnwinter/RungProof/blob/423380b8455dbd0237480ddab96d89d9c402762c/rungproof-next/assets/catalog/industrial-reference-register.json"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/21-architecture-and-standards/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "now0930/prof_eng_answer",
+  "path": "grading/evidence/fact_anchor_scoring_exclusions_20261101.json",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/grading/evidence/fact_anchor_scoring_exclusions_20261101.json"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" coating weight",
+  "repo": "2863189117/OOS",
+  "path": "tests/test_plugin.cpp",
+  "url": "https://github.com/2863189117/OOS/blob/099ebc0ad63a6be813fa326035ae7c6ccc47b8d7/tests/test_plugin.cpp"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "midea-ai/SemaPLC",
+  "path": "docs/en/wiki/web/st-language.md",
+  "url": "https://github.com/midea-ai/SemaPLC/blob/fea1b87a112bf947197f501168ee35771fdc6377/docs/en/wiki/web/st-language.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "weolar/miniblink49",
+  "path": "v8_5_1/src/parsing/parser.cc",
+  "url": "https://github.com/weolar/miniblink49/blob/60e9e0e3d2d2bec8e4625dd1252d9e5ec1125ad7/v8_5_1/src/parsing/parser.cc"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "br-automation-community/ASW6_Application_SBOM",
+  "path": "example/Repro6/Logical/Libraries/MpTension/MpTension.fun",
+  "url": "https://github.com/br-automation-community/ASW6_Application_SBOM/blob/4ff5fb450e1f7e97ba6104374b7d8b74cf72b375/example/Repro6/Logical/Libraries/MpTension/MpTension.fun"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "DziadekMateusz/Przewijarka_BR_Praktyki",
+  "path": "Logical/Libraries/MpTension/MpTension.fun",
+  "url": "https://github.com/DziadekMateusz/Przewijarka_BR_Praktyki/blob/4c82cb8da046c608dd6e950e30acacc0f0afca39/Logical/Libraries/MpTension/MpTension.fun"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "slime/slime",
+  "path": "lib/hyperspec.el",
+  "url": "https://github.com/slime/slime/blob/26cdc8bb6182f4b17b803573721546af705caf0a/lib/hyperspec.el"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "chunkhound/chunkhound",
+  "path": "chunkhound/core/types/common.py",
+  "url": "https://github.com/chunkhound/chunkhound/blob/3360f767c4ba571b9b05f257616fea5d7444df84/chunkhound/core/types/common.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "webodf/WebODF",
+  "path": "webodf/lib/core/JSLint.js",
+  "url": "https://github.com/webodf/WebODF/blob/8a3f9fc0c262e7fd1115c1435b7f1095a4cc871e/webodf/lib/core/JSLint.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "Danroyal001/dartvel_dev",
+  "path": "docs/audit/web-server.md",
+  "url": "https://github.com/Danroyal001/dartvel_dev/blob/6aa6899f083254f222ad09805cc014c5968fbcb4/docs/audit/web-server.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "TBEDP/datavjs",
+  "path": "bin/jslint_precommit/jslint.js",
+  "url": "https://github.com/TBEDP/datavjs/blob/2cc17a9266e3508cb01ed73072904b3a06709c66/bin/jslint_precommit/jslint.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "Nexedi/erp5",
+  "path": "bt5/erp5_web_renderjs_ui/SkinTemplateItem/portal_skins/erp5_web_renderjs/jslint.js.js",
+  "url": "https://github.com/Nexedi/erp5/blob/4ab7450717ec71cac91316112e40969b492c3fe2/bt5/erp5_web_renderjs_ui/SkinTemplateItem/portal_skins/erp5_web_renderjs/jslint.js.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "joaotavora/sly",
+  "path": "lib/hyperspec.el",
+  "url": "https://github.com/joaotavora/sly/blob/70350623eecd1f41837c9e57cbb6d5c06678a60d/lib/hyperspec.el"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "play-co/webgl-2d",
+  "path": "support/jslint.js",
+  "url": "https://github.com/play-co/webgl-2d/blob/9a7ec2619cf8887cbd87e37a811eed458c868353/support/jslint.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "midea-ai/SemaPLC",
+  "path": "sema-plc-web/src/models/project.ts",
+  "url": "https://github.com/midea-ai/SemaPLC/blob/fea1b87a112bf947197f501168ee35771fdc6377/sema-plc-web/src/models/project.ts"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "PLCnext/CSharpExamples",
+  "path": "README.md",
+  "url": "https://github.com/PLCnext/CSharpExamples/blob/6d3a8e80d5f9671cf7e6202c1e1d2a55080a224a/README.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-es5.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-es5.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "owasp-noir/noir",
+  "path": "src/analyzer/analyzers/elixir/elixir_phoenix.cr",
+  "url": "https://github.com/owasp-noir/noir/blob/92240a7e9ee4c4b90a09036531dba4558d664c3a/src/analyzer/analyzers/elixir/elixir_phoenix.cr"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "Autonomy-Logic/openplc-editor",
+  "path": "src/backend/shared/library/program-build-helpers.ts",
+  "url": "https://github.com/Autonomy-Logic/openplc-editor/blob/0bd001ce74ef758cfd57be1d580ea169403fc09d/src/backend/shared/library/program-build-helpers.ts"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "core-engineering/siemens-plc-tools",
+  "path": "packages/plc-code/src/plc_code/web/services.py",
+  "url": "https://github.com/core-engineering/siemens-plc-tools/blob/d96b01f3f723a2e76a333221ee66105788500010/packages/plc-code/src/plc_code/web/services.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2012-02-03.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2012-02-03.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2013-09-22.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2013-09-22.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2013-08-13.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2013-08-13.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2013-08-26.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2013-08-26.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2013-11-23.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2013-11-23.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2014-01-26.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2014-01-26.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2014-02-06.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2014-02-06.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2014-04-21.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2014-04-21.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2014-07-08.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2014-07-08.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "reid/node-jslint",
+  "path": "lib/jslint-2013-02-03.js",
+  "url": "https://github.com/reid/node-jslint/blob/1eefcc48116fe4fbc3b585ebd2922b3509f4f4de/lib/jslint-2013-02-03.js"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" web tension",
+  "repo": "Okan-wqm/aquaculture_platform",
+  "path": "sens-api-gateway/docs/WEB_API.md",
+  "url": "https://github.com/Okan-wqm/aquaculture_platform/blob/d50bae77e0eb4c3aedd454d228f96f6e3ad36070/sens-api-gateway/docs/WEB_API.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "TPPS999/wago_libs",
+  "path": "WagoTypesCommon_v1.6.0.0_Complete_Documentation.md",
+  "url": "https://github.com/TPPS999/wago_libs/blob/36cc37a6c995ac8dd066ada69a86e66ef6d91ab7/WagoTypesCommon_v1.6.0.0_Complete_Documentation.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "PhamDuc001/App_entry_SQL",
+  "path": "execution/processor.py",
+  "url": "https://github.com/PhamDuc001/App_entry_SQL/blob/fd208e1be5f66012e080817ac9d7aec5f5b3b61a/execution/processor.py"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/Deepseek/B-A-B(Before-After-Before)/Sequential Control/Startup Paper Machine.md",
+  "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Deepseek/B-A-B(Before-After-Before)/Sequential Control/Startup Paper Machine.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Startup Paper Machine.md",
+  "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/Grok/R-I-S-E(Role-Input-Steps-Expectation)/Sequential Control/Startup Paper Machine.md"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "Jahnavi984/unifytwin-webapp-nx-master",
+  "path": "libs/services/src/lib/config/config.ts",
+  "url": "https://github.com/Jahnavi984/unifytwin-webapp-nx-master/blob/ca5a5c8de18d4438a7e456d00a6733de245926f0/libs/services/src/lib/config/config.ts"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "Jahnavi984/unifytwin-webapp-nx-master",
+  "path": "libs/services/src/lib/services/app.service.ts",
+  "url": "https://github.com/Jahnavi984/unifytwin-webapp-nx-master/blob/ca5a5c8de18d4438a7e456d00a6733de245926f0/libs/services/src/lib/services/app.service.ts"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "yhl4095822731/std_i2980_v2.06_cp053",
+  "path": "Source/IMM/ieccontrol/HeatingGeneral/FBAutoHeating.pu",
+  "url": "https://github.com/yhl4095822731/std_i2980_v2.06_cp053/blob/e9af03b003720ab6674f24b7e6d951c0ecd95bbd/Source/IMM/ieccontrol/HeatingGeneral/FBAutoHeating.pu"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/build/plc_cell_openplc.st",
+  "url": "https://github.com/Juunary/body_measure/blob/f0bc13054f0c8bd05dbba0f01387419de2ea267b/plc-cell/build/plc_cell_openplc.st"
+ },
+ {
+  "family": "B",
+  "query": "\"FUNCTION_BLOCK\" calender",
+  "repo": "SteinemannDPE-Polytype/CalmarProdDmax",
+  "path": "POUs/Machine/SheetDetectSupervision/FB_SheetDetectSupervision.TcPOU",
+  "url": "https://github.com/SteinemannDPE-Polytype/CalmarProdDmax/blob/ad450b28e5b732577dadcbc6a35027c9bab79e84/POUs/Machine/SheetDetectSupervision/FB_SheetDetectSupervision.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "scripts/run-gates.mjs",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/scripts/run-gates.mjs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Luoji-zju/Agents4PLC_release",
+  "path": "simple-demo/213_MultiPumpCtrl/log_20251118180818.log",
+  "url": "https://github.com/Luoji-zju/Agents4PLC_release/blob/774e640e8c0b254b5d0bac86836e40b233a276a8/simple-demo/213_MultiPumpCtrl/log_20251118180818.log"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "eduardojvieira/ZPLC",
+  "path": "CHANGELOG.md",
+  "url": "https://github.com/eduardojvieira/ZPLC/blob/b247238e3268c487fd42b1ac9d563a7236ba71b1/CHANGELOG.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "joyautomation/nautilus",
+  "path": "tools/vscode-iec/CHANGELOG.md",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/tools/vscode-iec/CHANGELOG.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "2nd1st/open-mcp-apps",
+  "path": "src/functions.mjs",
+  "url": "https://github.com/2nd1st/open-mcp-apps/blob/880c3d6e8d80ec52ad483689cfcb66c7f57f15bd/src/functions.mjs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "NeuralInverse/neuralinverse",
+  "path": "src/vs/workbench/contrib/neuralInverseModernisation/browser/engine/translation/impl/languagePairRegistry.ts",
+  "url": "https://github.com/NeuralInverse/neuralinverse/blob/502c40974b68e7cc5971a8a62ff7d11d4f772c5a/src/vs/workbench/contrib/neuralInverseModernisation/browser/engine/translation/impl/languagePairRegistry.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "zarcsis/OpenSacred",
+  "path": "docs/02-data-formats.md",
+  "url": "https://github.com/zarcsis/OpenSacred/blob/2c4135f165ba0cd31a099006a1b35754ba9ce73f/docs/02-data-formats.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "JimothyJohn/helmsman",
+  "path": "TODO.md",
+  "url": "https://github.com/JimothyJohn/helmsman/blob/86380ef8aa4ea8b1e3f5b8ca286f03c5ddb0c5ac/TODO.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "eduardojvieira/ZPLC",
+  "path": "specs/011-zplc-2-0-remediation/spec.md",
+  "url": "https://github.com/eduardojvieira/ZPLC/blob/b247238e3268c487fd42b1ac9d563a7236ba71b1/specs/011-zplc-2-0-remediation/spec.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "nikdem11/java-projects",
+  "path": "FuzzyKafka/fuzzy-streams-app/target/classes/logic.fcl",
+  "url": "https://github.com/nikdem11/java-projects/blob/16980c90d380c0e410286f2a9092ba6cb9093a7c/FuzzyKafka/fuzzy-streams-app/target/classes/logic.fcl"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "verdenmax/letta-visual-guide",
+  "path": "src/part6.py",
+  "url": "https://github.com/verdenmax/letta-visual-guide/blob/ba368dba35346293a6fe2d3f3154c056a5628f9f/src/part6.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "kolenaIO/autoarena",
+  "path": "examples/convince_me_AutoArena_works/models/vicuna-33b.csv",
+  "url": "https://github.com/kolenaIO/autoarena/blob/554ed028c4b47ab948ca02a61d619a349d98af11/examples/convince_me_AutoArena_works/models/vicuna-33b.csv"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "nikdem11/java-projects",
+  "path": "FuzzyKafka/fuzzy-streams-app/src/main/resources/logic.fcl",
+  "url": "https://github.com/nikdem11/java-projects/blob/16980c90d380c0e410286f2a9092ba6cb9093a7c/FuzzyKafka/fuzzy-streams-app/src/main/resources/logic.fcl"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "johnmichaloski/STEPNCpp",
+  "path": "StepExpress2CppV2/archive/outputtree.txt",
+  "url": "https://github.com/johnmichaloski/STEPNCpp/blob/067c9a774c997670a33066ebb311d5ce152fd931/StepExpress2CppV2/archive/outputtree.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/lift-station/README.md",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/examples/lift-station/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Omega-Destroyer/PairFree",
+  "path": "data/unused_ids.json",
+  "url": "https://github.com/Omega-Destroyer/PairFree/blob/4f1c685f9d2cc826c3c36b2fb388ae48bf8d1eb7/data/unused_ids.json"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed_courses_v2.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed_courses_v2.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Squallqt/FS25_RealisticMechanicalSystems",
+  "path": "FS25_RealisticMechanicalSystems/scripts/core/RMS_Breakdowns.lua",
+  "url": "https://github.com/Squallqt/FS25_RealisticMechanicalSystems/blob/98d4f105c8853b9376c61f9a82389c8bde9a18ff/FS25_RealisticMechanicalSystems/scripts/core/RMS_Breakdowns.lua"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "SalmanShhh/Godot-EventSheet-Visual-Scripting",
+  "path": "addons/eventforge/importer/ace_lifter.gd",
+  "url": "https://github.com/SalmanShhh/Godot-EventSheet-Visual-Scripting/blob/2b8945498dfe2891c0749dae03f08b9652418340/addons/eventforge/importer/ace_lifter.gd"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "url": "https://github.com/Lone-Wolfgang/Distill-FineWeb2/blob/5b7881e5a9a6e20bf3dda177fc97adc6f24611eb/hub_dataset/jpn_Jpan/links/engineer-education.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "SalmanShhh/Godot-EventSheet-Visual-Scripting",
+  "path": "addons/eventforge/importer/gdscript_importer.gd",
+  "url": "https://github.com/SalmanShhh/Godot-EventSheet-Visual-Scripting/blob/2b8945498dfe2891c0749dae03f08b9652418340/addons/eventforge/importer/gdscript_importer.gd"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "searchspring_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/searchspring_facets.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "vertexai_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/vertexai_facets.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Squallqt/FS25_RealisticMechanicalSystems",
+  "path": "FS25_RealisticMechanicalSystems/scripts/core/RMS_BreakdownRegistry.lua",
+  "url": "https://github.com/Squallqt/FS25_RealisticMechanicalSystems/blob/98d4f105c8853b9376c61f9a82389c8bde9a18ff/FS25_RealisticMechanicalSystems/scripts/core/RMS_BreakdownRegistry.lua"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "dbrito1231/simulation",
+  "path": "simulation/sim_engine/constants.py",
+  "url": "https://github.com/dbrito1231/simulation/blob/c93b8a23ebab7f6c852b7d41d96c73747468365a/simulation/sim_engine/constants.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "snackmasta/Building-Automation",
+  "path": "docs/operations/Troubleshooting.md",
+  "url": "https://github.com/snackmasta/Building-Automation/blob/222076a23ca47305eaff8e9e0f01110c374cb2b4/docs/operations/Troubleshooting.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "snackmasta/Building-Automation",
+  "path": "wiki/operations/Troubleshooting.md",
+  "url": "https://github.com/snackmasta/Building-Automation/blob/222076a23ca47305eaff8e9e0f01110c374cb2b4/wiki/operations/Troubleshooting.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/08-counters/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/08-counters/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool wear",
+  "repo": "pontscho/prompt-heaven",
+  "path": "docs/adr/0030-point-at-the-near-miss-never-resolve-it.md",
+  "url": "https://github.com/pontscho/prompt-heaven/blob/004a296964fe8af0e3b44e69f934e248d0d57927/docs/adr/0030-point-at-the-near-miss-never-resolve-it.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "NousResearch/hermes-agent",
+  "path": "agent/agent_runtime_helpers.py",
+  "url": "https://github.com/NousResearch/hermes-agent/blob/4f676af2cfee3fb41b2047bccd2dfa39dbd73bd7/agent/agent_runtime_helpers.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "AgileAutomationTechnologies/tcgen-st-test-mcp",
+  "path": "src/mcp/tools.ts",
+  "url": "https://github.com/AgileAutomationTechnologies/tcgen-st-test-mcp/blob/eb69c98aedaa903ccaa19ade41695cb1a9e4f4b3/src/mcp/tools.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "moltis-org/moltis",
+  "path": "crates/agents/src/tool_parsing.rs",
+  "url": "https://github.com/moltis-org/moltis/blob/8a12400dc10551dfb9a6b568414b91a343ef2d5d/crates/agents/src/tool_parsing.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "CMarsRover/SciAgentGYM",
+  "path": "gym/core/tool_loader.py",
+  "url": "https://github.com/CMarsRover/SciAgentGYM/blob/e9dbbea4369d67694e38bf8be67bedbcaf9e9300/gym/core/tool_loader.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "caudena/beam_weaver",
+  "path": "lib/beam_weaver/open_ai/streaming/lifecycle.ex",
+  "url": "https://github.com/caudena/beam_weaver/blob/5df5a9a52d3d11a4d6322674e583d43828c2bb34/lib/beam_weaver/open_ai/streaming/lifecycle.ex"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "ApodexAI/FrontierAgent",
+  "path": "workflows/agent_team/subagent_runtime.py",
+  "url": "https://github.com/ApodexAI/FrontierAgent/blob/0991a7a9f8cb39ad43939aa6fa8a039226a04ef1/workflows/agent_team/subagent_runtime.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "Electrical-Age/ElectricalAge",
+  "path": "tools/icons/schematic/STYLE.md",
+  "url": "https://github.com/Electrical-Age/ElectricalAge/blob/ef949977740817f163a34402bfe1c0a0c84f668a/tools/icons/schematic/STYLE.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/plc/document.ts",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/plc/document.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "suren-atoyan/monaco-react",
+  "path": "demo/src/config/examples.ts",
+  "url": "https://github.com/suren-atoyan/monaco-react/blob/f7ef2e686c83449babaea49815c69db3668d2ab7/demo/src/config/examples.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "massgen/MassGen",
+  "path": "massgen/api_params_handler/_api_params_handler_base.py",
+  "url": "https://github.com/massgen/MassGen/blob/007bd8579298d7dc3ff2a43c378e27a284902f22/massgen/api_params_handler/_api_params_handler_base.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "dspace-group/ConfigurationDeskBusManagerMCP",
+  "path": "docs/tools/README.md",
+  "url": "https://github.com/dspace-group/ConfigurationDeskBusManagerMCP/blob/01a728203d17a7a8bda7c4d8c8d449fabd9da596/docs/tools/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "llvm/llvm-project",
+  "path": "lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp",
+  "url": "https://github.com/llvm/llvm-project/blob/eca8b2a69c7acb0d0dbf35f3af18b1a8a5d6823c/lldb/source/Plugins/SymbolFile/DWARF/SymbolFileDWARF.cpp"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "xiajing10/akec",
+  "path": "dataset/domain_terms.txt",
+  "url": "https://github.com/xiajing10/akec/blob/239fdda923c8a0743f56dbf0a009fa2235b85451/dataset/domain_terms.txt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "shlokkhemani/openpoke",
+  "path": "server/agents/interaction_agent/runtime.py",
+  "url": "https://github.com/shlokkhemani/openpoke/blob/5b5f635935a64ab37884c025d70abb0ed731c094/server/agents/interaction_agent/runtime.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "caudena/beam_weaver",
+  "path": "lib/beam_weaver/open_ai/streaming/lifecycle/content.ex",
+  "url": "https://github.com/caudena/beam_weaver/blob/5df5a9a52d3d11a4d6322674e583d43828c2bb34/lib/beam_weaver/open_ai/streaming/lifecycle/content.ex"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/README.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/specs/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "calmsacibis995/irix-657m-src",
+  "path": "irix/cmd/btool/toplev.c",
+  "url": "https://github.com/calmsacibis995/irix-657m-src/blob/822f4fcb99524a2fa03747acc4c5946eeb63ea3c/irix/cmd/btool/toplev.c"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "model-checking/kani",
+  "path": "cprover_bindings/src/irep/irep_id.rs",
+  "url": "https://github.com/model-checking/kani/blob/bd74dd6fa59abb71282564009c3fac8e7d5caea3/cprover_bindings/src/irep/irep_id.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "yfei1/moltis",
+  "path": "crates/agents/src/tool_parsing.rs",
+  "url": "https://github.com/yfei1/moltis/blob/39b11c1831c0a7bb45d44aad9a6589fd21d17219/crates/agents/src/tool_parsing.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/notes/runtime-portability/a2-execution.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/notes/runtime-portability/a2-execution.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "HarnessLab/claw-code-agent",
+  "path": "src/agent_runtime.py",
+  "url": "https://github.com/HarnessLab/claw-code-agent/blob/167571da895b2a1a9e36ecfae2876984cef65e0d/src/agent_runtime.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "znc15/FlowVision",
+  "path": "packages/backend/src/mcp/server.ts",
+  "url": "https://github.com/znc15/FlowVision/blob/46318ab70bbc5bb76acd6697a0d17a2ea27c3925/packages/backend/src/mcp/server.ts"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "dspace-group/ConfigurationDeskBusManagerMCP",
+  "path": "README.md",
+  "url": "https://github.com/dspace-group/ConfigurationDeskBusManagerMCP/blob/01a728203d17a7a8bda7c4d8c8d449fabd9da596/README.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "ironplc/ironplc",
+  "path": "specs/design/mcp-server.md",
+  "url": "https://github.com/ironplc/ironplc/blob/d16b5065cc060cd1e9fc5a7290a31433080317d0/specs/design/mcp-server.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/16-ladder-profile-trust.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/specs/16-ladder-profile-trust.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "lumingya/universal-web-api",
+  "path": "app/api/chat.py",
+  "url": "https://github.com/lumingya/universal-web-api/blob/1b547d0cbdca67a062a7f177a35863032db17003/app/api/chat.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/22-developer-workflows.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/specs/22-developer-workflows.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/internal/design/rust-plc-vscode-workflow-v1.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/internal/design/rust-plc-vscode-workflow-v1.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "docs/specs/25-vscode-product-contract.md",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/docs/specs/25-vscode-product-contract.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" tool life",
+  "repo": "mrmidi/ASFireWire",
+  "path": "ASFWDriver/Protocols/AVC/AVC_DEVICE_HAZARDS.md",
+  "url": "https://github.com/mrmidi/ASFireWire/blob/57deaaf3777a2277de8e8fc5ef9ed234a41260a5/ASFWDriver/Protocols/AVC/AVC_DEVICE_HAZARDS.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "Triamec/CncEtherCat",
+  "path": "CNCEtherCAT/PLC/POUs/CNC_Axis.TcPOU",
+  "url": "https://github.com/Triamec/CncEtherCat/blob/259c99501382d44645d8cc6142e49cb7e607c90a/CNCEtherCAT/PLC/POUs/CNC_Axis.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NerdySouth/bozo",
+  "path": "crates/bozo-proto/src/protocol/cnc.rs",
+  "url": "https://github.com/NerdySouth/bozo/blob/db07cad042093a4abcfb37c3f31ab6ace6137d4a/crates/bozo-proto/src/protocol/cnc.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "SeanyCash/TwinCAT_CNC",
+  "path": "CNC_MACHINE/Main/POUs/FB_CNC.TcPOU",
+  "url": "https://github.com/SeanyCash/TwinCAT_CNC/blob/0e1020338c10cf77249aeaff34520f9516816167/CNC_MACHINE/Main/POUs/FB_CNC.TcPOU"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit",
+  "path": "twincat/PLC/src/3_Cnc/FB_CncMirror.st",
+  "url": "https://github.com/NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit/blob/71da69456258ef2d1ea6c67bcb81fd775efd9983/twincat/PLC/src/3_Cnc/FB_CncMirror.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "br-automation-community/ASW6_Application_SBOM",
+  "path": "example/Repro6/Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/br-automation-community/ASW6_Application_SBOM/blob/4ff5fb450e1f7e97ba6104374b7d8b74cf72b375/example/Repro6/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit",
+  "path": "twincat/PLC/src/3_Cnc/FB_MFunctions.st",
+  "url": "https://github.com/NiklasEngineering/Jacob-Formschaumtechnik-ISEL-CNC-Retrofit/blob/71da69456258ef2d1ea6c67bcb81fd775efd9983/twincat/PLC/src/3_Cnc/FB_MFunctions.st"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "Prathap20/siemens-s7-1500-robotic-cnc-cell",
+  "path": "plc/baseline_v1.0/PLC_CNC_Cell_v1.0_Full_Source_Export.scl",
+  "url": "https://github.com/Prathap20/siemens-s7-1500-robotic-cnc-cell/blob/9eacd9e6c3008af4338e229db9c190021ee52048/plc/baseline_v1.0/PLC_CNC_Cell_v1.0_Full_Source_Export.scl"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "br-automation-community/mapprobotics-sample-tracking",
+  "path": "Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/br-automation-community/mapprobotics-sample-tracking/blob/952bb670223bc4808ceea38e69f6e03340ce8210/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "Prathap20/siemens-s7-1500-robotic-cnc-cell",
+  "path": "plc/exported/PLC_CNC_Cell_v1.1_Complete_Source_Export.scl",
+  "url": "https://github.com/Prathap20/siemens-s7-1500-robotic-cnc-cell/blob/9eacd9e6c3008af4338e229db9c190021ee52048/plc/exported/PLC_CNC_Cell_v1.1_Complete_Source_Export.scl"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "EstebanQuerol/UJI_CNC_IEC61499",
+  "path": "FORTE/src/modules/CNC8070/Layer_0/L0_CNCEncap.h",
+  "url": "https://github.com/EstebanQuerol/UJI_CNC_IEC61499/blob/f90a7b85841bd7f6686447b72cc830b6d6cc9de1/FORTE/src/modules/CNC8070/Layer_0/L0_CNCEncap.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "ironautomation/demo-cnc",
+  "path": "src/PLC/Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/ironautomation/demo-cnc/blob/530af3e401e2763d9c925c198e2b7e6834820d09/src/PLC/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "AEduardo-dev/ST",
+  "path": "Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/AEduardo-dev/ST/blob/8adc0229d6b1dd6cb57b081a5d3a2701063d20ff/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "AEduardo-dev/ST",
+  "path": "Temp/Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/AEduardo-dev/ST/blob/8adc0229d6b1dd6cb57b081a5d3a2701063d20ff/Temp/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "hilch/demo-MpCnc-with-mapp-motion",
+  "path": "mappCnc/Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/hilch/demo-MpCnc-with-mapp-motion/blob/3b815a298f99fe4f4a87689875b47dc5defd0501/mappCnc/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "macbogucki/Projekt_Praktyki_Robot_Delta",
+  "path": "Logical/MpCnc/MpCnc.fun",
+  "url": "https://github.com/macbogucki/Projekt_Praktyki_Robot_Delta/blob/de67856842fec83b28a267ba2bb3af3e18d1786e/Logical/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "macbogucki/Projekt_Praktyki_Robot_Delta",
+  "path": "Logical/Libraries/MpCnc/MpCnc.fun",
+  "url": "https://github.com/macbogucki/Projekt_Praktyki_Robot_Delta/blob/de67856842fec83b28a267ba2bb3af3e18d1786e/Logical/Libraries/MpCnc/MpCnc.fun"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "DPRIcky/micro820-plc",
+  "path": "docs/CCW_CNC_ToolMagazine_IEEE_Report.tex",
+  "url": "https://github.com/DPRIcky/micro820-plc/blob/f08212651e0605760a76e94893c7aade26238248/docs/CCW_CNC_ToolMagazine_IEEE_Report.tex"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "MarkusFANUC/BasePMC",
+  "path": "compiler/compile.cmd",
+  "url": "https://github.com/MarkusFANUC/BasePMC/blob/832b4dc334320175c02172a1d61d7cd2bd8ca733/compiler/compile.cmd"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/plc/DEVICE-IO.md",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/plc/DEVICE-IO.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "HeytalePazguato/plc-st-review",
+  "path": "docs/preset-packs.md",
+  "url": "https://github.com/HeytalePazguato/plc-st-review/blob/1f7730d01656c53b4619a93dee95f83b31bc9981/docs/preset-packs.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NerdySouth/bozo",
+  "path": "crates/bozo-proto/src/bmap/packet.rs",
+  "url": "https://github.com/NerdySouth/bozo/blob/db07cad042093a4abcfb37c3f31ab6ace6137d4a/crates/bozo-proto/src/bmap/packet.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "lusipad/plcopen",
+  "path": "doc/compliance/st-l2a-semantics.md",
+  "url": "https://github.com/lusipad/plcopen/blob/8cab29be3b80154beccca0b2e0588d288cd1e490/doc/compliance/st-l2a-semantics.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "silverpoetry/HyperEars",
+  "path": "protocol/src/main/java/dev/hyperears/protocol/bose/BoseBmapWireCodec.kt",
+  "url": "https://github.com/silverpoetry/HyperEars/blob/91d6804af40fa749bb80608a30b5bd9369a96cee/protocol/src/main/java/dev/hyperears/protocol/bose/BoseBmapWireCodec.kt"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "EstebanQuerol/UJI_CNC_IEC61499",
+  "path": "FORTE/src/modules/CNC8070/Layer_0/L0_SendBlk.h",
+  "url": "https://github.com/EstebanQuerol/UJI_CNC_IEC61499/blob/f90a7b85841bd7f6686447b72cc830b6d6cc9de1/FORTE/src/modules/CNC8070/Layer_0/L0_SendBlk.h"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "prototux/booze-connect",
+  "path": "bmap/settings.py",
+  "url": "https://github.com/prototux/booze-connect/blob/5d6264f06bbcf4180ada879be36072de8874aa3c/bmap/settings.py"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NerdySouth/bozo",
+  "path": "crates/bozo-proto/src/protocol/audio_modes.rs",
+  "url": "https://github.com/NerdySouth/bozo/blob/db07cad042093a4abcfb37c3f31ab6ace6137d4a/crates/bozo-proto/src/protocol/audio_modes.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "stratuMAK/stratumak",
+  "path": "docs/dev/MISSING_FEATURES.md",
+  "url": "https://github.com/stratuMAK/stratumak/blob/a01a5605da8e434bdafab59386545819716ae4e2/docs/dev/MISSING_FEATURES.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "feecat/codesyshelp",
+  "path": "docs/chapter_4.md",
+  "url": "https://github.com/feecat/codesyshelp/blob/c2625f966bf59604e710165f001b829c72e36081/docs/chapter_4.md"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "NerdySouth/bozo",
+  "path": "crates/bozod/src/state.rs",
+  "url": "https://github.com/NerdySouth/bozo/blob/db07cad042093a4abcfb37c3f31ab6ace6137d4a/crates/bozod/src/state.rs"
+ },
+ {
+  "family": "C",
+  "query": "\"FUNCTION_BLOCK\" CNC",
+  "repo": "pascalabcnet/pascalabcnet",
+  "path": "TreeConverter/TreeConversion/convertion_data_and_alghoritms.cs",
+  "url": "https://github.com/pascalabcnet/pascalabcnet/blob/33a071c686b95ce2ae0244fb6d0f9db65b08b2e6/TreeConverter/TreeConversion/convertion_data_and_alghoritms.cs"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Aneesh495/gantry",
+  "path": "README.md",
+  "url": "https://github.com/Aneesh495/gantry/blob/cc541799c61cc16420556bc1fa430fddd0857824/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed_courses_v2.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed_courses_v2.py"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/15-pid-control/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/15-pid-control/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/16-alarms-and-diagnostics/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/16-alarms-and-diagnostics/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/13-sequential-control/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/13-sequential-control/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/21-architecture-and-standards/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" exotherm",
+  "repo": "ZzzJjt/IC-100",
+  "path": "Code Evaluation/json_generation/reference_tasks.json",
+  "url": "https://github.com/ZzzJjt/IC-100/blob/24d2b84955c29ecf466a71acf59df5dc18aef519/Code Evaluation/json_generation/reference_tasks.json"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/control/14-integrated-capstones/83-reactor-control/src/Main.st",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/examples/control/14-integrated-capstones/83-reactor-control/src/Main.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/control/09-industrial-control-structures/52-cascade/src/Main.st",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/examples/control/09-industrial-control-structures/52-cascade/src/Main.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "pupenasan/PACFramework",
+  "path": "implem/SIMUL1/smTankT_EN.md",
+  "url": "https://github.com/pupenasan/PACFramework/blob/5ff28393539bfc1152248f696a8f7972aabacdaf/implem/SIMUL1/smTankT_EN.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/batch-skid/lib/physics.st",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/examples/batch-skid/lib/physics.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/batch-skid/lib/recipes.st",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/examples/batch-skid/lib/recipes.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "joyautomation/nautilus",
+  "path": "examples/batch-skid/README.md",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/examples/batch-skid/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/catalog.json",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/examples/catalog.json"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "rockbenben/free-llm-intel",
+  "path": "docs/articles/aws_bedrock/93da9efb46c6.md",
+  "url": "https://github.com/rockbenben/free-llm-intel/blob/08a5650558b85e856015b619c683b1da6b91ac8f/docs/articles/aws_bedrock/93da9efb46c6.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "rockbenben/free-llm-intel",
+  "path": "docs/articles/aws_bedrock/93da9efb46c6.en.md",
+  "url": "https://github.com/rockbenben/free-llm-intel/blob/08a5650558b85e856015b619c683b1da6b91ac8f/docs/articles/aws_bedrock/93da9efb46c6.en.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "brentjm/chemical-process-digital-twin",
+  "path": "README.md",
+  "url": "https://github.com/brentjm/chemical-process-digital-twin/blob/812027b16164fb45ab81f0a64bd04aa769c905f0/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "crates/trust-lsp/src/handlers/commands/control_links.rs",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/crates/trust-lsp/src/handlers/commands/control_links.rs"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "SureshGopiPROLITE/code_x_flask",
+  "path": "export/siemens/PLC_Logic/All CM AIN.awl",
+  "url": "https://github.com/SureshGopiPROLITE/code_x_flask/blob/66b06aec8b54a79c53869625463e792544a07673/export/siemens/PLC_Logic/All CM AIN.awl"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "claude-dev-suite/knowledge_base",
+  "path": "knowledge/dcs-platforms/emerson-honeywell.md",
+  "url": "https://github.com/claude-dev-suite/knowledge_base/blob/bc1397963299a7e0c736be85e594fb9a5747fba6/knowledge/dcs-platforms/emerson-honeywell.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "vertexai_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/vertexai_facets.txt"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "searchspring_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/searchspring_facets.txt"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Dadlorian/CLAUDE_SKILLS",
+  "path": "25_manufacturing_industry_4_0/skills/01_industrial_automation/skill.md",
+  "url": "https://github.com/Dadlorian/CLAUDE_SKILLS/blob/fe3f40cb7ae0ae70e750985017cc13b7af3844c5/25_manufacturing_industry_4_0/skills/01_industrial_automation/skill.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/24-capstone-projects/labs/starter/24-2-batch-mixing-plant.st",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/24-capstone-projects/labs/starter/24-2-batch-mixing-plant.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed.py"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/11-program-organization/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/11-program-organization/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/21-architecture-and-standards/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/24-capstone-projects/24-2-batch-mixing-plant.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/24-capstone-projects/24-2-batch-mixing-plant.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/24-capstone-projects/labs/solutions/24-2-batch-mixing-plant.st",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/24-capstone-projects/labs/solutions/24-2-batch-mixing-plant.st"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/15-pid-control/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/15-pid-control/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/22-software-engineering/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/22-software-engineering/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster1.txt"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/12-data-structures/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/12-data-structures/README.md"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "mismatched_keys.json",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/mismatched_keys.json"
+ },
+ {
+  "family": "D",
+  "query": "\"FUNCTION_BLOCK\" jacket temperature",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "crates/trust-lsp/src/handlers/commands/path_ranges_and_tests.rs",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/crates/trust-lsp/src/handlers/commands/path_ranges_and_tests.rs"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "TomF777/PLC-programming-etudes",
+  "path": "TabletFillingMachine/TabletFillingMachine/PLC/POUs/TabletFillingControl02.TcPOU",
+  "url": "https://github.com/TomF777/PLC-programming-etudes/blob/d87a4f71310a99ac64884a85427ae064b902b15b/TabletFillingMachine/TabletFillingMachine/PLC/POUs/TabletFillingControl02.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "TomF777/PLC-programming-etudes",
+  "path": "TabletFillingMachine/TabletFillingMachine/PLC/POUs/TabletFillingControl01.TcPOU",
+  "url": "https://github.com/TomF777/PLC-programming-etudes/blob/d87a4f71310a99ac64884a85427ae064b902b15b/TabletFillingMachine/TabletFillingMachine/PLC/POUs/TabletFillingControl01.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "thufv/Deagle",
+  "path": "src/statement-list/statement_list_entry_point.cpp",
+  "url": "https://github.com/thufv/Deagle/blob/d8c79eaba5df03b1a013dc6ffbb3a1e249485c1e/src/statement-list/statement_list_entry_point.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "UniprJRC/FSDA",
+  "path": "toolbox/helpfiles/FSDA/includesFS/doc_center.css",
+  "url": "https://github.com/UniprJRC/FSDA/blob/0cc3c11ce5cc9c6f17b25bd44ae14c192e51c726/toolbox/helpfiles/FSDA/includesFS/doc_center.css"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "openbsd/src",
+  "path": "gnu/llvm/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/openbsd/src/blob/dbc61b5bb20fdabef8908c47b723c69d9fb6479e/gnu/llvm/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "ravynsoft/ravynos",
+  "path": "Developer/Default.xctoolchain/llvm/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/ravynsoft/ravynos/blob/60aa4ff4b16a54ef8cc1a9ea656b8a827b3419b7/Developer/Default.xctoolchain/llvm/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "UniprJRC/FSDA",
+  "path": "toolbox/helpfiles/includes/product/css/doc_center_base.css",
+  "url": "https://github.com/UniprJRC/FSDA/blob/0cc3c11ce5cc9c6f17b25bd44ae14c192e51c726/toolbox/helpfiles/includes/product/css/doc_center_base.css"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "DavidWenzler/reAM250",
+  "path": "PLC/Logical/Libraries/SfDomain/SfDomain.fun",
+  "url": "https://github.com/DavidWenzler/reAM250/blob/a56461ee600d3ae292325fd93504ff51ef5a8476/PLC/Logical/Libraries/SfDomain/SfDomain.fun"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "libraries/plant/src/scale_and_tank.st",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/libraries/plant/src/scale_and_tank.st"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "loupeteam/Loupe-UX",
+  "path": "example/AsProject/Logical/Libraries/_AS/AsSafety/AsSafety.fun",
+  "url": "https://github.com/loupeteam/Loupe-UX/blob/4fb06e82ffbf60e17c674857e8b3ddd23bde0e0f/example/AsProject/Logical/Libraries/_AS/AsSafety/AsSafety.fun"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "thufv/Deagle",
+  "path": "src/statement-list/statement_list_typecheck.cpp",
+  "url": "https://github.com/thufv/Deagle/blob/d8c79eaba5df03b1a013dc6ffbb3a1e249485c1e/src/statement-list/statement_list_typecheck.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "DifferentialSet/DifferentialSet",
+  "path": "cbmc/src/statement-list/statement_list_entry_point.cpp",
+  "url": "https://github.com/DifferentialSet/DifferentialSet/blob/90819fc073db4419a99ce705d485f2edf0e9d56a/cbmc/src/statement-list/statement_list_entry_point.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "DeNA/DeClang",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/DeNA/DeClang/blob/cd4081293f9373138357fa135ba220e9d7a33692/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "farfromg/demo_blog_dj",
+  "path": "blogblog/blog/static/blog/sass/layout/_shop-cart.scss",
+  "url": "https://github.com/farfromg/demo_blog_dj/blob/bddfc0cb797ee245aaac3846ba6fdb0b91aa8dbe/blogblog/blog/static/blog/sass/layout/_shop-cart.scss"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "thufv/Deagle",
+  "path": "src/statement-list/statement_list_typecheck.h",
+  "url": "https://github.com/thufv/Deagle/blob/d8c79eaba5df03b1a013dc6ffbb3a1e249485c1e/src/statement-list/statement_list_typecheck.h"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/editor/components/plc/PlcOrganizer.tsx",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/editor/components/plc/PlcOrganizer.tsx"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "opnsense/src",
+  "path": "contrib/llvm-project/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/opnsense/src/blob/9d35d0d196e41162383d4b3d72057e8c7a57e7a4/contrib/llvm-project/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "OpenXiangShan/AME_llvm",
+  "path": "clang/lib/APINotes/APINotesReader.cpp",
+  "url": "https://github.com/OpenXiangShan/AME_llvm/blob/d51ccae5a8430cf11c91f5c1a562307e8fd3faf1/clang/lib/APINotes/APINotesReader.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "leaningtech/cheerp-compiler",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/leaningtech/cheerp-compiler/blob/919d7ec3f34d8b4149ba2ffb7d6cd133b69f3c0a/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "za233/Polaris-Obfuscator",
+  "path": "src/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/za233/Polaris-Obfuscator/blob/1e066e69652be6c93885823b8cbbabdba8a16c73/src/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "Xilinx/llvm-aie",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/Xilinx/llvm-aie/blob/e04bb8d0c57962d6e9c0f80c05e60f33105406f8/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/room_heating/libraries/plant/src/scale_and_tank.st",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/examples/room_heating/libraries/plant/src/scale_and_tank.st"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "aftermathlabs/llvm-msvc",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/aftermathlabs/llvm-msvc/blob/9a0b4226974b7edfcaa17a8c80ec6039636998d3/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "examples/hmi_equipment/libraries/plant/src/scale_and_tank.st",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/examples/hmi_equipment/libraries/plant/src/scale_and_tank.st"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "robotology-playground/Robust-View-Graph-SLAM",
+  "path": "matlab/include/help/includes/web/css/doc_center.css",
+  "url": "https://github.com/robotology-playground/Robust-View-Graph-SLAM/blob/77255e5f0b42d013179029f884249f68888978aa/matlab/include/help/includes/web/css/doc_center.css"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "arm/arm-toolchain",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/arm/arm-toolchain/blob/50a6931a65a8cf6bdaf80a8c839f49e4e478e5c0/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "robotology-playground/Robust-View-Graph-SLAM",
+  "path": "matlab/include/help/includes/product/css/doc_center.css",
+  "url": "https://github.com/robotology-playground/Robust-View-Graph-SLAM/blob/77255e5f0b42d013179029f884249f68888978aa/matlab/include/help/includes/product/css/doc_center.css"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "truenas/os",
+  "path": "contrib/llvm-project/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/truenas/os/blob/54a090f952b13bbda21f911385adcccc927baa6c/contrib/llvm-project/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "hemashushu/practice-wasm",
+  "path": "crates/engine/src/linker.rs",
+  "url": "https://github.com/hemashushu/practice-wasm/blob/05c629cbca2f7e1546adf865b193908c4a1578b4/crates/engine/src/linker.rs"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" tablet",
+  "repo": "triSYCL/sycl",
+  "path": "lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp",
+  "url": "https://github.com/triSYCL/sycl/blob/35aa03e00bb26b685912c2c17c111c6027165520/lldb/source/Plugins/SymbolFile/PDB/SymbolFilePDB.cpp"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" granulation",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "url": "https://github.com/Lone-Wolfgang/Distill-FineWeb2/blob/5b7881e5a9a6e20bf3dda177fc97adc6f24611eb/hub_dataset/jpn_Jpan/links/engineer-education.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" granulation",
+  "repo": "Dariusz791/Rybno",
+  "path": "Archive/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU",
+  "url": "https://github.com/Dariusz791/Rybno/blob/21353da9f39bf446717ea36888065e0cb9e7dbeb/Archive/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" granulation",
+  "repo": "Dariusz791/Rybno",
+  "path": "plc/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU",
+  "url": "https://github.com/Dariusz791/Rybno/blob/21353da9f39bf446717ea36888065e0cb9e7dbeb/plc/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" granulation",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster6.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-20/cluster6.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" granulation",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-40/cluster38.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-40/cluster38.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Lone-Wolfgang/Distill-FineWeb2",
+  "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt",
+  "url": "https://github.com/Lone-Wolfgang/Distill-FineWeb2/blob/5b7881e5a9a6e20bf3dda177fc97adc6f24611eb/hub_dataset/jpn_Jpan/links/engineer-education.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/docs/help/README.md",
+  "url": "https://github.com/mnwinter/RungProof/blob/423380b8455dbd0237480ddab96d89d9c402762c/rungproof-next/docs/help/README.md"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Juunary/body_measure",
+  "path": "plc-cell/build/plc_cell_openplc.st",
+  "url": "https://github.com/Juunary/body_measure/blob/f0bc13054f0c8bd05dbba0f01387419de2ea267b/plc-cell/build/plc_cell_openplc.st"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Tuyishimire-lab/Auto-Learn",
+  "path": "seed.py",
+  "url": "https://github.com/Tuyishimire-lab/Auto-Learn/blob/e02106b5af0662a9557b34cc41d41357d7e00996/seed.py"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "vertexai_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/vertexai_facets.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "searchspring_facets.txt",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/searchspring_facets.txt"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Jahnavi984/unifytwin-webapp-nx-master",
+  "path": "libs/services/src/lib/config/config.ts",
+  "url": "https://github.com/Jahnavi984/unifytwin-webapp-nx-master/blob/ca5a5c8de18d4438a7e456d00a6733de245926f0/libs/services/src/lib/config/config.ts"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Jahnavi984/unifytwin-webapp-nx-master",
+  "path": "libs/services/src/lib/services/app.service.ts",
+  "url": "https://github.com/Jahnavi984/unifytwin-webapp-nx-master/blob/ca5a5c8de18d4438a7e456d00a6733de245926f0/libs/services/src/lib/services/app.service.ts"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "oldhand7/SearchSpringVertexAI",
+  "path": "mismatched_keys.json",
+  "url": "https://github.com/oldhand7/SearchSpringVertexAI/blob/2a8e11baa2aa09770c917c88fcfd3b006af9669b/mismatched_keys.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/fact_anchor_chat_ledger_20261101.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/fact_anchor_chat_ledger_20261101.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "grading/evidence/fact_anchor_scoring_exclusions_20261101.json",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/grading/evidence/fact_anchor_scoring_exclusions_20261101.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/approved_fact_recheck_triage_20261029.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/approved_fact_recheck_triage_20261029.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_current_queue_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_current_queue_20261030.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_recheck_queue_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_recheck_queue_20261030.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_contract_audit_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_contract_audit_20261030.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "now0930/prof_eng_answer",
+  "path": "reports/remaining_fact_current_contract_audit_20261030.csv",
+  "url": "https://github.com/now0930/prof_eng_answer/blob/30b13262ad3899919edae7cb72be3ddeca677f18/reports/remaining_fact_current_contract_audit_20261030.csv"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "mnwinter/RungProof",
+  "path": "rungproof-next/assets/catalog/industrial-reference-register.json",
+  "url": "https://github.com/mnwinter/RungProof/blob/423380b8455dbd0237480ddab96d89d9c402762c/rungproof-next/assets/catalog/industrial-reference-register.json"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Will1234-pixel/Word",
+  "path": "plc-course/21-architecture-and-standards/README.md",
+  "url": "https://github.com/Will1234-pixel/Word/blob/4cc53ecb51871e5812035ce493921fe006de5d6b/plc-course/21-architecture-and-standards/README.md"
+ },
+ {
+  "family": "E",
+  "query": "\"FUNCTION_BLOCK\" coating pan",
+  "repo": "Sajeevanveeriah/open-industrial-automation",
+  "path": "tests/workshop-applied.test.mjs",
+  "url": "https://github.com/Sajeevanveeriah/open-industrial-automation/blob/c42f26d59202b93b68e25794e296d855c8f01967/tests/workshop-applied.test.mjs"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" areal density",
+  "repo": "nestordemeure/shaman",
+  "path": "examples/performances/lulesh.cpp",
+  "url": "https://github.com/nestordemeure/shaman/blob/dac36ca7699f5455b7e659b89a2a97c100bf5675/examples/performances/lulesh.cpp"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" areal density",
+  "repo": "nbermudezs/UIUC_CS512",
+  "path": "assignment_1/results/DBLP/clusters-20/cluster13.txt",
+  "url": "https://github.com/nbermudezs/UIUC_CS512/blob/d624f5e09f3d5a6262c5e6452304975078176f59/assignment_1/results/DBLP/clusters-20/cluster13.txt"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Bhavya-Chawat/AlgoLens",
+  "path": "runner/cpp/trace.py",
+  "url": "https://github.com/Bhavya-Chawat/AlgoLens/blob/12e48bfd994ed4013ceca538707f641db17d8b7c/runner/cpp/trace.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "ApodexAI/FrontierAgent",
+  "path": "workflows/stateful_react_agent/_runtime.py",
+  "url": "https://github.com/ApodexAI/FrontierAgent/blob/0991a7a9f8cb39ad43939aa6fa8a039226a04ef1/workflows/stateful_react_agent/_runtime.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "ApodexAI/FrontierAgent",
+  "path": "workflows/agent_team/subagent_runtime.py",
+  "url": "https://github.com/ApodexAI/FrontierAgent/blob/0991a7a9f8cb39ad43939aa6fa8a039226a04ef1/workflows/agent_team/subagent_runtime.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "langchain-ai/deepagents",
+  "path": "libs/deepagents/deepagents/profiles/harness/_nvidia_nemotron_3_ultra.py",
+  "url": "https://github.com/langchain-ai/deepagents/blob/66a5579fc504b0dc890d08d6aaacc2ee3a9395d3/libs/deepagents/deepagents/profiles/harness/_nvidia_nemotron_3_ultra.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "NucleoidAI/Nucleoid",
+  "path": "docs/nuc-0115.md",
+  "url": "https://github.com/NucleoidAI/Nucleoid/blob/6c8cbc670672d78a15c385f27e659d105b34a2e6/docs/nuc-0115.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "NucleoidAI/Nucleoid",
+  "path": "docs/nuc-0126.md",
+  "url": "https://github.com/NucleoidAI/Nucleoid/blob/6c8cbc670672d78a15c385f27e659d105b34a2e6/docs/nuc-0126.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "johannesPettersson80/trust-platform",
+  "path": "crates/trust-runtime/src/hmi/alarms/messages.rs",
+  "url": "https://github.com/johannesPettersson80/trust-platform/blob/3a65856b49227d2f7becf5510ca4e9bff0b49b3e/crates/trust-runtime/src/hmi/alarms/messages.rs"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "microsoft/MIDI",
+  "path": "src/in-box/Service/Exe/MidiDeviceManager.cpp",
+  "url": "https://github.com/microsoft/MIDI/blob/c7a71dff6c495733261b32d400f9ce3139286147/src/in-box/Service/Exe/MidiDeviceManager.cpp"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "dwlandry/DeltaV-AI-Integration",
+  "path": "data/html/BOL v14.3 Web Based/c_control_selector_function_block_application_information.html",
+  "url": "https://github.com/dwlandry/DeltaV-AI-Integration/blob/b4be23b78857cb98a5b75ddc2d7b1f793964674c/data/html/BOL v14.3 Web Based/c_control_selector_function_block_application_information.html"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "docs/st-conformance.md",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/docs/st-conformance.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "HeytalePazguato/plc-st-review",
+  "path": "docs/metrics-mode.md",
+  "url": "https://github.com/HeytalePazguato/plc-st-review/blob/1f7730d01656c53b4619a93dee95f83b31bc9981/docs/metrics-mode.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "dwlandry/DeltaV-AI-Integration",
+  "path": "data/html/BOL v14.3 Web Based/c_enhanced_control_selector_function_block_application_information.html",
+  "url": "https://github.com/dwlandry/DeltaV-AI-Integration/blob/b4be23b78857cb98a5b75ddc2d7b1f793964674c/data/html/BOL v14.3 Web Based/c_enhanced_control_selector_function_block_application_information.html"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/plc/runtime.ts",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/plc/runtime.ts"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "ironplc/ironplc",
+  "path": "specs/design/mcp-server.md",
+  "url": "https://github.com/ironplc/ironplc/blob/d16b5065cc060cd1e9fc5a7290a31433080317d0/specs/design/mcp-server.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Elevatormusic/DeepSeek-V4.1-Flash-1017-EXL3-TensorFold-2x-DGX-Spark",
+  "path": "experiments/tool-output/overlay/tool_output.py",
+  "url": "https://github.com/Elevatormusic/DeepSeek-V4.1-Flash-1017-EXL3-TensorFold-2x-DGX-Spark/blob/32ae9523d5dddb5f8285c8d9e3b63aafe2f3b379/experiments/tool-output/overlay/tool_output.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "src/plc/conformanceCases.ts",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/src/plc/conformanceCases.ts"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "fluffos/fluffos",
+  "path": "src/compiler/internal/compiler.h",
+  "url": "https://github.com/fluffos/fluffos/blob/c669cca2efe6aa79bb18d3ca21f682e331d7acf1/src/compiler/internal/compiler.h"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "ironplc/ironplc",
+  "path": "specs/design/debugger-support.md",
+  "url": "https://github.com/ironplc/ironplc/blob/d16b5065cc060cd1e9fc5a7290a31433080317d0/specs/design/debugger-support.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Coral-Bricks-AI/reef",
+  "path": "reef/react.py",
+  "url": "https://github.com/Coral-Bricks-AI/reef/blob/33aefaa12d78891bf5ba70a0d96b070d471ecc78/reef/react.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "ironplc/ironplc",
+  "path": "compiler/analyzer/src/semantic_type.rs",
+  "url": "https://github.com/ironplc/ironplc/blob/d16b5065cc060cd1e9fc5a7290a31433080317d0/compiler/analyzer/src/semantic_type.rs"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "joyautomation/nautilus",
+  "path": "lang/ir/vm.go",
+  "url": "https://github.com/joyautomation/nautilus/blob/f5760a6f079a394fd3cb2e715d62dcad07377682/lang/ir/vm.go"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "2nd1st/open-mcp-apps",
+  "path": "src/functions.mjs",
+  "url": "https://github.com/2nd1st/open-mcp-apps/blob/880c3d6e8d80ec52ad483689cfcb66c7f57f15bd/src/functions.mjs"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "FREEZONEX/ia2",
+  "path": "library/process-control/pous/fb_alarm_roc.st",
+  "url": "https://github.com/FREEZONEX/ia2/blob/518555a8260f5cd2daceb400b82562a8136e1826/library/process-control/pous/fb_alarm_roc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Nx86-emu/Nx86",
+  "path": "docs/developer/phase-63-70-audit.md",
+  "url": "https://github.com/Nx86-emu/Nx86/blob/8f05b0ec990bedaf73b1143bcc55ef75760c1720/docs/developer/phase-63-70-audit.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "Open-Industry-Project/Open-Industry-Project",
+  "path": "public/st-capabilities.json",
+  "url": "https://github.com/Open-Industry-Project/Open-Industry-Project/blob/01a912721c2c82288ed1695c71045c576087395f/public/st-capabilities.json"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "FREEZONEX/ia2",
+  "path": "docs/api.md",
+  "url": "https://github.com/FREEZONEX/ia2/blob/518555a8260f5cd2daceb400b82562a8136e1826/docs/api.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "RaulSaavedraRiera/ICI",
+  "path": "src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/SUE.fcl",
+  "url": "https://github.com/RaulSaavedraRiera/ICI/blob/80e81258049f4b68e7bf2509675290211fe217d7/src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/SUE.fcl"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "RaulSaavedraRiera/ICI",
+  "path": "src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/INKY.fcl",
+  "url": "https://github.com/RaulSaavedraRiera/ICI/blob/80e81258049f4b68e7bf2509675290211fe217d7/src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/INKY.fcl"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "RaulSaavedraRiera/ICI",
+  "path": "src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/PINKY.fcl",
+  "url": "https://github.com/RaulSaavedraRiera/ICI/blob/80e81258049f4b68e7bf2509675290211fe217d7/src/es/ucm/fdi/ici/c2223/practica4/grupo08/ghosts/PINKY.fcl"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" runaway",
+  "repo": "stratuMAK/stratumak",
+  "path": "docs/dev/MISSING_FEATURES.md",
+  "url": "https://github.com/stratuMAK/stratumak/blob/a01a5605da8e434bdafab59386545819716ae4e2/docs/dev/MISSING_FEATURES.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "komatic1/SCL_PCS7_AdvLib",
+  "path": "DoseL.scl",
+  "url": "https://github.com/komatic1/SCL_PCS7_AdvLib/blob/b38c8f57a694a9b513e3c370d7a9a5a2c8861324/DoseL.scl"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "al1Null/CTF1",
+  "path": "plc2/build/plc.st",
+  "url": "https://github.com/al1Null/CTF1/blob/115924f7b2016819f6495f29c0fb0ff281ce43a4/plc2/build/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "iotrustlab/miniwatertreatment",
+  "path": "PLC2/ST Code/plc.st",
+  "url": "https://github.com/iotrustlab/miniwatertreatment/blob/ffb9fd47b2896c9dbfd2b77b6ec5c1fafcd19b0f/PLC2/ST Code/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "al1Null/CTF1",
+  "path": "plc2sim/plc2sim/build/plc.st",
+  "url": "https://github.com/al1Null/CTF1/blob/115924f7b2016819f6495f29c0fb0ff281ce43a4/plc2sim/plc2sim/build/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "icstracker/icstracker",
+  "path": "miniwatertreatment/PLC2/ST Code/plc.st",
+  "url": "https://github.com/icstracker/icstracker/blob/3850042e833a0d180c0526e7a20a9cdc2f503439/miniwatertreatment/PLC2/ST Code/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "trianglexx/fse",
+  "path": "dataset/original/lb_claude_assisted_30195e188caf_0084.st",
+  "url": "https://github.com/trianglexx/fse/blob/5ee821a599abba4a9160931785535ea5b21d6725/dataset/original/lb_claude_assisted_30195e188caf_0084.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "ZzzJjt/Industrial-Control",
+  "path": "Models/GPT/R-I-S-E(Role-Input-Steps-Expectation)/Process Control/Feedforward Control Mixing.md",
+  "url": "https://github.com/ZzzJjt/Industrial-Control/blob/df9751647f92ea91ff8f51e985f8dbb6e663f380/Models/GPT/R-I-S-E(Role-Input-Steps-Expectation)/Process Control/Feedforward Control Mixing.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "trianglexx/fse",
+  "path": "dataset/original/lb_claude_assisted_c442fa1318a0_0089.st",
+  "url": "https://github.com/trianglexx/fse/blob/5ee821a599abba4a9160931785535ea5b21d6725/dataset/original/lb_claude_assisted_c442fa1318a0_0089.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "trianglexx/fse",
+  "path": "dataset/logic_bomb/lb_claude_assisted_30195e188caf_0084.st",
+  "url": "https://github.com/trianglexx/fse/blob/5ee821a599abba4a9160931785535ea5b21d6725/dataset/logic_bomb/lb_claude_assisted_30195e188caf_0084.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "trianglexx/fse",
+  "path": "dataset/logic_bomb/lb_claude_assisted_c442fa1318a0_0089.st",
+  "url": "https://github.com/trianglexx/fse/blob/5ee821a599abba4a9160931785535ea5b21d6725/dataset/logic_bomb/lb_claude_assisted_c442fa1318a0_0089.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "ODISS-Capstone/ai-server",
+  "path": "app/services/llm.py",
+  "url": "https://github.com/ODISS-Capstone/ai-server/blob/108349a6847ad2f3b97c454c4fdcb605ccf6eeab/app/services/llm.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "Punkspawn/NVM-AquaFeed-Platform",
+  "path": "Archive/Legacy/PLC/Optional_Modules/106_FB_CIPManager.md",
+  "url": "https://github.com/Punkspawn/NVM-AquaFeed-Platform/blob/230b9474b5aaf154aa5664aa948e89c7531b093b/Archive/Legacy/PLC/Optional_Modules/106_FB_CIPManager.md"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-Furnas-B300-CLP",
+  "path": "Untitled1/POUs/Testes Thiago/DiscrepDosagem.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-Furnas-B300-CLP/blob/4db5a008dec82ca94a826aa3438d4d46cb7b7953/Untitled1/POUs/Testes Thiago/DiscrepDosagem.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "USI-FMAA/digital_casting_system_controller",
+  "path": "plc/A061_DCS_ConcreteController_v1/DCSv1/POUs/FB_SetOutputDataToIO.TcPOU",
+  "url": "https://github.com/USI-FMAA/digital_casting_system_controller/blob/8d5ef7a310f095c6b4aa4527e5ecef5a3a1a3092/plc/A061_DCS_ConcreteController_v1/DCSv1/POUs/FB_SetOutputDataToIO.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-UBS1-CLP",
+  "path": "Untitled1/POUs/Testes Thiago/Calibracao_V02.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-UBS1-CLP/blob/82fd86e1e59838ffd90fe5f19389aaf2ba3f3bdd/Untitled1/POUs/Testes Thiago/Calibracao_V02.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-Furnas-B300-CLP",
+  "path": "Untitled1/POUs/Elementos/Calibracion_Liq_calc.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-Furnas-B300-CLP/blob/4db5a008dec82ca94a826aa3438d4d46cb7b7953/Untitled1/POUs/Elementos/Calibracion_Liq_calc.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-UBS1-CLP",
+  "path": "Untitled1/POUs/Elementos/Calibracion_Liq_calc.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-UBS1-CLP/blob/82fd86e1e59838ffd90fe5f19389aaf2ba3f3bdd/Untitled1/POUs/Elementos/Calibracion_Liq_calc.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-UBS1-CLP",
+  "path": "Untitled1/POUs/Testes Thiago/Lavagem.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-UBS1-CLP/blob/82fd86e1e59838ffd90fe5f19389aaf2ba3f3bdd/Untitled1/POUs/Testes Thiago/Lavagem.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-Furnas-B300-CLP",
+  "path": "Untitled1/POUs/Testes Thiago/Lavagem.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-Furnas-B300-CLP/blob/4db5a008dec82ca94a826aa3438d4d46cb7b7953/Untitled1/POUs/Testes Thiago/Lavagem.TcPOU"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "Vilweshwaran/Ioc-1911",
+  "path": "tests/test_safety.py",
+  "url": "https://github.com/Vilweshwaran/Ioc-1911/blob/392dcca6e4e968dec438ab6bc2bf8b4bc033ef41/tests/test_safety.py"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "mdrahmed/ctf1-cps6963",
+  "path": "plc2/build/plc.st",
+  "url": "https://github.com/mdrahmed/ctf1-cps6963/blob/de731ed67a6b76e1b9f11a567a9f46c49d00a234/plc2/build/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "mdrahmed/ctf1-cps6963",
+  "path": "plc2sim/plc2sim/build/plc.st",
+  "url": "https://github.com/mdrahmed/ctf1-cps6963/blob/de731ed67a6b76e1b9f11a567a9f46c49d00a234/plc2sim/plc2sim/build/plc.st"
+ },
+ {
+  "family": "X",
+  "query": "\"FUNCTION_BLOCK\" dosage",
+  "repo": "AutomacaoLS/Coamo-Furnas-B300-CLP",
+  "path": "Untitled1/POUs/Testes Thiago/Calibracao_V02.TcPOU",
+  "url": "https://github.com/AutomacaoLS/Coamo-Furnas-B300-CLP/blob/4db5a008dec82ca94a826aa3438d4d46cb7b7953/Untitled1/POUs/Testes Thiago/Calibracao_V02.TcPOU"
+ }
+]

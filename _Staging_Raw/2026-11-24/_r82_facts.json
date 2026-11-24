@@ -1,0 +1,7 @@
+{"total":1570,"jsonl":1609,"today":162,"complex":4,"simple":36,"repairs":0,
+ "gate_pass":40,"gate_fail":0,"gate_exempt":0,"gate_total":40,"first_pass":40,
+ "ci":"CI 基线沿用 R78 全绿（L1 95.6% / L2 dialect 专项）；本轮 40 件未推送（github:443 代理不通，须走 Git Data API）",
+ "queue_total":137,"queue_green":87,"queue_yellow":50,"queue_red":0,
+ "traceless":40,"rejected":0,"minors":9,
+ "by_cat":{"DL_Process":33,"DL_Device":7},
+ "new_names":[]}

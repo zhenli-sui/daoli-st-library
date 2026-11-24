@@ -1,0 +1,322 @@
+[
+ {
+  "name": "FC_DL_QuenchOilTempRiseCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 349
+ },
+ {
+  "name": "FC_DL_AustenitizeHoldTimeCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 370
+ },
+ {
+  "name": "FC_DL_CarburizeCaseDepthCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 387
+ },
+ {
+  "name": "FC_DL_TemperEmpiricalHardnessCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 361
+ },
+ {
+  "name": "FB_DL_InductionHardeningScanCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 424
+ },
+ {
+  "name": "FB_DL_QuenchTankAgitatorCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 379
+ },
+ {
+  "name": "FC_DL_MartensiteFinishTempCalc",
+  "cat": "DL_MathData",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 388
+ },
+ {
+  "name": "FB_DL_SoakPitTemperatureCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 362
+ },
+ {
+  "name": "FC_DL_ExtrusionBilletHeatCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 371
+ },
+ {
+  "name": "FC_DL_ExtrusionSpecificPressureCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 369
+ },
+ {
+  "name": "FC_DL_AnodizeBathChargeCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 379
+ },
+ {
+  "name": "FC_DL_ExtrusionDieWearIndexCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 379
+ },
+ {
+  "name": "FB_DL_AnodizeRinseCascadeCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 369
+ },
+ {
+  "name": "FB_DL_BilletShearGaugeSeq",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 410
+ },
+ {
+  "name": "FC_DL_AnodizeFilmThicknessCalc",
+  "cat": "DL_MathData",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 425
+ },
+ {
+  "name": "FC_DL_AnodizeSealBoilTimeCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 366
+ },
+ {
+  "name": "FC_DL_DieCastShotVelocityCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 403
+ },
+ {
+  "name": "FC_DL_DieCastIntensifyPressureCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 375
+ },
+ {
+  "name": "FC_DL_DieThermalBalanceCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 376
+ },
+ {
+  "name": "FC_DL_CastingSolidificationTimeCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 379
+ },
+ {
+  "name": "FB_DL_DieSprayReleaseSeq",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 397
+ },
+ {
+  "name": "FB_DL_LadlePourWeightCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 412
+ },
+ {
+  "name": "FC_DL_DieCastPorosityRiskIndexCalc",
+  "cat": "DL_Device",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 377
+ },
+ {
+  "name": "FC_DL_PowderFillDensityCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 376
+ },
+ {
+  "name": "FC_DL_CompactionPressureCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 378
+ },
+ {
+  "name": "FB_DL_SinterFurnaceRampCtrl",
+  "cat": "DL_Process",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 433
+ },
+ {
+  "name": "FC_DL_GreenStrengthIndexCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 376
+ },
+ {
+  "name": "FC_DL_SinterShrinkageCalc",
+  "cat": "DL_MathData",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 367
+ },
+ {
+  "name": "FB_DL_PowderBlendDoseSeq",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 407
+ },
+ {
+  "name": "FC_DL_DelubeResidualCarbonCalc",
+  "cat": "DL_Device",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 371
+ },
+ {
+  "name": "FC_DL_MashStrikeWaterTempCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 373
+ },
+ {
+  "name": "FC_DL_WortExtractYieldCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 383
+ },
+ {
+  "name": "FC_DL_SugarBoilSupersaturationCalc",
+  "cat": "DL_Process",
+  "type": "FC",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 416
+ },
+ {
+  "name": "FC_DL_MolassesExhaustionCalc",
+  "cat": "DL_MathData",
+  "type": "FC",
+  "cx": 1,
+  "hdr_close_line": 11,
+  "char_before_close": 348
+ },
+ {
+  "name": "FB_DL_CrystallizerVacuumCtrl",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 413
+ },
+ {
+  "name": "FB_DL_CipCaneJuiceLineSeq",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 2,
+  "hdr_close_line": 11,
+  "char_before_close": 462
+ },
+ {
+  "name": "FB_DL_QuenchTemperLineSeq",
+  "cat": "DL_Process",
+  "type": "FB",
+  "cx": 4,
+  "hdr_close_line": 22,
+  "char_before_close": 1271
+ },
+ {
+  "name": "FB_DL_AnodizeLineTransferSeq",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 4,
+  "hdr_close_line": 26,
+  "char_before_close": 1485
+ },
+ {
+  "name": "FB_DL_DieCastCycleSupervise",
+  "cat": "DL_Device",
+  "type": "FB",
+  "cx": 4,
+  "hdr_close_line": 25,
+  "char_before_close": 1534
+ },
+ {
+  "name": "FB_DL_SugarPanBatchSeq",
+  "cat": "DL_Process",
+  "type": "FB",
+  "cx": 4,
+  "hdr_close_line": 26,
+  "char_before_close": 1559
+ }
+]

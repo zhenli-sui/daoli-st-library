@@ -1,0 +1,468 @@
+{
+ "\"FUNCTION_BLOCK\" valve AND seat AND stroke": {
+  "total": 18,
+  "items": [
+   {
+    "repo": "mod-bee/modbee-openplc",
+    "path": "modbee-libraries/modbee-utilities/pous/function-blocks/FB_Valve.st"
+   },
+   {
+    "repo": "mod-bee/modbee-openplc",
+    "path": "modbee-libraries/modbee-utilities/pous/function-blocks/FB_ValveMotor.st"
+   },
+   {
+    "repo": "mod-bee/modbee-openplc",
+    "path": "modbee-libraries/modbee-utilities/pous/function-blocks/FB_ValveLatch.st"
+   },
+   {
+    "repo": "merchantg-cmyk/panelcad",
+    "path": "CHANGELOG.md"
+   },
+   {
+    "repo": "JimothyJohn/helmsman",
+    "path": "TODO.md"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "vertexai_facets.txt"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "searchspring_facets.txt"
+   },
+   {
+    "repo": "soham10i/stf-hw",
+    "path": "src/cad/line2/plc_io.py"
+   },
+   {
+    "repo": "Chenjie1002/Lee_Workshop",
+    "path": "src/data/initialData.ts"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "mismatched_keys.json"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/fact_anchor_chat_ledger_20261101.csv"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/approved_fact_recheck_triage_20261029.csv"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/remaining_fact_current_queue_20261030.csv"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/remaining_fact_recheck_queue_20261030.csv"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/remaining_fact_contract_audit_20261030.csv"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "grading/evidence/fact_anchor_scoring_exclusions_20261101.json"
+   },
+   {
+    "repo": "now0930/prof_eng_answer",
+    "path": "reports/remaining_fact_current_contract_audit_20261030.csv"
+   },
+   {
+    "repo": "mnwinter/RungProof",
+    "path": "rungproof-next/assets/catalog/industrial-reference-register.json"
+   }
+  ]
+ },
+ "\"FUNCTION_BLOCK\" gear AND ratio AND sync": {
+  "total": 641,
+  "items": [
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "libraries/plcopen_motion/synchronization/src/plcopen_motion_synchronization_public_surface.st"
+   },
+   {
+    "repo": "Sparkz400/KinematicsSimulation",
+    "path": "crates/sim-opcua/examples/plc/codesys/sim_sync.st"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "libraries/plcopen_motion/synchronization/src/plcopen_motion_synchronization_support.st"
+   },
+   {
+    "repo": "Sparkz400/KinematicsSimulation",
+    "path": "crates/sim-opcua/examples/plc/twincat/sim_sync.st"
+   },
+   {
+    "repo": "microsoft/Windows-driver-samples",
+    "path": "network/wlan/WDI/PLATFORM/NDIS6/SDIO/N6Sdio_main.c"
+   },
+   {
+    "repo": "FREEZONEX/ia2",
+    "path": "examples/eg_gear_incycle/pous/main.st"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/guides/PLCOPEN_MOTION_LIBRARY_GUIDE.md"
+   },
+   {
+    "repo": "Popoboxxo/ha-health-o-mat",
+    "path": "docs/superpowers/plans/2026-11-01-lab-values-batch-and-visibility.md"
+   },
+   {
+    "repo": "Autonomy-Logic/STruCpp",
+    "path": "docs/PLCOPEN_SOFTMOTION_ETHERCAT_PLAN.md"
+   },
+   {
+    "repo": "Beckhoff-USA-Community/SPT-Libraries",
+    "path": "docs/SPT_MotionControl/functionblocks.html"
+   },
+   {
+    "repo": "blacktop/ipsw-diffs",
+    "path": "iOS/18_2_22C152__vs_18_3_22D5034e/README.md"
+   },
+   {
+    "repo": "DavidWenzler/reAM250",
+    "path": "PLC/Logical/Libraries/McAxis/McAxis.fun"
+   },
+   {
+    "repo": "rparak/Unity3D_Robotics_Sorting_Machine",
+    "path": "Sorting_Machine_DT/Logical/Libraries/MpAxis/MpAxis.fun"
+   },
+   {
+    "repo": "simatic-ax/LAxisCtrl",
+    "path": "README.md"
+   },
+   {
+    "repo": "lusipad/plcopen",
+    "path": "doc/compliance/known-boundaries.md"
+   },
+   {
+    "repo": "DavidWenzler/reAM250",
+    "path": "PLC/Logical/Libraries/MpAxis/MpAxis.fun"
+   },
+   {
+    "repo": "mozilla/rhino",
+    "path": "rhino/src/main/java/org/mozilla/javascript/Parser.java"
+   },
+   {
+    "repo": "sandialabs/PEAT",
+    "path": "peat/modules/sel/sel_consts.py"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "docs/internal/references/PLCopenMotion/plcopen_motion_library_spec_for_truST_v0_1.md"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/19-motion-and-drives/README.md"
+   }
+  ]
+ },
+ "\"FUNCTION_BLOCK\" flying AND shear": {
+  "total": 15,
+  "items": [
+   {
+    "repo": "Beckhoff-USA-Community/SPT-Libraries",
+    "path": "docs/Getting_Started/DesignGuide.html"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/19-motion-and-drives/README.md"
+   },
+   {
+    "repo": "DeLuAle/FRAMEWORK_PARSER",
+    "path": "PLC_410D1/Software units/1_Orchestrator_Safety/Program blocks/001_StdBlocks/002_Device/TAxis/FlyingShearAxis/FlyingShearAxis.scl"
+   },
+   {
+    "repo": "DeLuAle/FRAMEWORK_PARSER",
+    "path": "PLC_410D1_Parsed_Final/Software units/1_Orchestrator_Safety/Program blocks/001_StdBlocks/002_Device/TAxis/FlyingShearAxis/FlyingShearAxis.scl"
+   },
+   {
+    "repo": "Lone-Wolfgang/Distill-FineWeb2",
+    "path": "hub_dataset/jpn_Jpan/links/engineer-education.txt"
+   },
+   {
+    "repo": "DeLuAle/FRAMEWORK_PARSER",
+    "path": "xml_to_scl/output/RollformingMng_FB.scl"
+   },
+   {
+    "repo": "DeLuAle/FRAMEWORK_PARSER",
+    "path": "PLC_410D1_Parsed_Final/Software units/32_Area02/Program blocks/10_A0201_PROFILATURA_TAGLIO/47_Carriage/FlyingCarriage_FB.scl"
+   },
+   {
+    "repo": "paganDeity/LCEReborn",
+    "path": "source/mod/ModApiIds_generated.hpp"
+   },
+   {
+    "repo": "horizon-rust/horizon",
+    "path": "tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   },
+   {
+    "repo": "sunrise-org/sunrise",
+    "path": "tools/ci/ignored-tests/daily-sunrise-client-issue-4451.txt"
+   },
+   {
+    "repo": "Wakcli/cinematix",
+    "path": "tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   },
+   {
+    "repo": "izrikmizrik/Magnetite",
+    "path": "tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   },
+   {
+    "repo": "sansaks-jpg/Atmosfer",
+    "path": "tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   },
+   {
+    "repo": "BourezBastien/horizon-club",
+    "path": "tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   },
+   {
+    "repo": "KaiserWilhelm-12/Horizon-Web-ios",
+    "path": "horizon-main-src/horizon-main/tools/ci/ignored-tests/daily-horizon-client-issue-4451.txt"
+   }
+  ]
+ },
+ "\"FUNCTION_BLOCK\" reactor AND jacket": {
+  "total": 16,
+  "items": [
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "examples/control/14-integrated-capstones/83-reactor-control/src/Main.st"
+   },
+   {
+    "repo": "johannesPettersson80/trust-platform",
+    "path": "examples/catalog.json"
+   },
+   {
+    "repo": "Aneesh495/gantry",
+    "path": "README.md"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/21-architecture-and-standards/README.md"
+   },
+   {
+    "repo": "brentjm/chemical-process-digital-twin",
+    "path": "README.md"
+   },
+   {
+    "repo": "Alpha9463/pandid",
+    "path": "pandid/render/drawio.py"
+   },
+   {
+    "repo": "claude-dev-suite/knowledge_base",
+    "path": "knowledge/dcs-platforms/emerson-honeywell.md"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/11-program-organization/labs/starter/11-2-valve-fb.st"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/11-program-organization/labs/solutions/11-2-valve-fb.st"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "vertexai_facets.txt"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "searchspring_facets.txt"
+   },
+   {
+    "repo": "Tuyishimire-lab/Auto-Learn",
+    "path": "seed.py"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/11-program-organization/README.md"
+   },
+   {
+    "repo": "Will1234-pixel/Word",
+    "path": "plc-course/15-pid-control/README.md"
+   },
+   {
+    "repo": "nbermudezs/UIUC_CS512",
+    "path": "assignment_1/results/DBLP/clusters-40/cluster1.txt"
+   },
+   {
+    "repo": "oldhand7/SearchSpringVertexAI",
+    "path": "mismatched_keys.json"
+   }
+  ]
+ },
+ "\"FUNCTION_BLOCK\" unit AND conversion AND factor": {
+  "total": 2020,
+  "items": [
+   {
+    "repo": "NousResearch/hermes-agent",
+    "path": "agent/agent_runtime_helpers.py"
+   },
+   {
+    "repo": "pascalabcnet/pascalabcnet",
+    "path": "TreeConverter/TreeConversion/convertion_data_and_alghoritms.cs"
+   },
+   {
+    "repo": "PLC-lang/rusty",
+    "path": "book/technical/pipeline/03-resolver.md"
+   },
+   {
+    "repo": "PLC-lang/rusty",
+    "path": "book/technical/pipeline/05-codegen.md"
+   },
+   {
+    "repo": "PLC-lang/rusty",
+    "path": "CHANGELOG.md"
+   },
+   {
+    "repo": "midi2-dev/ni-midi2",
+    "path": "README.md"
+   },
+   {
+    "repo": "adobe-flash/crossbridge",
+    "path": "llvm-gcc-4.2-2.9/gcc/ChangeLog-1997"
+   },
+   {
+    "repo": "adobe-flash/crossbridge",
+    "path": "gdb-7.3/gdb/symtab.c"
+   },
+   {
+    "repo": "hyperspy/hyperspy",
+    "path": "hyperspy/signal.py"
+   },
+   {
+    "repo": "dwlandry/DeltaV-AI-Integration",
+    "path": "data/html/BOL v14.3 Web Based/r_integrator_function_block_parameters.html"
+   },
+   {
+    "repo": "ArthurkaX/cds-text-sync",
+    "path": "docs/object-kinds.md"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/tm.texi"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/config/gmicro.h"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/ChangeLog.2"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/ChangeLog.3"
+   },
+   {
+    "repo": "DIYPLC/TESTS",
+    "path": "LGF/01 Date and timer operations/LGF_AstroClock.scl"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/ChangeLog"
+   },
+   {
+    "repo": "modula3/cm3",
+    "path": "m3-sys/m3cc/gcc-apple/gcc/ChangeLog-1997"
+   },
+   {
+    "repo": "oldlinux-web/oldlinux-files",
+    "path": "gnu/gcc/gcc-2.2.2/config/vax.h"
+   },
+   {
+    "repo": "Etersoft/uniset2",
+    "path": "docs/plans/20260404-st2js-converter.md"
+   }
+  ]
+ },
+ "\"FUNCTION_BLOCK\" bit AND shift AND mask": {
+  "total": 4160,
+  "items": [
+   {
+    "repo": "F-Stack/f-stack",
+    "path": "freebsd/netinet/tcp_var.h"
+   },
+   {
+    "repo": "matrixcascade/PainterEngine",
+    "path": "kernel/PX_Syntax_document.h"
+   },
+   {
+    "repo": "F-Stack/f-stack",
+    "path": "freebsd/netinet/tcp_subr.c"
+   },
+   {
+    "repo": "F-Stack/f-stack",
+    "path": "freebsd/netinet/tcp_usrreq.c"
+   },
+   {
+    "repo": "weolar/miniblink49",
+    "path": "v8_4_5/src/liveedit.cc"
+   },
+   {
+    "repo": "weolar/miniblink49",
+    "path": "v8_6_7/src/debug/liveedit.cc"
+   },
+   {
+    "repo": "earl1k/llvm-z80",
+    "path": "lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "weolar/miniblink49",
+    "path": "v8_4_8/src/debug/liveedit.cc"
+   },
+   {
+    "repo": "weolar/miniblink49",
+    "path": "v8_5_1/src/debug/liveedit.cc"
+   },
+   {
+    "repo": "slime/slime",
+    "path": "lib/hyperspec.el"
+   },
+   {
+    "repo": "ahmedbougacha/dagger",
+    "path": "lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "FStarLang/karamel",
+    "path": "lib/AstToCStar.ml"
+   },
+   {
+    "repo": "ggnkua/Atari_ST_Sources",
+    "path": "C/gcc_56k/toplev.c"
+   },
+   {
+    "repo": "Cisco-Talos/clamav",
+    "path": "libclamav/c++/bytecode2llvm.cpp"
+   },
+   {
+    "repo": "AzulSystems/llvm-late-safepoint-placement",
+    "path": "lib/Bitcode/Reader/BitcodeReader.cpp"
+   },
+   {
+    "repo": "heroseh/hcc",
+    "path": "src/hcc.h"
+   },
+   {
+    "repo": "fluffos/fluffos",
+    "path": "src/compiler/internal/compiler.h"
+   },
+   {
+    "repo": "game4automation/realvirtual-WEB",
+    "path": "doc-plc-programming.md"
+   },
+   {
+    "repo": "CTSRD-CHERI/cheribsd",
+    "path": "sys/netinet/tcp_var.h"
+   },
+   {
+    "repo": "joaotavora/sly",
+    "path": "lib/hyperspec.el"
+   }
+  ]
+ }
+}

@@ -1,0 +1,1123 @@
+{
+ "build": [
+  {
+   "name": "FB_RTPP",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/FB_RTPP.xml",
+   "commit": "HEAD",
+   "extraction_point": "FB_RTPP (RTPP_CALC/FB_RTPP.xml)",
+   "signature": "VAR_INPUT: TotalInverters:REAL, AvailableInverters:REAL, NumberOfFPOASensors:INT, NumberOfRPOASensors:INT, NumberOfBOMTempSensors:INT, DCPowerNominalMW:REAL, commYear:DINT, commMonth:DINT, BifacialityFactor:REAL, TempCoef:REAL || VAR_OUTPUT: RTPP_MW:REAL, HSL_MW:REAL, Reg_M:REAL, Reg_C:REAL, Reg_N:INT, FrontPOA_Avg:REAL",
+   "loc": 257,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "A",
+   "family_score": 6,
+   "fp": "251ffade0f4b07ef",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族A 相关度 6"
+  },
+  {
+   "name": "FB_RTPP_CALC",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/FB_RTPP_CALC.xml",
+   "commit": "HEAD",
+   "extraction_point": "FB_RTPP_CALC (RTPP_CALC/FB_RTPP_CALC.xml)",
+   "signature": "VAR_INPUT: averageIrr:REAL, rearIrr:REAL, tempBOMAverage:REAL, bifacialityFactor:REAL, tempCoef:REAL, degradationRate:REAL, dcLossesPercent:REAL, acLossesPercent:REAL, invEfficiency:REAL, dcPowerNominalMW:REAL || VAR_OUTPUT: acPowerOutputMW:REAL",
+   "loc": 90,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "A",
+   "family_score": 6,
+   "fp": "9bb930c537eda498",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族A 相关度 6"
+  },
+  {
+   "name": "RTPP_REG",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/mutito/PV-RTPP/blob/HEAD/RTPP_CALC/RTPP_REG.xml",
+   "commit": "HEAD",
+   "extraction_point": "RTPP_REG (RTPP_CALC/RTPP_REG.xml)",
+   "signature": "VAR_INPUT: rtpp:REAL, active_p:REAL, M:REAL, C:REAL, sum_w:REAL, sum_x:REAL, sum_y:REAL, sum_xy:REAL, sum_x2:REAL, denom:REAL || VAR_OUTPUT: M:REAL, C:REAL, N:INT",
+   "loc": 98,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "A",
+   "family_score": 4,
+   "fp": "7619c115f1b90bd1",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族A 相关度 4"
+  },
+  {
+   "name": "FB_PullWheel",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_PullWheel.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "FB_PullWheel (VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_PullWheel.TcPOU)",
+   "signature": "VAR_INPUT: LeftPullWheel:FB_Component_BasicSlaveAxis, RightPullWheel:FB_Component_BasicSlaveAxis, PullWheelCylinder:FB_Cylinder, Recipe:ST_PullWheelsRecipe, fbControlSourceHMI:FB_ControlSource_HMI, FAULT:INT, PULL_WHEELS_ALARM_COUNT:INT, ErrorInput:BOOL, WarnInput:BOOL, InfoInput:BOOL",
+   "loc": 395,
+   "dialect": [
+    "TC_",
+    "__SYSTEM"
+   ],
+   "defense_gaps": [
+    "含平台方言依赖，clean-room 时需剥离",
+    "CASE 无 ELSE 兜底（非法相号无默认分支）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "3d45b76886292d8c",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "FB_Unwind",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Unwind.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "FB_Unwind (VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Unwind.TcPOU)",
+   "signature": "VAR_INPUT: Axis:FB_Component_BasicAxis, Sensor:FB_DigitalSensor, Recipe:ST_UnwindRecipe, fbControlSourceHMI:FB_ControlSource_HMI, FAULT:INT, UNWIND_ALARM_COUNT:INT, ErrorInput:BOOL, WarnInput:BOOL, InfoInput:BOOL, i:UDINT || VAR_OUTPUT: Alarm:FB_TcAlarm",
+   "loc": 327,
+   "dialect": [
+    "TC_",
+    "__SYSTEM"
+   ],
+   "defense_gaps": [
+    "涉及字符串，需检查 255 长度上限",
+    "含平台方言依赖，clean-room 时需剥离",
+    "CASE 无 ELSE 兜底（非法相号无默认分支）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "4806fbb150066965",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "FB_SealBar",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/Components/FB_SealBar.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "FB_SealBar (VFFS Demo PLC/PLC1/Machine/Components/FB_SealBar.TcPOU)",
+   "signature": "VAR_INPUT: _SetTemperature:LREAL, _ActualTemperature:LREAL, TempUpdate:TON, _InTempRange:BOOL",
+   "loc": 68,
+   "dialect": [
+    "%I/%Q"
+   ],
+   "defense_gaps": [
+    "含物理地址直接寻址，移植时需抽象",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "b773af3693c32e9d",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "ST_PullWheelsRecipe",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/DUTs/Recipe/ST_PullWheelsRecipe.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "ST_PullWheelsRecipe (VFFS Demo PLC/PLC1/DUTs/Recipe/ST_PullWheelsRecipe.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 9,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "cca3f02cdcea8a2d",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "ST_UnwindRecipe",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/DUTs/Recipe/ST_UnwindRecipe.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "ST_UnwindRecipe (VFFS Demo PLC/PLC1/DUTs/Recipe/ST_UnwindRecipe.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 5,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "33734ee1a78c69c6",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "FB_ControlSource_HMI_Machine",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Beckhoff-USA-Community/PackML_PLC_Example/blob/HEAD/VFFS Demo PLC/PLC1/Machine/HMI Connections/FB_ControlSource_HMI_Machine.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "FB_ControlSource_HMI_Machine (VFFS Demo PLC/PLC1/Machine/HMI Connections/FB_ControlSource_HMI_Machine.TcPOU)",
+   "signature": "VAR_INPUT: ",
+   "loc": 17,
+   "dialect": [
+    "TC_"
+   ],
+   "defense_gaps": [
+    "含平台方言依赖，clean-room 时需剥离"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "B",
+   "family_score": 2,
+   "fp": "80754a6bd4fd4cdf",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族B 相关度 2"
+  },
+  {
+   "name": "TcoPlrPaletizator",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plr/TcoPlrPaletizator.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlrPaletizator (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plr/TcoPlrPaletizator.TcPOU)",
+   "signature": "VAR_INPUT: inSafeCondition:BOOL, inDoorOpen:BOOL, _config:TcoPlrPaletizator_Config_v_1_x_x, _status:TcoPlrPaletizator_Status_v_1_x_x, _control:TcoPlrPaletizator_Control_v_1_x_x, _components:TcoPlrPaletizator_Components, timerEntryConv:TON, timerOutConv:TON, timerEmptyConv:TON, _timerEntryEmpty:ton",
+   "loc": 1365,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "9854ec66e163d62c",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoPlsPaletizator",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Pls/TcoPlsPaletizator.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlsPaletizator (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Pls/TcoPlsPaletizator.TcPOU)",
+   "signature": "VAR_INPUT: inSafeCondition:BOOL, inSafeConditionErrorMsg:STRING, inDoorOpen:BOOL, _config:TcoPlsPaletizator_Config_v_1_x_x, _status:TcoPlsPaletizator_Status_v_1_x_x, _control:TcoPlsPaletizator_Control_v_1_x_x, _components:TcoPlsPaletizator_Components, _temporarilyDisableSafety:BOOL, restoreDone:BOOL, _setSequencesToStep:BOOL",
+   "loc": 924,
+   "dialect": [],
+   "defense_gaps": [
+    "涉及字符串，需检查 255 长度上限",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "17f3a1cd5c9fecb8",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "TcoPlbPaletizator",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlbPaletizator (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator.TcPOU)",
+   "signature": "VAR_INPUT: inSafeCondition:BOOL, inLightCurtainOk:BOOL, _config:TcoPlbPaletizator_Config_v_1_x_x, _status:TcoPlbPaletizator_Status_v_1_x_x, _control:TcoPlbPaletizator_Control_v_1_x_x, _components:TcoPlbPaletizator_Components, _timerEntryEmpty:ton, _timerOutFull:ton, _timerDisableSafety:TON, _temporarilyDisableSafety:BOOL",
+   "loc": 940,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "f0662abc20b8aa91",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "TcoOscilatingConveyorFeeder",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoOscilatingConveyorFeeder (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder.TcPOU)",
+   "signature": "VAR_INPUT: inSafeCondition:BOOL, inDoorOpen:BOOL, inMOde:eCUMode, _config:TcoOscilatingConveyorFeeder_Config_v_1_x_x, _status:TcoOscilatingConveyorFeeder_Status_v_1_x_x, _control:TcoOscilatingConveyorFeeder_Control_v_1_x_x, _components:TcoOscilatingConveyorFeederComponents, _timerEntryEmpty:ton, _timerOutFull:ton, _timerDisableSafety:TON",
+   "loc": 746,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "9075821d6d3496f9",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoPlrPaletizator_Components",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plr/TcoPlrPaletizator_Components.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlrPaletizator_Components (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plr/TcoPlrPaletizator_Components.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 136,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "982fb2bba5b60d1f",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoPlbPaletizator_Positions",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator_Positions.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlbPaletizator_Positions (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator_Positions.TcPOU)",
+   "signature": "VAR_INPUT: WorkPosition:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, LoadFromBuffer1Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, LoadFromBuffer2Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, LoadFromBuffer3Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, LoadFromBuffer4Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, UnloadEmpty1Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam, UnloadEmpty2Postion:TcoDrivesBeckhoff.TcoMultiAxisMoveParam",
+   "loc": 61,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "a59a4799cb0997f7",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "TcoOscilatingConveyorFeederComponents",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeederComponents.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "TcoOscilatingConveyorFeederComponents (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeederComponents.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 82,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "db74fa18c6f124f5",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoPlsPaletizator_Components",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Pls/TcoPlsPaletizator_Components.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlsPaletizator_Components (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Pls/TcoPlsPaletizator_Components.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 77,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 4,
+   "fp": "6216ef86eb568f87",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 4"
+  },
+  {
+   "name": "TcoPlbPaletizator_Components",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator_Components.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "TcoPlbPaletizator_Components (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/Blisters/Plb/TcoPlbPaletizator_Components.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 65,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "4c4ec08092480419",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoOscilatingConveyorFeeder_Config_v_1_x_x",
+   "suggest_category": "DL_Process",
+   "kind": "TYPE",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder_Config_v_1_x_x.TcDUT",
+   "commit": "HEAD",
+   "extraction_point": "TcoOscilatingConveyorFeeder_Config_v_1_x_x (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder_Config_v_1_x_x.TcDUT)",
+   "signature": "VAR_INPUT: ",
+   "loc": 59,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "891a43ff34e61084",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "TcoOscilatingConveyorFeeder_DesignerSpecificData",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Inxton/tcopen-app-templates/blob/HEAD/templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder_DesignerSpecificData.TcPOU",
+   "commit": "HEAD",
+   "extraction_point": "TcoOscilatingConveyorFeeder_DesignerSpecificData (templates/mts-s-template/t/src/x_template_x-xae/x_template_xPlc/Abstractions/Components/MtsFeeding/OscilatingFeeder/TcoOscilatingConveyorFeeder_DesignerSpecificData.TcPOU)",
+   "signature": "VAR_INPUT: PcToPlc:TcoOscilatingConveyorFeeder_PcToPlc, PlcToPc:TcoOscilatingConveyorFeeder_PlcToPc",
+   "loc": 28,
+   "dialect": [],
+   "defense_gaps": [
+    "未见明显防御缺口，需人工判定增量价值"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "E",
+   "family_score": 2,
+   "fp": "946ced4bba9e5ca9",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族E 相关度 2"
+  },
+  {
+   "name": "PUMP_ALT",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/process.st",
+   "commit": "HEAD",
+   "extraction_point": "PUMP_ALT (src/st/stdlib/process.st)",
+   "signature": "VAR_INPUT: DEMAND:BOOL, BOTH:BOOL, AVAIL1:BOOL, AVAIL2:BOOL, ROT_H:INT, dem_m:BOOL, restart:BOOL, tmr:TON, DEMAND:INT, AVAIL1:BOOL || VAR_OUTPUT: PUMP1:BOOL, PUMP2:BOOL, LEAD:INT, LEAD_H:INT, FAILOVER:BOOL, NO_PUMP:BOOL",
+   "loc": 2542,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "52f335ccdea89fe6",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "SOAK_TIMER",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/process.st",
+   "commit": "HEAD",
+   "extraction_point": "SOAK_TIMER (src/st/stdlib/process.st)",
+   "signature": "VAR_INPUT: RUN:BOOL, PV:REAL, SP:REAL, BAND:REAL, SOAK_MIN:INT, HEAT_MAX_MIN:INT, RST:BOOL, tmr:TON, sec:INT, sec_m:INT || VAR_OUTPUT: SOAKING:BOOL, DONE:BOOL, ET_MIN:INT, ET_S:INT, REM_MIN:INT, TOT_MIN:INT",
+   "loc": 2542,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "D",
+   "family_score": 4,
+   "fp": "1791e5e695c0e2b1",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族D 相关度 4"
+  },
+  {
+   "name": "AXIS_2SPEED",
+   "suggest_category": "DL_Process",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/process.st",
+   "commit": "HEAD",
+   "extraction_point": "AXIS_2SPEED (src/st/stdlib/process.st)",
+   "signature": "VAR_INPUT: FWD:BOOL, REV:BOOL, MANUAL:BOOL, JOG_FWD:BOOL, JOG_REV:BOOL, PERMIT:BOOL, STOP_FWD:BOOL, STOP_REV:BOOL, LS_FWD_OK:BOOL, LS_REV_OK:BOOL || VAR_OUTPUT: FWD_OUT:BOOL, REV_OUT:BOOL, SLOW_OUT:BOOL, MOVING:BOOL, FAULT:BOOL, FAULT_CODE:INT",
+   "loc": 2542,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径",
+    "CASE 无 ELSE 兜底（非法相号无默认分支）"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "D",
+   "family_score": 2,
+   "fp": "7603f3bb31321971",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族D 相关度 2"
+  },
+  {
+   "name": "HYD_PUMP",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/process.st",
+   "commit": "HEAD",
+   "extraction_point": "HYD_PUMP (src/st/stdlib/process.st)",
+   "signature": "VAR_INPUT: START:BOOL, STOP:BOOL, PERMIT:BOOL, PHASE_OK:BOOL, OVERLOAD:BOOL, DEMAND:BOOL, PAUSE:BOOL, RST:BOOL, UNLOAD_MS:INT, start_m:BOOL || VAR_OUTPUT: MOTOR_OUT:BOOL, DUMP_VALVE:BOOL, LOAD_VALVE:BOOL, READY:BOOL, UNIT_ON:BOOL, FAULT:BOOL",
+   "loc": 2542,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "9bf670b4383ff6cd",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "DEV_ALARM",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/control.st",
+   "commit": "HEAD",
+   "extraction_point": "DEV_ALARM (src/st/stdlib/control.st)",
+   "signature": "VAR_INPUT: ENABLE:BOOL, DELAY_MS:INT, TB:TON || VAR_OUTPUT: Q:BOOL",
+   "loc": 1664,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "7b72cbc28acd1272",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "LOWPASS",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/control.st",
+   "commit": "HEAD",
+   "extraction_point": "LOWPASS (src/st/stdlib/control.st)",
+   "signature": "VAR_INPUT: IN:REAL, CLK:TON, IN:REAL, IN:REAL, OUT_MIN:REAL, CLK:TON || VAR_OUTPUT: OUT:REAL, OUT:REAL, OUT:REAL",
+   "loc": 1664,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "f860954a0e9ec9e1",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "MOV_AVG",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/control.st",
+   "commit": "HEAD",
+   "extraction_point": "MOV_AVG (src/st/stdlib/control.st)",
+   "signature": "VAR_INPUT: IN:REAL, IN:REAL, OUT_MIN:REAL, CLK:TON, IN:REAL, CLK:TON || VAR_OUTPUT: OUT:REAL, OUT:REAL, OUT:REAL",
+   "loc": 1664,
+   "dialect": [],
+   "defense_gaps": [
+    "存在裸除法，需检查除子闸",
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "67f97061200e6580",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "STEP3",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/control.st",
+   "commit": "HEAD",
+   "extraction_point": "STEP3 (src/st/stdlib/control.st)",
+   "signature": "VAR_INPUT: ENABLE:BOOL, D:REAL, ENABLE:BOOL, BAND:REAL, TB:TON, ERR:REAL || VAR_OUTPUT: OPEN_OUT:BOOL, OPEN_OUT:BOOL",
+   "loc": 1664,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "05818a8555599840",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  },
+  {
+   "name": "ACTUATOR_3P",
+   "suggest_category": "DL_Motion",
+   "kind": "FB",
+   "tier": "green",
+   "license": "MIT",
+   "source_url": "https://github.com/Gorke07/OpenDVP/blob/HEAD/src/st/stdlib/control.st",
+   "commit": "HEAD",
+   "extraction_point": "ACTUATOR_3P (src/st/stdlib/control.st)",
+   "signature": "VAR_INPUT: ENABLE:BOOL, BAND:REAL, TB:TON, ERR:REAL, T_OUTDOOR:REAL, T_DES_OUT:REAL, NIGHT:BOOL, K:REAL || VAR_OUTPUT: OPEN_OUT:BOOL, OUT:REAL",
+   "loc": 1664,
+   "dialect": [],
+   "defense_gaps": [
+    "含定时器，需检查超时无复位路径"
+   ],
+   "dedup": {
+    "name": "pass",
+    "fingerprint": "new",
+    "semantic": "new"
+   },
+   "priority": 1,
+   "family": "C",
+   "family_score": 2,
+   "fp": "123bdda90c3c48c3",
+   "note": "绿区 MIT，可直接改写并保留版权声明；族C 相关度 2"
+  }
+ ],
+ "dropped": [
+  {
+   "name": "FB_MOVING_AVG",
+   "why": "semantic-neighbor:FC_DL_ExpMovingAvgCalc,FC_DL_WeightedMovingAvg"
+  },
+  {
+   "name": "FB_Sealer",
+   "why": "semantic-neighbor:FB_DL_CaseSealerFlapFoldSeq"
+  },
+  {
+   "name": "PROTECTED",
+   "why": "access-modifier"
+  },
+  {
+   "name": "CyclicLogic",
+   "why": "method-not-block"
+  },
+  {
+   "name": "CyclicLogic_Simulation",
+   "why": "method-not-block"
+  },
+  {
+   "name": "Initialize_TagData",
+   "why": "method-not-block"
+  },
+  {
+   "name": "RaiseAlarm2Args",
+   "why": "method-not-block"
+  },
+  {
+   "name": "FB_Machine",
+   "why": "semantic-neighbor:FB_DL_MachineGuardAudit,FB_DL_NailMachineSeq"
+  },
+  {
+   "name": "Initialize_Recipes",
+   "why": "method-not-block"
+  },
+  {
+   "name": "PUBLIC",
+   "why": "access-modifier"
+  },
+  {
+   "name": "Restore",
+   "why": "method-not-block"
+  },
+  {
+   "name": "PRIVATE",
+   "why": "access-modifier"
+  },
+  {
+   "name": "PROTECTED",
+   "why": "access-modifier"
+  },
+  {
+   "name": "HEATER",
+   "why": "semantic-neighbor:FB_DL_HeaterBankLoadBalance,FB_DL_HeaterBreakDetect"
+  },
+  {
+   "name": "DOSING",
+   "why": "semantic-neighbor:FB_DL_BatchDosingControl,FB_DL_ChemDosingGrav"
+  },
+  {
+   "name": "GATE",
+   "why": "semantic-neighbor:FB_DL_ChamberGateValve,FB_DL_ConveyorAccumGateSeq"
+  },
+  {
+   "name": "RAMP",
+   "why": "semantic-neighbor:FB_DL_CvdTempRamp,FB_DL_FeedOverrideRamp"
+  },
+  {
+   "name": "SETPOINT_RAMP",
+   "why": "semantic-neighbor:FB_DL_MfcSetpointRamp"
+  },
+  {
+   "name": "TOTALIZER",
+   "why": "semantic-neighbor:FB_DL_FlowTotalizer"
+  },
+  {
+   "name": "SPLIT_RANGE",
+   "why": "semantic-neighbor:FB_DL_SplitRangeControl"
+  }
+ ],
+ "log": [
+  {
+   "repo": "mutito/PV-RTPP",
+   "name": "FB_SENSOR_AVG",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "mutito/PV-RTPP",
+   "name": "UDT_SENSOR",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "mutito/PV-RTPP",
+   "status": "ok",
+   "st": 8,
+   "picked": 8,
+   "cand": 4
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "ST_SealerRecipe",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "UpdateModeTimers",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "FB_Cylinder",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "Extend",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "Retract",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "FB_ControlSource_HMI",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "FINAL",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "FINAL",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "FINAL",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "ABSTRACT",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "name": "SetParam",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Beckhoff-USA-Community/PackML_PLC_Example",
+   "status": "ok",
+   "st": 21,
+   "picked": 12,
+   "cand": 14
+  },
+  {
+   "repo": "Inxton/tcopen-app-templates",
+   "name": "TcoPlbPaletizator_Config_v_1_x_x",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Inxton/tcopen-app-templates",
+   "status": "ok",
+   "st": 170,
+   "picked": 12,
+   "cand": 15
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "MOTOR",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "MOTOR_REV",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "STAR_DELTA",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "VALVE",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "LEAD_LAG",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "RUNTIME",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "CYCLE_COUNTER",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "ALARM",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "FIRST_OUT4",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "STACK_LIGHT",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "TANK",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "CONVEYOR",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "CYLINDER",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "HYSTERESIS",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "TWO_POINT",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "LIMIT_ALARM",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "INTEGRATOR",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "DERIVATIVE",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "name": "HEAT_CURVE",
+   "skip": [
+    "semantic<2"
+   ]
+  },
+  {
+   "repo": "Gorke07/OpenDVP",
+   "status": "ok",
+   "st": 7,
+   "picked": 2,
+   "cand": 16
+  }
+ ]
+}

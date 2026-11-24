@@ -1,0 +1,58 @@
+{
+  "round": "R84",
+  "date": "2026-11-24",
+  "gatekeeper": "daoli-compile-verifier-1",
+  "scope_total": 40,
+  "l1": {
+    "tool": "C:\\Library\\_tools\\dl_gate.py --changed-only --hours 72",
+    "scanned_library": 633,
+    "scope_pass": 35,
+    "scope_major": 2,
+    "scope_block": 0,
+    "scope_minor": 40,
+    "note": "全部 40 件均命中 MINOR/VER_HEADER（文件头缺字面量 'VERSION: x.y.z'）；R527 在 FB_DL_TabletCompactionSeq L55 为规则误报（见 exemption_reason）。40 件内 BLOCK=0；全库 42 条 BLOCK 均在 I_DL_* / FB_DL_Analog* 等非本轮件。",
+    "issues": [
+      {"file": "FB_DL_ReactorChargeSeq.st", "line": 58, "code": "R527_TON_CROSS_PHASE", "level": "MAJOR", "verdict": "true-positive"},
+      {"file": "FB_DL_TabletCompactionSeq.st", "line": 55, "code": "R527_TON_CROSS_PHASE", "level": "MAJOR", "verdict": "false-positive"}
+    ],
+    "tool_gap": "L1 对 FB_DL_ReactorHeatupProfile 的 E_DL_ReactorHeatState 仅报 WARN/DECL_UNKNOWN_TYPE（未识别类型），未升级为 BLOCK；该缺陷由 L2 以 E052 命中。建议 dl_gate 增加『页面内 TYPE 名与引用名不一致』专项判据——当前 L1 只查『是否声明』，不查『名是否一致』。"
+  },
+  "l2": {
+    "tool": "C:\\Library\\_tools\\l2_check.py (RuSTy plc.exe 1.0.8, jobs=1 串行)",
+    "mode": "local-executed",
+    "queued": 40,
+    "pass": 35,
+    "fail": 5,
+    "note": "串行 4 批实际跑完 40 次，未抽样。",
+    "failures": [
+      {"file": "FB_DL_ReactorHeatupProfile.st", "code": "E052", "detail": "Unknown type: E_DL_ReactorHeatState（声明为 E_DL_RctHeatState）"}
+    ]
+  },
+  "l3": {
+    "mode": "unavailable",
+    "reason": "_tools/vector_runner.py 不存在；_TESTS 仅含 README.md，无 <Name>.json 向量。L3 向量门本轮无法执行，未以任何文本机检冒充。",
+    "planned": 40
+  },
+  "verdict": "BLOCK",
+  "verdict_note": "5 件 FAIL 阻断入库；其余 35 件允许入库（挂 MINOR/VER_HEADER 与若干 MINOR 观察项）。",
+  "counts": {"PASS": 35, "FAIL": 5, "EXEMPT": 0, "pass_rate": "87.5%"},
+  "fail_list": [
+    "FB_DL_ReactorHeatupProfile",
+    "FB_DL_CncToolWearCompLoop",
+    "FB_DL_ToolMagazinePosSeq",
+    "FB_DL_HeadboxJetRatioLoop",
+    "FB_DL_ReactorChargeSeq"
+  ],
+  "exemption_reason": [
+    {
+      "file": "FB_DL_TabletCompactionSeq.st",
+      "rule": "R527_TON_CROSS_PHASE",
+      "decision": "PASS（判为规则误报）",
+      "basis": "tonFill 的 IN=(eFill OR eEject)，但 CASE 迁移为 eFill(73)→ePreComp(79)→eMainComp(85)→eEject(91)，两者之间隔两个 IN=FALSE 的相位，TON 必先复位（ET 归零）再于 eEject 重新计时。故实际为『每相独立计时』，与 FB_DL_ReactorChargeSeq 的相邻三相连续计时（真缺陷）不同。建议补一行注释声明以免规则重复误报。"
+    }
+  ],
+  "reproduce": [
+    "python C:\\Library\\_tools\\l2_check.py C:\\Library\\DL_Device\\<Name>.st",
+    "python C:\\Library\\_tools\\dl_gate.py --changed-only --hours 72 --json-out _Staging_Raw/_l1_r84.json"
+  ]
+}

@@ -1,0 +1,1596 @@
+{
+ "sbeck11/SFWE511": {
+  "fam": [
+   "F1",
+   "F5"
+  ],
+  "files": [
+   "build/plc.st",
+   "final_project.st",
+   "modified_final.st",
+   "build/generated_plc.st",
+   "final_project_initial_values.st",
+   "final_project_initial_values_2.st",
+   "build/plc.st",
+   "final_project.st"
+  ],
+  "hits": 24
+ },
+ "snackmasta/Building-Automation": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "Wastewater Treatment Plant/plc/global_vars.st",
+   "Wastewater Treatment Plant/plc/main.st",
+   "Wastewater Treatment Plant/plc/main.st",
+   "Water Treatment System/plc/global_vars.st",
+   "Wastewater Treatment Plant/plc/global_vars.st",
+   "Water Treatment System/plc/water_quality_controller.st",
+   "Wastewater Treatment Plant/plc/monitoring_controller.st",
+   "Wastewater Treatment Plant/plc/treatment_controller.st"
+  ],
+  "hits": 9
+ },
+ "mGarbowski/parp-smalltalk": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "src/room.st",
+   "src/items.st"
+  ],
+  "hits": 2
+ },
+ "ba456jutt-cloud/plc-attack-defense-sim": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "water_treatment/program.st",
+   "water_treatment/program.st"
+  ],
+  "hits": 2
+ },
+ "midea-ai/SemaPLC": {
+  "fam": [
+   "F1",
+   "F3",
+   "F4"
+  ],
+  "files": [
+   "sema-plc-benchmark/spec2control-benchmark/data/st-baseline/waste_water_treatment_facility/pous/programs/Section4.st",
+   "sema-plc-benchmark/spec2control-benchmark/data/st-baseline/waste_water_treatment_facility/pous/programs/Section7.st",
+   "sema-plc-benchmark/spec2control-benchmark/data/st-baseline/ammonium-nitrates/pous/programs/Section2.st",
+   "sema-plc-benchmark/spec2control-benchmark/data/st-baseline/ammonium-nitrates/pous/programs/Section4.st"
+  ],
+  "hits": 4
+ },
+ "PerezdeArriluzeaOihan/TFG_PerformanceMetrics": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "Openplc/wwtp_int.st"
+  ],
+  "hits": 1
+ },
+ "sfl0r3nz05/HWinTheLoopPLC": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "openplc/Openplc/wwtp_int.st"
+  ],
+  "hits": 1
+ },
+ "muneebrehmn/PLC-Ladder-Logic-Injection-Attack-simulator": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "water_treatment/program.st",
+   "water_treatment/program.st"
+  ],
+  "hits": 2
+ },
+ "Dariusz791/Rybno": {
+  "fam": [
+   "F1",
+   "F2",
+   "F5"
+  ],
+  "files": [
+   "plc/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU",
+   "Archive/Rybno_v1/Rybno_v1/POUs/FB_Classes/Granulator/FB_GranulationProcess.TcPOU",
+   "plc/Rybno_v1/Rybno_v1/POUs/FB_Classes/SludgeDosing/FB_SludgeDosing.TcPOU",
+   "plc/Rybno_v1/Rybno_v1/POUs/Processes/FertilizerProcess.TcPOU",
+   "plc/Rybno_v1/Rybno_v1/POUs/Processes/GranulationProcess.TcPOU",
+   "Archive/Rybno_v1/Rybno_v1/POUs/Processes/GranulationProcess.TcPOU",
+   "Archive/Rybno_v1/Rybno_v1/POUs/Processes/DewateringProcess.TcPOU",
+   "plc/Rybno_v1/Rybno_v1/POUs/Processes/DewateringProcess.TcPOU"
+  ],
+  "hits": 22
+ },
+ "Dariusz791/Sekwencer": {
+  "fam": [
+   "F1",
+   "F2"
+  ],
+  "files": [
+   "Sequencer/Sequencer/Sequencer/POUs/FB/Operations/DischargeR01ToVR01/FB_DischargeR01ToVR01.TcPOU",
+   "Sequencer/Sequencer/Sequencer/POUs/FB/ProcessModules/FB_SludgeDosing.TcPOU",
+   "Sequencer/Sequencer/Sequencer/POUs/FB/ProcessModules/FB_BigBagDischarge.TcPOU",
+   "Sequencer/Sequencer/Sequencer/POUs/FB/ProcessModules/FB_BigBagFilling.TcPOU",
+   "Sequencer/Sequencer/Sequencer/POUs/MAIN.TcPOU"
+  ],
+  "hits": 5
+ },
+ "dweepvira/water-treatment_simulator_CPS": {
+  "fam": [
+   "F1",
+   "F2"
+  ],
+  "files": [
+   "ST_code/plant.st",
+   "ST_code/plant.st",
+   "ST_code/plant.st"
+  ],
+  "hits": 3
+ },
+ "johannesPettersson80/trust-platform": {
+  "fam": [
+   "F1",
+   "F2",
+   "F4"
+  ],
+  "files": [
+   "examples/OSCAT/filter_backwash_template/oop/src/Main.st",
+   "examples/OSCAT/filter_backwash_template/non-oop/src/Main.st",
+   "examples/OSCAT/filter_backwash_template/oop/src/Configuration.st",
+   "examples/OSCAT/filter_backwash_template/oop/src/Tests.st",
+   "examples/OSCAT/filter_backwash_template/non-oop/src/Tests.st",
+   "examples/control/06-pid-tuning-methods/85-tuning-to-requirements/src/Main.st",
+   "examples/OSCAT/multi_product_batch_reactor/oop/src/Main.st",
+   "examples/OSCAT/multi_product_batch_reactor/non-oop/src/Main.st"
+  ],
+  "hits": 19
+ },
+ "0xC00BE/rsb-lab": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "vlan50/plc-programs/brewhouse.st",
+   "vlan50/plc-programs/conditioning.st"
+  ],
+  "hits": 2
+ },
+ "jash90/plc-vscode": {
+  "fam": [
+   "F1",
+   "F2"
+  ],
+  "files": [
+   "tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Main.st",
+   "tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Tests.st",
+   "tests/st/test-ready/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Main.st",
+   "tests/st/test-ready/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Tests.st",
+   "tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/non-oop/src/Main.st",
+   "tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/non-oop/src/Tests.st",
+   "tests/st/all/trust-platform/examples/OSCAT/filter_backwash_template/oop/src/Configuration.st",
+   "tests/st/test-ready/trust-platform/examples/OSCAT/filter_backwash_template/non-oop/src/Main.st"
+  ],
+  "hits": 14
+ },
+ "ebbcarbon/Beckhoff_Supervisor": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "popa_supervisor/popa_supervisor/POUs/Function Blocks/modbus_analog_read.TcPOU",
+   "popa_supervisor/popa_supervisor/POUs/Function Blocks/emerson_modbus_read.TcPOU",
+   "popa_supervisor/popa_supervisor/POUs/Function Blocks/schneider_modbus_read.TcPOU"
+  ],
+  "hits": 3
+ },
+ "adrians-cci/bench-test": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "P0_Automation/plc_code/Phase0/Phase0/POUs/Utilities/P_U01.TcPOU",
+   "Hobbes_Automation/Theseus/Theseus/POUs/FB_Reactor_Set.TcPOU"
+  ],
+  "hits": 2
+ },
+ "pharo-graphics/Bloc": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "src/Bloc-Infinite/BlInfiniteConstants.class.st",
+   "src/Bloc-Infinite/BlScrollFlinger.class.st"
+  ],
+  "hits": 2
+ },
+ "blakemcbride/Smalltalk-2026": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "lib/Concurrency/Promise.class.st"
+  ],
+  "hits": 1
+ },
+ "joyautomation/nautilus": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "examples/batch-skid/sim.st"
+  ],
+  "hits": 1
+ },
+ "MECTsrl/mect_apps": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "TPAC1005/Octopus_Prey/plc/Testing.st",
+   "TP1043_01_A/RTU_Slave/plc/Testing.st",
+   "TPAC1007_03/Octopus_Prey/plc/Testing.st",
+   "TP1070_01_C/Octopus_Prey/plc/Testing.st",
+   "TP1043_02_B/Octopus_Prey/plc/Testing.st",
+   "TP1043_01_B/Octopus_Prey/plc/Testing.st",
+   "TP1043_01_A/Octopus_Prey/plc/Testing.st",
+   "TP1070_01_A/Octopus_Prey/plc/Testing.st"
+  ],
+  "hits": 28
+ },
+ "feenkcom/bloc-pac": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "src/BlocPac-Infinite/BlInfiniteConstants.class.st",
+   "src/BlocPac-Scrollable/BlScrollFlinger.class.st"
+  ],
+  "hits": 2
+ },
+ "FREEZONEX/ia2": {
+  "fam": [
+   "F1",
+   "F3",
+   "F4"
+  ],
+  "files": [
+   "library/process-control/pous/fb_dose.st",
+   "library/process-control/pous/fb_deriv.st",
+   "library/process-control/pous/fb_sqrt_flow.st",
+   "library/process-control/pous/fb_pulser.st"
+  ],
+  "hits": 4
+ },
+ "epicsdeb/synapps": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "optics/opticsApp/src/sncqxbpm.st"
+  ],
+  "hits": 1
+ },
+ "al1Null/CTF1": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "ST/PLC2.st"
+  ],
+  "hits": 1
+ },
+ "hernanmd/Territorial": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "repository/Territorial.package/TerritorialRuralLandscape.class/instance/historicalSettlingFactors.st"
+  ],
+  "hits": 1
+ },
+ "fisothemes/FisoThemes-Controller-Toolbox-Library-for-TwinCAT": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "src/FsControllerToolbox/Simulation/FB_PadeDelay.TcPOU",
+   "src/FsControllerToolbox/Simulation/FB_SecondOrderPlant.TcPOU"
+  ],
+  "hits": 2
+ },
+ "MBI-Div-B/twincat-libMBIDivB": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "libMBIDivB/MBIDivB/FemtoAmplifier/FB_FemtoAmplifier.TcPOU",
+   "libMBIDivB/MBIDivB_Tests/Tests/FB_FemtoAmplifierTest.TcPOU"
+  ],
+  "hits": 2
+ },
+ "ZhongJiwei-sg/TF8540-Temperature": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "Samples/TempLib_DemoProject/DemoApplication/POUs/MAIN.TcPOU",
+   "TF8540_Temperature/TF8540_Temperature/PLC1/Temperature/TemperatureCtrl.TcPOU",
+   "Samples/TempLib_DemoProject/DemoApplication/VISUs/POUs/FB_Visu_Param.TcPOU",
+   "TF8540_Temperature/TF8540_Temperature/PLC1/Temperature/VISUs/POUs/FB_Visu_Param.TcPOU"
+  ],
+  "hits": 4
+ },
+ "BROTLib/BROTLib": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "BROTLib/BROTLib/Telescope/FB_StopTransaction.TcPOU"
+  ],
+  "hits": 1
+ },
+ "milanlazov/twincat-dual-axis-coordinator": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "src/Tc3_LmDualAxisCoordinator/Tc3_LmDualAxisCoordinator/POUs/FB_AxisController.TcPOU"
+  ],
+  "hits": 1
+ },
+ "carnegie-observatories/adc-winered": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "plc/adc/adc/POUs/FB_SlideSim.TcPOU"
+  ],
+  "hits": 1
+ },
+ "BROTLib/HalfBROT": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "HalfBROT/HalfBROT/POUs/FB_BrakeSettleEnable.TcPOU"
+  ],
+  "hits": 1
+ },
+ "pcdshub/lcls-twincat-motion": {
+  "fam": [
+   "F1",
+   "F4"
+  ],
+  "files": [
+   "lcls-twincat-motion/Library/POUs/Motion/DS402/MCS2/FB_MCS2Home.TcPOU",
+   "lcls-twincat-motion/Library/POUs/Motion/DS402/MCS2/FB_MCS2StepMode.TcPOU",
+   "lcls-twincat-motion/Library/POUs/Motion/DS402/MCS2/FB_MCS2Calibrate.TcPOU",
+   "lcls-twincat-motion/Library/POUs/Motion/PMPS/FB_StatePMPSEnablesND.TcPOU",
+   "lcls-twincat-motion/Library/POUs/Deprecated/FB_PositionStatePMPS.TcPOU"
+  ],
+  "hits": 5
+ },
+ "kalharakeh/PLC-Ki": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "tests/PlcKi.Tests/data/twincat-demo/FillStation/FillPlc/POUs/MAIN.TcPOU"
+  ],
+  "hits": 1
+ },
+ "PatrickKuijer/xSTunit": {
+  "fam": [
+   "F1"
+  ],
+  "files": [
+   "tests/Fixtures/MiniloadSensorFixture/FB_DigitalInput.TcPOU",
+   "tests/Fixtures/MiniloadSensorFixture/FB_DigitalInputTests.TcPOU",
+   "tests/Fixtures/MiniloadSensorFixture/FB_DigitalInputTimingTests.TcPOU",
+   "tests/Fixtures/MiniloadPackMLFixture/PML_StateMachineTests.TcPOU"
+  ],
+  "hits": 4
+ },
+ "Gabbzgreat/sugar-centrifuge-controller": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "plc_code/centrifuge_logic.st"
+  ],
+  "hits": 1
+ },
+ "Arnav-Bista/stacs-ctf-server": {
+  "fam": [
+   "F2",
+   "F4"
+  ],
+  "files": [
+   "public/malware/centrifuge_control.st",
+   "public/malware/centrifuge_control.st"
+  ],
+  "hits": 2
+ },
+ "SymbianSource/oss.FCL.sf.os.ossrv": {
+  "fam": [
+   "F2",
+   "F3"
+  ],
+  "files": [
+   "lowlevellibsandfws/apputils/tsrc/t_strings/long.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/longCS.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/irrelevant.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/IrrelevantCS.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/long.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/longCS.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/irrelevant.st",
+   "lowlevellibsandfws/apputils/tsrc/t_strings/IrrelevantCS.st"
+  ],
+  "hits": 12
+ },
+ "chutrunganh/Security-on-Siemens-S7-protocol": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "src/attacks/stuxnet_mitm_sim/plc_server_code/pous/programs/main.st"
+  ],
+  "hits": 1
+ },
+ "hpi-swa-teaching/MaterialDesignWidgets": {
+  "fam": [
+   "F2",
+   "F4"
+  ],
+  "files": [
+   "packages/Material-Core.package/MDIcon.class/class/ic_polymer.st",
+   "packages/Material-Core.package/MDIcon.class/class/ic_vibration.st"
+  ],
+  "hits": 2
+ },
+ "hernanmd/BioSmalltalk": {
+  "fam": [
+   "F2",
+   "F3"
+  ],
+  "files": [
+   "repository/BioPhysics/BioPolymer.class.st",
+   "repository/BioNGS/BioFASTQMcfWrapper.class.st",
+   "repository/BioFormatters/BioBEDFormatter.class.st",
+   "repository/BioDatabases/BioDatabases.class.st",
+   "repository/BioPhysics-Tests/BioPolymerTest.class.st",
+   "repository/BioTools/BioReaction.class.st",
+   "repository/BioPathway/BioPathway.class.st",
+   "repository/BioPathway-Tests/BioPathwayTest.class.st"
+  ],
+  "hits": 8
+ },
+ "aaronp18/WarwickBoringPLC": {
+  "fam": [
+   "F2",
+   "F5"
+  ],
+  "files": [
+   "MaterialExtraction/MaterialExtraction.st",
+   "Mapping/Sensors/ReadSensors.FB.st"
+  ],
+  "hits": 2
+ },
+ "hpi-swa-lab/home-desktop-system": {
+  "fam": [
+   "F2",
+   "F4"
+  ],
+  "files": [
+   "repository/Home.package/WikiDataResolver.class/class/propertiesJson.st",
+   "repository/Home.package/WikiDataResolver.class/class/propertiesJson.st"
+  ],
+  "hits": 2
+ },
+ "tomooda/HoneyGinger": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "repository/HoneyGinger/HGSimulator.class.st"
+  ],
+  "hits": 1
+ },
+ "Pavel-Romanov99/RDP-AI-Case-POC": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "src/main/resources/prompts/udr-extraction.system.st"
+  ],
+  "hits": 1
+ },
+ "Nv7-GitHub/studier": {
+  "fam": [
+   "F2",
+   "F3"
+  ],
+  "files": [
+   "sets/bio/units/molecular.st",
+   "sets/bio/units/replication.st",
+   "sets/apush/ch/ch21.st"
+  ],
+  "hits": 3
+ },
+ "jordanmontt/evaluating-finalization-based-object-lifetime-profiling": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "src/ACEx-HoneyGinger/ACExHoneyGinger.class.st"
+  ],
+  "hits": 1
+ },
+ "jordanmontt/PharoVeritasBenchSuite": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "src/Veritas-HoneyGinger/VeritasHoneyGinger.class.st"
+  ],
+  "hits": 1
+ },
+ "Juunary/body_measure": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "plc-cell/st/types_dmix.st",
+   "plc-cell/build/plc_cell_openplc.st"
+  ],
+  "hits": 2
+ },
+ "pdebruic/EmailReplyParser": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "repository/EmailReplyParser.package/EmailReplyParserTests.class/instance/emailPathological.st"
+  ],
+  "hits": 1
+ },
+ "pdebruic/DataTables": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "repository/DataTables.package/DTLanguagesLibrary.class/instance/RomanianLangContent.st",
+   "repository/DataTables-Libraries.package/DTLanguagesLibrary.class/instance/RomanianLangContent.st"
+  ],
+  "hits": 2
+ },
+ "moosetechnology/Moose-Security": {
+  "fam": [
+   "F2"
+  ],
+  "files": [
+   "src/Moose-Security-Pattern/SEMethodInvoctationBlueprint.class.st"
+  ],
+  "hits": 1
+ },
+ "davidjoeressen/aoc-2021": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "03-smalltalk/main.st"
+  ],
+  "hits": 1
+ },
+ "undefine-org/spacetime": {
+  "fam": [
+   "F3",
+   "F4"
+  ],
+  "files": [
+   "demos/liveview-kanban/index.st",
+   "stdlib/mobile/primitives/haptic.st",
+   "stdlib/mobile/testing/mocks.st"
+  ],
+  "hits": 3
+ },
+ "Rus1130/space2313": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/ship-transit-log.st",
+   "src/interview-with-a-new-scottish-shepherd.st"
+  ],
+  "hits": 2
+ },
+ "sefcom/taveren": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "artifacts/car_wash/build/plc.st",
+   "artifacts/car_wash/build/generated_plc.st"
+  ],
+  "hits": 2
+ },
+ "Will1234-pixel/Word": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "plc-course/16-alarms-and-diagnostics/labs/starter/16-2-first-out-annunciator.st",
+   "plc-course/16-alarms-and-diagnostics/labs/solutions/16-2-first-out-annunciator.st"
+  ],
+  "hits": 2
+ },
+ "kek/advent-of-code-2021": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "3/AdventOfCode2021/PowerConsumptionChecker.class.st"
+  ],
+  "hits": 1
+ },
+ "tphyahoo/happs-tutorial": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "templates/gettingstarted.st",
+   "templates/home.st"
+  ],
+  "hits": 2
+ },
+ "BenjaVisionPro/bvc": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "config/gt/startup_scripts/loadProjects.st"
+  ],
+  "hits": 1
+ },
+ "gione100/SCR_2ndGen": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "NoNOx/POUs/IO_Update/LP/SetDOValue.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_NTS.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_3024.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_2277.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_3097.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_131010.st",
+   "NoNOx/POUs/Init_Parameter/IO_Setting/LoadIOSettings_LP_DW2495.st"
+  ],
+  "hits": 8
+ },
+ "healther3/CrossRow": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "backend/src/main/resources/prompts/system-prompt.st",
+   "backend/src/main/resources/prompts/philosophy-agent-prompt.st"
+  ],
+  "hits": 2
+ },
+ "JupiterJones/Falcon4Seaside": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "bin/loadFalconDev.st"
+  ],
+  "hits": 1
+ },
+ "Mushi-mushi/malwares": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "HTML/Trojan-Downloader.HTML.IFrame.st"
+  ],
+  "hits": 1
+ },
+ "avwohl/iospharo": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "scripts/test_menu_items.st"
+  ],
+  "hits": 1
+ },
+ "michaltakac/ios-smalltalk": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "scripts/test_menu_items.st"
+  ],
+  "hits": 1
+ },
+ "fcccode/Family": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "HTML/Trojan-Downloader.HTML.IFrame.st"
+  ],
+  "hits": 1
+ },
+ "TRIP-READER/trip-reader": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "Trip-Reader-back/src/main/resources/prompts/prompt-system-trip-dark-curator.st"
+  ],
+  "hits": 1
+ },
+ "tesonep/pharo-snmp": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "SNMP-Agent.package/SNMPAgentConfiguration.class/instance/configureAgent.st",
+   "SNMP-Agent.package/SNMPAgent.class/instance/start.st"
+  ],
+  "hits": 2
+ },
+ "pharo-pulsar/pulsar": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/Pulsar-Tool-LLM/PulsarLLMModel.class.st",
+   "src/Pulsar-Tool-OpenCode/PulsarLLMChatConsole.class.st"
+  ],
+  "hits": 2
+ },
+ "feenkcom/gt4llm": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/Gt4LlmCore/GtLAgentExecutionBuilder.class.st"
+  ],
+  "hits": 1
+ },
+ "cormas/cormas": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/Cormas-Core/CMModel.class.st"
+  ],
+  "hits": 1
+ },
+ "pharo-llm/chatpharo": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/AI-ChatPharo-Tests/ChatPharoBackendHistoryAwareAgent.class.st",
+   "src/AI-ChatPharo-Tests/ChatPharoBackendChatTest.class.st"
+  ],
+  "hits": 2
+ },
+ "pavel-krivanek/PharoCodingAssistant": {
+  "fam": [
+   "F3"
+  ],
+  "files": [
+   "src/PharoCodingAssistant-Tests/PharoCAExtensionTest.class.st"
+  ],
+  "hits": 1
+ },
+ "ApptiveGrid/Soil": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/Soil-Core/SoilDatabaseInMaintenance.class.st",
+   "src/Soil-Core/Soil.class.st"
+  ],
+  "hits": 2
+ },
+ "SeasideSt/Seaside": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "repository/Seaside-GemStone-Tools-Production.package/WAGemStoneMaintenanceTask.class/class/maintenanceTaskExpiration.st",
+   "repository/Seaside-GemStone-Tools-Production.package/WAGemStoneMaintenanceTask.class/class/maintenanceTaskMarkForCollect.st",
+   "repository/Seaside-Core.package/WABulkReapingCache.class/instance/reap.st",
+   "repository/Seaside-GemStone-GemServer-Core.package/WAGemStoneAbstractTaskGemServer.class/instance/basicServerOn..st"
+  ],
+  "hits": 4
+ },
+ "sm-pranav/IIoT-Predictive-Maintenance-S7-1200": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "code/predictive_maintenance_structured_text.st",
+   "code/predictive_maintenance_structured_text.st"
+  ],
+  "hits": 2
+ },
+ "bonzini/smalltalk": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "packages/httpd/Haiku.st",
+   "packages/blox/browser/BrowserMain.st",
+   "packages/httpd/WebServer.st",
+   "packages/swazoo-httpd/Headers.st"
+  ],
+  "hits": 4
+ },
+ "DynabookSmalltalk/DynabookSmalltalk_": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "rST.package/RSTBroker.class/instance/maintenance.st",
+   "rST.package/RSTRememberer.class/instance/maintenance.st",
+   "Graphics.package/StrikeFont.class/class/dejaVuSansBookDark9Form.st",
+   "Morphic.package/MenuIcons.class/class/smallRemoteOpenIconContents.st"
+  ],
+  "hits": 4
+ },
+ "pharo-project/pharo": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/Refactoring-UI/ReDuplicateClassDriver.class.st"
+  ],
+  "hits": 1
+ },
+ "quentinboucher192-beep/XPGAnalyser": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "bac/Armoire_Gaz/ihm/scripts/0070-Suivi_Maintenance.st",
+   "bac/Armoire_Gaz/ihm/scripts/0349-Animation_Graphiques.st"
+  ],
+  "hits": 2
+ },
+ "builovmaikl-art/SmartHomeNew": {
+  "fam": [
+   "F4",
+   "F5"
+  ],
+  "files": [
+   "PRG_System_Access_Maintenance.st",
+   "PRG_Safety.st",
+   "FB_Rule_Engine.st",
+   "PRG_System_BlackBox.st",
+   "PRG_Safety_Selector.st",
+   "FB_Gas_Smoke_Manager.st",
+   "PRG_Config_Versioning.st",
+   "FB_Simulation_Manager.st"
+  ],
+  "hits": 32
+ },
+ "Cuis-Smalltalk/Cuis-Smalltalk-Dev": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "CoreUpdates/7486-CommentTweaks-JuanVuletich-2025Sep02-14h13m-jmv.001.cs.st"
+  ],
+  "hits": 1
+ },
+ "GsDevKit/Cryptography": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "repository/OpenPGP.package/CAST5.class/class/maintenanceTest.st",
+   "repository/OpenPGP.package/CAST5.class/class/maintenanceTest2.st"
+  ],
+  "hits": 2
+ },
+ "tkucic/brOscatLib": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "oscatBuild/F_LAMP.st"
+  ],
+  "hits": 1
+ },
+ "NicolasPetton/iliad": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Core/RequestHandlers/ILMemoryDirectory.st",
+   "Core/Sessions/ILSessionManager.st"
+  ],
+  "hits": 2
+ },
+ "feenkcom/lepiter": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/Lepiter-Utilities/LeReferenceMaintenanceSignal.class.st",
+   "src/Lepiter-Utilities/LeUnlinkedReferenceMaintenanceExamples.class.st",
+   "src/Lepiter-Pharo/LeUnlinkedReferenceMaintenanceExamples.extension.st"
+  ],
+  "hits": 3
+ },
+ "redline-smalltalk/redline-smalltalk": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/main/smalltalk/st/redline/kernel/ClassDescription.st"
+  ],
+  "hits": 1
+ },
+ "sebastianconcept/ride": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Ride/RideMaintenanceException.class.st",
+   "Ride/RideServer.class.st"
+  ],
+  "hits": 2
+ },
+ "hpi-swa/vivide": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "repository/Vivide.package/ViScriptOrganizer.class/instance/tidy.st"
+  ],
+  "hits": 1
+ },
+ "rko281/ReStoreForPharo": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "SSW ReStore SQL Entities/SSWMySQLDialect.class.st",
+   "SSW ReStore SQL Entities/SSWSQLiteDialect.class.st",
+   "SSW ReStore SQL Entities/SSWSQLServerDialect.class.st",
+   "SSW ReStore SQL Entities/SSWPostgreSQLDialect.class.st"
+  ],
+  "hits": 4
+ },
+ "pvvx/STM32INA2xxPowerProfiler": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "LICENSE.ST"
+  ],
+  "hits": 1
+ },
+ "cangkui/AutoPLC": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "data/rag_data/st/st_case_code/F_LAMP.st"
+  ],
+  "hits": 1
+ },
+ "iburres/otforge": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "containers/safety-plc/example_2oo3_hpsd.st"
+  ],
+  "hits": 1
+ },
+ "0w8States/PLC-Design-Patterns": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Behavioral_Patterns/State/State_Pattern/PLC1/Bank ATM/FBs/FB_Maintenance.TcPOU",
+   "Behavioral_Patterns/State/State_Pattern/PLC1/POUs/MAIN.TcPOU",
+   "Behavioral_Patterns/State/State_Pattern/PLC1/Bank ATM/FB_ATM_Machine.TcPOU"
+  ],
+  "hits": 3
+ },
+ "runtimevic/OOP-IEC61131-3--Curso-Youtube": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "TC3_Design_Patterns/State/state/Bank ATM/FBs/FB_Maintenance.TcPOU",
+   "TC3_Design_Patterns/State/state/POUs/MAIN.TcPOU",
+   "TC3_Design_Patterns/State/state/Bank ATM/FB_ATM_Machine.TcPOU"
+  ],
+  "hits": 3
+ },
+ "BABE-KimR/TC1200-PLC.sample.OOP_Design_Patterns.plc": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "DesignPatterns/27_State/State Pattern/Bank ATM/FBs/FB_Maintenance.TcPOU",
+   "DesignPatterns/27_State/State Pattern/P_State.TcPOU",
+   "DesignPatterns/27_State/State Pattern/Bank ATM/FB_ATM_Machine.TcPOU"
+  ],
+  "hits": 3
+ },
+ "RWTH-EBC/AixOCAT": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "OSCAT/OSCAT/OSCAT/oscat_building/POUs/electrical/F_LAMP.TcPOU",
+   "OSCAT/OSCAT/OSCAT/oscat_network/POUs/DEMO/TN_VISION_DEMO_1_1.TcPOU"
+  ],
+  "hits": 2
+ },
+ "Beckhoff-USA-Community/PackML_PLC_Example": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_PullWheel.TcPOU",
+   "VFFS Demo PLC/PLC1/Machine/FB_Machine.TcPOU",
+   "VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Unwind.TcPOU",
+   "VFFS Demo PLC/PLC1/Machine/EquipmentModules/FB_Sealer.TcPOU"
+  ],
+  "hits": 4
+ },
+ "PeterZerlauth/Tc3_Logging": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Tc3_Logging/Tc3_Logging/Helpers/F_Hash.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/F_Print.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/F_Remove.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/F_Filter.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/F_Log.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Message/FB_Message.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/F_InstancePath.TcPOU",
+   "Tc3_Logging/Tc3_Logging/Helpers/LogLevel_To_Severity.TcPOU"
+  ],
+  "hits": 9
+ },
+ "Beckhoff-USA-Community/SPT_V4_Samples": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "SPT_ModeManager/SPT_ModeManager/PLC/Modules/00 Machine/Machine.TcPOU",
+   "SPT_MultiMaster/PLC/Modules/00 Machine/Machine.TcPOU",
+   "SPT VM Axis/PLC/POUs/Modules/03 Draw/DrawAxis.TcPOU",
+   "SPT VM Axis/PLC/POUs/Modules/02 Unwind/Unwind.TcPOU",
+   "SPT VM Axis/PLC/POUs/Modules/01 Virtual Master/VirtualMaster.TcPOU"
+  ],
+  "hits": 5
+ },
+ "Beckhoff-USA-Community/ApplicationDevelopment_Sample": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "ApplicationDevelopment/VFFS/VFFS (MM)/VFFS.TcPOU",
+   "ApplicationDevelopment/VFFS/PullWheel (EM)/PullWheels.TcPOU"
+  ],
+  "hits": 2
+ },
+ "Inxton/TcOpen": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/TcoCore/src/XaeTcoCore/TcoCore/POUs/Prototypes/TcoComponent/TcoComponent.TcPOU",
+   "src/TcoCore/src/XaeTcoCore/TcoCoreTests/Components/fbPiston.TcPOU",
+   "src/TcoElements/src/XAE/XAE/TcoElements/Analog/TcoAi/TcoAi.TcPOU",
+   "src/TcOpen.Hammer/TcOpenHammer/TcOpenHammer/PlcHammer/POUs/Components/Drive/DriveSim.TcPOU"
+  ],
+  "hits": 4
+ },
+ "Beckhoff/TF8040_Building_Automation_Samples": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Templates/PLC/PLC/Samples/Templates/POUs/Trade/RoomAutomation/SunProtection/Functions/Facade/FB_BA_Facade_Maintenance.TcPOU"
+  ],
+  "hits": 1
+ },
+ "tc3-engineer/InformationFBs": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Tc3_PackML_V3/examples/P_Demo_M_SetStopReason.TcPOU"
+  ],
+  "hits": 1
+ },
+ "SionVerhoef/twincat-st": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "examples/design-patterns-state/FB_ATM_Machine.TcPOU"
+  ],
+  "hits": 1
+ },
+ "sazuniga06/shale-shaker-monitoring-system": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "software/plc/vibration_logic.st"
+  ],
+  "hits": 1
+ },
+ "hpi-swa-teaching/PhidgetLab": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "packages/Phidget-EToys.package/PhdETImageLoader.class/instance/vibration.st",
+   "packages/Phidget-EToys.package/PhdETVibrationSensorPort.class/instance/name.st",
+   "packages/Phidget-EToys.package/PhdETVibrationSensorPort.class/class/portDescription.st",
+   "packages/Phidget-EToys.package/PhdETImageLoader.class/instance/imageLookUpDictionary.st"
+  ],
+  "hits": 4
+ },
+ "simon9201/plsim-chem": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "PLC/GVL_Sim.st",
+   "PLC/GVL_Sim_demo.st",
+   "PLC/GVL_Sim_training.st"
+  ],
+  "hits": 3
+ },
+ "hpi-swa-lab/SqueakXRNative": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "squeak/OpenXR/XrActionType.class.st",
+   "squeak/OpenXR/XrHapticVibration.class.st",
+   "squeak/Raylib/RlFunctions.class.st",
+   "squeak/OpenXR/XrStructureType.class.st"
+  ],
+  "hits": 4
+ },
+ "yanyangdev/industrial-edge-monitoring-platform": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "plc/st-code/MachineData.ST",
+   "plc/st-code/FB_MachineSimulator.ST"
+  ],
+  "hits": 2
+ },
+ "gamarino/protoST": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "examples/pump_twin.st"
+  ],
+  "hits": 1
+ },
+ "GSivaPriya/DigitalTwin-Project": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "plc/conveyor/pous/programs/main.st"
+  ],
+  "hits": 1
+ },
+ "yunji0516/PLCWorld": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "submissions/gpt-4o/repeat-01/MOT-H04.st",
+   "submissions/gpt-4o/repeat-02/MOT-H04.st"
+  ],
+  "hits": 2
+ },
+ "Maheshwaran1932000/predictive-maintenance-bearing-fault-detection": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "matlab-analysis/twincat-code/main_program.st"
+  ],
+  "hits": 1
+ },
+ "taiweipeng/IndustrialDeviceSystem": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "openplc/IndustrialDevice.st"
+  ],
+  "hits": 1
+ },
+ "cientopolis/scolr": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/Scolr-model.package/ArticleTest.class/instance/setUp.st",
+   "src/Scolr-model.package/ArticleTest.class/instance/testConstructor.st"
+  ],
+  "hits": 2
+ },
+ "epiph11/Vigilimen": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "plant/plc-safety/safety.st",
+   "plant/plc-upload/safety_upload.st"
+  ],
+  "hits": 2
+ },
+ "AlessioP04/automatic-system": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "openplc/versioneFinale.st"
+  ],
+  "hits": 1
+ },
+ "alialaqoul/OpenUnit": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "plc/src/DEH.st"
+  ],
+  "hits": 1
+ },
+ "gemini-rtsw/scs_cp": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "scs-cp-iocApp/src/tilt_st.st"
+  ],
+  "hits": 1
+ },
+ "lucretiomsp/phausto": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Phausto/ChurchBell.class.st"
+  ],
+  "hits": 1
+ },
+ "TomF777/IIoT-mqtt-json-TC3": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "IoT_MQTT/POUs/FB/MQTT/VibrationSensor.TcPOU",
+   "IoT_MQTT/POUs/PRG_10ms/Simulation.TcPOU",
+   "IoT_MQTT/POUs/PRG_10ms/PRG_01_MAIN.TcPOU"
+  ],
+  "hits": 3
+ },
+ "TomF777/IIoT-opcua-TC3": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "IoT_OPCUA/POUs/FB/OPC_UA/VibrationSensor.TcPOU",
+   "IoT_OPCUA/POUs/PRG_10ms/PRG_03_VibrationAnalytics.TcPOU",
+   "IoT_OPCUA/POUs/PRG_10ms/Simulation.TcPOU",
+   "IoT_OPCUA/POUs/PRG_10ms/PRG_01_MAIN.TcPOU"
+  ],
+  "hits": 4
+ },
+ "TomF777/IIoT-http-rest-api-TC3": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "IoT_HTTP_REST_API/POUs/FB/HTTP_REST_API/VibrationSensor.TcPOU",
+   "IoT_HTTP_REST_API/POUs/PRG_10ms/Simulation.TcPOU",
+   "IoT_HTTP_REST_API/POUs/PRG_10ms/PRG_01_MAIN.TcPOU"
+  ],
+  "hits": 3
+ },
+ "minkhanh-ng/Tc3_VN001007_VMS": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/FastSampling/PRG_VibrationSampling.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/PRG_Simulation.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/MAIN.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/FastSampling/PRG_KeyphasorSampling.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/08_EventLoggers/PRG_EventLogger.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/FastSampling/MultiTaskSync/POUs/FB_VibrationDataSync.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/05_Application/FastSampling/MultiTaskSync/POUs/FB_VibrationParamSync.TcPOU",
+   "Tc3_VN001007_VMS/RWPumpVMS/04_Controller/POUs/FB_Controller.TcPOU"
+  ],
+  "hits": 11
+ },
+ "slickz44/DT_PSA_OPCV_Siemens": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "TIA_1/EmulationUnit/SIM_1/FG_05/FG_05.TcPOU"
+  ],
+  "hits": 1
+ },
+ "DeaneChen/bechhoff_demo_controller": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "VariableBlade_Measure/main/POUs/MAIN.TcPOU",
+   "VariableBlade_Measure/main/POUs/FB_VibrationSensor.TcPOU"
+  ],
+  "hits": 2
+ },
+ "pirminbleiker/AAG_Custom-TcPkg-And-Workload": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "TwinCAT Project Library Creator/TwinCAT Project Library Creator/LibTester/POUs/MAIN.TcPOU"
+  ],
+  "hits": 1
+ },
+ "chiefmate1120/AgiBot-PTMasterController": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "AgiBot-MasterController/MasterController/FBs_Observer/FB_JntObserver.TcPOU"
+  ],
+  "hits": 1
+ },
+ "QinSensor/ISO_10816Sample": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "TwinCAT_ISO_10816_Sample/Sample_Vibration/POUs/Function Generator/FB_FunctionGenerator.TcPOU"
+  ],
+  "hits": 1
+ },
+ "TobiasSchulte/WabiSabiWorks.VizuSabi": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "projects/apps/ControlGallery/WabiSabiWorks.VizuSabi.ControlGallery.PLC/MillPlc/POUs/MAIN.TcPOU"
+  ],
+  "hits": 1
+ },
+ "sofiaamv0323/Demo-CM": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "ProyectoDemoCM/ProyectoDemoCM/programa/POUs/Analogicas/FB_FunctionGenerator.TcPOU"
+  ],
+  "hits": 1
+ },
+ "DFFM-maker/IDP": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Logic_st/Alarm_Analytics.st",
+   "Logic_st/GlobalVariable.st"
+  ],
+  "hits": 2
+ },
+ "GsSqueak/GsSqueak": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "deprecated/SqueakImport/Graphics-Fonts.package/StrikeFont.class/class/dejaVuSansBookDark9Form.st",
+   "deprecated/SqueakImport/Morphic.package/MenuIcons.class/class/smallRemoteOpenIconContents.st"
+  ],
+  "hits": 2
+ },
+ "tomasben/pdp-tpi": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/Buscaminas/FuentePressStart2P.class.st"
+  ],
+  "hits": 1
+ },
+ "labordep/M-Seven": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "src/MSeven/MSevenResources.class.st"
+  ],
+  "hits": 1
+ },
+ "camillobruni/squeak-camis-addons": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "repository/Morphic.package/MenuIcons.class/class/smallRemoteOpenIconContents.st"
+  ],
+  "hits": 1
+ },
+ "dynabook-smalltalk/dynabook": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "Morphic/MenuIcons.class.st"
+  ],
+  "hits": 1
+ },
+ "dalehenrich/PharoCore": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "repository/Graphics-Resources.pkg/snapshot/extensions/ThemeIcons.class/class/smallRemoteOpenIconContents.st"
+  ],
+  "hits": 1
+ },
+ "LinqLover/sonyx": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "packages/Sonyx-Study-Base.package/SonyxStudyCondition.class/class/regexCheatSheetContents.st"
+  ],
+  "hits": 1
+ },
+ "syedsyafiq00/TwinCAT2.5": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "TwinCAT 3/TwinCAT 3 Program/FBs/B_JKS_NewFB_V2/FBP-MTBSubFB/fbV2_SubMTBFreeSlotGenerator.TcPOU",
+   "TwinCAT 3/TwinCAT 3 Program/FBs/B_JKS_NewFB_V2/FBP-MTBSubFB/fbV2_SubMTBRunningTime.TcPOU",
+   "TwinCAT 3/TwinCAT 3 Program/FBs/B_JKS_NewFB_V2/FBP-MTBSubFB/fbV2_SubFreeMTBShifting.TcPOU",
+   "TwinCAT 3/TwinCAT 3 Program/POUs/MainProgram/TimeOptimize/TimeOptimizeCtrl.TcPOU"
+  ],
+  "hits": 4
+ },
+ "GzoC/plc-logic-verifier": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "examples/lubrication/correct.st",
+   "examples/lubrication/defects/auto_ack.st",
+   "examples/lubrication/defects/timeout_disabled.st"
+  ],
+  "hits": 3
+ },
+ "manusolve/LUB-V-control": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "FB_LUB_V_Greaser_V033_Original.scl.st",
+   "FB_LUB_V_Greaser_V033_Fixed.scl.st"
+  ],
+  "hits": 2
+ },
+ "centroid-is/stc": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "tests/motor_control/motor_control.st"
+  ],
+  "hits": 1
+ },
+ "Beckhoff-Switzerland/CHALET_Xts": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "COMPENENTs/Lubrication/FB_LubricationXTS.TcPOU"
+  ],
+  "hits": 1
+ },
+ "Po-Yu-Chang/TcDigitalTwin": {
+  "fam": [
+   "F4"
+  ],
+  "files": [
+   "CinPhown_PackML/DAS_CoreSys/Library/99_Utilities/ErrorHandling/FB_ErrorHandling.TcPOU"
+  ],
+  "hits": 1
+ },
+ "grpistoia/Atomic": {
+  "fam": [
+   "F5"
+  ],
+  "files": [
+   "Atomic.package/AtomicMap02.class/instance/levelName.st"
+  ],
+  "hits": 1
+ },
+ "tomooda/Jun": {
+  "fam": [
+   "F5"
+  ],
+  "files": [
+   "repository/Jun-Chemistry/JunMoleculeGeometry.class.st",
+   "repository/Jun-System/JunLauncher.class.st"
+  ],
+  "hits": 2
+ },
+ "ReactionMap/RMapViewer": {
+  "fam": [
+   "F5"
+  ],
+  "files": [
+   "repository/ReactionMapViewer/RMapMoleculeViewer.class.st",
+   "repository/ReactionMapViewer/RMapMoleculeMeasure.class.st"
+  ],
+  "hits": 2
+ },
+ "MichaelOliveTree/KeystoneGameBlocks": {
+  "fam": [
+   "F5"
+  ],
+  "files": [
+   "Data/mods/common/layouts/world_body.st",
+   "Data/mods/common/layouts/world_body2.st"
+  ],
+  "hits": 2
+ },
+ "swdevlin/revelation-navigation": {
+  "fam": [
+   "F5"
+  ],
+  "files": [
+   "Traveller-WorldBuildersHandbook/ExoticLiquid.class.st"
+  ],
+  "hits": 1
+ }
+}

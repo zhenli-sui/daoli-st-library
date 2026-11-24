@@ -1,0 +1,62 @@
+name: iec-compile-gate
+
+# L2 真编译门：MatIEC 现场构建 + 全库解析/编译
+# 触发：push / PR / 手动。失败即阻断合并。
+on:
+  push:
+    paths: ["DL_*/**", "_tools/**", ".github/workflows/iec-compile.yml"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  matiec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq build-essential bison flex autoconf automake libtool git python3
+
+      - name: Build MatIEC
+        run: |
+          git clone --depth 1 https://github.com/beremiz/matiec.git /tmp/matiec
+          cd /tmp/matiec
+          autoreconf -i >/dev/null 2>&1 || true
+          ./configure >/dev/null
+          make -j"$(nproc)"
+          ls -l iec2c iec2iec || true
+
+      - name: L1 static gate
+        continue-on-error: true   # L1 结论照常入报告；存量 BLOCK 由产线轮次清理，暂不阻断 L2 MatIEC 基线
+        run: |
+          python3 _tools/dl_gate.py --all --round CI-L1 || true
+          python3 - <<'PY'
+          import json,glob,sys
+          p=sorted(glob.glob('_Staging_Raw/*/_gate_CI-L1.json'))[-1]
+          d=json.load(open(p))
+          print("L1:",d['pass'],"PASS /",d['total'],"BLOCK",d['block'])
+          for r in d['results']:
+              if r['verdict']=='BLOCK':
+                  print(" BLOCK",r['file'],[i['code'] for i in r['issues'] if i['level']=='BLOCK'][:3])
+          sys.exit(1 if d['block'] else 0)
+          PY
+
+      - name: L2 MatIEC parse (iec2iec)
+        run: |
+          export IEC_PARSER=/tmp/matiec/iec2iec
+          cp -r /tmp/matiec/lib ./lib   # iec2iec 从工作目录找 lib/ieclib.txt 标准库
+          python3 _tools/matic_manifest.py --all --round CI-L2
+          python3 _tools/matic_runner.py --manifest "$(ls -t _Staging_Raw/*/_compile_CI-L2.json | head -1)" --round CI-L2 || true
+
+      - name: Upload gate reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate-reports
+          path: |
+            _Staging_Raw/*/_gate_*.json
+            _Staging_Raw/*/_compile_*.json
+          retention-days: 30

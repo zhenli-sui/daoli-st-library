@@ -1,0 +1,6 @@
+DL_Process\FC_DL_CoagDoseFromJarTest.st
+接口预筛: 可用 22 / 排除(PROPERTY 等覆盖面缺口) 0 | 并行 1 进程 | 缓存 命中
+PASS=40 FAIL=0 TOTAL=40
+written _Staging_Raw/2026-11-24/_l2_r82_raw.json
+
+EXIT 0

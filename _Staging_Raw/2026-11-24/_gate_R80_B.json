@@ -1,0 +1,119 @@
+{
+  "round": "R80",
+  "batch": "B",
+  "total": 4,
+  "pass": 4,
+  "fail": 0,
+  "exempt": 0,
+  "rate": 100.0,
+  "engine": "RuSTy plc.exe via _tools/l2_check.py (jobs=1, cache hit)",
+  "items": [
+    {
+      "name": "FB_DL_MultiTankBlendSeq",
+      "result": "PASS",
+      "code": "",
+      "note": "L2 PASS；逻辑 1 MAJOR（L240 bAbort 电平不抑制启动）+ 2 MINOR（L289+L240 复位未重新武装启动；L142 DL_BLD_ONE 未用）"
+    },
+    {
+      "name": "FB_DL_ConveyorMergePrioritySeq",
+      "result": "PASS",
+      "code": "",
+      "note": "L2 PASS；逻辑 1 MAJOR（L174-177 tonBranchWait 在默认 30s<60s 参数下永不置位，饥饿计数失效）"
+    },
+    {
+      "name": "FB_DL_DryerZoneProfileSeq",
+      "result": "PASS",
+      "code": "",
+      "note": "L2 PASS；逻辑 3 MINOR（L290-293 退避恢复单拍阶跃下调；L139 DL_DRY_ONE 未用；L340+L265 复位后未重新武装启动）"
+    },
+    {
+      "name": "FB_DL_RefDefrostCycleSeq",
+      "result": "PASS",
+      "code": "",
+      "note": "L2 PASS；逻辑 1 MAJOR（L142/L184 风机反馈 3s 双向窗致除霜每周期误报码 3）+ 3 MINOR（L168+L233 持续成因复位后一拍复跳；L286 告警与 bError 恒等；L227 压缩机无最短停机延时，属声明边界外）"
+    }
+  ],
+  "logic": {
+    "block": 0,
+    "major": 3,
+    "minor": 7
+  },
+  "blocking": [
+    "FB_DL_MultiTankBlendSeq",
+    "FB_DL_RefDefrostCycleSeq",
+    "FB_DL_ConveyorMergePrioritySeq"
+  ],
+  "details": [
+    {
+      "name": "FB_DL_MultiTankBlendSeq",
+      "level": "MAJOR",
+      "line": "L240",
+      "issue": "eIdle 启动判据为 bStart AND _bCfgOk AND NOT _bFaultLatch，不含 NOT bAbort；而 eFault 复位判据(L289)把 bAbort 当电平用。bAbort 保持 TRUE 时 bStart 上升即进 eFillA，次拍 L245 开进料阀，人工中止在有效期内不抑制启动。",
+      "fix": "L240 改为 IF bStart AND _bCfgOk AND (NOT bAbort) AND (NOT _bFaultLatch) THEN"
+    },
+    {
+      "name": "FB_DL_MultiTankBlendSeq",
+      "level": "MINOR",
+      "line": "L289 / L240",
+      "issue": "在 eFault 再按一次 bAbort（上升沿）即清锁存迁 eIdle；bStart 仍保持 TRUE 则扫描 N+1 迁 eFillA、N+2 开 A 阀——按中止键消警等于重启进料，未重新武装启动。",
+      "fix": "增设 _bStartArmed：进 eFault 时清、bStart 落沿置；eIdle 迁移条件加 AND _bStartArmed"
+    },
+    {
+      "name": "FB_DL_MultiTankBlendSeq",
+      "level": "MINOR",
+      "line": "L142",
+      "issue": "常量 DL_BLD_ONE 声明后全文件未引用（仅出现 1 次，即声明行）。",
+      "fix": "删除该常量声明，或改为实际引用处使用"
+    },
+    {
+      "name": "FB_DL_ConveyorMergePrioritySeq",
+      "level": "MAJOR",
+      "line": "L174-177",
+      "issue": "tonBranchWait.IN 仅在 eGrantMain/eHoldBranch 成立；eGrantMain 无出口时最多驻留 tGrantMax(T#30S) 即由 tonGrant 迁出，eHoldBranch 单拍必出，故 IN 最长连续真值 30s < PT tJamTimeout(T#60S)，Q 在默认组态下恒假 → L280-282 的 _nJamCnt+1 不可达，件头声明的『支线不饿死』计数保护实际失效（观测/保护缺口，非安全侧）。",
+      "fix": "新增引脚 tBranchWaitMax（域闸校验 tBranchWaitMax < tGrantMax）并 PT := tBranchWaitMax；或把计数点改到 eHoldBranch→eGrantBranch 迁移沿(L235-236)，一拦一计"
+    },
+    {
+      "name": "FB_DL_DryerZoneProfileSeq",
+      "level": "MINOR",
+      "line": "L290-293",
+      "issue": "eSoak 内 aSpRamp=target；超温退避冻结正确，但超温消失当拍 L290 判 target+step<ceil 为假走 else L293，aSpRamp 单拍下跌 rSoakBand 到 _rRampCeil，随即 L300 判回 eSoak 又置回 target——与件头 ④『不存在阶跃路径』声明不符。",
+      "fix": "L290 改为 IF (_aSpRamp[_nIdx] + _rStep) < _rRampCeil AND _aSpRamp[_nIdx] < _rRampCeil，已高于上限则保持不变"
+    },
+    {
+      "name": "FB_DL_DryerZoneProfileSeq",
+      "level": "MINOR",
+      "line": "L139",
+      "issue": "常量 DL_DRY_ONE 声明后全文件未引用。",
+      "fix": "删除该常量声明，或改为实际引用处使用"
+    },
+    {
+      "name": "FB_DL_DryerZoneProfileSeq",
+      "level": "MINOR",
+      "line": "L340 / L265",
+      "issue": "bStop 沿复位迁 eIdle 后，L265 的 NOT bStop 阻止立即重启（正确）；但操作员释放 bStop 后若 bStart 仍为 TRUE 即自动进 ePreheat 并加热，全程无第二次启动动作（无启动重新武装）。",
+      "fix": "同 MultiTank：增设 _bStartArmed（进 eFault 清、bStart 落沿置），eIdle 迁移条件加 AND _bStartArmed"
+    },
+    {
+      "name": "FB_DL_RefDefrostCycleSeq",
+      "level": "MAJOR",
+      "line": "L142 / L184",
+      "issue": "_bFanMismatch = bFanFeedback <> _bFanExpect，eDefrost/eDrip 期望 FALSE；冷风机惯性降速普遍 5~15s，bFanFeedback 在此期间仍 TRUE，共用 3s 窗 DL_DFS_FB_WIN → tonFanFb.Q → L259-263 锁存码 3，正常除霜每周期误报故障；eCooling/eRecover 加速段同理。两方向时间常数差一个量级，共用单窗必然误报。",
+      "fix": "L142 改为 _bFanMismatch := _bRunActive AND _bFanExpect AND (NOT bFanFeedback)；若需监视『应停却在转』另配 tonFanStop(PT:=T#15S 或新引脚 tFanStopMax)，仅在 NOT _bFanExpect 相内计时"
+    },
+    {
+      "name": "FB_DL_RefDefrostCycleSeq",
+      "level": "MINOR",
+      "line": "L168 / L233",
+      "issue": "参数非法属持续成因：bEnable 落沿再升沿复位后，下一拍段 1 因 NOT _bCfgOk 仍真与 bEnable 仍真立即重锁存码 4，HMI 表现为『复位无效、只闪一拍空闲』（行为本身正确，缺语义声明）。",
+      "fix": "在段 5 段首注释显式声明『复位不灭持续成因』；如需复位生效，可在 eFault 复位分支加 AND _bCfgOk"
+    },
+    {
+      "name": "FB_DL_RefDefrostCycleSeq",
+      "level": "MINOR",
+      "line": "L286",
+      "issue": "bDefrostAlarm := _bFaultLatch 与 L288 bError := _bFaultLatch 恒等，为冗余出口，与件头『除霜告警（故障锁存派生位）』的描述重叠。",
+      "fix": "改为派生工艺类（如 (_nFault = 1) OR (_nFault = 2) OR (_nFault = 3)），或并入 bError 并在注释说明"
+    }
+  ],
+  "toolchain_fixes": []
+}
