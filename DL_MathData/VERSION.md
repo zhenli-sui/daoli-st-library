@@ -1000,3 +1000,19 @@ R59 新增 8 件：DmsAngleConvert / QuadraticSolve / DtlStringConv / AsciiFrame
 ## v1.33 — 2026-11-23（R72 追加）
 
 - `FC_DL_IntModChk` / `FC_DL_FiniteClassify` / `FC_DL_ArrayCumSumLreal` / `FC_DL_CharCodeConvert` / `FC_DL_WordToBinString` / `FC_DL_HmsToTodChk` 六件入册（T0 防御包装 4 + LGF 统计线 1 + 组态入口 1）；`FC_DL_AirSpecificVolume` v1.0.1 点修（补 `bValid => _bPwsVld` 全 6 形参回执，E032 契约级修复行为零变更）。
+
+## v1.34 — 2026-11-23（R73）
+
+- 新增/变更：FC_DL_MovingRangeCalc / FC_DL_PressureAltitudeCalc / FC_DL_SoundSpeedAirCalc / FC_DL_ExpMovingAvgCalc / FC_DL_TorqueUnitConvert + FC_DL_DewPointToPpmV 点修
+- L2 编译闸：PASS（RuSTy 1.0.8 串行）
+
+## R76 · v2.68.0 · 2026-11-23
+- 新增 15 件（7 角度 + 8 三角），本库累计 **329** 件。
+- 全部经本地 RuSTy L2 真编译闸 PASS（串行 jobs=1），审校 12 项扫查 + 三道去重通过。
+
+## R77 · v2.69.0 · 2026-11-23
+- 新增 23 件（单位换算 10 / 查表插值 8 / 统计 5），本库累计 **352** 件。
+- 全部经本地 RuSTy L2 真编译闸 PASS（串行 jobs=1，闸席独立裁决），审校 12 项扫查 + 三道去重通过。
+
+### R80（2026-11-24）
+- 新增 4 件（统计离散 4），子库累计 420 件。

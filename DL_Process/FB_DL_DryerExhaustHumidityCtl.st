@@ -2,8 +2,12 @@
   FB_DL_DryerExhaustHumidityCtl  —  干燥排湿热回收风门控制 / Dryer exhaust humidity control with heat recovery dampers
   分类 Category : DL_Process
   码位 Code     : 16#06_0_8B
-  版本 Version  : 1.0.0
+  版本 Version  : 1.0.1
   溯源 Source   : OSCAT Building 语义借鉴 · clean-room 实现，仅借分类/参数域/命名，未复制源码
+  修改记录 Hist : v1.0.1 2026-11-23 R75 修复——FC_DL_HumidAirEnthalpy 两处调用
+                  补 uErrorId => 显式回执接收（R73 零回执挂账点修），新增
+                  接收变量 uEnthErrFresh / uEnthErrRet，回执仅作诊断暂存，
+                  主逻辑零改动
   功能 Function : 1) 以焓值判据（回风焓 − 新风焓 超过死区）决定排湿风门开度，实现排湿与热回收兼顾；
                   2) 排湿风门与混风风门互斥，同拍双开判冲突并双双回安全位；
                   3) 回风温度越上限时强制加大排湿并置码（安全侧优先，不参与焓值比较）。
@@ -68,6 +72,8 @@ VAR
     fHReturn       : REAL;                        // 回风焓值暂存 [kJ/kg] / Return enthalpy buffer
     uFault         : UDINT;                       // 锁存故障码 / Latched fault code
     uInfo          : UDINT;                       // 信息级码 / Information code
+    uEnthErrFresh  : UDINT;                       // 新风焓值函数回执码（v1.0.1 新增接收）/ Fresh enthalpy FC receipt
+    uEnthErrRet    : UDINT;                       // 回风焓值函数回执码（v1.0.1 新增接收）/ Return enthalpy FC receipt
 END_VAR
 VAR CONSTANT
     DL_DEHC_TMIN   : REAL := -40.0;               // 温度域下限 [degC] / Temperature domain low
@@ -97,8 +103,10 @@ bReturnOk := (fReturnTempC = fReturnTempC) AND (fReturnRhPct = fReturnRhPct)
              AND (fReturnRhPct >= 0.0) AND (fReturnRhPct <= 100.0);    // 回风域闸
 
 (* === 段 2 · 焓值函数（每拍无条件调用；域外由函数内部钳位并给出信息级码）=== *)
-fHFresh := FC_DL_HumidAirEnthalpy(fTempC := fFreshTempC, fRelHum := fFreshRhPct);    // 新风焓值 [kJ/kg]
-fHReturn := FC_DL_HumidAirEnthalpy(fTempC := fReturnTempC, fRelHum := fReturnRhPct); // 回风焓值 [kJ/kg]
+fHFresh := FC_DL_HumidAirEnthalpy(fTempC := fFreshTempC, fRelHum := fFreshRhPct,
+                                  uErrorId => uEnthErrFresh);       // 新风焓值 + 回执显式接收（v1.0.1）
+fHReturn := FC_DL_HumidAirEnthalpy(fTempC := fReturnTempC, fRelHum := fReturnRhPct,
+                                   uErrorId => uEnthErrRet);        // 回风焓值 + 回执显式接收（v1.0.1）
 fEnthFreshKJkg := fHFresh;                        // 新风焓值输出
 fEnthReturnKJkg := fHReturn;                      // 回风焓值输出
 IF (fHFresh = fHFresh) AND (fHReturn = fHReturn) THEN

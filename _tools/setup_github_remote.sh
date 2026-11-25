@@ -22,6 +22,16 @@ LIB="${LIB:-C:/Library}"
 OWNER_REPO="${1:-}"
 TOKEN="${GITHUB_TOKEN:-}"
 
+# 令牌回退：未传环境变量时，读本机令牌文件（避免令牌出现在命令/聊天记录中）
+if [ -z "$TOKEN" ]; then
+  for tf in "$LIB/_tools/.gh_token" "$HOME/.gh_token"; do
+    if [ -f "$tf" ]; then
+      TOKEN="$(tr -d '\r\n[:space:]' < "$tf")"
+      [ -n "$TOKEN" ] && echo "[i] 已从 $tf 读取令牌（不回显）" && break
+    fi
+  done
+fi
+
 if [ -z "$OWNER_REPO" ] || [ -z "$TOKEN" ]; then
   echo "用法: GITHUB_TOKEN=<你的PAT> bash setup_github_remote.sh <owner>/<repo>"
   echo "  PAT 生成: https://github.com/settings/tokens/new?scopes=repo,workflow"

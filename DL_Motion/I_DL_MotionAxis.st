@@ -157,12 +157,19 @@ INTERFACE I_DL_MotionAxis
 
 (* —— 段 1｜属性（PROPERTY GET）：状态只读出口，实现块一一落地 —— *)
 PROPERTY eState    : E_DL_AxisState   // 当前轴状态（Current axis state），枚举见 E_DL_AxisState
+END_PROPERTY
 PROPERTY fPosition : REAL             // 当前位置（Current position）[mm 或 deg，单位由实现组态注释约定]
+END_PROPERTY
 PROPERTY fVelocity : REAL             // 当前速度（Current velocity）[mm/s 或 deg/s]，带符号，负值=负向
+END_PROPERTY
 PROPERTY bEnabled  : BOOL             // 使能状态（Enabled status），TRUE=伺服已上使能
+END_PROPERTY
 PROPERTY bHomed    : BOOL             // 回原完成（Homed status），TRUE=坐标系已建立
+END_PROPERTY
 PROPERTY bError    : BOOL             // 故障锁存（Error latched），TRUE=处于 eErrorStop 态
+END_PROPERTY
 PROPERTY uErrorId  : UDINT            // 末次事件码（Last error code），信息级码不置 bError
+END_PROPERTY
 
 (* —— 段 2｜方法（METHOD）：命令入口，全部非阻塞单发化 —— *)
 METHOD Enable : BOOL                       // 使能请求（Enable request），MC_Power 语义

@@ -96,6 +96,7 @@ VAR
     _fLoadMm    : REAL;                 // 负载侧换算位置 [mm] / Load-side position in millimetres
     _fDevPrev   : REAL;                 // 上拍偏差快照（锁存量） [mm] / Previous-scan deviation snapshot
     _fDevStep   : REAL;                 // 本拍偏差增量 [mm] / Deviation increment this scan
+    _fDev       : REAL;                 // 本拍换算偏差中间量（段 0 派生，段 8 映射到输出） [mm] / Deviation intermediate, derived in seg 0, mapped to output in seg 8
     _bPolSame   : BOOL;                 // 偏差符号与运动方向同号当拍量 [-] / Deviation sign matches motion sign
     _bPolSteep  : BOOL;                 // 偏差增量超阈值当拍量 [-] / Deviation increment above threshold
     _bNonFin    : BOOL;                 // 输入非有限当拍量 [-] / Non-finite input this scan
@@ -232,6 +233,7 @@ ELSE
     nErrId := _uInfo;                                                    // 信息码 / Info code
 END_IF
 bError := _bFault;                                                       // 故障标志与锁存同源（名实双出口，R191） / Flag from latch
+fDev    := _fDev;                                                               // 偏差输出每拍赋值（名实同源） / Deviation output assigned every scan
 eState := _eState;                                                       // 状态出口 / State outlet
 eCause := _eCause;                                                       // 成因出口 / Cause outlet
 

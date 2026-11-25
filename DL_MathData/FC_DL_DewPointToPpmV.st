@@ -1,7 +1,7 @@
 (*
   组件名 Component   : FC_DL_DewPointToPpmV
   子库 Sublibrary    : DL_MathData
-  版本 Version       : 1.0.0
+  版本 Version       : 1.0.1
   兼容性 Platform    : CODESYS 3.5 / TwinCAT 3 / 汇川 InoProShop / Machine Expert（仅 Standard.library）
   功能 Function      : 露点温度 → 气体水分含量 ppmV 换算（饱和压比值法）：
                        1) 复用饱和蒸气压唯一属主 FC_DL_VaporPressureSat（DL_Algo）求露点温度
@@ -22,6 +22,8 @@
                        本件不占用故障码位（MathData 段 0005 内 0506 为本格独占声明，保留不用）。
   修订历史 Revision  :
     2026-11-19  v1.0.0  R44 首版（批次 1 · 序号 1）
+    2026-11-23  v1.0.1  R73 补 bValid 回执：段 3 属主调用补收 bValid 局部回执，
+                       回执无效并入既有哨兵零出口，契约不变
 *)
 
 FUNCTION FC_DL_DewPointToPpmV : LREAL
@@ -37,6 +39,10 @@ END_VAR
 VAR
     fPsatPa   : LREAL;                  // 属主返回的饱和水蒸气压 [Pa] / Saturation vapor pressure from owner
     bSatOk    : BOOL;                   // 属主调用受理标志 / Owner call acceptance flag
+    _bPwsValid: BOOL;                   // 属主输出可用回执 / Owner outputs-usable receipt
+    _bPwsClamped : BOOL;    // 属主件钳位回执（本件不消费，仅契约全回执） / Owner clamp receipt (unused, full-receipt contract)
+    _nPwsErr     : UDINT;   // 属主件错误码回执 / Owner error-code receipt
+    _bPwsError   : BOOL;    // 属主件故障级回执 / Owner fault-flag receipt
 END_VAR
 VAR CONSTANT
     DL_PPM_SCALE : LREAL := 1.0E6;      // 摩尔分数 → ppmV 放大系数 [ppmV] / Mole fraction to ppmV scale
@@ -60,8 +66,8 @@ IF (fDewPointC <> fDewPointC) OR ((fDewPointC - fDewPointC) <> DL_ZERO)
 END_IF
 
 (* —— 段 3｜委托饱和压唯一属主：禁在本件重复声明 Magnus 常数 —— *)
-bSatOk := FC_DL_VaporPressureSat(fTempC := fDewPointC, fPvSat => fPsatPa, bClamped => bClamped);
-IF NOT bSatOk THEN
+bSatOk := FC_DL_VaporPressureSat(fTempC := fDewPointC, fPvSat => fPsatPa, bClamped => bClamped, bValid => _bPwsValid, eErr => _nPwsErr, bError => _bPwsError);
+IF (NOT bSatOk) OR (NOT _bPwsValid) THEN
     FC_DL_DewPointToPpmV := DL_ZERO;    // 属主判无效：哨兵零返回
     RETURN;
 END_IF

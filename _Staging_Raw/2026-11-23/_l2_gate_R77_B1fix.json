@@ -1,0 +1,28 @@
+{
+ "total": 2,
+ "pass": 2,
+ "fail": 0,
+ "seed": 0,
+ "jobs": 1,
+ "iface_excluded": [],
+ "results": [
+  {
+   "file": "DL_Motion/FB_DL_DualEncoderDeviationWatch.st",
+   "name": "FB_DL_DualEncoderDeviationWatch.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  },
+  {
+   "file": "DL_Process/FB_DL_MoldCoolingZoneSeq.st",
+   "name": "FB_DL_MoldCoolingZoneSeq.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  }
+ ]
+}

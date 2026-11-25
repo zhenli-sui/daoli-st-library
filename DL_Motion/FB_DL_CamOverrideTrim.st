@@ -3,7 +3,7 @@
   分类 Category : DL_Motion
   码位 Code     : 16#04_0_A6
   段位说明      : 04_0 段占至 A5，A6 格空穴，本件启用 A6 格
-  版本 Version  : 1.0.0
+  版本 Version  : 1.0.1
   来源 Source   : t1-6-plcopen — T1-6 行待挖项「凸轮动态修调」落地
   溯源 Origin   : clean-room 实现，未复制任何源码行
   功能 Function : 1) 不重选表、不脱耦：在 FC_DL_CamTableInterp 表插值输出上实时叠加修调；
@@ -17,7 +17,7 @@
                   ④ 无 CASE 主状态机（变换型 FB）：无相位迁移，无跨相 TON 复用问题；
                   ⑤ 本件每拍必须调用一次（无定时器/边沿实例，跳拍仅导致输出陈旧，无隐藏状态损坏）。
   依赖 Depends  : I_DL_MotionAxis（注入，不实例化，只读 fPosition）；
-                  FC_DL_CamTableInterp（函数调用，aCam 开放数组透传）；ST_DL_CamPoint（库内既有结构）
+                  FC_DL_CamTableInterp（函数调用，aCam 固定上界透传 + uPointCnt 显式点数）；ST_DL_CamPoint（库内既有结构）
   码表 Error codes（本件格 04_0_A6，子码步进 +0x100）:
     16#0004_01A6 信息级：修调量非有限已保持上次有效值（继续输出，不中断）
     16#0004_02A6 信息级：插值件报错码透传（表非法/越界，本件输出钳界表值）
@@ -25,6 +25,8 @@
 
   修订历史 Revision :
     2026-11-19  v1.0.0  R39 首版（批次 2 · 序号 7）
+    2026-11-23  v1.0.1  R75 适配插值件显式点数字段：aCam 改固定上界 ARRAY[1..200]，
+                        增输入 uPointCnt 透传（解 VLA 透传 E037）
 *)
 
 FUNCTION_BLOCK FB_DL_CamOverrideTrim
@@ -36,6 +38,7 @@ VAR_INPUT
     bPeriodic   : BOOL := FALSE;      // 周期模式使能（与插值件同口径透传）/ Periodic mode, passed to interpolator
     fPeriod     : LREAL := 360.0;     // 周期模式主轴周期 [mm]，域 > 0 / Master period for periodic mode
     bReset      : BOOL := FALSE;      // 修调复位，上升沿清修调保持值（重新从 0 起）/ Trim reset, rising edge clears hold
+    uPointCnt   : UINT := 100;        // 凸轮表有效点数，域 [2,200]，透传插值件 [点] / Valid table point count, passthrough to interpolator
 END_VAR
 VAR_OUTPUT
     fSlaveBase    : LREAL;            // 纯表值输出 [mm]（未叠加修调）/ Pure table output without trim
@@ -47,10 +50,11 @@ VAR_OUTPUT
 END_VAR
 VAR_IN_OUT
     iAxis : I_DL_MotionAxis;          // 主轴引用（注入，不实例化，只读位置）/ Master axis reference, position read-only
-    aCam  : ARRAY[*] OF ST_DL_CamPoint; // 凸轮表透传（须按 fMaster 升序）/ Cam table passed through, ascending
+    aCam  : ARRAY[1..200] OF ST_DL_CamPoint; // 凸轮表透传（固定上界，下标 1..uPointCnt 有效，须按 fMaster 升序）/ Cam table passed through, fixed bound
 END_VAR
 VAR
     rtReset      : R_TRIG;            // 修调复位沿实例，主体首部无条件刷新 / Trim reset edge instance
+    _bInRangeInt : BOOL;              // 插值件表界内标志内部镜像（段 3 每拍接收，直赋出口）[-] / Interp in-range mirror, received every scan in seg 3
     fAmpTrimEff  : REAL := 0.0;       // 生效幅值偏置 [mm]（非有限保持载体）/ Effective amplitude trim with hold
     fPhaseTrimEff: REAL := 0.0;       // 生效相位偏置 [mm]（非有限保持载体）/ Effective phase trim with hold
     fMasterEff   : LREAL;             // 修调后有效主轴位置 [mm] / Effective master position after phase trim
@@ -99,11 +103,13 @@ END_IF
 FC_DL_CamTableInterp(fMasterPos := fMasterEff,      // 有效主轴位置（已含相位偏置）
                      bPeriodic := bPeriodic,        // 周期模式透传
                      fPeriod := fPeriod,            // 周期透传
-                     aCam := aCam,                  // 凸轮表透传（开放数组引用）
+                     uPointCnt := uPointCnt,        // 显式点数透传（R75 口径）/ Explicit point count passthrough
+                     aCam := aCam,                  // 凸轮表透传（固定上界数组引用）
                      fSlavePos => fSlavePos,        // 从轴表值输出
-                     bInRange => bInRange,          // 表界内标志输出
+                     bInRange => _bInRangeInt,      // 表界内标志输出（内部镜像）/ In-range flag to internal mirror
                      eErr => eInterpErr);           // 插值件错误码输出
 fSlaveBase := fSlavePos;                            // 纯表值镜像
+bInRange := _bInRangeInt;                           // 表界内标志出口每拍直赋（语义：有效主轴位置在凸轮表界内为 TRUE）/ In-range outlet assigned every scan
 
 (* —— 段 4：幅值修调叠加与使能门控 —— *)
 IF bEnable AND (NOT bTrimFreeze) THEN

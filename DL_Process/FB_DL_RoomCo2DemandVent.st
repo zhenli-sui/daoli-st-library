@@ -80,6 +80,7 @@ VAR
     _fScaleErr : REAL;                // 换算百分比中间量 [%]（件出口 fPercent，未消费占位）/ Scaling percent passthrough
     _uScaleErr : UDINT;               // 换算错误码透传 / Scaling error passthrough
     _bPlausBad : BOOL;                // 本拍合理域越限标志 / Plausibility violation this cycle
+    _bSensorFail : BOOL := FALSE;     // 传感器失效锁存镜像（与 bSensorFail 同源同拍）[-] / Sensor-fail latch mirror, same source as bSensorFail
     _bDemandSt : BOOL;                // 需量高峰迟滞回传保持变量 / Demand-high hysteresis hold member
     _eModeInt  : E_DL_Co2VentMode := E_DL_Co2VentMode.eAuto;   // 内部模式（CASE 唯一写入目标）/ Internal mode
     _rCmdOut   : REAL := 0.0;         // 阀门指令中间量 [%] / Damper command working value
@@ -87,6 +88,9 @@ VAR
     _uFault    : UDINT;               // 故障码锁存寄存 / Latched fault code register
     _bFault    : BOOL;                // 故障锁存位 / Latched fault bit
     _bCfgBad   : BOOL;                // 组态非法聚合 / Configuration invalid aggregate
+    _fHystUp   : REAL;                // 迟滞上限实阈透传（未消费占位，仅满足 FC 全参数口径）/ Hysteresis upper trip passthrough
+    _fHystLo   : REAL;                // 迟滞下限实阈透传（未消费占位，仅满足 FC 全参数口径）/ Hysteresis lower trip passthrough
+    _uHystErr  : UDINT;               // 迟滞件错误码透传（供诊断扩展，本拍不判级）/ Hysteresis error code passthrough
 END_VAR
 VAR CONSTANT
     DL_RCV_INF_CAP : REAL := 1.0E15;  // 非有限值筛查幅值上限 / Non-finite screening cap
@@ -142,12 +146,14 @@ IF _bCfgBad AND (NOT _bFault) THEN
 END_IF
 IF tonSensTo.Q AND (NOT _bSensorFail) THEN
     bSensorFail := TRUE;            // 传感器失效锁存（退守判据到点）
+    _bSensorFail := TRUE;           // 锁存镜像同拍置位（防止重复进入失效段）
     _uFault := 16#0006_03BC;        // 故障级：传感器失效退守
     _bFault := TRUE;
 END_IF
 IF rtReset.Q AND (NOT _bCfgBad) AND _bScaleOk AND (NOT _bPlausBad) THEN
     IF bSensorFail THEN
         bSensorFail := FALSE;       // 失效锁存解除（信号恢复 + 组态合法为前提）
+        _bSensorFail := FALSE;      // 锁存镜像同步解除（名实同源）
     END_IF
     _bFault := FALSE;               // 清故障锁存位
     _uFault := 16#0000_0000;
@@ -158,7 +164,10 @@ IF (NOT bSensorFail) AND (NOT _bFault) THEN
     bDemandHigh := FC_DL_Hysteresis(fIn := fCo2Ppm,             // 换算浓度
                                     fThreshold := fDemandThPpm, // 高峰阈
                                     fHysteresis := fDemandHystPpm,   // 回差带
-                                    bState := _bDemandSt);      // 回传保持变量（同一成员，有状态纪律）
+                                    bState := _bDemandSt,       // 回传保持变量（同一成员，有状态纪律）
+                                    fUpperTrip => _fHystUp,     // 实阈上限透传（FC 全参数口径，R74 补齐）
+                                    fLowerTrip => _fHystLo,     // 实阈下限透传（FC 全参数口径，R74 补齐）
+                                    uErrorId => _uHystErr);     // 迟滞件错误码透传（FC 全参数口径，R74 补齐）
     IF bDemandHigh THEN
         _uInfo := 16#0006_01BC;     // 信息级：需量高峰
     END_IF

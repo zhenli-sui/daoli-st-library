@@ -124,6 +124,7 @@ VAR
     _eState      : E_DL_PmlState := E_DL_PmlState.eIdle;     // 内部状态，CASE 唯一写入目标 / internal state, the only CASE write target
     _eMode       : E_DL_UnitMode := E_DL_UnitMode.eProduction; // 内部模式锁存 / internal mode latch
     _eReject     : E_DL_PmlReject := E_DL_PmlReject.eNone;   // 本拍拒绝原因工作值 / rejection reason working value
+    _eAccepted   : E_DL_PmlCmd := E_DL_PmlCmd.eNone;         // 本拍受理命令工作值（出口映射源）[枚举] / accepted command working value, source of the outlet [enum]
     _bFault      : BOOL := FALSE;            // 故障锁存位 [-] / fault latch bit
     _bInit       : BOOL := FALSE;            // 首扫初始化完成标志（R310）/ first scan initialisation flag
     _bAccInt     : BOOL := FALSE;            // 受理脉冲内部位，统一出口映射 / internal accepted bit, mapped at the unified outlet

@@ -56,8 +56,11 @@ INTERFACE I_DL_ExternalEncoder
 // ---- 属性段（全部只读 GET，共 3 条）----------------------------------------
 
 PROPERTY fPos   : LREAL   // 当前位置 [毫米] / Current position [mm]
+END_PROPERTY
 PROPERTY fVel   : LREAL   // 当前速度 [毫米每秒] / Current velocity [mm per s]
+END_PROPERTY
 PROPERTY bValid : BOOL    // 当前数据可信标志 / Current data validity flag
+END_PROPERTY
 
 // ---- 方法段（共 2 个）-------------------------------------------------------
 

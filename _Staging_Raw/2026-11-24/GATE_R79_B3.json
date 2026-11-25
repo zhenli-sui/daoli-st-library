@@ -1,0 +1,65 @@
+{
+ "round": "R79",
+ "batch": "B3",
+ "kind": "reverify",
+ "ts": "2026-11-24T03:36:00+08:00",
+ "l1": {"total": 3, "pass": 3, "fail": 0, "issues": [
+   {"code": "VER_HEADER", "level": "MINOR", "scope": "3/3 件",
+    "detail": "要求字面 VERSION: x.y.z，全库 0 件使用该式；本批用行内 v1.0.1（DL_MathData 81/419 同形态）→ 规则与惯例错配，记工具债，不计缺陷"}
+ ]},
+ "l2": {"mode": "executed", "tool": "RuSTy plc.exe via _tools/l2_check.py",
+        "jobs": 1, "total": 3, "pass": 3, "fail": 0,
+        "commands": [
+          "python C:\\Library\\_tools\\l2_check.py C:\\Library\\DL_MathData\\FC_DL_GeoCircleSectorArea.st",
+          "python C:\\Library\\_tools\\l2_check.py C:\\Library\\DL_MathData\\FC_DL_GeoPointRotateXY.st",
+          "python C:\\Library\\_tools\\l2_check.py C:\\Library\\DL_MathData\\FC_DL_StatsCoeffVarCalc.st"
+        ],
+        "raw": "PASS=1 FAIL=0 TOTAL=1  (×3)"},
+ "l3": {"mode": "not-run", "detail": "本轮未提供 _TESTS/*.json；Inf 穿透结论由 IEEE-754 镜像推演背书，无平台实测背书",
+        "recommend_vectors": ["+Inf","-Inf","NaN","1.0E31","正常值","零半径/零标准差","负半径/负标准差","角度取模 -90/450"]},
+ "files": [
+  {"name": "FC_DL_GeoCircleSectorArea", "path": "DL_MathData/FC_DL_GeoCircleSectorArea.st", "ver": "v1.0.1",
+   "l1": "PASS", "l2": "PASS", "rc": 0, "error_codes": [],
+   "fin_const": {"decl": "VAR CONSTANT L31", "type": "LREAL", "value": "1.0E30"},
+   "gate_coverage": {"inputs": 2, "covered": 2, "missing": []},
+   "verdict": "PASS", "notes": ["M-B3-2 注释误引 R477", "M-B3-3 角度闸 1e30 宽于精度界 1e15"]},
+  {"name": "FC_DL_GeoPointRotateXY", "path": "DL_MathData/FC_DL_GeoPointRotateXY.st", "ver": "v1.0.1",
+   "l1": "PASS", "l2": "PASS", "rc": 0, "error_codes": [],
+   "fin_const": {"decl": "VAR CONSTANT L35", "type": "LREAL", "value": "1.0E30"},
+   "gate_coverage": {"inputs": 5, "covered": 5, "missing": []},
+   "verdict": "PASS", "notes": ["M-B3-2 注释误引 R477"]},
+  {"name": "FC_DL_StatsCoeffVarCalc", "path": "DL_MathData/FC_DL_StatsCoeffVarCalc.st", "ver": "v1.0.1",
+   "l1": "PASS", "l2": "PASS", "rc": 0, "error_codes": [],
+   "fin_const": {"decl": "VAR CONSTANT L31", "type": "LREAL", "value": "1.0E30"},
+   "gate_coverage": {"inputs": 2, "covered": 2, "missing": []},
+   "verdict": "PASS", "notes": ["M-B3-1 族内阈值 1e30 vs 1e308", "M-B3-2 注释误引 R477"]}
+ ],
+ "retraction": {
+  "batch": "B2",
+  "prior_verdict": "FAIL MAJOR (C1 唯一闸 / x−x 死谓词 → Inf 穿透)",
+  "new_verdict": "PASS",
+  "reason": "IEEE-754 谓词分流：(x−x)<>0.0 对 ±Inf 得 NaN，无序的 <> 为真 → TRUE，Inf 不穿透；真正恒假的是 ABS(x−x) > EPS 形态（无序的 > 为假）。批 2 将 R77-B1-01 的禁式扩大解释为「一切 x−x 差判」，过严。",
+  "evidence": "_tools/_tmp_r79/mirror_b3.py：old_pred(±Inf)=True, old_pred(NaN)=True, dead_pred(±Inf/NaN)=False, new_pred(±Inf)=True/new_pred(NaN)=False(NaN 由段2自反判兜底)",
+  "fix_still_recommended": ["优化器可将 x−x 折叠为 0", "IEC 61131-3 未定义 NaN/Inf 传播，<> 无序为真属实现约定", "库内主流形态统一（1.0E30 计 136 处）"]
+ },
+ "minor": [
+  {"id": "M-B3-1", "level": "MINOR", "item": "同族阈值与常量名分歧",
+   "detail": "同批 DL_MathData 8 件 DL_FIN_LIM:=1.0E308，本批 3 件 DL_FIN:=1.0E30；批 2 回派单 Q3 写 1.0E308 实落 1.0E30。对 Inf 检出均 100%，仅差 (1e30,1.8e308] 窗口 → 不按 R478 判 MAJOR",
+   "advice": "收敛到 1.0E30（全库主流 136 vs 23）并统一名 DL_FIN；撤回批 2 的 1.0E308 建议"},
+  {"id": "M-B3-2", "level": "MINOR", "item": "规则号误引",
+   "detail": "三件 DL_FIN 注释写「R477 范式」，R477 实为「单拍标志跨拍读取」，与有限性判据无关",
+   "advice": "改注 R77-B1-01（禁 ABS(x−x)>EPS）+ R482（族级形态普查）"},
+  {"id": "M-B3-3", "level": "MINOR", "item": "角归一精度界与闸界不自洽",
+   "detail": "头注自述 |θ|>1E15 度精度下降、不设上限；闸界 1E30 使 1E15~1E30 带静默垃圾值 + bValid=TRUE。镜像实测 (r=1e29,a=1e29)→ret=0.0,bValid=TRUE。修复前既存，非本次引入",
+   "advice": "角度闸收紧到 1.0E15，或在契约显式声明该带不可用"}
+ ],
+ "positive_checks": [
+  "输出溢出不可达：入参≤1e30，最坏量级 Sector≈1e62 / Rotate≈4e30 / CV≈1e41 ≪ LREAL 上界 1.798e308",
+  "NaN 不依赖 Inf 支路兜底：ABS(NaN)>FIN 为假，NaN 全部由段 2 自反判拦截，三件镜像 NaN 均 bError=TRUE",
+  "零半径/零标准差/负均值等合法边界行为与修改前一致（镜像逐例比对）"
+ ],
+ "residual_risk": "「<>无序为真 / >无序为假」这对语义前提全库无机检保护；若目标平台把 NaN 比较统一为有序语义，全库所有 NaN 闸静默失效，且 L1/L2 均不可见，只能靠 L3 向量门抓。",
+ "verdict": "PASS",
+ "blocking": [],
+ "summary": "批 3：3 件｜PASS 3｜FAIL 0｜EXEMPT 0"
+}

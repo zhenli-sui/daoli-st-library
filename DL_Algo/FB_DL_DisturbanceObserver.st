@@ -150,7 +150,7 @@ IF (NOT _bFault) AND bEnable AND (fDtSec > 0.0) THEN
     fTorqueDistNm := (fCurrentCmdA - fCurrentNomA) * fTorqueConst;       // 含噪扰动转矩 [N·m]
     IF tonZeroSpeed.Q THEN
         _eState := E_DL_ObserverState.eHold;                             // 静止冻结相
-        fFrozen := TRUE;                                                // 冻结标志
+        bFrozen    := TRUE;                                                // 冻结标志（出口 bFrozen，VAR_OUTPUT）
         _uInfo := 16#0002_02A1;                                         // 信息级：速度为零冻结估计
     ELSE
         _eState := E_DL_ObserverState.eRun;                             // 观测运行相
@@ -205,3 +205,5 @@ ELSE
     uErrorId := _uInfo;                  // 信息码
 END_IF
 bError := _bFault;                       // 故障出口派生自锁存（非擦除式覆盖）
+
+END_FUNCTION_BLOCK

@@ -1,0 +1,234 @@
+[
+ {
+  "file": "FB_DL_AxisDualFeedbackGuard.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_AxisLoadEncoderLossMonitor.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_ScreenPrintAlign.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ },
+ {
+  "file": "FB_DL_BacdHvacPoll.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_HeatExchangerFoulingTrend.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_InlineCheckweighGauge.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_PackMlUnitMode.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_PalletGripperSafe.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_PalletizerStation.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E052"
+  ]
+ },
+ {
+  "file": "FB_DL_PileClampCtrl.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_RecipeSearchFifo.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_RollPressBitWord.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_RoomCo2DemandVent.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E032"
+  ]
+ },
+ {
+  "file": "FB_DL_SeasonMonthSched.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_SlurrySieveClogWatch.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_SingleAxis.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E007"
+  ]
+ },
+ {
+  "file": "FB_DL_BatchDosingControl.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E007"
+  ]
+ },
+ {
+  "file": "I_DL_ExternalEncoder.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "I_DL_MotionAxis.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_CamOverrideTrim.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E037"
+  ]
+ },
+ {
+  "file": "FB_DL_NailMachineSeq.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_DisturbanceObserver.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ },
+ {
+  "file": "FB_DL_MultiPumpRotationCtrl.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_WinderTensionTaperCtrl.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_SafetyLightCurtainMute.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_KilnTempZoneCascade.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ },
+ {
+  "file": "FB_DL_SurgeMarginGuardCtrl.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_BatchPhaseStepper.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_TankCipCleanSeq.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_HydroLevelDensComp.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ },
+ {
+  "file": "FC_DL_EuclidDist2DCalc.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_Log10Safe.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_SwapNibbles.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_GrayToByteConv.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_TankVolCylHoriz.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_SensorGlitchFilter.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_WrapAngleNorm.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_InvSqrtApprox.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_Median3Vote.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FC_DL_DewPointSpreadCalc.st",
+  "verdict": "PASS",
+  "codes": []
+ },
+ {
+  "file": "FB_DL_ValveStrokeTimeWatch.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ },
+ {
+  "file": "FB_DL_BeltSlipWatch.st",
+  "verdict": "FAIL",
+  "codes": [
+   "E048"
+  ]
+ }
+]

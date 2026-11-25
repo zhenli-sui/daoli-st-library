@@ -1,6 +1,6 @@
 //==============================================================================
 // 函数：FC_DL_RhFromDewPoint ｜ 中文名称：露点→相对湿度逆运算原子（焓湿图族拆分④）
-// 所属子库：DL_Algo ｜ 版本：v1.0.0 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
+// 所属子库：DL_Algo ｜ 版本：v1.0.1 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
 // 功能描述：RH = 100·p_ws(Td)/p_ws(T)，纯比值运算；两次调用族属主
 //           FC_DL_VaporPressureSat，本件无自带公式常量（零内联公式）。
 //           与 FC_DL_DewPointCalc 构成双向对，round-trip 验收向量：
@@ -21,6 +21,8 @@
 //           外）→ 钳位 + 信息 3001 复用（R90）；⑤ 属主件拒绝 → 故障 3010
 //           复用；异常路径输出确定值 0，绝不输出未初始化值。
 // 修订历史：v1.0.0 2026-11-17 首版（R23 派单 · T1-2 焓湿图族拆分④ · 双向对闭环）
+//           v1.0.1 2026-11-23 R73 补 bValid 回执：段 5 两处属主件调用补收
+//           bValid 局部回执，回执无效并入既有 3010 兜底分支，契约不变。
 //==============================================================================
 
 (*------------------------------------------------------------------------------
@@ -50,6 +52,10 @@ VAR
     fTEff    : LREAL;                    // 钳位后的生效干球温度 [摄氏度] / Effective clamped dry-bulb temperature [degC]
     fPwsDb   : LREAL;                    // 干球温度下饱和压 [Pa] / Saturation pressure at the dry bulb [Pa]
     fPwsTd   : LREAL;                    // 露点温度下饱和压 [Pa] / Saturation pressure at the dew point [Pa]
+    _bPwsValid : BOOL;                   // 饱和压属主件输出可用回执 / Saturation owner FC outputs-usable receipt
+    _bPwsClamped : BOOL;    // 属主件钳位回执（本件不消费，仅契约全回执） / Owner clamp receipt (unused, full-receipt contract)
+    _nPwsErr     : UDINT;   // 属主件错误码回执 / Owner error-code receipt
+    _bPwsError   : BOOL;    // 属主件故障级回执 / Owner fault-flag receipt
 END_VAR
 
 (*------------------------------------------------------------------------------
@@ -110,13 +116,13 @@ END_IF
  * 段 5｜双向对主体：RH = 100·p_ws(Td)/p_ws(T)，两次调用族属主件
  *      Round-trip core via two owner FC calls, denominator guarded
  *-----------------------------------------------------------------------------*)
-IF NOT FC_DL_VaporPressureSat(fTempC := fTEff, fPvSat => fPwsDb) THEN
+IF (NOT FC_DL_VaporPressureSat(fTempC := fTEff, fPvSat => fPwsDb, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError)) OR (NOT _bPwsValid) THEN
     eErr   := 16#0002_3010;              // 故障级：属主件拒绝复用（R90） / Fault: owner FC rejected, code reused
     bError := TRUE;                      // 置故障标志 / Raise the fault flag
     bValid := FALSE;                     // 输出不可用 / Outputs unusable
     RETURN;
 END_IF
-IF NOT FC_DL_VaporPressureSat(fTempC := fDewPointC, fPvSat => fPwsTd) THEN
+IF (NOT FC_DL_VaporPressureSat(fTempC := fDewPointC, fPvSat => fPwsTd, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError)) OR (NOT _bPwsValid) THEN
     eErr   := 16#0002_3010;              // 故障级：属主件拒绝复用（R90） / Fault: owner FC rejected, code reused
     bError := TRUE;                      // 置故障标志 / Raise the fault flag
     bValid := FALSE;                     // 输出不可用 / Outputs unusable

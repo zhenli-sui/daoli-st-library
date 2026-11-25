@@ -157,7 +157,7 @@ END_IF
 _fSumX := 0.0; // Σx 清零 / clear the sum of x
 _fSumY := 0.0; // Σy 清零 / clear the sum of y
 _fSumXY := 0.0; // Σxy 清零 / clear the sum of xy
-_fTrendSlope := 0.0; // 斜率预置零 / preset the slope to zero
+fTrendSlope := 0.0; // 斜率输出每拍预置零（样本不足时保持零，最小二乘仅在窗内覆盖）/ preset the slope outlet to zero, recomputed only when enough samples
 IF _nFill >= 2 THEN // 至少两点才可算斜率 / the slope needs at least two points
     _nK := 1; // 时间序序号起步（1 = 最旧样本）/ start the time order ordinal at the oldest
     _nGuard := 0; // 守护清零 / clear the guard

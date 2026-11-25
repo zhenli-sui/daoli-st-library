@@ -2,8 +2,12 @@
   FB_DL_ChamberPurgeDry  —  腔体干燥吹扫顺控 / Chamber purge and dry sequence control
   分类 Category : DL_Process
   码位 Code     : 16#06_0_82
-  版本 Version  : 1.0.0
+  版本 Version  : 1.0.1
   溯源 Source   : OSCAT Building 语义借鉴 · clean-room 实现，仅借分类/参数域/命名，未复制源码
+  修改记录 Hist : v1.0.1 2026-11-23 R75 修复——FC_DL_DewPointCalc 调用补
+                  uErrorId / fVaporPa / bInRange 三出参显式回执（R73 零回执
+                  挂账点修，与 VaporPressureSat 族回执口径对齐），bInRange
+                  并入有效判据，主顺控逻辑零改动
   功能 Function : 1) 露点判据收敛：吹扫 → 静置 → 复测 三态循环，直到复测露点低于目标；
                   2) 三段计时各用独立 TON，且每段 IN := (在相) AND NOT ton.Q 自复位（FB33-2 硬判据）；
                   3) 复测未收敛不无限等待，超过 nMaxRetry 次即转超时态并报码。
@@ -75,6 +79,9 @@ VAR
     bConverged     : BOOL;                        // 复测收敛标志 / Convergence flag
     uFault         : UDINT;                       // 锁存故障码 / Latched fault code
     uInfo          : UDINT;                       // 信息级码 / Information code
+    uDewErr        : UDINT;                       // 露点函数回执码（v1.0.1 新增接收）/ Dew point FC receipt, new in v1.0.1
+    fVaporPaBuf    : REAL;                        // 露点函数水汽压回执 [Pa]（v1.0.1 新增接收，诊断）/ Dew point FC vapor pressure receipt [Pa]
+    bDewInRange    : BOOL;                        // 露点函数域内回执 [-]（v1.0.1 新增接收）/ Dew point FC in-range receipt
 END_VAR
 VAR CONSTANT
     DL_PD_TMIN     : REAL := -40.0;               // 温度有效域下限 [degC] / Temperature domain low [degC]
@@ -96,8 +103,10 @@ bInputOk := (fTempC = fTempC) AND (fRhPct = fRhPct)                          // 
             AND (ABS(fTempC) < 1.0E30) AND (ABS(fRhPct) < 1.0E30)            // Inf 上限兜底
             AND (fTempC >= DL_PD_TMIN) AND (fTempC <= DL_PD_TMAX)            // 温度物理域闸
             AND (fRhPct >= DL_PD_RHMIN) AND (fRhPct <= DL_PD_RHMAX);         // 湿度物理域闸
-fDewCalcC := FC_DL_DewPointCalc(fTempC := fTempC, fRhPct := fRhPct);         // 露点换算每拍无条件调用
-IF bInputOk AND (fDewCalcC = fDewCalcC) AND (ABS(fDewCalcC) < 1.0E30) THEN
+fDewCalcC := FC_DL_DewPointCalc(fTempC := fTempC, fRhPct := fRhPct,
+                                uErrorId => uDewErr, fVaporPa => fVaporPaBuf,
+                                bInRange => bDewInRange);                   // 露点换算每拍无条件调用 + 三出参回执（v1.0.1）
+IF bInputOk AND bDewInRange AND (fDewCalcC = fDewCalcC) AND (ABS(fDewCalcC) < 1.0E30) THEN   // 域内回执并入判据（v1.0.1）
     IF tonDewTick.Q THEN
         fDewHoldC := fDewCalcC;                   // 采样节拍到时锁存露点（每 N 时间采一次）
         bDewValid := TRUE;                        // 露点有效

@@ -66,6 +66,7 @@ END_VAR
 VAR
     tonHyst      : TON;               // 切换滞回确认窗（eChgWait 相独占），无条件刷新 / Hysteresis timer
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance
+    _eState      : E_DL_SmsState := E_DL_SmsState.eIdle;   // 内部相位，CASE 唯一写入目标 / Internal phase, the only CASE write target
     _eSeason     : E_DL_SmsSeason := E_DL_SmsSeason.eTrans;  // 内部季（CASE 唯一写入目标）/ Internal season
     _eTgtSeason  : E_DL_SmsSeason;    // 月位图判出目标季 / Bitmap-derived target season
     _wMask       : WORD;              // 当月掩码（SHL 结果）/ Current month mask
@@ -146,9 +147,15 @@ E_DL_SmsState.eChgWait:
                 _uInfo := 16#0005_04AB;         // 信息级：切换至制冷季沿
             E_DL_SmsSeason.eTrans:
                 _uInfo := 16#0005_04AC;         // 信息级：进入过渡季沿
+            ELSE
+                _eState := E_DL_SmsState.eFault;    // 目标季非法兜底：进故障相（安全默认，不提交切换）/ Illegal target season fallback, enter fault, do not commit
+                _bFault := TRUE;                    // 故障锁存与码位配对 / Fault latch paired with code
+                _uFault := 16#0005_0384;            // 故障级：滞回窗域非法/兜底归并码 / Fault level, merged fallback code
         END_CASE
-        _eSeason := _eTgtSeason;                // 提交切换（锁存量级提交）
-        _eState := E_DL_SmsState.eIdle;         // 回稳态相
+        IF NOT _bFault THEN                     // 兜底拍不提交切换（安全侧）/ Do not commit the switch in the fallback scan
+            _eSeason := _eTgtSeason;                // 提交切换（锁存量级提交）
+            _eState := E_DL_SmsState.eIdle;         // 回稳态相
+        END_IF
     ELSIF _eTgtSeason = _eSeason THEN           // 出口 2：目标季回撤（前置条件消失，R98 双出口）
         _eState := E_DL_SmsState.eIdle;         // 取消切换：回稳态相
     END_IF

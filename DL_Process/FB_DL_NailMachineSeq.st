@@ -240,4 +240,5 @@ ELSIF _eState = E_DL_NailSeqState.eBatchDone THEN
 END_IF
 
 bValid := (NOT bError) AND (_eState <> E_DL_NailSeqState.eIdle); // 空闲/故障输出不可用 / Outputs unusable in idle or fault
+eSeqState := _eState;               // 顺控相位出口每拍赋值（名实同源） / Sequence phase outlet assigned every scan
 END_FUNCTION_BLOCK

@@ -88,6 +88,7 @@ VAR
     tonStall   : TON;                   // 冻结确认窗计时，段 0 无条件调用 / Stall confirm window timer
     rtReset    : R_TRIG;                // 复位沿实例，段 0 无条件调用 / Reset edge instance
     _fPosPrev  : REAL;                  // 上拍负载侧位置快照（锁存量） [mm] / Previous-scan position snapshot [mm]
+    _fPosDelta : REAL;                  // 本拍位置增量中间量（段 0 派生，段 8 映射到输出） [mm] / Position increment intermediate, derived seg 0, mapped seg 8
     _bNonFin   : BOOL;                  // 输入非有限当拍量 [-] / Non-finite input this scan
     _bCfgBad   : BOOL;                  // 组态非法当拍量 [-] / Illegal configuration this scan
     _bMove     : BOOL;                  // 应有运动当拍量 [-] / Should-be-moving this scan
@@ -191,6 +192,7 @@ ELSE
     bLoss    := FALSE;                                                  // 非故障相明确清零 / Explicitly clear outside fault
     bHealthy := bLoadEncValid AND _bMove;                               // 健康 = 有效位真且（有运动时位置在动） / Healthy = valid bit true and position moving when commanded
 END_IF
+fPosDelta := _fPosDelta;                                                // 位置增量输出每拍赋值（名实同源） / Position increment output assigned every scan
 bError := _bFault;                                                      // 故障标志与锁存同源（R191） / Error flag from latch
 eState := _eState;                                                      // 状态出口 / State outlet
 eCause := _eCause;                                                      // 成因出口 / Cause outlet

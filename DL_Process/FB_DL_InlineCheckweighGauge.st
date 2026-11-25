@@ -73,6 +73,7 @@ VAR
     _uFill         : UINT := 0;           // 已填样本数 [个] / Number of samples collected
     _fSum          : REAL := 0.0;         // 样本和 [g] / Sample sum
     _fMean         : REAL := 0.0;         // 窗口均值 [g] / Window mean
+    _fMeanOut_g    : REAL := 0.0;         // 窗口均值中间量（出口映射源）[g] / Window mean intermediate, source of the outlet [g]
     _fVar          : REAL := 0.0;         // 样本方差 [g²] / Sample variance
     _afWin         : ARRAY[1..50] OF REAL; // 样本环形窗 [g] / Sample ring buffer
     _iLoop         : INT;                 // 统计循环索引 / Statistical loop index

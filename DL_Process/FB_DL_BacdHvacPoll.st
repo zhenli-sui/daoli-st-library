@@ -107,6 +107,7 @@ VAR
     _nGuard     : INT := 0;                  // 跳过循环守护计数 [次] / skip loop guard [count]
     _nIdxProbe  : INT := 1;                  // 离线统计探测索引 [设备号] / probe index for the offline statistics
     _nCurRetry  : INT := 0;                  // 当前设备重试计数（声明补齐，R55 终审）/ current device retry counter, declaration completed at R55 review
+    _nOfflineCnt: INT := 0;                  // 本轮统计离线设备数工作值（出口映射源）[台] / offline device count working value, source of the outlet [unit]
     _wOff       : WORD := 16#0000;           // 离线掩码工作字 / offline mask working word
     _wOn        : WORD := 16#0000;           // 在线掩码工作字（按位或累计）/ online mask working word
     _wBit       : WORD := 16#0001;           // 本设备位掩码，先移位后置位（R327）/ device bit mask, shift before setting

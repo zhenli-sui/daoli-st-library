@@ -1,8 +1,245 @@
+## v2.85.0 — R93（2026-11-25 当日第 6 轮）
+
+### Added
+- 39 件新组件（复杂 4 / 简单 35），总库 1,962 → **2,001**（20.01%）。
+- 族 A 港口岸桥/场桥：防摇摆角、梯形加速度规划、双卷筒同步、旋锁四角互锁、夹轨判定、风速分级、箱位换算、循环时间、抗倾覆力矩 + `FB_DL_GantryCraneAnchoringSeq`（C4 锚定序列）。
+- 族 B 卷烟制丝线（全库真空域）：切丝宽度、梗丝膨胀率、烘丝去水、加料/加香比例、组分掺配、回潮水分、填充值、碎丝率 + `FB_DL_TobaccoCuttingLineSeq`（C4）。
+- 族 C 数据中心精密空调：显热制冷量、机柜风量、冷冻水温差、送风温度重置、PUE、旁通混合、UPS 负载率、电池后备、自然冷却小时 + `FB_DL_CrahGroupEconomizerSeq`（C4）。
+- 族 D 铸造砂处理：型砂水分目标、砂铁比、混砂配比、膨润土补加、紧实率、合型力、浇注时间、落砂冷却、芯砂烘干 + `FB_DL_MoldingLineSandSeq`（C4）。
+
+### Fixed
+- `FB_DL_GantryCraneAnchoringSeq`：删除「降速相驻留超时即升级锚定」（13.8~20 m/s 属降速作业区，原逻辑使 14 m/s 常风永久锚定）；故障清除由电平改下降沿（原逻辑每拍重清 + 重入锚定 → 锚定销周期性重击）；新增段 5b 总使能门；WIND_WARN 滞环判定前置（修复后 tonWarn.Q 恒真会使回 IDLE 分支不可达）。
+- `FB_DL_CrahGroupEconomizerSeq`：新增 `xActive` 与段 7 使能门（未使能不下发机组台数）；段 8 故障出口受使能门与机组数钳位（原先覆盖段 7 门控且 `nUnitsAvail=-3` 会下发 -3 台）；码位分判 9602/9603/9604。
+
+### Removed
+- `FC_DL_ShakeoutCoolingTimeCalc` 拒收移入 `_quarantine/R93/`：与在册 `FC_DL_CastingSolidificationTimeCalc` 相似度 0.85（同式同三入参），且 Chvorinov 模数为「凝固时间」被误标为「落砂后冷却时间」。
+
 # CHANGELOG — 道莅工业自动化标准代码库
 
 遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/) 与 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 
 > 版本号规则：**MAJOR** 破坏性接口变更 ｜ **MINOR** 新增组件或新增可选输入 ｜ **PATCH** 实现与文档修正。
+
+## [v2.84.0] — 2026-11-25 · R92 冲刺轮（当日第 5 轮）
+### Added
+- **40 个组件入库**（复杂 4 / 简单 36），共 3456 行，四个新工艺域：
+  - 族 A「AGV/AMR 移动底盘运动学」10 件（DL_Motion，补最薄子库 171→181）：麦轮正逆解、差速里程计、纯追踪、Stanley、阿克曼、滑移率、曲率限速、充电桩对准 + 路径跟踪状态机
+  - 族 B「铝电解槽 potline」10 件（DL_Process）：分子比、氧化铝下料、效应能耗、槽电压分解、电流效率、槽温过热度、铝水平、母线分流、打壳能耗 + 换极十相顺控
+  - 族 C「玻璃纤维拉丝」10 件（DL_Device）：漏板分区温度、孔口流量、纤维直径、排线节距、上胶率、丝束张力、功率平衡、冷却风量、丝饼含水 + 拉丝启动八相顺控
+  - 族 D「啤酒酿造」10 件（DL_Process）：糖化热量、麦汁充氧、煮沸蒸发、发酵度、酵母接种、双乙酰还原、桶装背压、CIP 碱浓、冷负荷 + 发酵温度阶梯顺控
+### Fixed
+- `FC_DL_CipCausticStrengthCalc`：碱量缺额多除 100，补碱量偏小 100 倍（CIP 永久欠配）→ 按 x=(C_t−C_n)V/(C_s−C_t) 重算
+- `FC_DL_YeastPitchRateCalc`：体积按 L 当 mL，需细胞数与酵母泥质量偏小 1000 倍 → 增 fVolumeMl 换算
+- `FC_DL_PotlineBathRatioCalc`：过剩 AlF3 基准误用 CR=2，纯冰晶石输出 −20% → 改除 3（Na3AlF6 = 3NaF·AlF3）
+- `FB_DL_BushingDrawStartSeq`：DRIP/ATTACH/RAMP/BREAK 四相补「使能撤销 → IDLE」安全出口
+- `FB_DL_AgvPathTrackSeq`：距离比例速度加非负钳位，消除 fDist≤0 的倒车指令
+- `FC_DL_WortAerationRateCalc`：缺省空气流量 20→1.2 Nm³/h，缺省组态落回 8~10 mg/L 工艺窗
+- `FB_DL_PotlineAnodeChangeSeq`：NEWANODE/COVER 两相补超时（90 s / 120 s），防铺料执行器长通
+### Changed
+- DL_Motion 子库 171→181 件；四族全部 clean-room，ST 生态逐词实测 0 命中
+
+## [v2.83.0] — 2026-11-25 · R91 冲刺轮（当日第 4 轮）
+
+### Added
+- **40 个组件入库**（复杂 4 + 简单 36），总库 1,882 → **1,922**；SFT 语料 1921 → **1961**。40 件合 6220 行。
+
+- 水泥窑篦冷机与预热器族 10：`FC_DL_GrateCoolerHeatRecoveryCalc` / `FC_DL_GrateCoolerBedResistanceCalc` / `FC_DL_GrateCoolerAirBalanceCalc` / `FC_DL_GrateCoolerClinkerTempCalc` / `FC_DL_PreheaterStageEfficiencyCalc` / `FC_DL_PreheaterCyclonePressureCalc` / `FC_DL_KilnBypassRatioCalc` / `FC_DL_ClinkerCoolingRateCalc` / `FB_DL_GrateCoolerStrokeWatch` / `FB_DL_GrateCoolerStartupSeq`
+- 制药冻干真空冷冻干燥族 10：`FC_DL_LyoIceVaporPressureCalc` / `FC_DL_LyoSublimationRateCalc` / `FC_DL_LyoShelfHeatDutyCalc` / `FC_DL_LyoPrimaryDryingTimeCalc` / `FC_DL_LyoChamberLeakRateCalc` / `FC_DL_LyoCollapseTempMarginCalc` / `FC_DL_LyoResidualMoistureCalc` / `FB_DL_LyoShelfTempRampCtrl` / `FB_DL_LyoPressureRiseTestSeq` / `FB_DL_LyoVacuumPullSeq`
+- 轮胎硫化族 10：`FC_DL_TireCureEquivalentTimeCalc` / `FC_DL_TireCureBladderSteamCalc` / `FC_DL_TireCurePressForceCalc` / `FC_DL_TireCureTempGradientCalc` / `FC_DL_TireCureDegreeCalc` / `FC_DL_TireCureMoldCycleTimeCalc` / `FC_DL_TireCureSteamQualityCalc` / `FB_DL_TireCureMoldTempWatch` / `FB_DL_TireCureBlowdownWatch` / `FB_DL_TireCurePressSeq`
+- 间歇式溢流染色与丝光整理族 10：`FC_DL_JiggerLiquorRatioCalc` / `FC_DL_JiggerRampRateCalc` / `FC_DL_OverflowDyeFlowCalc` / `FC_DL_MercerCausticPickupCalc` / `FC_DL_MercerShrinkageCalc` / `FC_DL_BleachChemicalDoseCalc` / `FC_DL_DyeExhaustionCalc` / `FC_DL_DyeShadeDeltaCalc` / `FB_DL_MercerCausticConcWatch` / `FB_DL_JiggerBatchRecipeSeq`
+
+### Fixed
+- 本轮新件自身回修 0 件；存量修复 0 件（非当日首轮，修复配额按铁律一归零）。
+
+### Changed
+- 闸席 L1 静态子集新增 R26（同一输出单点赋值）与 R21（周期入参）命中统计。
+- 闸席负向对照扩至 9 组，新增「未声明变量」「类型不匹配赋值」「缺分号」三组。
+
+### Known Issues
+- 跨文件 ENUM 同名旧账 **11 处**仍未清（单件 L2 结构上看不见，全库/MatIEC 编译必炸），已连续 3 轮挂账。
+- MatIEC 侧 L2 基线 0/1,490 属老方言与现代语法系统性差异，已立「dialect 适配专项」，不据此否定本地 PASS 件。
+
+## [v2.82.0] — 2026-11-25 · R90 冲刺轮（当日第 3 轮）
+
+### Added
+- **40 个组件入库**（复杂 4 + 简单 36），总库 1,842 → **1,882**；SFT 语料 1,881 → **1,921**。
+- RO/NF 膜法水处理族 10：`FC_DL_RoRecoveryCalc` / `RoFluxCalc` / `RoOsmoticPressureCalc` / `RoNetDrivingPressureCalc` / `RoConcentrationPolarizationCalc` / `RoScaleSaturationIndexCalc` / `RoBrineFlowTargetCalc` / `RoStagePressureDropCalc` / `FB_DL_RoPermeateQualityWatch` / `FB_DL_RoMembraneFlushSeq`（C4）
+- 压缩空气系统能效族 10：`FC_DL_AirCompSpecificPowerCalc` / `AirCompFreeAirDeliveryCalc` / `AirDewPointCalc` / `AirLeakRateCalc` / `AirReceiverSizingCalc` / `AirPipePressureDropCalc` / `AirNozzleConsumptionCalc` / `AirCompLoadUnloadHystCalc` / `AirDryerPurgeLossCalc` / `FB_DL_AirCompressorMasterSeq`（C4）
+- 锂电极片涂布辊压族 10：`FC_DL_CoaterWetThicknessCalc` / `CoaterArealLoadingCalc` / `CalenderGapCalc` / `CalenderLineLoadCalc` / `ElectrodePorosityCalc` / `ElectrodeCompactionRatioCalc` / `CoaterDryZoneHeatCalc` / `CoaterSolventBalanceCalc` / `CoaterTensionZoneCalc` / `FB_DL_CoaterGapTrimSeq`（C4）
+- 浮法玻璃锡槽退火族 10：`FC_DL_FloatBathTempProfileCalc` / `GlassRibbonWidthCalc` / `GlassThicknessCalc` / `LehrAnnealingScheduleCalc` / `GlassResidualStressCalc` / `TinBathAtmosphereCalc` / `FloatBathDrossCalc` / `GlassCutOptimizeCalc` / `FB_DL_LehrZoneTempSeq` / `FB_DL_FloatBathTopRollSeq`（C5）
+
+### Fixed
+- `FC_DL_LehrAnnealingScheduleCalc`：速率出口改为宽钳（真实值），超速判据改用未夹的 `_fRateRaw` —— 原「先夹到 ±15 再判 ≤15」使上限判据恒真，超速降温被误判为「在退火曲线内」（安全侧）。
+- `FB_DL_CoaterGapTrimSeq`：非激活相指令跟随实测改为止仅在测量有效时执行，测量 NaN 时保持上拍指令，堵住 NaN 直达间隙指令出口。
+- `FB_DL_AirCompressorMasterSeq`：`fLoadBar`/`fUnloadBar` 出口改三分支，组态非法时闸断为字面量 0.0，不再外泄 NaN 至压力开关组态。
+
+### Changed
+- 新增红线候选：**判据与出口必须同源于原始值**——任何「先饱和钳制再判是否超限」的写法一律视为缺陷（R90 Lehr 事故）。
+- 出口层强制闸断：凡 `VAR_OUTPUT` 含 REAL 且主体存在 `_b…Ok/_b…Bad` 有效性标志的 FB，REAL 出口必须在同一分支有字面量赋值或 `LIMIT` 包裹（R19 扩面）。
+
+## [v2.81.0] — 2026-11-25 · R89 冲刺轮（当日第 2 轮）
+
+### Added
+- **39 个组件入库**（复杂 4 + 简单 35），总库 1,803 → **1,842**。
+- 矿山破碎筛分族 9：`FC_DL_CrusherThroughputCalc` / `ScreenEfficiencyCalc` / `ThickenerSettlingAreaCalc` / `BallMillPowerDrawCalc` / `UnderflowDensityCalc` / `FB_DL_CrusherGapAdjustSeq` / `ScreenPanelWearMonitor` / `ThickenerFlocDoseCtrl` / `CrusherLubeInterlockSeq`
+- 板带剪切卷取族 9：`FC_DL_StripTensionRefCalc` / `SlitterKnifeClearanceCalc` / `StripLengthAccumCalc` / `CoilWeightEstCalc` / `StripCrownCalc` / `FB_DL_CoilCarIndexSeq` / `ShearBladeGapSeq` / `UncoilerMandrelSeq`
+- 锻造加热退火族 9：`FC_DL_ForgeBilletHeatTimeCalc` / `AnnealSoakTimeCalc` / `ForgeLoadTonCalc` / `BilletTempUniformCalc` / `QuenchDelayCalc` / `FB_DL_FurnaceZoneHeatSeq` / `AnnealCoolRateCtrl` / `ForgeDieLubeSeq` / `FurnaceDoorInterlockSeq`
+- 涂装喷涂族 8：`FC_DL_PaintFilmThicknessCalc` / `SprayFlowRateCalc` / `PaintConsumptionCalc` / `ElectrostaticVoltageCalc` / `BoothFilterLifeCalc` / `FB_DL_BoothExhaustDamperSeq` / `OvenCureProfileSeq` / `ColorChangeSeq` / `PaintRobotPathSeq`
+- 复杂 4：`FB_DL_RotaryKnifeCutSyncCtrl`(C5) / `ElectronicLineShaftSeq`(C4) / `CamSlavePhaseOffsetSeq`(C4) / `FC_DL_SCurveTimeOptCalc`(C3)
+
+### Fixed
+- `FC_DL_ScreenEfficiencyCalc`：筛分效率式分母 `(1−O)(F+U−1)` 系统性放大 η 并饱和至 100% → 改标准二产品式 `E = U(F−O)/(F(U−O))`。
+- `FB_DL_BoothExhaustDamperSeq`：斜坡步长未做非有限闸，NaN 直穿风门输出 → 加归零闸。
+- `FB_DL_PaintRobotPathSeq`：补偿量无出口闸 → 出口加非有限/越界归零闸。
+- `FB_DL_ElectronicLineShaftSeq`：故障锁存期仍跟随主轴、主轴转速 NaN 直穿 → 加锁存互锁 + `_bMasterOk` 单点有效性位。
+- `FB_DL_CamSlavePhaseOffsetSeq`：`fOffsetActDeg` NaN 播种后永久冻结 → 播种与出口各加 ±360° 非有限闸。
+
+### Changed
+- `FB_DL_BoothExhaustDamperSeq` 枚举 `E_DL_BdsPhase` → `E_DL_BedsPhase`（与存量 `FB_DL_BatchDoseSeq` 同名异义冲突）。
+
+### Removed
+- `FB_DL_CoilTaperTensionSeq` 拒收（与在册 `FB_DL_WinderTensionTaperCtrl` 功能完全重合），移入 `_quarantine/R89/`。
+
+## [v2.80.0] — 2026-11-25 · R88 冲刺轮（当日首轮）
+
+### Added
+- **39 个组件入库**（复杂 4 + 简单 35），总库 1,764 → **1,803**。
+- 齿轮几何族 9：`FC_DL_GearModuleFromCpCalc` / `GearAddendumCircleCalc` / `GearRootCircleCalc` / `GearBaseCircleCalc` / `GearSpanMeasurementCalc` / `GearToothThicknessCalc` / `GearBacklashAllowCalc` / `GearContactRatioCalc` / `GearUndercutLimitCalc`
+- 珩磨磨削族 9：`FC_DL_HoneCrosshatchAngleCalc` / `HoneStonePressureCalc` / `GrindWheelPeripheralSpeedCalc` / `GrindSpecificEnergyCalc` / `BoreRoundnessCalc` / `BoreCylindricityCalc` / `PolishPadPressureCalc` / `DeburrBrushSpeedCalc` / `SurfaceRoughnessRzFromRaCalc`
+- 氢能族 9：`FC_DL_ElectrolyzerH2RateCalc` / `ElectrolyzerCellVoltageCalc` / `ElectrolyzerEfficiencyHHVCalc` / `ElectrolyzerKohConcCalc` / `FuelCellStoichAirCalc` / `FuelCellWaterBalanceCalc` / `H2PurgeIntervalCalc` / `H2LeakRateCalc` / `ElectrolyzerStackThermalCalc`
+- 半导体族 8：`FC_DL_SputterDepositionRateCalc` / `SputterTargetUtilCalc` / `EpitaxyGrowthRateCalc` / `CvdFilmStressCalc` / `FilmSheetResistanceCalc` / `DepositionUniformityCalc` / `PlasmaPowerDensityCalc` / `VacuumPumpdownTimeCalc`
+- 复杂 4：`FB_DL_GearHobAxialShiftSeq`（C4）/ `FB_DL_HoneHeadExpansionSeq`（C4）/ `FB_DL_ElectrolyzerStackPurgeSeq`（C4）/ `FB_DL_SputterTargetBurnInSeq`（C4）
+
+### Fixed（本轮新件缺陷，审校 BLOCK 3 条）
+- `FB_DL_HoneHeadExpansionSeq`：段 10 CASE ELSE 覆盖涨开命令致 `xExpandCmd` 恒 FALSE → 改「先默认断 → 状态判定置位 → ELSE 只清缩回」。
+- `FB_DL_ElectrolyzerStackPurgeSeq`：`fLeakDropBarPerMin` 漏非有限闸（NaN 判检漏合格、氢阀 fail-open）→ 补闸 + 两处判据改 fail-closed。
+- `FC_DL_GearSpanMeasurementCalc`：跨齿数 `TRUNC(z·α/180+0.5)` 少算 1 齿 → 改 `TRUNC(z·α/180+1.0)`（等价 ROUND）。
+- `FC_DL_ElectrolyzerStackThermalCalc`：热负荷符号反（U_tn−U_cell 恒为负）→ 改 `U_cell−U_tn`。
+- `FC_DL_H2PurgeIntervalCalc`：吹扫效率未归一化致量纲差 100 倍 → 分母改 `(η×0.01)×Q`。
+
+### Rejected
+- `FC_DL_WaferThermalBudgetCalc`：与在册 `FB_DL_WaferThermalBudgetAccum` 语义重复（相似度 0.877，线性 T·Δt 为其 Arrhenius 权重降级变体）→ 移入 `_quarantine/R88/`。
+
+
+## v2.77.0 — 2026-11-24（第 85 轮 · 冲刺模式 · 五族垂直：热处理/铝挤压氧化/压铸/粉末冶金/糖酒）
+
+### Added（40 件）
+- **复杂件 4（C4）**：`FB_DL_QuenchTemperLineSeq`（淬火-回火联动线 ≥10 态状态机，相内独立 TON + 三级异常分级）｜`FB_DL_AnodizeLineTransferSeq`（阳极氧化行车三轴转序 + `ARRAY[0..15]` 槽位占用互锁，防双载防跨槽错位）｜`FB_DL_DieCastCycleSupervise`（压铸单循环监控，压射曲线四点越限黄/红/黑三级处置）｜`FB_DL_SugarPanBatchSeq`（煮糖罐批次时序，过饱和度作相迁移判据 + 真空温度双联锁）
+- **简单件 36（C1~C2，5 族模板派生）**：金属热处理 8 ｜ 铝挤压与阳极氧化 8 ｜ 压铸 7 ｜ 粉末冶金烧结 7 ｜ 酿造制糖 6
+
+### Changed
+- 族选题改用「词根饱和度实测」：Quench/Carbur/Extrus/Sinter/DieCast/Brew/Sugar/Malt 全库命中均为 0，选取真空域，避开已饱和通用层。
+- 规划期 token 交集扫描两轮，累计驳回/改名 6 件，终版 40 名零撞名落盘。
+- 分类分布：DL_Process 451 ／ DL_Device 302 ／ DL_MathData 425 ／ DL_Base 196 ／ DL_Algo 168 ／ DL_Motion 144
+
+### 记录
+- L2 编译闸：见 `_Staging_Raw/2026-11-24/GATE_R85.md`（闸席原生裁决）。
+- 拒收件移入 `_quarantine/R85/`，未登记 registry 与 JSONL。
+
+## v2.72.0 — 2026-11-24（R80 凌晨冲刺轮：37 件入册 ｜ 5 族模板派生 ｜ L2 闸 36/36 PASS = 100%）
+
+### Added（37 件：DL_Process 18 / DL_Device 15 / DL_MathData 4）
+- **复杂件 4（C3~C4）**：`FB_DL_MultiTankBlendSeq`（C4 多罐调和：进料/循环/取样/放行，超容与配方无效前置闸，eFault 可复位）｜`FB_DL_ConveyorMergePrioritySeq`（C3 汇流仲裁：主线优先、防止支线饿死计数、抢占恢复）｜`FB_DL_DryerZoneProfileSeq`（C4 多温区烘干曲线：斜率限制爬升、超温退避不跳相、复位清全部设定值）｜`FB_DL_RefDefrostCycleSeq`（C4 冷风机除霜：判霜/融霜/滴水/恢复，融霜与恢复双超时兜底）
+- **简单件 33（C1~C2，5 族模板派生，单次调用批量写盘）**：称重配料族 8（毛净换算/皮重漂移/公差带/补料状态机/多头最优组合/批产率/蠕变补偿/量程标定）｜液压气动族 7（缸推力/缸流量/蓄能器/Cv 流量/沿程压降/建压斜坡/泄漏率）｜制冷冷媒族 7（COP/过热度/过冷度/饱和压力温度双向表/输气量/逼近温差）｜统计离散族 4（极差/pooled 标准差/滚动方差/离差平方和）｜水处理族 7（膜通量/TMP/回收率/污泥龄/溶解氧偏差/混凝投加/朗格利尔指数）
+
+### Changed
+- 产能铁律四线执行：修复件 0（非当日首轮，配额归零）；简单件 33/37 = 89%；五族连号单次调用写盘；里程碑 T+1.5' 规划落盘 / T+9′ 交付 33 件 / T+14.9′ 闸裁 / T+21.9′ 收口。
+- 规划期族级词根穷举前置（R480/R79 教训）：40 个名称先做精确匹配，零撞名后才派单，规避 R79 的 22.8% 规划期损耗。
+- README 逐级徽章按 registry counts 校正（此前与 registry 存在系统性偏差）。
+
+### Rejected（3 件，移入 `_quarantine/R80/`）
+- `FC_DL_HydroPipePressDrop`：语义同义：与在库 `FC_DL_PipeFrictionLoss`（DL_MathData，同一 Darcy-Weisbach 式，且既有件已参数化密度/黏度/粗糙度/局部阻力/kPa 输出）属严格子集；新件仅固化 ρ=850 与 cSt 方言，既有件一次调用即同值
+- `FC_DL_StatsIqrCalc`：BLOCK：L69 `WHILE (j >= 0) AND (aBuf[j] > key)` 把下标闸与取值写在同一布尔式内，IEC 不保证短路 → j 递减到 −1 越界读；按 R501 判 BLOCK，修复配额 0 故拒收待 R81 返修
+- `FC_DL_StatsGeoMeanCalc`：语义同义：与在库 `FC_DL_GeoMeanCalc` 同为 log 域 Σln/n→exp，仅 REAL/LREAL 精度与索引起点不同，按 R469「既有件一次调用能否给出同值」口径判重
+
+### Known Issues
+- 闸 A 批逻辑层 **5 件 MAJOR 挂账入库**（R489 口径：L2 PASS + 逻辑 MAJOR → 挂账并在 ROADMAP 记 P0）：`FB_DL_WeighHopperRefillSeq`（停止电平复位必复跳，R498）｜`FC_DL_WeighSpanCalibRatio`（量程误差式量纲错，正常标定被判 −99% 无效，R491）｜`FC_DL_HydroAccumulatorSizing`（容积分母用 p2/p1−1，预充压力成死输入，R492）｜`FC_DL_RefSatPressToTemp`＋`FC_DL_RefSatTempToPress`（R410A 行表偏 10 K 量级，R493）｜`FC_DL_PneuCvFlowCalc`（阀后压力死输入，非阻塞流高估，R494）
+- 闸 B 批 2 件 MAJOR 已就地最小修并**复跑 L2 PASS**：`FB_DL_MultiTankBlendSeq` L240 启动判据补 `NOT bAbort`；`FB_DL_RefDefrostCycleSeq` L142 风机不符判据改为「应转未转」单向窗。余 1 件 MAJOR 挂账：`FB_DL_ConveyorMergePrioritySeq` 支线等待计数在默认参数下不可达（观测缺口，非安全侧）。
+- 审校系统性问题 2 项挂账：① `(rX = rX)` 自反非有限闸 34 件——挡 NaN 不挡 Inf（R500，需与既有 `x<>x` + `(x−x)<>0` 双判范式对齐）；② 17 件头注复杂度与 ROUND_PLAN 档位不符（MINOR，锚点 A_COMPLEXITY_MISMATCH）。
+- 开源溯源占比 **0/37 = 0%**，连续第 4 轮未达 30% 铁律：本轮队列 92 条全为 OSCAT 基础数学（HYPOT/NEGX/CABS 等），与本轮五族（称重/液压/制冷/统计/水处理）语义零交集；编码开跑（05:44）早于猎人回队（05:45）。
+- JSONL 比 registry 高 39 条（R70 前历史遗留，延续披露，待专项校准）。
+- **语料漂移已修复**：4 个复杂件在 06:05 被编码席收尾自检重写（晚于 06:02:52 登记），JSONL 快照落后一版；已复跑 L2（4/4 PASS）并按 name 重同步 `output`，复验 4/4 一致。新规则 R504：登记后禁止改源码，改则必复闸 + 重同步语料。
+- MatIEC-CI 第 12 轮顺延：`git remote -v` 仍为空，需 `GITHUB_TOKEN=<PAT> bash C:\Library\_tools\setup_github_remote.sh <owner>/<repo>`。
+- 子代理 6 个/调用 6 次，**超 ≤5 预算 1 次**（双批编码 + 双批闸 + 审校并行，为保 T+60 收口所致）。
+
+## v2.69.0 — 2026-11-23（R77 产能冲刺轮：42 件入册 ｜ 5 族模板派生 ｜ L2 闸 41/41 + 4 件复裁）
+
+### Added（42 件：DL_MathData 23 / DL_Base 9 / DL_Algo 7 / DL_Device 1 / DL_Motion 1 / DL_Process 1）
+- **复杂件 4（C3~C4）**：`FB_DL_DualEncoderDeviationWatch`（电机/负载双反馈偏差监测：启动屏蔽窗口、分级延时确认、超限停机请求、编码器失效单判）｜`FB_DL_MoldCoolingZoneSeq`（模具分区冷却时序：预热→逐区通水→温差平衡→吹扫，单区故障位图降级、eBalance 超时兜底、eFault 复位出口）｜`FB_DL_AnalogInputRedundancySel`（双路模拟量冗余：偏差判据、坏值剔除、无扰切换保持）｜`FC_DL_ModbusRtuFrameBuild`（RTU 帧构造 + 逐位 CRC16，与在库 FrameCheck 构成构造/校验对）
+- **简单件 38（C1~C2，5 族模板派生）**：字符串族 9（StringCountChar/StringTruncEllipsis/StringReverse/StringIsNumeric/StringRemoveWhitespace/StringSplitPair/StringRepeat/StringCompareNatural/StringCsvFieldEscape）｜单位换算族 10（Length/Mass/Volume/Area/Density/Viscosity/Energy/Power/Humidity/Concentration）｜查表插值族 8（TableLookupDescending/TableLookupNearestIndex/InterpLogLinear/InterpTwoPointSlope/TableIndexBinarySearch/InterpHoldLast/TableReverseLookupX/InterpSegmentWeight）｜滤波族 6（PeakHoldFilter/RateOfChangeFilter/GatedUpdateFilter/HoldLastGoodFilter/DeadbandFilter/QuantizeFilter）｜统计族 5（StatsMeanStdDev/StatsMinMaxWindow/StatsPercentile/StatsZeroCrossRate/StatsOutlierCount）
+
+### Changed
+- **产能铁律首次四线齐落**：①修复名额归零（本轮 0 件存量修复）；②简单件占比 90%（38/42）；③同族 10 件一次调用批量派生（编码席 41 件单次写盘 12 分 55 秒）；④里程碑 T+15 规划落盘 / T+40 交付 41 件 / T+50 闸裁 41 件 / T+60 收口，四点全中。
+- 闸席引入 L1 逻辑级复核（不止编译）：本轮由此拦下 2 件"能编译但跑不对"的复杂件（Inf 判据死谓词、eFault 无出口死锁）。
+
+### Fixed
+- `FB_DL_MoldCoolingZoneSeq` v1.0.1：eFault 无出口（BLOCK，复位后永久停故障态全阀关闭）→ 复位分支补 `eState := eIdle`；eBalance 无超时兜底 → 新增 tonBalTmo 无条件周期调用，超时降级转 eBlow；Inf 判据改阈值直比。
+- `FB_DL_DualEncoderDeviationWatch` v1.0.1：`ABS(x-x) > EPS` 对 ±Inf 恒假导致非有限值泄漏 → 改阈值直比，NaN 侧保留自反判。
+- SFT 语料历史 12 条缺 `output`（R70~R73 遗留）已按 registry 同名件全部回填，全库语料 100% 含源码字段。
+
+### Rejected（拒收 3 件，移入 `_quarantine/`）
+- `FC_DL_StringPadLeftZeros`：与在库 `FC_DL_StringPad` 同输入形态同输出语义（左填充已被 `eSide` 参数完全覆盖），判同义变体。
+- `FC_DL_StatsRmsCalc`：与在库 `FC_DL_RmsCalc` 同语义（仅精度与窗口上限不同），总监终裁判重。
+- `FB_DL_RunningAverageN`：审校 3 项 MAJOR（环形缓冲首填/均值口径缺陷），本轮修复名额为 0 → 挂 R78 P0 修复后再入库。
+
+
+## v2.68.0 — 2026-11-23（R76 冲刺轮：39 件入册 ｜ 5 族模板批量派生 ｜ L2 闸 40/40 = 100%）
+
+### Added（39 件：DL_Base 14 / DL_MathData 15 / DL_Algo 6 / DL_Device 2 / DL_Motion 1 / DL_Process 1）
+- **复杂件 4（C3）**：`FB_DL_BrakeReleaseInterlock`（伺服抱闸释放互锁：使能建立/力矩确认/松闸输出/闸位反馈四相，双 TON 无条件刷新，超时回退上闸态）｜`FB_DL_HeaterBankLoadBalance`（加热器组按累计工时选主，工时并列按通道号，超温整组降额）｜`FB_DL_ChillerDoorPurgeSeq`（冷机检修门吹扫放行链，门位+风压+计时三条件，急停最高优先撤放行）｜`FB_DL_AnalogDriftWatch`（双通道冗余漂移指数遗忘估计，两级阈值分级，单边非有限短路累积）
+- **简单件 35（C1~C2，5 族）**：位运算族 8（BitMaskRange/BitReverse8/BitReverse16/BitRunLength/BitLowestSet/BitSwapPairs/BitCountTransitions/BitFillLowestZero）｜角度归一化族 7（AngleLerpShort/AngleQuadrant/AngleBisector/AngleToCompass/AngleTolInside/AngleReflect/AngleUnwrapStep）｜字节序族 6（BytesToWord/DwordToWords/WordsToDword/EndianProbe/LwordToDwords/DwordsToLword）｜三角函数族 8（SinDeg/CosDeg/TanDegChk/AsinDegChk/AcosDegChk/Atan2Deg/SincSafe/HypotChk）｜迟滞限幅族 6（HystWindow3/HystLatchAlarm/HystCounterStep/HystTimeQualified/ClampDintChk/WrapToRange）
+
+### Changed
+- 冲刺模式：日目标 300 差额过大时复杂件上限压至 4，其余全部简单件族模板派生（本轮 36 简单件单次调用批量写盘，编码耗时 12 分钟）。
+- 反三角实现改用 ATAN2 恒等式（本机 stub 缺 ASIN/ACOS 标准件），语义等价且纯 IEC。
+
+### Fixed
+- `FC_DL_AngleLerpShort` 头注释弧差方向笔误（fA-fB → fB-fA，实现本已正确）。
+- `FC_DL_HystLatchAlarm` 出参 fOff 注释与复位判据不符（注释改为「仅作参数校验」）。
+- SFT 语料历史 25 条缺 `output` 字段（R70~R73 遗留）已按 registry 同名件回填源码。
+
+### Rejected（拒收 1）
+- `FC_DL_AngleDiffDeg`：与在库 `FC_DL_AngleDiffWrap`（R41）同为度制最短带符号弧差，仅 ±180 折返方向相反，判语义重复，移入 `_quarantine/`。
+
+## v2.67.0 — 2026-11-23（R75 三十六件入册 + 三件零回执点修 + CamTable VLA 解耦 ｜ 首次 L2 零失败轮）
+
+### Added（36 件：DL_MathData 10 / DL_Base 8 / DL_Device 6 / DL_Process 5 / DL_Motion 4 / DL_Algo 3）
+- **复杂件 13**：`FB_DL_BurnerFlameGuard`（C5 燃烧器火焰安全监督，吹扫许可/点火/火焰建立/运行监视/锁存五相，火焰丢失即时关阀与锁存判定双路径分离）｜`FB_DL_InjectionMoldClampSeq`（C5 注塑五段顺控，段出口=到位+段超时双条件，模保最高优先中断）
+  ｜`FB_DL_DeltaRobotIk`（C5 三角洲并联机器人闭式逆解，域检查前置统一置无效，归一化奇异判据）｜`FB_DL_VfdStateWordMatch`（C3 状态字→离散状态号，期望集单向包含匹配，失配锁存状态号）
+  ｜`FB_DL_PaintBoothAirBalance`（C4 喷漆房压差环 + 送排比双环，持续越限才降级）｜`FC_DL_WeirFlowCalc`（C3 薄壁/宽顶堰流量，淹没度判别后换修正系数）
+  ｜`FB_DL_WaterChlorineDoseTrim`（C4 流量浊度前馈 + 余氯死区反馈微调，上限硬钳位后冻结积分）｜`FB_DL_CentrifugeSpinSeq`（C4 三段升速，临界带内最大加速度快穿，振动超限独立中断路径）
+  ｜`FC_DL_AkimaInterp1D`（C4 Akima 一维插值，斜率差权重，点数显式入参钳位防 VLA）｜`FB_DL_VfdCtrlWordBuild`（C3 状态意图→控制字位序，每位显式赋值不依赖残留）
+  ｜`FB_DL_ManualOverride`（C3 请求态/生效态分离 + 强制超时回落 + 曾强制标志）｜`FB_DL_IoLinkPortDiag`（C3 物理/通信/设备三层诊断聚合）
+  ｜`FB_DL_PeltierTempCtrl`（C4 TEC 双向温控，带符号单 PID + 条件积分抗饱和 + 极性翻转清零积分）
+- **简单件 23**：MathData 8（`FC_DL_CabsComplexCalc` 防溢出模长 / `FC_DL_Exp10Calc` / `FC_DL_SpeedUnitConvert` / `FB_DL_FirstOrderImpResp` / `FC_DL_QuartileCalc` / `FC_DL_PowerFactorCalc` / `FB_DL_DitherSignalGen`/ `FC_DL_MoistureContentCalc`）
+  ｜Base 7（`E_DL_ControlModeSel` 模式枚举 / `FC_DL_DwRealReinterp` IEEE754 手拆位置解释 / `FB_DL_DualWindowBandCmp` 双窗三态 / `FB_DL_ParamSnapshotRestore` 双缓冲快照 / `FB_DL_SignalCrossbar8` 8×8 路由 / `FC_DL_WorkdayCalendarCalc` 儒略日工作日 / `FB_DL_SmokeDetZoneMon` 烟感分区三态）
+  ｜Motion 3（`FC_DL_GearRatioCalc` / `FB_DL_CrankKinFwd` 曲柄滑块正解 / `FC_DL_BeltLengthCalc`）｜Device 2（`ST_DL_EtSlaveDiagBase` / `ST_DL_EtSyncUnitDiagBase` EtherCAT 诊断基结构，clean-room 去厂商哈希后缀）
+  ｜Algo 2（`FC_DL_OvershootPctCalc` / `FC_DL_SettleTimeCalc` 回路 KPI 族）｜Process 1（`FB_DL_VocVentTrim` VOC 需求通风，与 RoomCo2DemandVent 同构异介质）
+
+### Fixed（4 件）
+- `FC_DL_CamTableInterp` **v1.0.2**：`aCam : ARRAY[*]` → `ARRAY[1..200] OF ST_DL_CamPoint`，新增 `uPointCnt : UINT` 入参并在函数首部钳位 [2,200]，下标体系 0 基改 1 基；解 `FB_DL_CamOverrideTrim` E037 VLA 透传（该件同步 v1.0.1，全库无其他调用点）
+- `FB_DL_DryerExhaustHumidityCtl` **v1.0.1**：两处 `FC_DL_HumidAirEnthalpy` 调用补 `uErrorId =>` 回执 + 声明 2 个 UDINT 接收变量
+- `FB_DL_WeightClassifySort` **v1.0.1**：`FC_DL_LimitClassify` 调用补 `uErrorId => uBandErr`，回执非零时 `bBandInv := TRUE` 走 NG 安全侧分流
+- `FB_DL_ChamberPurgeDry` **v1.0.1**：`FC_DL_DewPointCalc` 调用补全部 3 出参回执，`bDewInRange` 并入有效判据（域内回执失败则露点不锁存）
+
+### Changed
+- registry **1,252 → 1,288**（v2.66.0 → v2.67.0），counts **167 / 314 / 142 / 234 / 133 / 298**（sum 断言过）
+- SFT 语料 **1,291 → 1,327** 条（+36 全量语料，含 output 完整源码）
+- 开源候选队列 **29 → 50 条**（R75 猎人净增 21 条，绿区 49 / 黄区 1 / 红区 0）；本轮新增 3 个绿区仓：OpenPLC / PLCFiddle / libmodbus-adjacent 语义层
+- **首次 L2 零失败轮**：40 检 40 PASS，零豁免、零拒收、零返修轮次
+
+## v2.65.0 — 2026-11-23（R73 二十件入册 + VaporPressureSat 族四路全回执点修 ｜ 零检索轮 ｜ 五专家生产线首轮满编）
+
+### Added（20 件：DL_Motion 2 / DL_Algo 2 / DL_Device 2 / DL_Process 4 / DL_MathData 5 / DL_Base 3）
+- **复杂件 6**：`FB_DL_FlyingSawSyncSeq`（C4 飞锯同步切入-切割-返回序列，速比按主轴位置增量生成）｜`FB_DL_CamTableOnlineBlend`（C4 凸轮表在线渐变切换，权重线性推进 + 相位连续合成）｜`FB_DL_FanSurgeMarginCalc`（C3 风机喘振裕度在线计算 + 分级预警）｜`FB_DL_EmergencyStopChainDiag`（C3 急停回路多节点断链定位）｜`FB_DL_TankFarmTransferSeq`（C4 多罐收发转罐序列，泵阀联锁 + 路径互斥 + 关阀超时闸）｜`FB_DL_ConveyorAccumGateSeq`（C3 积放闸门三态编排）
+- **简单件 14**：MathData 5（`FC_DL_MovingRangeCalc` 滑动极差 / `FC_DL_PressureAltitudeCalc` ISA 气压↔海拔 / `FC_DL_SoundSpeedAirCalc` 空气声速 / `FC_DL_ExpMovingAvgCalc` 无状态 EMA / `FC_DL_TorqueUnitConvert` 转矩单位换算）｜Base 3（`FC_DL_BitRotateEx` 跨位宽循环移位 / `FB_DL_SignalRouteMatrix` 2×N 路由矩阵 / `FB_DL_SignalEdgeDelayEx` 双边沿延迟）｜Device 2（`FB_DL_SensorSupplyWatch` 供电窗口 + NE43 / `FB_DL_ValveCycleCountBank` 多阀计数台账）｜Algo 2（`FC_DL_TcToFilterCoeff` 时间常数→滤波系数 / `FC_DL_DeadtimeTapCalc` 死区时间→拍数向上取整）｜Process 2（`FB_DL_HandAutoModeGateBank` 手自动权限门组 / `FB_DL_OperatorAckBank` 成组确认组）
+
+### Fixed（5 件，VaporPressureSat 族回执契约）
+- `FC_DL_HumidityRatioCalc` / `FC_DL_MixAirStateCalc` / `FC_DL_RhFromDewPoint` / `FC_DL_DewPointToPpmV` / `FB_DL_NightPurgeCtrl`：8 处属主调用由部分回执改为 **fPvSat/bClamped/eErr/bError/bValid 四路全回执**（R381/R397 契约口径），FALSE 拍并入各件既有兜底码；`FB_DL_NightPurgeCtrl` 同时修正 `LREAL_TO_REAL` 方向错误为 `REAL_TO_LREAL`。
+
+### Changed（质量闸）
+- **L2 编译闸 25/25 PASS（100%）**：修掉 6 件复杂件系统性 E007（`FUNCTION_BLOCK` 尾部误写 `END_FUNCTION`）、`CamTableOnlineBlend` 非标准 `TIME_TO_DWORD` 扩展（改 `TIME_TO_LREAL`）。
+- 审校：17 PASS / 3 MAJOR 返修（飞锯锚点未来窗、凸轮渐变非有限分支冻结、转罐关阀超时闸）/ 4 件补同族互引；去重拦截 0（名称道/指纹道均 0 命中）。
 
 ## v2.64.0 — 2026-11-23（R72 十二件入册 + AirSpecificVolume v1.0.1 契约级点修 ｜ 零检索轮）
 
@@ -2213,3 +2450,148 @@
 - **+10 新件**：MathData 3（FC_DL_TimeMulSat / FC_DL_TimeClampEx / FC_DL_UdintToStringTrim，T0 防御性包装）｜Device 2（FB_DL_MotorHealthAoi / FB_DL_ValveIslandDiag）｜Base 2（FB_DL_AlarmShelveMgmt / FB_DL_SignalFreeze）｜Motion 1（FB_DL_AxisDroopComp）｜Algo 1（FB_DL_CascadeCtrl）｜Process 1（FB_DL_CuringOvenSeq）。
 - **7 项点修**（R68 挂账全清）：InterlockBypassAudit v1.0.1 / StretchWrapSeq v1.0.2 / FlowMeterKFactorDrift v1.0.2 / TruckScaleSeq v1.0.2 / RotaryAirlockCtrl v1.0.2（含 04B1/04B2 回落随①合并）。
 - SFT 语料 1,206 → **1,221**（+10 新 +5 返修重注入），bad=0。总库 **1,189 / 10,000**。
+
+## v2.66.0 — R74（2026-11-23 08:40）
+- 总库 1,238 → **1,252**（+14 新件：Device 4 / MathData 5 / Base 2 / Motion 1 / Process 1 / Algo 1），SFT 语料 1,277 → **1,291**。
+- **存量专项回写（P0）**：dl_gate 扫描 22 件修复——F_DECL_MISSING 15（_eState/_fDev/__ISVALIDREF 系）、SYN_CROSS_END 4（PROPERTY 闭合）、OUT_NO_ASSIGN 3、CASE_NO_ELSE 1、缺 END_FUNCTION_BLOCK 1；VER_MISMATCH 7 件 registry 侧同步 1.0.1。
+- **L2 闸 42 检 39 PASS / 3 豁免**（SingleAxis、BatchDosingControl：RuSTy 不解析 FB 内 PROPERTY；CamOverrideTrim：VLA 透传 E037——闸侧预处理为下轮 P0）。
+- 审校去重拦截 **6 件语义重复**（同名避让通道漏洞，立规则：改名入库须附最近语义邻件比对声明）；MAJOR 1 件就地修（KilnTempZoneCascade 循环上界钳位），MINOR 3 件就地修。
+
+## v2.71.0（2026-11-24 · R79 首轮冲刺）
+
+### Added（44 件，复杂 4 / 简单 40）
+- **日历算术族（DL_MathData，4 件经审校放行）**：CalDayOfYear / CalDateFromDayOfYear / CalQuarterIndex / CalIsWeekend。原计划 9 件，5 件因与在库 `FC_DL_LeapYearChk` / `FC_DL_DaysInMonthChk` / `FC_DL_DayOfWeekCalc` / `FC_DL_WeekNumIso` 同义被拒收。
+- **整数数论族（DL_MathData，6 件）**：IntSqrtFloorUdint / IntIsPerfectSquareUdint / IntDigitSumUdint / IntDigitCountUdint / IntPowSatUdint / IntReverseDigitsUdint。IntDivModSafe（撞 DivDintSafeChk）、IntSignExtractLreal（撞 SignumCalc）拒收。
+- **平面几何族（DL_MathData，7 件）**：GeoPointLineDist / GeoPointInRectXY / GeoPointInConvexQuadXY / GeoCentroid3Pt / GeoPolylineLenFixed / GeoBBoxFromPtsFixed / GeoLineAngleXY。GeoLineIntersectXY 撞 LineIntersection 拒收。
+- **统计扩展族（DL_MathData，3 件）**：StatsWelfordVar（Welford 在线方差）/ StatsZScoreClamp / StatsRunLengthMax / StatsHistogramBin / StatsPercentileRankFixed（后两件为存疑放行，见 QA 报告）。
+- **校验和族（DL_Algo，5 件）**：ChkFletcher16 / ChkFletcher32 / ChkTwosCompSum16 / ChkSum32Mod / ChkAdler32 / ChkParityBlock（存疑放行）。
+- **替换批（DL_MathData，12 件）**：CalAddMonths / CalDateSpanMonths / IntLcmSafeUdint / IntIsPrimeUdint / IntModPowUdint / IntFloorLog2Udint / IntNextPrimeUdint / GeoChordHeightCalc / GeoCircleSectorArea / GeoPointRotateXY / StatsCoeffVarCalc / StatsEntropyCalc。
+- **复杂工艺件（DL_Process，4 件）**：CoolingTowerFanStageSeq（C4，冷却塔风机分级投切+主备轮换）/ ScrewConveyorDoseSeq（C4，螺旋给料计量批次）/ PressForceCurveExec（C4，压机多段力曲线）/ AerationBlowerCycle（C3，曝气间歇循环+DO 迟滞带）。
+
+### Fixed（修复件 4，不计产出）
+- `FC_DL_RoundToMultipleInt` v1.0.1：补 DINT 上下饱和闸（进位 `nLo+nMultiple`、退位 `nLo-nMultiple` 越界回绕），新增 `bSat` 出口。
+- `FB_DL_MultiZoneSetpointScheduler` v1.0.2：bReset 电平判据 → R_TRIG 沿（CASE 外无条件刷新）+ eHold 复位沿同步清锁存 + Inf 判据改 `ABS(x)>DL_MZS_FIN`。
+- `FB_DL_PalletizerLayerBuildSeq` v1.0.2：bReset 电平判据 → R_TRIG 沿。
+- `FB_DL_AnalogSensorHealthClassify` v1.0.2：bReset 电平判据 → R_TRIG 沿 + 超量程分级改用窗极值重算（原单拍标志跨拍读取致 eOverHigh 恒不成立）。
+
+### Rejected（13 件，移 `_quarantine/R79/`）
+CalIsLeapYear / CalMonthDays / CalMonthEndDate / CalWeekdayIndex / CalIsoWeekNo / IntDivModSafe / IntSignExtractLreal / GeoLineIntersectXY / StatsSkewKurtStream / StatsMadFixed / StatsTrimmedMeanFixed / ChkXor8 / ChkSum8——均与在库件语义重复；行数 159。
+
+### Known Issues（挂账）
+- `FB_DL_CoolingTowerFanStageSeq` eRotate 相结构性不可达（tRunAccum 仅 eRunning 累加、轮换阈值判定在 eStageUp/eStageDown 之外），主备轮换功能失效，P0 挂 R80。
+- 6 件新件仍用 `(x−x)<>0` 判 Inf（闸席批 3 已确认该写法在 IEEE 语义下有效，非缺陷，但与本库 `ABS(x)>FIN` 范式不一致），列入风格统一 P1。
+
+
+## v2.70.0 — R78（2026-11-23 夜间轮）
+- 新增 39 件：简单 35（字符分类族 8（开源溯源）/ 奇偶校验族 6 / 对齐取整族 4 / BCD 校验与算术族 6 / 工程单位换算族 4 / 渐变限幅族 4 / 饱和算术扩展族 2）+ 复杂 4（FB_DL_MultiZoneSetpointScheduler / FB_DL_WinderTensionTaperCalc / FB_DL_AnalogSensorHealthClassify / FB_DL_PalletizerLayerBuildSeq）。
+- 计划 45：5 件单位换算候选撞库内 R73/R75/R77 实盘改跳过（规划撞名留痕），3 件审校去重拒收，1 件闸 L1 阻断挂 R79。
+- L2 闸：43 检 42 PASS + 1 返修复裁 PASS，零 EXEMPT；修 STRING_GREATER/STRING_LESS 桩缺口；l2_check.py 加未注册件定位兜底（bak_r78b）。
+- 审校：MAJOR 4 处（1 型系统性：FB bReset 电平判据 ×4，挂 R79 P0）+ MINOR 7 留档 + 拒收 3（同义去重）。
+- SFT 语料 1,408→1,447（+39，instruction 真实工况 + 架构 CoT + 全源码）。
+- 开源队列 57→64（绿 60/黄 4/红 0，净 +7，备份 backup_R78.jsonl）。
+### Rejected（R78）
+- FC_DL_PressureUnitConvert → 在库 FC_DL_PressUnitConvert（R50 超集，MPa 增量不足）
+- FC_DL_SnapToStepLreal → 在库 FC_DL_QuantizeStep（R21 超集）
+- FC_DL_QuantizeStepReal → 批内 FC_DL_RoundToMultipleReal 逐行同构（同一数学运算）
+- FC_DL_RoundToMultipleInt → 闸 L1 阻断（DINT 进/退位回绕），移 _quarantine/R78，R79 首轮修复后重审
+
+## v2.73.0 — 2026-11-24（R81 冲刺轮）
+
+### Added（40 件：复杂 4 + 简单 36）
+- **复杂 4**：FB_DL_RotaryIndexerCycleSeq（C5 转盘八工位索引节拍）· FB_DL_AsrsSlotAllocSeq（C4 立库货位分配握手）· FB_DL_FillPreactSelfLearn（C4 灌装预动作量自学习）· FB_DL_MeasureInputLatch（C3 探针测量锁存）
+- **简单 36（5 族模板派生）**：立体库族 8 · 灌装清洗族 8 · 空压站族 7 · 真空吸取族 7 · 输送传动族 6
+
+### Fixed（本轮新件返修 3 件，不占存量修复名额）
+- FB_DL_RotaryIndexerCycleSeq v1.0.1 — 3 处 `FOR..DOWNTO` 改镜像下标升序（RuSTy E007 编译阻断）
+- FB_DL_AsrsSlotAllocSeq v1.0.1 — 补 `diReqSeq<=0` 非法闸（码 36）+ 发布时 ack 快照，消零握手假放行
+- FC_DL_BeamToppleRiskChk v1.0.1 — 偏心系数改 `1+|offset|/depth` + 越域闸，消负偏移漏报倾覆风险
+
+### Known Issues（8 MINOR 挂账 R82）
+- FC_DL_LaneDiverterAngleCalc：`DL_RAD_TO_DEG := 0.0174533` 名称/单位标签反向（算符为除法故结果正确，唯标签有 3282× 误改风险）
+- 6 件死常量（DL_EPS / DL_R_MAX 声明零引用）
+- FC_DL_SanitizeHoldTimeCalc：注释与实现顺序不符（代码正确）
+
+### Stats
+- 总库 1,490 → **1,530**（DL_Base 196 / DL_MathData 420 / DL_Algo 161 / DL_Device 260 / DL_Motion 143 / DL_Process 350）
+- SFT 1,529 → **1,569**；registry ≡ .st（差集 0）；JSONL 高 39 条为 R70 前历史遗留
+- L2 闸首裁 92.5% → 终裁 **100%**，零 EXEMPT；开源队列 104 有效（绿 82/黄 22/红 0）
+
+## v2.74.0 — 2026-11-24（R82 构建轮 · 冲刺模式）
+
+### Added — 40 件（复杂 4 / 简单 36）
+分类分布：Process 33 / Device 7
+
+五族简单件（同族连号族模板派生）：
+- 族 A 混凝絮凝沉淀 8 件：加药反算 / 稀释比 / 沉降速度 / 泥位 / 表面负荷 / SVI / 浊度微调 / 斜板面积
+- 族 B 污泥脱水 7 件：螺旋压榨 / 含固率 / 聚合物 / 离心液 / 滤液回流 / 物料平衡 / 带压负荷
+- 族 C 湿式洗涤与催化 7 件：液气比 / HTU / 药剂耗 / 催化衰减 / 文丘里压降 / 除雾流速 / 排放折算
+- 族 D 设备点检维护 7 件：RUL / 轴承热漂 / 换油 / MTBF / 订货点 / PM 日期 / 润滑间隔
+- 族 E 厌氧沼气 7 件：产气率 / 甲烷比 / OLR / VFA碱度 / 气柜 / 停留时间 / 火炬
+- 复杂件 4 件：混凝加药闭环 / 螺旋压榨脱水序列 / 洗涤塔药剂投加闭环 / 厌氧消化负荷控制
+
+### Changed
+- `dl_gate.py` 新增 4 条静态锚点：`R509_FOR_DOWNTO`（库级共性编译缺陷，实测 7 件在库件命中）/ `R525_UNIT_LABEL_INVERTED`（换算常量名实相反）/ `R526_CONST_ZERO_REF`（声明常量零引用）/ `R527_TON_CROSS_PHASE`（TON 的 IN 跨相 OR 实为累计看门狗）
+- 重建 `_dedup_fingerprints.json`：84 条（覆盖 5.6%）→ **1570 条（覆盖 100%）**，三道去重之「签名指纹道」恢复可用（sig 60 组 / api 46 组 / 词根倒排 642 词）
+- 全局规则编号游标校正：游标文件停在 R504 已过期（实测最大 R529），按 R483 重建 → R530 起分配
+
+### Fixed
+- 本轮修复件 0（非当日首轮，铁律一配额归零）；存量 7 件 `FOR..DOWNTO` 编译阻断件本轮只做机检锚点落地，定点修复顺延次日首轮
+
+### Rejected / Known Issues
+- 本轮拒收 0 件（详见 BATTLE_REPORT_R82 §4）
+- 已知挂账：R80 遗留 5 件逻辑 MAJOR（量纲/分母/物性表/差压因子/复位判据）连续第 3 轮未修，受「修复只在当日首轮」铁律约束，待次日首轮清
+- `FOR..DOWNTO` 在库仍存 7 件（Device 2 / MathData 3 / Motion 1 / Process 1），L2 必 FAIL，挂次日首轮
+
+---
+
+## [v2.75.0] 2026-11-24 — R83 构建轮（下午轮 · 冲刺模式）
+
+### Added
+- 新增 39 件（复杂 4 / 简单 36，五族模板派生）：印刷包装 8 / 纺织染整 8 / 表面处理电镀 7 / 输送分拣 7 / 仓储立库周边 6 + 复杂件 4（印刷套准自动调整、染批配方时序、电镀线行车转序、分拣分流握手恢复）。
+- registry 总计 **1609**（DL_Base 196 / DL_MathData 421 / DL_Algo 168 / DL_Device 273 / DL_Motion 144 / DL_Process 407）；SFT 语料 **1648** 行。
+
+### Changed
+- `dl_gate.py` 新增/校正静态锚点：`R509_FOR_DOWNTO` 存量审计口径（全库实测剩余 4 件，非 R82 估的 7 件）。
+
+### Known Issues
+- 4 件存量 `FOR..DOWNTO`（`FC_DL_DwordToHexString` / `FC_DL_LrealToFixedField` / `FC_DL_PolyEvalHorner` / `FB_DL_MarkPositionLatch`）仍待修，受「存量修复仅当日首轮 ≤4 件」配额约束顺延。
+- R80 遗留 5 件逻辑 MAJOR 第 4 轮挂账。
+
+## v2.76.0 — 2026-11-24（第 84 轮 · 冲刺模式 · 五族垂直）
+
+### Added（37 件入册：复杂 4 / 简单 33）
+- **汽车零部件机加工族（DL_Device 7，另 1 件拒收）**：CuttingForceCalc、CncMrrCalc、CncSpindleLoadRatio、CncLoadUnloadSeq、CoolantConcCalc、ToolWearVbCalc、ChipLoadPerToothCalc
+- **制药固体制剂族（DL_Process 7，另 1 件拒收）**：TabletWeightRsdCalc、CoatingPanSprayCalc、TabletCrushForceCalc、BlendUniformityCalc、GranuleSizeD50Calc、TabletCompactionSeq、TabletFriabilityCalc
+- **化工间歇反应釜族（DL_Process 5，另 1 件拒收）**：ReactorHeatReleaseCalc、ReactorAdiabaticRise、MtsrCalc、ReactorChargeSeq、JacketAreaCalc
+- **水泥窑炉煅烧族（DL_Device 7）**：ClinkerLsfCalc、ClinkerC3sCalc、KilnSpecificHeatCalc、RawMealResidueCalc、KilnPreheatStageSeq、CementMillLoadCalc、ClinkerFreeLimeCalc
+- **造纸纸浆族（DL_Process 7）**：PaperBasisWeightCalc、StockConsistencyCalc、RefinerFreenessCalc、HeadboxSliceSeq、DryerSteamDemandCalc、PaperFormationIndexCalc、PressSectionDewaterCalc
+- **复杂件（C4~C5）4**：CncToolWearCompLoop、ReactorRunawayGuard、TabletWeightAutoCtl、HeadboxJetRatioLoop
+
+### Changed
+- `INDEX_REGISTRY.json` 总量 → **1,646**（v2.76.0）；`total_components` 字段修正（R82~R83 遗留 1,570 陈旧值）。
+- SFT 语料 1,648 → **1,685** 条（+37，逐条与磁盘源码字节一致 37/37）。
+
+### Fixed
+- 修复件 **0**（非当日首轮，修复配额归零，铁律一）。
+
+### Rejected
+- `FB_DL_ToolMagazinePosSeq`：择向算法未取模（req<cur 走长路）+ 出口 `iDirCtrl` 退化为单拍脉冲；且与 `FB_DL_TurretToolSelect` 语义重叠 → 隔离 `_quarantine/R84/`。
+- `FB_DL_ReactorHeatupProfile`：与 `FB_DL_ReactorStepCtrl` 时间程序语义重复（三段式斜率/保温同构）→ 隔离。
+- `FC_DL_FluidBedDryLossCalc`：与 `FC_DL_MoistureContentCalc` 同义（同一 LOD 公式换名）→ 隔离。
+
+## v2.78.0 — 2026-11-24（R86）
+
+- 新增 **39** 件组件，总库 1,725 / 10,000（17.25%）
+- 分类计数：DL_Base 223 / DL_MathData 433 / DL_Algo 170 / DL_Device 302 / DL_Motion 146 / DL_Process 451
+- 本轮四个简单件族（各 9 件）：Q15 定点算术 / 工程单位换算补族 / 量程映射 / 饱和算术
+- 复杂件 4 件：梯形速度规划、探针触测序列、多通道共识选择、Q15 双二阶滤波
+- SFT 语料累计 1,764 行
+- 存量修复 0 件（非当日首轮，修复配额按铁律①归零）
+
+## v2.79.0 — 2026-11-24/25 R87（第 9 轮 · 冲刺模式）
+- 新增 **39 件**（复杂 4 / 简单 35），总库 1,725 → **1,764**（17.64%），SFT 1,764 → **1,803**
+- 四个零命中语义域成族落地：**伺服使脱离/跟随误差**（Servo=0 实证）、**旋转变压器 RDC**（Resolver=0）、**应变桥称重**（Strain=0）、**哈希摘要**（Hash=0）
+- 分类：DL_Motion +20（最薄库 146→166）／DL_Device +10／DL_Algo +9／DL_Base·MathData·Process ±0
+- L2 闸：**40/40 PASS，零 FAIL 零 EXEMPT**（串行 jobs=1，17 s，0.425 s/件）
+- 拒收 1：`FB_DL_ServoEnableSeq`（与 `FB_DL_AxisBrakeSeq` 上电序三同）
+- ★ **发现结构性缺陷**：全库 11 处跨文件 ENUM 同名冲突（单件 L2 编译看不见，全库编译必炸）；本轮新增件自身 2 处已修

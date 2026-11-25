@@ -16,7 +16,7 @@
                       算法（公共领域数学事实）
   平台   Platform   : 纯 IEC 61131-3（WHILE / MOD / 比较），三平台通用
   依赖   Depends    : 无（零委托、零库件）
-  分工声明 Split     : FC_DL_LcmUdintCalc（最小公倍数，委托本件 GCD 作除子）
+  分工声明 Split     : FC_DL_IntLcmSafeUdint（最小公倍数，R79 入库，委托本件 GCD 作除子；原头注写的 FC_DL_LcmUdintCalc 为规划期名，实际入库名以本行为准）
                       为互补件（互引）；本件只算 GCD，不做 LCM（LCM 含
                       乘法溢出域，职责分离，R216）。
   归属 Ownership     : 本件无 TYPE 声明；全部引脚为 IEC 标准原生类型。

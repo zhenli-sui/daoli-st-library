@@ -1,0 +1,16 @@
+[
+ {
+  "name": "FC_DL_RoundToMultipleInt",
+  "category": "DL_MathData",
+  "type": "FC",
+  "complexity": 2,
+  "tags": [
+   "mathdata",
+   "rounding",
+   "saturation",
+   "repair"
+  ],
+  "origin": "道莅原创（R79 修复件，不计产出）",
+  "license": "MIT"
+ }
+]

@@ -169,6 +169,21 @@ def find_def_file(type_name, reg):
                     return fp
         except OSError:
             continue
+    # R78-B 兜底：新件（本轮待入库）尚未写入 registry，registry 扫描必然落空。
+    # 回退到文件系统全库扫描（排除 _tools/_Staging_Raw/_archive），与 _scan_iface_files 同口径。
+    for root, _dirs, files in os.walk(LIB):
+        if "_tools" in root or "_Staging_Raw" in root or "_archive" in root:
+            continue
+        for fn in files:
+            if not fn.endswith(".st"):
+                continue
+            fp = os.path.join(root, fn)
+            try:
+                with open(fp, encoding="utf-8", errors="ignore") as f:
+                    if pat.search(f.read()):
+                        return fp
+            except OSError:
+                continue
     return None
 
 

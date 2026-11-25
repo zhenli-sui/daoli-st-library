@@ -65,6 +65,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     tonTrendWin  : TON;               // 趋势采样窗（单相独占），无条件刷新 / Trend window timer
+    _eState      : E_DL_HftState := E_DL_HftState.eIdle;   // 内部相位，CASE 唯一写入目标 / Internal phase, the only CASE write target
     rtTrendRst   : R_TRIG;            // 趋势复位沿实例，无条件刷新 / Trend reset edge instance
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance
     _fUa         : REAL;              // 逐拍 UA 估计 [kW/K]（当拍量）/ Per-scan UA estimate

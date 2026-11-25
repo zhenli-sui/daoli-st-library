@@ -737,3 +737,20 @@ R59 新增 TimerFailSafe / TwoStepConfirm / MultiSegmentTimer 三件（看门狗
 ## v1.32 — 2026-11-23（R72 追加）
 
 - `FC_DL_DaysInMonthChk` / `FB_DL_BlinkOutput` 两件入册（日历原子复用 LeapYearChk 单源；OSCAT BLINK 行为定义借鉴，零值组态锁存防静默失效）。
+
+## v1.33 — 2026-11-23（R73）
+
+- 新增/变更：FC_DL_BitRotateEx / FB_DL_SignalRouteMatrix / FB_DL_SignalEdgeDelayEx
+- L2 编译闸：PASS（RuSTy 1.0.8 串行）
+
+## R76 · v2.68.0 · 2026-11-23
+- 新增 14 件（8 位运算 + 6 字节序），本库累计 **181** 件。
+- 全部经本地 RuSTy L2 真编译闸 PASS（串行 jobs=1），审校 12 项扫查 + 三道去重通过。
+
+## R77 · v2.69.0 · 2026-11-23
+- 新增 9 件（字符串族），本库累计 **190** 件。
+- 全部经本地 RuSTy L2 真编译闸 PASS（串行 jobs=1，闸席独立裁决），审校 12 项扫查 + 三道去重通过。
+
+## R79 · v2.71.0 · 2026-11-24
+- 新增 本轮无新增，本库累计 **196** 件。
+- 全部经本地 RuSTy L2 真编译闸 PASS（串行 jobs=1，闸席独立裁决），审校 12 项扫查 + 三道去重通过。

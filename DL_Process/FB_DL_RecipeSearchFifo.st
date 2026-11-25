@@ -69,6 +69,7 @@ VAR
     _nTail       : DINT := 0;         // 队尾游标 [0..7]（入队位置）/ Tail cursor
     _nCnt        : DINT := 0;         // 队列深度计数 [0..8] / Depth counter
     _bFault      : BOOL;              // 故障锁存位（锁存量）/ Latched fault bit
+    _eState      : E_DL_RsfState := E_DL_RsfState.eIdle;   // 内部相位，段 5A 唯一写入目标 / Internal phase, the only write target of segment 5A
     _uFault      : UDINT;             // 故障码锁存（锁存量）/ Latched fault code
     _uInfo       : UDINT;             // 信息码，每拍重算 / Transient info code
 END_VAR
@@ -135,6 +136,13 @@ END_IF
 IF rtReset.Q AND (NOT bEnqCmd) AND (NOT bDeqCmd) THEN
     _bFault := FALSE;               // 清故障锁存位（锁存量，仅此当拍量解除沿可清）
     _uFault := 16#0000_0000;        // 清故障锁存码（锁存量，仅本当拍量解除沿可清）
+END_IF
+
+(* —— 段 5A：状态相位更新（_eState 唯一写入目标，与锁存位同源） —— *)
+IF _bFault THEN
+    _eState := E_DL_RsfState.eFault;    // 故障锁存即入故障相 / Fault latch enters fault phase
+ELSE
+    _eState := E_DL_RsfState.eIdle;     // 非故障为空闲待命相 / Non-fault is the idle phase
 END_IF
 
 (* —— 段 6：出口单点映射（名实同源；锁存码回放，禁同拍抹除） —— *)

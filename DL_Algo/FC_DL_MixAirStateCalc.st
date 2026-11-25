@@ -1,6 +1,6 @@
 //==============================================================================
 // 函数：FC_DL_MixAirStateCalc ｜ 中文名称：回风/新风混合点状态计算（焓湿图族拆分⑤）
-// 所属子库：DL_Algo ｜ 版本：v1.0.1 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
+// 所属子库：DL_Algo ｜ 版本：v1.0.2 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
 // 功能描述：质量守恒加权求回风/新风混合点状态：干球温度与含湿量分别按
 //           新风比加权（fMixX = fOaFrac/100·fOaX + (1−fOaFrac/100)·fRaX），
 //           并内联复算混合焓 h = 1.006·T + W·(2501 + 1.86·T) [kJ/kg 干空气]；
@@ -27,6 +27,8 @@
 // 修订历史：v1.0.0 2026-11-17 首版（R23 派单 · T1-2 焓湿图族拆分⑤ · 族收口件）
 //           v1.0.1 2026-11-17 R23 终审修复：段 2 非有限闸补查 fOaFrac
 //           （原漏判 NaN 新风比会以 bValid=TRUE 放行 NaN 混合输出），契约不变。
+//           v1.0.2 2026-11-23 R73 补 bValid 回执：段 6 属主件调用补收 bValid
+//           局部回执，回执无效并入既有 3110 兜底分支，契约不变。
 //==============================================================================
 
 (*------------------------------------------------------------------------------
@@ -74,6 +76,10 @@ VAR
     fPvMix     : LREAL;                  // 混合点水汽分压 [Pa] / Mixed vapor partial pressure [Pa]
     fPwsMix    : LREAL;                  // 混合温度下饱和压 [Pa]，属主件取得 / Saturation pressure at the mixed temperature [Pa]
     fDenom     : LREAL;                  // 分压反算分母 (MW + W_mix) [kg/kg] / Denominator of the partial-pressure inversion [kg/kg]
+    _bPwsValid : BOOL;                   // 饱和压属主件输出可用回执 / Saturation owner FC outputs-usable receipt
+    _bPwsClamped : BOOL;    // 属主件钳位回执（本件不消费，仅契约全回执） / Owner clamp receipt (unused, full-receipt contract)
+    _nPwsErr     : UDINT;   // 属主件错误码回执 / Owner error-code receipt
+    _bPwsError   : BOOL;    // 属主件故障级回执 / Owner fault-flag receipt
 END_VAR
 
 (*------------------------------------------------------------------------------
@@ -154,7 +160,7 @@ IF fDenom <= DL_MIX_EPS THEN
     RETURN;
 END_IF
 fPvMix := fMixHumRatio * fPress / fDenom; // 混合点水汽分压 [Pa] / Mixed vapor partial pressure [Pa]
-IF NOT FC_DL_VaporPressureSat(fTempC := fMixTempC, fPvSat => fPwsMix) THEN
+IF (NOT FC_DL_VaporPressureSat(fTempC := fMixTempC, fPvSat => fPwsMix, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError)) OR (NOT _bPwsValid) THEN
     eErr   := 16#0002_3110;              // 故障级：属主件拒绝复用（R90） / Fault: owner FC rejected, code reused
     bError := TRUE;                      // 置故障标志 / Raise the fault flag
     bValid := FALSE;                     // 输出不可用 / Outputs unusable

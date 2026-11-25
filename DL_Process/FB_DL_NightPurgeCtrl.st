@@ -2,7 +2,7 @@
  * 组件名称 (Component)  : FB_DL_NightPurgeCtrl
  * 所属子库 (Sublibrary) : DL_Process
  * 前缀     (Prefix)     : FB_DL_
- * 当前版本 (Version)    : 1.0.0
+ * 当前版本 (Version)    : 1.0.1
  * 兼容性   (Platform)   : CODESYS 3.5 / TwinCAT 3 / 汇川 InoProShop / Schneider
  *                         Machine Expert；纯 IEC 61131-3（第 3 版），
  *                         仅依赖标准库 TON 与库内 FC_DL_VaporPressureSat，
@@ -33,6 +33,9 @@
  *                         FB_DL_InertPurgeSeq（氮气置换语义），跨域语义不
  *                         复用，改立本文件私有枚举 E_DL_NightPurgeState。
  * 修订历史 (Revision)   : 2026-11-18 v1.0.0 首版入库（R31 · 阶段三 · 序 4）
+ *                         2026-11-23 v1.0.1 R73 补 bValid 回执：段 3 两处饱和压
+ *                         调用补收 bValid 局部回执，回执无效并入既有 bSat*Ok
+ *                         拒绝语义（数据无效合取路径），契约不变
  *==============================================================================*)
 
 (*------------------------------------------------------------------------------
@@ -87,6 +90,10 @@ VAR
     bSatOutOk : BOOL;                 // 室外饱和压调用有效 / Outdoor saturation call valid
     bSatInOk  : BOOL;                 // 室内饱和压调用有效 / Indoor saturation call valid
     bRhClamp  : BOOL;                 // 湿度越域钳位标志 / Humidity clamp flag
+    _bPwsValid: BOOL;                 // 饱和压属主件输出可用回执 / Saturation owner FC outputs-usable receipt
+    _bPwsClamped : BOOL;    // 属主件钳位回执（本件不消费，仅契约全回执） / Owner clamp receipt (unused, full-receipt contract)
+    _nPwsErr     : UDINT;   // 属主件错误码回执 / Owner error-code receipt
+    _bPwsError   : BOOL;    // 属主件故障级回执 / Owner fault-flag receipt
 END_VAR
 VAR CONSTANT
     DL_NPC_FIN   : REAL  := 1.0E30;   // REAL 有限幅值判界 / REAL finiteness magnitude bound
@@ -110,10 +117,12 @@ bRhClamp := (fRhOut < 0.0) OR (fRhOut > DL_NPC_RHMAX)
          OR (fRhIn < 0.0) OR (fRhIn > DL_NPC_RHMAX);  // 越域判定 / Out-of-range detection
 
 // ---- 段 3｜饱和压查询：常数唯一属主 FC_DL_VaporPressureSat，只调用不内联 --------
-bSatOutOk := FC_DL_VaporPressureSat(fTempC := LREAL_TO_REAL(fTOut),
-               fPvSat => fPwsOut);                    // 室外饱和压查询 / Query outdoor saturation pressure
-bSatInOk := FC_DL_VaporPressureSat(fTempC := LREAL_TO_REAL(fTIn),
-               fPvSat => fPwsIn);                     // 室内饱和压查询 / Query indoor saturation pressure
+bSatOutOk := FC_DL_VaporPressureSat(fTempC := REAL_TO_LREAL(fTOut),
+               fPvSat => fPwsOut, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError); // 室外饱和压查询 / Query outdoor saturation pressure
+bSatOutOk := bSatOutOk AND _bPwsValid;                 // 输出可用回执并入既有拒绝语义 / Merge outputs-usable receipt into existing reject semantics
+bSatInOk := FC_DL_VaporPressureSat(fTempC := REAL_TO_LREAL(fTIn),
+               fPvSat => fPwsIn, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError); // 室内饱和压查询 / Query indoor saturation pressure
+bSatInOk := bSatInOk AND _bPwsValid;                   // 输出可用回执并入既有拒绝语义 / Merge outputs-usable receipt into existing reject semantics
 
 // ---- 段 4｜绝对湿度换算：AH = 2.1674·pv/(273.15+T) [克每立方米] -----------------
 IF bDataOk AND bSatOutOk AND bSatInOk AND ((fTOut + DL_NPC_T0) > 0.0) AND ((fTIn + DL_NPC_T0) > 0.0) THEN

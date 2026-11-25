@@ -1,6 +1,6 @@
 //==============================================================================
 // 函数：FC_DL_HumidityRatioCalc ｜ 中文名称：含湿量计算（焓湿图族拆分②）
-// 所属子库：DL_Algo ｜ 版本：v1.0.0 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
+// 所属子库：DL_Algo ｜ 版本：v1.0.1 ｜ 兼容：CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
 // 功能描述：由干球温度 + 露点或相对湿度求含湿量 W = 0.621945·p_v/(p−p_v)
 //           [kg 水蒸气/kg 干空气]；p_v 为实际水汽分压。露点模式取
 //           p_v = p_ws(Td)（露点即饱和点），相对湿度模式取
@@ -24,6 +24,8 @@
 //           策略不同：本件分母直接参与除法，比值件可安全钳 100）；⑤ 枚举
 //           非法值走 CASE ELSE 兜底 → 故障 2E12。
 // 修订历史：v1.0.0 2026-11-17 首版（R23 派单 · T1-2 焓湿图族拆分②）
+//           v1.0.1 2026-11-23 R73 补 bValid 回执：两处 FC_DL_VaporPressureSat
+//           调用补收 bValid 局部回执，回执无效并入既有 2E12 兜底分支，契约不变。
 //==============================================================================
 
 (*------------------------------------------------------------------------------
@@ -75,6 +77,10 @@ VAR
     fTdEff   : LREAL;                    // 钳位后的生效露点 [摄氏度] / Effective clamped dew point [degC]
     fDenom   : LREAL;                    // 含湿量分母 (p − p_v) [Pa] / Humidity ratio denominator [Pa]
     bTdBad   : BOOL;                     // 露点钳位暂存标志 / Staged dew-point clamp flag
+    _bPwsValid : BOOL;                   // 饱和压属主件输出可用回执 / Saturation owner FC outputs-usable receipt
+    _bPwsClamped : BOOL;    // 属主件钳位回执（本件不消费，仅契约全回执） / Owner clamp receipt (unused, full-receipt contract)
+    _nPwsErr     : UDINT;   // 属主件错误码回执 / Owner error-code receipt
+    _bPwsError   : BOOL;    // 属主件故障级回执 / Owner fault-flag receipt
 END_VAR
 
 (*------------------------------------------------------------------------------
@@ -126,7 +132,7 @@ CASE eRhMode OF
         ELSE
             fTdEff := fRhIn;             // 合法露点原值生效 / Valid dew point applied as-is
         END_IF
-        IF NOT FC_DL_VaporPressureSat(fTempC := fTdEff, fPvSat => fPwsIn) THEN
+        IF (NOT FC_DL_VaporPressureSat(fTempC := fTdEff, fPvSat => fPwsIn, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError)) OR (NOT _bPwsValid) THEN
             eErr   := 16#0002_2E12;      // 故障级：属主件拒绝（其故障即本件故障），兜底码 / Fault: owner FC rejected, fallback code
             bError := TRUE;              // 置故障标志 / Raise the fault flag
             bValid := FALSE;             // 输出不可用 / Outputs unusable
@@ -142,7 +148,7 @@ CASE eRhMode OF
         ELSE
             fRhEff := fRhIn;             // 合法湿度原值生效 / Valid humidity applied as-is
         END_IF
-        IF NOT FC_DL_VaporPressureSat(fTempC := fTempC, fPvSat => fPwsDb) THEN
+        IF (NOT FC_DL_VaporPressureSat(fTempC := fTempC, fPvSat => fPwsDb, bValid => _bPwsValid, bClamped => _bPwsClamped, eErr => _nPwsErr, bError => _bPwsError)) OR (NOT _bPwsValid) THEN
             eErr   := 16#0002_2E12;      // 故障级：属主件拒绝，兜底码 / Fault: owner FC rejected, fallback code
             bError := TRUE;              // 置故障标志 / Raise the fault flag
             bValid := FALSE;             // 输出不可用 / Outputs unusable

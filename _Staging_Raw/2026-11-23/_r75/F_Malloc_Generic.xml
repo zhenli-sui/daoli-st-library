@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="F_Malloc_Generic" Id="{6c6e9db2-79b4-08ab-287d-97b12703691a}" SpecialFunc="None">
+    <Declaration><![CDATA[// Allocates memory for T_Generic.
+FUNCTION F_Malloc_Generic : POINTER TO T_Generic
+VAR_INPUT
+	Count : T_Capacity;
+END_VAR
+VAR_OUTPUT
+	bSuccess : BOOL;
+	Error : T_Error := GVL_Errors.ERR_NO_ERROR;
+END_VAR
+VAR
+	i : T_Capacity;
+	Size : UDINT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Count = 0 THEN bSuccess := TRUE; RETURN; END_IF
+
+Size := TO_UDINT(SIZEOF(T_Generic) * Count);
+F_Malloc_Generic := __NEW(BYTE, Size);
+
+IF F_Malloc_Generic = 0 THEN 
+	Error := GVL_Errors.ERR_MALLOC_FAILED;
+	RETURN;
+	END_IF
+
+FOR i := 0 TO count - 1 DO
+	F_Malloc_Generic[i].TypeClass := T_Type.TYPE_NONE;
+	END_FOR
+
+bSuccess := TRUE;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

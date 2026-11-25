@@ -343,16 +343,23 @@ _bError := (_eState = E_DL_AxisState.eErrorStop); // bError 派生式（R21：�
 
 PROPERTY eState : E_DL_AxisState
 eState := _eState;
+END_PROPERTY
 PROPERTY fPosition : REAL
 fPosition := _fPosition;
+END_PROPERTY
 PROPERTY fVelocity : REAL
 fVelocity := _fVelocity;
+END_PROPERTY
 PROPERTY bEnabled : BOOL
 bEnabled := _bEnabled;
+END_PROPERTY
 PROPERTY bHomed : BOOL
 bHomed := _bHomed;
+END_PROPERTY
 PROPERTY bError : BOOL
 bError := _bError;
+END_PROPERTY
 PROPERTY uErrorId : UDINT
 uErrorId := _uErrorId;
+END_PROPERTY
 END_FUNCTION_BLOCK

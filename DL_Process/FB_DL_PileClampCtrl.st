@@ -13,7 +13,7 @@
                   ④ 释压命令与压紧命令互斥，同拍双真取释压（安全侧）；
                   ⑤ 输出三行同向：缸命令 → 段状态 → 完成标志。
   依赖 Depends  : FB_DL_StepSequencer（两段推步，每拍无条件调用）
-                  I_DL_Cylinder（缸接口，VAR_IN_OUT 引用注入，__ISVALIDREF 门控）
+                  I_DL_Cylinder（缸接口，VAR_IN_OUT 引用注入，引用非空判零 (ipCyl <> 0) 门控）
 
   码表 Error codes（本件子码步进 16#30 · 本格 90 与既有 9X 子码段冲突，错位至 C0/D0 避让）:
     16#0002_06C0 故障级：组态非法（两段目标倒置 / 包络窗倒置 / 保压时长 <= 0）
@@ -85,7 +85,7 @@ END_VAR
 rtrReset(CLK := bReset);                          // 每拍刷新复位沿
 
 (* === 段 1 · 组态闸与反馈域闸 === *)
-bRefOk := __ISVALIDREF(ipCyl);                    // 接口引用有效性（R4 防御）
+bRefOk := (ipCyl <> 0);                           // 接口引用有效性（引用非空判零口径，R4 防御）/ Interface reference validity, null-reference test
 bCfgOk := (fFullTargetKN > fPreTargetKN + fEps)   // 两段目标不倒置（全压 > 预压）
           AND (fPreWinKN > fEps) AND (fFullWinKN > fEps)
           AND (fPrePosHiMm > fPrePosLoMm + fEps)  // 预压位移窗不倒置

@@ -68,6 +68,7 @@ VAR
     _eCause      : E_DL_RpbCause := E_DL_RpbCause.eNone; // 内部成因，故障级锁存、信息级每拍重算 / internal cause, latched for faults and recomputed for information
     _bFault      : BOOL := FALSE;            // 故障锁存位（阈值非法）/ fault latch bit for an illegal threshold
     _bInit       : BOOL := FALSE;            // 首扫初始化完成标志（R310）/ first scan initialisation flag
+    _bAnyAlarm   : BOOL := FALSE;            // 任一报警标志工作值（出口映射源）[-] / any-alarm working flag, source of the outlet
     _bZoneBad    : BOOL := FALSE;            // 本区不可判（阈值非法或压力非有限）[-] / the zone is undecidable
     _bPressOk    : BOOL := FALSE;            // 本区压力有限 [-] / the zone pressure is finite
     _bThrOk      : BOOL := FALSE;            // 本区阈值合法 [-] / the zone thresholds are legal

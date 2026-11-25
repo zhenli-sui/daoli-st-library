@@ -58,6 +58,7 @@ END_VAR
 VAR
     tonZoneViol  : TON;               // 区域违约确认窗（电平式），无条件刷新 / Zone violation timer
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance
+    _eState      : E_DL_PgsState := E_DL_PgsState.eIdle;   // 内部相位，CASE 唯一写入目标 / Internal phase, the only CASE write target
     _bPressOk    : BOOL;              // 压力达下限当拍量 [-] / Pressure-ok current-scan flag
     _bNonFin     : BOOL;              // 压力非有限当拍量 [-] / Non-finite pressure flag
     _bDualOk     : BOOL;              // 双条件成立当拍量 [-] / Dual-condition ok flag

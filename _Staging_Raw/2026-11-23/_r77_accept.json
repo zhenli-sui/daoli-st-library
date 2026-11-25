@@ -1,0 +1,32 @@
+[
+ {
+  "name": "FB_DL_DualEncoderDeviationWatch",
+  "category": "DL_Motion",
+  "type": "FB",
+  "complexity": 4,
+  "tags": [
+   "motion",
+   "dual-encoder",
+   "deviation",
+   "alarm",
+   "state-machine"
+  ],
+  "origin": "道莅原创（自研线）",
+  "license": "MIT"
+ },
+ {
+  "name": "FB_DL_MoldCoolingZoneSeq",
+  "category": "DL_Process",
+  "type": "FB",
+  "complexity": 4,
+  "tags": [
+   "process",
+   "mold-cooling",
+   "zone-seq",
+   "interlock",
+   "degraded-mode"
+  ],
+  "origin": "道莅原创（自研线）",
+  "license": "MIT"
+ }
+]

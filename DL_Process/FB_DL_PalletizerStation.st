@@ -5,6 +5,26 @@
 // 码位: 16#0005_044E ~ 16#0005_0452 (本件独占 5 槽)
 // 修改记录: R29 初版 (按 DISPATCH_R29 序 16)
 // =====================================================================
+// 枚举: E_DL_PalletizerState（归属 Ownership：E_DL_PalletizerState 归属本文件
+//       FB_DL_PalletizerStation，全库唯一定义，本件只定义不重声明）
+//       R74 说明：全库 Grep 确认该枚举此前零定义处（仅本件引用 + DISPATCH_R29
+//       规格文），E052 即由此产生；成员集严格取自本文件实际使用的相位取值，
+//       编号与 DISPATCH_R29 序 16 规格一致（eFault 取 99 保证排序末位）。
+// =====================================================================
+TYPE E_DL_PalletizerState :
+(
+    eIdle      := 0,    // 空闲待启动 / Idle, waiting for start
+    eWaitBox   := 1,    // 进箱等待：等 bBoxPresent / Waiting for box presence
+    ePlace     := 2,    // 分层码放：夹爪闭合后升降下压 / Placing, lowering with gripper closed
+    eLayerDone := 3,    // 层排布完成等待外部层序件回馈 / Layer done, waiting external feedback
+    eStretch   := 4,    // 缠膜等待 / Stretch wrapping wait
+    eDischarge := 5,    // 出跺等待通道就绪 / Discharge wait for outlet ready
+    eDone      := 6,    // 一跺完成（单拍后回进箱等待）/ Pallet done, back to wait next scan
+    eFault     := 99    // 故障锁存态 / Fault latched state
+);
+END_TYPE
+
+// =====================================================================
 FUNCTION_BLOCK FB_DL_PalletizerStation
 VAR_INPUT
     bEnable       : BOOL  := FALSE;    // 使能 / Enable
@@ -58,7 +78,7 @@ rtrigStart(CLK := bStart);      // 沿检测 / Edge detection
 
 // ---- 超时与接口合法性闸 / Timeout and interface validity gate ----
 IF (tStepMax = T#0MS) OR (tStepMaxS < 1.0) OR (tStepMaxS > 300.0)
-   OR (NOT __ISVALIDREF(iCylGrip)) OR (NOT __ISVALIDREF(iCylLift)) THEN
+   OR (iCylGrip = 0) OR (iCylLift = 0) THEN    // 接口引用未注入判定（引用为空判零口径）/ Interface reference not injected, null-reference test
     eState := E_DL_PalletizerState.eFault;  // 故障态 / Fault
     bBusy := FALSE;             // 停止运行 / Not busy
     eErr := 16#0005_044F;       // 故障码 / Fault code
@@ -66,7 +86,7 @@ IF (tStepMax = T#0MS) OR (tStepMaxS < 1.0) OR (tStepMaxS > 300.0)
 END_IF
 
 // ---- 组态错闸（含气缸执行器错）/ Configuration and actuator fault gate ----
-IF (uLayerCount = 0) OR (uBoxPerLayer = 0) OR (bEnable AND iCylGrip.bError) THEN
+IF (uLayerCount = 0) OR (uBoxPerLayer = 0) OR (bEnable AND iCylGrip.bFault) THEN
     eState := E_DL_PalletizerState.eFault;  // 故障态 / Fault
     bBusy := FALSE;             // 停止运行 / Not busy
     eErr := 16#0005_0450;       // 故障码 / Fault code
@@ -89,8 +109,8 @@ END_IF
 
 // ---- 使能撤销：气缸回安全位（夹爪保持、升降下落）/ Disable: cylinders to safe side ----
 IF NOT bEnable THEN
-    iCylGrip.Hold();            // 夹爪保持 / Gripper hold
-    iCylLift.GotoLower();       // 升降下落 / Lift lower
+    iCylGrip.CmdStop();         // 夹爪保持（接口语义：CmdStop 双线圈全断保持位置）/ Gripper hold via CmdStop
+    iCylLift.CmdRetract();      // 升降下落（接口语义：缩回=下落）/ Lift lower = retract
     eState := E_DL_PalletizerState.eIdle;   // 空闲 / Idle
     uLayerIdx := 0;             // 层号清零 / Layer cleared
     uBoxIdx := 0;               // 箱号清零 / Box cleared
@@ -158,7 +178,7 @@ CASE eState OF
         bStepTimerOn := TRUE;   // 相定时启 / Timer on
         IF bBoxPresent THEN
             // 有箱：夹爪闭合准备抓取 / Box present: close gripper
-            iCylGrip.GotoUpper();   // 夹爪闭合（接口语义：上位=夹紧）/ Gripper close
+            iCylGrip.CmdExtend();   // 夹爪闭合（接口语义：伸出=夹紧）/ Gripper close = extend
             bStepTimerOn := FALSE;  // 相定时重置 / Timer reset
             eState := E_DL_PalletizerState.ePlace;  // 进入码放相 / Go to place
             tonStep(IN := FALSE, PT := tStepMax);   // 相进入重置（R21）/ Reset on entry
@@ -173,9 +193,9 @@ CASE eState OF
             eErr := 16#0005_0452;   // 故障码 / Fault code
             RETURN;             // 本拍结束 / End of cycle
         END_IF
-        iCylLift.GotoLower();   // 升降下压 / Lift lower
+        iCylLift.CmdRetract();  // 升降下压（接口语义：缩回=下压）/ Lift press = retract
         IF bPlaceDone THEN
-            iCylGrip.GotoLower();   // 夹爪松开（接口语义：下位=松开）/ Gripper open
+            iCylGrip.CmdRetract();   // 夹爪松开（接口语义：缩回=松开）/ Gripper open = retract
             uBoxIdx := uBoxIdx + 1; // 箱号递增 / Box increment
             IF uBoxIdx > uBoxPerLayer THEN
                 uBoxIdx := 1;   // 显式回绕到层首 / Wrap to layer first
@@ -244,7 +264,7 @@ CASE eState OF
 END_CASE
 
 // ---- 气缸执行器错实时登记 / Actuator error live registration ----
-IF iCylGrip.bError OR iCylLift.bError THEN
+IF iCylGrip.bFault OR iCylLift.bFault THEN
     eErr := 16#0005_0450;       // 故障码 / Fault code
     eState := E_DL_PalletizerState.eFault;  // 故障态 / Fault
     bBusy := FALSE;             // 停止运行 / Not busy

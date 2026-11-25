@@ -47,3 +47,6 @@ _tools/_perf*.json
 _tools/_t_*.json
 _tools/_gate_*.json
 _tools/_check*.json
+
+# 本地凭据，禁止入库
+_tools/.gh_token

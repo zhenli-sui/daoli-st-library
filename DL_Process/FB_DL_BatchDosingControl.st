@@ -418,6 +418,7 @@ END_IF
  *------------------------------------------------------------------------------*)
 PROPERTY ePhase : E_DL_DosingPhase
 ePhase := _ePhase;                // 返回内部批次相（Return internal phase）
+END_PROPERTY
 
 (*------------------------------------------------------------------------------
  * 属性: bFault（GET）—— 故障锁存指示（信息级码不置本位，0.2 公约）。
@@ -425,6 +426,7 @@ ePhase := _ePhase;                // 返回内部批次相（Return internal pha
  *------------------------------------------------------------------------------*)
 PROPERTY bFault : BOOL
 bFault := _bFaultLatch OR (_ePhase = E_DL_DosingPhase.eFault); // 显式排除信息级派生式（Derived form excluding info codes）
+END_PROPERTY
 
 (*------------------------------------------------------------------------------
  * 属性: uErrorId（GET）—— 末次故障码（故障级优先，无故障时透出本拍信息级
@@ -437,4 +439,5 @@ IF (_uErrorIdInt <> 0) OR (_ePhase = E_DL_DosingPhase.eFault) THEN
 ELSE
     uErrorId := _uInfoCode;       // 无故障时透出本拍信息级码（Transient info code）
 END_IF
+END_PROPERTY
 END_FUNCTION_BLOCK

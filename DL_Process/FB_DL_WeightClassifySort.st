@@ -2,12 +2,15 @@
 // FB_DL_WeightClassifySort.st
 // 重量四档分级剔除（复用库内判档律 + 剔除口放行 + 档位计数）
 // Weight 4-band classification with reject gate and band counters
-// 所属子库: DL_Process    版本: v1.0.0    兼容: CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
+// 所属子库: DL_Process    版本: v1.0.1    兼容: CODESYS V3.5+ / TwinCAT 3 / 汇川 InoProShop
 // 码位: 16#0005_0476 ~ 16#0005_047A (本件独占 5 槽, 勿复用)
 // 溯源: 道莅 clean-room 防御性实现
 //       来源组标签: packaging, weight-sorting, classification, reject
 // 枚举属主: E_DL_WeightClass —— 本文件为全库唯一属主, 其他件只引用不重声明
 // 修改记录: R30 初版 (ROUND_PLAN_R30 序 9)
+//           v1.0.1 2026-11-23 R75 修复——FC_DL_LimitClassify 调用补
+//           uErrorId => uBandErr 显式回执接收（R73 零回执挂账点修），判档件
+//           回执非零时按非法档安全侧分流，主判档逻辑零改动
 // 分层声明: 判档律消费 DL_Base 的 FC_DL_LimitClassify（四阈值五档, 返回
 //           E_DL_LimitBand）, 本件不重写分级律, 只做判档→剔除口→计数编排;
 //           区间归属沿用判档件闭区间口径（等于阈值归更严档, 容差判等）
@@ -48,6 +51,7 @@ VAR
     bCfgErr     : BOOL := FALSE;    // 阈值组态非法标记 / Threshold configuration error flag
     eBand       : E_DL_LimitBand := E_DL_LimitBand.eInvalid;  // 判档件返回档 / Band returned by classifier
     bBandInv    : BOOL := FALSE;    // 判档返回非法档标记 / Classifier invalid-band flag
+    uBandErr    : UDINT := 0;       // 判档件回执码（v1.0.1 新增接收）/ Classifier receipt code, new in v1.0.1
 END_VAR
 
 // ---------------------------------------------------------------------
@@ -110,7 +114,8 @@ IF rtrPart.Q THEN
                                      REAL_TO_LREAL(fTh_LL_g),
                                      REAL_TO_LREAL(fTh_L_g),
                                      REAL_TO_LREAL(fTh_H_g),
-                                     REAL_TO_LREAL(fTh_HH_g));
+                                     REAL_TO_LREAL(fTh_HH_g),
+                                     uErrorId => uBandErr);   // 回执显式接收（v1.0.1）/ Explicit output receipt
         CASE eBand OF
             E_DL_LimitBand.eLowTripped:     // 低低档 → 严重欠重 / Low-low to severely under
                 eClass := E_DL_WeightClass.eLL;
@@ -126,6 +131,9 @@ IF rtrPart.Q THEN
                 eClass := E_DL_WeightClass.eLL;
                 bBandInv := TRUE;           // 置非法档标记 / Set invalid-band flag
         END_CASE
+        IF uBandErr <> 0 THEN               // 判档件回执非零: 按非法档安全侧（v1.0.1 语义接入）/ Classifier receipt nonzero: safe side
+            bBandInv := TRUE;               // 置非法档标记 / Set invalid-band flag
+        END_IF
         // 档位计数与剔除口放行 / Band counting and reject gate
         IF eClass = E_DL_WeightClass.eOK THEN
             uOkCount := uOkCount + 1;       // 合格计数 / Count ok

@@ -1,0 +1,112 @@
+{
+  "round": "R77",
+  "batch": "B1",
+  "scope": "C3~C4 complex components",
+  "l1": {
+    "total": 4,
+    "pass": 4,
+    "fail": 0,
+    "issues": [],
+    "note": "syntax + R1/R2/R5/R8/R9/R10/R11/R14/R15 + 7-family balance + CASE/ELSE + timer-placement: 0 hits; 2 logic-level FAILs originate from L1 semantic review, not from redline hits"
+  },
+  "l2": {
+    "mode": "rusty-real-compile",
+    "jobs": 1,
+    "serial": true,
+    "pass": 4,
+    "fail": 0,
+    "artifact": "_Staging_Raw/2026-11-23/_l2_gate_R77_B1.json",
+    "cmd": "python _tools/l2_check.py <4 files> --jobs 1 --no-cache --out _Staging_Raw/2026-11-23/_l2_gate_R77_B1.json"
+  },
+  "l3": {
+    "mode": "not-run",
+    "total": 0,
+    "pass": 0,
+    "fail": 0,
+    "failing": [],
+    "note": "_TESTS contains only README.md; none of the 4 components has a vector file. L3 NOT RUN, must not be counted as pass."
+  },
+  "verdict": "BLOCK",
+  "pass": 2,
+  "fail": 2,
+  "exempt": 0,
+  "pass_rate": "50%",
+  "per_file": [
+    {
+      "file": "DL_Motion/FB_DL_DualEncoderDeviationWatch.st",
+      "verdict": "FAIL",
+      "codes": ["R77-B1-01"],
+      "severity": "MAJOR",
+      "reason": "Inf branch of the non-finite gate is a dead predicate: ABS(Inf-Inf)=NaN and NaN>EPS is FALSE, so bMotorInf/bLoadInf never fire. On the first scan bHavePrev=FALSE skips the jump gate, the encoder is reported valid and fDevPos emits Inf.",
+      "lines": [197, 201]
+    },
+    {
+      "file": "DL_Process/FB_DL_MoldCoolingZoneSeq.st",
+      "verdict": "FAIL",
+      "codes": ["R77-B1-02", "R77-B1-03", "R77-B1-04"],
+      "severity": "BLOCK",
+      "reason": "eFault has no exit: bReset only clears bFaultLatch (L226-232) while segment 4 skips the CASE when eState=eFault (L239). After reset the machine stays in eFault forever, bFaultCut stays TRUE, all valves permanently closed, PLC restart required. Contradicts header V4 and makes uErrorId report 0 while state reports eFault. Also eBalance has no timeout backstop.",
+      "lines": [226, 232, 239, 356, 359, 189]
+    },
+    {
+      "file": "DL_Device/FB_DL_AnalogInputRedundancySel.st",
+      "verdict": "PASS",
+      "codes": [],
+      "severity": "NONE",
+      "reason": "L2 rc=0; 0 static hits; eFault has 3 exits (L347/349/351) and recovers; Inf is caught by the closed-interval range gate so no non-finite leakage.",
+      "lines": []
+    },
+    {
+      "file": "DL_Algo/FC_DL_ModbusRtuFrameBuild.st",
+      "verdict": "PASS",
+      "codes": [],
+      "severity": "NONE",
+      "reason": "CRC16 poly 16#A001 / init 16#FFFF / reflected bitwise loop / low-byte-first all match the Modbus spec; independent recomputation matches V1=16#0A84, V2=16#CDC5, V3=16#E14D exactly; all loop bounds structurally within the 1..64 buffer; shift amounts 1 and 8 never equal the bit width.",
+      "lines": []
+    }
+  ],
+  "special_checks": {
+    "FB_DL_DualEncoderDeviationWatch": {
+      "case_else": "PASS: CASE L276 with ELSE L365 (illegal enum -> eFault, code 1008)",
+      "residency": "WARN: no permanent deadlock (bReset path exists) but eFault lacks the NOT bEnable -> eInit exit that all other 5 states have; on disable it reports eStateOut=eFault with uErrorId=0 (state/code contradiction)",
+      "timer_unconditional": "PASS: tonBlank L251, tonWarn L267, tonAlarm L268, tonTrip L269 all outside CASE (L276-375)",
+      "crc": "N/A"
+    },
+    "FB_DL_MoldCoolingZoneSeq": {
+      "case_else": "PASS: CASE L249 with ELSE L387 (illegal enum -> eFault + latch + code 1015)",
+      "residency": "FAIL: eFault unreachable-exit (no assignment from eFault to eIdle among all 16 eState assignments); eBalance has no timeout backstop while zone valves stay open",
+      "timer_unconditional": "PASS: rtrStart L204, tonHeat L206, tonFlow L208, tonBal L212, tonBlow L214 all outside CASE (L249-395)",
+      "crc": "N/A"
+    },
+    "FB_DL_AnalogInputRedundancySel": {
+      "case_else": "PASS: CASE L190 with ELSE L355 (illegal enum -> eFault, code 1024)",
+      "residency": "PASS: eFault exits at L347/349/351, recoverable; eInit residency while disabled is by design (output frozen)",
+      "timer_unconditional": "N/A: no TON / R_TRIG instances (declared N/A, verified 0 instances)",
+      "crc": "N/A"
+    },
+    "FC_DL_ModbusRtuFrameBuild": {
+      "case_else": "N/A: pure FUNCTION, no state machine, 0 CASE",
+      "residency": "N/A",
+      "timer_unconditional": "N/A: no instances",
+      "crc": "PASS: poly 16#A001 (L116), init 16#FFFF (L115), reflected bitwise loop L166-176, low byte first L181-184; independent recomputation matches V1/V2/V3 (16#0A84 / 16#CDC5 / 16#E14D) 3/3; loop bounds max write aFrame[36] <= 64, shifts 1 and 8 < 16"
+    }
+  },
+  "blocking": [
+    "R77-B1-02 FB_DL_MoldCoolingZoneSeq eFault 永久死锁（bReset 后 eState 不出 eFault，全阀永久关闭）",
+    "R77-B1-01 FB_DL_DualEncoderDeviationWatch Inf 非有限闸失效（fDevPos 可输出 Inf）"
+  ],
+  "nonblocking": [
+    "R77-B1-03 FB_DL_MoldCoolingZoneSeq eBalance 缺超时兜底（阀常开驻留）",
+    "R77-B1-04 FB_DL_MoldCoolingZoneSeq 1014 对 Inf 永不可达 / ePreHeat 驻留",
+    "R77-B1-05 FB_DL_DualEncoderDeviationWatch eFault 缺 NOT bEnable 出口 + bFaultLvl 死内部量",
+    "R77-B1-06 FC_DL_ModbusRtuFrameBuild 帧长下界 3 与 0 长度无 CRC PDU(2 字节)冲突"
+  ],
+  "code_segment_check": {
+    "registry_16#0004_10xx_occupancy": 0,
+    "four_ranges_disjoint": true,
+    "ranges": ["1001-100F", "1010-101F", "1020-102F", "1030-103F"],
+    "note": "all 4 components absent from registry (1327 entries) -> version/code_segment cross-check N/A (new components pending registration)"
+  },
+  "source_modified": false,
+  "registry_written": false
+}
