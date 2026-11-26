@@ -8,6 +8,10 @@
 
 > R37 增量行：组件总数 60→**62**（registry 实测口径，本轮 +2 `FB_DL_LineShaftClutch` 04_0_A2 / `FB_DL_FlyingCutSync` 04_0_A3）；两件均注入 `I_DL_MotionAxis`，无新增依赖。
 
+## DL_Motion · R94
+- 件数：**195**（本轮新增 10~20 件，见 BATTLE_REPORT_R94）
+- 版本：v2.86.0 ｜ 同步：2026-11-25 18:57
+
 ## v1.24 — 2026-11-22（R71）
 
 - R71 新增 1 件：`FB_DL_FlyingShearSync`（飞剪同步五相，同步窗线速失配即退相）。累计 125 件。

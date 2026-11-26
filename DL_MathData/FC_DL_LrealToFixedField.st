@@ -95,6 +95,7 @@ VAR
     nTotal      : INT;                         // 字段总宽 [字符] / total field width
     nLead       : INT;                         // 首个非零整数位下标 [索引]，0 表示全零 / index of the first non-zero integer digit, 0 when all zero
     nI          : INT;                         // 通用循环下标 [索引] / general loop index
+    nJ          : INT;                         // 升序循环变量（镜像下标用）[索引] / ascending loop var for mirrored index
     nGuard      : INT;                         // 循环守卫计数器 [次] / loop guard counter
     nFracMax    : LINT;                        // 小数位满量 10^nDecUse [无量纲] / full range of the decimal part
     liFrac      : LINT;                        // 小数部分放大后的整数值 [无量纲] / scaled integer value of the decimal part
@@ -350,7 +351,8 @@ IF bAllNine THEN
 ELSE
     (* 小数位逐位分解：从小到大取余，负域无需用（值恒非负） *)
     (* Decimal digit decomposition, the value is always non-negative here *)
-    FOR nI := nDecUse DOWNTO DL_ONE_I DO
+    FOR nJ := DL_ONE_I TO nDecUse DO
+        nI := nDecUse - nJ + DL_ONE_I;       // 镜像下标：R509 禁 DOWNTO / mirrored index, DOWNTO unsupported
         aDec[nI] := LINT_TO_USINT(liFrac MOD DL_TEN_L); // 取最低位 / take the least significant digit
         liFrac   := liFrac / DL_TEN_L;           // 降一位 / step down
     END_FOR

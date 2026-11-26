@@ -14,7 +14,15 @@
 """
 import argparse, glob, io, json, os, re, subprocess, sys, datetime
 
-LIB = r"C:\Library"
+# 库根目录解析：环境变量 > 脚本父目录（含 DL_Base 时）> C:\Library —— Linux CI 兼容
+_here = os.path.dirname(os.path.abspath(__file__))
+_parent = os.path.dirname(_here)
+if os.environ.get("DAOLI_LIB"):
+    LIB = os.environ["DAOLI_LIB"]
+elif os.path.isdir(os.path.join(_parent, "DL_Base")):
+    LIB = _parent
+else:
+    LIB = r"C:\Library"
 STG = os.path.join(LIB, "_Staging_Raw")
 
 def find_bin(name, env):

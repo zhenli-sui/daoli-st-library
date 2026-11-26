@@ -83,7 +83,7 @@ bBad      := FALSE;                 // 非有限假定不成立
 nCount    := UINT_TO_INT(nPointCount);  // 节点数整型副本 [个]
 
 (* —— 段 1：组态域闸（节点数与上限，先于任何数组访问） —— *)
-IF (nCount < INT_TO_INT(DL_NODE_MIN)) OR (nCount > INT_TO_INT(DL_NODE_MAX)) THEN
+IF (nCount < DL_NODE_MIN) OR (nCount > DL_NODE_MAX) THEN
     nErrId := 16#0005_0501;         // 故障级：节点数越 [2, 64] 域
     bError := TRUE;                 // 故障标志置位（R45 配对）
     RETURN;                         // 域闸命中不求值
@@ -215,3 +215,5 @@ IF NOT bInRange THEN
 END_IF
 bValid := TRUE;                     // 结果有效（越界钳定亦有效，但 bInRange 已置 FALSE 提示）
 FC_DL_CubicSplineInterp := TRUE;    // 返回布尔：TRUE = 本拍有可交付结果
+
+END_FUNCTION

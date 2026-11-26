@@ -51,6 +51,7 @@ VAR
     nEff            : INT;                       // 降阶游标 [阶] / reduction cursor [order]
     nGuard          : DINT;                      // WHILE 防死锁守卫计数 [次] / loop guard counter [count]
     nIdx            : INT;                       // Horner 递推下标 [阶] / Horner recursion index [order]
+    nJ              : INT;                       // 升序循环变量（镜像下标用）[阶] / ascending loop var for mirrored index
     fAcc            : LREAL;                     // 累加工作寄存器 [工程单位] / accumulation working register [engineering unit]
     bOverflow       : BOOL;                      // 中间量溢出标志 / intermediate overflow flag
 END_VAR
@@ -116,7 +117,8 @@ END_FOR
 fAcc       := afCoeff[nEff];            // 最高阶系数作为起值 / seed with the top coefficient
 bOverflow  := FALSE;                    // 溢出标志清零 / clear the overflow flag
 IF nEff > 0 THEN
-    FOR nIdx := nEff - 1 DOWNTO 0 DO
+    FOR nJ := 0 TO (nEff - 1) DO
+        nIdx := (nEff - 1) - nJ;                                              // 镜像下标：R509 禁 DOWNTO / mirrored index, DOWNTO unsupported
         fAcc := fAcc * fX + afCoeff[nIdx];                                  // 一次乘加降一阶 / one multiply-add per order
         IF (fAcc <> fAcc) OR (ABS(fAcc) > DL_LREAL_MAX_FINITE) THEN          // 中间量非有限即溢出 / a non-finite intermediate means overflow
             bOverflow := TRUE;                                              // 锁定溢出标志 / latch the overflow flag

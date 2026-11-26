@@ -196,3 +196,5 @@ END_IF
 
 bValid := TRUE;                       // 结果有效
 FC_DL_HarmonicSpectrumBin := TRUE;    // 返回布尔：TRUE = 本拍有有效结果
+
+END_FUNCTION

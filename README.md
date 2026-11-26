@@ -1,18 +1,18 @@
 # 道莅工业自动化标准代码库 / Daoli Industrial ST Library
 
-[![Total Components](https://img.shields.io/badge/Total%20Components-1962%20%2F%2010%2C000-blue)](CHANGELOG.md)
-[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-196%20open-success)](DL_Base/VERSION.md)
-[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-421%20open-success)](DL_MathData/VERSION.md)
-[![Level 1 DL_Algo](https://img.shields.io/badge/Level%201%20DL--Algo-168%20open-yellow)](DL_Algo/VERSION.md)
-[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-273%20open-yellow)](DL_Device/VERSION.md)
-[![Level 1 DL_Motion](https://img.shields.io/badge/Level%201%20DL--Motion-144%20open-yellow)](DL_Motion/VERSION.md)
-[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-407%20open-yellow)](DL_Process/VERSION.md)
-[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-1921%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
+[![Total Components](https://img.shields.io/badge/Total%20Components-2081%20%2F%2010%2C000-blue)](CHANGELOG.md)
+[![Level 0](https://img.shields.io/badge/Level%200%20DL--Base-233%20open-success)](DL_Base/VERSION.md)
+[![Level 0 DL_MathData](https://img.shields.io/badge/Level%200%20DL--MathData-454%20open-success)](DL_MathData/VERSION.md)
+[![Level 1 DL_Algo](https://img.shields.io/badge/Level%201%20DL--Algo-197%20open-yellow)](DL_Algo/VERSION.md)
+[![Level 1 DL_Device](https://img.shields.io/badge/Level%201%20DL--Device-352%20open-yellow)](DL_Device/VERSION.md)
+[![Level 1 DL_Motion](https://img.shields.io/badge/Level%201%20DL--Motion-195%20open-yellow)](DL_Motion/VERSION.md)
+[![Level 2 DL_Process](https://img.shields.io/badge/Level%202%20DL--Process-610%20open-yellow)](DL_Process/VERSION.md)
+[![SFT Corpus](https://img.shields.io/badge/SFT%20Corpus-2120%20records-informational)](_AI_Training_Dataset/daoli_st_sft_dataset.jsonl)
 [![Platform](https://img.shields.io/badge/Platform-CODESYS%20%7C%20TwinCAT%203%20%7C%20InoProShop-informational)](README.md)
 [![IEC 61131-3](https://img.shields.io/badge/IEC-61131--3%20ST-orange)](README.md)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> **Total Components: 2,001 / 10,000 (19.62%)** ｜ **Phase 2: 常态节奏 10~20 件/轮（R60 起按 R249/R193/R362 动态下调）** ｜ **Version: v2.84.0** ｜ **SFT 语料: 2001 条** ｜ **全库约 332,375 行（磁盘 .st 实测口径）**
+> **Total Components: 2,081 / 10,000 (20.81%)** ｜ **Phase 2: 常态节奏 10~20 件/轮（R60 起按 R249/R193/R362 动态下调）** ｜ **Version: v2.87.0** ｜ **SFT 语料: 2120 条** ｜ **全库约 332,375 行（磁盘 .st 实测口径）**
 
 > **R90（2026-11-25 第 3 轮 · 冲刺）**：**40 件入册（复杂 4 + 简单 36，4 族×10 件模板派生）**——RO/NF 膜法水处理族 10（回收率/膜通量/渗透压/净驱动压/浓差极化/LSI 结垢指数/浓水目标/段间压降/产水品质监视 + RoMembraneFlushSeq C4）·压缩空气系统能效族 10（比功率/FAD/压力露点/泄漏率/储罐容积/管路压降/喷嘴耗气/加卸载回差/干燥机再生损耗 + AirCompressorMasterSeq C4）·锂电极片涂布辊压族 10（湿膜厚度/面密度/辊压间隙/线载荷/孔隙率/压实比/烘箱热量/溶剂衡算/分区张力 + CoaterGapTrimSeq C4）·浮法玻璃锡槽退火族 10（锡槽温度插值/带宽/厚度/退火温降率/残余应力/保护气配比/锡渣速率/切裁优化/退火窑升温序 + FloatBathTopRollSeq C5）；总库 1,842→**1,882**，v2.82.0，SFT **1921**。**L2 闸：40/40 PASS = 100%，零 FAIL 零 EXEMPT（连续第 13 轮）**，串行 jobs=1，单件均 0.37 s，负向对照 8/8 全命中；**跨文件 ENUM 冲突检查：新增 6 个 ENUM 与存量 1,842 件零重名**（R87 起常驻维度）。审校全量 40 件：BLOCK 3（主控复核 3/3 成立、误判率 0%，全部已修并返修复裁）/ MAJOR 1 / MINOR 8，拒收 0，三道去重判重 0；修复件 0（非当日首轮，配额归零）。开源队列 232→**234 行**，本轮四族（RO 膜法/纸机流送/浮法玻璃/锂电涂布）ST 开源实测命中见 HARVEST_R90。
 > **R91（2026-11-25 第 4 轮 · 冲刺）**：**40 件入册（复杂 4 + 简单 36，4 族×10 件模板派生）**——水泥窑篦冷机与预热器族 10（热回收效率/料层阻力/风量平衡/出料温度/级效率/旋风筒压损/旁路放风比/冷却速率/篦床行程监视 + GrateCoolerStartupSeq C4）·制药冻干族 10（冰面蒸气压/升华速率/搁板热负荷/一次干燥时间/泄漏率/塌陷温度裕度/残余水分/搁板升温控制/压力升测试 + LyoVacuumPullSeq C4）·轮胎硫化族 10（等效硫化时间/胶囊蒸汽/合模力/胎面温差/硫化程度/模压周期/蒸汽干度/模温监视/排凝监视 + TireCurePressSeq C5）·间歇式溢流染色与丝光族 10（浴比/升温速率/溢流流量/带碱量/丝光收缩/漂白投加/上染率/色差ΔE/碱浓监视 + JiggerBatchRecipeSeq C4）；总库 1,882→**1,922**，v2.83.0，SFT **1961**。**L2 闸：40/40 PASS = 100%，零 FAIL**（连续第 14 轮），串行 jobs=1，单件均 0.32 s，负向对照 **9/9** 全命中；**跨文件 ENUM 新增 10 个零重名**（R87 起常驻维度，旧账 11 处仍未清）。审校全量 40 件，R5 双语缺英文半边 13 处 = MINOR。修复件 0（非当日首轮，配额归零）。

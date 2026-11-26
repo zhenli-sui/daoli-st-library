@@ -1,8 +1,8 @@
 {
  "library": "Daoli-ST-Library",
- "version": "2.83.0",
- "total_components": 1922,
- "last_updated": "2026-11-25T10:52:35+08:00",
+ "version": "2.87.0",
+ "total_components": 2081,
+ "last_updated": "2026-11-26T23:44:40+08:00",
  "components": [
   {
    "name": "FB_DL_SignalDebounce",
@@ -46889,15 +46889,2019 @@
    "l2_status": "l2-pass",
    "round": "R93",
    "description": "芯砂烘干升温曲线与残余水分"
+  },
+  {
+   "name": "FC_DL_ReExtractionFactorCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReExtractionFactorCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 83,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "分配比D与单级萃取率E计算（E=D/(D+O/A)）"
+  },
+  {
+   "name": "FC_DL_ReTheoreticalStagesCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReTheoreticalStagesCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 3,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 108,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "逆流萃取Kremser理论级数"
+  },
+  {
+   "name": "FC_DL_ReSaponificationRateCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReSaponificationRateCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 88,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "皂化率=实际皂化碱/理论碱"
+  },
+  {
+   "name": "FC_DL_ReOrganicLoadingCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReOrganicLoadingCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 84,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "有机相稀土负载 g/L"
+  },
+  {
+   "name": "FC_DL_RePhaseRatioCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_RePhaseRatioCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 95,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "相比O/A与总流量核算"
+  },
+  {
+   "name": "FC_DL_ReStageEfficiencyCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReStageEfficiencyCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 86,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "单级萃取效率（实际/平衡）"
+  },
+  {
+   "name": "FC_DL_ReStripAcidDosageCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReStripAcidDosageCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 109,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "反萃酸耗当量法"
+  },
+  {
+   "name": "FC_DL_ReWashRatioCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReWashRatioCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 102,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "洗涤液配比与洗涤级数"
+  },
+  {
+   "name": "FC_DL_ReProductPurityCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_ReProductPurityCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 116,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "产品纯度与杂质扣减"
+  },
+  {
+   "name": "FB_DL_ReMixerSettlerSeq",
+   "category": "DL_Process",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Process\\FB_DL_ReMixerSettlerSeq.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "a-reext",
+    "fb_dl"
+   ],
+   "complexity": 4,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 274,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "混合澄清槽多级串级状态机"
+  },
+  {
+   "name": "FC_DL_CathodeLiExcessCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeLiExcessCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 82,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "锂配比Li/M摩尔比与过量率"
+  },
+  {
+   "name": "FC_DL_CathodeSinterSoakCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeSinterSoakCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 96,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "烧结保温时间（扩散长度）"
+  },
+  {
+   "name": "FC_DL_CathodeO2PartialPressureCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeO2PartialPressureCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 77,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "氧分压由O2浓度与总压计算"
+  },
+  {
+   "name": "FC_DL_CathodeSaggerLoadCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeSaggerLoadCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 85,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "匣钵装载量与层数"
+  },
+  {
+   "name": "FC_DL_CathodeMillThroughputCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeMillThroughputCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 97,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "粉碎分级产能"
+  },
+  {
+   "name": "FC_DL_CathodeTapDensityCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeTapDensityCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 90,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "振实密度"
+  },
+  {
+   "name": "FC_DL_CathodeMoistureSpecCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeMoistureSpecCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 88,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "水分限值与干燥时间"
+  },
+  {
+   "name": "FC_DL_CathodeCapacityFadeCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeCapacityFadeCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 110,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "容量衰减随循环数"
+  },
+  {
+   "name": "FC_DL_CathodeD50TargetCalc",
+   "category": "DL_Process",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Process\\FC_DL_CathodeD50TargetCalc.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 92,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "目标D50与分级轮转速"
+  },
+  {
+   "name": "FB_DL_CathodeKilnZoneSeq",
+   "category": "DL_Process",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Process\\FB_DL_CathodeKilnZoneSeq.st",
+   "function_tags": [
+    "process",
+    "r94",
+    "factory",
+    "b-cathode",
+    "fb_dl"
+   ],
+   "complexity": 4,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 347,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "辊道窑多温区升温曲线执行状态机"
+  },
+  {
+   "name": "FC_DL_WebGuideOffsetCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebGuideOffsetCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 95,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "纠偏偏移量（边缘/中心模式）"
+  },
+  {
+   "name": "FC_DL_WebGuideCamberCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebGuideCamberCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 89,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "卷材镰刀弯曲率"
+  },
+  {
+   "name": "FC_DL_WebTensionFromDancerCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebTensionFromDancerCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 85,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "浮辊位置换算张力"
+  },
+  {
+   "name": "FC_DL_WebSagCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebSagCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 92,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "卷材跨距垂度"
+  },
+  {
+   "name": "FC_DL_WebGuideDeadbandCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebGuideDeadbandCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 90,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "随速度缩放的纠偏死区"
+  },
+  {
+   "name": "FC_DL_WebRewindTaperCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebRewindTaperCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 97,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "收卷锥度张力设定"
+  },
+  {
+   "name": "FC_DL_WebAccumulatorCapacityCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebAccumulatorCapacityCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 106,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "储料架容量与缓冲时间"
+  },
+  {
+   "name": "FC_DL_WebGuideRateLimitCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebGuideRateLimitCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 92,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "纠偏执行速率限幅"
+  },
+  {
+   "name": "FC_DL_WebSlitWidthCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_WebSlitWidthCalc.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 97,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "分切宽度与边料量"
+  },
+  {
+   "name": "FB_DL_WebGuideEpcSeq",
+   "category": "DL_Motion",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Motion\\FB_DL_WebGuideEpcSeq.st",
+   "function_tags": [
+    "motion",
+    "r94",
+    "factory",
+    "c-webguide",
+    "fb_dl"
+   ],
+   "complexity": 4,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 262,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "EPC纠偏闭环状态机"
+  },
+  {
+   "name": "FC_DL_PipeInsulationLossCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_PipeInsulationLossCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 97,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "圆筒管道保温散热损失"
+  },
+  {
+   "name": "FC_DL_InsulationCriticalRadiusCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_InsulationCriticalRadiusCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 77,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "临界保温半径"
+  },
+  {
+   "name": "FC_DL_FlatWallHeatLossCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_FlatWallHeatLossCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 121,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "平壁复合导热散热"
+  },
+  {
+   "name": "FC_DL_SurfaceConvectionCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SurfaceConvectionCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 111,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "表面自然/强制对流换热系数"
+  },
+  {
+   "name": "FC_DL_InsulationThicknessCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_InsulationThicknessCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 3,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 125,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "按允许热损反求保温层厚度"
+  },
+  {
+   "name": "FC_DL_TankHeatLossCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_TankHeatLossCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 113,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "立式储罐散热"
+  },
+  {
+   "name": "FC_DL_HeatTracePowerCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_HeatTracePowerCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 103,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "电伴热功率需求"
+  },
+  {
+   "name": "FC_DL_ThermalBridgeFactorCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_ThermalBridgeFactorCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 96,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "热桥线性修正系数"
+  },
+  {
+   "name": "FC_DL_DewPointSurfaceRiskCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_DewPointSurfaceRiskCalc.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fc_dl"
+   ],
+   "complexity": 2,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 125,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "表面结露风险判定"
+  },
+  {
+   "name": "FB_DL_HeatTraceCtrlSeq",
+   "category": "DL_Base",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Base\\FB_DL_HeatTraceCtrlSeq.st",
+   "function_tags": [
+    "base",
+    "r94",
+    "factory",
+    "d-insul",
+    "fb_dl"
+   ],
+   "complexity": 4,
+   "version": "1.0.0",
+   "registered_at": "2026-11-25T18:56:04+08:00",
+   "line_count": 251,
+   "code_segment": "",
+   "source": "r94-plan",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（clean-room 自研，R94 族模板参数化派生）",
+    "license": "MIT",
+    "ref_tag": "R94-V"
+   },
+   "l2_status": "l2-pass",
+   "round": "R94",
+   "description": "电伴热温控状态机"
+  },
+  {
+   "name": "FC_DL_ArcCenterOffsetCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_ArcCenterOffsetCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "fdx",
+    "fdy",
+    "mm"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_HelicalTurnAdvanceCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_HelicalTurnAdvanceCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "z",
+    "mm",
+    "rev"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_RtcpPivotOffsetCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_RtcpPivotOffsetCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "rtcp",
+    "mm"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_ToolLengthCompDeltaCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_ToolLengthCompDeltaCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "mm"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_RotFeedInvTimeCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_RotFeedInvTimeCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "inv",
+    "time",
+    "deg"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_SagFeedLimitCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_SagFeedLimitCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "tcycle",
+    "mm",
+    "min"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_SwivelHeadTiltLimitCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_SwivelHeadTiltLimitCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "deg",
+    "s",
+    "batlimit"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_CornerRoundingRadiusCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_CornerRoundingRadiusCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "mm",
+    "mm",
+    "min"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_RtcpTrackingErrCalc",
+   "category": "DL_Motion",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Motion\\FC_DL_RtcpTrackingErrCalc.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "rtcp",
+    "mm",
+    "uerrid"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FB_DL_RtcpFiveAxisSeq",
+   "category": "DL_Motion",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Motion\\FB_DL_RtcpFiveAxisSeq.st",
+   "function_tags": [
+    "DLF-A-RTCP",
+    "dl_motion",
+    "r95",
+    "round-95",
+    "rtcp",
+    "efault"
+   ],
+   "complexity": 4,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-A-RTCP）",
+    "license": "MIT",
+    "ref_tag": "DLF-A-RTCP"
+   }
+  },
+  {
+   "name": "FC_DL_BisectIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_BisectIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "ffa",
+    "ffb",
+    "bbrktlost"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_RegulaFalsiIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_RegulaFalsiIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_SecantIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_SecantIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "uiter",
+    "abs",
+    "f"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_IllinoisIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_IllinoisIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "illinois"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_GoldenSectionIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_GoldenSectionIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_TernaryNarrowIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_TernaryNarrowIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_ParabolaVertexIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_ParabolaVertexIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "bdegenerate"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_BrentBracketIterStep",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_BrentBracketIterStep.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "brent"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_IterTermJudge",
+   "category": "DL_Algo",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Algo\\FC_DL_IterTermJudge.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "bdone",
+    "ureason"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FB_DL_IterSolverRunner",
+   "category": "DL_Algo",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Algo\\FB_DL_IterSolverRunner.st",
+   "function_tags": [
+    "DLF-B-ROOTSTEP",
+    "dl_algo",
+    "r95",
+    "round-95",
+    "illinois",
+    "brent"
+   ],
+   "complexity": 3,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-B-ROOTSTEP）",
+    "license": "MIT",
+    "ref_tag": "DLF-B-ROOTSTEP"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegBcdDecode",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegBcdDecode.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "bcd",
+    "bcommonanode",
+    "bdecimalpoint"
+   ],
+   "complexity": 1,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegHexCodeCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegHexCodeCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "f",
+    "a",
+    "f"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegMinusFlagCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegMinusFlagCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "boverflow"
+   ],
+   "complexity": 1,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegBlankMaskCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegBlankMaskCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "udigits",
+    "udigits"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegBrightnessPwmCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegBrightnessPwmCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "pwm",
+    "ulevel",
+    "ufullscale"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegBlinkPhaseCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegBlinkPhaseCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "ton",
+    "tperiod",
+    "hz"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegMultiplexPhaseCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegMultiplexPhaseCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "tscan",
+    "udigitcnt",
+    "tslot"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegGhostGuardCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegGhostGuardCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "tblank",
+    "s"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_SevenSegGlyphFontCalc",
+   "category": "DL_Base",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Base\\FC_DL_SevenSegGlyphFontCalc.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95",
+    "ufontslot",
+    "bmiss"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FB_DL_SevenSegMultiplexSeq",
+   "category": "DL_Base",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Base\\FB_DL_SevenSegMultiplexSeq.st",
+   "function_tags": [
+    "DLF-C-SEVENSEG",
+    "dl_base",
+    "r95",
+    "round-95"
+   ],
+   "complexity": 3,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-C-SEVENSEG）",
+    "license": "MIT",
+    "ref_tag": "DLF-C-SEVENSEG"
+   }
+  },
+  {
+   "name": "FC_DL_PhSlopeEffCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_PhSlopeEffCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "ph",
+    "mv",
+    "ph"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_PhAsymmPotentialCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_PhAsymmPotentialCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "ph",
+    "mv",
+    "ph"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_OrpRefOffsetCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_OrpRefOffsetCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "orp",
+    "mv",
+    "ag"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_TurbidityNtuCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_TurbidityNtuCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "ntu"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_ChlorineDpdAbsorbCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_ChlorineDpdAbsorbCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "dpd",
+    "mg",
+    "l"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_DoSalinityPermCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_DoSalinityPermCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "mg",
+    "l",
+    "boutofrange"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_KcellConstCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_KcellConstCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "kcell",
+    "cm"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_SodiumPnaCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_SodiumPnaCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "pna",
+    "pna",
+    "g"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FC_DL_AnalyzerRecalDaysCalc",
+   "category": "DL_Device",
+   "type": "FC",
+   "file_path": "C:\\Library\\DL_Device\\FC_DL_AnalyzerRecalDaysCalc.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "int"
+   ],
+   "complexity": 2,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
+  },
+  {
+   "name": "FB_DL_AnalyzerTwopointCalSeq",
+   "category": "DL_Device",
+   "type": "FB",
+   "file_path": "C:\\Library\\DL_Device\\FB_DL_AnalyzerTwopointCalSeq.st",
+   "function_tags": [
+    "DLF-D-WATERANA",
+    "dl_device",
+    "r95",
+    "round-95",
+    "efault"
+   ],
+   "complexity": 3,
+   "registered_at": "2026-11-26T23:44:40+08:00",
+   "origin": {
+    "mode": "internal",
+    "source": "道莅原创（自研线/R95 规划族 DLF-D-WATERANA）",
+    "license": "MIT",
+    "ref_tag": "DLF-D-WATERANA"
+   }
   }
  ],
  "counts": {
-  "DL_Base": 223,
+  "DL_Base": 243,
   "DL_MathData": 454,
-  "DL_Algo": 194,
-  "DL_Device": 329,
-  "DL_Motion": 171,
-  "DL_Process": 551
+  "DL_Algo": 207,
+  "DL_Device": 362,
+  "DL_Motion": 205,
+  "DL_Process": 610
  },
  "provenance": {
   "version": 1,

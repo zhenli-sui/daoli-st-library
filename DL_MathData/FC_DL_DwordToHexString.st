@@ -49,6 +49,7 @@ VAR
     sRet            : STRING;         // 结果装配缓冲 [字符] / result assembly buffer [char]
     nNib            : INT;            // 当前半字节值 0~15 [无量纲] / current nibble value, 0..15 [dimensionless]
     nIdx            : INT;            // 半字节游标 7~0（高位在前）[无量纲] / nibble cursor from seven down to zero, most significant first [dimensionless]
+    nJ              : INT;            // 升序循环变量（镜像下标用）[无量纲] / ascending loop var for mirrored index [dimensionless]
     nExpLen         : INT;            // 期望结果长度 [字符] / expected result length [char]
 END_VAR
 VAR CONSTANT
@@ -79,7 +80,8 @@ IF bPrefix THEN
 END_IF
 
 // 段 3｜逐半字节装配：高位在前，移位量 = 游标 × 4，最大 28 < 32 / segment 3, nibble assembly, the shift never reaches the container width
-FOR nIdx := DL_HEX_DIGITS - DL_HEX_ONE DOWNTO 0 DO
+FOR nJ := 0 TO (DL_HEX_DIGITS - DL_HEX_ONE) DO
+    nIdx := (DL_HEX_DIGITS - DL_HEX_ONE) - nJ;   // 镜像下标：R509 禁 DOWNTO / mirrored index, DOWNTO unsupported
     nNib := DWORD_TO_INT(SHR(uValue, nIdx * DL_HEX_NIB_BITS) AND DL_HEX_NIB_MASK);   // 取当前半字节 / extract the current nibble
     IF bUpperCase THEN
         sRet := CONCAT(sRet, MID(DL_HEX_UPPER, DL_HEX_ONE, nNib + DL_HEX_ONE));      // 大写表查字符 / look the digit up in the upper case table

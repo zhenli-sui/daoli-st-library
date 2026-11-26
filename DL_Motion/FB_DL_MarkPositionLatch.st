@@ -149,6 +149,7 @@ VAR
     nUb             : DINT := 7;            // 历史数组下标上界（Array upper bound）[-]，实测取得
     nAvail          : DINT := 8;            // 实测可用槽位（Available slots）[-]，上界减下界加一
     nIdx            : DINT := 0;            // 历史搬移索引（Shift index）[-]，循环内使用
+    nJ              : DINT := 0;            // 升序循环变量（Ascending loop var，镜像下标用）[-]
     nGuard          : DINT := 0;            // 循环防死锁计数器（Loop guard counter）[-]
     tWindowEff      : TIME := T#10S;        // 生效布防窗（Effective arm window）[ms]，负值归零
     tWindowPrev     : TIME := T#0MS;        // 上拍布防窗（Previous arm window）[ms]，变更检测基准
@@ -286,7 +287,8 @@ CASE eState OF
             // 历史缓冲头插（整体前移，定长循环 + 实测边界）
             IF bIdxOk AND (nDepthEff >= DL_MARK_DEPTH_MIN) THEN
                 nGuard := 0;
-                FOR nIdx := (nDepthEff - 1) DOWNTO DL_MARK_DEPTH_MIN DO
+                FOR nJ := DL_MARK_DEPTH_MIN TO (nDepthEff - 1) DO
+                    nIdx := (nDepthEff - 1) - nJ + DL_MARK_DEPTH_MIN;   // 镜像下标：R509 禁 DOWNTO（Mirrored index, DOWNTO unsupported）
                     IF nGuard >= DL_MARK_GUARD_MAX THEN
                         EXIT;                            // 防死锁
                     END_IF

@@ -14,7 +14,15 @@
 """
 import argparse, json, os, re, sys, io, glob, tempfile, datetime, shutil
 
-LIB = r"C:\Library"
+# 库根目录解析：环境变量 > 脚本父目录（含 DL_Base 时）> C:\Library —— 保证 Linux CI 可用
+_here = os.path.dirname(os.path.abspath(__file__))
+_parent = os.path.dirname(_here)
+if os.environ.get("DAOLI_LIB"):
+    LIB = os.environ["DAOLI_LIB"]
+elif os.path.isdir(os.path.join(_parent, "DL_Base")):
+    LIB = _parent
+else:
+    LIB = r"C:\Library"
 STG = os.path.join(LIB, "_Staging_Raw")
 
 KEYWORDS = {
@@ -289,6 +297,43 @@ def gate_source(src, basename, registry_index=None, strict_decl=False):
         if o in inited: continue
         if not re.search(r"\b%s\s*(\[[^\]]*\])?\s*(\.[A-Za-z_]\w*)?\s*:=" % re.escape(o), body):
             add("MAJOR","OUT_NO_ASSIGN",0,f"输出 {o} 从未赋值")
+
+    # ---------- R82 新增静态锚点 ----------
+    # A1 R509：FOR .. DOWNTO（RuSTy 1.0.8 报 E007，实测 FC_DL_PolyEvalHorner / FB_DL_MarkPositionLatch 同中）
+    for m in re.finditer(r"\bFOR\b[^\n;]*?\bDOWNTO\b", code_src, re.I):
+        add("BLOCK", "R509_FOR_DOWNTO", code_src[:m.start()].count("\n") + 1,
+            "FOR..DOWNTO 不被 RuSTy 支持（E007），改镜像下标升序")
+
+    # A2 R525：常量名与单位语义相反（DL_RAD_TO_DEG 若为 0.01745 则名实不符，后人按名改即注入 3282 倍误差）
+    for m in re.finditer(r"\b(DL_\w*RAD_TO_DEG\w*)\s*:\s*(?:REAL|LREAL)\s*:=\s*([0-9.]+)", src, re.I):
+        val = m.group(2)
+        try:
+            fv = float(val)
+        except Exception:
+            fv = -1.0
+        if 0.0 < fv < 1.0:
+            add("MAJOR", "R525_UNIT_LABEL_INVERTED", src[:m.start()].count("\n") + 1,
+                "%s = %s 实为 rad/deg 系数却命名为 RAD_TO_DEG，应改 DL_RAD_PER_DEG 或改为乘得度的 57.29..." % (m.group(1), val))
+
+    # A3 R526：声明时初始化（常量）但全文件零引用 —— 6 件同型噪声
+    const_decl = {}
+    for idx, ln in enumerate(lines_code, 1):
+        m = re.match(r"^\s*([A-Z][A-Z0-9_]{2,})\s*:\s*(?:REAL|LREAL|DINT|INT|DWORD|UDINT|TIME)\s*:=\s*([^;]+);", ln)
+        if m:
+            const_decl[m.group(1)] = idx
+    body_nc = re.sub(r"\(\*.*?\*\)", "", src, flags=re.S)
+    body_nc = re.sub(r"//[^\n]*", "", body_nc)
+    for cname, cline in const_decl.items():
+        refs = len(re.findall(r"\b%s\b" % re.escape(cname), body_nc))
+        if refs <= 1:  # 只有声明处这一处
+            add("WARN", "R526_CONST_ZERO_REF", cline, "常量 %s 声明后零引用" % cname)
+
+    # A4 R527：TON 的 IN 实参为「跨相 OR」（eA OR eB）—— 实为累计看门狗，非本相超时
+    for m in re.finditer(r"\b(ton\w*)\s*\(\s*IN\s*:=\s*([^,;]*?)\s*,\s*PT\s*:=", code_src, re.I):
+        arg = m.group(2)
+        if re.search(r"\bOR\b", arg, re.I) and len(re.findall(r"\be[A-Z]\w*\b", arg)) >= 2:
+            add("MAJOR", "R527_TON_CROSS_PHASE", code_src[:m.start()].count("\n") + 1,
+                "TON(%s) 的 IN 跨相 OR（%s），须注释声明为累计看门狗或拆两个 TON 各串本相闸" % (m.group(1), arg.strip()[:48]))
 
     # 版本头
     vm = re.search(r"VERSION\s*[:：]\s*v?(\d+\.\d+\.\d+)", src[:1200], re.I)

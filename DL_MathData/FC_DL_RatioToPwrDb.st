@@ -33,7 +33,6 @@
     修订记录  : 2026-11-16 v1.0.0 首次入库（R19）
 *)
 FUNCTION FC_DL_RatioToPwrDb : LREAL
-END_VAR  // R64 结构补齐：VAR 段缺失的 END_VAR（门禁机械修复）
 VAR_INPUT
     fP1             : LREAL := 1.0;           // 分子功率 [W]，域 0.0~1.0E30，0 合法 / numerator power [W], range 0.0~1.0E30, zero allowed
     fP2             : LREAL := 1.0;           // 分母功率（参考功率）[W]，必须 > 0 / denominator reference power [W], must be > 0

@@ -143,3 +143,9 @@ _（尚无）_
 - [R758] 采集 | 本轮 30 条净增全绿，队列 273 条（≈1.8 天）；PLCnext 真 org 名 `PLCnext` 定向生效 | codeload 整包 + LICENSE 正文核验为唯一稳定通道，raw 与 search/code 均不可用
 - [R759] 合规 | 无证仓 3 个零下载、红区零拉取 | 无 LICENSE 一律 unknown 拒收，哪怕 ST 真件质量高（本轮 CIP 真件 7 个 ST 仍拒）
 - [R760] 方法 | 垂直工艺族溯源持续 0%，已连续 14 轮实证 | 溯源 30% KPI 对垂直工艺族应整体豁免，改考核「通用支撑层覆盖率」
+
+[R780] 事实 | search/code 匿名接口 401 连续第 2 轮，未接触 .gh_token | 匿名搜索通道已实质不可用；不开 token 的情况下，采集只能走定点仓，产量上限极低 | R780
+[R781] 事实 | 点名 3 仓（PLCnext-Store/PhoenixContact/OSCAT）全部 http 404 | 候选仓清单一律"先探测存在性再规划采集"，否则一轮预算全花在 404 上；历史记忆中的仓名必须视为未验证 | R781
+[R782] 事实 | raw.githubusercontent 连续 4 轮 http=000，脚本回落 contents API，每文件 1 次 core 配额，60 次/小时仅够 20 文件 | --max-files 参数在回落路径上不生效，实际上限由配额决定；限流预算应按"文件数"而非"仓数"核算 | R782
+[R783] 风险 | tkucic/brOscatLib API 声明 MIT，但文件集与 OSCAT BASIC 同名同构 | 存在"MIT 洗白"风险：许可证字段不等于代码来源合法；同名同构是判黄的必要信号，须建立结构相似度比对 | R783
+[R784] 建议 | 绿区松散 ST 仓已被 R93 吃干，剩余多为二进制 .project | 下一批改走 codeload 整包 + 二进制工程解包，摆脱 contents API 配额；不改变通道则供料产量将持续为 0 | R784

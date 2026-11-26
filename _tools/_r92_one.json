@@ -1,0 +1,19 @@
+{
+ "total": 1,
+ "pass": 1,
+ "fail": 0,
+ "seed": 0,
+ "jobs": 1,
+ "iface_excluded": [],
+ "results": [
+  {
+   "file": "C:\\Library\\DL_Process\\FC_DL_PotlineBathRatioCalc.st",
+   "name": "FC_DL_PotlineBathRatioCalc.st",
+   "rc": 0,
+   "pass": true,
+   "first_error": "",
+   "dep_rounds": 0,
+   "dep_count": 0
+  }
+ ]
+}

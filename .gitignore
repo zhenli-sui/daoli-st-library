@@ -50,3 +50,10 @@ _tools/_check*.json
 
 # 本地凭据，禁止入库
 _tools/.gh_token
+
+# --- 子代理下载的开源包/中间解包目录（路径过长且非交付物） ---
+_Staging_Raw/*/_pkg/
+_Staging_Raw/*/node_modules/
+
+# --- 一次性开源包解包dump（26k 文件，非交付物） ---
+_Staging_Raw/2026-11-24/
