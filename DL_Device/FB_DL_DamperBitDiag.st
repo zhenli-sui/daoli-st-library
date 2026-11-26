@@ -63,6 +63,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     tonContra    : TON;               // 反馈矛盾确认窗（电平式），无条件刷新 / Contradiction timer
+    _eState      : E_DL_DbdState := E_DL_DbdState.eIdle;  // 内部相位（CASE 唯一写入目标，初值安全侧）/ Internal phase, safe init
     rtDiagRst    : R_TRIG;            // 诊断复位沿实例，无条件刷新 / Diag reset edge instance
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance
     _bLimOpen    : BOOL;              // 开限位当拍量（掩码提取）[-] / Limit-open current-scan flag

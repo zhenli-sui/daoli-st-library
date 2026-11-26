@@ -62,6 +62,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     tonFeatTo    : TON;               // 故障阈持续确认窗（电平式），无条件刷新 / Fault sustain timer
+    _eState      : E_DL_RvwState := E_DL_RvwState.eIdle;  // 内部相位（CASE 唯一写入目标，初值安全侧）/ Internal phase, safe init
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance
     _fLpf        : REAL;              // 一阶低通状态 [g]（保持量）/ First-order LPF state
     _fHigh       : REAL;              // 高通分量（当拍量）[g] / High-pass component

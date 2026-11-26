@@ -49,7 +49,7 @@
 
 | 类别 | 件数 | 根因 | 处置 |
 |---|---|---|---|
-| L1 BLOCK 存量 | **50** | 39× `SYN_CROSS_END`（20 个 FB 的 `PROPERTY` 缺 `END_PROPERTY` + 19 个 `I_DL_*` 接口声明式属性）、4× `FOR..DOWNTO`、4× 未声明标识符、3× 结构残缺 | 本轮修 5 件（R509×3 + 结构×2）+ Kcell 1 件；余 44 件列 R96 P0 |
+| L1 BLOCK 存量 | **50 → 39** | 39× `SYN_CROSS_END`（20 个 FB 的 `PROPERTY` 缺 `END_PROPERTY` + 19 个 `I_DL_*` 接口声明式属性）、4× `FOR..DOWNTO`、4× 未声明标识符、3× 结构残缺 | **本轮修 11 件**（R509×3、结构×2、未声明×4、Kcell 域闸×1、RatioToPwrDb×1），50→39；余 39 件全为 PROPERTY 一类，列 R96 P0 |
 | L1 MAJOR 存量 | **58** | 主要是 `R527_TON_CROSS_PHASE`（TON 的 IN 跨相 OR） | 列 R96 P1 |
 | 跨文件重名 ENUM | **11 组** | 历史并行开发撞名 | 挂账第 7 轮，R96 P0 |
 | JSONL 高于 registry | **+39 行** | R70 前遗留重复 | 持续挂账 |
@@ -112,7 +112,7 @@
 ## 十一、下一轮 R96 P0（只带 4 项）
 
 1. **修 `l2_check` 预筛口径**——停止把 PROPERTY 文件排除出分母，改判 EXEMPT 并单列；否则通过率继续虚高。
-2. **44 件存量 BLOCK 清账**：20 个 FB 的 PROPERTY→METHOD（符合 R14），19 个接口属性按方言豁免登记，4 个未声明标识符，4 个 R509 已修完 3 个剩 1 个（MarkPositionLatch 还有 VLA E037）。
+2. **39 件存量 BLOCK 清账**：20 个 FB 的 PROPERTY→METHOD（符合 R14，需同步改消费者），19 个接口声明式属性按方言豁免登记。另 MarkPositionLatch 还剩 VLA E037 一处。
 3. **11 组重名 ENUM 清账**（挂账第 7 轮）。
 4. **负向对照 N5 补 `--deny-warnings`**，让 `:=`/`=` 这类 E023 warning 也计入失败。
 

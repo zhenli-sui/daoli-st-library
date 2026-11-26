@@ -58,6 +58,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     tonViol      : TON;               // 门开期违约确认窗（电平式），无条件刷新 / Door-open violation timer
+    _eState      : E_DL_RudState := E_DL_RudState.eIdle;  // 内部相位（CASE 唯一写入目标，初值安全侧）/ Internal phase, safe init
     tonInhibit   : TON;               // 重启抑制窗（R188 自复位错峰窗），无条件刷新 / Restart inhibition timer
     rtDoorClosed : F_TRIG;            // 门关沿实例（bDoorOpen 下降沿），无条件刷新 / Door-closed edge instance
     rtReset      : R_TRIG;            // 复位沿实例，无条件刷新 / Reset edge instance

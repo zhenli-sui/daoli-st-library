@@ -51,6 +51,7 @@ VAR
     _bFault : BOOL;                          (* 故障锁存位 / Latched fault bit *)
     _bCfgBad: BOOL;                          (* 组态非法当拍量 / Illegal config this scan *)
     _nLfsr  : DWORD;                         (* LFSR 状态寄存器（整数实现）[-] / LFSR state register *)
+    _nDegree: INT := 1;                      (* 当前反馈阶次（1 起，用于 SHL 位序）[-] / Current feedback degree, 1-based shift index *)
     _nTapMsk: DWORD;                         (* 抽头掩码（CASE 表派生）[-] / Tap mask from table *)
     _bFb    : BOOL;                          (* 反馈位异或累加量 [-] / Feedback parity *)
     _bZero  : BOOL;                          (* 全零态检测当拍量 / All-zero state detect *)
